@@ -1,9 +1,15 @@
-enum AppState { Up, Down, Left, Right };
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#include <QWidget>
+
+
+#endif // CONFIG_H
 enum EnemyState {Active, Inactive};
 enum DirectionSprite { UP, DOWN, LEFT, RIGHT };
 enum EnemyAIState { IDLE, CHASING, ATTACKING };
 enum AppState { MENU, INGAME, PAUSE, GAMEOVER, VICTORY };
-const QPose SPAWN_COORDOINATES;
+const QPoint SPAWN_COORDOINATES;
 const int INITIAL_LIFEPOINT = 10;
 const int  WINDOW_W = 960;
 const int WINDOW_H = 650;
