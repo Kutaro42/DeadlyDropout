@@ -1,11 +1,11 @@
 #include <QApplication>
-#include "gamecontroller.h"
+#include "appcontroller.h"
 
 int main(int argc, char *argv[]) {
+
     QApplication a(argc, argv);
-    
-    GameController controller;
-    controller.init();
+    AppController w;
+    //controller.init();
     
     return a.exec();
 }

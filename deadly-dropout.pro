@@ -1,6 +1,4 @@
-QT       += core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += widgets
 
 CONFIG += c++17
 
@@ -9,6 +7,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    appcontroller.cpp \
     enemy.cpp \
     entity.cpp \
     exitdoormodel.cpp \
@@ -20,7 +19,7 @@ SOURCES += \
     katana.cpp \
     levelmodel.cpp \
     main.cpp \
-    appcontroller.cpp \
+    mainwindow.cpp \
     menucontroller.cpp \
     menuview.cpp \
     playermodel.cpp \
@@ -44,8 +43,10 @@ HEADERS += \
     globaldoor.h \
     katana.h \
     levelmodel.h \
+    mainwindow.h \
     menucontroller.h \
     menuview.h \
+    player.h \
     playermodel.h \
     playerview.h \
     vector2f.h \
@@ -60,4 +61,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    .gitignore \
+    .gitlab-ci.yml \
     README.md
+
+RESOURCES += \
+    ressources.qrc

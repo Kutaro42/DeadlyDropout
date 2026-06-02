@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/ressources">
+        <file>Textures/Player/Move/Down.png</file>
+        <file>Textures/Player/Move/Left.png</file>
+        <file>Textures/Player/Move/Right.png</file>
+        <file>Textures/Player/Move/Up.png</file>
+
+        <file>Textures/Player/Idle/Down.png</file>
+        <file>Textures/Player/Idle/Left.png</file>
+        <file>Textures/Player/Idle/Right.png</file>
+        <file>Textures/Player/Idle/Up.png</file>
+    </qresource>
+</RCC>

@@ -1,10 +1,16 @@
-#ifndef KATANA_H
-#define KATANA_H
-
-class Katana
-{
+#include "Vector2f.h"
+class katana{
+    int itsRange;
+    int itsDamage;
+    float itsCooldown;
+    bool itsReady;
 public:
-    Katana();
-};
-
-#endif // KATANA_H
+    int getDamage();
+    int getRange();
+    float getCooldown();
+    bool isReady();
+    void setDamage(int d);
+    void setRange(int r);
+    void setCooldown(float c);
+    void launchAttack(Vector2f mouseWorldPos);
+   };

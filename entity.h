@@ -6,19 +6,19 @@
 
 class Entity {
 protected:
-    Vector2f position;
+    QPoint position;
     Vector2f velocity;
     QRectF collider; // Remplace CollisionShape pour être compatible Qt
     bool active;
 
 public:
-    Entity(Vector2f pos, float w, float h);
+    Entity(QPoint pos, float w, float h);
     virtual ~Entity() = default;
 
     virtual void update(float dt) = 0;
 
-    Vector2f getPosition() const;
-    void setPosition(const Vector2f& pos);
+    QPoint getPosition() const;
+    void setPosition(const QPoint& pos);
     
     QRectF getCollider() const;
     bool isActive() const;

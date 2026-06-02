@@ -20,7 +20,7 @@ private slots:
     void gameLoop();
 
 public:
-    explicit GameController(QObject *parent = nullptr);
+    GameController();
     ~GameController();
 
     // Initialisation de la vue, du modèle et démarrage du Timer
