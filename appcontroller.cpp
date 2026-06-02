@@ -1,7 +1,7 @@
-#include "appcontroller.h"
+#include "AppController.h"
 #include <iostream>
 
-appController::appController(QWidget *parent)
+AppController::AppController(QWidget *parent)
     : QMainWindow(parent)
 {
     currentState = new AppState;
@@ -9,18 +9,18 @@ appController::appController(QWidget *parent)
     itsGameController = new GameController;
 
 
-    connect(itsMenuController,&MenuController::sigGameRequest,this,&appController::sigGameRq);
-    connect(this,&appController::sigGameRq,this,&appController::startGame);
+    connect(itsMenuController,&MenuController::sigGameRequest,this,&AppController::sigGameRq);
+    connect(this,&AppController::sigGameRq,this,&AppController::startGame);
 }
 
-appController::~appController()
+AppController::~AppController()
 {
     delete itsMenuController;
     delete currentState;
     delete itsGameController;
 }
 
-void appController::startGame()
+void AppController::startGame()
 {
     std::cout << "test";
 }

@@ -1,3 +1,7 @@
 #include "gamecontroller.h"
 
-GameController::GameController(QObject *parent = nullptr){};
+GameController::GameController(){};
+GameController::~GameController(){};
+
+void GameController::init(){};
+void GameController::gameLoop(){};

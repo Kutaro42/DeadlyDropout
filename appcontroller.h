@@ -1,5 +1,5 @@
-#ifndef APPCONTROLLER_H
-#define APPCONTROLLER_H
+#ifndef AppController_H
+#define AppController_H
 
 #include <QMainWindow>
 #include "config.h"
@@ -7,7 +7,7 @@
 #include "gamecontroller.h"
 
 
-class appController : public QMainWindow
+class AppController : public QMainWindow
 {
     Q_OBJECT
 
@@ -17,8 +17,8 @@ private:
     GameController *itsGameController;
 
 public:
-    appController(QWidget *parent = nullptr);
-    ~appController();
+    AppController(QWidget *parent = nullptr);
+    ~AppController();
 
     void switchState(AppState* next);
     void startGame();
@@ -26,4 +26,4 @@ public:
     signals:
     void sigGameRq();
 };
-#endif // APPCONTROLLER_H
+#endif // AppController_H
