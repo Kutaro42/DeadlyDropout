@@ -5,7 +5,7 @@
 ZombieStdModel::ZombieStdModel(Vector2f pos) 
     : Enemy(pos, 20, 90.0f, 7, 400.0f, 64.0f, 64.0f, 5) {}
 
-void ZombieStdModel::update(float dt) {
+void ZombieStdModel::update(float dt, Vector2f playerPos) {
     // Méthode générique inutilisée, on passe par updateEnemy
 }
 
