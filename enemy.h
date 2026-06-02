@@ -16,7 +16,7 @@ protected:
     int baseGoldDrop;
 
 public:
-    Enemy(Vector2f pos, int maxHp, float spd, int dmg, float det, float w, float h, int goldDrop);
+    Enemy(QPoint pos, int maxHp, float spd, int dmg, float det, float w, float h, int goldDrop);
     
     virtual void updateEnemy(float dt, Vector2f playerPos) = 0;
     virtual void attack(Player* p) = 0;
@@ -25,7 +25,7 @@ public:
 
     bool isDead() const ;
     int getGoldDrop() const ;
-    bool detectsPlayer(Vector2f playerPos) const ;
+    bool detectsPlayer(QPoint playerPos) const ;
 
 };
 

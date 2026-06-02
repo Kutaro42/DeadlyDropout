@@ -1,6 +1,6 @@
 #include "enemy.h"
 
-Enemy::Enemy(Vector2f pos, int maxHp, float spd, int dmg, float det, float w, float h, int goldDrop)
+Enemy::Enemy(QPoint pos, int maxHp, float spd, int dmg, float det, float w, float h, int goldDrop)
     : Entity(pos, w, h), hp(maxHp), maxHp(maxHp), speed(spd), baseDamage(dmg), 
       attackCooldown(1.5f), attackTimer(0.0f), detectionRadius(det), baseGoldDrop(goldDrop) {
 }
@@ -21,7 +21,7 @@ int Enemy::getGoldDrop() const {
     return baseGoldDrop;
 }
 
-bool Enemy::detectsPlayer(Vector2f playerPos) const {
-    float distance = (playerPos - position).length();
+bool Enemy::detectsPlayer(QPoint playerPos) const {
+    float distance = (playerPos - position);
     return distance <= detectionRadius;
 }
