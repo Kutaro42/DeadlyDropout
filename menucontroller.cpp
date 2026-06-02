@@ -1,21 +1,17 @@
 #include "menucontroller.h"
 #include "menuview.h"
 
-MenuController::MenuController()
+
+MenuController::MenuController(QObject* parent) : QObject(parent)
 {
-    MenuView *itsMenuView = new MenuView;
-    int i =5;
+    itsMenuView = new MenuView;
+    itsMenuView->show();
+
+    connect(itsMenuView, &MenuView::sigGameRq,this,&MenuController::sigGameRequest);
 }
 
 
 MenuController::~MenuController()
 {
     delete itsMenuView;
-}
-
-
-void MenuController::render()
-{
-
-    itsMenuView->show();
 }

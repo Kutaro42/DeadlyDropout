@@ -20,12 +20,10 @@ public:
     appController(QWidget *parent = nullptr);
     ~appController();
 
-    void run();
     void switchState(AppState* next);
-    void handleEvents();
+    void startGame();
 
-private slots:
-    //void sltOnStartGame();
-    //void sltOnQuitRequested();
+    signals:
+    void sigGameRq();
 };
 #endif // APPCONTROLLER_H
