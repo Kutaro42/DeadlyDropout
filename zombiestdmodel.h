@@ -1,10 +1,14 @@
 #ifndef ZOMBIESTDMODEL_H
 #define ZOMBIESTDMODEL_H
 
-class ZombieStdModel
-{
+#include "enemy.h"
+
+class ZombieStdModel : public Enemy {
 public:
-    ZombieStdModel();
+    ZombieStdModel(Vector2f pos);
+    
+    void update(float dt, Vector2f playerPos) override;
+    void attack(Player* p) override;
 };
 
 #endif // ZOMBIESTDMODEL_H
