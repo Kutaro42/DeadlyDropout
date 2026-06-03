@@ -36,8 +36,8 @@ private:
     int              currentLevelIndex;
 
 public:
-    explicit GameController(QObject* parent = nullptr);
-    ~GameController() override;
+    explicit GameController(QObject* parent);
+    ~GameController();
 
     // Initialise tout et affiche la fenêtre de jeu
     void init();
