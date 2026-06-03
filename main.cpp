@@ -1,11 +1,16 @@
 #include <QApplication>
-#include "appcontroller.h"
+#include "gamecontroller.h"
 
-int main(int argc, char *argv[]) {
+// ═══════════════════════════════════════════════════════════════════
+//  main.cpp — point d'entrée de l'application Deadly Dropout.
+//  Crée le GameController et lance la boucle Qt.
+// ═══════════════════════════════════════════════════════════════════
+int main(int argc, char* argv[]) {
+    QApplication app(argc, argv);
+    app.setApplicationName("Deadly Dropout");
 
-    QApplication a(argc, argv);
-    AppController w;
-    //controller.init();
-    
-    return a.exec();
+    GameController controller;
+    controller.init();
+
+    return app.exec();
 }
