@@ -1,7 +1,20 @@
 <RCC>
     <qresource prefix="/images">
+        <!-- ── Logo & UI ─────────────────────────────────────── -->
         <file>Textures/Logo/logopixel.png</file>
-	<file>Textures/bata.png</file>
-	<file>Textures/Logo/favi.png</file>
+        <file>Textures/Logo/favi.png</file>
+        <file>Textures/bata.png</file>
+
+        <!-- ── Joueur (idle × 4 directions) ─────────────────── -->
+        <file>Textures/Player/Idle/Down.png</file>
+        <file>Textures/Player/Idle/Up.png</file>
+        <file>Textures/Player/Idle/Left.png</file>
+        <file>Textures/Player/Idle/Right.png</file>
+
+        <!-- ── Joueur (walk × 4 directions) ─────────────────── -->
+        <file>Textures/Player/Move/Down.png</file>
+        <file>Textures/Player/Move/Up.png</file>
+        <file>Textures/Player/Move/Left.png</file>
+        <file>Textures/Player/Move/Right.png</file>
     </qresource>
 </RCC>

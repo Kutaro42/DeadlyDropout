@@ -9,33 +9,43 @@
 
 // ═══════════════════════════════════════════════════════════════════
 //  PlayerView — représentation visuelle du joueur.
-//  3 états × 4 directions = 12 jeux de frames.
-//  Fallback : carré bleu annoté "P" si sprites absents.
+//
+//  Spritesheets attendus (via ressources.qrc, prefix /images) :
+//    Textures/Player/Idle/{Down,Up,Left,Right}.png  → 2 frames 32×32 (64×32)
+//    Textures/Player/Move/{Down,Up,Left,Right}.png  → 2 frames 32×32 (64×32)
+//
+//  Chaque frame est extraite et scalée à Cfg::ENTITY_SIZE (64×64).
+//  Fallback : carré bleu annoté si sprite absent.
 // ═══════════════════════════════════════════════════════════════════
 class PlayerView : public QGraphicsPixmapItem {
 private:
-    PlayerModel*     model;
+    PlayerModel* model;
 
-    // sprites[état][direction] — état : 0=idle 1=walk 2=slash
-    //                         — dir  : 0=down 1=up 2=left 3=right
-    QVector<QPixmap> sprites[3][4];
+    // sprites[état][direction] — état : 0=idle  1=walk
+    //                          — dir  : 0=DOWN 1=UP 2=LEFT 3=RIGHT
+    static constexpr int STATE_COUNT = 2;
+    static constexpr int DIR_COUNT   = 4;
+
+    // Dimensions source des frames dans le spritesheet
+    static constexpr int FRAME_W = 32;   // largeur d'une frame source (px)
+    static constexpr int FRAME_H = 32;   // hauteur d'une frame source (px)
+
+    QVector<QPixmap> sprites[STATE_COUNT][DIR_COUNT];
 
     int   currentFrame;
     float frameTimer;
-    float animSpeed;
-    bool  prevAttacking; // pour détecter le début d'une nouvelle attaque
+    float animSpeed;    // durée d'une frame walk (s)
 
-    static int dirIdx(FacingDirection d);
-
-    void loadSheet(QVector<QPixmap>& frames,
-                   const QString& path, int fw, int fh);
-    void advanceFrames(float dt, const QVector<QPixmap>& frames);
-    void showFallback(FacingDirection dir);
+    // Helpers
+    static int     dirIdx(FacingDirection d);
+    void           loadSheet(QVector<QPixmap>& frames, const QString& path);
+    void           advanceFrames(float dt, const QVector<QPixmap>& frames);
+    void           showFallback(FacingDirection dir);
 
 public:
     explicit PlayerView(PlayerModel* model, QGraphicsItem* parent = nullptr);
 
-    // À appeler chaque tick depuis GameView
+    // Appelé chaque tick depuis GameView
     void updateView(float dt);
 };
 
