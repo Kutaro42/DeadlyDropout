@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>Textures/Logo/logopixel.png</file>
+	<file>Textures/bata.png</file>
+	<file>Textures/Logo/favi.png</file>
+    </qresource>
+</RCC>

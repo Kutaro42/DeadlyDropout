@@ -3,6 +3,7 @@
 #include <QApplication>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QPainter>
 
 
 MenuView::MenuView(QWidget* parent) : QWidget(parent)
@@ -48,5 +49,23 @@ MenuView::MenuView(QWidget* parent) : QWidget(parent)
     itsLayout->addWidget(quitButton);
 
     itsLayout->setAlignment(Qt::AlignCenter);
+
+
+}
+
+void MenuView::paintEvent(QPaintEvent* event)
+{
+
+    QWidget::paintEvent(event);
+    QPainter painter(this);
+    QImage logo(":/images/Textures/Logo/logopixel.png");
+    QImage imgFond(":/images/Textures/bata.png");
+
+    painter.drawImage(200, 0, imgFond); // image fond
+    painter.drawImage(
+        QRect(225, 0, 518, 200), // taille souhaitée
+        logo);
+
+    setWindowIcon(QIcon(":/images/Textures/Logo/favi.png")); // Avoir logo en haut a gauche
 
 }

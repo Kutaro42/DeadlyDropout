@@ -7,6 +7,7 @@ class MenuView : public QWidget
     Q_OBJECT
 public:
     MenuView(QWidget *parent = nullptr);
+    void paintEvent(QPaintEvent* event);
 
 signals:
     void sigGameRq();
