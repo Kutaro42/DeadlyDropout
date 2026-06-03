@@ -13,11 +13,11 @@ namespace Cfg {
     constexpr int   WINDOW_H            = 650;
 
     // ─── Tuiles ───────────────────────────────────────────────────
-    constexpr int   TILE_SIZE           = 64;   // px par tuile de sol/mur
+    constexpr int   TILE_SIZE           = 32;   // px par tuile de sol/mur
     constexpr int   ENTITY_SIZE         = 64;   // taille sprite entité (px)
 
     // ─── Joueur ───────────────────────────────────────────────────
-    constexpr float PLAYER_SPEED        = 300.0f;  // px/s
+    constexpr float PLAYER_SPEED        = 120.0f;  // px/s
     constexpr int   PLAYER_MAX_HP       = 100;
 
     // ─── Katana ───────────────────────────────────────────────────

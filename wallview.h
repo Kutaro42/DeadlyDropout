@@ -4,7 +4,6 @@
 #include <QGraphicsRectItem>
 #include <QBrush>
 #include <QPen>
-#include <QPixmap>
 #include "wallmodel.h"
 #include "config.h"
 

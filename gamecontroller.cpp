@@ -137,10 +137,19 @@ void GameController::handleInput(float dt) {
 
 // ── Transitions d'état ─────────────────────────────────────────────
 void GameController::checkStateTransitions() {
-    if (itsGameModel->getPlayer()->isDead())
+    if (itsGameModel->getPlayer()->isDead()) {
         transitionTo(AppState::GAME_OVER);
-    else if (levelCtrl->levelJustCompleted)
-        transitionTo(AppState::VICTORY);
+    } else if (levelCtrl->levelJustCompleted) {
+        int nextIndex = currentLevelIndex + 1;
+        if (nextIndex < LevelData::LEVEL_COUNT) {
+            // Il reste des niveaux : on charge le suivant
+            loadLevel(nextIndex);
+            itsGameView->initWithModel(itsGameModel);
+        } else {
+            // Dernier niveau terminé : victoire finale
+            transitionTo(AppState::VICTORY);
+        }
+    }
 }
 
 void GameController::transitionTo(AppState state) {

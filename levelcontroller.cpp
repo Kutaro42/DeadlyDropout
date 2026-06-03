@@ -122,6 +122,8 @@ void LevelController::checkExitCondition(PlayerModel& player,
 {
     ExitDoorModel* exitDoor = level.getExitDoor();
     if (!exitDoor) return;
+    // AJOUT : ne pas ouvrir si aucun ennemi n'a jamais existé
+    if (level.getEnemies().isEmpty()) return;
 
     // La sortie s'ouvre quand tous les ennemis sont vaincus
     if (level.allEnemiesDefeated() && !exitDoor->isOpen())
