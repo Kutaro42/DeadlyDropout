@@ -1,35 +1,47 @@
 #include "zombiestdview.h"
+#include <QPainter>
 
-ZombieStdView::ZombieStdView(ZombieStdModel* model, QGraphicsItem* parent)
-    : QGraphicsPixmapItem(parent), model(model), currentFrameIndex(0), frameTimer(0.0f), animationSpeed(0.15f) {
-    
-    // Exemple d'appel : charge un sprite et découpe automatiquement les frames de 32x32px
+ZombieStdView::ZombieStdView(ZombieStdModel* m, QGraphicsItem* parent)
+    : QGraphicsPixmapItem(parent),
+      model(m),
+      currentFrame(0), frameTimer(0.0f), animSpeed(0.2f)
+{
+    // GDD : spritesheet 32×32 px, 2 frames (walk)
     loadSpriteSheet(":/assets/zombie_walk.png", 32, 32);
+    setZValue(Cfg::Z_ENTITY);
 }
 
-void ZombieStdView::loadSpriteSheet(const QString& filePath, int frameWidth, int frameHeight) {
-    QPixmap spriteSheet(filePath);
-    
-    // Si l'image PNG n'est pas trouvée, on crée une texture de remplacement visible (Carré Vert)
-    if (spriteSheet.isNull()) {
-        QPixmap fallback(frameWidth, frameHeight);
-        fallback.fill(Qt::green);
-        frames.append(fallback);
-    } else {
-        int cols = spriteSheet.width() / frameWidth;
-        int rows = spriteSheet.height() / frameHeight;
-        
-        // Découpage dynamique de n'importe quelle dimension (ex: 32x64 ou 32x96)
-        for (int y = 0; y < rows; ++y) {
-            for (int x = 0; x < cols; ++x) {
-                frames.append(spriteSheet.copy(x * frameWidth, y * frameHeight, frameWidth, frameHeight));
-            }
-        }
+void ZombieStdView::loadSpriteSheet(const QString& filePath,
+                                     int frameW, int frameH)
+{
+    QPixmap sheet(filePath);
+    if (sheet.isNull()) {
+        setFallbackPixmap();
+        return;
     }
 
-    if (!frames.isEmpty()) {
-        setPixmap(frames[0].scaled(64, 64)); // Mise à l'échelle finale
-    }
+    frames.clear();
+    int cols = sheet.width()  / frameW;
+    int rows = sheet.height() / frameH;
+
+    for (int r = 0; r < rows; ++r)
+        for (int c = 0; c < cols; ++c)
+            frames.append(sheet.copy(c * frameW, r * frameH, frameW, frameH));
+
+    if (!frames.isEmpty())
+        setPixmap(frames[0].scaled(Cfg::ENTITY_SIZE, Cfg::ENTITY_SIZE,
+                                    Qt::IgnoreAspectRatio,
+                                    Qt::FastTransformation));
+}
+
+void ZombieStdView::setFallbackPixmap() {
+    QPixmap pm(Cfg::ENTITY_SIZE, Cfg::ENTITY_SIZE);
+    pm.fill(QColor(60, 120, 60));   // vert sombre = zombie
+    QPainter p(&pm);
+    p.setPen(Qt::white);
+    p.setFont(QFont("Arial", 8, QFont::Bold));
+    p.drawText(pm.rect(), Qt::AlignCenter, "Z");
+    setPixmap(pm);
 }
 
 void ZombieStdView::updateView(float dt) {
@@ -38,14 +50,19 @@ void ZombieStdView::updateView(float dt) {
         return;
     }
 
-    // Synchronisation de la position de la vue avec le modèle
+    // Synchronise la position scène depuis le modèle
     setPos(model->getPosition().toQPointF());
 
-    // Cycle d'animation
-    frameTimer += dt;
-    if (frameTimer >= animationSpeed && !frames.isEmpty()) {
-        currentFrameIndex = (currentFrameIndex + 1) % frames.size();
-        setPixmap(frames[currentFrameIndex].scaled(64, 64));
-        frameTimer = 0.0f;
+    // Animation seulement si en mouvement (CHASING)
+    if (model->getAIState() == EnemyAIState::CHASING && !frames.isEmpty()) {
+        frameTimer += dt;
+        if (frameTimer >= animSpeed) {
+            frameTimer    = 0.0f;
+            currentFrame  = (currentFrame + 1) % frames.size();
+            setPixmap(frames[currentFrame].scaled(Cfg::ENTITY_SIZE,
+                                                   Cfg::ENTITY_SIZE,
+                                                   Qt::IgnoreAspectRatio,
+                                                   Qt::FastTransformation));
+        }
     }
 }

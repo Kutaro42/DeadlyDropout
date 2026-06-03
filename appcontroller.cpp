@@ -23,4 +23,6 @@ AppController::~AppController()
 void AppController::startGame()
 {
     std::cout << "test";
+    itsGameController->init();
+
 }

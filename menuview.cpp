@@ -9,7 +9,7 @@
 MenuView::MenuView(QWidget* parent) : QWidget(parent)
 {
     // Windows size
-    setFixedSize(WINDOW_W,WINDOW_H);
+    setFixedSize(Cfg::WINDOW_W,Cfg::WINDOW_H);
 
 
     // Buttons

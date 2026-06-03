@@ -1,31 +1,32 @@
 #ifndef GAMEMODEL_H
 #define GAMEMODEL_H
 
-#include <QGraphicsScene>
-#include <QPixmap>
-#include <QGraphicsPixmapItem>
-#include <QVector>
-#include "zombiestdview.h"
+#include "playermodel.h"
+#include "levelmodel.h"
 
+// ═══════════════════════════════════════════════════════════════════
+//  GameModel — état global de la partie (couche Model, MVC).
+//  Possède le PlayerModel et le LevelModel courant.
+//  Initialisé par GameController après le chargement du niveau.
+// ═══════════════════════════════════════════════════════════════════
 class GameModel {
 private:
-    QGraphicsScene* scene;
-    QGraphicsPixmapItem* mapBackground;
-    QVector<ZombieStdModel*> zombiesModel;
-    QVector<ZombieStdView*> zombiesView;
+    PlayerModel* player;
+    LevelModel*  level;
+    int          currentLevelIndex;
 
 public:
-    GameModel(QGraphicsScene* scene);
+    GameModel();
     ~GameModel();
 
-    // Applique la texture de base (PNG) pour le niveau
-    void loadLevelMap(const QString& imagePath);
-    
-    void addZombie(Vector2f position);
-    void updateGame(float dt, Vector2f playerPos);
-    
-    // Gère la mort d'un zombie (incrémente l'or du joueur)
-    void handleZombieDeath(int zombieIndex, class Player* player);
+    // Crée/recrée le joueur au point de spawn donné
+    void initPlayer(Vector2f spawnPos);
+
+    void setCurrentLevelIndex(int i) { currentLevelIndex = i; }
+
+    PlayerModel* getPlayer() const { return player; }
+    LevelModel*  getLevel()  const { return level;  }
+    int          getLevelIndex()   const { return currentLevelIndex; }
 };
 
 #endif // GAMEMODEL_H
