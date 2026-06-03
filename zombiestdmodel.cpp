@@ -1,51 +1,36 @@
 #include "zombiestdmodel.h"
-#include "playermodel.h"
 #include <cstdlib>
 
-// Stats GDD : 20 HP, 90 px/s, 7 dégâts min, portée 400 px, 5 gold
-ZombieStdModel::ZombieStdModel(Vector2f pos)
-    : Enemy(pos, Cfg::ZOMBIE_MAX_HP, Cfg::ZOMBIE_SPEED,
-            Cfg::ZOMBIE_DMG_MIN, Cfg::ZOMBIE_DETECT_R,
-            static_cast<float>(Cfg::ENTITY_SIZE),
-            static_cast<float>(Cfg::ENTITY_SIZE),
-            Cfg::ZOMBIE_GOLD_MIN)
-{}
-
-void ZombieStdModel::updateAIState(Vector2f playerPos) {
-    if (detectsPlayer(playerPos))
-        aiState = EnemyAIState::CHASING;
-    else
-        aiState = EnemyAIState::IDLE;
-}
-
-void ZombieStdModel::chase(Vector2f playerPos, float dt) {
-    Vector2f dir = (playerPos - position).normalized();
-    velocity     = dir * speed;
-    position     = position + (velocity * dt);
-}
+// Spécifications du GDD : 20 HP, Vitesse 90, Dégâts 7-12, Détection 400px
+ZombieStdModel::ZombieStdModel(Vector2f pos) 
+    : Enemy(pos, 20, 90.0f, 7, 400.0f, 64.0f, 64.0f, 5) {}
 
 void ZombieStdModel::update(float dt, Vector2f playerPos) {
-    if (!isActive()) return;
-
-    // Décompte du cooldown d'attaque
-    if (attackTimer > 0.0f)
-        attackTimer -= dt;
-
-    updateAIState(playerPos);
-
-    if (aiState == EnemyAIState::CHASING)
-        chase(playerPos, dt);
-    else
-        velocity = Vector2f(0.0f, 0.0f);
+    // Méthode générique inutilisée, on passe par updateEnemy
 }
 
-void ZombieStdModel::attack(PlayerModel* player) {
-    if (!player || attackTimer > 0.0f) return;
+void ZombieStdModel::updateEnemy(float dt, Vector2f playerPos) {
+    if (!isActive()) return;
 
-    // Dégâts aléatoires entre ZOMBIE_DMG_MIN et ZOMBIE_DMG_MAX
-    int range  = Cfg::ZOMBIE_DMG_MAX - Cfg::ZOMBIE_DMG_MIN;
-    int damage = Cfg::ZOMBIE_DMG_MIN + (rand() % (range + 1));
+    if (attackTimer > 0) {
+        attackTimer -= dt;
+    }
 
-    player->takeDamage(damage);
-    attackTimer = Cfg::ZOMBIE_ATK_CD;  // réinitialise le cooldown
+    // Si le joueur est dans la zone de détection, on le suit à l'aide du vecteur de vitesse
+    if (detectsPlayer(playerPos)) {
+        Vector2f direction = (playerPos - position).normalized();
+        velocity = direction;
+        position = position + (velocity * speed * dt);
+    } else {
+        velocity = Vector2f(0, 0);
+    }
+}
+
+void ZombieStdModel::attack(Player* p) {
+    if (attackTimer <= 0 && p) {
+        // Dégâts de base + variation aléatoire définie par le GDD
+        int randomDamage = baseDamage + (std::rand() % 6); 
+        p->takeDamage(randomDamage);
+        attackTimer = attackCooldown; // Réinitialisation du cooldown à 1.5s
+    }
 }

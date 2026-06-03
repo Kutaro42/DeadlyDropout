@@ -1,39 +1,28 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include <QRectF>
 #include "vector2f.h"
-#include "config.h"
+#include <QRectF>
 
-// ═══════════════════════════════════════════════════════════════════
-//  Entity — classe de base abstraite pour toutes les entités du jeu.
-//  Contient position, dimensions et collider (AABB).
-// ═══════════════════════════════════════════════════════════════════
 class Entity {
 protected:
     Vector2f position;
-    float    width;
-    float    height;
-    bool     active;
+    Vector2f velocity;
+    QRectF collider; // Remplace CollisionShape pour être compatible Qt
+    bool active;
 
 public:
     Entity(Vector2f pos, float w, float h);
     virtual ~Entity() = default;
 
-    // Mise à jour logique (vide par défaut pour entités statiques)
-    virtual void update(float dt);
+    virtual void update(float dt) = 0;
 
-    // ─── Getters / Setters ────────────────────────────────────
-    Vector2f getPosition()  const { return position; }
-    float    getWidth()     const { return width;    }
-    float    getHeight()    const { return height;   }
-    bool     isActive()     const { return active;   }
-
-    void setActive(bool a)           { active   = a;   }
-    void setPosition(Vector2f pos)   { position = pos; }
-
-    // Retourne la hitbox pour la détection de collision (AABB)
+    Vector2f getPosition() const;
+    void setPosition(const Vector2f& pos);
+    
     QRectF getCollider() const;
+    bool isActive() const;
+    void setActive(bool a);
 };
 
 #endif // ENTITY_H
