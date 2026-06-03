@@ -1,67 +1,122 @@
 #include "playerview.h"
-#include <cmath>
+#include <QPainter>
+#include <QFont>
 
-PlayerView::PlayerView(QGraphicsItem* parent)
-    : QGraphicsPixmapItem(parent),
-    currentDirection(DirectionSprite::DOWN),
-    isMoving(false),
-    currentFrame(0),
-    animationTimer(0.0f),
-    frameDuration(0.12f),     // 120ms par frame de marche
-    totalWalkFrames(2)        // Ajustez selon le nombre de frames de vos sprites de marche
-{
-    // 1. Chargement de vos 4 fichiers IDLE individuels
-    idleSprites[DirectionSprite::UP].load(":/resources/Textures/Player/Idle/Up.png");
-    idleSprites[DirectionSprite::DOWN].load(":/ressources/Textures/Player/Idle/Down.png");
-    idleSprites[DirectionSprite::LEFT].load(":/resources/Textures/Player/Idle/Left.png");
-    idleSprites[DirectionSprite::RIGHT].load(":/resources/Textures/Player/Idle/Right.png");
-
-    // 2. Chargement de vos sprites de MARCHE
-    walkSprites[DirectionSprite::UP].load(":/resources/Textures/Player/Move/Up.png");
-    walkSprites[DirectionSprite::DOWN].load(":/resources/Textures/Player/Move/Down.png");
-    walkSprites[DirectionSprite::LEFT].load(":/resources/Textures/Player/Move/_Left.png");
-    walkSprites[DirectionSprite::RIGHT].load(":/resources/Textures/walk_Right.png");
-
-    // Texture initiale par défaut (Immobile vers le bas)
-    setPixmap(idleSprites[currentDirection]);
-
-    // Centrage de l'origine pour le positionnement (ex: si vos sprites font 64x64)
-    setTransformOriginPoint(32, 32);
-    setOffset(-32, -32); // Aligne le centre logique du joueur avec le centre du sprite
+// ─── Correspondance FacingDirection → index tableau ─────────────────────────
+int PlayerView::dirIdx(FacingDirection d) {
+    switch (d) {
+    case FacingDirection::DOWN:  return 0;
+    case FacingDirection::UP:    return 1;
+    case FacingDirection::LEFT:  return 2;
+    case FacingDirection::RIGHT: return 3;
+    }
+    return 0;
 }
 
-void PlayerView::updateView(float dt, const Vector2f& velocity) {
-    // On considère que le joueur bouge si la longueur du vecteur vitesse est significative
-    bool movingNow = (velocity.length() > 0.01f);
-
-    // Détermination de la direction prédominante si le joueur avance
-    if (movingNow) {
-        if (std::abs(velocity.x) > std::abs(velocity.y)) {
-            currentDirection = (velocity.x > 0) ? DirectionSprite::RIGHT : DirectionSprite::LEFT;
-        } else {
-            currentDirection = (velocity.y > 0) ? DirectionSprite::DOWN : DirectionSprite::UP;
+// ─── Constructeur ────────────────────────────────────────────────────────────
+PlayerView::PlayerView(PlayerModel* m, QGraphicsItem* parent)
+    : QGraphicsPixmapItem(parent)
+    , model(m)
+    , currentFrame(0)
+    , frameTimer(0.0f)
+    , animSpeed(0.15f)
+{
+    // Préfixe : :/images  (correspond au qresource prefix="/images" du QRC)
+    // Noms : correspondent exactement aux fichiers Textures/Player/{état}/{Dir}.png
+    const char* dirNames[DIR_COUNT] = { "Down", "Up", "Left", "Right" };
+    for (int d = 0; d < DIR_COUNT; ++d) {
+        loadSheet(sprites[0][d],
+                  QString(":/images/Textures/Player/Idle/%1.png").arg(dirNames[d]));
+        loadSheet(sprites[1][d],
+                  QString(":/images/Textures/Player/Move/%1.png").arg(dirNames[d]));
+        loadSheet(sprites[2][d],
+                  QString(":/images/Textures/Player/Attack/%1.png").arg(dirNames[d]));
         }
-    }
 
-    // Gestion des transitions d'état (remise à zéro de l'anim si changement)
-    if (isMoving != movingNow) {
-        isMoving = movingNow;
+
+    setZValue(Cfg::Z_PLAYER);
+    setPos(model->getPosition().toQPointF());
+
+    // Affiche la première frame idle par défaut
+    int d = dirIdx(model->getFacing());
+    if (!sprites[0][d].isEmpty())
+        setPixmap(sprites[0][d][0]);
+    else
+        showFallback(model->getFacing());
+}
+
+// ─── Chargement d'un spritesheet ─────────────────────────────────────────────
+// Sheets : 64×32 px → 2 frames de 32×32, scalées à ENTITY_SIZE×ENTITY_SIZE
+void PlayerView::loadSheet(QVector<QPixmap>& frames, const QString& path) {
+    QPixmap sheet(path);
+    if (sheet.isNull()) {
+        qWarning("[PlayerView] Introuvable : %s", qPrintable(path));
+        return;
+    }
+    int frameCount = sheet.width() / FRAME_W;
+    for (int i = 0; i < frameCount; ++i) {
+        QPixmap raw = sheet.copy(i * FRAME_W, 0, FRAME_W, FRAME_H);
+        frames.append(raw.scaled(Cfg::ENTITY_SIZE, Cfg::ENTITY_SIZE,
+                                 Qt::IgnoreAspectRatio,
+                                 Qt::FastTransformation));
+    }
+}
+
+// ─── Fallback visuel ─────────────────────────────────────────────────────────
+void PlayerView::showFallback(FacingDirection dir) {
+    QPixmap pm(Cfg::ENTITY_SIZE, Cfg::ENTITY_SIZE);
+    pm.fill(QColor(40, 80, 180));
+    QPainter p(&pm);
+    p.setPen(Qt::white);
+    p.setFont(QFont("Arial", 9, QFont::Bold));
+    const char* arrow = "▼";
+    switch (dir) {
+    case FacingDirection::UP:    arrow = "▲"; break;
+    case FacingDirection::LEFT:  arrow = "◀"; break;
+    case FacingDirection::RIGHT: arrow = "▶"; break;
+    default: break;
+    }
+    p.drawText(pm.rect(), Qt::AlignCenter, QString("P\n") + arrow);
+    setPixmap(pm);
+}
+
+// ─── Avance d'une frame d'animation ──────────────────────────────────────────
+void PlayerView::advanceFrames(float dt, const QVector<QPixmap>& frames) {
+    if (frames.isEmpty()) return;
+    frameTimer += dt;
+    if (frameTimer >= animSpeed) {
+        frameTimer   = 0.0f;
+        currentFrame = (currentFrame + 1) % frames.size();
+    }
+    setPixmap(frames[currentFrame]);
+}
+
+// ─── Mise à jour chaque tick ──────────────────────────────────────────────────
+void PlayerView::updateView(float dt) {
+    if (!model) return;
+
+    setPos(model->getPosition().toQPointF());
+
+    int d = dirIdx(model->getFacing());
+
+    if (model->isMoving() && !model->isKatanaActive()) {
+        if (!sprites[1][d].isEmpty())
+            advanceFrames(dt, sprites[1][d]);
+        else
+            showFallback(model->getFacing());
+    }
+    if (model->isKatanaActive()){
+        if (!sprites[1][d].isEmpty())
+            advanceFrames(dt, sprites[2][d]);
+        else
+            showFallback(model->getFacing());
+    }
+    else {
         currentFrame = 0;
-        animationTimer = 0.0f;
-    }
-
-    // Choix du Pixmap ou découpage de la frame d'animation
-    if (isMoving) {
-        animationTimer += dt;
-        if (animationTimer >= frameDuration) {
-            animationTimer -= frameDuration;
-            currentFrame = (currentFrame + 1) % totalWalkFrames;
-        }
-
-        QPixmap framePixmap = walkSprites[currentDirection].copy(currentFrame * 64, 0, 64, 64);
-        setPixmap(framePixmap);
-    } else {
-        // État IDLE : applique directement l'un des 4 fichiers d'origine
-        setPixmap(idleSprites[currentDirection]);
+        frameTimer   = 0.0f;
+        if (!sprites[0][d].isEmpty())
+            setPixmap(sprites[0][d][0]);
+        else
+            showFallback(model->getFacing());
     }
 }
