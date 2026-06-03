@@ -21,9 +21,9 @@ class PlayerView : public QGraphicsPixmapItem {
 private:
     PlayerModel* model;
 
-    // sprites[état][direction] — état : 0=idle  1=walk
+    // sprites[état][direction] — état : 0=idle  1=walk 3=attack
     //                          — dir  : 0=DOWN 1=UP 2=LEFT 3=RIGHT
-    static constexpr int STATE_COUNT = 2;
+    static constexpr int STATE_COUNT = 3;
     static constexpr int DIR_COUNT   = 4;
 
     // Dimensions source des frames dans le spritesheet

@@ -24,15 +24,15 @@ PlayerView::PlayerView(PlayerModel* m, QGraphicsItem* parent)
     // Préfixe : :/images  (correspond au qresource prefix="/images" du QRC)
     // Noms : correspondent exactement aux fichiers Textures/Player/{état}/{Dir}.png
     const char* dirNames[DIR_COUNT] = { "Down", "Up", "Left", "Right" };
-
     for (int d = 0; d < DIR_COUNT; ++d) {
         loadSheet(sprites[0][d],
                   QString(":/images/Textures/Player/Idle/%1.png").arg(dirNames[d]));
         loadSheet(sprites[1][d],
                   QString(":/images/Textures/Player/Move/%1.png").arg(dirNames[d]));
-        //loadSheet(sprites[2][d],
-          //        QString(":/images/Textures/Player/Idle/%1.png").arg(dirNames[d]));
-    }
+        loadSheet(sprites[2][d],
+                  QString(":/images/Textures/Player/Attack/%1.png").arg(dirNames[d]));
+        }
+
 
     setZValue(Cfg::Z_PLAYER);
     setPos(model->getPosition().toQPointF());
@@ -99,12 +99,19 @@ void PlayerView::updateView(float dt) {
 
     int d = dirIdx(model->getFacing());
 
-    if (model->isMoving()) {
+    if (model->isMoving() && !model->isKatanaActive()) {
         if (!sprites[1][d].isEmpty())
             advanceFrames(dt, sprites[1][d]);
         else
             showFallback(model->getFacing());
-    } else {
+    }
+    if (model->isKatanaActive()){
+        if (!sprites[1][d].isEmpty())
+            advanceFrames(dt, sprites[2][d]);
+        else
+            showFallback(model->getFacing());
+    }
+    else {
         currentFrame = 0;
         frameTimer   = 0.0f;
         if (!sprites[0][d].isEmpty())
