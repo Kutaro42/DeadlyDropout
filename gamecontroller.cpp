@@ -1,6 +1,7 @@
 #include "gamecontroller.h"
 #include <Qt>
 #include <algorithm>
+#include <qDebug>
 
 GameController::GameController(QObject* parent): QObject(parent), itsGameView( new GameView()),itsGameModel(new GameModel()),
       levelCtrl(new LevelController()),
@@ -20,6 +21,29 @@ void GameController::init() {
 
     // ── Création du modèle global ─────────────────────────────
     //itsGameModel = new GameModel();
+
+    // ── Liaison du clic droit  ────────────────────────KATANA
+    // Dès que la vue émet le signal, on exécute une fonction qui attaque
+    connect(itsGameView, &GameView::sig_rightClicked, this, [this]() {
+        // Sécurité : on ne lance l'attaque que si on est en train de jouer
+        if (currentState == AppState::PLAYING && itsGameModel && itsGameModel->getPlayer()) {
+            itsGameModel->getPlayer()->launchKatana();
+        }
+    });
+
+
+
+    // ── Liaison du clic gauche  ────────────────────────GUN
+    // Dès que la vue émet le signal, on exécute une fonction qui attaque
+    connect(itsGameView, &GameView::sig_leftClicked, this, [this]() {
+        // Sécurité : on ne lance l'attaque que si on est en train de jouer
+        if (currentState == AppState::PLAYING && itsGameModel && itsGameModel->getPlayer()) {
+            //itsGameModel->gun->launchfire(); //Pour le pistolet
+            qDebug("pan !");
+
+        }
+    });
+
 
     // ── Chargement du niveau 1 ────────────────────────────────
     loadLevel(0);

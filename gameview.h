@@ -11,6 +11,7 @@
 #include "exitdoorview.h"
 #include "gamemodel.h"
 #include "config.h"
+#include <QMouseEvent>
 
 // ═══════════════════════════════════════════════════════════════════
 //  GameView — vue principale du jeu (couche View, MVC).
@@ -57,6 +58,7 @@ public:
 protected:
     void keyPressEvent(QKeyEvent* e)   override;
     void keyReleaseEvent(QKeyEvent* e) override;
+    void mousePressEvent(QMouseEvent* event) override;
 
     // HUD dessiné en coordonnées écran (indépendant du zoom caméra)
     void drawForeground(QPainter* painter, const QRectF& rect) override;
@@ -67,6 +69,9 @@ private:
 
     QString overlayMessage;
     bool    showingOverlay;
+signals:
+    void sig_rightClicked();//signal clic droit pour la souris
+    void sig_leftClicked();//signal clic gauche pour la souris
 };
 
 #endif // GAMEVIEW_H

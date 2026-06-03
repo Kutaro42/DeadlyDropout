@@ -2,6 +2,7 @@
 #include <QFont>
 #include <QFontMetrics>
 
+
 GameView::GameView(QWidget* parent)
     : QGraphicsView(parent),
       scene(new QGraphicsScene(this)),
@@ -41,6 +42,21 @@ void GameView::clearScene() {
     playerView = nullptr;   // scene->clear() a détruit l'item
 }
 
+//-----------------------------------------------------------------------------------------MOUSEDETECTION
+void GameView::mousePressEvent(QMouseEvent* event) {
+    // Si le bouton cliqué est le bouton DROIT
+    if (event->button() == Qt::RightButton) {
+        emit sig_rightClicked(); // On envoie le signal du katana !
+    }
+    else if(event->button() == Qt::LeftButton){
+        emit sig_leftClicked();//on envoie le signal katana!
+    }
+
+    // IMPORTANT : On appelle la méthode d'origine pour que Qt
+    // continue de gérer normalement les autres clics (ex: boutons, scène...)
+    QGraphicsView::mousePressEvent(event);
+}
+//-------------------------------------------------------------------------------------------------------
 void GameView::updateAllViews(float dt, GameModel* model) {
     if (!model) return;
     currentModel = model;
