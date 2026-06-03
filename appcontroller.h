@@ -2,6 +2,7 @@
 #define AppController_H
 
 #include <QMainWindow>
+#include <QStackedWidget>
 #include "config.h"
 #include "menucontroller.h"
 #include "gamecontroller.h"
@@ -13,6 +14,7 @@ class AppController : public QMainWindow
 
 private:
     AppState *currentState;
+    QStackedWidget *mainContainer;
     MenuController *itsMenuController;
     GameController *itsGameController;
 
@@ -22,6 +24,7 @@ public:
 
     void switchState(AppState* next);
     void startGame();
+    void run();
 
     signals:
     void sigGameRq();

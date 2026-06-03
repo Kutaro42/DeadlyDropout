@@ -14,6 +14,8 @@ private:
 public:
     MenuController(QObject *parent = nullptr);
     ~MenuController();
+
+    MenuView * getMenuView();
 signals:
     void sigGameRequest();
 };

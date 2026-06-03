@@ -10,7 +10,7 @@ int main(int argc, char* argv[]) {
     app.setApplicationName("Deadly Dropout");
 
     AppController appcontroller;
-
-
+    //appcontroller.show();
+    appcontroller.run();
     return app.exec();
 }

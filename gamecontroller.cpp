@@ -2,10 +2,7 @@
 #include <Qt>
 #include <algorithm>
 
-GameController::GameController(QObject* parent)
-    : QObject(parent),
-      itsGameView(nullptr),
-      itsGameModel(nullptr),
+GameController::GameController(QObject* parent): QObject(parent), itsGameView( new GameView()),itsGameModel(new GameModel()),
       levelCtrl(new LevelController()),
       currentState(AppState::MENU),
       currentLevelIndex(0)
@@ -19,10 +16,10 @@ GameController::~GameController() {
 
 void GameController::init() {
     // ── Création de la vue (fenêtre principale) ────────────────
-    itsGameView = new GameView();
+    //itsGameView = new GameView();
 
     // ── Création du modèle global ─────────────────────────────
-    itsGameModel = new GameModel();
+    //itsGameModel = new GameModel();
 
     // ── Chargement du niveau 1 ────────────────────────────────
     loadLevel(0);
@@ -31,7 +28,7 @@ void GameController::init() {
     itsGameView->initWithModel(itsGameModel);
 
     // ── Affichage ─────────────────────────────────────────────
-    itsGameView->show();
+
     itsGameView->setFocus();
 
     // ── Démarrage de la boucle de jeu (QTimer ~60 FPS) ────────
