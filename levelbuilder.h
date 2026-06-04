@@ -1,3 +1,11 @@
+/**
+ * @file levelbuidler.h
+ * @brief Déclaration de la classe LevelBuidler (classe originale en c++ pur), le bâtisseur de niveaux.
+ * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
+ * @date Juin 2026
+ */
+
+
 #ifndef LEVELBUILDER_H
 #define LEVELBUILDER_H
 

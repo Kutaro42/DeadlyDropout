@@ -1,3 +1,10 @@
+/**
+ * @file playermodel.cpp
+ * @brief Implémentation du modèle complet gérant les données et comportements du joueur.
+ * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
+ * @date Juin 2026
+ */
+
 #include "playermodel.h"
 #include <cmath>
 

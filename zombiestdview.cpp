@@ -1,3 +1,10 @@
+/**
+ * @file zombiestdview.cpp
+ * @brief Implémentation du système d'animation et de rendu graphique pour les zombies standards.
+ * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
+ * @date Juin 2026
+ */
+
 #include "zombiestdview.h"
 #include <QPainter>
 #include <QFont>

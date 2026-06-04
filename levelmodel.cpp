@@ -23,8 +23,9 @@ void LevelModel::setExitDoor(ExitDoorModel* d) { exitDoor = d;      }
 void LevelModel::setPlayerSpawnPos(Vector2f p) { playerSpawnPos = p;}
 void LevelModel::setLevelId(int id)            { levelId = id;      }
 
-bool LevelModel::allEnemiesDefeated() const {
+bool LevelModel::allEnemiesDefeated() {
     for (const auto* e : enemies)
         if (e->isActive()) return false;
+        emit sigPlayerKeyObtain();//on envoie le signal
     return true;
 }

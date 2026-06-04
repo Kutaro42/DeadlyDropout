@@ -1,3 +1,10 @@
+/**
+ * @file enemy.h
+ * @brief Déclaration de la classe abstraite Enemy, gérant les comportements des adversaires.
+ * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
+ * @date Juin 2026
+ */
+
 #ifndef ENEMY_H
 #define ENEMY_H
 
@@ -10,33 +17,69 @@ class PlayerModel; // forward — évite la dépendance circulaire
 //  Enemy — classe de base abstraite pour tous les ennemis.
 //  Hérite de Entity. Sous-classes : ZombieStdModel, (ThrowerModel…)
 // ═══════════════════════════════════════════════════════════════════
+
+/**
+ * @class Enemy
+ * @brief Classe de base définissant la structure et les mécaniques d'une entité hostile.
+ */
 class Enemy : public Entity {
 protected:
-    int          hp;
-    int          maxHp;
-    float        speed;
-    int          baseDamage;
-    float        attackCooldown;
-    float        attackTimer;
-    float        detectionRadius;
-    int          goldDrop;
-    bool         goldAlreadyDropped; // évite le double-comptage
-    EnemyAIState aiState;
-    Vector2f     velocity;
+    int          hp;                 ///< Points de vie actuels de l'ennemi.
+    int          maxHp;              ///< Points de vie maximum.
+    float        speed;              ///< Vitesse de déplacement linéaire.
+    int          baseDamage;         ///< Dégâts de base infligés au joueur.
+    float        attackCooldown;     ///< Temps requis entre deux attaques.
+    float        attackTimer;        ///< Timer interne gérant le délai de l'attaque.
+    float        detectionRadius;    ///< Rayon de la zone d'aggro/détection.
+    int          goldDrop;           ///< Récompense en or octroyée à la mort.
+    bool         goldAlreadyDropped; ///< Drapeau anti-doublon pour le loot d'or.
+    EnemyAIState aiState;            ///< État de la machine à états de l'IA.
+    Vector2f     velocity;           ///< Vecteur directionnel de déplacement actuel.
 
 public:
+    /**
+     * @brief Constructeur de l'ennemi.
+     * @param pos Position de spawn.
+     * @param maxHp Points de vie.
+     * @param speed Vitesse de déplacement.
+     * @param dmg Dégâts.
+     * @param detRadius Rayon de détection.
+     * @param w Largeur.
+     * @param h Hauteur.
+     * @param gold Or looté à la mort.
+     */
     Enemy(Vector2f pos, int maxHp, float speed, int dmg,
           float detRadius, float w, float h, int gold);
     virtual ~Enemy() = default;
 
     // ─── Interface virtuelle pure ──────────────────────────────
-    // update(dt, playerPos) : IA + déplacement
+    
+    /**
+     * @brief Met à jour le comportement cognitif et spatial de l'ennemi.
+     * @param dt Delta-time en secondes.
+     * @param playerPos Coordonnées actuelles du joueur.
+     */
     virtual void update(float dt, Vector2f playerPos) = 0;
-    // attack : inflige des dégâts au joueur
+    
+    /**
+     * @brief Déclenche une attaque contre le joueur.
+     * @param player Pointeur vers l'instance du joueur ciblé.
+     */
     virtual void attack(PlayerModel* player) = 0;
 
     // ─── Comportements communs ────────────────────────────────
+    
+    /**
+     * @brief Réduit les points de vie de l'ennemi et gère sa destruction.
+     * @param amount Quantité de dégâts subis.
+     */
     void takeDamage(int amount);
+    
+    /**
+     * @brief Vérifie si la position du joueur est à l'intérieur du cône/rayon de détection.
+     * @param playerPos Position du joueur.
+     * @return true si détecté, false sinon.
+     */
     bool detectsPlayer(Vector2f playerPos) const;
 
     // Appelé par LevelController pour distribuer le gold une seule fois

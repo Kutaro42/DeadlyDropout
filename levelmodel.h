@@ -1,49 +1,74 @@
+/**
+ * @file levelmodel.h
+ * @brief Modèle de données stockant l'état complet d'un niveau.
+ * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
+ * @date Juin 2026
+ */
+
 #ifndef LEVELMODEL_H
 #define LEVELMODEL_H
 
 #include <QVector>
+#include <QObject>
 #include "wallmodel.h"
 #include "exitdoormodel.h"
 #include "vector2f.h"
 
-class Enemy; // forward
+class Enemy; // forward declaration
 
-// ═══════════════════════════════════════════════════════════════════
-//  LevelModel — état d'un niveau (couche Model, MVC).
-//  Contient les modèles de murs, ennemis, sortie et position spawn.
-//  Peuplé par LevelBuilder lors du chargement du niveau.
-// ═══════════════════════════════════════════════════════════════════
-class LevelModel {
+/**
+ * @class LevelModel
+ * @brief Conteneur de données pour les entités d'un niveau.
+ * * Stocke les murs, les ennemis, la porte de sortie et les positions initiales.
+ * Ce modèle est peuplé par le LevelBuilder au moment du chargement de la carte.
+ * * @version 1.0
+ */
+class LevelModel : public QObject{
+    Q_OBJECT
 private:
-    QVector<WallModel*>  walls;
-    QVector<Enemy*>      enemies;
-    ExitDoorModel*       exitDoor;
-    Vector2f             playerSpawnPos;
-    int                  levelId;
+    QVector<WallModel*>  walls;          ///< Liste des murs constituant la structure du niveau.
+    QVector<Enemy*>      enemies;        ///< Liste des ennemis présents dans le niveau.
+    ExitDoorModel* exitDoor;       ///< Modèle de la porte de fin de niveau.
+    Vector2f             playerSpawnPos; ///< Coordonnées d'apparition du joueur.
+    int                  levelId;        ///< Identifiant unique du niveau courant.
 
 public:
+    /**
+     * @brief Constructeur par défaut.
+     */
     LevelModel();
+
+    /**
+     * @brief Destructeur. Libère la mémoire des entités stockées.
+     */
     ~LevelModel();
 
-    // Vide tous les conteneurs et libère la mémoire
+    /**
+     * @brief Vide tous les conteneurs et supprime les entités en mémoire.
+     */
     void clear();
 
     // ─── Ajout d'entités (utilisé par LevelBuilder) ───────────
-    void addWall(WallModel* w);
-    void addEnemy(Enemy* e);
-    void setExitDoor(ExitDoorModel* d);
-    void setPlayerSpawnPos(Vector2f pos);
-    void setLevelId(int id);
+    void addWall(WallModel* w);                 ///< @param w Pointeur vers le mur à ajouter.
+    void addEnemy(Enemy* e);                    ///< @param e Pointeur vers l'ennemi à ajouter.
+    void setExitDoor(ExitDoorModel* d);         ///< @param d Pointeur vers la porte de sortie.
+    void setPlayerSpawnPos(Vector2f pos);       ///< @param pos Les coordonnées de spawn.
+    void setLevelId(int id);                    ///< @param id L'identifiant du niveau.
 
     // ─── Accesseurs ───────────────────────────────────────────
-    QVector<WallModel*>& getWalls()           { return walls;           }
-    QVector<Enemy*>&     getEnemies()         { return enemies;         }
-    ExitDoorModel*       getExitDoor()  const { return exitDoor;        }
-    Vector2f             getSpawnPos()  const { return playerSpawnPos;  }
-    int                  getLevelId()   const { return levelId;         }
+    QVector<WallModel*>& getWalls()           { return walls;           } ///< @return La liste des murs.
+    QVector<Enemy*>&     getEnemies()         { return enemies;         } ///< @return La liste des ennemis.
+    ExitDoorModel* getExitDoor()  const { return exitDoor;        } ///< @return La porte de sortie.
+    Vector2f             getSpawnPos()  const { return playerSpawnPos;  } ///< @return La position de spawn du joueur.
+    int                  getLevelId()   const { return levelId;         } ///< @return L'identifiant du niveau.
 
-    // Retourne true si tous les ennemis du niveau sont inactifs
-    bool allEnemiesDefeated() const;
+    /**
+     * @brief Vérifie si tous les monstres du niveau sont morts.
+     * @return true si tous les ennemis sont inactifs, false sinon.
+     */
+    bool allEnemiesDefeated() ;
+    signals:
+    void sigPlayerKeyObtain();//attribue la clé au joueur par appel
 };
 
 #endif // LEVELMODEL_H

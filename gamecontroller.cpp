@@ -1,3 +1,8 @@
+/**
+ * @file gamecontroller.cpp
+ * @brief Implémentation du contrôleur de la boucle de jeu.
+ */
+
 #include "gamecontroller.h"
 #include <Qt>
 #include <algorithm>
@@ -16,14 +21,9 @@ GameController::~GameController() {
 }
 
 void GameController::init() {
-    // ── Création de la vue (fenêtre principale) ────────────────
-    //itsGameView = new GameView();
+    // Liaison des clics souris via des expressions lambda pour une gestion immédiate des actions d'attaque.
 
-    // ── Création du modèle global ─────────────────────────────
-    //itsGameModel = new GameModel();
-
-    // ── Liaison du clic droit  ────────────────────────KATANA
-    // Dès que la vue émet le signal, on exécute une fonction qui attaque
+    // ── Liaison du clic droit ────────────────────────KATANA
     connect(itsGameView, &GameView::sig_rightClicked, this, [this]() {
         // Sécurité : on ne lance l'attaque que si on est en train de jouer
         if (currentState == AppState::PLAYING && itsGameModel && itsGameModel->getPlayer()) {
@@ -31,19 +31,14 @@ void GameController::init() {
         }
     });
 
-
-
-    // ── Liaison du clic gauche  ────────────────────────GUN
-    // Dès que la vue émet le signal, on exécute une fonction qui attaque
+    // ── Liaison du clic gauche ────────────────────────GUN
     connect(itsGameView, &GameView::sig_leftClicked, this, [this]() {
         // Sécurité : on ne lance l'attaque que si on est en train de jouer
         if (currentState == AppState::PLAYING && itsGameModel && itsGameModel->getPlayer()) {
-            //itsGameModel->gun->launchfire(); //Pour le pistolet
+            //itsGameModel->gun->launchfire(); // Pour le pistolet
             qDebug("pan !");
-
         }
     });
-
 
     // ── Chargement du niveau 1 ────────────────────────────────
     loadLevel(0);
@@ -52,7 +47,6 @@ void GameController::init() {
     itsGameView->initWithModel(itsGameModel);
 
     // ── Affichage ─────────────────────────────────────────────
-
     itsGameView->setFocus();
 
     // ── Démarrage de la boucle de jeu (QTimer ~60 FPS) ────────
@@ -64,61 +58,48 @@ void GameController::init() {
     currentState = AppState::PLAYING;
 }
 
-// ── Chargement d'un niveau ─────────────────────────────────────────
 void GameController::loadLevel(int index) {
-    // Sécurité : boucle sur les niveaux disponibles
+    // Sécurité : boucle modulaire pour éviter les dépassements d'index
     index = index % LevelData::LEVEL_COUNT;
     currentLevelIndex = index;
 
     const LevelDescriptor* desc = LevelData::ALL_LEVELS[index];
 
-    // Réinitialise la scène Qt (supprime les QGraphicsItems précédents)
+    //  Nettoyage impératif de la scène pour éviter les fuites de mémoire et chevauchements
     if (itsGameView) itsGameView->clearScene();
 
-    // Construit le niveau : remplit LevelModel + ajoute items dans la scène
     LevelBuilder::build(*desc,
                          *itsGameModel->getLevel(),
                          itsGameView->getScene());
 
-    // Spawne le joueur à la position définie dans la matrice
     Vector2f spawn = itsGameModel->getLevel()->getSpawnPos();
     itsGameModel->initPlayer(spawn);
     itsGameModel->setCurrentLevelIndex(index);
 }
 
-// ── Tick principal (~60 FPS) ───────────────────────────────────────
 void GameController::slt_tick() {
     if (currentState != AppState::PLAYING) return;
 
-    // Delta-time (cap à 50 ms pour éviter les sauts lors de lag)
+    // Calcul du Delta-time. Plafonné à 50ms pour empêcher les téléportations massives lors d'un pic de latence (lag spike).
     float dt = static_cast<float>(elapsedTimer.restart()) / 1000.0f;
     dt = std::min(dt, 0.05f);
 
-    // 1. Lecture des inputs clavier → déplace le joueur
     handleInput(dt);
-
-    // 2. Mise à jour des timers internes du joueur (cooldowns katana)
     itsGameModel->getPlayer()->update(dt);
-
-    // 3. Logique du niveau : IA, collisions, gold, sortie
     levelCtrl->update(dt, *itsGameModel->getPlayer(),
                            *itsGameModel->getLevel());
-
-    // 4. Vérification des transitions d'état
     checkStateTransitions();
 
-    // 5. Mise à jour des vues + caméra
     itsGameView->updateAllViews(dt, itsGameModel);
     itsGameView->followPlayer(itsGameModel);
 }
 
-// ── Lecture des entrées clavier ────────────────────────────────────
 void GameController::handleInput(float dt) {
     const QSet<int>& keys  = itsGameView->getPressedKeys();
-    PlayerModel*     player = itsGameModel->getPlayer();
+    PlayerModel* player = itsGameModel->getPlayer();
     if (!player) return;
 
-    // ─── Déplacement (ZQSD / WASD) ───────────────────────────
+    // Somme vectorielle des inputs pour autoriser les déplacements diagonaux.
     Vector2f dir(0.0f, 0.0f);
     if (keys.contains(Qt::Key_Z) || keys.contains(Qt::Key_Up))    dir.y -= 1.0f;
     if (keys.contains(Qt::Key_S) || keys.contains(Qt::Key_Down))  dir.y += 1.0f;
@@ -129,21 +110,17 @@ void GameController::handleInput(float dt) {
         player->move(dir, dt);
     else
         player->stopMoving();
-
 }
 
-// ── Transitions d'état ─────────────────────────────────────────────
 void GameController::checkStateTransitions() {
     if (itsGameModel->getPlayer()->isDead()) {
         transitionTo(AppState::GAME_OVER);
     } else if (levelCtrl->levelJustCompleted) {
         int nextIndex = currentLevelIndex + 1;
         if (nextIndex < LevelData::LEVEL_COUNT) {
-            // Il reste des niveaux : on charge le suivant
             loadLevel(nextIndex);
             itsGameView->initWithModel(itsGameModel);
         } else {
-            // Dernier niveau terminé : victoire finale
             transitionTo(AppState::VICTORY);
         }
     }

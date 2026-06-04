@@ -1,3 +1,10 @@
+/**
+ * @file menuview.cpp
+ * @brief Implémentation de la vue MenuView pour l'écran de démarrage.
+ * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
+ * @date Juin 2026
+ */
+
 #include "menuview.h"
 #include "config.h"
 #include <QApplication>
@@ -5,12 +12,10 @@
 #include <QVBoxLayout>
 #include <QPainter>
 
-
 MenuView::MenuView(QWidget* parent) : QWidget(parent)
 {
     // Windows size
     setFixedSize(Cfg::WINDOW_W,Cfg::WINDOW_H);
-
 
     // Buttons
     QPushButton *playButton = new QPushButton("Play", this);
@@ -27,8 +32,6 @@ MenuView::MenuView(QWidget* parent) : QWidget(parent)
 
     connect(playButton, &QPushButton::clicked, this, &MenuView::sigGameRq);
 
-
-
     QPushButton *quitButton = new QPushButton("Quit", this);
     quitButton->setFixedSize(200, 42);
     quitButton->setStyleSheet(
@@ -39,23 +42,17 @@ MenuView::MenuView(QWidget* parent) : QWidget(parent)
         "}"
         "QPushButton:hover { color: #ccddff; border-color: #6680aa; }");
 
-
     connect(quitButton, &QPushButton::clicked, this, &QApplication::quit);
-
-
 
     QVBoxLayout *itsLayout = new QVBoxLayout(this);
     itsLayout->addWidget(playButton);
     itsLayout->addWidget(quitButton);
 
     itsLayout->setAlignment(Qt::AlignCenter);
-
-
 }
 
 void MenuView::paintEvent(QPaintEvent* event)
 {
-
     QWidget::paintEvent(event);
     QPainter painter(this);
     QImage logo(":/images/Textures/Logo/logopixel.png");
@@ -67,5 +64,4 @@ void MenuView::paintEvent(QPaintEvent* event)
         logo);
 
     setWindowIcon(QIcon(":/images/Textures/Logo/favi.png")); // Avoir logo en haut a gauche
-
 }

@@ -1,4 +1,12 @@
-/*#include "AppController.h"
+/**
+ * @file appcontroller.cpp
+ * @brief Implémentation du routeur principal Qt et de l'initialisation des sous-contrôleurs.
+ */
+
+/*
+// Commentaire développeur :
+// Ancien code conservé en commentaire tel que fourni dans le code source original.
+#include "AppController.h"
 #include <iostream>
 
 AppController::AppController(QWidget *parent)
@@ -46,6 +54,7 @@ AppController::AppController(QWidget *parent)
 {
     currentState = new AppState;
 
+    // Commentaire développeur : 
     // On passe 'this' en paramètre pour lier le container à la QMainWindow
     mainContainer = new QStackedWidget(this);
 
@@ -53,12 +62,13 @@ AppController::AppController(QWidget *parent)
     itsMenuController = new MenuController();
     itsGameController = new GameController(this);
 
-    //on construit le menu controller en prévision pour obtenir sa vue
+    // Commentaire développeur : 
+    // on construit le menu controller en prévision pour obtenir sa vue
     //itsGameController->init();
 
 
-    //  On ajoute directement les VUES (et non leur parentWidget qui vaut nullptr)
-
+    // Commentaire développeur : 
+    // On ajoute directement les VUES (et non leur parentWidget qui vaut nullptr)
     mainContainer->addWidget((itsMenuController->getMenuView()));
     mainContainer->addWidget(itsGameController->getView());
 
@@ -67,6 +77,7 @@ AppController::AppController(QWidget *parent)
 
     mainContainer->setCurrentIndex(0); // On commence sur le menu (index 0)
 
+    // Commentaire développeur : 
     // setFixedSize prend (Largeur, Hauteur). Attention à ne pas inverser W et H !
     setFixedSize(Cfg::WINDOW_W, Cfg::WINDOW_H);
 
@@ -77,6 +88,7 @@ AppController::AppController(QWidget *parent)
 
 AppController::~AppController()
 {
+    // Commentaire développeur : 
     // Pas besoin de delete mainContainer si vous l'avez lié à 'this', Qt s'en occupe.
     delete itsMenuController;
     delete currentState;
@@ -87,14 +99,19 @@ void AppController::startGame()
 {
     itsGameController->init();
 
+    // Commentaire développeur : 
     // CORRECTION 4 : On bascule l'affichage sur le jeu (index 1) !
     mainContainer->setCurrentIndex(1);
 
+    // Commentaire développeur : 
     // On donne le focus au jeu pour que les touches du clavier (ZQSD) fonctionnent directement
     if(itsGameController->getView()) {
         itsGameController->getView()->setFocus();
     }
 }
+
 void AppController::run() {
-    this->show(); // C'est cette ligne qui maintient la fenêtre ouverte !
+    // Commentaire développeur : 
+    // C'est cette ligne qui maintient la fenêtre ouverte !
+    this->show(); 
 }

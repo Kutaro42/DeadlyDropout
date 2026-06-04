@@ -1,7 +1,11 @@
+/**
+ * @file gameview.cpp
+ * @brief Implémentation du moteur de rendu 2D et de la captation des inputs.
+ */
+
 #include "gameview.h"
 #include <QFont>
 #include <QFontMetrics>
-
 
 GameView::GameView(QWidget* parent)
     : QGraphicsView(parent),
@@ -13,11 +17,11 @@ GameView::GameView(QWidget* parent)
     setScene(scene);
     setFixedSize(Cfg::WINDOW_W, Cfg::WINDOW_H);
 
-    // Désactive les scrollbars (caméra gérée manuellement)
+    // Désactive les scrollbars natives, car la caméra (followPlayer) est gérée par code.
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    // Rendu pixel-perfect (pas d'antialiasing pour le style rétro)
+    // Configuration volontaire d'un rendu "pixel-perfect" sans flou pour l'esthétique rétro.
     setRenderHint(QPainter::Antialiasing,       false);
     setRenderHint(QPainter::SmoothPixmapTransform, false);
 
@@ -32,39 +36,35 @@ void GameView::initWithModel(GameModel* model) {
     currentModel = model;
     if (!model || !model->getPlayer()) return;
 
-    // Crée le PlayerView et l'insère dans la scène
     playerView = new PlayerView(model->getPlayer());
     scene->addItem(playerView);
 }
 
 void GameView::clearScene() {
     scene->clear();
-    playerView = nullptr;   // scene->clear() a détruit l'item
+    playerView = nullptr; // scene->clear() désalloue les objets, on remet le pointeur à null par sécurité.
 }
 
 //-----------------------------------------------------------------------------------------MOUSEDETECTION
 void GameView::mousePressEvent(QMouseEvent* event) {
-    // Si le bouton cliqué est le bouton DROIT
     if (event->button() == Qt::RightButton) {
-        emit sig_rightClicked(); // On envoie le signal du katana !
+        emit sig_rightClicked(); 
     }
     else if(event->button() == Qt::LeftButton){
-        emit sig_leftClicked();//on envoie le signal katana!
+        emit sig_leftClicked();
     }
 
-    // IMPORTANT : On appelle la méthode d'origine pour que Qt
-    // continue de gérer normalement les autres clics (ex: boutons, scène...)
+    // Transmission de l'événement à la classe parente pour ne pas bloquer les interactions UI classiques.
     QGraphicsView::mousePressEvent(event);
 }
 //-------------------------------------------------------------------------------------------------------
+
 void GameView::updateAllViews(float dt, GameModel* model) {
     if (!model) return;
     currentModel = model;
 
-    // ─── Vue joueur ───────────────────────────────────────────
     if (playerView) playerView->updateView(dt);
 
-    // ─── Vues ennemis et sortie (parcours de la scène) ────────
     for (QGraphicsItem* item : scene->items()) {
         if (auto* zv = dynamic_cast<ZombieStdView*>(item))
             zv->updateView(dt);
@@ -72,7 +72,8 @@ void GameView::updateAllViews(float dt, GameModel* model) {
             ev->updateView();
     }
 
-    viewport()->update();   // déclenche paintEvent → drawForeground
+    // Force l'appel de paintEvent() (et donc de drawForeground) sans redessiner les géométries statiques.
+    viewport()->update();   
 }
 
 void GameView::followPlayer(GameModel* model) {
@@ -88,7 +89,6 @@ void GameView::showOverlay(const QString& message) {
     viewport()->update();
 }
 
-// ── Entrées clavier ───────────────────────────────────────────────
 void GameView::keyPressEvent(QKeyEvent* e) {
     pressedKeys.insert(e->key());
     QGraphicsView::keyPressEvent(e);
@@ -99,9 +99,9 @@ void GameView::keyReleaseEvent(QKeyEvent* e) {
     QGraphicsView::keyReleaseEvent(e);
 }
 
-// ── HUD (dessiné EN COORDONNÉES ÉCRAN — indépendant de la caméra) ─
 void GameView::drawForeground(QPainter* painter, const QRectF& /*rect*/) {
-    painter->resetTransform();  // repasse en coords écran
+    // Reset des transformations pour s'accrocher aux coordonnées absolues de l'écran (HUD fixe).
+    painter->resetTransform();  
 
     if (currentModel) drawHUD(painter, currentModel);
 
@@ -124,17 +124,14 @@ void GameView::drawHUD(QPainter* p, GameModel* model) {
     int mx = Cfg::HUD_MARGIN;
     int my = Cfg::HUD_MARGIN;
 
-    // ─── Barre de vie ─────────────────────────────────────────
     drawHpBar(p, player->getHp(), player->getMaxHp(), mx, my);
 
-    // ─── Gold ─────────────────────────────────────────────────
     QFont font("Arial", 9, QFont::Bold);
     p->setFont(font);
     p->setPen(QColor(255, 210, 60));
     p->drawText(mx, my + Cfg::HP_BAR_H + 18,
                 QString("GOLD : %1").arg(player->getGold()));
 
-    // ─── Indicateur katana (cooldown) ─────────────────────────
     if (player->isKatanaActive()) {
         p->setPen(QColor(255, 100, 60));
         p->drawText(mx, my + Cfg::HP_BAR_H + 36, "⚔ TRANCHE !");
@@ -145,21 +142,18 @@ void GameView::drawHpBar(QPainter* p, int hp, int maxHp, int x, int y) {
     int bw = Cfg::HP_BAR_W;
     int bh = Cfg::HP_BAR_H;
 
-    // Fond
     p->fillRect(x, y, bw, bh, QColor(50, 0, 0));
 
-    // Remplissage proportionnel
     if (maxHp > 0) {
         double ratio  = static_cast<double>(hp) / maxHp;
         int    filled = static_cast<int>(bw * ratio);
-        // Couleur : vert→orange→rouge selon le niveau de vie
+        // Commentaire développeur : Transition de couleur pour signifier visuellement l'état critique de la vie.
         QColor col = (ratio > 0.6) ? QColor(60, 200, 60)
                    : (ratio > 0.3) ? QColor(220, 140, 0)
                                    : QColor(200, 30, 30);
         p->fillRect(x, y, filled, bh, col);
     }
 
-    // Contour + texte
     p->setPen(QPen(Qt::white, 1));
     p->drawRect(x, y, bw, bh);
     QFont f("Arial", 8, QFont::Bold);

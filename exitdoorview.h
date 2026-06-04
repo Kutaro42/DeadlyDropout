@@ -1,3 +1,10 @@
+/**
+ * @file exitdoorview.h
+ * @brief Déclaration de la vue graphique pour la porte de sortie.
+ * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
+ * @date Juin 2026
+ */
+
 #ifndef EXITDOORVIEW_H
 #define EXITDOORVIEW_H
 
@@ -10,17 +17,28 @@
 // ═══════════════════════════════════════════════════════════════════
 //  ExitDoorView — représentation visuelle de la porte de sortie.
 //  Couleur rouge foncé = fermée, vert vif = ouverte.
-//  Mettre à jour via updateView() à chaque tick.
 // ═══════════════════════════════════════════════════════════════════
+
+/**
+ * @class ExitDoorView
+ * @brief Rendu Qt de la porte gérant son code couleur en fonction de son verrouillage.
+ */
 class ExitDoorView : public QGraphicsRectItem {
 private:
-    ExitDoorModel* model;
-    bool           cachedOpen;
+    ExitDoorModel* model;       ///< Référence vers le modèle logique de la porte.
+    bool           cachedOpen;  ///< Mémorisation de l'état pour économiser des calculs de pinceau (Brush).
 
 public:
+    /**
+     * @brief Constructeur de la vue graphique de la porte de sortie.
+     * @param model Modèle physique source.
+     * @param parent Élément parent dans la scène graphique Qt.
+     */
     explicit ExitDoorView(ExitDoorModel* model, QGraphicsItem* parent = nullptr);
 
-    // À appeler chaque tick pour synchroniser l'état visuel
+    /**
+     * @brief Actualise les attributs graphiques (couleur, taille) selon l'état du modèle.
+     */
     void updateView();
 };
 

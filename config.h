@@ -1,64 +1,76 @@
+/**
+ * @file config.h
+ * @brief Constantes globales et énumérations de configuration du jeu Deadly Dropout.
+ * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
+ * @date Juin 2026
+ */
+
 #ifndef CONFIG_H
 #define CONFIG_H
 
-// ═══════════════════════════════════════════════════════════════════
-//  config.h — Constantes globales & énumérations (Deadly Dropout)
-//  Toute valeur numérique du jeu doit être définie ici.
-// ═══════════════════════════════════════════════════════════════════
-
+/**
+ * @namespace Cfg
+ * @brief Espace de nommage regroupant les constantes numériques du jeu.
+ */
 namespace Cfg {
 
     // ─── Fenêtre ──────────────────────────────────────────────────
-    constexpr int   WINDOW_W            = 960;
-    constexpr int   WINDOW_H            = 650;
+    constexpr int   WINDOW_W            = 960;    ///< Largeur de la fenêtre de jeu en pixels.
+    constexpr int   WINDOW_H            = 650;    ///< Hauteur de la fenêtre de jeu en pixels.
 
     // ─── Tuiles ───────────────────────────────────────────────────
-    constexpr int   TILE_SIZE           = 64;   // px par tuile de sol/mur
-    constexpr int   ENTITY_SIZE         = 64;   // taille sprite entité (px)
+    constexpr int   TILE_SIZE           = 64;     ///< Taille d'une tuile de sol ou de mur en pixels.
+    constexpr int   ENTITY_SIZE         = 64;     ///< Taille du sprite d'une entité en pixels.
 
     // ─── Joueur ───────────────────────────────────────────────────
-    constexpr float PLAYER_SPEED        = 300.0f;  // px/s
-    constexpr int   PLAYER_MAX_HP       = 100;
+    constexpr float PLAYER_SPEED        = 300.0f; ///< Vitesse de déplacement du joueur en pixels/s.
+    constexpr int   PLAYER_MAX_HP       = 100;    ///< Points de vie maximum du joueur.
 
     // ─── Katana ───────────────────────────────────────────────────
-    constexpr int   KATANA_DAMAGE       = 30;
-    constexpr float KATANA_SLASH_W      = 48.0f;  // largeur SlashZone (perpendiculaire)
-    constexpr float KATANA_SLASH_D      = 40.0f;  // profondeur SlashZone (portée)
-    constexpr float KATANA_ANIM_DUR     = 0.2f;   // durée animation tranche (s)
-    constexpr float KATANA_COOLDOWN     = 0.5f;   // cooldown entre attaques (s)
+    constexpr int   KATANA_DAMAGE       = 30;     ///< Dégâts de base infligés par le katana.
+    constexpr float KATANA_SLASH_W      = 48.0f;  ///< Largeur de la SlashZone (perpendiculaire).
+    constexpr float KATANA_SLASH_D      = 40.0f;  ///< Profondeur de la SlashZone (portée).
+    constexpr float KATANA_ANIM_DUR     = 0.2f;   ///< Durée de l'animation d'attaque en secondes.
+    constexpr float KATANA_COOLDOWN     = 0.5f;   ///< Temps de recharge entre les attaques en secondes.
 
     // ─── Zombie standard ──────────────────────────────────────────
-    constexpr int   ZOMBIE_MAX_HP       = 20;
-    constexpr float ZOMBIE_SPEED        = 90.0f;
-    constexpr int   ZOMBIE_DMG_MIN      = 7;
-    constexpr int   ZOMBIE_DMG_MAX      = 12;
-    constexpr float ZOMBIE_ATK_CD       = 1.5f;
-    constexpr float ZOMBIE_DETECT_R     = 400.0f;
-    constexpr int   ZOMBIE_GOLD_MIN     = 5;
-    constexpr int   ZOMBIE_GOLD_MAX     = 10;
+    constexpr int   ZOMBIE_MAX_HP       = 20;     ///< Points de vie maximum du zombie.
+    constexpr float ZOMBIE_SPEED        = 90.0f;  ///< Vitesse de déplacement du zombie en pixels/s.
+    constexpr int   ZOMBIE_DMG_MIN      = 7;      ///< Dégâts minimum infligés par le zombie.
+    constexpr int   ZOMBIE_DMG_MAX      = 12;     ///< Dégâts maximum infligés par le zombie.
+    constexpr float ZOMBIE_ATK_CD       = 1.5f;   ///< Temps de recharge de l'attaque en secondes.
+    constexpr float ZOMBIE_DETECT_R     = 400.0f; ///< Rayon de la bulle de détection du joueur.
+    constexpr int   ZOMBIE_GOLD_MIN     = 5;      ///< Quantité minimum d'or lâchée.
+    constexpr int   ZOMBIE_GOLD_MAX     = 10;     ///< Quantité maximum d'or lâchée.
 
     // ─── Boucle de jeu ────────────────────────────────────────────
-    constexpr int   TIMER_MS            = 16;     // ~60 FPS
+    constexpr int   TIMER_MS            = 16;     ///< Intervalle du timer principal (~60 FPS).
 
     // ─── Z-values (couches de rendu) ──────────────────────────────
-    constexpr double Z_FLOOR            = 0.0;
-    constexpr double Z_WALL             = 1.0;
-    constexpr double Z_ENTITY           = 2.0;
-    constexpr double Z_PLAYER           = 3.0;
-    constexpr double Z_SLASH            = 4.0;
+    constexpr double Z_FLOOR            = 0.0;    ///< Profondeur d'affichage du sol.
+    constexpr double Z_WALL             = 1.0;    ///< Profondeur d'affichage des murs.
+    constexpr double Z_ENTITY           = 2.0;    ///< Profondeur d'affichage des entités.
+    constexpr double Z_PLAYER           = 3.0;    ///< Profondeur d'affichage du joueur.
+    constexpr double Z_SLASH            = 4.0;    ///< Profondeur d'affichage de l'attaque.
 
     // ─── HUD ──────────────────────────────────────────────────────
-    constexpr int   HUD_MARGIN          = 12;
-    constexpr int   HP_BAR_W            = 180;
-    constexpr int   HP_BAR_H            = 16;
+    constexpr int   HUD_MARGIN          = 12;     ///< Marge extérieure du HUD.
+    constexpr int   HP_BAR_W            = 180;    ///< Largeur de la barre de vie.
+    constexpr int   HP_BAR_H            = 16;     ///< Hauteur de la barre de vie.
 }
 
 // ─── Énumérations ─────────────────────────────────────────────────
+
+/** @brief Direction de l'entité. */
 enum class FacingDirection { UP, DOWN, LEFT, RIGHT };
+
+/** @brief États de la machine à états globale de l'application. */
 enum class AppState        { MENU, PLAYING, GAME_OVER, VICTORY };
+
+/** @brief États de l'IA ennemie. */
 enum class EnemyAIState    { IDLE, CHASING, ATTACKING };
 
-// Identifiants de tuiles pour la matrice de niveau
+/** @brief Identifiants de tuiles pour la génération de la matrice de niveau. */
 enum class TileType {
     FLOOR        = 0,
     WALL         = 1,

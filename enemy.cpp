@@ -1,3 +1,8 @@
+/**
+ * @file enemy.cpp
+ * @brief Implémentation des mécaniques communes (dégâts, détection) pour la classe Enemy.
+ */
+
 #include "enemy.h"
 #include <cmath>
 
@@ -17,11 +22,12 @@ void Enemy::takeDamage(int amount) {
     hp -= amount;
     if (hp <= 0) {
         hp     = 0;
-        active = false;
+        active = false; //Permet au LevelController de supprimer l'ennemi au prochain tick
     }
 }
 
 bool Enemy::detectsPlayer(Vector2f playerPos) const {
+    // Calcul de la distance euclidienne entre le centre du sprite de l'ennemi et la position du joueur.
     float dx   = playerPos.x - (position.x + width  / 2.0f);
     float dy   = playerPos.y - (position.y + height / 2.0f);
     float dist = std::sqrt(dx * dx + dy * dy);

@@ -1,3 +1,10 @@
+/**
+ * @file gamecontroller.h
+ * @brief Déclaration du contrôleur principal gérant la boucle et la logique de jeu.
+ * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
+ * @date Juin 2026
+ */
+
 #ifndef GAMECONTROLLER_H
 #define GAMECONTROLLER_H
 
@@ -14,44 +21,78 @@
 // ═══════════════════════════════════════════════════════════════════
 //  GameController — contrôleur principal du jeu (couche Controller).
 //  Hérite QObject pour utiliser QTimer (boucle de jeu) et connect().
-//
-//  Rôle :
-//    - Créer et relier GameModel, GameView, LevelController
-//    - Charger un niveau via LevelBuilder
-//    - Lire les entrées clavier depuis GameView à chaque tick
-//    - Appeler LevelController::update() pour la logique
-//    - Déclencher les transitions d'état (PLAYING→GAME_OVER/VICTORY)
 // ═══════════════════════════════════════════════════════════════════
+
+/**
+ * @class GameController
+ * @brief Chef d'orchestre du jeu in-game (MVC).
+ * @details Responsabilités :
+ * - Crée et relie GameModel, GameView, LevelController.
+ * - Charge un niveau via LevelBuilder.
+ * - Lit les entrées clavier depuis GameView à chaque tick.
+ * - Appelle LevelController::update() pour la logique.
+ * - Déclenche les transitions d'état (PLAYING → GAME_OVER/VICTORY).
+ */
 class GameController : public QObject {
     Q_OBJECT
 
 private:
-    GameView*        itsGameView;
-    GameModel*       itsGameModel;
-    LevelController* levelCtrl;
+    GameView* itsGameView;       ///< Pointeur vers la vue principale du jeu.
+    GameModel* itsGameModel;      ///< Pointeur vers l'état global du modèle de jeu.
+    LevelController* levelCtrl;         ///< Contrôleur spécifique à la gestion du niveau (entités, collisions).
 
-    AppState         currentState;
-    QTimer           gameTimer;
-    QElapsedTimer    elapsedTimer;
-    int              currentLevelIndex;
+    AppState         currentState;      ///< État courant de la boucle de jeu.
+    QTimer           gameTimer;         ///< Moteur temporel déclenchant les ticks (boucle de jeu).
+    QElapsedTimer    elapsedTimer;      ///< Chronomètre pour le calcul du delta-time (dt).
+    int              currentLevelIndex; ///< Index du niveau actuellement chargé.
 
 public:
+    /**
+     * @brief Constructeur du contrôleur de jeu.
+     * @param parent Objet parent Qt.
+     */
     explicit GameController(QObject* parent);
     ~GameController();
 
-    // Initialise tout et affiche la fenêtre de jeu
+    /**
+     * @brief Initialise les modèles, la vue et lance la boucle de jeu.
+     */
     void init();
 
+    /**
+     * @brief Accesseur pour la vue de jeu.
+     * @return Le pointeur vers GameView.
+     */
     GameView* getView() const { return itsGameView; }
 
 private slots:
-    // Appelé à chaque tick du QTimer (~60 FPS)
+    /**
+     * @brief Slot appelé à chaque tick du QTimer (environ 60 FPS).
+     */
     void slt_tick();
 
 private:
+    /**
+     * @brief Charge et initialise un niveau spécifique.
+     * @param index L'identifiant (index) du niveau à charger.
+     */
     void loadLevel(int index);
+
+    /**
+     * @brief Traite les entrées clavier pour les déplacements.
+     * @param dt Delta-time en secondes.
+     */
     void handleInput(float dt);
+
+    /**
+     * @brief Vérifie les conditions de victoire ou de défaite.
+     */
     void checkStateTransitions();
+
+    /**
+     * @brief Opère la transition vers un nouvel écran de fin de partie.
+     * @param newState L'état ciblé (GAME_OVER ou VICTORY).
+     */
     void transitionTo(AppState newState);
 };
 

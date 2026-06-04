@@ -1,3 +1,10 @@
+/**
+ * @file playerview.cpp
+ * @brief Implémentation des mécanismes de dessin et d'animation pour le joueur.
+ * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
+ * @date Juin 2026
+ */
+
 #include "playerview.h"
 #include <QPainter>
 #include <QFont>

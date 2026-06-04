@@ -1,13 +1,21 @@
 #include "wallview.h"
 
 WallView::WallView(WallModel* model, QGraphicsItem* parent)
-    : QGraphicsRectItem(parent)
+    : QGraphicsPixmapItem(parent)
 {
-    setRect(0, 0,
-            static_cast<double>(model->getWidth()),
-            static_cast<double>(model->getHeight()));
+    QPixmap px(":/images/Textures/Environment/Wall/wall1.png");
+
+    // Redimensionne au cas où la texture ne fait pas exactement TILE_SIZE
+    if (px.width() != static_cast<int>(model->getWidth()) ||
+        px.height() != static_cast<int>(model->getHeight()))
+    {
+        px = px.scaled(static_cast<int>(model->getWidth()),
+                       static_cast<int>(model->getHeight()),
+                       Qt::IgnoreAspectRatio,
+                       Qt::SmoothTransformation);
+    }
+
+    setPixmap(px);
     setPos(model->getPosition().toQPointF());
-    setBrush(QBrush(QColor(72, 54, 36)));   // brique sombre
-    setPen(QPen(QColor(50, 38, 24), 1));
     setZValue(Cfg::Z_WALL);
 }

@@ -34,5 +34,8 @@
         <file>Textures/Enemy/Standard/Move/Up.png</file>
         <file>Textures/Enemy/Standard/Move/Left.png</file>
         <file>Textures/Enemy/Standard/Move/Right.png</file>
+
+	<!-- ── Tile mur ─────────────────── -->
+	<file>Textures/Environment/Wall/wall1.png</file>
     </qresource>
 </RCC>

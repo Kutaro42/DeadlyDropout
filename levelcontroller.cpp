@@ -131,8 +131,9 @@ void LevelController::checkExitCondition(PlayerModel& player,
 
     // Victoire si joueur entre dans la sortie ouverte
     if (exitDoor->isOpen() &&
-        player.getCollider().intersects(exitDoor->getCollider()))
+        player.getCollider().intersects(exitDoor->getCollider()) && player.getHasKey())
     {
         levelJustCompleted = true;
     }
+    
 }

@@ -1,3 +1,10 @@
+/**
+ * @file zombiestdmodel.cpp
+ * @brief Implémentation du comportement et de l'intelligence artificielle du zombie de base.
+ * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
+ * @date Juin 2026
+ */
+
 #include "zombiestdmodel.h"
 #include "playermodel.h"
 #include <cstdlib>

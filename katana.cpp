@@ -1,3 +1,8 @@
+/**
+ * @file katana.cpp
+ * @brief Implémentation du comportement, des timers et du périmètre d'attaque du Katana.
+ */
+
 #include "katana.h"
 
 Katana::Katana()
@@ -10,15 +15,14 @@ Katana::Katana()
     , itsSlashZone()
 {}
 
-// ─── Timers ──────────────────────────────────────────────────────────────────
 void Katana::update(float dt) {
-    // Décompte animation
+    // Décompte de la durée de l'animation d'attaque
     if (itsAnimTimer > 0.0f) {
         itsAnimTimer -= dt;
         if (itsAnimTimer < 0.0f) itsAnimTimer = 0.0f;
     }
 
-    // Décompte cooldown
+    // Décompte du verrouillage limitant la fréquence d'attaque (cooldown)
     if (!itsReady) {
         itsCooldownTimer -= dt;
         if (itsCooldownTimer <= 0.0f) {
@@ -28,7 +32,6 @@ void Katana::update(float dt) {
     }
 }
 
-// ─── Tentative d'attaque ─────────────────────────────────────────────────────
 bool Katana::tryAttack(Vector2f playerPos, float playerW, float playerH,
                        FacingDirection dir)
 {
@@ -42,16 +45,16 @@ bool Katana::tryAttack(Vector2f playerPos, float playerW, float playerH,
     return true;
 }
 
-// ─── Calcul de la SlashZone (CDC §2.3.2) ─────────────────────────────────────
 void Katana::computeSlashZone(Vector2f playerPos, float playerW, float playerH,
                                FacingDirection dir)
 {
+    // Application des règles du Cahier Des Charges (§2.3.2) pour générer l'emprise physique du coup (AABB).
     double px = static_cast<double>(playerPos.x);
     double py = static_cast<double>(playerPos.y);
     double pw = static_cast<double>(playerW);
     double ph = static_cast<double>(playerH);
     double sw = static_cast<double>(Cfg::KATANA_SLASH_W);  // largeur perpendiculaire
-    double sd = static_cast<double>(itsRange);              // profondeur (portée)
+    double sd = static_cast<double>(itsRange);             // profondeur (portée)
 
     switch (dir) {
         case FacingDirection::RIGHT:
