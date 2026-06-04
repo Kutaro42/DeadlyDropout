@@ -1,68 +1,120 @@
 #include "zombiestdview.h"
 #include <QPainter>
+#include <QFont>
+#include <cmath>
 
-ZombieStdView::ZombieStdView(ZombieStdModel* m, QGraphicsItem* parent)
-    : QGraphicsPixmapItem(parent),
-      model(m),
-      currentFrame(0), frameTimer(0.0f), animSpeed(0.2f)
-{
-    // GDD : spritesheet 32×32 px, 2 frames (walk)
-    loadSpriteSheet(":/assets/zombie_walk.png", 32, 32);
-    setZValue(Cfg::Z_ENTITY);
+// ─── Direction → index ────────────────────────────────────────────────────────
+int ZombieStdView::dirIdx(FacingDirection d) {
+    switch (d) {
+    case FacingDirection::DOWN:  return 0;
+    case FacingDirection::UP:    return 1;
+    case FacingDirection::LEFT:  return 2;
+    case FacingDirection::RIGHT: return 3;
+    }
+    return 0;
 }
 
-void ZombieStdView::loadSpriteSheet(const QString& filePath,
-                                     int frameW, int frameH)
+// ─── Velocity → FacingDirection (axe dominant) ───────────────────────────────
+FacingDirection ZombieStdView::velocityToDir(Vector2f vel) {
+    if (std::abs(vel.x) >= std::abs(vel.y))
+        return (vel.x >= 0) ? FacingDirection::RIGHT : FacingDirection::LEFT;
+    else
+        return (vel.y >= 0) ? FacingDirection::DOWN  : FacingDirection::UP;
+}
+
+// ─── Constructeur ─────────────────────────────────────────────────────────────
+ZombieStdView::ZombieStdView(ZombieStdModel* m, QGraphicsItem* parent)
+    : QGraphicsPixmapItem(parent)
+    , model(m)
+    , currentFrame(0)
+    , frameTimer(0.0f)
+    , animSpeed(0.18f)
+    , currentDir(0)     // DOWN par défaut
 {
-    QPixmap sheet(filePath);
-    if (sheet.isNull()) {
-        setFallbackPixmap();
-        return;
+    const char* dirNames[DIR_COUNT] = { "Down", "Up", "Left", "Right" };
+    for (int d = 0; d < DIR_COUNT; ++d) {
+        loadSheet(sprites[IDLE][d],
+                  QString(":/images/Textures/Enemy/Standard/Idle/%1.png")
+                  .arg(dirNames[d]));
+        loadSheet(sprites[WALK][d],
+                  QString(":/images/Textures/Enemy/Standard/Move/%1.png")
+                  .arg(dirNames[d]));
     }
 
-    frames.clear();
-    int cols = sheet.width()  / frameW;
-    int rows = sheet.height() / frameH;
-
-    for (int r = 0; r < rows; ++r)
-        for (int c = 0; c < cols; ++c)
-            frames.append(sheet.copy(c * frameW, r * frameH, frameW, frameH));
-
-    if (!frames.isEmpty())
-        setPixmap(frames[0].scaled(Cfg::ENTITY_SIZE, Cfg::ENTITY_SIZE,
-                                    Qt::IgnoreAspectRatio,
-                                    Qt::FastTransformation));
+    setZValue(Cfg::Z_ENTITY);
+    setPos(model->getPosition().toQPointF());
+    setPixmap(!sprites[IDLE][0].isEmpty() ? sprites[IDLE][0][0] : makeFallback());
 }
 
-void ZombieStdView::setFallbackPixmap() {
+// ─── Chargement spritesheet (2 frames 32×32 côte à côte) ─────────────────────
+void ZombieStdView::loadSheet(QVector<QPixmap>& frames, const QString& path) {
+    QPixmap sheet(path);
+    if (sheet.isNull()) {
+        qWarning("[ZombieStdView] Introuvable : %s", qPrintable(path));
+        return;
+    }
+    int count = sheet.width() / FRAME_W;
+    for (int i = 0; i < count; ++i) {
+        QPixmap raw = sheet.copy(i * FRAME_W, 0, FRAME_W, FRAME_H);
+        frames.append(raw.scaled(Cfg::ENTITY_SIZE, Cfg::ENTITY_SIZE,
+                                 Qt::IgnoreAspectRatio,
+                                 Qt::FastTransformation));
+    }
+}
+
+// ─── Fallback ────────────────────────────────────────────────────────────────
+QPixmap ZombieStdView::makeFallback() {
     QPixmap pm(Cfg::ENTITY_SIZE, Cfg::ENTITY_SIZE);
-    pm.fill(QColor(60, 120, 60));   // vert sombre = zombie
+    pm.fill(QColor(60, 120, 60));
     QPainter p(&pm);
     p.setPen(Qt::white);
     p.setFont(QFont("Arial", 8, QFont::Bold));
     p.drawText(pm.rect(), Qt::AlignCenter, "Z");
-    setPixmap(pm);
+    return pm;
 }
 
+// ─── Avance une frame ────────────────────────────────────────────────────────
+void ZombieStdView::advanceFrames(float dt, const QVector<QPixmap>& frames) {
+    if (frames.isEmpty()) return;
+    frameTimer += dt;
+    if (frameTimer >= animSpeed) {
+        frameTimer   = 0.0f;
+        currentFrame = (currentFrame + 1) % frames.size();
+    }
+    setPixmap(frames[currentFrame]);
+}
+
+// ─── Mise à jour chaque tick ──────────────────────────────────────────────────
 void ZombieStdView::updateView(float dt) {
     if (!model || !model->isActive()) {
         hide();
         return;
     }
 
-    // Synchronise la position scène depuis le modèle
     setPos(model->getPosition().toQPointF());
 
-    // Animation seulement si en mouvement (CHASING)
-    if (model->getAIState() == EnemyAIState::CHASING && !frames.isEmpty()) {
-        frameTimer += dt;
-        if (frameTimer >= animSpeed) {
-            frameTimer    = 0.0f;
-            currentFrame  = (currentFrame + 1) % frames.size();
-            setPixmap(frames[currentFrame].scaled(Cfg::ENTITY_SIZE,
-                                                   Cfg::ENTITY_SIZE,
-                                                   Qt::IgnoreAspectRatio,
-                                                   Qt::FastTransformation));
+    Vector2f vel = model->getVelocity();
+    bool chasing = (model->getAIState() == EnemyAIState::CHASING);
+
+    if (chasing && vel.length() > 0.01f) {
+        // ── Walk : direction déduite du vecteur vitesse ────────
+        int newDir = dirIdx(velocityToDir(vel));
+        if (newDir != currentDir) {
+            currentDir   = newDir;
+            currentFrame = 0;
+            frameTimer   = 0.0f;
         }
+        const QVector<QPixmap>& walk = sprites[WALK][currentDir];
+        if (!walk.isEmpty())
+            advanceFrames(dt, walk);
+        else
+            setPixmap(makeFallback());
+
+    } else {
+        // ── Idle : frame fixe, direction conservée ────────────
+        currentFrame = 0;
+        frameTimer   = 0.0f;
+        const QVector<QPixmap>& idle = sprites[IDLE][currentDir];
+        setPixmap(!idle.isEmpty() ? idle[0] : makeFallback());
     }
 }

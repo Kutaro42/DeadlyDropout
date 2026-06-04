@@ -112,7 +112,7 @@ void LevelController::checkSlashZoneHits(PlayerModel& player,
     for (Enemy* e : level.getEnemies()) {
         if (!e->isActive()) continue;
         if (slash.intersects(e->getCollider()))
-            e->takeDamage(player.getKatanaDmg());
+            e->takeDamage(player.getKatana().getDamage());
     }
 }
 

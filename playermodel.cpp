@@ -4,30 +4,19 @@
 PlayerModel::PlayerModel(Vector2f startPos)
     : Entity(startPos,
              static_cast<float>(Cfg::ENTITY_SIZE),
-             static_cast<float>(Cfg::ENTITY_SIZE)),
-      hp(Cfg::PLAYER_MAX_HP), maxHp(Cfg::PLAYER_MAX_HP),
-      speed(Cfg::PLAYER_SPEED),
-      gold(0), hasKey(false), moving(false),
-      katanaDamage(Cfg::KATANA_DAMAGE),
-      katanaSlashW(Cfg::KATANA_SLASH_W),
-      katanaSlashD(Cfg::KATANA_SLASH_D),
-      katanaCooldownTimer(0.0f), katanaAnimTimer(0.0f),
-      katanaActive(false),
-      facingDir(FacingDirection::DOWN)
+             static_cast<float>(Cfg::ENTITY_SIZE))
+    , hp(Cfg::PLAYER_MAX_HP)
+    , maxHp(Cfg::PLAYER_MAX_HP)
+    , speed(Cfg::PLAYER_SPEED)
+    , gold(0)
+    , hasKey(false)
+    , moving(false)
+    , facingDir(FacingDirection::DOWN)
+    , katana()      // initialisé avec les constantes Cfg
 {}
 
 void PlayerModel::update(float dt) {
-    // ─── Décompte timer animation katana ──────────────────────
-    if (katanaActive) {
-        katanaAnimTimer -= dt;
-        if (katanaAnimTimer <= 0.0f) {
-            katanaActive    = false;
-            katanaAnimTimer = 0.0f;
-        }
-    }
-    // ─── Décompte cooldown katana ─────────────────────────────
-    if (katanaCooldownTimer > 0.0f)
-        katanaCooldownTimer -= dt;
+    katana.update(dt);  // délègue timers cooldown + anim à Katana
 }
 
 void PlayerModel::move(Vector2f inputDir, float dt) {
@@ -47,39 +36,9 @@ void PlayerModel::move(Vector2f inputDir, float dt) {
         facingDir = (inputDir.y > 0) ? FacingDirection::DOWN  : FacingDirection::UP;
 }
 
+// ─── Lance l'attaque — reste ici car c'est une action du joueur ──────────────
 bool PlayerModel::launchKatana() {
-    if (katanaCooldownTimer > 0.0f) return false;
-
-    katanaActive        = true;
-    katanaAnimTimer     = Cfg::KATANA_ANIM_DUR;
-    katanaCooldownTimer = Cfg::KATANA_COOLDOWN;
-    updateSlashZone();
-    return true;
-}
-
-void PlayerModel::updateSlashZone() {
-    // Centre du sprite joueur
-    double px = static_cast<double>(position.x);
-    double py = static_cast<double>(position.y);
-    double pw = static_cast<double>(width);
-    double ph = static_cast<double>(height);
-    double sw = static_cast<double>(katanaSlashW);
-    double sd = static_cast<double>(katanaSlashD);
-
-    switch (facingDir) {
-        case FacingDirection::RIGHT:
-            slashZone = QRectF(px + pw,           py + ph/2.0 - sw/2.0, sd, sw);
-            break;
-        case FacingDirection::LEFT:
-            slashZone = QRectF(px - sd,            py + ph/2.0 - sw/2.0, sd, sw);
-            break;
-        case FacingDirection::DOWN:
-            slashZone = QRectF(px + pw/2.0 - sw/2.0, py + ph,            sw, sd);
-            break;
-        case FacingDirection::UP:
-            slashZone = QRectF(px + pw/2.0 - sw/2.0, py - sd,            sw, sd);
-            break;
-    }
+    return katana.tryAttack(position, width, height, facingDir);
 }
 
 void PlayerModel::takeDamage(int amount) {

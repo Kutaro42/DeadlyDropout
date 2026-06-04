@@ -20,42 +20,44 @@ PlayerView::PlayerView(PlayerModel* m, QGraphicsItem* parent)
     , currentFrame(0)
     , frameTimer(0.0f)
     , animSpeed(0.15f)
+    , attackAnimSpeed(Cfg::KATANA_ANIM_DUR / ATTACK_FRAME_COUNT)
 {
-    // Préfixe : :/images  (correspond au qresource prefix="/images" du QRC)
-    // Noms : correspondent exactement aux fichiers Textures/Player/{état}/{Dir}.png
     const char* dirNames[DIR_COUNT] = { "Down", "Up", "Left", "Right" };
     for (int d = 0; d < DIR_COUNT; ++d) {
-        loadSheet(sprites[0][d],
-                  QString(":/images/Textures/Player/Idle/%1.png").arg(dirNames[d]));
-        loadSheet(sprites[1][d],
-                  QString(":/images/Textures/Player/Move/%1.png").arg(dirNames[d]));
-        loadSheet(sprites[2][d],
-                  QString(":/images/Textures/Player/Attack/%1.png").arg(dirNames[d]));
-        }
-
+        // état 0 = idle   (2 frames 32×32)
+        loadSheet(sprites[IDLE][d],
+                  QString(":/images/Textures/Player/Idle/%1.png").arg(dirNames[d]),
+                  FRAME_W, FRAME_H);
+        // état 1 = walk   (2 frames 32×32)
+        loadSheet(sprites[WALK][d],
+                  QString(":/images/Textures/Player/Move/%1.png").arg(dirNames[d]),
+                  FRAME_W, FRAME_H);
+        // état 2 = attack (3 frames 32×32 — sheet 96×32)
+        loadSheet(sprites[ATTACK][d],
+                  QString(":/images/Textures/Player/Attack/%1.png").arg(dirNames[d]),
+                  FRAME_W, FRAME_H);
+    }
 
     setZValue(Cfg::Z_PLAYER);
     setPos(model->getPosition().toQPointF());
 
-    // Affiche la première frame idle par défaut
     int d = dirIdx(model->getFacing());
-    if (!sprites[0][d].isEmpty())
-        setPixmap(sprites[0][d][0]);
-    else
-        showFallback(model->getFacing());
+    setPixmap(!sprites[IDLE][d].isEmpty() ? sprites[IDLE][d][0]
+                                          : makeFallback(model->getFacing()));
 }
 
-// ─── Chargement d'un spritesheet ─────────────────────────────────────────────
-// Sheets : 64×32 px → 2 frames de 32×32, scalées à ENTITY_SIZE×ENTITY_SIZE
-void PlayerView::loadSheet(QVector<QPixmap>& frames, const QString& path) {
+// ─── Chargement d'un spritesheet (frames horizontales) ───────────────────────
+void PlayerView::loadSheet(QVector<QPixmap>& frames, const QString& path,
+                           int fw, int fh)
+{
     QPixmap sheet(path);
     if (sheet.isNull()) {
         qWarning("[PlayerView] Introuvable : %s", qPrintable(path));
         return;
     }
-    int frameCount = sheet.width() / FRAME_W;
-    for (int i = 0; i < frameCount; ++i) {
-        QPixmap raw = sheet.copy(i * FRAME_W, 0, FRAME_W, FRAME_H);
+    int count = sheet.width() / fw;
+    for (int i = 0; i < count; ++i) {
+        QPixmap raw = sheet.copy(i * fw, 0, fw, fh);
         frames.append(raw.scaled(Cfg::ENTITY_SIZE, Cfg::ENTITY_SIZE,
                                  Qt::IgnoreAspectRatio,
                                  Qt::FastTransformation));
@@ -63,7 +65,7 @@ void PlayerView::loadSheet(QVector<QPixmap>& frames, const QString& path) {
 }
 
 // ─── Fallback visuel ─────────────────────────────────────────────────────────
-void PlayerView::showFallback(FacingDirection dir) {
+QPixmap PlayerView::makeFallback(FacingDirection dir) {
     QPixmap pm(Cfg::ENTITY_SIZE, Cfg::ENTITY_SIZE);
     pm.fill(QColor(40, 80, 180));
     QPainter p(&pm);
@@ -77,14 +79,16 @@ void PlayerView::showFallback(FacingDirection dir) {
     default: break;
     }
     p.drawText(pm.rect(), Qt::AlignCenter, QString("P\n") + arrow);
-    setPixmap(pm);
+    return pm;
 }
 
-// ─── Avance d'une frame d'animation ──────────────────────────────────────────
-void PlayerView::advanceFrames(float dt, const QVector<QPixmap>& frames) {
+// ─── Avance une frame et l'affiche ───────────────────────────────────────────
+void PlayerView::advanceFrames(float dt, const QVector<QPixmap>& frames,
+                               float speed)
+{
     if (frames.isEmpty()) return;
     frameTimer += dt;
-    if (frameTimer >= animSpeed) {
+    if (frameTimer >= speed) {
         frameTimer   = 0.0f;
         currentFrame = (currentFrame + 1) % frames.size();
     }
@@ -92,31 +96,39 @@ void PlayerView::advanceFrames(float dt, const QVector<QPixmap>& frames) {
 }
 
 // ─── Mise à jour chaque tick ──────────────────────────────────────────────────
+// Priorité : ATTACK > WALK > IDLE
 void PlayerView::updateView(float dt) {
     if (!model) return;
 
     setPos(model->getPosition().toQPointF());
-
     int d = dirIdx(model->getFacing());
 
-    if (model->isMoving() && !model->isKatanaActive()) {
-        if (!sprites[1][d].isEmpty())
-            advanceFrames(dt, sprites[1][d]);
+    if (model->isKatanaActive()) {
+        // ── Animation attaque (priorité maximale) ─────────────
+        const QVector<QPixmap>& atk = sprites[ATTACK][d];
+        if (!atk.isEmpty())
+            advanceFrames(dt, atk, attackAnimSpeed);
         else
-            showFallback(model->getFacing());
-    }
-    if (model->isKatanaActive()){
-        if (!sprites[1][d].isEmpty())
-            advanceFrames(dt, sprites[2][d]);
+            setPixmap(makeFallback(model->getFacing()));
+
+    } else if (model->isMoving()) {
+        // ── Animation marche ──────────────────────────────────
+        // Repart à la frame 0 si on sort de l'état attaque
+        if (currentFrame >= sprites[WALK][d].size()) {
+            currentFrame = 0;
+            frameTimer   = 0.0f;
+        }
+        const QVector<QPixmap>& walk = sprites[WALK][d];
+        if (!walk.isEmpty())
+            advanceFrames(dt, walk, animSpeed);
         else
-            showFallback(model->getFacing());
-    }
-    else {
+            setPixmap(makeFallback(model->getFacing()));
+
+    } else {
+        // ── Idle : frame fixe ─────────────────────────────────
         currentFrame = 0;
         frameTimer   = 0.0f;
-        if (!sprites[0][d].isEmpty())
-            setPixmap(sprites[0][d][0]);
-        else
-            showFallback(model->getFacing());
+        const QVector<QPixmap>& idle = sprites[IDLE][d];
+        setPixmap(!idle.isEmpty() ? idle[0] : makeFallback(model->getFacing()));
     }
 }

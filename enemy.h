@@ -48,6 +48,7 @@ public:
     int          getMaxHp()    const { return maxHp;    }
     int          getGoldDrop() const { return goldDrop; }
     EnemyAIState getAIState()  const { return aiState;  }
+    Vector2f     getVelocity() const { return velocity;  }
 
     // Délégation Entity::update (sans playerPos — no-op pour les ennemis)
     void update(float dt) override { Q_UNUSED(dt); }
