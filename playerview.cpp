@@ -125,10 +125,11 @@ void PlayerView::updateView(float dt) {
             setPixmap(makeFallback(model->getFacing()));
 
     } else {
-        // ── Idle : frame fixe ─────────────────────────────────
-        currentFrame = 0;
-        frameTimer   = 0.0f;
+        // Idle : animation cyclique (comme WALK)
         const QVector<QPixmap>& idle = sprites[IDLE][d];
-        setPixmap(!idle.isEmpty() ? idle[0] : makeFallback(model->getFacing()));
+        if (!idle.isEmpty())
+            advanceFrames(dt, idle, animSpeed);
+        else
+            setPixmap(makeFallback(model->getFacing()));
     }
 }
