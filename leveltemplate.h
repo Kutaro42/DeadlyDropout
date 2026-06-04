@@ -64,7 +64,7 @@ inline LevelDescriptor makeDescriptor(int id, const QString& name,
 // ═══════════════════════════════════════════════════════════════════
 namespace LevelData {
 
-    // ─── Niveau 1 — Pattern 1 (15 cols × 12 rows = 480 × 384 px) ─
+// ─── Niveau 1 — Pattern 1 (15 cols × 12 rows = 480 × 384 px) ─
     inline constexpr LevelMatrix<12, 15> LEVEL_1 = {{
         { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
         { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },

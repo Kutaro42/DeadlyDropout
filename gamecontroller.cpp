@@ -130,9 +130,6 @@ void GameController::handleInput(float dt) {
     else
         player->stopMoving();
 
-    // ─── Attaque katana (Espace ou J) ─────────────────────────
-    if (keys.contains(Qt::Key_Space) || keys.contains(Qt::Key_J))
-        player->launchKatana();
 }
 
 // ── Transitions d'état ─────────────────────────────────────────────
