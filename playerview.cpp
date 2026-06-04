@@ -83,10 +83,16 @@ QPixmap PlayerView::makeFallback(FacingDirection dir) {
 }
 
 // ─── Avance une frame et l'affiche ───────────────────────────────────────────
-void PlayerView::advanceFrames(float dt, const QVector<QPixmap>& frames,
-                               float speed)
+void PlayerView::advanceFrames(float dt, const QVector<QPixmap>& frames, float speed)
 {
     if (frames.isEmpty()) return;
+
+    // Sécurité : currentFrame peut venir d'un état avec plus de frames
+    if (currentFrame >= frames.size()) {
+        currentFrame = 0;
+        frameTimer   = 0.0f;
+    }
+
     frameTimer += dt;
     if (frameTimer >= speed) {
         frameTimer   = 0.0f;
