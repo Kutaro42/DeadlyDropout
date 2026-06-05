@@ -7,6 +7,7 @@
 #include <Qt>
 #include <algorithm>
 #include <qDebug>
+#include <config.h>
 
 GameController::GameController(QObject* parent): QObject(parent), itsGameView( new GameView()),itsGameModel(new GameModel()),
       levelCtrl(new LevelController()),
@@ -110,6 +111,16 @@ void GameController::handleInput(float dt) {
         player->move(dir, dt);
     else
         player->stopMoving();
+
+
+    if (keys.contains(Qt::Key_G))
+    {
+        player->setSpeed(1000);
+    }
+    else if (keys.contains(Qt::Key_H))
+    {
+        player->setSpeed(Cfg::PLAYER_SPEED);
+    }
 }
 
 void GameController::checkStateTransitions() {
