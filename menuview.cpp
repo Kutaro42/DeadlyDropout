@@ -14,6 +14,7 @@
 
 MenuView::MenuView(QWidget* parent) : QWidget(parent)
 {
+
     // Windows size
     setFixedSize(Cfg::WINDOW_W,Cfg::WINDOW_H);
 

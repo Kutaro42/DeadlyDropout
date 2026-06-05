@@ -46,6 +46,34 @@ private:
     QElapsedTimer    elapsedTimer;      ///< Chronomètre pour le calcul du delta-time (dt).
     int              currentLevelIndex; ///< Index du niveau actuellement chargé.
 
+    bool leftArrowClicked;
+    bool rightArrowClicked;
+    bool upArrowClicked;
+    bool downArrowClicked;
+
+    /**
+     * @brief Charge et initialise un niveau spécifique.
+     * @param index L'identifiant (index) du niveau à charger.
+     */
+    void loadLevel(int index);
+
+    /**
+     * @brief Traite les entrées clavier pour les déplacements.
+     * @param dt Delta-time en secondes.
+     */
+    void handleInput(float dt);
+
+    /**
+     * @brief Vérifie les conditions de victoire ou de défaite.
+     */
+    void checkStateTransitions();
+
+    /**
+     * @brief Opère la transition vers un nouvel écran de fin de partie.
+     * @param newState L'état ciblé (GAME_OVER ou VICTORY).
+     */
+    void transitionTo(AppState newState);
+
 public:
     /**
      * @brief Constructeur du contrôleur de jeu.
@@ -71,29 +99,15 @@ private slots:
      */
     void slt_tick();
 
-private:
     /**
-     * @brief Charge et initialise un niveau spécifique.
-     * @param index L'identifiant (index) du niveau à charger.
+     * @brief Slot appelé à chaque pression d'une flèche.
      */
-    void loadLevel(int index);
+    void sltLeftArrow();
+    void sltRightArrow();
+    void sltDownArrow();
+    void sltUpArrow();
 
-    /**
-     * @brief Traite les entrées clavier pour les déplacements.
-     * @param dt Delta-time en secondes.
-     */
-    void handleInput(float dt);
 
-    /**
-     * @brief Vérifie les conditions de victoire ou de défaite.
-     */
-    void checkStateTransitions();
-
-    /**
-     * @brief Opère la transition vers un nouvel écran de fin de partie.
-     * @param newState L'état ciblé (GAME_OVER ou VICTORY).
-     */
-    void transitionTo(AppState newState);
 };
 
 #endif // GAMECONTROLLER_H

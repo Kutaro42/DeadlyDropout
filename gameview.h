@@ -108,6 +108,21 @@ signals:
     
     /** @brief Émis lors d'un clic gauche capté dans la zone de jeu. */
     void sig_leftClicked();
+
+
+
+
+    /** @brief Émis lors d'un clic sur la flèche gauche capté dans la zone de jeu. */
+    void sigLeftArrowKeyClicked();
+
+    /** @brief Émis lors d'un clic sur la flèche droite capté dans la zone de jeu. */
+    void sigRightArrowKeyClicked();
+
+    /** @brief Émis lors d'un clic sur la flèche haut capté dans la zone de jeu. */
+    void sigUpArrowKeyClicked();
+
+    /** @brief Émis lors d'un clic sur la flèche bas capté dans la zone de jeu. */
+    void sigDownArrowKeyClicked();
 };
 
 #endif // GAMEVIEW_H

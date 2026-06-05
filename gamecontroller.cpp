@@ -6,14 +6,20 @@
 #include "gamecontroller.h"
 #include <Qt>
 #include <algorithm>
-#include <qDebug>
 #include <config.h>
+
+#include <iostream>
 
 GameController::GameController(QObject* parent): QObject(parent), itsGameView( new GameView()),itsGameModel(new GameModel()),
       levelCtrl(new LevelController()),
       currentState(AppState::MENU),
       currentLevelIndex(0)
-{}
+{
+    downArrowClicked = false;
+    upArrowClicked = false;
+    rightArrowClicked = false;
+    leftArrowClicked = false;
+}
 
 GameController::~GameController() {
     delete itsGameView;
@@ -39,7 +45,16 @@ void GameController::init() {
             //itsGameModel->gun->launchfire(); // Pour le pistolet
             qDebug("pan !");
         }
+
+        // ── Liaison des cliques flèches ────────────────────────
+        connect(itsGameView, &GameView::sigDownArrowKeyClicked, this,&GameController::sltDownArrow);
+        connect(itsGameView, &GameView::sigUpArrowKeyClicked, this,&GameController::sltUpArrow);
+        connect(itsGameView, &GameView::sigLeftArrowKeyClicked, this,&GameController::sltLeftArrow);
+        connect(itsGameView, &GameView::sigRightArrowKeyClicked, this,&GameController::sltRightArrow);
+
     });
+
+
 
     // ── Chargement du niveau 1 ────────────────────────────────
     loadLevel(0);
@@ -76,7 +91,7 @@ void GameController::loadLevel(int index) {
     Vector2f spawn = itsGameModel->getLevel()->getSpawnPos();
     if (itsGameModel->getPlayer()==nullptr)
     {
-    itsGameModel->initPlayer(spawn);
+        itsGameModel->initPlayer(spawn);
     }
     else
     {
@@ -102,6 +117,27 @@ void GameController::slt_tick() {
     itsGameView->followPlayer(itsGameModel);
 }
 
+void GameController::sltDownArrow()
+{
+    downArrowClicked = true;
+}
+
+void GameController::sltUpArrow()
+{
+    upArrowClicked = true;
+}
+
+void GameController::sltRightArrow()
+{
+    rightArrowClicked = true;
+}
+
+void GameController::sltLeftArrow()
+{
+    leftArrowClicked = true;
+}
+
+
 void GameController::handleInput(float dt) {
     const QSet<int>& keys  = itsGameView->getPressedKeys();
     PlayerModel* player = itsGameModel->getPlayer();
@@ -109,10 +145,27 @@ void GameController::handleInput(float dt) {
 
     // Somme vectorielle des inputs pour autoriser les déplacements diagonaux.
     Vector2f dir(0.0f, 0.0f);
-    if (keys.contains(Qt::Key_Z) || keys.contains(Qt::Key_Up))    dir.y -= 1.0f;
-    if (keys.contains(Qt::Key_S) || keys.contains(Qt::Key_Down))  dir.y += 1.0f;
-    if (keys.contains(Qt::Key_Q) || keys.contains(Qt::Key_Left))  dir.x -= 1.0f;
-    if (keys.contains(Qt::Key_D) || keys.contains(Qt::Key_Right)) dir.x += 1.0f;
+    if (keys.contains(Qt::Key_Z) || upArrowClicked)
+    {
+        dir.y -= 1.0f;
+        upArrowClicked = false;
+    }
+    if (keys.contains(Qt::Key_S) || downArrowClicked){
+        dir.y += 1.0f;
+        downArrowClicked = false;
+    }
+    if (keys.contains(Qt::Key_Q) || leftArrowClicked)
+    {
+        dir.x -= 1.0f;
+        leftArrowClicked = false;
+    }
+    if (keys.contains(Qt::Key_D) || rightArrowClicked)
+    {
+        dir.x += 1.0f;
+        rightArrowClicked = false;
+    }
+
+
 
     if (dir.length() > 0.0f)
         player->move(dir, dt);

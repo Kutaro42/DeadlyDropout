@@ -17,6 +17,7 @@ GameView::GameView(QWidget* parent)
     setScene(scene);
     setFixedSize(Cfg::WINDOW_W, Cfg::WINDOW_H);
 
+
     // Désactive les scrollbars natives, car la caméra (followPlayer) est gérée par code.
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -74,7 +75,7 @@ void GameView::updateAllViews(float dt, GameModel* model) {
     }
 
     // Force l'appel de paintEvent() (et donc de drawForeground) sans redessiner les géométries statiques.
-    viewport()->update();   
+    viewport()->update();
 }
 
 void GameView::followPlayer(GameModel* model) {
@@ -91,8 +92,35 @@ void GameView::showOverlay(const QString& message) {
 }
 
 void GameView::keyPressEvent(QKeyEvent* e) {
-    pressedKeys.insert(e->key());
-    QGraphicsView::keyPressEvent(e);
+    // Si c'est une touche de flèche
+    if (e->key() == Qt::Key_Left || e->key() == Qt::Key_Right ||
+        e->key() == Qt::Key_Up || e->key() == Qt::Key_Down) {
+
+        // On marque l'événement comme ignoré,
+        // ainsi QGraphicsView ne fera rien avec.
+        e->ignore();
+        switch (e->key()) {
+        case Qt::Key_Left:
+            emit sigLeftArrowKeyClicked();
+            break;
+        case Qt::Key_Down:
+            emit sigDownArrowKeyClicked();
+            break;
+        case Qt::Key_Right:
+            emit sigRightArrowKeyClicked();
+            break;
+        case Qt::Key_Up:
+            emit sigUpArrowKeyClicked();
+            break;
+        }
+
+    }
+    else {
+        // Pour les autres touches, on laisse le comportement par défaut
+        pressedKeys.insert(e->key());
+        QGraphicsView::keyPressEvent(e);
+    }
+
 }
 
 void GameView::keyReleaseEvent(QKeyEvent* e) {
@@ -102,7 +130,7 @@ void GameView::keyReleaseEvent(QKeyEvent* e) {
 
 void GameView::drawForeground(QPainter* painter, const QRectF& /*rect*/) {
     // Reset des transformations pour s'accrocher aux coordonnées absolues de l'écran (HUD fixe).
-    painter->resetTransform();  
+    painter->resetTransform();
 
     if (currentModel) drawHUD(painter, currentModel);
 

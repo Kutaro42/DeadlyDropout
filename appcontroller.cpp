@@ -88,6 +88,8 @@ AppController::AppController(QWidget *parent)
     // Connexions des signaux
     connect(itsMenuController, &MenuController::sigGameRequest, this, &AppController::sigGameRq);
     connect(this, &AppController::sigGameRq, this, &AppController::startGame);
+
+
 }
 
 AppController::~AppController()
