@@ -10,8 +10,8 @@ LevelController::LevelController()
 
 // ── Point d'entrée principal ──────────────────────────────────────
 void LevelController::update(float dt,
-                               PlayerModel& player,
-                               LevelModel&  level)
+                             PlayerModel& player,
+                             LevelModel&  level)
 {
     levelJustCompleted = false;
 
@@ -20,6 +20,9 @@ void LevelController::update(float dt,
 
     resolvePlayerWallCollisions(player, level);
     resolveEnemyWallCollisions(level);
+
+    resolvePlayerEnemyCollisions(player, level);
+    resolveEnemyEnemyCollisions(level);
 
     checkPlayerEnemyCollisions(player, level);
 
@@ -31,8 +34,8 @@ void LevelController::update(float dt,
 
 // ── IA : mise à jour de chaque ennemi actif ───────────────────────
 void LevelController::updateEnemies(float dt,
-                                     PlayerModel& player,
-                                     LevelModel&  level)
+                                    PlayerModel& player,
+                                    LevelModel&  level)
 {
     for (Enemy* e : level.getEnemies())
         if (e->isActive())
@@ -41,7 +44,7 @@ void LevelController::updateEnemies(float dt,
 
 // ── Gold : distribué une seule fois à la mort de chaque ennemi ────
 void LevelController::distributeGold(PlayerModel& player,
-                                      LevelModel&  level)
+                                     LevelModel&  level)
 {
     for (Enemy* e : level.getEnemies()) {
         if (!e->isActive() && !e->hasDroppedGold()) {
@@ -62,14 +65,14 @@ void LevelController::resolveAABB(Entity& mover, const QRectF& obstacle)
     if (inter.width() < inter.height()) {
         // Correction sur X (mur vertical)
         double corr = (m.center().x() < obstacle.center().x())
-                      ? -inter.width() : inter.width();
+                          ? -inter.width() : inter.width();
         mover.setPosition(Vector2f(
             mover.getPosition().x + static_cast<float>(corr),
             mover.getPosition().y));
     } else {
         // Correction sur Y (mur horizontal)
         double corr = (m.center().y() < obstacle.center().y())
-                      ? -inter.height() : inter.height();
+                          ? -inter.height() : inter.height();
         mover.setPosition(Vector2f(
             mover.getPosition().x,
             mover.getPosition().y + static_cast<float>(corr)));
@@ -78,7 +81,7 @@ void LevelController::resolveAABB(Entity& mover, const QRectF& obstacle)
 
 // ── Collisions joueur / murs ──────────────────────────────────────
 void LevelController::resolvePlayerWallCollisions(PlayerModel& player,
-                                                   LevelModel&  level)
+                                                  LevelModel&  level)
 {
     for (WallModel* w : level.getWalls())
         resolveAABB(player, w->getCollider());
@@ -95,7 +98,7 @@ void LevelController::resolveEnemyWallCollisions(LevelModel& level) {
 
 // ── Contact joueur / ennemi → attaque ─────────────────────────────
 void LevelController::checkPlayerEnemyCollisions(PlayerModel& player,
-                                                  LevelModel&  level)
+                                                 LevelModel&  level)
 {
     for (Enemy* e : level.getEnemies()) {
         if (!e->isActive()) continue;
@@ -106,7 +109,7 @@ void LevelController::checkPlayerEnemyCollisions(PlayerModel& player,
 
 // ── SlashZone katana / ennemis ────────────────────────────────────
 void LevelController::checkSlashZoneHits(PlayerModel& player,
-                                          LevelModel&  level)
+                                         LevelModel&  level)
 {
     QRectF slash = player.getSlashZone();
     for (Enemy* e : level.getEnemies()) {
@@ -116,9 +119,57 @@ void LevelController::checkSlashZoneHits(PlayerModel& player,
     }
 }
 
+// ── Séparation joueur / ennemis (corps à corps) ───────────────────
+// On repousse l'ennemi (et non le joueur) pour ne pas interférer avec
+// les collisions mur déjà résolues côté joueur.
+void LevelController::resolvePlayerEnemyCollisions(PlayerModel& player,
+                                                   LevelModel&  level)
+{
+    QRectF pc = player.getCollider();
+    for (Enemy* e : level.getEnemies()) {
+        if (!e->isActive()) continue;
+        resolveAABB(*e, pc);
+    }
+}
+
+// ── Séparation ennemi / ennemi ─────────────────────────────────────
+// On répartit la correction à 50/50 pour éviter qu'un seul des deux
+// soit repoussé et garde un comportement symétrique.
+void LevelController::resolveEnemyEnemyCollisions(LevelModel& level)
+{
+    QVector<Enemy*>& enemies = level.getEnemies();
+    int n = enemies.size();
+    for (int i = 0; i < n; ++i) {
+        if (!enemies[i]->isActive()) continue;
+        for (int j = i + 1; j < n; ++j) {
+            if (!enemies[j]->isActive()) continue;
+
+            QRectF a = enemies[i]->getCollider();
+            QRectF b = enemies[j]->getCollider();
+            if (!a.intersects(b)) continue;
+
+            QRectF inter = a.intersected(b);
+            float hx = 0.0f, hy = 0.0f;
+
+            if (inter.width() < inter.height()) {
+                float corr = static_cast<float>(inter.width()) * 0.5f;
+                hx = (a.center().x() < b.center().x()) ? -corr : corr;
+            } else {
+                float corr = static_cast<float>(inter.height()) * 0.5f;
+                hy = (a.center().y() < b.center().y()) ? -corr : corr;
+            }
+
+            Vector2f pa = enemies[i]->getPosition();
+            Vector2f pb = enemies[j]->getPosition();
+            enemies[i]->setPosition(Vector2f(pa.x + hx, pa.y + hy));
+            enemies[j]->setPosition(Vector2f(pb.x - hx, pb.y - hy));
+        }
+    }
+}
+
 // ── Condition de victoire ─────────────────────────────────────────
 void LevelController::checkExitCondition(PlayerModel& player,
-                                          LevelModel&  level)
+                                         LevelModel&  level)
 {
     ExitDoorModel* exitDoor = level.getExitDoor();
     if (!exitDoor) return;
@@ -135,5 +186,5 @@ void LevelController::checkExitCondition(PlayerModel& player,
     {
         levelJustCompleted = true;
     }
-    
+
 }

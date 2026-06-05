@@ -28,6 +28,7 @@ GameView::GameView(QWidget* parent)
     setBackgroundBrush(QBrush(QColor(15, 12, 8))); // fond noir-brun
     setFocusPolicy(Qt::StrongFocus);
     setWindowTitle("Deadly Dropout");
+
 }
 
 GameView::~GameView() {}
@@ -131,6 +132,15 @@ void GameView::drawHUD(QPainter* p, GameModel* model) {
     p->setPen(QColor(255, 210, 60));
     p->drawText(mx, my + Cfg::HP_BAR_H + 18,
                 QString("GOLD : %1").arg(player->getGold()));
+
+    if (player->getHasKey()){
+        p->setPen(QColor(192, 192, 192));
+        p->drawText(mx + 72, my + Cfg::HP_BAR_H+ 18, "KEY: FOUND");
+    }
+    else{
+        p->setPen(QColor(192, 192, 192));
+        p->drawText(mx + 72, my + Cfg::HP_BAR_H+ 18, "KEY: NOT FOUND");
+    }
 
     if (player->isKatanaActive()) {
         p->setPen(QColor(255, 100, 60));

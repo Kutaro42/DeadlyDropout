@@ -15,8 +15,8 @@
 /**
  * @class LevelController
  * @brief Orchestre la logique physique et les règles métier d'un niveau.
- * * Ce contrôleur gère la mise à jour de l'IA ennemie, la résolution des collisions AABB, 
- * les interactions de combat (SlashZone), la distribution du butin (gold) et la 
+ * * Ce contrôleur gère la mise à jour de l'IA ennemie, la résolution des collisions AABB,
+ * les interactions de combat (SlashZone), la distribution du butin (gold) et la
  * validation des conditions de victoire.
  * * @version 1.0
  */
@@ -47,6 +47,8 @@ private:
     void checkPlayerEnemyCollisions(PlayerModel& player, LevelModel& level);  ///< Vérifie si les ennemis touchent le joueur.
     void checkSlashZoneHits(PlayerModel& player, LevelModel& level);      ///< Applique les dégâts du katana aux ennemis.
     void checkExitCondition(PlayerModel& player, LevelModel& level);      ///< Vérifie si la porte de sortie doit s'ouvrir.
+    void resolvePlayerEnemyCollisions(PlayerModel& player, LevelModel& level); ///< Empêche le joueur et les ennemis de se chevaucher.
+    void resolveEnemyEnemyCollisions(LevelModel& level);                  ///< Empêche les ennemis de se chevaucher entre eux.
 
     /**
      * @brief Résout une collision AABB (Axis-Aligned Bounding Box).

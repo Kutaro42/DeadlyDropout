@@ -52,6 +52,10 @@ void AppController::startGame()
 AppController::AppController(QWidget *parent)
     : QMainWindow(parent)
 {
+    // Commentaire développeur :
+    // Ajout du logo de la fenêtre
+    setWindowIcon(QIcon(":/images/Textures/Logo/favi.png"));
+
     currentState = new AppState;
 
     // Commentaire développeur : 
