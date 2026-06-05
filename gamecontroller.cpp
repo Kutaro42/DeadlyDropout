@@ -74,7 +74,14 @@ void GameController::loadLevel(int index) {
                          itsGameView->getScene());
 
     Vector2f spawn = itsGameModel->getLevel()->getSpawnPos();
+    if (itsGameModel->getPlayer()==nullptr)
+    {
     itsGameModel->initPlayer(spawn);
+    }
+    else
+    {
+        itsGameModel->getPlayer()->setPosition(spawn);
+    }
     itsGameModel->setCurrentLevelIndex(index);
 }
 

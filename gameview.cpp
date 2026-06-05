@@ -28,6 +28,7 @@ GameView::GameView(QWidget* parent)
     setBackgroundBrush(QBrush(QColor(15, 12, 8))); // fond noir-brun
     setFocusPolicy(Qt::StrongFocus);
     setWindowTitle("Deadly Dropout");
+
 }
 
 GameView::~GameView() {}
