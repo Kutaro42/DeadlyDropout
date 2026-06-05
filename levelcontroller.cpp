@@ -18,11 +18,27 @@ void LevelController::update(float dt,
     updateEnemies(dt, player, level);
     distributeGold(player, level);
 
+    // 1) Chaque entité sort des murs en premier
     resolvePlayerWallCollisions(player, level);
     resolveEnemyWallCollisions(level);
 
+    // 2) Séparations entre ennemis
     resolveEnemyEnemyCollisions(level);
+
+    // 3) Les ennemis repoussés par leur séparation peuvent être retournés dans un mur
+    resolveEnemyWallCollisions(level);
+
+    // 4) Le joueur est bloqué par les ennemis (positions finales après séparation)
+    resolvePlayerVsEnemyWalls(player, level);
+
+    // 5) Le blocage par les ennemis peut repousser le joueur dans un mur
+    resolvePlayerWallCollisions(player, level);
+
+    // 6) Attaque au contact + séparation résiduelle ennemi/joueur
     checkAndResolvePlayerEnemyCollisions(player, level);
+
+    // 7) La séparation résiduelle peut repousser l'ennemi dans un mur
+    resolveEnemyWallCollisions(level);
 
     if (player.isKatanaActive())
         checkSlashZoneHits(player, level);
@@ -94,10 +110,22 @@ void LevelController::resolveEnemyWallCollisions(LevelModel& level) {
     }
 }
 
+// ── Joueur bloqué par les ennemis (ennemis = obstacles solides) ───────────────
+// Appelé après resolvePlayerWallCollisions : traite chaque ennemi actif
+// comme un mur statique pour le joueur. L'ennemi lui-même n'est pas déplacé ici.
+void LevelController::resolvePlayerVsEnemyWalls(PlayerModel& player,
+                                                LevelModel&  level)
+{
+    for (Enemy* e : level.getEnemies()) {
+        if (!e->isActive()) continue;
+        resolveAABB(player, e->getCollider());
+    }
+}
+
 // ── Contact joueur / ennemi → attaque puis séparation physique ───────────────
 // L'attaque est vérifiée AVANT la correction de position : l'ennemi inflige
 // ses dégâts dès qu'il touche le joueur, puis est repoussé pour éviter
-// le chevauchement visuel.
+// le chevauchement visuel résiduel.
 void LevelController::checkAndResolvePlayerEnemyCollisions(PlayerModel& player,
                                                            LevelModel&  level)
 {

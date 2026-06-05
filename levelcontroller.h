@@ -48,7 +48,8 @@ private:
     void checkSlashZoneHits(PlayerModel& player, LevelModel& level);      ///< Applique les dégâts du katana aux ennemis.
     void checkExitCondition(PlayerModel& player, LevelModel& level);      ///< Vérifie si la porte de sortie doit s'ouvrir.
     void checkAndResolvePlayerEnemyCollisions(PlayerModel& player, LevelModel& level); ///< Attaque + séparation physique joueur/ennemis en une passe.
-    void resolveEnemyEnemyCollisions(LevelModel& level);                  ///< Empêche les ennemis de se chevaucher entre eux.
+    void resolvePlayerVsEnemyWalls(PlayerModel& player, LevelModel& level);            ///< Bloque le joueur contre les ennemis (ennemis = obstacles solides).
+    void resolveEnemyEnemyCollisions(LevelModel& level);                               ///< Empêche les ennemis de se chevaucher entre eux.
 
     /**
      * @brief Résout une collision AABB (Axis-Aligned Bounding Box).
