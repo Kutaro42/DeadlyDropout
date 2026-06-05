@@ -47,7 +47,7 @@ private:
     void checkPlayerEnemyCollisions(PlayerModel& player, LevelModel& level);  ///< Vérifie si les ennemis touchent le joueur.
     void checkSlashZoneHits(PlayerModel& player, LevelModel& level);      ///< Applique les dégâts du katana aux ennemis.
     void checkExitCondition(PlayerModel& player, LevelModel& level);      ///< Vérifie si la porte de sortie doit s'ouvrir.
-    void resolvePlayerEnemyCollisions(PlayerModel& player, LevelModel& level); ///< Empêche le joueur et les ennemis de se chevaucher.
+    void checkAndResolvePlayerEnemyCollisions(PlayerModel& player, LevelModel& level); ///< Attaque + séparation physique joueur/ennemis en une passe.
     void resolveEnemyEnemyCollisions(LevelModel& level);                  ///< Empêche les ennemis de se chevaucher entre eux.
 
     /**

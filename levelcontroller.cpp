@@ -21,10 +21,8 @@ void LevelController::update(float dt,
     resolvePlayerWallCollisions(player, level);
     resolveEnemyWallCollisions(level);
 
-    resolvePlayerEnemyCollisions(player, level);
     resolveEnemyEnemyCollisions(level);
-
-    checkPlayerEnemyCollisions(player, level);
+    checkAndResolvePlayerEnemyCollisions(player, level);
 
     if (player.isKatanaActive())
         checkSlashZoneHits(player, level);
@@ -96,14 +94,19 @@ void LevelController::resolveEnemyWallCollisions(LevelModel& level) {
     }
 }
 
-// ── Contact joueur / ennemi → attaque ─────────────────────────────
-void LevelController::checkPlayerEnemyCollisions(PlayerModel& player,
-                                                 LevelModel&  level)
+// ── Contact joueur / ennemi → attaque puis séparation physique ───────────────
+// L'attaque est vérifiée AVANT la correction de position : l'ennemi inflige
+// ses dégâts dès qu'il touche le joueur, puis est repoussé pour éviter
+// le chevauchement visuel.
+void LevelController::checkAndResolvePlayerEnemyCollisions(PlayerModel& player,
+                                                           LevelModel&  level)
 {
     for (Enemy* e : level.getEnemies()) {
         if (!e->isActive()) continue;
-        if (player.getCollider().intersects(e->getCollider()))
+        if (player.getCollider().intersects(e->getCollider())) {
             e->attack(&player);
+            resolveAABB(*e, player.getCollider());
+        }
     }
 }
 
@@ -116,19 +119,6 @@ void LevelController::checkSlashZoneHits(PlayerModel& player,
         if (!e->isActive()) continue;
         if (slash.intersects(e->getCollider()))
             e->takeDamage(player.getKatana().getDamage());
-    }
-}
-
-// ── Séparation joueur / ennemis (corps à corps) ───────────────────
-// On repousse l'ennemi (et non le joueur) pour ne pas interférer avec
-// les collisions mur déjà résolues côté joueur.
-void LevelController::resolvePlayerEnemyCollisions(PlayerModel& player,
-                                                   LevelModel&  level)
-{
-    QRectF pc = player.getCollider();
-    for (Enemy* e : level.getEnemies()) {
-        if (!e->isActive()) continue;
-        resolveAABB(*e, pc);
     }
 }
 
