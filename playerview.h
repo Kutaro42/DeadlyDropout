@@ -38,7 +38,7 @@ public:
      * @param parent Élément graphique parent.
      */
     explicit PlayerView(PlayerModel* model, QGraphicsItem* parent = nullptr);
-    
+
     /**
      * @brief Met à jour la position graphique et change de frame d'animation si nécessaire.
      * @param dt Delta-time en secondes écoulé depuis la dernière mise à jour.
@@ -60,6 +60,7 @@ private:
     static constexpr int ATTACK_FRAME_COUNT = 3;  ///< Nombre de frames constituant l'animation d'attaque.
 
     QVector<QPixmap> sprites[STATE_COUNT][DIR_COUNT]; ///< Matrice de tableaux de frames contenant tous les sprites chargés.
+    QPixmap          cachedFallback[DIR_COUNT];        ///< Fallbacks précalculés une fois dans le constructeur (évite QPainter à chaque tick).
 
     int   currentFrame;      ///< Index de la frame actuelle affichée.
     float frameTimer;        ///< Timer mesurant le temps d'exposition de la frame courante.
@@ -72,7 +73,7 @@ private:
      * @return Un entier correspondant à l'index de direction de la classe.
      */
     static int  dirIdx(FacingDirection d);
-    
+
     /**
      * @brief Charge et découpe un spritesheet en plusieurs instances QPixmap.
      * @param frames Conteneur dans lequel insérer les images découpées.
@@ -81,14 +82,14 @@ private:
      * @param fh Hauteur de découpe unitaire.
      */
     void        loadSheet(QVector<QPixmap>& frames, const QString& path, int fw, int fh);
-    
+
     /**
      * @brief Génère un carré coloré de substitution si un sprite n'a pas été trouvé.
      * @param dir La direction pointée par le carré pour simuler le regard.
      * @return Un objet QPixmap contenant le dessin géométrique provisoire.
      */
     QPixmap     makeFallback(FacingDirection dir);
-    
+
     /**
      * @brief Gère l'incrémentation de la chronologie de l'animation.
      * @param dt Delta-time en secondes.

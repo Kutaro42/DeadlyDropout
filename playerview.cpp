@@ -48,9 +48,16 @@ PlayerView::PlayerView(PlayerModel* m, QGraphicsItem* parent)
     setZValue(Cfg::Z_PLAYER);
     setPos(model->getPosition().toQPointF());
 
+    // Précalcul des fallbacks pour toutes les directions (évite QPainter à chaque tick)
+    const FacingDirection dirs[DIR_COUNT] = {
+        FacingDirection::DOWN, FacingDirection::UP,
+        FacingDirection::LEFT, FacingDirection::RIGHT
+    };
+    for (int d = 0; d < DIR_COUNT; ++d)
+        cachedFallback[d] = makeFallback(dirs[d]);
+
     int d = dirIdx(model->getFacing());
-    setPixmap(!sprites[IDLE][d].isEmpty() ? sprites[IDLE][d][0]
-                                          : makeFallback(model->getFacing()));
+    setPixmap(!sprites[IDLE][d].isEmpty() ? sprites[IDLE][d][0] : cachedFallback[d]);
 }
 
 // ─── Chargement d'un spritesheet (frames horizontales) ───────────────────────
@@ -117,16 +124,13 @@ void PlayerView::updateView(float dt) {
     int d = dirIdx(model->getFacing());
 
     if (model->isKatanaActive()) {
-        // ── Animation attaque (priorité maximale) ─────────────
         const QVector<QPixmap>& atk = sprites[ATTACK][d];
         if (!atk.isEmpty())
             advanceFrames(dt, atk, attackAnimSpeed);
         else
-            setPixmap(makeFallback(model->getFacing()));
+            setPixmap(cachedFallback[d]);
 
     } else if (model->isMoving()) {
-        // ── Animation marche ──────────────────────────────────
-        // Repart à la frame 0 si on sort de l'état attaque
         if (currentFrame >= sprites[WALK][d].size()) {
             currentFrame = 0;
             frameTimer   = 0.0f;
@@ -135,14 +139,13 @@ void PlayerView::updateView(float dt) {
         if (!walk.isEmpty())
             advanceFrames(dt, walk, animSpeed);
         else
-            setPixmap(makeFallback(model->getFacing()));
+            setPixmap(cachedFallback[d]);
 
     } else {
-        // Idle : animation cyclique (comme WALK)
         const QVector<QPixmap>& idle = sprites[IDLE][d];
         if (!idle.isEmpty())
             advanceFrames(dt, idle, animSpeed);
         else
-            setPixmap(makeFallback(model->getFacing()));
+            setPixmap(cachedFallback[d]);
     }
 }
