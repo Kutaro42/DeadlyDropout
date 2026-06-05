@@ -18,26 +18,19 @@ void LevelController::update(float dt,
     updateEnemies(dt, player, level);
     distributeGold(player, level);
 
-    // 1) Chaque entité sort des murs en premier
+    // 1) Tout le monde sort des murs
     resolvePlayerWallCollisions(player, level);
     resolveEnemyWallCollisions(level);
 
-    // 2) Séparations entre ennemis
+    // 2) Séparations entre ennemis, puis remise dans les murs
     resolveEnemyEnemyCollisions(level);
-
-    // 3) Les ennemis repoussés par leur séparation peuvent être retournés dans un mur
     resolveEnemyWallCollisions(level);
 
-    // 4) Le joueur est bloqué par les ennemis (positions finales après séparation)
-    resolvePlayerVsEnemyWalls(player, level);
-
-    // 5) Le blocage par les ennemis peut repousser le joueur dans un mur
-    resolvePlayerWallCollisions(player, level);
-
-    // 6) Attaque au contact + séparation résiduelle ennemi/joueur
+    // 3) Attaque au contact + séparation symétrique joueur/ennemi
     checkAndResolvePlayerEnemyCollisions(player, level);
 
-    // 7) La séparation résiduelle peut repousser l'ennemi dans un mur
+    // 4) Remettre tout le monde dans les murs après séparation
+    resolvePlayerWallCollisions(player, level);
     resolveEnemyWallCollisions(level);
 
     if (player.isKatanaActive())
