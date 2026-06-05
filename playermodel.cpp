@@ -15,6 +15,7 @@ PlayerModel::PlayerModel(Vector2f startPos)
     , hp(Cfg::PLAYER_MAX_HP)
     , maxHp(Cfg::PLAYER_MAX_HP)
     , speed(Cfg::PLAYER_SPEED)
+    , speedBoosted(false)
     , gold(0)
     , hasKey(false)
     , moving(false)
@@ -24,6 +25,10 @@ PlayerModel::PlayerModel(Vector2f startPos)
 
 void PlayerModel::update(float dt) {
     katana.update(dt);  // délègue timers cooldown + anim à Katana
+}
+
+bool PlayerModel::getBoostState() {
+    return speedBoosted;  // délègue timers cooldown + anim à Katana
 }
 
 void PlayerModel::move(Vector2f inputDir, float dt) {

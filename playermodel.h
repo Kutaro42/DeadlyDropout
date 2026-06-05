@@ -26,7 +26,8 @@ class PlayerModel : public Entity {
 private:
     int             hp;        ///< Points de vie actuels (100 de base).
     int             maxHp;     ///< Maximum des points de vie (modifiable via upgrades).
-    float           speed;     ///< Vitesse de déplacement normée (120 px/s de base).
+    float           speed;     ///< Vitesse de déplacement normée (300 px/s de base).
+    bool           speedBoosted; ///< Vitesse boostée ?
     int             gold;      ///< Nombre de Golds collectés, utilisés dans le market.
     bool            hasKey;    ///< Statut de possession de la clé pour terminer le niveau.
     bool            moving;    ///< Indicateur d'état précisant si le joueur est en mouvement.
@@ -37,6 +38,8 @@ private:
     Katana          katana;    ///< Instance gérant les mécaniques de l'arme de mêlée.
 
 public:
+
+
     /**
      * @brief Constructeur initialisant les attributs avec les valeurs par défaut du projet.
      * @param startPos Position initiale sur la carte.
@@ -111,6 +114,7 @@ public:
     // ─── Setters upgrade ──────────────────────────────────────
     void setMaxHp(int v)        { maxHp = v; }            ///< Met à jour la jauge maximum de PV.
     void setSpeed(float v)      { speed = v; }            ///< Modifie la vitesse linéaire globale.
+    bool getBoostState();
     
     // upgrades katana délégués
     void setKatanaDamage(int v)   { katana.setDamage(v);   }  ///< Augmente/baisse les dégâts du Katana.

@@ -113,12 +113,18 @@ void GameController::handleInput(float dt) {
         player->stopMoving();
 
 
-    if (keys.contains(Qt::Key_G))
+    if (keys.contains(Qt::Key_U))
     {
-        player->setSpeed(1000);
+        if (player->getBoostState()==false){
+            player->setSpeed(Cfg::PLAYER_SPEED_BOOSTED);
+        }
+        else {
+
+            player->setSpeed(Cfg::PLAYER_SPEED);
+
+        }
     }
-    else if (keys.contains(Qt::Key_H))
-    {
+    if (keys.contains(Qt::Key_H)){
         player->setSpeed(Cfg::PLAYER_SPEED);
     }
 }

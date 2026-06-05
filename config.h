@@ -24,6 +24,7 @@ namespace Cfg {
 
     // ─── Joueur ───────────────────────────────────────────────────
     constexpr float PLAYER_SPEED        = 300.0f; ///< Vitesse de déplacement du joueur en pixels/s.
+    constexpr float PLAYER_SPEED_BOOSTED =1000.0f;///< Vitesse du joueur boosté
     constexpr int   PLAYER_MAX_HP       = 100;    ///< Points de vie maximum du joueur.
 
     // ─── Katana ───────────────────────────────────────────────────
