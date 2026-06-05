@@ -134,11 +134,11 @@ void GameView::drawHUD(QPainter* p, GameModel* model) {
                 QString("GOLD : %1").arg(player->getGold()));
 
     if (player->getHasKey()){
-        p->setPen(QColor(192, 192, 192));
+        p->setPen(QColor(255, 255, 192));
         p->drawText(mx + 72, my + Cfg::HP_BAR_H+ 18, "KEY: FOUND");
     }
     else{
-        p->setPen(QColor(192, 192, 192));
+        p->setPen(QColor(255, 255, 192));
         p->drawText(mx + 72, my + Cfg::HP_BAR_H+ 18, "KEY: NOT FOUND");
     }
 

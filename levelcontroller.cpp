@@ -195,6 +195,7 @@ void LevelController::checkExitCondition(PlayerModel& player,
     if (exitDoor->isOpen() &&
         player.getCollider().intersects(exitDoor->getCollider()) && player.getHasKey())
     {
+        player.setHasKey(false);
         levelJustCompleted = true;
     }
 

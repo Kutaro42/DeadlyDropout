@@ -98,6 +98,7 @@ public:
      */
     void collectKey()        { hasKey = true;  }
 
+
     // ─── Getters ──────────────────────────────────────────────
     int             getHp()           const { return hp;       }  ///< Retourne les PV actuels.
     int             getMaxHp()        const { return maxHp;    }  ///< Retourne le plafond des PV.
@@ -115,6 +116,7 @@ public:
     void setMaxHp(int v)        { maxHp = v; }            ///< Met à jour la jauge maximum de PV.
     void setSpeed(float v)      { speed = v; }            ///< Modifie la vitesse linéaire globale.
     bool getBoostState();
+    void setHasKey(bool key);
     
     // upgrades katana délégués
     void setKatanaDamage(int v)   { katana.setDamage(v);   }  ///< Augmente/baisse les dégâts du Katana.

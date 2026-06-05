@@ -28,14 +28,19 @@ void PlayerModel::update(float dt) {
 }
 
 bool PlayerModel::getBoostState() {
-    return speedBoosted;  // délègue timers cooldown + anim à Katana
+    return speedBoosted;  // speed powerup
 }
+
+void PlayerModel::setHasKey(bool key) {
+    hasKey=key;
+    }
 
 void PlayerModel::move(Vector2f inputDir, float dt) {
     if (inputDir.length() == 0.0f) {
         moving = false;
         return;
     }
+
 
     moving = true;
     Vector2f dir = inputDir.normalized();
