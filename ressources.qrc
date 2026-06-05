@@ -36,6 +36,6 @@
         <file>Textures/Enemy/Standard/Move/Right.png</file>
 
 	<!-- ── Tile mur ─────────────────── -->
-	<file>Textures/Environment/Wall/wall1.png</file>
+	<file>Textures/Environment/Wall/wall_tileset.png</file>
     </qresource>
 </RCC>

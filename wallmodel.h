@@ -1,41 +1,33 @@
-/**
- * @file wallmodel.h
- * @brief Déclaration de la classe WallModel définissant les collisions environnementales (murs).
- * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
- * @date Juin 2026
- */
-
 #ifndef WALLMODEL_H
 #define WALLMODEL_H
 
 #include "entity.h"
 
-// ═══════════════════════════════════════════════════════════════════
-//  WallModel — entité statique servant de mur de salle.
-//  Son collider (QRectF) est utilisé par LevelController pour la
-//  résolution des collisions AABB.
-// ═══════════════════════════════════════════════════════════════════
-
 /**
  * @class WallModel
- * @brief Entité inerte (statique) bloquant le passage des unités mobiles.
- * * Les dimensions de ces murs délimitent l'arène de jeu.
+ * @brief Entité statique bloquant le passage, associée à un index de tile du tileset.
  */
 class WallModel : public Entity {
 public:
     /**
-     * @brief Construit un nouveau modèle de mur.
-     * @param pos Emplacement (haut-gauche) du mur dans la salle.
-     * @param w Largeur du bloc.
-     * @param h Hauteur du bloc.
+     * @brief Construit un mur.
+     * @param pos       Position haut-gauche dans la scène.
+     * @param w         Largeur du bloc (pixels).
+     * @param h         Hauteur du bloc (pixels).
+     * @param tileIndex Index 1-based de la tile dans le tileset (1 = 1ère tile).
+     * @param tilesetCols Nombre de colonnes du tileset PNG.
      */
-    WallModel(Vector2f pos, float w, float h);
-    
-    /**
-     * @brief Routine de mise à jour. Totalement vide car l'objet est immobile.
-     * @param dt Delta-time (ignoré).
-     */
+    WallModel(Vector2f pos, float w, float h,
+              int tileIndex = 1, int tilesetCols = 8);
+
     void update(float dt) override;
+
+    int getTileIndex()    const { return tileIndex;    }
+    int getTilesetCols()  const { return tilesetCols;  }
+
+private:
+    int tileIndex;    ///< Index 1-based dans le tileset.
+    int tilesetCols;  ///< Nombre de colonnes du tileset.
 };
 
 #endif // WALLMODEL_H
