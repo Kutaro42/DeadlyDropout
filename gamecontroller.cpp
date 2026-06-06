@@ -7,7 +7,7 @@
 #include <Qt>
 #include <algorithm>
 #include <qDebug>
-#include <config.h>
+#include "config.h"
 
 GameController::GameController(QObject* parent): QObject(parent), itsGameView( new GameView()),itsGameModel(new GameModel()),
       levelCtrl(new LevelController()),
