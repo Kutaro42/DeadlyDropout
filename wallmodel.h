@@ -18,12 +18,12 @@ public:
      * @param tilesetCols Nombre de colonnes du tileset PNG.
      */
     WallModel(Vector2f pos, float w, float h,
-              int tileIndex = 1, int tilesetCols = 8);
+              int tileIndex = 1, int tilesetCols = 50);
 
     void update(float dt) override;
 
     int getTileIndex()    const { return tileIndex;    }
-    int getTilesetCols()  const { return tilesetCols;  }
+    int gettilesetCols()  const { return tilesetCols;  }
 
 private:
     int tileIndex;    ///< Index 1-based dans le tileset.

@@ -9,6 +9,11 @@
 #include <QPainter>
 #include <QFont>
 
+// ─── Définition des tableaux de constantes statiques ────────────────────────
+constexpr int PlayerView::FRAME_W[PlayerView::STATE_COUNT];
+constexpr int PlayerView::FRAME_H[PlayerView::STATE_COUNT];
+constexpr int PlayerView::SPRITE_SIZE[PlayerView::STATE_COUNT];
+
 // ─── Correspondance FacingDirection → index tableau ─────────────────────────
 int PlayerView::dirIdx(FacingDirection d) {
     switch (d) {
@@ -27,22 +32,24 @@ PlayerView::PlayerView(PlayerModel* m, QGraphicsItem* parent)
     , currentFrame(0)
     , frameTimer(0.0f)
     , animSpeed(0.15f)
+    , attackFrame(0)
+    , attackFrameTimer(0.0f)
+    , attackTotalTimer(0.0f)
     , attackAnimSpeed(Cfg::KATANA_ANIM_DUR / ATTACK_FRAME_COUNT)
+    , wasKatanaActive(false)
+    , attackEverTriggered(false)
 {
     const char* dirNames[DIR_COUNT] = { "Down", "Up", "Left", "Right" };
     for (int d = 0; d < DIR_COUNT; ++d) {
-        // état 0 = idle   (2 frames 32×32)
         loadSheet(sprites[IDLE][d],
                   QString(":/images/Textures/Player/Idle/%1.png").arg(dirNames[d]),
-                  FRAME_W, FRAME_H);
-        // état 1 = walk   (2 frames 32×32)
+                  FRAME_W[IDLE], FRAME_H[IDLE], SPRITE_SIZE[IDLE]);
         loadSheet(sprites[WALK][d],
                   QString(":/images/Textures/Player/Move/%1.png").arg(dirNames[d]),
-                  FRAME_W, FRAME_H);
-        // état 2 = attack (3 frames 32×32 — sheet 96×32)
+                  FRAME_W[WALK], FRAME_H[WALK], SPRITE_SIZE[WALK]);
         loadSheet(sprites[ATTACK][d],
                   QString(":/images/Textures/Player/Attack/%1.png").arg(dirNames[d]),
-                  FRAME_W, FRAME_H);
+                  FRAME_W[ATTACK], FRAME_H[ATTACK], SPRITE_SIZE[ATTACK]);
     }
 
     setZValue(Cfg::Z_PLAYER);
@@ -57,12 +64,18 @@ PlayerView::PlayerView(PlayerModel* m, QGraphicsItem* parent)
         cachedFallback[d] = makeFallback(dirs[d]);
 
     int d = dirIdx(model->getFacing());
-    setPixmap(!sprites[IDLE][d].isEmpty() ? sprites[IDLE][d][0] : cachedFallback[d]);
+    if (!sprites[IDLE][d].isEmpty()) {
+        setPixmap(sprites[IDLE][d][0]);
+        applyCenter(SPRITE_SIZE[IDLE]);
+    } else {
+        setPixmap(cachedFallback[d]);
+        applyCenter(Cfg::ENTITY_SIZE);
+    }
 }
 
 // ─── Chargement d'un spritesheet (frames horizontales) ───────────────────────
 void PlayerView::loadSheet(QVector<QPixmap>& frames, const QString& path,
-                           int fw, int fh)
+                           int fw, int fh, int targetSize)
 {
     QPixmap sheet(path);
     if (sheet.isNull()) {
@@ -72,7 +85,7 @@ void PlayerView::loadSheet(QVector<QPixmap>& frames, const QString& path,
     int count = sheet.width() / fw;
     for (int i = 0; i < count; ++i) {
         QPixmap raw = sheet.copy(i * fw, 0, fw, fh);
-        frames.append(raw.scaled(Cfg::ENTITY_SIZE, Cfg::ENTITY_SIZE,
+        frames.append(raw.scaled(targetSize, targetSize,
                                  Qt::IgnoreAspectRatio,
                                  Qt::FastTransformation));
     }
@@ -96,12 +109,17 @@ QPixmap PlayerView::makeFallback(FacingDirection dir) {
     return pm;
 }
 
-// ─── Avance une frame et l'affiche ───────────────────────────────────────────
+// ─── Centrage du sprite sur la hitbox ────────────────────────────────────────
+void PlayerView::applyCenter(int spriteSize) {
+    float offset = (Cfg::ENTITY_SIZE - spriteSize) / 2.0f;
+    setOffset(offset, offset);
+}
+
+// ─── Avance une frame IDLE/WALK et l'affiche ─────────────────────────────────
 void PlayerView::advanceFrames(float dt, const QVector<QPixmap>& frames, float speed)
 {
     if (frames.isEmpty()) return;
 
-    // Sécurité : currentFrame peut venir d'un état avec plus de frames
     if (currentFrame >= frames.size()) {
         currentFrame = 0;
         frameTimer   = 0.0f;
@@ -123,29 +141,73 @@ void PlayerView::updateView(float dt) {
     setPos(model->getPosition().toQPointF());
     int d = dirIdx(model->getFacing());
 
-    if (model->isKatanaActive()) {
+    const bool katanaActive = model->isKatanaActive();
+
+    // ── Détection du front montant : entrée dans l'état ATTACK ────────────────
+    // Reset des timers d'attaque UNE SEULE FOIS au déclenchement.
+    if (katanaActive && !wasKatanaActive) {
+        attackFrame          = 0;
+        attackFrameTimer     = 0.0f;
+        attackTotalTimer     = 0.0f;
+        attackEverTriggered  = true;
+    }
+    wasKatanaActive = katanaActive;
+
+    const float attackFullDuration = ATTACK_FRAME_COUNT * attackAnimSpeed;
+
+    // L'animation d'attaque est active si :
+    //   - le modèle signale une attaque en cours (isKatanaActive), OU
+    //   - la vue n'a pas encore fini de jouer toutes ses frames (attackTotalTimer)
+    // Le second critère n'est évalué qu'après une première attaque (attackEverTriggered),
+    // ce qui évite de déclencher l'animation au démarrage (attackTotalTimer=0 < duration).
+    const bool playingAttack = katanaActive
+                            || (attackEverTriggered && attackTotalTimer < attackFullDuration);
+
+    if (playingAttack) {
+        // ── Animation d'attaque ───────────────────────────────────
         const QVector<QPixmap>& atk = sprites[ATTACK][d];
-        if (!atk.isEmpty())
-            advanceFrames(dt, atk, attackAnimSpeed);
-        else
+        if (!atk.isEmpty()) {
+            attackTotalTimer += dt;
+            attackFrameTimer += dt;
+            if (attackFrameTimer >= attackAnimSpeed) {
+                attackFrameTimer = 0.0f;
+                // Bloque sur la dernière frame plutôt que de wrapper,
+                // pour ne pas revenir à la frame 0 en fin d'animation.
+                if (attackFrame < ATTACK_FRAME_COUNT - 1)
+                    ++attackFrame;
+            }
+            int safeFrame = qMin(attackFrame, atk.size() - 1);
+            setPixmap(atk[safeFrame]);
+            applyCenter(SPRITE_SIZE[ATTACK]);
+        } else {
             setPixmap(cachedFallback[d]);
+            applyCenter(Cfg::ENTITY_SIZE);
+        }
 
     } else if (model->isMoving()) {
+        // ── Animation marche ──────────────────────────────────────
         if (currentFrame >= sprites[WALK][d].size()) {
             currentFrame = 0;
             frameTimer   = 0.0f;
         }
         const QVector<QPixmap>& walk = sprites[WALK][d];
-        if (!walk.isEmpty())
+        if (!walk.isEmpty()) {
             advanceFrames(dt, walk, animSpeed);
-        else
+            applyCenter(SPRITE_SIZE[WALK]);
+        } else {
             setPixmap(cachedFallback[d]);
+            applyCenter(Cfg::ENTITY_SIZE);
+        }
 
     } else {
+        // ── Animation idle ────────────────────────────────────────
         const QVector<QPixmap>& idle = sprites[IDLE][d];
-        if (!idle.isEmpty())
+        if (!idle.isEmpty()) {
             advanceFrames(dt, idle, animSpeed);
-        else
+            applyCenter(SPRITE_SIZE[IDLE]);
+        } else {
             setPixmap(cachedFallback[d]);
+            applyCenter(Cfg::ENTITY_SIZE);
+        }
     }
 }

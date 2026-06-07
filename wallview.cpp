@@ -35,7 +35,7 @@ WallView::WallView(WallModel* model, QGraphicsItem* parent)
     const int tileH = static_cast<int>(model->getHeight());
 
     setPixmap(extractTile(model->getTileIndex(),
-                          model->getTilesetCols(),
+                          model->gettilesetCols(),
                           tileW, tileH));
 
     setPos(model->getPosition().toQPointF());
