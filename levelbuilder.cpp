@@ -16,8 +16,6 @@ void LevelBuilder::build(const LevelDescriptor& desc,
     levelModel.clear();
     levelModel.setLevelId(desc.id);
 
-    const float ts = static_cast<float>(Cfg::TILE_SIZE);
-
     // ─── Tuile de sol (fond de scène) ─────────────────────────
     int sceneW = desc.cols * Cfg::TILE_SIZE;
     int sceneH = desc.rows * Cfg::TILE_SIZE;
