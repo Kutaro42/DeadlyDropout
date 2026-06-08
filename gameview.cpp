@@ -162,11 +162,27 @@ void GameView::showOverlay(const QString& message) {overlayMessage = message;
 
 void GameView::keyPressEvent(QKeyEvent* e) {
     pressedKeys.insert(e->key());
+
+    // ── CORRECTION DU TREMBLEMENT ───────────────────────────────────────
+    // Si c'est une flèche directionnelle, on accepte l'événement
+    // et on QUITTE la fonction SANS appeler le comportement par défaut de Qt
+    if (e->key() == Qt::Key_Up   || e->key() == Qt::Key_Down ||
+        e->key() == Qt::Key_Left || e->key() == Qt::Key_Right) {
+        e->accept();
+        return;
+    }
+
     QGraphicsView::keyPressEvent(e);
 }
 
 void GameView::keyReleaseEvent(QKeyEvent* e) {
     pressedKeys.remove(e->key());
+    // Même logique pour le relâchement des flèches
+    if (e->key() == Qt::Key_Up   || e->key() == Qt::Key_Down ||
+        e->key() == Qt::Key_Left || e->key() == Qt::Key_Right) {
+        e->accept();
+        return;
+    }
     QGraphicsView::keyReleaseEvent(e);
 }
 
