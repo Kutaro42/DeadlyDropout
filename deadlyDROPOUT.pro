@@ -14,12 +14,15 @@ DEFINES  += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 # ─── Sources ───────────────────────────────────────────────────────
 SOURCES += \
     appcontroller.cpp \
-    boss.cpp \
-    bullet.cpp \
-    zombilauncher.cpp \
-    zombilauncher.cpp \
+    bossdoormodel.cpp \
+    bossdoorview.cpp \
+    bossmodel.cpp \
+    bossview.cpp \
+    bulletmodel.cpp \
+    bulletview.cpp \
     globaldoor.cpp \
-    gun.cpp \
+    gunmodel.cpp \
+    gunview.cpp \
     katana.cpp \
     main.cpp           \
     entity.cpp         \
@@ -29,11 +32,16 @@ SOURCES += \
     playermodel.cpp    \
     playerview.cpp     \
     projectile.cpp \
-    ruble.cpp \
+    rublemodel.cpp \
+    rubleview.cpp \
+    standarddoormodel.cpp \
+    standarddoorview.cpp \
     wallmodel.cpp      \
     wallview.cpp       \
     exitdoormodel.cpp  \
     exitdoorview.cpp   \
+    zombielaunchermodel.cpp \
+    zombielauncherview.cpp \
     zombiestdmodel.cpp \
     zombiestdview.cpp  \
     levelmodel.cpp     \
@@ -46,18 +54,24 @@ SOURCES += \
 # ─── Headers ───────────────────────────────────────────────────────
 HEADERS += \
     appcontroller.h \
-    boss.h \
-    bullet.h \
+    bossdoormodel.h \
+    bossdoorview.h \
+    bossmodel.h \
+    bossview.h \
+    bulletmodel.h \
+    bulletview.h \
     config.h           \
-    zombilauncher.h \
-    zombilauncher.h \
     globaldoor.h \
-    gun.h \
+    gunmodel.h \
+    gunview.h \
     katana.h \
     menucontroller.h \
     menuview.h \
     projectile.h \
-    ruble.h \
+    rublemodel.h \
+    rubleview.h \
+    standarddoormodel.h \
+    standarddoorview.h \
     vector2f.h         \
     entity.h           \
     enemy.h            \
@@ -67,6 +81,8 @@ HEADERS += \
     wallview.h         \
     exitdoormodel.h    \
     exitdoorview.h     \
+    zombielaunchermodel.h \
+    zombielauncherview.h \
     zombiestdmodel.h   \
     zombiestdview.h    \
     leveltemplate.h    \
