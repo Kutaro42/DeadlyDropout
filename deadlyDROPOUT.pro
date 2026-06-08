@@ -16,11 +16,11 @@ SOURCES += \
     appcontroller.cpp \
     boss.cpp \
     bullet.cpp \
-    enemylauncher.cpp \
+    zombilauncher.cpp \
+    zombilauncher.cpp \
     globaldoor.cpp \
     gun.cpp \
     katana.cpp \
-    launcherenemy.cpp \
     main.cpp           \
     entity.cpp         \
     enemy.cpp          \
@@ -49,11 +49,11 @@ HEADERS += \
     boss.h \
     bullet.h \
     config.h           \
-    enemylauncher.h \
+    zombilauncher.h \
+    zombilauncher.h \
     globaldoor.h \
     gun.h \
     katana.h \
-    launcherenemy.h \
     menucontroller.h \
     menuview.h \
     projectile.h \
