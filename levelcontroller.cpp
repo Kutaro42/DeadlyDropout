@@ -2,6 +2,7 @@
 #include "enemy.h"
 #include "wallmodel.h"
 #include "exitdoormodel.h"
+#include "zombielaunchermodel.h"
 #include <QRectF>
 #include <cmath>
 
@@ -36,6 +37,8 @@ void LevelController::update(float dt,
 
     if (player.isKatanaActive())
         checkSlashZoneHits(player, level);
+
+    checkRubbleCollisions(player, level);
 
     checkExitCondition(player, level);
 }
@@ -208,6 +211,39 @@ void LevelController::resolveEnemyEnemyCollisions(LevelModel& level)
             Vector2f pb = enemies[j]->getPosition();
             enemies[i]->setPosition(Vector2f(pa.x + hx, pa.y + hy));
             enemies[j]->setPosition(Vector2f(pb.x - hx, pb.y - hy));
+        }
+    }
+}
+
+// ── Gravats (projectiles lanceur) / joueur + murs ─────────────────
+// Itère sur tous les ZombieLauncherModel (via dynamic_cast) et vérifie
+// les collisions de leurs RubbleModel avec le joueur et les murs.
+void LevelController::checkRubbleCollisions(PlayerModel& player,
+                                            LevelModel&  level)
+{
+    for (Enemy* e : level.getEnemies()) {
+        auto* launcher = dynamic_cast<ZombieLauncherModel*>(e);
+        if (!launcher) continue;
+
+        for (RubbleModel* r : launcher->getRubbles()) {
+            if (!r->isActive()) continue;
+
+            QRectF rb = r->getCollider();
+
+            // Collision avec le joueur
+            if (rb.intersects(player.getCollider())) {
+                player.takeDamage(r->getDamage());
+                r->setActive(false);
+                continue;
+            }
+
+            // Collision avec un mur
+            for (WallModel* w : level.getWalls()) {
+                if (rb.intersects(w->getCollider())) {
+                    r->setActive(false);
+                    break;
+                }
+            }
         }
     }
 }

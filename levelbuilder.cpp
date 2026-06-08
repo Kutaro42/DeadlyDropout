@@ -3,6 +3,8 @@
 #include "wallview.h"
 #include "zombiestdmodel.h"
 #include "zombiestdview.h"
+#include "zombielaunchermodel.h"
+#include "zombielauncherview.h"
 #include "exitdoormodel.h"
 #include "exitdoorview.h"
 #include "config.h"
@@ -52,6 +54,13 @@ void LevelBuilder::build(const LevelDescriptor& desc,
                 auto* zv = new ZombieStdView(zm);
                 levelModel.addEnemy(zm);
                 scene->addItem(zv);
+                break;
+            }
+            case TileType::LAUNCHER_SPAWN: {
+                auto* lm = new ZombieLauncherModel(pos);
+                auto* lv = new ZombieLauncherView(lm, scene);
+                levelModel.addEnemy(lm);
+                scene->addItem(lv);
                 break;
             }
             case TileType::EXIT_DOOR: {
