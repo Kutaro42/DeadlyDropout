@@ -14,8 +14,12 @@ DEFINES  += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 # ─── Sources ───────────────────────────────────────────────────────
 SOURCES += \
     appcontroller.cpp \
+    boss.cpp \
+    bullet.cpp \
     globaldoor.cpp \
+    gun.cpp \
     katana.cpp \
+    launcherenemy.cpp \
     main.cpp           \
     entity.cpp         \
     enemy.cpp          \
@@ -24,6 +28,7 @@ SOURCES += \
     playermodel.cpp    \
     playerview.cpp     \
     projectile.cpp \
+    ruble.cpp \
     wallmodel.cpp      \
     wallview.cpp       \
     exitdoormodel.cpp  \
@@ -40,12 +45,17 @@ SOURCES += \
 # ─── Headers ───────────────────────────────────────────────────────
 HEADERS += \
     appcontroller.h \
+    boss.h \
+    bullet.h \
     config.h           \
     globaldoor.h \
+    gun.h \
     katana.h \
+    launcherenemy.h \
     menucontroller.h \
     menuview.h \
     projectile.h \
+    ruble.h \
     vector2f.h         \
     entity.h           \
     enemy.h            \

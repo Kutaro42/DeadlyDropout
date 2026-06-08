@@ -8,6 +8,7 @@
 #include <QApplication>
 #include "appcontroller.h"
 
+
 /**
  * @brief Fonction principale du programme.
  * * Crée l'application Qt, instancie le contrôleur principal (AppController) 
@@ -24,3 +25,6 @@ int main(int argc, char* argv[]) {
     appcontroller.run();
     return app.exec();
 }
+
+
+
