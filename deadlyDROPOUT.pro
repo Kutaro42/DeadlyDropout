@@ -23,6 +23,7 @@ SOURCES += \
     menuview.cpp \
     playermodel.cpp    \
     playerview.cpp     \
+    projectile.cpp \
     wallmodel.cpp      \
     wallview.cpp       \
     exitdoormodel.cpp  \
@@ -44,6 +45,7 @@ HEADERS += \
     katana.h \
     menucontroller.h \
     menuview.h \
+    projectile.h \
     vector2f.h         \
     entity.h           \
     enemy.h            \
