@@ -3,6 +3,7 @@
 #include "wallmodel.h"
 #include "exitdoormodel.h"
 #include <QRectF>
+#include <cmath>
 
 LevelController::LevelController()
     : levelJustCompleted(false)
@@ -61,29 +62,41 @@ void LevelController::distributeGold(PlayerModel& player,
     }
 }
 
-// ── Résolution AABB générique ─────────────────────────────────────
-void LevelController::resolveAABB(Entity& mover, const QRectF& obstacle)
+// ── Résolution AABB avec position de référence ───────────────────
+static void resolveAABBWithRef(Entity& mover,
+                               const QRectF& obstacle,
+                               const Vector2f& refPos)
 {
     QRectF m = mover.getCollider();
     if (!m.intersects(obstacle)) return;
 
     QRectF inter = m.intersected(obstacle);
+    double pw = inter.width();
+    double ph = inter.height();
 
-    if (inter.width() < inter.height()) {
-        // Correction sur X (mur vertical)
-        double corr = (m.center().x() < obstacle.center().x())
-                          ? -inter.width() : inter.width();
-        mover.setPosition(Vector2f(
-            mover.getPosition().x + static_cast<float>(corr),
-            mover.getPosition().y));
+    double refCx = static_cast<double>(refPos.x) + m.width()  / 2.0;
+    double refCy = static_cast<double>(refPos.y) + m.height() / 2.0;
+    double obsCx = obstacle.left() + obstacle.width()  / 2.0;
+    double obsCy = obstacle.top()  + obstacle.height() / 2.0;
+
+    double signX = (refCx <= obsCx) ? -1.0 : 1.0;
+    double signY = (refCy <= obsCy) ? -1.0 : 1.0;
+
+    Vector2f pos = mover.getPosition();
+
+    if (pw < ph) {
+        mover.setPosition(Vector2f(pos.x + static_cast<float>(signX * pw), pos.y));
+    } else if (ph < pw) {
+        mover.setPosition(Vector2f(pos.x, pos.y + static_cast<float>(signY * ph)));
     } else {
-        // Correction sur Y (mur horizontal)
-        double corr = (m.center().y() < obstacle.center().y())
-                          ? -inter.height() : inter.height();
-        mover.setPosition(Vector2f(
-            mover.getPosition().x,
-            mover.getPosition().y + static_cast<float>(corr)));
+        mover.setPosition(Vector2f(pos.x + static_cast<float>(signX * pw),
+                                   pos.y + static_cast<float>(signY * ph)));
     }
+}
+
+void LevelController::resolveAABB(Entity& mover, const QRectF& obstacle)
+{
+    resolveAABBWithRef(mover, obstacle, mover.getPosition());
 }
 
 // ── Collisions joueur / murs ──────────────────────────────────────
@@ -95,17 +108,18 @@ void LevelController::resolvePlayerWallCollisions(PlayerModel& player,
 }
 
 // ── Collisions ennemis / murs ─────────────────────────────────────
-void LevelController::resolveEnemyWallCollisions(LevelModel& level) {
+void LevelController::resolveEnemyWallCollisions(LevelModel& level)
+{
     for (Enemy* e : level.getEnemies()) {
         if (!e->isActive()) continue;
-        for (WallModel* w : level.getWalls())
-            resolveAABB(*e, w->getCollider());
+        Vector2f refPos = e->getPosition();
+        for (int pass = 0; pass < 4; ++pass)
+            for (WallModel* w : level.getWalls())
+                resolveAABBWithRef(*e, w->getCollider(), refPos);
     }
 }
 
-// ── Joueur bloqué par les ennemis (ennemis = obstacles solides) ───────────────
-// Appelé après resolvePlayerWallCollisions : traite chaque ennemi actif
-// comme un mur statique pour le joueur. L'ennemi lui-même n'est pas déplacé ici.
+// ── Joueur bloqué par les ennemis ────────────────────────────────
 void LevelController::resolvePlayerVsEnemyWalls(PlayerModel& player,
                                                 LevelModel&  level)
 {
@@ -115,18 +129,40 @@ void LevelController::resolvePlayerVsEnemyWalls(PlayerModel& player,
     }
 }
 
-// ── Contact joueur / ennemi → attaque puis séparation physique ───────────────
-// L'attaque est vérifiée AVANT la correction de position : l'ennemi inflige
-// ses dégâts dès qu'il touche le joueur, puis est repoussé pour éviter
-// le chevauchement visuel résiduel.
+// ── Contact joueur / ennemi → attaque puis séparation ────────────
+// Au lieu de pousser l'ennemi (ce qui peut l'envoyer dans un mur),
+// on pousse le JOUEUR en arrière. L'ennemi reste sur place.
+// Si la séparation est impossible sans traverser un mur, l'ennemi
+// ne bouge pas du tout — il est bloqué par le mur.
 void LevelController::checkAndResolvePlayerEnemyCollisions(PlayerModel& player,
                                                            LevelModel&  level)
 {
     for (Enemy* e : level.getEnemies()) {
         if (!e->isActive()) continue;
-        if (player.getCollider().intersects(e->getCollider())) {
-            e->attack(&player);
-            resolveAABB(*e, player.getCollider());
+        if (!player.getCollider().intersects(e->getCollider())) continue;
+
+        e->attack(&player);
+
+        // Sauvegarder la position de l'ennemi avant toute tentative de poussée
+        Vector2f enemyRefPos = e->getPosition();
+
+        // Tenter de séparer l'ennemi du joueur
+        resolveAABBWithRef(*e, player.getCollider(), enemyRefPos);
+
+        // Vérifier si la nouvelle position intersecte un mur
+        bool inWall = false;
+        for (WallModel* w : level.getWalls()) {
+            if (e->getCollider().intersects(w->getCollider())) {
+                inWall = true;
+                break;
+            }
+        }
+
+        if (inWall) {
+            // L'ennemi ne peut pas reculer sans traverser un mur :
+            // on annule son déplacement et on pousse le joueur à la place.
+            e->setPosition(enemyRefPos);
+            resolveAABB(player, e->getCollider());
         }
     }
 }
@@ -143,9 +179,7 @@ void LevelController::checkSlashZoneHits(PlayerModel& player,
     }
 }
 
-// ── Séparation ennemi / ennemi ─────────────────────────────────────
-// On répartit la correction à 50/50 pour éviter qu'un seul des deux
-// soit repoussé et garde un comportement symétrique.
+// ── Séparation ennemi / ennemi ────────────────────────────────────
 void LevelController::resolveEnemyEnemyCollisions(LevelModel& level)
 {
     QVector<Enemy*>& enemies = level.getEnemies();
@@ -184,19 +218,15 @@ void LevelController::checkExitCondition(PlayerModel& player,
 {
     ExitDoorModel* exitDoor = level.getExitDoor();
     if (!exitDoor) return;
-    // AJOUT : ne pas ouvrir si aucun ennemi n'a jamais existé
     if (level.getEnemies().isEmpty()) return;
 
-    // La sortie s'ouvre quand tous les ennemis sont vaincus
     if (level.allEnemiesDefeated() && !exitDoor->isOpen())
         exitDoor->openDoor();
 
-    // Victoire si joueur entre dans la sortie ouverte
     if (exitDoor->isOpen() &&
         player.getCollider().intersects(exitDoor->getCollider()) && player.getHasKey())
     {
         player.setHasKey(false);
         levelJustCompleted = true;
     }
-
 }
