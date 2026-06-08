@@ -12,7 +12,8 @@ GameView::GameView(QWidget* parent)
       scene(new QGraphicsScene(this)),
       playerView(nullptr),
       currentModel(nullptr),
-      showingOverlay(false)
+      showingOverlay(false),
+      itsMouseScenePos(0.0, 0.0)
 {
     setScene(scene);
     setFixedSize(Cfg::WINDOW_W, Cfg::WINDOW_H);
@@ -22,13 +23,16 @@ GameView::GameView(QWidget* parent)
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     // Configuration volontaire d'un rendu "pixel-perfect" sans flou pour l'esthétique rétro.
-    setRenderHint(QPainter::Antialiasing,       false);
+    setRenderHint(QPainter::Antialiasing,          false);
     setRenderHint(QPainter::SmoothPixmapTransform, false);
 
-    setBackgroundBrush(QBrush(QColor(15, 12, 8))); // fond noir-brun
+    setBackgroundBrush(QBrush(QColor(15, 12, 8)));
     setFocusPolicy(Qt::StrongFocus);
     setWindowTitle("Deadly Dropout");
 
+    // Active le tracking de la souris sans qu'un bouton soit pressé,
+    // afin de toujours connaître la position courante du curseur.
+    setMouseTracking(true);
 }
 
 GameView::~GameView() {}
@@ -43,22 +47,32 @@ void GameView::initWithModel(GameModel* model) {
 
 void GameView::clearScene() {
     scene->clear();
-    playerView = nullptr; // scene->clear() désalloue les objets, on remet le pointeur à null par sécurité.
+    playerView = nullptr;
 }
 
-//-----------------------------------------------------------------------------------------MOUSEDETECTION
+// ─── Souris ──────────────────────────────────────────────────────────────────
+
+void GameView::mouseMoveEvent(QMouseEvent* event) {
+    // Convertit les coordonnées widget → coordonnées scène et met à jour le cache.
+    itsMouseScenePos = mapToScene(event->pos());
+    QGraphicsView::mouseMoveEvent(event);
+}
+
 void GameView::mousePressEvent(QMouseEvent* event) {
+    // Met à jour la position même au moment du clic (la souris peut ne pas avoir bougé
+    // depuis le dernier mouseMoveEvent si le joueur a déplacé la caméra).
+    itsMouseScenePos = mapToScene(event->pos());
+
     if (event->button() == Qt::RightButton) {
-        emit sig_rightClicked(); 
-    }
-    else if(event->button() == Qt::LeftButton){
+        emit sig_rightClicked(itsMouseScenePos);
+    } else if (event->button() == Qt::LeftButton) {
         emit sig_leftClicked();
     }
 
-    // Transmission de l'événement à la classe parente pour ne pas bloquer les interactions UI classiques.
     QGraphicsView::mousePressEvent(event);
 }
-//-------------------------------------------------------------------------------------------------------
+
+// ─────────────────────────────────────────────────────────────────────────────
 
 void GameView::updateAllViews(float dt, GameModel* model) {
     if (!model) return;
@@ -73,8 +87,7 @@ void GameView::updateAllViews(float dt, GameModel* model) {
             ev->updateView();
     }
 
-    // Force l'appel de paintEvent() (et donc de drawForeground) sans redessiner les géométries statiques.
-    viewport()->update();   
+    viewport()->update();
 }
 
 void GameView::followPlayer(GameModel* model) {
@@ -84,100 +97,68 @@ void GameView::followPlayer(GameModel* model) {
                      pos.y + Cfg::ENTITY_SIZE / 2.0));
 }
 
-void GameView::showOverlay(const QString& message) {overlayMessage = message;
+void GameView::showOverlay(const QString& message) {
+    overlayMessage = message;
     showingOverlay = true;
 
-    // Création et stylisation flashy du bouton "Menu" (Cyan néon)
     if (!menuButton) {
         menuButton = new QPushButton("Menu", this);
         menuButton->setFixedSize(140, 45);
         menuButton->setStyleSheet(
             "QPushButton {"
             "  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #1a1a1a, stop:1 #0d0d0d);"
-            "  color: #00ffcc;" // Cyan néon très vif
+            "  color: #00ffcc;"
             "  font-size: 16px;"
             "  font-weight: bold;"
             "  border: 2px solid #00ffcc;"
             "  border-radius: 8px;"
             "}"
-            "QPushButton:hover {"
-            "  background: #00ffcc;" // Flash de couleur au survol
-            "  color: #000000;"
-            "  border: 2px solid #ffffff;"
-            "}"
-            "QPushButton:pressed {"
-            "  background: #00cc99;"
-            "  color: #ffffff;"
-            "}"
-            );
+            "QPushButton:hover { background: #00ffcc; color: #000000; border: 2px solid #ffffff; }"
+            "QPushButton:pressed { background: #00cc99; color: #ffffff; }");
     }
 
-    // Création et stylisation flashy du bouton "Rejouer" (Rose/Rouge néon)
     if (!replayButton) {
         replayButton = new QPushButton("Rejouer", this);
         replayButton->setFixedSize(140, 45);
         replayButton->setStyleSheet(
             "QPushButton {"
             "  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #1a1a1a, stop:1 #0d0d0d);"
-            "  color: #ff3366;" // Rose/Rouge néon très vif
+            "  color: #ff3366;"
             "  font-size: 16px;"
             "  font-weight: bold;"
             "  border: 2px solid #ff3366;"
             "  border-radius: 8px;"
             "}"
-            "QPushButton:hover {"
-            "  background: #ff3366;" // Flash de couleur au survol
-            "  color: #000000;"
-            "  border: 2px solid #ffffff;"
-            "}"
-            "QPushButton:pressed {"
-            "  background: #cc0044;"
-            "  color: #ffffff;"
-            "}"
-            );
+            "QPushButton:hover { background: #ff3366; color: #000000; border: 2px solid #ffffff; }"
+            "QPushButton:pressed { background: #cc0044; color: #ffffff; }");
     }
 
-    connect(replayButton, &QPushButton::clicked,this, &GameView::sigRestartRq);
+    connect(replayButton, &QPushButton::clicked, this, &GameView::sigRestartRq);
+    connect(menuButton,   &QPushButton::clicked, this, &GameView::sigQuitRq);
 
-    connect(menuButton, &QPushButton::clicked,this, &GameView::sigQuitRq);
-
-    // Calcul des positions pour centrer les boutons côte à côte horizontalement
-    int viewW = this->width();
-    int viewH = this->height();
-
-    int centerY = viewH / 2 + 50;   // Un peu plus bas que le texte central du message
-    int menuX = viewW / 2 - 155;    // Bouton de gauche
-    int rejouerX = viewW / 2 + 15;  // Bouton de droite
-
-    menuButton->move(menuX, centerY);
-    replayButton->move(rejouerX, centerY);
-
-    // On affiche les boutons à l'écran
+    int viewW   = this->width();
+    int viewH   = this->height();
+    int centerY = viewH / 2 + 50;
+    menuButton->move(viewW / 2 - 155, centerY);
+    replayButton->move(viewW / 2 + 15, centerY);
     menuButton->show();
     replayButton->show();
 
-    // Force le rafraîchissement graphique de la scène
     viewport()->update();
 }
 
 void GameView::keyPressEvent(QKeyEvent* e) {
     pressedKeys.insert(e->key());
-
-    // ── CORRECTION DU TREMBLEMENT ───────────────────────────────────────
-    // Si c'est une flèche directionnelle, on accepte l'événement
-    // et on QUITTE la fonction SANS appeler le comportement par défaut de Qt
     if (e->key() == Qt::Key_Up   || e->key() == Qt::Key_Down ||
         e->key() == Qt::Key_Left || e->key() == Qt::Key_Right) {
         e->accept();
         return;
     }
-
     QGraphicsView::keyPressEvent(e);
 }
 
 void GameView::keyReleaseEvent(QKeyEvent* e) {
     pressedKeys.remove(e->key());
-    // Même logique pour le relâchement des flèches
     if (e->key() == Qt::Key_Up   || e->key() == Qt::Key_Down ||
         e->key() == Qt::Key_Left || e->key() == Qt::Key_Right) {
         e->accept();
@@ -186,16 +167,13 @@ void GameView::keyReleaseEvent(QKeyEvent* e) {
     QGraphicsView::keyReleaseEvent(e);
 }
 
-void GameView::drawForeground(QPainter* painter, const QRectF& /*rect*/) {
-    // Reset des transformations pour s'accrocher aux coordonnées absolues de l'écran (HUD fixe).
-    painter->resetTransform();  
+void GameView::drawForeground(QPainter* painter, const QRectF&) {
+    painter->resetTransform();
 
     if (currentModel) drawHUD(painter, currentModel);
 
-    // ─── Overlay fin de partie ────────────────────────────────
     if (showingOverlay) {
-        painter->fillRect(0, 0, Cfg::WINDOW_W, Cfg::WINDOW_H,
-                          QColor(0, 0, 0, 160));
+        painter->fillRect(0, 0, Cfg::WINDOW_W, Cfg::WINDOW_H, QColor(0, 0, 0, 160));
         QFont font("Arial", 28, QFont::Bold);
         painter->setFont(font);
         painter->setPen(Qt::yellow);
@@ -219,13 +197,12 @@ void GameView::drawHUD(QPainter* p, GameModel* model) {
     p->drawText(mx, my + Cfg::HP_BAR_H + 18,
                 QString("GOLD : %1").arg(player->getGold()));
 
-    if (player->getHasKey()){
+    if (player->getHasKey()) {
         p->setPen(QColor(192, 192, 192));
-        p->drawText(mx + 72, my + Cfg::HP_BAR_H+ 18, "KEY: FOUND");
-    }
-    else{
+        p->drawText(mx + 72, my + Cfg::HP_BAR_H + 18, "KEY: FOUND");
+    } else {
         p->setPen(QColor(192, 192, 192));
-        p->drawText(mx + 72, my + Cfg::HP_BAR_H+ 18, "KEY: NOT FOUND");
+        p->drawText(mx + 72, my + Cfg::HP_BAR_H + 18, "KEY: NOT FOUND");
     }
 
     if (player->isKatanaActive()) {
@@ -243,7 +220,6 @@ void GameView::drawHpBar(QPainter* p, int hp, int maxHp, int x, int y) {
     if (maxHp > 0) {
         double ratio  = static_cast<double>(hp) / maxHp;
         int    filled = static_cast<int>(bw * ratio);
-        // Commentaire développeur : Transition de couleur pour signifier visuellement l'état critique de la vie.
         QColor col = (ratio > 0.6) ? QColor(60, 200, 60)
                    : (ratio > 0.3) ? QColor(220, 140, 0)
                                    : QColor(200, 30, 30);

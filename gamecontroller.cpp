@@ -6,13 +6,17 @@
 #include "gamecontroller.h"
 #include <Qt>
 #include <algorithm>
+#include <cmath>
 #include <qDebug>
 #include "config.h"
 
-GameController::GameController(QObject* parent): QObject(parent), itsGameView( new GameView()),itsGameModel(new GameModel()),
-      levelCtrl(new LevelController()),
-      currentState(AppState::MENU),
-      currentLevelIndex(0)
+GameController::GameController(QObject* parent)
+    : QObject(parent)
+    , itsGameView(new GameView())
+    , itsGameModel(new GameModel())
+    , levelCtrl(new LevelController())
+    , currentState(AppState::MENU)
+    , currentLevelIndex(0)
 {}
 
 GameController::~GameController() {
@@ -22,44 +26,52 @@ GameController::~GameController() {
 }
 
 void GameController::init() {
-    // Liaison des clics souris via des expressions lambda pour une gestion immédiate des actions d'attaque.
 
-    // ── Liaison du clic droit ────────────────────────KATANA
-    connect(itsGameView, &GameView::sig_rightClicked, this, [this]() {
-        // Sécurité : on ne lance l'attaque que si on est en train de jouer
-        if (currentState == AppState::PLAYING && itsGameModel && itsGameModel->getPlayer()) {
-            itsGameModel->getPlayer()->launchKatana();
-        }
+    // ── Clic droit → attaque katana orientée vers le curseur ─────────────────
+    // Le signal transporte désormais la position de la souris en coordonnées scène,
+    // ce qui permet de calculer l'angle exact joueur → curseur.
+    connect(itsGameView, &GameView::sig_rightClicked,
+            this, [this](QPointF scenePos) {
+        if (currentState != AppState::PLAYING) return;
+        if (!itsGameModel || !itsGameModel->getPlayer()) return;
+
+        PlayerModel* player = itsGameModel->getPlayer();
+
+        // Centre de la hitbox du joueur en coordonnées scène
+        Vector2f ppos = player->getPosition();
+        double cx = static_cast<double>(ppos.x) + Cfg::ENTITY_SIZE / 2.0;
+        double cy = static_cast<double>(ppos.y) + Cfg::ENTITY_SIZE / 2.0;
+
+        // Angle en radians entre le centre joueur et le curseur
+        double dx    = scenePos.x() - cx;
+        double dy    = scenePos.y() - cy;
+        float  angle = static_cast<float>(std::atan2(dy, dx));
+
+        player->launchKatana(angle);
     });
 
-    // ── Liaison du clic gauche ────────────────────────GUN
+    // ── Clic gauche → pistolet (futur) ───────────────────────────────────────
     connect(itsGameView, &GameView::sig_leftClicked, this, [this]() {
-        // Sécurité : on ne lance l'attaque que si on est en train de jouer
         if (currentState == AppState::PLAYING && itsGameModel && itsGameModel->getPlayer()) {
-            //itsGameModel->gun->launchfire(); // Pour le pistolet
             qDebug("pan !");
         }
     });
 
-
-    // ── Liaison des bouton post partie  ────────────────────────
+    // ── Boutons fin de partie ────────────────────────────────────────────────
     connect(itsGameView, &GameView::sigRestartRq, this, &GameController::sigRestart);
+    connect(itsGameView, &GameView::sigQuitRq,    this, &GameController::sigBackMenu);
 
-    connect(itsGameView, &GameView::sigQuitRq, this, &GameController::sigBackMenu);
-
-
-    // ── Chargement du niveau 1 ────────────────────────────────
+    // ── Chargement du niveau 1 ───────────────────────────────────────────────
     loadLevel(0);
 
-    // ── Liaison vue ↔ modèle ──────────────────────────────────
+    // ── Liaison vue ↔ modèle ─────────────────────────────────────────────────
     itsGameView->initWithModel(itsGameModel);
 
-    // ── Affichage ─────────────────────────────────────────────
+    // ── Focus clavier ────────────────────────────────────────────────────────
     itsGameView->setFocus();
 
-    // ── Démarrage de la boucle de jeu (QTimer ~60 FPS) ────────
-    connect(&gameTimer, &QTimer::timeout,
-            this,       &GameController::slt_tick);
+    // ── Boucle de jeu (~60 FPS) ──────────────────────────────────────────────
+    connect(&gameTimer, &QTimer::timeout, this, &GameController::slt_tick);
     elapsedTimer.start();
     gameTimer.start(Cfg::TIMER_MS);
 
@@ -67,42 +79,35 @@ void GameController::init() {
 }
 
 void GameController::loadLevel(int index) {
-    // Sécurité : boucle modulaire pour éviter les dépassements d'index
     index = index % LevelData::LEVEL_COUNT;
     currentLevelIndex = index;
 
     const LevelDescriptor* desc = LevelData::ALL_LEVELS[index];
 
-    //  Nettoyage impératif de la scène pour éviter les fuites de mémoire et chevauchements
     if (itsGameView) itsGameView->clearScene();
 
     LevelBuilder::build(*desc,
-                         *itsGameModel->getLevel(),
-                         itsGameView->getScene());
+                        *itsGameModel->getLevel(),
+                        itsGameView->getScene());
 
     Vector2f spawn = itsGameModel->getLevel()->getSpawnPos();
-    if (itsGameModel->getPlayer()==nullptr)
-    {
-    itsGameModel->initPlayer(spawn);
-    }
+    if (itsGameModel->getPlayer() == nullptr)
+        itsGameModel->initPlayer(spawn);
     else
-    {
         itsGameModel->getPlayer()->setPosition(spawn);
-    }
+
     itsGameModel->setCurrentLevelIndex(index);
 }
 
 void GameController::slt_tick() {
     if (currentState != AppState::PLAYING) return;
 
-    // Calcul du Delta-time. Plafonné à 50ms pour empêcher les téléportations massives lors d'un pic de latence (lag spike).
     float dt = static_cast<float>(elapsedTimer.restart()) / 1000.0f;
     dt = std::min(dt, 0.05f);
 
     handleInput(dt);
     itsGameModel->getPlayer()->update(dt);
-    levelCtrl->update(dt, *itsGameModel->getPlayer(),
-                           *itsGameModel->getLevel());
+    levelCtrl->update(dt, *itsGameModel->getPlayer(), *itsGameModel->getLevel());
     checkStateTransitions();
 
     itsGameView->updateAllViews(dt, itsGameModel);
@@ -111,10 +116,9 @@ void GameController::slt_tick() {
 
 void GameController::handleInput(float dt) {
     const QSet<int>& keys  = itsGameView->getPressedKeys();
-    PlayerModel* player = itsGameModel->getPlayer();
+    PlayerModel*     player = itsGameModel->getPlayer();
     if (!player) return;
 
-    // Somme vectorielle des inputs pour autoriser les déplacements diagonaux.
     Vector2f dir(0.0f, 0.0f);
     if (keys.contains(Qt::Key_Z) || keys.contains(Qt::Key_Up))    dir.y -= 1.0f;
     if (keys.contains(Qt::Key_S) || keys.contains(Qt::Key_Down))  dir.y += 1.0f;
@@ -126,21 +130,14 @@ void GameController::handleInput(float dt) {
     else
         player->stopMoving();
 
-
-    if (keys.contains(Qt::Key_U))
-    {
-        if (player->getBoostState()==false){
+    if (keys.contains(Qt::Key_U)) {
+        if (!player->getBoostState())
             player->setSpeed(Cfg::PLAYER_SPEED_BOOSTED);
-        }
-        else {
-
+        else
             player->setSpeed(Cfg::PLAYER_SPEED);
-
-        }
     }
-    if (keys.contains(Qt::Key_H)){
+    if (keys.contains(Qt::Key_H))
         player->setSpeed(Cfg::PLAYER_SPEED);
-    }
 }
 
 void GameController::checkStateTransitions() {
@@ -163,12 +160,8 @@ void GameController::transitionTo(AppState state) {
 
     QString msg;
     switch (state) {
-        case AppState::GAME_OVER:
-            msg = "GAME OVER";
-            break;
-        case AppState::VICTORY:
-            msg = "VICTOIRE";
-            break;
+        case AppState::GAME_OVER: msg = "GAME OVER"; break;
+        case AppState::VICTORY:   msg = "VICTOIRE";  break;
         default: break;
     }
     itsGameView->showOverlay(msg);

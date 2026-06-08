@@ -22,6 +22,7 @@
         <file>Textures/Player/Attack/Up.png</file>
         <file>Textures/Player/Attack/Left.png</file>
         <file>Textures/Player/Attack/Right.png</file>
+	<file>Textures/Player/Slash/slash.png</file>
 
         <!-- ── Ennemi (idle × 4 directions) ─────────────────── -->
         <file>Textures/Enemy/Standard/Idle/Down.png</file>

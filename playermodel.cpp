@@ -20,45 +20,76 @@ PlayerModel::PlayerModel(Vector2f startPos)
     , hasKey(false)
     , moving(false)
     , facingDir(FacingDirection::DOWN)
-    , katana()      // initialisé avec les constantes Cfg
+    , katana()
 {}
 
 void PlayerModel::update(float dt) {
-    katana.update(dt);  // délègue timers cooldown + anim à Katana
+    katana.update(dt);
 }
 
 bool PlayerModel::getBoostState() {
-    return speedBoosted;  // speed powerup
+    return speedBoosted;
 }
 
 void PlayerModel::setHasKey(bool key) {
-    hasKey=key;
-    }
+    hasKey = key;
+}
 
 void PlayerModel::move(Vector2f inputDir, float dt) {
     if (inputDir.length() == 0.0f) {
         moving = false;
         return;
     }
-
-
     moving = true;
     Vector2f dir = inputDir.normalized();
     position = position + (dir * speed * dt);
 
-    // FacingDirection : axe dominant du vecteur d'entrée
-    if (std::abs(inputDir.x) >= std::abs(inputDir.y))
-        facingDir = (inputDir.x > 0) ? FacingDirection::RIGHT : FacingDirection::LEFT;
-    else
-        facingDir = (inputDir.y > 0) ? FacingDirection::DOWN  : FacingDirection::UP;
+    // La direction cardinale n'est mise à jour par le clavier que si le katana
+    // n'est pas en train d'animer (l'attaque a la priorité sur le regard).
+    if (!katana.isAnimActive()) {
+        if (std::abs(inputDir.x) >= std::abs(inputDir.y))
+            facingDir = (inputDir.x > 0) ? FacingDirection::RIGHT : FacingDirection::LEFT;
+        else
+            facingDir = (inputDir.y > 0) ? FacingDirection::DOWN : FacingDirection::UP;
+    }
 }
 
-// ─── Lance l'attaque — reste ici car c'est une action du joueur ──────────────
-bool PlayerModel::launchKatana() {
-    return katana.tryAttack(position, width, height, facingDir);
+bool PlayerModel::launchKatana(float angleRad) {
+    // Met à jour la direction cardinale d'affichage AVANT de tenter l'attaque,
+    // pour que le sprite soit orienté même si le katana est en cooldown.
+    FacingDirection newFacing = angleToFacing(angleRad);
+
+    bool launched = katana.tryAttack(position, width, height, angleRad);
+    if (launched)
+        facingDir = newFacing;
+
+    return launched;
 }
 
 void PlayerModel::takeDamage(int amount) {
     hp -= amount;
     if (hp < 0) hp = 0;
+}
+
+// ─── Conversion angle → cardinal ─────────────────────────────────────────────
+// Découpe le cercle en 4 quadrants de 90° centrés sur chaque axe.
+//   [-45°, +45°)   → RIGHT  (0 rad)
+//   [+45°, +135°)  → DOWN   (π/2 rad, car Y croît vers le bas)
+//   [+135°, -135°) → LEFT   (±π rad)
+//   [-135°, -45°)  → UP
+FacingDirection PlayerModel::angleToFacing(float angleRad) {
+    // Normalise dans [-π, π]
+    const float pi = static_cast<float>(M_PI);
+    while (angleRad >  pi) angleRad -= 2.0f * pi;
+    while (angleRad < -pi) angleRad += 2.0f * pi;
+
+    const float quarter = pi / 4.0f;   // 45°
+
+    if (angleRad >= -quarter && angleRad < quarter)
+        return FacingDirection::RIGHT;
+    if (angleRad >= quarter && angleRad < 3.0f * quarter)
+        return FacingDirection::DOWN;
+    if (angleRad >= -3.0f * quarter && angleRad < -quarter)
+        return FacingDirection::UP;
+    return FacingDirection::LEFT;
 }
