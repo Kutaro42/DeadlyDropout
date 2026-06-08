@@ -16,6 +16,7 @@ SOURCES += \
     appcontroller.cpp \
     boss.cpp \
     bullet.cpp \
+    enemylauncher.cpp \
     globaldoor.cpp \
     gun.cpp \
     katana.cpp \
@@ -48,6 +49,7 @@ HEADERS += \
     boss.h \
     bullet.h \
     config.h           \
+    enemylauncher.h \
     globaldoor.h \
     gun.h \
     katana.h \
