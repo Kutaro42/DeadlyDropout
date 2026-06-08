@@ -41,6 +41,13 @@ void GameController::init() {
         }
     });
 
+
+    // ── Liaison des bouton post partie  ────────────────────────
+    connect(itsGameView, &GameView::sigRestartRq, this, &GameController::sigRestart);
+
+    connect(itsGameView, &GameView::sigQuitRq, this, &GameController::sigBackMenu);
+
+
     // ── Chargement du niveau 1 ────────────────────────────────
     loadLevel(0);
 
@@ -157,10 +164,10 @@ void GameController::transitionTo(AppState state) {
     QString msg;
     switch (state) {
         case AppState::GAME_OVER:
-            msg = "GAME OVER\n\nAppuyez sur Échap pour quitter";
+            msg = "GAME OVER";
             break;
         case AppState::VICTORY:
-            msg = "VICTOIRE !\n\nNiveau terminé — Échap pour quitter";
+            msg = "VICTOIRE";
             break;
         default: break;
     }

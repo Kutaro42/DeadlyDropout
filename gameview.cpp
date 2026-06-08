@@ -84,9 +84,79 @@ void GameView::followPlayer(GameModel* model) {
                      pos.y + Cfg::ENTITY_SIZE / 2.0));
 }
 
-void GameView::showOverlay(const QString& message) {
-    overlayMessage  = message;
-    showingOverlay  = true;
+void GameView::showOverlay(const QString& message) {overlayMessage = message;
+    showingOverlay = true;
+
+    // Création et stylisation flashy du bouton "Menu" (Cyan néon)
+    if (!menuButton) {
+        menuButton = new QPushButton("Menu", this);
+        menuButton->setFixedSize(140, 45);
+        menuButton->setStyleSheet(
+            "QPushButton {"
+            "  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #1a1a1a, stop:1 #0d0d0d);"
+            "  color: #00ffcc;" // Cyan néon très vif
+            "  font-size: 16px;"
+            "  font-weight: bold;"
+            "  border: 2px solid #00ffcc;"
+            "  border-radius: 8px;"
+            "}"
+            "QPushButton:hover {"
+            "  background: #00ffcc;" // Flash de couleur au survol
+            "  color: #000000;"
+            "  border: 2px solid #ffffff;"
+            "}"
+            "QPushButton:pressed {"
+            "  background: #00cc99;"
+            "  color: #ffffff;"
+            "}"
+            );
+    }
+
+    // Création et stylisation flashy du bouton "Rejouer" (Rose/Rouge néon)
+    if (!replayButton) {
+        replayButton = new QPushButton("Rejouer", this);
+        replayButton->setFixedSize(140, 45);
+        replayButton->setStyleSheet(
+            "QPushButton {"
+            "  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #1a1a1a, stop:1 #0d0d0d);"
+            "  color: #ff3366;" // Rose/Rouge néon très vif
+            "  font-size: 16px;"
+            "  font-weight: bold;"
+            "  border: 2px solid #ff3366;"
+            "  border-radius: 8px;"
+            "}"
+            "QPushButton:hover {"
+            "  background: #ff3366;" // Flash de couleur au survol
+            "  color: #000000;"
+            "  border: 2px solid #ffffff;"
+            "}"
+            "QPushButton:pressed {"
+            "  background: #cc0044;"
+            "  color: #ffffff;"
+            "}"
+            );
+    }
+
+    connect(replayButton, &QPushButton::clicked,this, &GameView::sigRestartRq);
+
+    connect(menuButton, &QPushButton::clicked,this, &GameView::sigQuitRq);
+
+    // Calcul des positions pour centrer les boutons côte à côte horizontalement
+    int viewW = this->width();
+    int viewH = this->height();
+
+    int centerY = viewH / 2 + 50;   // Un peu plus bas que le texte central du message
+    int menuX = viewW / 2 - 155;    // Bouton de gauche
+    int rejouerX = viewW / 2 + 15;  // Bouton de droite
+
+    menuButton->move(menuX, centerY);
+    replayButton->move(rejouerX, centerY);
+
+    // On affiche les boutons à l'écran
+    menuButton->show();
+    replayButton->show();
+
+    // Force le rafraîchissement graphique de la scène
     viewport()->update();
 }
 
@@ -150,11 +220,11 @@ void GameView::drawHUD(QPainter* p, GameModel* model) {
                 QString("GOLD : %1").arg(player->getGold()));
 
     if (player->getHasKey()){
-        p->setPen(QColor(255, 255, 192));
+        p->setPen(QColor(192, 192, 192));
         p->drawText(mx + 72, my + Cfg::HP_BAR_H+ 18, "KEY: FOUND");
     }
     else{
-        p->setPen(QColor(255, 255, 192));
+        p->setPen(QColor(192, 192, 192));
         p->drawText(mx + 72, my + Cfg::HP_BAR_H+ 18, "KEY: NOT FOUND");
     }
 

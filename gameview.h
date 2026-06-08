@@ -19,7 +19,7 @@
 #include "gamemodel.h"
 #include "config.h"
 #include <QMouseEvent>
-
+#include <QPushButton>
 // ═══════════════════════════════════════════════════════════════════
 //  GameView — vue principale du jeu (couche View, MVC).
 //  Hérite QGraphicsView ; possède et affiche la QGraphicsScene.
@@ -101,6 +101,8 @@ private:
 
     QString overlayMessage; ///< Message tampon de fin de partie.
     bool    showingOverlay; ///< Déclencheur visuel de l'overlay sombre.
+    QPushButton* menuButton = nullptr;    ///< Bouton pour retourner à l'écran de menu.
+    QPushButton* replayButton = nullptr; ///< Bouton pour relancer directement la partie.
 
 signals:
     /** @brief Émis lors d'un clic droit capté dans la zone de jeu. */
@@ -108,6 +110,10 @@ signals:
     
     /** @brief Émis lors d'un clic gauche capté dans la zone de jeu. */
     void sig_leftClicked();
+
+    void sigRestartRq();
+
+    void sigQuitRq();
 };
 
 #endif // GAMEVIEW_H
