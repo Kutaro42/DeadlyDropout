@@ -4,6 +4,7 @@
  */
 
 #include "gameview.h"
+#include "zombielauncherview.h"
 #include <QFont>
 #include <QFontMetrics>
 
@@ -69,6 +70,8 @@ void GameView::updateAllViews(float dt, GameModel* model) {
     for (QGraphicsItem* item : scene->items()) {
         if (auto* zv = dynamic_cast<ZombieStdView*>(item))
             zv->updateView(dt);
+        else if (auto* lv = dynamic_cast<ZombieLauncherView*>(item))
+            lv->updateView(dt);
         else if (auto* ev = dynamic_cast<ExitDoorView*>(item))
             ev->updateView();
     }

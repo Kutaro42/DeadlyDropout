@@ -15,6 +15,7 @@
 #include <QPainter>
 #include "playerview.h"
 #include "zombiestdview.h"
+#include "zombielauncherview.h"
 #include "exitdoorview.h"
 #include "gamemodel.h"
 #include "config.h"
