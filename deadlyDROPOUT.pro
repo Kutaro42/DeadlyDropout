@@ -32,8 +32,8 @@ SOURCES += \
     playermodel.cpp    \
     playerview.cpp     \
     projectile.cpp \
-    rublemodel.cpp \
-    rubleview.cpp \
+    rubblemodel.cpp \
+    rubbleview.cpp \
     standarddoormodel.cpp \
     standarddoorview.cpp \
     wallmodel.cpp      \
@@ -68,8 +68,8 @@ HEADERS += \
     menucontroller.h \
     menuview.h \
     projectile.h \
-    rublemodel.h \
-    rubleview.h \
+    rubblemodel.h \
+    rubbleview.h \
     standarddoormodel.h \
     standarddoorview.h \
     vector2f.h         \

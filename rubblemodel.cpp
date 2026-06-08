@@ -1,3 +1,3 @@
-#include "rublemodel.h"
+#include "rubblemodel.h"
 
 rublemodel::rublemodel() {}
