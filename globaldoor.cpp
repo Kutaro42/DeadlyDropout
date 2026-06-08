@@ -5,4 +5,4 @@
 
 #include "globaldoor.h"
 
-GlobalDoor::GlobalDoor() {}
+GlobalDoor::GlobalDoor(Vector2f pos, float w, float h):Entity(pos,w,h) {}

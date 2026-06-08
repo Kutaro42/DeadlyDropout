@@ -10,6 +10,7 @@
 
 #include "entity.h"
 #include "config.h"
+#include "globaldoor.h"
 
 class PlayerModel; // forward declaration
 
@@ -24,7 +25,7 @@ class PlayerModel; // forward declaration
  * @class ExitDoorModel
  * @brief Représente le portail permettant de passer au niveau suivant.
  */
-class ExitDoorModel : public Entity {
+class ExitDoorModel : public GlobalDoor {
 private:
     bool open; ///< Indique si la porte est déverrouillée.
 

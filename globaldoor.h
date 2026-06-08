@@ -7,18 +7,19 @@
 
 #ifndef GLOBALDOOR_H
 #define GLOBALDOOR_H
+#include "entity.h"
 
 /**
  * @class GlobalDoor
  * @brief Entité de base dont hériteront les portes standards, de boss ou de niveaux.
  */
-class GlobalDoor
+class GlobalDoor : public Entity
 {
 public:
     /**
      * @brief Constructeur par défaut.
      */
-    GlobalDoor();
+    GlobalDoor(Vector2f pos, float w, float h);
 };
 
 #endif // GLOBALDOOR_H
