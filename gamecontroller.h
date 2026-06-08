@@ -94,6 +94,10 @@ private:
      * @param newState L'état ciblé (GAME_OVER ou VICTORY).
      */
     void transitionTo(AppState newState);
+
+signals:
+    void sigRestart();
+    void sigBackMenu();
 };
 
 #endif // GAMECONTROLLER_H

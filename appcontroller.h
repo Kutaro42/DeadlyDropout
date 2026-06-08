@@ -51,10 +51,16 @@ public:
      */
     void run();
 
+    void reset();
+
 signals:
     /**
      * @brief Signal émis en interne pour signifier la volonté de démarrer une partie.
      */
     void sigGameRq();
+
+private slots:
+    void sltRestart();
+    void sltBackMenu();
 };
 #endif // AppController_H

@@ -88,6 +88,8 @@ AppController::AppController(QWidget *parent)
     // Connexions des signaux
     connect(itsMenuController, &MenuController::sigGameRequest, this, &AppController::sigGameRq);
     connect(this, &AppController::sigGameRq, this, &AppController::startGame);
+    connect(itsGameController, &GameController::sigRestart, this, &AppController::sltRestart);
+    connect(itsGameController, &GameController::sigBackMenu, this, &AppController::sltBackMenu);
 }
 
 AppController::~AppController()
@@ -118,4 +120,27 @@ void AppController::run() {
     // Commentaire développeur : 
     // C'est cette ligne qui maintient la fenêtre ouverte !
     this->show(); 
+}
+
+void AppController::reset()
+{
+    delete itsGameController;
+    itsGameController= nullptr;
+    itsGameController = new GameController(this);
+    mainContainer->addWidget(itsGameController->getView());
+    connect(itsGameController, &GameController::sigRestart, this, &AppController::sltRestart);
+    connect(itsGameController, &GameController::sigBackMenu, this, &AppController::sltBackMenu);
+}
+
+
+void AppController::sltRestart()
+{
+    reset();
+    startGame();
+}
+
+void AppController::sltBackMenu()
+{
+    reset();
+    mainContainer->setCurrentIndex(0);
 }
