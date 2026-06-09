@@ -101,13 +101,13 @@ private:
      * @brief Taille d'affichage à l'écran du sprite de slash.
      *        Augmentez pour agrandir l'effet.
      */
-    static constexpr int SLASH_DISPLAY    = 96;  ///< Taille d'affichage (px) du sprite slash.
+    static constexpr int SLASH_DISPLAY    = 128;  ///< Taille d'affichage (px) du sprite slash.
 
     /**
      * @brief Nombre de frames dans la spritesheet de slash.
      *        À ajuster selon votre fichier PNG.
      */
-    static constexpr int SLASH_FRAME_COUNT = 6;
+    static constexpr int SLASH_FRAME_COUNT = 3;
 
     QVector<QPixmap>      itsSlashFrames;     ///< Frames de l'effet de slash (préchargées).
     QGraphicsPixmapItem*  itsSlashItem;       ///< Item fils affiché par-dessus le joueur.
