@@ -68,6 +68,17 @@ namespace Cfg {
     constexpr double Z_PLAYER           = 3.0;    ///< Profondeur d'affichage du joueur.
     constexpr double Z_SLASH            = 4.0;    ///< Profondeur d'affichage de l'attaque.
 
+    // ─── Boss ────────────────────────────────────────────
+    constexpr int   BOSSP1_MAX_HP       = 300;     ///< Points de vie maximum du boss en phase 1.
+    constexpr int   BOSSP2_MAX_HP       = 300;     ///< Points de vie maximum du zombie.
+    constexpr int   BOSSP3_MAX_HP       = 300;     ///< Points de vie maximum du zombie.
+    constexpr float BOSS_SPEED        = 90.0f;  ///< Vitesse de déplacement du zombie en pixels/s.
+    constexpr int   BOSS_DMG            = 20;      ///< Dégâts infligés par le boss.
+    constexpr float BOSS_ATK_CD       = 1.5f;   ///< Temps de recharge de l'attaque en secondes.
+    constexpr float BOSS_DETECT_R     = 400.0f; ///< Rayon de la bulle de détection du joueur.
+    constexpr int   BOSS_GOLD_MIN     = 300;      ///< Quantité minimum d'or lâchée.
+    constexpr int   BOSS_GOLD_MAX     = 400;     ///< Quantité maximum d'or lâchée.
+
     // ─── HUD ──────────────────────────────────────────────────────
     constexpr int   HUD_MARGIN          = 12;     ///< Marge extérieure du HUD.
     constexpr int   HP_BAR_W            = 180;    ///< Largeur de la barre de vie.
@@ -93,7 +104,8 @@ enum class TileType {
     EXIT_DOOR    = 3,
     PLAYER_SPAWN = 4,
     LAUNCHER_SPAWN  = 5, ///< Spawn du zombie lanceur de gravats.
-    STANDARD_DOOR   = 6  ///< Porte standard ouvrable par contact du joueur.
+    STANDARD_DOOR   = 6,    ///< Porte standard ouvrable par contact du joueur.
+    BOSS_SPAWN      = 7
 };
 
 #endif // CONFIG_H

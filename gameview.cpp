@@ -89,6 +89,8 @@ void GameView::updateAllViews(float dt, GameModel* model) {
             lv->updateView(dt);
         else if (auto* ev = dynamic_cast<ExitDoorView*>(item))
             ev->updateView();
+        else if (auto*Bossv = dynamic_cast<BossView*>(item))
+            Bossv->updateView(dt);
         else if (auto* dv = dynamic_cast<StandardDoorView*>(item))
             dv->updateView();
     }

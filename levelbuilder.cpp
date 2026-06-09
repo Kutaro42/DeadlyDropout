@@ -12,6 +12,8 @@
 #include "standarddoormodel.h"
 #include "standarddoorview.h"
 #include "config.h"
+#include "bossmodel.h"
+#include "bossview.h"
 
 void LevelBuilder::build(const LevelDescriptor& desc,
                           LevelModel&            levelModel,
@@ -97,7 +99,13 @@ void LevelBuilder::build(const LevelDescriptor& desc,
             case TileType::PLAYER_SPAWN:
                 levelModel.setPlayerSpawnPos(pos);
                 break;
-
+            case TileType::BOSS_SPAWN:{
+                auto* BossM = new bossModel(pos);
+                auto* BossV = new BossView(BossM);
+                levelModel.addEnemy(BossM);
+                scene->addItem(BossV);
+                break;
+            }
             default:
                 break;
             }

@@ -16,6 +16,7 @@
 #include "playerview.h"
 #include "zombiestdview.h"
 #include "zombielauncherview.h"
+#include "bossview.h"
 #include "exitdoorview.h"
 #include "standarddoorview.h"
 #include "gamemodel.h"
