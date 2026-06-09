@@ -36,8 +36,15 @@ void LevelController::update(float dt,
     resolvePlayerWallCollisions(player, level);
     resolveEnemyWallCollisions(level);
 
-    if (player.isKatanaActive())
+    if (player.isKatanaActive()) {
         checkSlashZoneHits(player, level);
+    } else {
+        // Dès que l'attaque se termine, on réarme les ennemis
+        // pour qu'ils puissent prendre des dégâts au prochain coup.
+        for (Enemy* e : level.getEnemies()) {
+            e->setHitThisSlash(false);
+        }
+    }
 
     checkRubbleCollisions(player, level);
     checkStandardDoorInteractions(player, level);
@@ -183,9 +190,13 @@ void LevelController::checkSlashZoneHits(PlayerModel& player,
 {
     QRectF slash = player.getSlashZone();
     for (Enemy* e : level.getEnemies()) {
-        if (!e->isActive()) continue;
-        if (slash.intersects(e->getCollider()))
+        // Si l'ennemi est inactif OU s'il a DÉJÀ pris un coup pendant cette animation, on l'ignore.
+        if (!e->isActive() || e->getHitThisSlash()) continue;
+
+        if (slash.intersects(e->getCollider())) {
             e->takeDamage(player.getKatana().getDamage());
+            e->setHitThisSlash(true); // On marque l'ennemi comme touché pour cette attaque
+        }
     }
 }
 
@@ -290,10 +301,11 @@ void LevelController::checkExitCondition(PlayerModel& player,
                                          LevelModel&  level)
 {
     ExitDoorModel* exitDoor = level.getExitDoor();
+    level.bossDefeat();
     if (!exitDoor) return;
     if (level.getEnemies().isEmpty()) return;
 
-    if (level.bossDefeat() && !exitDoor->isOpen())
+    if (player.getHasKey() && !exitDoor->isOpen())
         exitDoor->openDoor();
 
     if (exitDoor->isOpen() &&
