@@ -16,6 +16,7 @@
 //    4 = PLAYER_SPAWN
 //    5 = ZOMBIE_LAUNCHER_SPAWN
 //    6 = STANDARD_DOOR
+//    7 = BOSS_SPAWN
 //
 //  wallMatrix :
 //    0 = pas de mur
