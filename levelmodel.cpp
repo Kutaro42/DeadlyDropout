@@ -2,6 +2,7 @@
 #include "floormodel.h"
 #include "enemy.h"
 #include "standarddoormodel.h"
+#include "enemy.h"
 
 LevelModel::LevelModel()
     : exitDoor(nullptr), levelId(0)
@@ -31,9 +32,11 @@ void LevelModel::setExitDoor(ExitDoorModel* d) { exitDoor = d;      }
 void LevelModel::setPlayerSpawnPos(Vector2f p) { playerSpawnPos = p;}
 void LevelModel::setLevelId(int id)            { levelId = id;      }
 
-bool LevelModel::allEnemiesDefeated() {
+bool LevelModel::bossDefeat() {
     for (const auto* e : enemies)
-        if (e->isActive()) return false;
-        emit sigPlayerKeyObtain();//on envoie le signal
+        if (e->getisBoss() && !e->isActive())
+        {
+        emit sigPlayerKeyObtain();// signal de l'obtention de key
+        }
     return true;
 }

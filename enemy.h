@@ -33,6 +33,7 @@ protected:
     float        detectionRadius;    ///< Rayon de la zone d'aggro/détection.
     int          goldDrop;           ///< Récompense en or octroyée à la mort.
     bool         goldAlreadyDropped; ///< Drapeau anti-doublon pour le loot d'or.
+    bool         isBoss = false;
     EnemyAIState aiState;            ///< État de la machine à états de l'IA.
     Vector2f     velocity;           ///< Vecteur directionnel de déplacement actuel.
 
@@ -90,8 +91,9 @@ public:
     int          getHp()       const { return hp;       }
     int          getMaxHp()    const { return maxHp;    }
     int          getGoldDrop() const { return goldDrop; }
+    bool         getisBoss()   const { return isBoss;   }
     EnemyAIState getAIState()  const { return aiState;  }
-    Vector2f     getVelocity() const { return velocity;  }
+    Vector2f     getVelocity() const { return velocity; }
 
     // Délégation Entity::update (sans playerPos — no-op pour les ennemis)
     void update(float dt) override { Q_UNUSED(dt); }

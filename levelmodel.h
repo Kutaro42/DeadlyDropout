@@ -74,7 +74,7 @@ public:
      * @brief Vérifie si tous les monstres du niveau sont morts.
      * @return true si tous les ennemis sont inactifs, false sinon.
      */
-    bool allEnemiesDefeated() ;
+    bool bossDefeat() ;
     signals:
     void sigPlayerKeyObtain();//attribue la clé au joueur par appel
 };

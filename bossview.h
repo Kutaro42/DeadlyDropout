@@ -22,7 +22,7 @@ private:
     static constexpr int STATE_COUNT = 2;   ///< Nombre total d'états d'animation gérés.
     static constexpr int DIR_COUNT   = 4;   ///< Nombre total de directions (DOWN, UP, LEFT, RIGHT).
     static constexpr int FRAME_W     = 96;  ///< Largeur unitaire d'une frame lue sur le spritesheet.
-    static constexpr int FRAME_H     = 96;  ///< Hauteur unitaire d'une frame lue sur le spritesheet.
+    static constexpr int FRAME_H     = 96;  ///< Hauteur unitaire d'une frame    lue sur le spritesheet.
 
     QVector<QPixmap> sprites[STATE_COUNT][DIR_COUNT];
 

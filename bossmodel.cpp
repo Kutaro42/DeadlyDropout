@@ -7,7 +7,9 @@ bossModel::bossModel(Vector2f pos) :
           static_cast<float>(Cfg::ENTITY_SIZE*3),
           static_cast<float>(Cfg::ENTITY_SIZE*3),
           Cfg::BOSS_GOLD_MIN)
-{}
+{
+    isBoss = true;
+}
 
 void bossModel::attack(PlayerModel* player)
 {
