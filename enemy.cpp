@@ -15,7 +15,8 @@ Enemy::Enemy(Vector2f pos, int maxHp, float spd, int dmg,
       detectionRadius(detRadius),
       goldDrop(gold), goldAlreadyDropped(false),
       aiState(EnemyAIState::IDLE),
-      velocity(0.0f, 0.0f)
+      velocity(0.0f, 0.0f),
+      hitThisSlash(false)
 {}
 
 void Enemy::takeDamage(int amount) {

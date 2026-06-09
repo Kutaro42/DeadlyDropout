@@ -36,6 +36,7 @@ protected:
     bool         isBoss = false;
     EnemyAIState aiState;            ///< État de la machine à états de l'IA.
     Vector2f     velocity;           ///< Vecteur directionnel de déplacement actuel.
+    bool         hitThisSlash;       ///< Empêche les dégâts multiples par attaque.
 
 public:
     /**
@@ -86,6 +87,9 @@ public:
     // Appelé par LevelController pour distribuer le gold une seule fois
     bool  hasDroppedGold()  const { return goldAlreadyDropped; }
     void  markGoldDropped()       { goldAlreadyDropped = true; }
+
+    bool  getHitThisSlash() const { return hitThisSlash;       }
+    void  setHitThisSlash(bool b) { hitThisSlash = b;          }
 
     // ─── Getters ──────────────────────────────────────────────
     int          getHp()       const { return hp;       }
