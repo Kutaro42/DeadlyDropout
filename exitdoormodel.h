@@ -39,12 +39,6 @@ public:
     void openDoor()      { open = true;  }
     bool isOpen()  const { return open;  }
 
-    /**
-     * @brief Vérifie si le joueur est autorisé à traverser la porte.
-     * @param player Modèle du joueur tentant de passer.
-     * @return true si la porte est ouverte, false sinon.
-     */
-    bool tryEnter(const PlayerModel& player) const;
 };
 
 #endif // EXITDOORMODEL_H

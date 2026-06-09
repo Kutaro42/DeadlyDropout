@@ -290,10 +290,11 @@ void LevelController::checkExitCondition(PlayerModel& player,
                                          LevelModel&  level)
 {
     ExitDoorModel* exitDoor = level.getExitDoor();
+    level.bossDefeat();
     if (!exitDoor) return;
     if (level.getEnemies().isEmpty()) return;
 
-    if (level.bossDefeat() && !exitDoor->isOpen())
+    if (player.getHasKey() && !exitDoor->isOpen())
         exitDoor->openDoor();
 
     if (exitDoor->isOpen() &&
