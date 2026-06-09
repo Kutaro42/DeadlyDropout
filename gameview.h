@@ -130,6 +130,9 @@ signals:
     /** @brief Émis lors d'un clic gauche capté dans la zone de jeu. */
     void sig_leftClicked();
 
+    /** @brief Émis lorsque la touche echap capté dans la zone de jeu. */
+    void sig_escapePressed(); // Signal émis lors d'un appui sur Échap
+
     void sigRestartRq();
     void sigQuitRq();
 };

@@ -47,8 +47,13 @@ void GameController::init() {
         double dy    = scenePos.y() - cy;
         float  angle = static_cast<float>(std::atan2(dy, dx));
 
+
+
         player->launchKatana(angle);
     });
+
+    // ── Liaison de la touche Échap pour la pause ──────────
+    connect(itsGameView, &GameView::sig_escapePressed, this, &GameController::togglePause);
 
     // ── Clic gauche → pistolet (futur) ───────────────────────────────────────
     connect(itsGameView, &GameView::sig_leftClicked, this, [this]() {
@@ -78,6 +83,42 @@ void GameController::init() {
     currentState = AppState::PLAYING;
 }
 
+void GameController::togglePause() {
+    // Si on est en train de jouer -> On passe en PAUSE
+    if (currentState == AppState::PLAYING) {
+        currentState = AppState::PAUSED;
+
+        // (Optionnel) Création d'une bannière de pause textuelle à l'écran
+        pauseTextOverlay = new QGraphicsTextItem("--- JEU EN PAUSE ---\nAppuyez sur ECHAP pour reprendre");
+        QFont font("Arial", 22, QFont::Bold);
+        pauseTextOverlay->setFont(font);
+        pauseTextOverlay->setDefaultTextColor(Qt::white);
+        pauseTextOverlay->setZValue(100); // S'assure que le texte est au-premier plan
+
+        // Centrage automatique au milieu de la vue du joueur
+        pauseTextOverlay->setPos(itsGameView->mapToScene(itsGameView->width()/2 - 150, itsGameView->height()/2 - 40));
+
+        // On l'ajoute à la scène (ajoutez une méthode getScene() dans votre GameModel si besoin)
+        itsGameView->getScene()->addItem(pauseTextOverlay);
+    }
+    // Si on était déjà en pause -> On REPREND la partie
+    else if (currentState == AppState::PAUSED) {
+        currentState = AppState::PLAYING;
+
+        // Nettoyage de l'overlay de pause
+        if (pauseTextOverlay) {
+            itsGameView->getScene()->removeItem(pauseTextOverlay);
+            delete pauseTextOverlay;
+            pauseTextOverlay = nullptr;
+        }
+
+        // IMPORTANT : On réinitialise l'horloge de temps réel.
+        // Sinon, le premier 'dt' calculé au retour de la pause va inclure
+        // tout le temps passé dans le menu pause, provoquant un énorme téléportement !
+        elapsedTimer.restart();
+    }
+}
+
 void GameController::loadLevel(int index) {
     index = index % LevelData::LEVEL_COUNT;
     currentLevelIndex = index;
@@ -100,6 +141,13 @@ void GameController::loadLevel(int index) {
 }
 
 void GameController::slt_tick() {
+    // Si le jeu est en pause, on calcule le temps écoulé pour ne pas perdre le fil,
+    // mais on quitte immédiatement SANS mettre à jour le jeu ni écouter le clavier.
+    if (currentState == AppState::PAUSED) {
+        elapsedTimer.restart(); // On remet à zéro l'horloge en continu pendant la pause
+        return;
+    }
+
     if (currentState != AppState::PLAYING) return;
 
     float dt = static_cast<float>(elapsedTimer.restart()) / 1000.0f;
@@ -112,6 +160,10 @@ void GameController::slt_tick() {
 
     itsGameView->updateAllViews(dt, itsGameModel);
     itsGameView->followPlayer(itsGameModel);
+
+
+
+
 }
 
 void GameController::handleInput(float dt) {

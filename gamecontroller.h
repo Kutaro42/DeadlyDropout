@@ -72,6 +72,8 @@ private slots:
     void slt_tick();
 
 private:
+
+
     /**
      * @brief Charge et initialise un niveau spécifique.
      * @param index L'identifiant (index) du niveau à charger.
@@ -94,6 +96,9 @@ private:
      * @param newState L'état ciblé (GAME_OVER ou VICTORY).
      */
     void transitionTo(AppState newState);
+
+    void togglePause();
+    QGraphicsTextItem* pauseTextOverlay = nullptr; // Pour afficher "PAUSE" à l'écran
 
 signals:
     void sigRestart();

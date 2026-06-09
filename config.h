@@ -91,7 +91,7 @@ namespace Cfg {
 enum class FacingDirection { UP, DOWN, LEFT, RIGHT };
 
 /** @brief États de la machine à états globale de l'application. */
-enum class AppState        { MENU, PLAYING, GAME_OVER, VICTORY };
+enum class AppState        { MENU, PLAYING, GAME_OVER, VICTORY, PAUSED };
 
 /** @brief États de l'IA ennemie. */
 enum class EnemyAIState    { IDLE, CHASING, ATTACKING };

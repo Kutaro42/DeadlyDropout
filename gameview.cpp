@@ -157,8 +157,14 @@ void GameView::showOverlay(const QString& message) {
 
 void GameView::keyPressEvent(QKeyEvent* e) {
     pressedKeys.insert(e->key());
+    // 1. On intercepte Échap en premier, sans conditions
+    if (e->key() == Qt::Key_Escape && !e->isAutoRepeat()) {
+        emit sig_escapePressed();
+    }
+
     if (e->key() == Qt::Key_Up   || e->key() == Qt::Key_Down ||
         e->key() == Qt::Key_Left || e->key() == Qt::Key_Right) {
+
         e->accept();
         return;
     }
