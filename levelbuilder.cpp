@@ -1,6 +1,8 @@
 #include "levelbuilder.h"
 #include "wallmodel.h"
 #include "wallview.h"
+#include "floormodel.h"
+#include "floorview.h"
 #include "zombiestdmodel.h"
 #include "zombiestdview.h"
 #include "zombielaunchermodel.h"
@@ -26,8 +28,7 @@ void LevelBuilder::build(const LevelDescriptor& desc,
                                QBrush(QColor(40, 38, 32)));  // sol sombre
     bg->setZValue(Cfg::Z_FLOOR);
 
-    // ─── Décodage de la matrice ───────────────────────────────
-    // ─── Décodage des deux matrices ───────────────────────────────
+    // ─── Décodage des trois matrices ──────────────────────────────────
     for (int r = 0; r < desc.rows; ++r) {
         for (int c = 0; c < desc.cols; ++c) {
 
@@ -35,7 +36,19 @@ void LevelBuilder::build(const LevelDescriptor& desc,
             Vector2f pos(static_cast<float>(c) * ts_f,
                          static_cast<float>(r) * ts_f);
 
-            // ── Matrice murs ──────────────────────────────────────
+            // ── Matrice sol (décorative, pas de collision) ────────────────
+            if (desc.floorData) {
+                int floorIdx = desc.floorAt(r, c);
+                if (floorIdx > 0) {
+                    auto* fm = new FloorModel(pos, ts_f, ts_f,
+                                              floorIdx, desc.floorTilesetCols);
+                    auto* fv = new FloorView(fm);
+                    levelModel.addFloorTile(fm);
+                    scene->addItem(fv);
+                }
+            }
+
+            // ── Matrice murs ──────────────────────────────────────────────
             int wallIdx = desc.wallAt(r, c);
             if (wallIdx > 0) {
                 auto* wm = new WallModel(pos, ts_f, ts_f,
@@ -45,7 +58,7 @@ void LevelBuilder::build(const LevelDescriptor& desc,
                 scene->addItem(wv);
             }
 
-            // ── Matrice entités ───────────────────────────────────
+            // ── Matrice entités ───────────────────────────────────────────
             TileType tile = static_cast<TileType>(desc.entityAt(r, c));
             switch (tile) {
 

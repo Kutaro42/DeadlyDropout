@@ -20,6 +20,8 @@ SOURCES += \
     bossview.cpp \
     bulletmodel.cpp \
     bulletview.cpp \
+    floormodel.cpp \
+    floorview.cpp \
     globaldoor.cpp \
     gunmodel.cpp \
     gunview.cpp \
@@ -61,6 +63,8 @@ HEADERS += \
     bulletmodel.h \
     bulletview.h \
     config.h           \
+    floormodel.h \
+    floorview.h \
     globaldoor.h \
     gunmodel.h \
     gunview.h \

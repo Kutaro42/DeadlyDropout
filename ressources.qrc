@@ -38,5 +38,6 @@
 
 	<!-- ── Tile mur ─────────────────── -->
 	<file>Textures/Environment/Wall/wall_tileset.png</file>
+	<file>Textures/Environment/Floor/floor_tileset.png</file>
     </qresource>
 </RCC>
