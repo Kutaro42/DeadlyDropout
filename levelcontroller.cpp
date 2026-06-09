@@ -3,6 +3,7 @@
 #include "wallmodel.h"
 #include "exitdoormodel.h"
 #include "zombielaunchermodel.h"
+#include "standarddoormodel.h"
 #include <QRectF>
 #include <cmath>
 
@@ -39,6 +40,7 @@ void LevelController::update(float dt,
         checkSlashZoneHits(player, level);
 
     checkRubbleCollisions(player, level);
+    checkStandardDoorInteractions(player, level);
 
     checkExitCondition(player, level);
 }
@@ -116,9 +118,14 @@ void LevelController::resolveEnemyWallCollisions(LevelModel& level)
     for (Enemy* e : level.getEnemies()) {
         if (!e->isActive()) continue;
         Vector2f refPos = e->getPosition();
-        for (int pass = 0; pass < 4; ++pass)
+        for (int pass = 0; pass < 4; ++pass) {
             for (WallModel* w : level.getWalls())
                 resolveAABBWithRef(*e, w->getCollider(), refPos);
+            // Les portes fermées sont opaques pour les ennemis
+            for (StandardDoorModel* d : level.getStandardDoors())
+                if (!d->isOpen())
+                    resolveAABBWithRef(*e, d->getCollider(), refPos);
+        }
     }
 }
 
@@ -244,7 +251,37 @@ void LevelController::checkRubbleCollisions(PlayerModel& player,
                     break;
                 }
             }
+
+            if (!r->isActive()) continue;
+
+            // Collision avec une porte standard fermée
+            for (StandardDoorModel* d : level.getStandardDoors()) {
+                if (!d->isOpen() && rb.intersects(d->getCollider())) {
+                    r->setActive(false);
+                    break;
+                }
+            }
         }
+    }
+}
+
+// ── Portes standard : ouverture au contact + collision tant que fermées ───────
+// Lorsqu'une porte est fermée, elle bloque le joueur comme un mur.
+// Dès que le joueur la touche, elle s'ouvre et n'est plus un obstacle.
+void LevelController::checkStandardDoorInteractions(PlayerModel& player,
+                                                    LevelModel&  level)
+{
+    for (StandardDoorModel* door : level.getStandardDoors()) {
+        if (door->isOpen()) continue;
+
+        if (door->tryOpen(player)) {
+            // La porte vient de s'ouvrir : pas de résolution de collision,
+            // le joueur peut s'y avancer librement dès ce tick.
+            continue;
+        }
+
+        // Porte encore fermée → bloque le joueur (même comportement qu'un mur)
+        resolveAABB(player, door->getCollider());
     }
 }
 

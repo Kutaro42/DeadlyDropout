@@ -13,6 +13,7 @@
 #include "wallmodel.h"
 #include "floormodel.h"
 #include "exitdoormodel.h"
+#include "standarddoormodel.h"
 #include "vector2f.h"
 
 class Enemy; // forward declaration
@@ -27,9 +28,10 @@ class Enemy; // forward declaration
 class LevelModel : public QObject{
     Q_OBJECT
 private:
-    QVector<WallModel*>  walls;          ///< Liste des murs constituant la structure du niveau.
-    QVector<FloorModel*> floorTiles;     ///< Liste des tiles de sol décoratives (sans collision).
-    QVector<Enemy*>      enemies;        ///< Liste des ennemis présents dans le niveau.
+    QVector<WallModel*>         walls;          ///< Liste des murs constituant la structure du niveau.
+    QVector<FloorModel*>        floorTiles;     ///< Liste des tiles de sol décoratives (sans collision).
+    QVector<Enemy*>             enemies;        ///< Liste des ennemis présents dans le niveau.
+    QVector<StandardDoorModel*> standardDoors;  ///< Liste des portes standards du niveau.
     ExitDoorModel* exitDoor;       ///< Modèle de la porte de fin de niveau.
     Vector2f             playerSpawnPos; ///< Coordonnées d'apparition du joueur.
     int                  levelId;        ///< Identifiant unique du niveau courant.
@@ -54,14 +56,16 @@ public:
     void addWall(WallModel* w);                 ///< @param w Pointeur vers le mur à ajouter.
     void addFloorTile(FloorModel* f);           ///< @param f Pointeur vers la tile de sol à ajouter.
     void addEnemy(Enemy* e);                    ///< @param e Pointeur vers l'ennemi à ajouter.
+    void addStandardDoor(StandardDoorModel* d); ///< @param d Pointeur vers la porte standard à ajouter.
     void setExitDoor(ExitDoorModel* d);         ///< @param d Pointeur vers la porte de sortie.
     void setPlayerSpawnPos(Vector2f pos);       ///< @param pos Les coordonnées de spawn.
     void setLevelId(int id);                    ///< @param id L'identifiant du niveau.
 
     // ─── Accesseurs ───────────────────────────────────────────
-    QVector<WallModel*>&  getWalls()           { return walls;           } ///< @return La liste des murs.
-    QVector<FloorModel*>& getFloorTiles()      { return floorTiles;      } ///< @return La liste des tiles de sol.
-    QVector<Enemy*>&      getEnemies()         { return enemies;         } ///< @return La liste des ennemis.
+    QVector<WallModel*>&         getWalls()         { return walls;           } ///< @return La liste des murs.
+    QVector<FloorModel*>&        getFloorTiles()    { return floorTiles;      } ///< @return La liste des tiles de sol.
+    QVector<Enemy*>&             getEnemies()       { return enemies;         } ///< @return La liste des ennemis.
+    QVector<StandardDoorModel*>& getStandardDoors() { return standardDoors;   } ///< @return La liste des portes standards.
     ExitDoorModel* getExitDoor()  const { return exitDoor;        } ///< @return La porte de sortie.
     Vector2f             getSpawnPos()  const { return playerSpawnPos;  } ///< @return La position de spawn du joueur.
     int                  getLevelId()   const { return levelId;         } ///< @return L'identifiant du niveau.

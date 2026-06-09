@@ -9,6 +9,8 @@
 #include "zombielauncherview.h"
 #include "exitdoormodel.h"
 #include "exitdoorview.h"
+#include "standarddoormodel.h"
+#include "standarddoorview.h"
 #include "config.h"
 
 void LevelBuilder::build(const LevelDescriptor& desc,
@@ -81,6 +83,15 @@ void LevelBuilder::build(const LevelDescriptor& desc,
                 auto* ev = new ExitDoorView(em);
                 levelModel.setExitDoor(em);
                 scene->addItem(ev);
+                break;
+            }
+            case TileType::STANDARD_DOOR: {
+                // Porte sur une tuile simple (1×1), traversée horizontalement ou verticalement.
+                // La largeur vaut 2 tuiles et la hauteur 1 tuile pour qu'elle bouche un couloir.
+                auto* dm = new StandardDoorModel(pos, ts_f * 2.0f, ts_f);
+                auto* dv = new StandardDoorView(dm);
+                levelModel.addStandardDoor(dm);
+                scene->addItem(dv);
                 break;
             }
             case TileType::PLAYER_SPAWN:

@@ -17,6 +17,7 @@
 #include "zombiestdview.h"
 #include "zombielauncherview.h"
 #include "exitdoorview.h"
+#include "standarddoorview.h"
 #include "gamemodel.h"
 #include "config.h"
 #include <QMouseEvent>

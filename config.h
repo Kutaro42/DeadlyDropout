@@ -92,7 +92,8 @@ enum class TileType {
     ZOMBIE_SPAWN = 2,
     EXIT_DOOR    = 3,
     PLAYER_SPAWN = 4,
-    LAUNCHER_SPAWN = 5  ///< Spawn du zombie lanceur de gravats.
+    LAUNCHER_SPAWN  = 5, ///< Spawn du zombie lanceur de gravats.
+    STANDARD_DOOR   = 6  ///< Porte standard ouvrable par contact du joueur.
 };
 
 #endif // CONFIG_H
