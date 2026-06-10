@@ -22,7 +22,7 @@
         <file>Textures/Player/Attack/Up.png</file>
         <file>Textures/Player/Attack/Left.png</file>
         <file>Textures/Player/Attack/Right.png</file>
-	<file>Textures/Player/Slash/slash.png</file>
+        <file>Textures/Player/Slash/slash.png</file>
 
         <!-- ── Ennemi (idle × 4 directions) ─────────────────── -->
         <file>Textures/Enemy/Standard/Idle/Down.png</file>
@@ -36,8 +36,37 @@
         <file>Textures/Enemy/Standard/Move/Left.png</file>
         <file>Textures/Enemy/Standard/Move/Right.png</file>
 
-	<!-- ── Tile mur ─────────────────── -->
-	<file>Textures/Environment/Wall/wall_tileset.png</file>
-	<file>Textures/Environment/Floor/floor_tileset.png</file>
+        <!-- ── Tile mur ─────────────────── -->
+        <file>Textures/Environment/Wall/wall_tileset.png</file>
+        <file>Textures/Environment/Floor/floor_tileset.png</file>
+    </qresource>
+
+    <!-- ── Matrices de niveaux (texte) ───────────────────────────── -->
+    <!-- Chaque niveau a son propre sous-dossier avec trois fichiers : -->
+    <!--   entities.txt  walls.txt  floor.txt                          -->
+    <!--                                                                -->
+    <!-- IMPORTANT : le chemin réel sur disque est  levels/level_N/…  -->
+    <!-- L'attribut alias supprime ce préfixe "levels/" pour que Qt   -->
+    <!-- expose exactement  :/levels/level_N/xxx.txt  en runtime.     -->
+    <qresource prefix="/levels">
+        <!-- Niveau 1 -->
+        <file alias="level_1/entities.txt">levels/level_1/entities.txt</file>
+        <file alias="level_1/walls.txt">levels/level_1/walls.txt</file>
+        <file alias="level_1/floor.txt">levels/level_1/floor.txt</file>
+
+        <!-- Niveau 2 -->
+        <file alias="level_2/entities.txt">levels/level_2/entities.txt</file>
+        <file alias="level_2/walls.txt">levels/level_2/walls.txt</file>
+        <file alias="level_2/floor.txt">levels/level_2/floor.txt</file>
+
+	<!-- Niveau 3 -->
+        <file alias="level_3/entities.txt">levels/level_3/entities.txt</file>
+        <file alias="level_3/walls.txt">levels/level_3/walls.txt</file>
+        <file alias="level_3/floor.txt">levels/level_3/floor.txt</file>
+
+        <!-- Pour ajouter un niveau N :                                -->
+        <!--   1. Créer levels/level_N/{entities,walls,floor}.txt      -->
+        <!--   2. Ajouter trois lignes <file alias="level_N/...">      -->
+        <!--   3. Incrémenter LEVEL_COUNT dans levelregistry.h         -->
     </qresource>
 </RCC>

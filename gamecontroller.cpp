@@ -7,7 +7,7 @@
 #include <Qt>
 #include <algorithm>
 #include <cmath>
-#include <qDebug>
+#include <QDebug>
 #include "config.h"
 
 GameController::GameController(QObject* parent)
@@ -28,8 +28,6 @@ GameController::~GameController() {
 void GameController::init() {
 
     // ── Clic droit → attaque katana orientée vers le curseur ─────────────────
-    // Le signal transporte désormais la position de la souris en coordonnées scène,
-    // ce qui permet de calculer l'angle exact joueur → curseur.
     connect(itsGameView, &GameView::sig_rightClicked,
             this, [this](QPointF scenePos) {
         if (currentState != AppState::PLAYING) return;
@@ -37,45 +35,46 @@ void GameController::init() {
 
         PlayerModel* player = itsGameModel->getPlayer();
 
-        // Centre de la hitbox du joueur en coordonnées scène
         Vector2f ppos = player->getPosition();
         double cx = static_cast<double>(ppos.x) + Cfg::ENTITY_SIZE / 2.0;
         double cy = static_cast<double>(ppos.y) + Cfg::ENTITY_SIZE / 2.0;
 
-        // Angle en radians entre le centre joueur et le curseur
         double dx    = scenePos.x() - cx;
         double dy    = scenePos.y() - cy;
         float  angle = static_cast<float>(std::atan2(dy, dx));
 
-
-
         player->launchKatana(angle);
     });
 
-    // ── Liaison de la touche Échap pour la pause ──────────
+    // ── Touche Échap → pause ──────────────────────────────────────
     connect(itsGameView, &GameView::sig_escapePressed, this, &GameController::togglePause);
 
-    // ── Clic gauche → pistolet (futur) ───────────────────────────────────────
+    // ── Clic gauche → pistolet (futur) ───────────────────────────
     connect(itsGameView, &GameView::sig_leftClicked, this, [this]() {
         if (currentState == AppState::PLAYING && itsGameModel && itsGameModel->getPlayer()) {
             qDebug("pan !");
         }
     });
 
-    // ── Boutons fin de partie ────────────────────────────────────────────────
+    // ── Boutons fin de partie ─────────────────────────────────────
     connect(itsGameView, &GameView::sigRestartRq, this, &GameController::sigRestart);
     connect(itsGameView, &GameView::sigQuitRq,    this, &GameController::sigBackMenu);
 
-    // ── Chargement du niveau 1 ───────────────────────────────────────────────
+    // ── Chargement du registre de niveaux ────────────────────────
+    // DOIT être appelé avant tout loadLevel() — sans init(), count()
+    // retourne 0 et le modulo dans loadLevel() provoque un SIGFPE.
+    LevelRegistry::instance().init();
+
+    // ── Chargement du niveau 1 ────────────────────────────────────
     loadLevel(0);
 
-    // ── Liaison vue ↔ modèle ─────────────────────────────────────────────────
+    // ── Liaison vue ↔ modèle ──────────────────────────────────────
     itsGameView->initWithModel(itsGameModel);
 
-    // ── Focus clavier ────────────────────────────────────────────────────────
+    // ── Focus clavier ─────────────────────────────────────────────
     itsGameView->setFocus();
 
-    // ── Boucle de jeu (~60 FPS) ──────────────────────────────────────────────
+    // ── Boucle de jeu (~60 FPS) ───────────────────────────────────
     connect(&gameTimer, &QTimer::timeout, this, &GameController::slt_tick);
     elapsedTimer.start();
     gameTimer.start(Cfg::TIMER_MS);
@@ -84,46 +83,44 @@ void GameController::init() {
 }
 
 void GameController::togglePause() {
-    // Si on est en train de jouer -> On passe en PAUSE
     if (currentState == AppState::PLAYING) {
         currentState = AppState::PAUSED;
 
-        // (Optionnel) Création d'une bannière de pause textuelle à l'écran
         pauseTextOverlay = new QGraphicsTextItem("--- JEU EN PAUSE ---\nAppuyez sur ECHAP pour reprendre");
         QFont font("Arial", 22, QFont::Bold);
         pauseTextOverlay->setFont(font);
         pauseTextOverlay->setDefaultTextColor(Qt::white);
-        pauseTextOverlay->setZValue(100); // S'assure que le texte est au-premier plan
-
-        // Centrage automatique au milieu de la vue du joueur
-        pauseTextOverlay->setPos(itsGameView->mapToScene(itsGameView->width()/2 - 150, itsGameView->height()/2 - 40));
-
-        // On l'ajoute à la scène (ajoutez une méthode getScene() dans votre GameModel si besoin)
+        pauseTextOverlay->setZValue(100);
+        pauseTextOverlay->setPos(itsGameView->mapToScene(
+            itsGameView->width() / 2 - 150,
+            itsGameView->height() / 2 - 40));
         itsGameView->getScene()->addItem(pauseTextOverlay);
     }
-    // Si on était déjà en pause -> On REPREND la partie
     else if (currentState == AppState::PAUSED) {
         currentState = AppState::PLAYING;
 
-        // Nettoyage de l'overlay de pause
         if (pauseTextOverlay) {
             itsGameView->getScene()->removeItem(pauseTextOverlay);
             delete pauseTextOverlay;
             pauseTextOverlay = nullptr;
         }
-
-        // IMPORTANT : On réinitialise l'horloge de temps réel.
-        // Sinon, le premier 'dt' calculé au retour de la pause va inclure
-        // tout le temps passé dans le menu pause, provoquant un énorme téléportement !
         elapsedTimer.restart();
     }
 }
 
 void GameController::loadLevel(int index) {
-    index = index % LevelData::LEVEL_COUNT;
+    // ── Récupérer le descripteur depuis le registre ───────────────
+    LevelRegistry& reg = LevelRegistry::instance();
+    index = index % reg.count();
     currentLevelIndex = index;
 
-    const LevelDescriptor* desc = LevelData::ALL_LEVELS[index];
+    const LevelDescriptor* desc = reg.descriptorAt(index);
+    if (!desc || desc->rows == 0) {
+        qCritical() << "[GameController::loadLevel] Descripteur invalide pour l'index" << index
+                    << "— vérifiez que les fichiers texte du niveau sont bien présents"
+                    << "dans levels/level_" << (index + 1) << "/ et déclarés dans le .qrc";
+        return;
+    }
 
     if (itsGameView) itsGameView->clearScene();
 
@@ -141,10 +138,8 @@ void GameController::loadLevel(int index) {
 }
 
 void GameController::slt_tick() {
-    // Si le jeu est en pause, on calcule le temps écoulé pour ne pas perdre le fil,
-    // mais on quitte immédiatement SANS mettre à jour le jeu ni écouter le clavier.
     if (currentState == AppState::PAUSED) {
-        elapsedTimer.restart(); // On remet à zéro l'horloge en continu pendant la pause
+        elapsedTimer.restart();
         return;
     }
 
@@ -160,10 +155,6 @@ void GameController::slt_tick() {
 
     itsGameView->updateAllViews(dt, itsGameModel);
     itsGameView->followPlayer(itsGameModel);
-
-
-
-
 }
 
 void GameController::handleInput(float dt) {
@@ -197,7 +188,7 @@ void GameController::checkStateTransitions() {
         transitionTo(AppState::GAME_OVER);
     } else if (levelCtrl->levelJustCompleted) {
         int nextIndex = currentLevelIndex + 1;
-        if (nextIndex < LevelData::LEVEL_COUNT) {
+        if (nextIndex < LevelRegistry::instance().count()) {
             loadLevel(nextIndex);
             itsGameView->initWithModel(itsGameModel);
         } else {

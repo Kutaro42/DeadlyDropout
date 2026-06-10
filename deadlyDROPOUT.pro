@@ -26,9 +26,11 @@ SOURCES += \
     gunmodel.cpp \
     gunview.cpp \
     katana.cpp \
+    levelregistry.cpp \
     main.cpp           \
     entity.cpp         \
     enemy.cpp          \
+    matrixextractor.cpp \
     menucontroller.cpp \
     menuview.cpp \
     playermodel.cpp    \
@@ -69,8 +71,11 @@ HEADERS += \
     gunmodel.h \
     gunview.h \
     katana.h \
+    levelregistry.h \
+    matrixextractor.h \
     menucontroller.h \
     menuview.h \
+    player.h \
     projectile.h \
     rubblemodel.h \
     rubbleview.h \
@@ -108,3 +113,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     ressources.qrc
+
+DISTFILES += \
+    arborescence.txt
