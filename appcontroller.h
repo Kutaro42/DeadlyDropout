@@ -37,7 +37,7 @@ public:
 
     /**
      * @brief Demande le passage à un nouvel état de l'application.
-     * @param next Pointeur vers le futur état.
+     * @param next: Pointeur vers le futur état.
      */
     void switchState(AppState* next);
     
@@ -51,6 +51,9 @@ public:
      */
     void run();
 
+    /**
+     * @brief Initialise une nouvelle partit en supprimant puis recréant un gamecontroller.
+     */
     void reset();
 
 signals:
@@ -60,6 +63,9 @@ signals:
     void sigGameRq();
 
 private slots:
+    /**
+     * @brief Slots qui relance ou quite la partie en fin de partit (Game Over ou Victory).
+     */
     void sltRestart();
     void sltBackMenu();
 };

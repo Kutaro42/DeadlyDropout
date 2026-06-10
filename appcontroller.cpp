@@ -67,11 +67,6 @@ AppController::AppController(QWidget *parent)
     itsGameController = new GameController(this);
 
     // Commentaire développeur : 
-    // on construit le menu controller en prévision pour obtenir sa vue
-    //itsGameController->init();
-
-
-    // Commentaire développeur : 
     // On ajoute directement les VUES (et non leur parentWidget qui vaut nullptr)
     mainContainer->addWidget((itsMenuController->getMenuView()));
     mainContainer->addWidget(itsGameController->getView());
