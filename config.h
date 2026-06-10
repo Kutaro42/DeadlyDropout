@@ -70,9 +70,9 @@ namespace Cfg {
 
     // ─── Boss ────────────────────────────────────────────
     constexpr int   BOSSP1_MAX_HP       = 300;     ///< Points de vie maximum du boss en phase 1.
-    constexpr int   BOSSP2_MAX_HP       = 300;     ///< Points de vie maximum du zombie.
-    constexpr int   BOSSP3_MAX_HP       = 300;     ///< Points de vie maximum du zombie.
-    constexpr float BOSS_SPEED        = 90.0f;  ///< Vitesse de déplacement du zombie en pixels/s.
+    constexpr int   BOSSP2_MAX_HP       = 300;     ///< Points de vie maximum du boss en phase 2.
+    constexpr int   BOSSP3_MAX_HP       = 300;     ///< Points de vie maximum du boss en phase 3.
+    constexpr float BOSS_SPEED        = 90.0f;  ///< Vitesse de déplacement du boss en pixels/s.
     constexpr int   BOSS_DMG            = 20;      ///< Dégâts infligés par le boss.
     constexpr float BOSS_ATK_CD       = 1.5f;   ///< Temps de recharge de l'attaque en secondes.
     constexpr float BOSS_DETECT_R     = 400.0f; ///< Rayon de la bulle de détection du joueur.
@@ -98,14 +98,14 @@ enum class EnemyAIState    { IDLE, CHASING, ATTACKING };
 
 /** @brief Identifiants de tuiles pour la génération de la matrice de niveau. */
 enum class TileType {
-    FLOOR        = 0,
-    WALL         = 1,
-    ZOMBIE_SPAWN = 2,
-    EXIT_DOOR    = 3,
-    PLAYER_SPAWN = 4,
-    LAUNCHER_SPAWN  = 5, ///< Spawn du zombie lanceur de gravats.
+    FLOOR        = 0,       ///< Tuille de sols
+    WALL         = 1,       ///< Tuille de mur.
+    ZOMBIE_SPAWN = 2,       ///< Spawn du zombie.
+    EXIT_DOOR    = 3,       ///< Tuille de porte de fin de niveau.
+    PLAYER_SPAWN = 4,       ///< Tuille ou spawn le joueur.
+    LAUNCHER_SPAWN  = 5,    ///< Spawn du zombie lanceur de gravats.
     STANDARD_DOOR   = 6,    ///< Porte standard ouvrable par contact du joueur.
-    BOSS_SPAWN      = 7
+    BOSS_SPAWN      = 7     ///< Spawn du boss.
 };
 
 #endif // CONFIG_H

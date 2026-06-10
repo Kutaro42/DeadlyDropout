@@ -20,10 +20,11 @@ Enemy::Enemy(Vector2f pos, int maxHp, float spd, int dmg,
 {}
 
 void Enemy::takeDamage(int amount) {
+    // retire la vie correspondant a amount et vérifie si l'ennemi et mort pour le marquer
     hp -= amount;
     if (hp <= 0) {
         hp     = 0;
-        active = false; //Permet au LevelController de supprimer l'ennemi au prochain tick
+        active = false;
     }
 }
 

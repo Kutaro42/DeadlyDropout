@@ -85,7 +85,10 @@ QPixmap BossView::makeFallback()
 
 // ─── Avance une frame ────────────────────────────────────────────────────────
 void BossView::advanceFrames(float dt, const QVector<QPixmap>& frames) {
+    // Sécurité si erreur d'importation des sprites.
     if (frames.isEmpty()) return;
+
+    // Mise a jour du timer pour ensuite afficher le bon sprite dans l'animation
     frameTimer += dt;
     if (frameTimer >= animSpeed) {
         frameTimer   = 0.0f;
@@ -96,16 +99,19 @@ void BossView::advanceFrames(float dt, const QVector<QPixmap>& frames) {
 
 // ─── Mise à jour chaque tick ──────────────────────────────────────────────────
 void BossView::updateView(float dt) {
+
+    // Sécurité pour ne plus afficher le boss si il est mort
     if (!model || !model->isActive()) {
         hide();
         return;
     }
 
+    // lis le model pour syncroniser l'entité et le sprite
     setPos(model->getPosition().toQPointF());
-
     Vector2f vel = model->getVelocity();
     bool chasing = (model->getAIState() == EnemyAIState::CHASING);
 
+    // Déplace le boss si en chasse puis rafraichi le sprite selon l'état et le temps
     if (chasing && vel.length() > 0.01f) {
         // ── Walk : direction déduite du vecteur vitesse ────────
         int newDir = dirIdx(velocityToDir(vel));
