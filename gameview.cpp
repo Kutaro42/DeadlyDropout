@@ -75,6 +75,12 @@ void GameView::clearScene() {
 }
 
 // ─── Souris ───────────────────────────────────────────────────────
+void GameView::wheelEvent(QWheelEvent *event)
+{
+    // On accepte l'événement pour indiquer qu'il est géré,
+    // mais on ne fait rien, ce qui désactive le scroll.
+    event->ignore();
+}
 
 void GameView::mouseMoveEvent(QMouseEvent* event) {
     itsMouseViewPos = event->pos();

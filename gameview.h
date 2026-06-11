@@ -68,6 +68,7 @@ protected:
     void mousePressEvent(QMouseEvent* event) override;
     void mouseMoveEvent(QMouseEvent* event)  override;
     void drawForeground(QPainter* painter, const QRectF& rect) override;
+    void wheelEvent(QWheelEvent *event) override;//intercepter le scroll de la molette pour le désactiver
 
 private:
     void drawHUD(QPainter* painter, GameModel* model);
