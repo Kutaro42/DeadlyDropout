@@ -8,9 +8,11 @@
 #ifndef STANDARDDOORVIEW_H
 #define STANDARDDOORVIEW_H
 
+#include <QPainter>
 #include <QGraphicsRectItem>
 #include <QBrush>
 #include <QPen>
+#include <QFont>
 #include "standarddoormodel.h"
 #include "config.h"
 
@@ -25,8 +27,13 @@
  */
 class StandardDoorView : public QGraphicsRectItem {
 private:
-    StandardDoorModel* model;      ///< Référence vers le modèle logique.
+    StandardDoorModel* itsModel;      ///< Référence vers le modèle logique.
     bool               cachedOpen; ///< Cache de l'état pour éviter un redraw inutile.
+
+    bool           wasLocked;
+    QPixmap        unlockedPixmap;
+    QPixmap        lockedPixmap;
+
 
 public:
     /**
