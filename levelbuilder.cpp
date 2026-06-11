@@ -14,6 +14,8 @@
 #include "config.h"
 #include "bossmodel.h"
 #include "bossview.h"
+#include "bossdoormodel.h"
+#include "bossdoorview.h"
 
 void LevelBuilder::build(const LevelDescriptor& desc,
                           LevelModel&            levelModel,
@@ -104,6 +106,15 @@ void LevelBuilder::build(const LevelDescriptor& desc,
                 auto* BossV = new BossView(BossM);
                 levelModel.addEnemy(BossM);
                 scene->addItem(BossV);
+                break;
+            }
+            case TileType::BOSS_DOOR: {
+                // La porte de boss occupe 2×1 tuiles (2 de large, 1 de haut)
+                // pour boucher un couloir standard.
+                auto* bdm = new BossDoorModel(pos, ts_f * 2.0f, ts_f);
+                auto* bdv = new BossDoorView(bdm);
+                levelModel.addBossDoor(bdm);
+                scene->addItem(bdv);
                 break;
             }
             default:

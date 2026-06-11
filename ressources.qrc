@@ -97,6 +97,10 @@
         <file>Textures/Enemy/Boss/Dead/Left.png</file>
         <file>Textures/Enemy/Boss/Dead/Right.png</file>
 
+        <!-- ── Cooldown HUD ───────────────────────────────── -->
+        <file>Textures/Cooldown/cooldowngun.png</file>
+        <file>Textures/Cooldown/cooldownkatana.png</file>
+
         <!-- ── Tile mur ─────────────────── -->
         <file>Textures/Environment/Wall/wall_tileset.png</file>
         <file>Textures/Environment/Floor/floor_tileset.png</file>

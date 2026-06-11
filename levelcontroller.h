@@ -54,6 +54,7 @@ private:
     void checkRubbleCollisions(PlayerModel& player, LevelModel& level);                ///< Détecte les impacts des gravats sur le joueur et les murs.
     void checkBulletCollisions(PlayerModel& player, LevelModel& level);
     void checkStandardDoorInteractions(PlayerModel& player, LevelModel& level);        ///< Ouvre les portes standards au contact du joueur et résout leur collision.
+    void checkBossDoorInteractions(PlayerModel& player, LevelModel& level);             ///< Ouvre les portes de boss à la mort du boss et résout leur collision.
 
     /**
      * @brief Résout une collision AABB (Axis-Aligned Bounding Box).

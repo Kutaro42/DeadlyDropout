@@ -13,6 +13,9 @@
 #include <QSet>
 #include <QKeyEvent>
 #include <QPainter>
+#include <QVector>
+#include <QPixmap>
+#include <cmath>
 #include "playerview.h"
 #include "zombiestdview.h"
 #include "zombielauncherview.h"
@@ -26,18 +29,6 @@
 #include <QPushButton>
 #include <QPointF>
 
-// ═══════════════════════════════════════════════════════════════════
-//  GameView — vue principale du jeu (couche View, MVC).
-//  Hérite QGraphicsView ; possède et affiche la QGraphicsScene.
-//
-//  Responsabilités :
-//    - Capture des touches clavier (QSet<int> pressedKeys)
-//    - Suivi continu de la position souris (mouseMoveEvent → itsMouseScenePos)
-//    - Synchronisation des vues à chaque tick (updateAllViews)
-//    - Caméra centrée sur le joueur (followPlayer)
-//    - Affichage du HUD en surimpression (drawForeground override)
-// ═══════════════════════════════════════════════════════════════════
-
 /**
  * @class GameView
  * @brief Gère le rendu visuel du jeu, l'affichage du HUD, la caméra et capte les événements.
@@ -46,60 +37,26 @@ class GameView : public QGraphicsView {
     Q_OBJECT
 
 private:
-    QGraphicsScene* scene;          ///< Scène Qt contenant les éléments graphiques 2D.
-    PlayerView*     playerView;     ///< Représentation graphique du joueur.
-    GunView*        gunView;        ///< Représentation graphique du pistolet.
-    QSet<int>       pressedKeys;    ///< Ensemble des touches clavier actuellement enfoncées.
-    GameModel*      currentModel;   ///< Pointeur vers le modèle (utile pour le dessin du HUD).
-
-    /// Dernière position de la souris en coordonnées de scène, mise à jour en continu.
-    QPointF         itsMouseScenePos;
+    QGraphicsScene* scene;
+    PlayerView*     playerView;
+    GunView*        gunView;
+    QSet<int>       pressedKeys;
+    GameModel*      currentModel;
+    QPointF         itsMouseViewPos;///< Position souris en coordonnées viewport (ne dépend pas de la caméra).
 
 public:
-    /**
-     * @brief Constructeur de la vue de jeu.
-     */
     explicit GameView(QWidget* parent = nullptr);
     ~GameView() override;
 
-    QGraphicsScene* getScene()           const { return scene;             }
-    QSet<int>       getPressedKeys()     const { return pressedKeys;       }
-    PlayerView*     getPlayerView()      const { return playerView;        }
+    QGraphicsScene* getScene()         const { return scene;            }
+    QSet<int>       getPressedKeys()   const { return pressedKeys;      }
+    PlayerView*     getPlayerView()    const { return playerView;       }
+    QPointF         getMouseScenePos() const { return mapToScene(itsMouseViewPos.toPoint()); }
 
-    /**
-     * @brief Retourne la dernière position de la souris dans l'espace scène.
-     * @return Coordonnées scène du curseur.
-     */
-    QPointF         getMouseScenePos()   const { return itsMouseScenePos;  }
-
-    /**
-     * @brief Injecte les dépendances graphiques à partir du modèle de données (Création du joueur).
-     * @param model Le modèle contenant les informations à afficher.
-     */
     void initWithModel(GameModel* model);
-
-    /**
-     * @brief Actualise toutes les entités visuelles attachées à la scène.
-     * @param dt Delta-time en secondes.
-     * @param model Modèle source de la mise à jour.
-     */
     void updateAllViews(float dt, GameModel* model);
-
-    /**
-     * @brief Centre le décalage de la caméra sur les coordonnées du joueur.
-     * @param model Modèle permettant de trouver le joueur.
-     */
     void followPlayer(GameModel* model);
-
-    /**
-     * @brief Purge la scène de tous ses items visuels.
-     */
     void clearScene();
-
-    /**
-     * @brief Affiche un écran de transition ou de fin.
-     * @param message Texte superposé à afficher (ex: "Game Over").
-     */
     void showOverlay(const QString& message);
 
 protected:
@@ -107,34 +64,37 @@ protected:
     void keyReleaseEvent(QKeyEvent* e)       override;
     void mousePressEvent(QMouseEvent* event) override;
     void mouseMoveEvent(QMouseEvent* event)  override;
-
-    /**
-     * @brief Méthode Qt surchargée pour dessiner par-dessus la scène (Affichage tête haute - HUD).
-     */
     void drawForeground(QPainter* painter, const QRectF& rect) override;
 
 private:
     void drawHUD(QPainter* painter, GameModel* model);
     void drawHpBar(QPainter* p, int hp, int maxHp, int x, int y);
 
-    QString      overlayMessage; ///< Message tampon de fin de partie.
-    bool         showingOverlay; ///< Déclencheur visuel de l'overlay sombre.
-    QPushButton* menuButton   = nullptr; ///< Bouton pour retourner à l'écran de menu.
-    QPushButton* replayButton = nullptr; ///< Bouton pour relancer directement la partie.
+    QString      overlayMessage;
+    bool         showingOverlay;
+    QPushButton* menuButton   = nullptr;
+    QPushButton* replayButton = nullptr;
+
+    // ─── Clignotement gold ────────────────────────────────────────
+    int   lastGold;
+    float goldFlashTimer;
+    bool  goldFlashVisible;
+    float goldFlashCycle;
+
+    // ─── Clignotement clé ─────────────────────────────────────────
+    bool  lastHasKey;
+    float keyFlashTimer;
+    bool  keyFlashVisible;
+    float keyFlashCycle;
+
+    // ─── Sprites cooldown HUD ─────────────────────────────────────
+    QVector<QPixmap> gunCdFrames;    ///< 15 frames 26×26 cooldown pistolet.
+    QVector<QPixmap> katanaCdFrames; ///< 21 frames 26×26 cooldown katana.
 
 signals:
-    /**
-     * @brief Émis lors d'un clic droit : transporte la position en coordonnées de scène
-     *        afin que le contrôleur puisse calculer l'angle d'attaque exact.
-     */
     void sig_rightClicked(QPointF scenePos);
-
-    /** @brief Émis lors d'un clic gauche capté dans la zone de jeu. */
     void sig_leftClicked(QPointF scenePos);
-
-    /** @brief Émis lorsque la touche echap capté dans la zone de jeu. */
-    void sig_escapePressed(); // Signal émis lors d'un appui sur Échap
-
+    void sig_escapePressed();
     void sigRestartRq();
     void sigQuitRq();
 };
