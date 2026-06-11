@@ -78,7 +78,7 @@ private:
 
     // ─── Dimensions d'affichage du sprite pistolet ───────────────
     static constexpr int GUN_W = 32; ///< Largeur affichée du pistolet (px).
-    static constexpr int GUN_H = 16; ///< Hauteur affichée du pistolet (px).
+    static constexpr int GUN_H = 32; ///< Hauteur affichée du pistolet (px).
 };
 
 #endif // GUNVIEW_H
