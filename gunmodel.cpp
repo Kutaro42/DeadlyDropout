@@ -17,10 +17,10 @@ GunModel::GunModel(int magSz, int reserveSz)
     , baseDamage(Cfg::BULLET_DAMAGE)
     , critChance(Cfg::BULLET_CRIT_CHANCE)
 {
-    emptyMagSound = new QSoundEffect(this);
+    emptyMagSound = new QSoundEffect();
     emptyMagSound->setSource(QUrl("qrc:/images/Sound/click.wav"));
     emptyMagSound->setVolume(0.5f);
-    gunFireSound = new QSoundEffect(this);
+    gunFireSound = new QSoundEffect();
     gunFireSound->setSource(QUrl("qrc:/images/Sound/gunFireSound.wav"));
     gunFireSound->setVolume(0.5f);
 }
@@ -29,6 +29,12 @@ GunModel::~GunModel()
 {
     for (BulletModel* b : bullets) delete b;
     bullets.clear();
+    if (emptyMagSound) {
+        emptyMagSound->deleteLater();
+    }
+    if (gunFireSound) {
+        gunFireSound->deleteLater();
+    }
 }
 
 // ─── Update : cooldown + déplacement des balles ───────────────────
