@@ -10,6 +10,7 @@
 #include <QRectF>
 #include <QPointF>
 #include <cmath>
+#include <cstdlib>
 
 LevelController::LevelController()
     : levelJustCompleted(false)
@@ -80,7 +81,9 @@ void LevelController::distributeGold(PlayerModel& player,
 {
     for (Enemy* e : level.getEnemies()) {
         if (!e->isActive() && !e->hasDroppedGold()) {
-            int gold = e->getGoldDrop();
+            // Gold de base (fixé par type d'ennemi) + bonus aléatoire 5-10 (GDD)
+            int bonus = Cfg::ZOMBIE_GOLD_MIN + (rand() % (Cfg::ZOMBIE_GOLD_MAX - Cfg::ZOMBIE_GOLD_MIN + 1));
+            int gold  = e->getGoldDrop() + bonus;
             player.addGold(gold);
             e->markGoldDropped();
             pendingPopups.append({gold, PopupRequest::Type::Gold, popupPos(e)});
