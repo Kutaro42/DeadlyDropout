@@ -148,13 +148,9 @@ void GunView::syncBulletViews(QGraphicsScene* scene)
     // 1) Créer les vues pour les nouvelles balles
     while (bulletViews.size() < bullets.size()) {
         int idx = bulletViews.size();
-        const int sz = static_cast<int>(Cfg::BULLET_SIZE);
-        auto* ellipse = new QGraphicsEllipseItem(0, 0, sz, sz);
-        ellipse->setBrush(QBrush(QColor(255, 220, 60)));
-        ellipse->setPen(QPen(Qt::NoPen));
-        ellipse->setZValue(Cfg::Z_ENTITY + 0.5);
-        scene->addItem(ellipse);
-        bulletViews.append(ellipse);
+        auto* bv = new BulletView(bullets[idx]);
+        scene->addItem(bv);
+        bulletViews.append(bv);
         bulletModels.append(bullets[idx]);
     }
 
@@ -169,10 +165,8 @@ void GunView::syncBulletViews(QGraphicsScene* scene)
     }
 
     // 3) Mettre à jour la position des vues restantes
-    for (int i = 0; i < bulletViews.size(); ++i) {
-        Vector2f bpos = bulletModels[i]->getPosition();
-        bulletViews[i]->setPos(bpos.toQPointF());
-    }
+    for (int i = 0; i < bulletViews.size(); ++i)
+        bulletViews[i]->updateView();
 
     // 4) Libérer la mémoire des modèles inactifs
     gun->pruneInactiveBullets();

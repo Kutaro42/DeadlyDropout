@@ -41,6 +41,16 @@ public:
      * @brief Actualise la couleur selon l'état ouvert/fermé du modèle.
      */
     void updateView();
+
+    /**
+     * @brief Fallback si les textures sont introuvables.
+     */
+    QPixmap makeFallback(int w, int h, bool isLocked);
+
+    /**
+     * @brief Cherche, construit et charge les textures
+     */
+    void buildPixmaps();
 };
 
 #endif // STANDARDDOORVIEW_H

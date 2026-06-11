@@ -1,10 +1,20 @@
 #ifndef BULLETVIEW_H
 #define BULLETVIEW_H
 
-class bulletView
+#include <QGraphicsPixmapItem>
+#include <QPixmap>
+#include "bulletmodel.h"
+#include "config.h"
+
+class BulletView : public QGraphicsPixmapItem
 {
 public:
-    bulletView();
+    explicit BulletView(BulletModel* model, QGraphicsItem* parent = nullptr);
+    void updateView();
+
+private:
+    BulletModel* model;
+    static QPixmap loadSprite();
 };
 
 #endif // BULLETVIEW_H

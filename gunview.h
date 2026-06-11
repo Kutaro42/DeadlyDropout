@@ -7,6 +7,7 @@
 #ifndef GUNVIEW_H
 #define GUNVIEW_H
 
+#include "bulletview.h"
 #include <QGraphicsPixmapItem>
 #include <QVector>
 #include <QPixmap>
@@ -14,6 +15,8 @@
 #include "playermodel.h"
 #include "bulletmodel.h"
 #include "config.h"
+
+
 
 /**
  * @class GunView
@@ -63,7 +66,7 @@ private:
     bool         flipped;  ///< true quand le sprite est affiché en miroir vertical.
 
     /// Vues des balles en vol.
-    QVector<QGraphicsItem*> bulletViews;
+    QVector<BulletView*> bulletViews;
     /// Modèles correspondants (même index que bulletViews).
     QVector<BulletModel*>   bulletModels;
 

@@ -76,7 +76,6 @@ HEADERS += \
     matrixextractor.h \
     menucontroller.h \
     menuview.h \
-    player.h \
     projectile.h \
     rubblemodel.h \
     rubbleview.h \
