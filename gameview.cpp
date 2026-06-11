@@ -15,28 +15,42 @@ GameView::GameView(QWidget* parent)
     : QGraphicsView(parent),
       scene(new QGraphicsScene(this)),
       playerView(nullptr),
+      gunView(nullptr),
       currentModel(nullptr),
       showingOverlay(false),
-      itsMouseScenePos(0.0, 0.0)
+      itsMouseScenePos(0.0, 0.0),
+      lastGold(-1),
+      goldFlashTimer(0.0f),
+      goldFlashVisible(false),
+      goldFlashCycle(0.0f),
+      lastHasKey(false),
+      keyFlashTimer(0.0f),
+      keyFlashVisible(false),
+      keyFlashCycle(0.0f)
 {
     setScene(scene);
     setFixedSize(Cfg::WINDOW_W, Cfg::WINDOW_H);
-
-    // Désactive les scrollbars natives, car la caméra (followPlayer) est gérée par code.
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    // Configuration volontaire d'un rendu "pixel-perfect" sans flou pour l'esthétique rétro.
     setRenderHint(QPainter::Antialiasing,          false);
     setRenderHint(QPainter::SmoothPixmapTransform, false);
-
     setBackgroundBrush(QBrush(QColor(15, 12, 8)));
     setFocusPolicy(Qt::StrongFocus);
     setWindowTitle("Deadly Dropout");
-
-    // Active le tracking de la souris sans qu'un bouton soit pressé,
-    // afin de toujours connaître la position courante du curseur.
     setMouseTracking(true);
+
+    // ── Chargement spritesheets cooldown HUD ──────────────────────
+    // gun : 15 frames 26×26 | katana : 21 frames 26×26
+    // frame 0 = arme prête, dernière frame = vient d'être utilisée
+    auto loadCdSheet = [](const QString& path, int nFrames,
+                          QVector<QPixmap>& out) {
+        QPixmap sheet(path);
+        if (sheet.isNull()) return;
+        for (int i = 0; i < nFrames; ++i)
+            out.append(sheet.copy(i * 26, 0, 26, 26));
+    };
+    loadCdSheet(":/images/Textures/Cooldown/cooldowngun.png",    15, gunCdFrames);
+    loadCdSheet(":/images/Textures/Cooldown/cooldownkatana.png", 21, katanaCdFrames);
 }
 
 GameView::~GameView() {}
@@ -44,10 +58,8 @@ GameView::~GameView() {}
 void GameView::initWithModel(GameModel* model) {
     currentModel = model;
     if (!model || !model->getPlayer()) return;
-
     playerView = new PlayerView(model->getPlayer());
     scene->addItem(playerView);
-
     gunView = new GunView(&model->getPlayer()->getGun(), model->getPlayer());
     scene->addItem(gunView);
 }
@@ -58,33 +70,61 @@ void GameView::clearScene() {
     gunView    = nullptr;
 }
 
-// ─── Souris ──────────────────────────────────────────────────────────────────
+// ─── Souris ───────────────────────────────────────────────────────
 
 void GameView::mouseMoveEvent(QMouseEvent* event) {
-    // Convertit les coordonnées widget → coordonnées scène et met à jour le cache.
     itsMouseScenePos = mapToScene(event->pos());
     QGraphicsView::mouseMoveEvent(event);
 }
 
 void GameView::mousePressEvent(QMouseEvent* event) {
-    // Met à jour la position même au moment du clic (la souris peut ne pas avoir bougé
-    // depuis le dernier mouseMoveEvent si le joueur a déplacé la caméra).
     itsMouseScenePos = mapToScene(event->pos());
-
-    if (event->button() == Qt::RightButton) {
+    if (event->button() == Qt::RightButton)
         emit sig_rightClicked(itsMouseScenePos);
-    } else if (event->button() == Qt::LeftButton) {
+    else if (event->button() == Qt::LeftButton)
         emit sig_leftClicked(itsMouseScenePos);
-    }
-
     QGraphicsView::mousePressEvent(event);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
+// ─── Mise à jour ──────────────────────────────────────────────────
 
 void GameView::updateAllViews(float dt, GameModel* model) {
     if (!model) return;
     currentModel = model;
+
+    // ── Clignotement gold ─────────────────────────────────────────
+    if (model->getPlayer()) {
+        int currentGold = model->getPlayer()->getGold();
+        if (lastGold >= 0 && currentGold > lastGold) {
+            goldFlashTimer   = 1.2f;
+            goldFlashCycle   = 0.0f;
+            goldFlashVisible = true;
+        }
+        lastGold = currentGold;
+    }
+    if (goldFlashTimer > 0.0f) {
+        goldFlashTimer -= dt;
+        goldFlashCycle += dt;
+        if (goldFlashCycle >= 0.1f) { goldFlashCycle = 0.0f; goldFlashVisible = !goldFlashVisible; }
+        if (goldFlashTimer <= 0.0f) { goldFlashTimer = 0.0f; goldFlashVisible = false; }
+    }
+
+    // ── Clignotement clé ──────────────────────────────────────────
+    if (model->getPlayer()) {
+        bool currentKey = model->getPlayer()->getHasKey();
+        if (currentKey && !lastHasKey) {
+            keyFlashTimer   = 1.8f;
+            keyFlashCycle   = 0.0f;
+            keyFlashVisible = true;
+        }
+        lastHasKey = currentKey;
+    }
+    if (keyFlashTimer > 0.0f) {
+        keyFlashTimer -= dt;
+        keyFlashCycle += dt;
+        if (keyFlashCycle >= 0.1f) { keyFlashCycle = 0.0f; keyFlashVisible = !keyFlashVisible; }
+        if (keyFlashTimer <= 0.0f) { keyFlashTimer = 0.0f; keyFlashVisible = false; }
+    }
 
     if (playerView) playerView->updateView(dt);
     if (gunView)    gunView->updateView(dt, itsMouseScenePos, scene);
@@ -96,8 +136,8 @@ void GameView::updateAllViews(float dt, GameModel* model) {
             lv->updateView(dt);
         else if (auto* ev = dynamic_cast<ExitDoorView*>(item))
             ev->updateView();
-        else if (auto*Bossv = dynamic_cast<BossView*>(item))
-            Bossv->updateView(dt);
+        else if (auto* bv = dynamic_cast<BossView*>(item))
+            bv->updateView(dt);
         else if (auto* dv = dynamic_cast<StandardDoorView*>(item))
             dv->updateView();
         else if (auto* bdv = dynamic_cast<BossDoorView*>(item))
@@ -124,28 +164,19 @@ void GameView::showOverlay(const QString& message) {
         menuButton->setStyleSheet(
             "QPushButton {"
             "  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #1a1a1a, stop:1 #0d0d0d);"
-            "  color: #00ffcc;"
-            "  font-size: 16px;"
-            "  font-weight: bold;"
-            "  border: 2px solid #00ffcc;"
-            "  border-radius: 8px;"
-            "}"
+            "  color: #00ffcc; font-size: 16px; font-weight: bold;"
+            "  border: 2px solid #00ffcc; border-radius: 8px; }"
             "QPushButton:hover { background: #00ffcc; color: #000000; border: 2px solid #ffffff; }"
             "QPushButton:pressed { background: #00cc99; color: #ffffff; }");
     }
-
     if (!replayButton) {
         replayButton = new QPushButton("Rejouer", this);
         replayButton->setFixedSize(140, 45);
         replayButton->setStyleSheet(
             "QPushButton {"
             "  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #1a1a1a, stop:1 #0d0d0d);"
-            "  color: #ff3366;"
-            "  font-size: 16px;"
-            "  font-weight: bold;"
-            "  border: 2px solid #ff3366;"
-            "  border-radius: 8px;"
-            "}"
+            "  color: #ff3366; font-size: 16px; font-weight: bold;"
+            "  border: 2px solid #ff3366; border-radius: 8px; }"
             "QPushButton:hover { background: #ff3366; color: #000000; border: 2px solid #ffffff; }"
             "QPushButton:pressed { background: #cc0044; color: #ffffff; }");
     }
@@ -153,29 +184,23 @@ void GameView::showOverlay(const QString& message) {
     connect(replayButton, &QPushButton::clicked, this, &GameView::sigRestartRq);
     connect(menuButton,   &QPushButton::clicked, this, &GameView::sigQuitRq);
 
-    int viewW   = this->width();
-    int viewH   = this->height();
-    int centerY = viewH / 2 + 50;
-    menuButton->move(viewW / 2 - 155, centerY);
-    replayButton->move(viewW / 2 + 15, centerY);
+    int centerY = this->height() / 2 + 50;
+    menuButton->move(this->width() / 2 - 155, centerY);
+    replayButton->move(this->width() / 2 + 15, centerY);
     menuButton->show();
     replayButton->show();
-
     viewport()->update();
 }
 
+// ─── Clavier ──────────────────────────────────────────────────────
+
 void GameView::keyPressEvent(QKeyEvent* e) {
     pressedKeys.insert(e->key());
-    // 1. On intercepte Échap en premier, sans conditions
-    if (e->key() == Qt::Key_Escape && !e->isAutoRepeat()) {
+    if (e->key() == Qt::Key_Escape && !e->isAutoRepeat())
         emit sig_escapePressed();
-    }
-
     if (e->key() == Qt::Key_Up   || e->key() == Qt::Key_Down ||
         e->key() == Qt::Key_Left || e->key() == Qt::Key_Right) {
-
-        e->accept();
-        return;
+        e->accept(); return;
     }
     QGraphicsView::keyPressEvent(e);
 }
@@ -184,17 +209,16 @@ void GameView::keyReleaseEvent(QKeyEvent* e) {
     pressedKeys.remove(e->key());
     if (e->key() == Qt::Key_Up   || e->key() == Qt::Key_Down ||
         e->key() == Qt::Key_Left || e->key() == Qt::Key_Right) {
-        e->accept();
-        return;
+        e->accept(); return;
     }
     QGraphicsView::keyReleaseEvent(e);
 }
 
+// ─── Rendu HUD ────────────────────────────────────────────────────
+
 void GameView::drawForeground(QPainter* painter, const QRectF&) {
     painter->resetTransform();
-
     if (currentModel) drawHUD(painter, currentModel);
-
     if (showingOverlay) {
         painter->fillRect(0, 0, Cfg::WINDOW_W, Cfg::WINDOW_H, QColor(0, 0, 0, 160));
         QFont font("Arial", 28, QFont::Bold);
@@ -209,47 +233,104 @@ void GameView::drawHUD(QPainter* p, GameModel* model) {
     PlayerModel* player = model->getPlayer();
     if (!player) return;
 
-    int mx = Cfg::HUD_MARGIN;
-    int my = Cfg::HUD_MARGIN;
+    const int mx = Cfg::HUD_MARGIN;
+    const int my = Cfg::HUD_MARGIN;
 
     drawHpBar(p, player->getHp(), player->getMaxHp(), mx, my);
 
     QFont font("Arial", 9, QFont::Bold);
     p->setFont(font);
-    p->setPen(QColor(255, 210, 60));
-    p->drawText(mx, my + Cfg::HP_BAR_H + 18,
-                QString("GOLD : %1").arg(player->getGold()));
 
-    if (player->getHasKey()) {
-        p->setPen(QColor(192, 192, 192));
-        p->drawText(mx + 72, my + Cfg::HP_BAR_H + 18, "KEY: FOUND");
-    } else {
-        p->setPen(QColor(192, 192, 192));
-        p->drawText(mx + 72, my + Cfg::HP_BAR_H + 18, "KEY: NOT FOUND");
+    // Ligne GOLD + CLÉ : même rowRectY / rowTextY pour alignement parfait
+    const int rowH     = 16;
+    const int rowRectY = my + Cfg::HP_BAR_H + 4;
+    const int rowTextY = rowRectY + 12;
+
+    // ── Gold ──────────────────────────────────────────────────────
+    {
+        const int goldRectW = 68; // s'arrête avant KEY (mx+72)
+        if (goldFlashTimer > 0.0f && goldFlashVisible) {
+            p->fillRect(mx, rowRectY, goldRectW, rowH, QColor(255, 210, 0, 200));
+            p->setPen(QColor(0, 0, 0));
+        } else {
+            p->setPen(QColor(255, 210, 60));
+        }
+        p->drawText(mx, rowTextY, QString("GOLD : %1").arg(player->getGold()));
     }
 
-    // Munitions pistolet
-    const GunModel& gun = player->getGun();
-    QColor ammoColor = (gun.getMag() == 0) ? QColor(220, 60, 60) : QColor(100, 200, 255);
-    p->setPen(ammoColor);
-    p->drawText(mx, my + Cfg::HP_BAR_H + 36,
-                QString("GUN : %1 / %2  [R:%3]")
-                    .arg(gun.getMag())
-                    .arg(gun.getMagSize())
-                    .arg(gun.getReserve()));
+    // ── Clé ───────────────────────────────────────────────────────
+    {
+        const int keyRectX = mx + 72;
+        if (player->getHasKey()) {
+            if (keyFlashTimer > 0.0f && keyFlashVisible) {
+                QFontMetrics fm(p->font());
+                int tw = fm.horizontalAdvance("KEY: FOUND");
+                p->fillRect(keyRectX, rowRectY, tw + 4, rowH, QColor(220, 220, 100, 220));
+                p->setPen(QColor(0, 0, 0));
+            } else {
+                p->setPen(QColor(192, 192, 192));
+            }
+            p->drawText(keyRectX, rowTextY, "KEY: FOUND");
+        } else {
+            p->setPen(QColor(192, 192, 192));
+            p->drawText(keyRectX, rowTextY, "KEY: NOT FOUND");
+        }
+    }
 
-    if (player->isKatanaActive()) {
-        p->setPen(QColor(255, 100, 60));
-        p->drawText(mx, my + Cfg::HP_BAR_H + 36, "⚔ TRANCHE !");
+    // ── Niveau (haut à droite) ────────────────────────────────────
+    {
+        QString lvlText = QString("NIVEAU  %1").arg(model->getLevelIndex() + 1);
+        QFontMetrics fm(p->font());
+        int tw = fm.horizontalAdvance(lvlText);
+        int lx = Cfg::WINDOW_W - Cfg::HUD_MARGIN - tw - 4;
+        p->fillRect(lx - 2, my, tw + 8, rowH, QColor(0, 0, 0, 140));
+        p->setPen(QColor(200, 200, 200));
+        p->drawText(lx + 2, my + 12, lvlText);
+    }
+
+    // ── Icônes cooldown (au-dessus des munitions, bas à gauche) ───
+    {
+        const int ICON_SIZE = 65; // 26px source × 250%
+        const int iconY = Cfg::WINDOW_H - Cfg::HUD_MARGIN - 4 - 14 - ICON_SIZE - 4;
+        const int iconX = Cfg::HUD_MARGIN;
+
+        if (!gunCdFrames.isEmpty()) {
+            float ratio = player->getGun().getCooldownRatio();
+            int   frame = qBound(0, static_cast<int>(std::round(
+                              ratio * (gunCdFrames.size() - 1))), gunCdFrames.size() - 1);
+            p->drawPixmap(iconX, iconY, ICON_SIZE, ICON_SIZE, gunCdFrames[frame]);
+        }
+        if (!katanaCdFrames.isEmpty()) {
+            float ratio = player->getKatana().getCooldownRatio();
+            int   frame = qBound(0, static_cast<int>(std::round(
+                              ratio * (katanaCdFrames.size() - 1))), katanaCdFrames.size() - 1);
+            p->drawPixmap(iconX + ICON_SIZE + 6, iconY, ICON_SIZE, ICON_SIZE, katanaCdFrames[frame]);
+        }
+    }
+
+    // ── Munitions (bas à gauche, police 14pt) ─────────────────────
+    {
+        const GunModel& gun = player->getGun();
+        QColor ammoColor = (gun.getMag() == 0) ? QColor(220, 60, 60) : QColor(100, 200, 255);
+        QString ammoText = QString("GUN : %1 / %2  [R:%3]")
+                               .arg(gun.getMag()).arg(gun.getMagSize()).arg(gun.getReserve());
+        QFont ammoFont("Arial", 14, QFont::Bold);
+        p->setFont(ammoFont);
+        QFontMetrics fm(ammoFont);
+        int ax = Cfg::HUD_MARGIN;
+        int ay = Cfg::WINDOW_H - Cfg::HUD_MARGIN - 4;
+        p->fillRect(ax - 4, ay - fm.height() + 2, fm.horizontalAdvance(ammoText) + 10,
+                    fm.height() + 4, QColor(0, 0, 0, 140));
+        p->setPen(ammoColor);
+        p->drawText(ax, ay, ammoText);
+        p->setFont(font); // restaurer police HUD
     }
 }
 
 void GameView::drawHpBar(QPainter* p, int hp, int maxHp, int x, int y) {
     int bw = Cfg::HP_BAR_W;
     int bh = Cfg::HP_BAR_H;
-
     p->fillRect(x, y, bw, bh, QColor(50, 0, 0));
-
     if (maxHp > 0) {
         double ratio  = static_cast<double>(hp) / maxHp;
         int    filled = static_cast<int>(bw * ratio);
@@ -258,12 +339,10 @@ void GameView::drawHpBar(QPainter* p, int hp, int maxHp, int x, int y) {
                                    : QColor(200, 30, 30);
         p->fillRect(x, y, filled, bh, col);
     }
-
     p->setPen(QPen(Qt::white, 1));
     p->drawRect(x, y, bw, bh);
     QFont f("Arial", 8, QFont::Bold);
     p->setFont(f);
     p->setPen(Qt::white);
-    p->drawText(x + 4, y + bh - 3,
-                QString("HP : %1 / %2").arg(hp).arg(maxHp));
+    p->drawText(x + 4, y + bh - 3, QString("HP : %1 / %2").arg(hp).arg(maxHp));
 }

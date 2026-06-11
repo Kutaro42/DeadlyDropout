@@ -75,6 +75,9 @@ public:
     int  getMagSize()  const { return magSize;  } ///< Taille maximale du chargeur.
     int  getReserve()  const { return reserve;  } ///< Balles en réserve générale.
     bool isReady()     const { return shootTimer <= 0.0f; } ///< Cooldown écoulé ?
+    float getCooldownRatio() const {
+        return (shootCooldown > 0.0f) ? (shootTimer / shootCooldown) : 0.0f;
+    } ///< Ratio cooldown gun : 1.0=vient de tirer, 0.0=prêt.
 
     // ─── Setters upgrades ─────────────────────────────────────
     void addReserve(int amount)        { reserve += amount; }
