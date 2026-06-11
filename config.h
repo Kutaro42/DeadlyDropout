@@ -102,6 +102,12 @@ namespace Cfg {
     constexpr int   HUD_MARGIN          = 12;     ///< Marge extérieure du HUD.
     constexpr int   HP_BAR_W            = 180;    ///< Largeur de la barre de vie.
     constexpr int   HP_BAR_H            = 16;     ///< Hauteur de la barre de vie.
+
+    // ─── Popups flottants (dégâts / gold) ──────────────────────
+    constexpr double Z_POPUP         = 5.0;    ///< Au-dessus de tout.
+    constexpr float  POPUP_DMG_DUR   = 1.0f;  ///< Durée popup dégâts (s).
+    constexpr float  POPUP_GOLD_DUR  = 1.4f;  ///< Durée popup gold (s).
+    constexpr float  POPUP_RISE_PX   = 40.0f; ///< Montée verticale (px).
 }
 
 // ─── Énumérations ─────────────────────────────────────────────────

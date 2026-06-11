@@ -25,6 +25,9 @@
 #include "gunview.h"
 #include "gamemodel.h"
 #include "config.h"
+#include "levelcontroller.h"
+#include <QGraphicsTextItem>
+#include <QGraphicsOpacityEffect>
 #include <QMouseEvent>
 #include <QPushButton>
 #include <QPointF>
@@ -54,7 +57,7 @@ public:
     QPointF         getMouseScenePos() const { return mapToScene(itsMouseViewPos.toPoint()); }
 
     void initWithModel(GameModel* model);
-    void updateAllViews(float dt, GameModel* model);
+    void updateAllViews(float dt, GameModel* model, LevelController* levelCtrl = nullptr);
     void followPlayer(GameModel* model);
     void clearScene();
     void showOverlay(const QString& message);
@@ -69,6 +72,17 @@ protected:
 private:
     void drawHUD(QPainter* painter, GameModel* model);
     void drawHpBar(QPainter* p, int hp, int maxHp, int x, int y);
+
+    // ─── Popups flottants (dégâts / gold) ─────────────────────────
+    /** @brief État d'animation d'un popup flottant. */
+    struct PopupAnim {
+        QGraphicsTextItem*     item;
+        QGraphicsOpacityEffect* fx;
+        float elapsed;
+        float duration;
+        float originY;
+    };
+    QVector<PopupAnim> activePopups;
 
     QString      overlayMessage;
     bool         showingOverlay;

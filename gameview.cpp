@@ -5,6 +5,9 @@
 
 #include "gameview.h"
 #include "zombielauncherview.h"
+#include <QGraphicsTextItem>
+#include <QGraphicsOpacityEffect>
+#include <QFont>
 #include "standarddoorview.h"
 #include "bossdoorview.h"
 #include "guiddef.h"
@@ -65,6 +68,7 @@ void GameView::initWithModel(GameModel* model) {
 }
 
 void GameView::clearScene() {
+    activePopups.clear(); // items détruits par scene->clear(), on vide juste les structs
     scene->clear();
     playerView = nullptr;
     gunView    = nullptr;
@@ -90,7 +94,7 @@ void GameView::mousePressEvent(QMouseEvent* event) {
 
 // ─── Mise à jour ──────────────────────────────────────────────────
 
-void GameView::updateAllViews(float dt, GameModel* model) {
+void GameView::updateAllViews(float dt, GameModel* model, LevelController* levelCtrl) {
     if (!model) return;
     currentModel = model;
 
@@ -126,6 +130,52 @@ void GameView::updateAllViews(float dt, GameModel* model) {
         keyFlashCycle += dt;
         if (keyFlashCycle >= 0.1f) { keyFlashCycle = 0.0f; keyFlashVisible = !keyFlashVisible; }
         if (keyFlashTimer <= 0.0f) { keyFlashTimer = 0.0f; keyFlashVisible = false; }
+    }
+
+    // ── Création des popups (données reçues du Controller) ───────
+    if (levelCtrl) {
+        for (const PopupRequest& req : levelCtrl->getPendingPopups()) {
+            auto* item = new QGraphicsTextItem();
+            bool isDmg = (req.type == PopupRequest::Type::Damage);
+            item->setPlainText(isDmg
+                ? QString("-%1").arg(req.value)
+                : QString("+%1 G").arg(req.value));
+            QFont f("Arial", isDmg ? 11 : 10, QFont::Bold);
+            item->setFont(f);
+            item->setDefaultTextColor(isDmg ? QColor(255,60,60) : QColor(255,200,0));
+            item->setZValue(Cfg::Z_POPUP);
+            // Centrer horizontalement sur la position
+            item->setPos(req.pos.x() - item->boundingRect().width() / 2.0,
+                         req.pos.y());
+            auto* fx = new QGraphicsOpacityEffect();
+            fx->setOpacity(1.0);
+            item->setGraphicsEffect(fx);
+            scene->addItem(item);
+            activePopups.append({item, fx, 0.0f,
+                isDmg ? Cfg::POPUP_DMG_DUR : Cfg::POPUP_GOLD_DUR,
+                static_cast<float>(req.pos.y())});
+        }
+        levelCtrl->clearPendingPopups();
+    }
+
+    // ── Tick et nettoyage des popups actifs ───────────────────────
+    for (int i = activePopups.size() - 1; i >= 0; --i) {
+        PopupAnim& pa = activePopups[i];
+        pa.elapsed += dt;
+        if (pa.elapsed >= pa.duration) {
+            if (pa.item->scene()) scene->removeItem(pa.item);
+            delete pa.item; // fx est enfant de item, détruit automatiquement
+            activePopups.removeAt(i);
+            continue;
+        }
+        float progress = pa.elapsed / pa.duration;
+        // Montée verticale
+        pa.item->setY(static_cast<double>(pa.originY - Cfg::POPUP_RISE_PX * progress));
+        // Fondu sur la 2e moitié
+        double opacity = (progress > 0.5f)
+                         ? 1.0 - (progress - 0.5) * 2.0
+                         : 1.0;
+        pa.fx->setOpacity(opacity);
     }
 
     if (playerView) playerView->updateView(dt);

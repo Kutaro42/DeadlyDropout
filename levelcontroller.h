@@ -12,6 +12,20 @@
 #include "playermodel.h"
 #include "zombielaunchermodel.h"
 #include <QRectF>
+#include <QPointF>
+#include <QVector>
+
+/**
+ * @struct PopupRequest
+ * @brief Donnée pure décrivant un popup à afficher (pas de Qt graphique).
+ * Produit par LevelController, consommé et rendu par GameView.
+ */
+struct PopupRequest {
+    enum class Type { Damage, Gold };
+    int     value;
+    Type    type;
+    QPointF pos;   ///< Centre-haut de l'ennemi dans la scène.
+};
 
 /**
  * @class LevelController
@@ -37,7 +51,11 @@ public:
      */
     void update(float dt, PlayerModel& player, LevelModel& level);
 
-    bool levelJustCompleted; ///< Drapeau mis à vrai lorsque le niveau est terminé et réussi.
+    bool levelJustCompleted;
+
+    /** @brief Requêtes popup produites ce tick. Consommées par GameView. */
+    const QVector<PopupRequest>& getPendingPopups() const { return pendingPopups; }
+    void clearPendingPopups() { pendingPopups.clear(); } ///< Drapeau mis à vrai lorsque le niveau est terminé et réussi.
 
 private:
     // ─── Sous-étapes de mise à jour ───────────────────────────
@@ -63,6 +81,9 @@ private:
      * @param obstacle Le rectangle de collision de l'obstacle (Mur).
      */
     void resolveAABB(Entity& mover, const QRectF& obstacle);
+
+    QVector<PopupRequest> pendingPopups;
+    static QPointF popupPos(const Enemy* e); ///< Centre-haut d'un ennemi.
 };
 
 #endif // LEVELCONTROLLER_H

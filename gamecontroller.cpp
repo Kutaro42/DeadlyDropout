@@ -170,7 +170,7 @@ void GameController::slt_tick() {
     levelCtrl->update(dt, *itsGameModel->getPlayer(), *itsGameModel->getLevel());
     checkStateTransitions();
 
-    itsGameView->updateAllViews(dt, itsGameModel);
+    itsGameView->updateAllViews(dt, itsGameModel, levelCtrl);
     itsGameView->followPlayer(itsGameModel);
 }
 

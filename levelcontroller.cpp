@@ -8,6 +8,7 @@
 #include "gunmodel.h"
 #include "bulletmodel.h"
 #include <QRectF>
+#include <QPointF>
 #include <cmath>
 
 LevelController::LevelController()
@@ -20,6 +21,7 @@ void LevelController::update(float dt,
                              LevelModel&  level)
 {
     levelJustCompleted = false;
+    pendingPopups.clear();
 
     updateEnemies(dt, player, level);
     distributeGold(player, level);
@@ -75,8 +77,10 @@ void LevelController::distributeGold(PlayerModel& player,
 {
     for (Enemy* e : level.getEnemies()) {
         if (!e->isActive() && !e->hasDroppedGold()) {
-            player.addGold(e->getGoldDrop());
+            int gold = e->getGoldDrop();
+            player.addGold(gold);
             e->markGoldDropped();
+            pendingPopups.append({gold, PopupRequest::Type::Gold, popupPos(e)});
         }
     }
 }
@@ -204,8 +208,10 @@ void LevelController::checkSlashZoneHits(PlayerModel& player,
         if (!e->isActive() || e->getHitThisSlash()) continue;
 
         if (slash.intersects(e->getCollider())) {
-            e->takeDamage(player.getKatana().getDamage());
-            e->setHitThisSlash(true); // On marque l'ennemi comme touché pour cette attaque
+            int dmg = player.getKatana().getDamage();
+            e->takeDamage(dmg);
+            e->setHitThisSlash(true);
+            pendingPopups.append({dmg, PopupRequest::Type::Damage, popupPos(e)});
         }
     }
 }
@@ -311,7 +317,9 @@ void LevelController::checkBulletCollisions(PlayerModel& player,
         for (Enemy* e : level.getEnemies()) {
             if (!e->isActive()) continue;
             if (br.intersects(e->getCollider())) {
-                e->takeDamage(b->getDamage());
+                int dmg = b->getDamage();
+                e->takeDamage(dmg);
+                pendingPopups.append({dmg, PopupRequest::Type::Damage, popupPos(e)});
                 b->setActive(false);
                 hit = true;
                 break;
@@ -407,4 +415,12 @@ void LevelController::checkExitCondition(PlayerModel& player,
         player.setHasKey(false);
         levelJustCompleted = true;
     }
+}
+
+// ── Helper popup ──────────────────────────────────────────────────
+QPointF LevelController::popupPos(const Enemy* e)
+{
+    float cx = e->getPosition().x + e->getWidth()  / 2.0f;
+    float ty = e->getPosition().y - 6.0f;
+    return QPointF(static_cast<double>(cx), static_cast<double>(ty));
 }
