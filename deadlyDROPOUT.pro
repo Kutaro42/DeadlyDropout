@@ -4,6 +4,7 @@
 # ═══════════════════════════════════════════════════════════════════
 
 QT       += core gui widgets
+QT       += multimedia
 CONFIG   += c++17
 TARGET    = DeadlyDropout
 TEMPLATE  = app

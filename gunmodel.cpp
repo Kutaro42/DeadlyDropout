@@ -16,7 +16,11 @@ GunModel::GunModel(int magSz, int reserveSz)
     , shootTimer(0.0f)
     , baseDamage(Cfg::BULLET_DAMAGE)
     , critChance(Cfg::BULLET_CRIT_CHANCE)
-{}
+{
+    emptyMagSound = new QSoundEffect(this);
+    emptyMagSound->setSource(QUrl("qrc:/images/Sound/click.wav"));
+    emptyMagSound->setVolume(0.5f);
+}
 
 GunModel::~GunModel()
 {
@@ -55,6 +59,7 @@ int GunModel::computeDamage() const
 bool GunModel::tryShoot(Vector2f muzzlePos, Vector2f targetPos)
 {
     if (shootTimer > 0.0f) return false;   // cooldown non écoulé
+    if (mag <= 0 && !emptyMagSound->isPlaying())          emptyMagSound->play();
     if (mag <= 0)           return false;   // chargeur vide
 
     Vector2f dir = (targetPos - muzzlePos).normalized();

@@ -11,6 +11,7 @@
 #include "bulletmodel.h"
 #include "config.h"
 #include "vector2f.h"
+#include <QSoundEffect>
 
 /**
  * @class GunModel
@@ -26,8 +27,9 @@
  * Les BulletModel créés sont possédés par GunModel et mis à jour à chaque tick.
  * LevelController récupère getBullets() pour détecter les collisions.
  */
-class GunModel
+class GunModel : public QObject
 {
+    Q_OBJECT
 public:
     /**
      * @brief Constructeur.
@@ -84,6 +86,7 @@ public:
 
 private:
     QVector<BulletModel*> bullets;   ///< Balles actuellement en vol.
+    QSoundEffect *emptyMagSound;
 
     int   magSize;       ///< Capacité maximale du chargeur.
     int   mag;           ///< Balles restantes dans le chargeur.
