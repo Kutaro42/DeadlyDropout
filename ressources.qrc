@@ -109,6 +109,10 @@
         <file>Textures/Environment/Wall/wall_tileset.png</file>
         <file>Textures/Environment/Floor/floor_tileset.png</file>
 
+	<!-- ── Door ─────────────────── -->
+        <file>Textures/Environment/Doors/stddoor_unlocked.png</file>
+        <file>Textures/Environment/Doors/stddoor_locked.png</file>
+
 	<file>Sound/click.wav</file>
 	<file>Sound/gunFireSound.wav</file>
     </qresource>

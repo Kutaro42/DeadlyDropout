@@ -61,14 +61,14 @@ private:
 
     static constexpr int STATE_COUNT        = 3;
     static constexpr int DIR_COUNT          = 4;
-    static constexpr int ATTACK_FRAME_COUNT = 6;
+    static constexpr int ATTACK_FRAME_COUNT = 4;
 
-    static constexpr int FRAME_W[STATE_COUNT] = { 36, 36, 128 };
-    static constexpr int FRAME_H[STATE_COUNT] = { 36, 36, 128 };
+    static constexpr int FRAME_W[STATE_COUNT] = { 18, 18, 32 };
+    static constexpr int FRAME_H[STATE_COUNT] = { 18, 18, 32 };
     static constexpr int SPRITE_SIZE[STATE_COUNT] = {
         Cfg::ENTITY_SIZE,
         Cfg::ENTITY_SIZE,
-        Cfg::ENTITY_SIZE + 128,
+        Cfg::ENTITY_SIZE + 50,
     };
 
     QVector<QPixmap> sprites[STATE_COUNT][DIR_COUNT];
