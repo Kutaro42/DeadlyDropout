@@ -56,6 +56,9 @@ public:
     int    getDamage()      const { return itsDamage;   }
     int    getRange()       const { return itsRange;    }
     bool   isReady()        const { return itsReady;    }
+    float  getCooldownRatio() const {
+        return (itsCooldown > 0.0f) ? (itsCooldownTimer / itsCooldown) : 0.0f;
+    } ///< Ratio cooldown katana : 1.0=vient d'attaquer, 0.0=prêt.
     bool   isAnimActive()   const { return itsAnimTimer > 0.0f; }
 
     /**
