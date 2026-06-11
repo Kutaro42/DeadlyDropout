@@ -85,6 +85,13 @@ void GunView::updateView(float dt, QPointF mouseScene, QGraphicsScene* scene)
     Q_UNUSED(dt);
     if (!player || !gun) return;
 
+    if (player->isKatanaActive()) {
+        setVisible(false);
+        syncBulletViews(scene);
+        return;
+    }
+    setVisible(true);
+
     // ── 1. Centre du joueur en coordonnées scène ─────────────────
     Vector2f ppos = player->getPosition();
     double cx = ppos.x + Cfg::ENTITY_SIZE / 2.0;
