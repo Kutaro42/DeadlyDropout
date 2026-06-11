@@ -58,6 +58,22 @@ namespace Cfg {
     constexpr int   RUBBLE_DAMAGE       = 10;     ///< Dégâts infligés par un gravat.
     constexpr float RUBBLE_SIZE         = 16.0f;  ///< Taille (côté) du sprite du gravat en pixels.
 
+    // ─── Balle (pistolet joueur) ──────────────────────────────────
+    constexpr float BULLET_SPEED        = 500.0f; ///< Vitesse de déplacement d'une balle en pixels/s (GDD).
+    constexpr int   BULLET_DAMAGE       = 12;     ///< Dégâts de base d'une balle (GDD).
+    constexpr int   BULLET_BONUS_MIN    = 2;      ///< Bonus adaptatif minimum (GDD).
+    constexpr int   BULLET_BONUS_MAX    = 5;      ///< Bonus adaptatif maximum (GDD).
+    constexpr float BULLET_SIZE         = 8.0f;   ///< Taille (côté) du sprite de la balle en pixels.
+    constexpr float BULLET_CRIT_CHANCE  = 0.02f;  ///< Chance de coup critique (2 %, GDD).
+    constexpr float BULLET_CRIT_MULT    = 2.0f;   ///< Multiplicateur de dégâts critique (×2, GDD).
+
+    // ─── Pistolet (arme ranged joueur) ────────────────────────────
+    constexpr float GUN_SHOOT_CD        = 0.5f;   ///< Cooldown entre deux tirs en secondes (GDD).
+    constexpr int   GUN_MAG_SIZE        = 10;     ///< Taille du chargeur par défaut.
+    constexpr float GUN_OFFSET_X        = 20.0f;  ///< Décalage X du canon par rapport au centre du joueur.
+    constexpr float GUN_OFFSET_Y        = 10.0f;  ///< Décalage Y du canon par rapport au centre du joueur.
+
+
     // ─── Boucle de jeu ────────────────────────────────────────────
     constexpr int   TIMER_MS            = 16;     ///< Intervalle du timer principal (~60 FPS).
 

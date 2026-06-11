@@ -52,6 +52,7 @@ private:
     void resolvePlayerVsEnemyWalls(PlayerModel& player, LevelModel& level);            ///< Bloque le joueur contre les ennemis (ennemis = obstacles solides).
     void resolveEnemyEnemyCollisions(LevelModel& level);                               ///< Empêche les ennemis de se chevaucher entre eux.
     void checkRubbleCollisions(PlayerModel& player, LevelModel& level);                ///< Détecte les impacts des gravats sur le joueur et les murs.
+    void checkBulletCollisions(PlayerModel& player, LevelModel& level);
     void checkStandardDoorInteractions(PlayerModel& player, LevelModel& level);        ///< Ouvre les portes standards au contact du joueur et résout leur collision.
 
     /**

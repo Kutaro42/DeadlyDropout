@@ -25,6 +25,7 @@ PlayerModel::PlayerModel(Vector2f startPos)
 
 void PlayerModel::update(float dt) {
     katana.update(dt);
+    gun.update(dt);
 }
 
 bool PlayerModel::getBoostState() {

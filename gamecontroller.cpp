@@ -49,11 +49,28 @@ void GameController::init() {
     // ── Touche Échap → pause ──────────────────────────────────────
     connect(itsGameView, &GameView::sig_escapePressed, this, &GameController::togglePause);
 
-    // ── Clic gauche → pistolet (futur) ───────────────────────────
-    connect(itsGameView, &GameView::sig_leftClicked, this, [this]() {
-        if (currentState == AppState::PLAYING && itsGameModel && itsGameModel->getPlayer()) {
-            qDebug("pan !");
-        }
+    // ── Clic gauche → pistolet ───────────────────────────────────────────────
+    connect(itsGameView, &GameView::sig_leftClicked, this, [this](QPointF scenePos) {
+        if (currentState != AppState::PLAYING) return;
+        if (!itsGameModel || !itsGameModel->getPlayer()) return;
+
+        PlayerModel* player = itsGameModel->getPlayer();
+
+        // Calcul de la position de la bouche du pistolet
+        // (centre du joueur + décalage vers le curseur, identique à GunView)
+        Vector2f ppos = player->getPosition();
+        double cx = static_cast<double>(ppos.x) + Cfg::ENTITY_SIZE / 2.0;
+        double cy = static_cast<double>(ppos.y) + Cfg::ENTITY_SIZE / 2.0;
+        double dx = scenePos.x() - cx;
+        double dy = scenePos.y() - cy;
+        double angle = std::atan2(dy, dx);
+        Vector2f muzzle(
+            static_cast<float>(cx + std::cos(angle) * Cfg::GUN_OFFSET_X),
+            static_cast<float>(cy + std::sin(angle) * Cfg::GUN_OFFSET_X)
+            );
+        Vector2f target(static_cast<float>(scenePos.x()),
+                        static_cast<float>(scenePos.y()));
+        player->shootGun(muzzle, target);
     });
 
     // ── Boutons fin de partie ─────────────────────────────────────
@@ -181,6 +198,9 @@ void GameController::handleInput(float dt) {
     }
     if (keys.contains(Qt::Key_H))
         player->setSpeed(Cfg::PLAYER_SPEED);
+
+    if (keys.contains(Qt::Key_R))
+        player->reloadGun();
 }
 
 void GameController::checkStateTransitions() {

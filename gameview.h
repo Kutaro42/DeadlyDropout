@@ -19,6 +19,7 @@
 #include "bossview.h"
 #include "exitdoorview.h"
 #include "standarddoorview.h"
+#include "gunview.h"
 #include "gamemodel.h"
 #include "config.h"
 #include <QMouseEvent>
@@ -47,6 +48,7 @@ class GameView : public QGraphicsView {
 private:
     QGraphicsScene* scene;          ///< Scène Qt contenant les éléments graphiques 2D.
     PlayerView*     playerView;     ///< Représentation graphique du joueur.
+    GunView*        gunView;        ///< Représentation graphique du pistolet.
     QSet<int>       pressedKeys;    ///< Ensemble des touches clavier actuellement enfoncées.
     GameModel*      currentModel;   ///< Pointeur vers le modèle (utile pour le dessin du HUD).
 
@@ -128,7 +130,7 @@ signals:
     void sig_rightClicked(QPointF scenePos);
 
     /** @brief Émis lors d'un clic gauche capté dans la zone de jeu. */
-    void sig_leftClicked();
+    void sig_leftClicked(QPointF scenePos);
 
     /** @brief Émis lorsque la touche echap capté dans la zone de jeu. */
     void sig_escapePressed(); // Signal émis lors d'un appui sur Échap

@@ -6,6 +6,7 @@
 #include "gameview.h"
 #include "zombielauncherview.h"
 #include "standarddoorview.h"
+#include "guiddef.h"
 #include <QFont>
 #include <QFontMetrics>
 
@@ -45,11 +46,15 @@ void GameView::initWithModel(GameModel* model) {
 
     playerView = new PlayerView(model->getPlayer());
     scene->addItem(playerView);
+
+    gunView = new GunView(&model->getPlayer()->getGun(), model->getPlayer());
+    scene->addItem(gunView);
 }
 
 void GameView::clearScene() {
     scene->clear();
     playerView = nullptr;
+    gunView    = nullptr;
 }
 
 // ─── Souris ──────────────────────────────────────────────────────────────────
@@ -68,7 +73,7 @@ void GameView::mousePressEvent(QMouseEvent* event) {
     if (event->button() == Qt::RightButton) {
         emit sig_rightClicked(itsMouseScenePos);
     } else if (event->button() == Qt::LeftButton) {
-        emit sig_leftClicked();
+        emit sig_leftClicked(itsMouseScenePos);
     }
 
     QGraphicsView::mousePressEvent(event);
@@ -81,6 +86,7 @@ void GameView::updateAllViews(float dt, GameModel* model) {
     currentModel = model;
 
     if (playerView) playerView->updateView(dt);
+    if (gunView)    gunView->updateView(dt, itsMouseScenePos, scene);
 
     for (QGraphicsItem* item : scene->items()) {
         if (auto* zv = dynamic_cast<ZombieStdView*>(item))
@@ -218,6 +224,16 @@ void GameView::drawHUD(QPainter* p, GameModel* model) {
         p->setPen(QColor(192, 192, 192));
         p->drawText(mx + 72, my + Cfg::HP_BAR_H + 18, "KEY: NOT FOUND");
     }
+
+    // Munitions pistolet
+    const GunModel& gun = player->getGun();
+    QColor ammoColor = (gun.getMag() == 0) ? QColor(220, 60, 60) : QColor(100, 200, 255);
+    p->setPen(ammoColor);
+    p->drawText(mx, my + Cfg::HP_BAR_H + 36,
+                QString("GUN : %1 / %2  [R:%3]")
+                    .arg(gun.getMag())
+                    .arg(gun.getMagSize())
+                    .arg(gun.getReserve()));
 
     if (player->isKatanaActive()) {
         p->setPen(QColor(255, 100, 60));

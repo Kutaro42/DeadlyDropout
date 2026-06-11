@@ -10,6 +10,7 @@
 
 #include "entity.h"
 #include "katana.h"
+#include "gunmodel.h"
 #include "config.h"
 #include <cmath>
 
@@ -43,6 +44,7 @@ private:
     FacingDirection facingDir; ///< Direction cardinale courante (clavier ou attaque).
 
     Katana          katana;
+    GunModel        gun;
 
 public:
     explicit PlayerModel(Vector2f startPos);
@@ -86,6 +88,21 @@ public:
     bool            isKatanaActive()  const { return katana.isAnimActive();   }
     QRectF          getSlashZone()    const { return katana.getSlashZone();   }
     float           getAttackAngle()  const { return katana.getAttackAngle(); }
+
+    GunModel&       getGun()                { return gun; }
+    const GunModel& getGun()          const { return gun; }  // Note pour alex Pourquoi deux ?
+
+    /**
+     * @brief Tente de tirer une balle vers targetPos (coordonnées scène).
+     * @param muzzlePos Position de la bouche du pistolet.
+     * @param targetPos Position cible (curseur souris en coordonnées scène).
+     * @return true si un tir a été effectué.
+     */
+    bool shootGun(Vector2f muzzlePos, Vector2f targetPos)
+    { return gun.tryShoot(muzzlePos, targetPos); }
+
+    /** @brief Recharge le pistolet (touche R). */
+    void reloadGun() { gun.reload(); }
 
     // ─── Setters ──────────────────────────────────────────────────
     void setMaxHp(int v)          { maxHp = v;  }

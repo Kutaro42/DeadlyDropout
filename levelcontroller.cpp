@@ -4,6 +4,8 @@
 #include "exitdoormodel.h"
 #include "zombielaunchermodel.h"
 #include "standarddoormodel.h"
+#include "gunmodel.h"
+#include "bulletmodel.h"
 #include <QRectF>
 #include <cmath>
 
@@ -47,6 +49,9 @@ void LevelController::update(float dt,
     }
 
     checkRubbleCollisions(player, level);
+
+    checkBulletCollisions(player, level);
+
     checkStandardDoorInteractions(player, level);
 
     checkExitCondition(player, level);
@@ -271,6 +276,49 @@ void LevelController::checkRubbleCollisions(PlayerModel& player,
                     r->setActive(false);
                     break;
                 }
+            }
+        }
+    }
+}
+
+// ── Balles joueur / ennemis + murs ───────────────────────────────
+void LevelController::checkBulletCollisions(PlayerModel& player,
+                                            LevelModel&  level)
+{
+    GunModel& gun = player.getGun();
+
+    for (BulletModel* b : gun.getBullets()) {
+        if (!b->isActive()) continue;
+
+        QRectF br = b->getCollider();
+
+        // Collision avec un ennemi
+        bool hit = false;
+        for (Enemy* e : level.getEnemies()) {
+            if (!e->isActive()) continue;
+            if (br.intersects(e->getCollider())) {
+                e->takeDamage(b->getDamage());
+                b->setActive(false);
+                hit = true;
+                break;
+            }
+        }
+        if (hit) continue;
+
+        // Collision avec un mur
+        for (WallModel* w : level.getWalls()) {
+            if (br.intersects(w->getCollider())) {
+                b->setActive(false);
+                break;
+            }
+        }
+        if (!b->isActive()) continue;
+
+        // Collision avec une porte standard fermée
+        for (StandardDoorModel* d : level.getStandardDoors()) {
+            if (!d->isOpen() && br.intersects(d->getCollider())) {
+                b->setActive(false);
+                break;
             }
         }
     }
