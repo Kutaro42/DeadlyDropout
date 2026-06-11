@@ -6,7 +6,7 @@ QPixmap BulletView::loadSprite()
 {
     QPixmap pm(":/images/Textures/Player/Bullet/bullet32-32.png");
     if (!pm.isNull())
-        qDebug("image de balle non chargée, texture introuvable !!!");
+        qDebug("Texture des balles chargée avec succès !");
 
         return pm.scaled(static_cast<int>(Cfg::BULLET_SIZE),
                          static_cast<int>(Cfg::BULLET_SIZE),
