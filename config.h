@@ -59,7 +59,7 @@ namespace Cfg {
     constexpr float RUBBLE_SIZE         = 16.0f;  ///< Taille (côté) du sprite du gravat en pixels.
 
     // ─── Balle (pistolet joueur) ──────────────────────────────────
-    constexpr float BULLET_SPEED        = 500.0f; ///< Vitesse de déplacement d'une balle en pixels/s (GDD).
+    constexpr float BULLET_SPEED        = 2000.0f; ///< Vitesse de déplacement d'une balle en pixels/s (GDD).
     constexpr int   BULLET_DAMAGE       = 12;     ///< Dégâts de base d'une balle (GDD).
     constexpr int   BULLET_BONUS_MIN    = 2;      ///< Bonus adaptatif minimum (GDD).
     constexpr int   BULLET_BONUS_MAX    = 5;      ///< Bonus adaptatif maximum (GDD).
