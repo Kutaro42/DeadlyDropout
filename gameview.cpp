@@ -18,7 +18,7 @@ GameView::GameView(QWidget* parent)
       gunView(nullptr),
       currentModel(nullptr),
       showingOverlay(false),
-      itsMouseScenePos(0.0, 0.0),
+      itsMouseViewPos(0.0, 0.0),
       lastGold(-1),
       goldFlashTimer(0.0f),
       goldFlashVisible(false),
@@ -73,17 +73,19 @@ void GameView::clearScene() {
 // ─── Souris ───────────────────────────────────────────────────────
 
 void GameView::mouseMoveEvent(QMouseEvent* event) {
-    itsMouseScenePos = mapToScene(event->pos());
+    itsMouseViewPos = event->pos();
     QGraphicsView::mouseMoveEvent(event);
+    itsMouseViewPos = event->pos();
 }
 
 void GameView::mousePressEvent(QMouseEvent* event) {
-    itsMouseScenePos = mapToScene(event->pos());
+
+    itsMouseViewPos = event->pos();
+    QPointF scenePos = mapToScene(event->pos());
     if (event->button() == Qt::RightButton)
-        emit sig_rightClicked(itsMouseScenePos);
+        emit sig_rightClicked(scenePos);
     else if (event->button() == Qt::LeftButton)
-        emit sig_leftClicked(itsMouseScenePos);
-    QGraphicsView::mousePressEvent(event);
+        emit sig_leftClicked(scenePos);
 }
 
 // ─── Mise à jour ──────────────────────────────────────────────────
@@ -127,7 +129,7 @@ void GameView::updateAllViews(float dt, GameModel* model) {
     }
 
     if (playerView) playerView->updateView(dt);
-    if (gunView)    gunView->updateView(dt, itsMouseScenePos, scene);
+    if (gunView)    gunView->updateView(dt, mapToScene(itsMouseViewPos.toPoint()), scene);
 
     for (QGraphicsItem* item : scene->items()) {
         if (auto* zv = dynamic_cast<ZombieStdView*>(item))

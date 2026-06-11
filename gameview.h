@@ -42,7 +42,7 @@ private:
     GunView*        gunView;
     QSet<int>       pressedKeys;
     GameModel*      currentModel;
-    QPointF         itsMouseScenePos;
+    QPointF         itsMouseViewPos;///< Position souris en coordonnées viewport (ne dépend pas de la caméra).
 
 public:
     explicit GameView(QWidget* parent = nullptr);
@@ -51,7 +51,7 @@ public:
     QGraphicsScene* getScene()         const { return scene;            }
     QSet<int>       getPressedKeys()   const { return pressedKeys;      }
     PlayerView*     getPlayerView()    const { return playerView;       }
-    QPointF         getMouseScenePos() const { return itsMouseScenePos; }
+    QPointF         getMouseScenePos() const { return mapToScene(itsMouseViewPos.toPoint()); }
 
     void initWithModel(GameModel* model);
     void updateAllViews(float dt, GameModel* model);
