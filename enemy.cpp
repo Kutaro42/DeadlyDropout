@@ -16,16 +16,55 @@ Enemy::Enemy(Vector2f pos, int maxHp, float spd, int dmg,
       goldDrop(gold), goldAlreadyDropped(false),
       aiState(EnemyAIState::IDLE),
       velocity(0.0f, 0.0f),
-      hitThisSlash(false)
+      hitThisSlash(false),
+      hurtTimer(0.0f),
+      deadTimer(0.0f)
 {}
 
 void Enemy::takeDamage(int amount) {
-    // retire la vie correspondant a amount et vérifie si l'ennemi et mort pour le marquer
+    // Ignorer les dégâts si déjà en train de mourir
+    if (aiState == EnemyAIState::DEAD) return;
+
     hp -= amount;
     if (hp <= 0) {
-        hp     = 0;
-        active = false;
+        hp = 0;
+        triggerDeath();
+    } else {
+        // Passer en état HURT (interrompt CHASING/ATTACKING)
+        aiState   = EnemyAIState::HURT;
+        hurtTimer = Cfg::ENEMY_HURT_DUR;
+        velocity  = Vector2f(0.0f, 0.0f);
     }
+}
+
+void Enemy::triggerDeath() {
+    aiState   = EnemyAIState::DEAD;
+    deadTimer = Cfg::ENEMY_DEAD_DUR;
+    velocity  = Vector2f(0.0f, 0.0f);
+    // Ne pas mettre active = false ici : c'est tickTransientStates() qui le fera
+    // une fois l'animation de mort terminée.
+}
+
+bool Enemy::tickTransientStates(float dt) {
+    if (aiState == EnemyAIState::DEAD) {
+        deadTimer -= dt;
+        if (deadTimer <= 0.0f) {
+            deadTimer = 0.0f;
+            active    = false; // Désactivation réelle après l'animation
+        }
+        return true; // Court-circuite toute autre logique
+    }
+
+    if (aiState == EnemyAIState::HURT) {
+        hurtTimer -= dt;
+        if (hurtTimer <= 0.0f) {
+            hurtTimer = 0.0f;
+            aiState   = EnemyAIState::IDLE; // Retour à l'IA normale
+        }
+        return true;
+    }
+
+    return false;
 }
 
 bool Enemy::detectsPlayer(Vector2f playerPos) const {

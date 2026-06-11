@@ -32,7 +32,10 @@ void ZombieStdModel::chase(Vector2f playerPos, float dt) {
 }
 
 void ZombieStdModel::update(float dt, Vector2f playerPos) {
-    if (!isActive()) return;
+    if (!isActive() && aiState != EnemyAIState::DEAD) return;
+
+    // Gestion des états transitoires (HURT, DEAD) — court-circuite l'IA si actif.
+    if (tickTransientStates(dt)) return;
 
     // Décompte du cooldown d'attaque
     if (attackTimer > 0.0f)

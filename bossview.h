@@ -1,10 +1,3 @@
-/**
- * @file bossview.h
- * @brief Déclaration de la vue du boss gérant animation de sprites et leur déplacement en fonction du bossmodel
- * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
- * @date Juin 2026
- */
-
 #ifndef BOSSVIEW_H
 #define BOSSVIEW_H
 
@@ -14,40 +7,32 @@
 #include "bossmodel.h"
 #include "config.h"
 
-/**
- * @class BossView
- * @brief Vue affichant le boss dans certain état et a certaine position en lisant le bossmodel.
- */
 class BossView : public QGraphicsPixmapItem
 {
 public:
-    /**
-     * @brief Constructeur principal.
-     */
     BossView(bossModel* model, QGraphicsItem* parent = nullptr);
 
-    /**
-     * @brief Rafraichit l'affichage boss.
-     * @param dt: temps écoulé pour gérer intrval entre chaque sprite
-     */
     void updateView(float dt);
 
 private:
-    bossModel* model;   ///< Modèle du boss sur lequelle se base la vue .
+    bossModel* model;
 
     static constexpr int IDLE  = 0;         ///< Constante de l'état immobile.
     static constexpr int WALK  = 1;         ///< Constante de l'état en déplacement (Chasing).
-    static constexpr int STATE_COUNT = 2;   ///< Nombre total d'états d'animation gérés.
+    static constexpr int HURT  = 2;         ///< Constante de l'état blessé.
+    static constexpr int DEAD  = 3;         ///< Constante de l'état de mort.
+    static constexpr int STATE_COUNT = 4;   ///< Nombre total d'états d'animation gérés.
     static constexpr int DIR_COUNT   = 4;   ///< Nombre total de directions (DOWN, UP, LEFT, RIGHT).
-    static constexpr int FRAME_W     = 96;  ///< Largeur unitaire d'une frame lue sur le spritesheet.
-    static constexpr int FRAME_H     = 96;  ///< Hauteur unitaire d'une frame    lue sur le spritesheet.
+    static constexpr int FRAME_W     = 48;  ///< Largeur unitaire d'une frame lue sur le spritesheet.
+    static constexpr int FRAME_H     = 48;  ///< Hauteur unitaire d'une frame    lue sur le spritesheet.
 
-    QVector<QPixmap> sprites[STATE_COUNT][DIR_COUNT];   ///< Vecteur contenant les sprites selon chaque état.
+    QVector<QPixmap> sprites[STATE_COUNT][DIR_COUNT];
 
     int   currentFrame; ///< Indice de l'image actuellement rendue.
     float frameTimer;   ///< Horloge accumulant le delta-time pour déclencher le changement de frame.
     float animSpeed;    ///< Délai d'attente (en s) avant de changer d'image de marche.
     int   currentDir;   ///< Index stockant la dernière direction calculée.
+    bool  deadAnimFinished; ///< True une fois que l'animation DEAD a été jouée entièrement.
 
     /**
      * @brief Convertit l'énumération FacingDirection en index entier de tableau.

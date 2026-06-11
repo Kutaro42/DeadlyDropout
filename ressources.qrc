@@ -25,7 +25,7 @@
         <file>Textures/Player/Slash/slash.png</file>
 	<file>Textures/Player/Gun/gun.png</file>
 
-        <!-- ── Ennemi (idle × 4 directions) ─────────────────── -->
+        <!-- ── Ennemi Standard (idle × 4 directions) ─────────────────── -->
         <file>Textures/Enemy/Standard/Idle/Down.png</file>
         <file>Textures/Enemy/Standard/Idle/Up.png</file>
         <file>Textures/Enemy/Standard/Idle/Left.png</file>
@@ -36,6 +36,66 @@
         <file>Textures/Enemy/Standard/Move/Up.png</file>
         <file>Textures/Enemy/Standard/Move/Left.png</file>
         <file>Textures/Enemy/Standard/Move/Right.png</file>
+
+	<!-- ── Ennemi Standard (hurt × 4 directions) ─────────────────── -->
+        <file>Textures/Enemy/Standard/Hurt/Down.png</file>
+        <file>Textures/Enemy/Standard/Hurt/Up.png</file>
+        <file>Textures/Enemy/Standard/Hurt/Left.png</file>
+        <file>Textures/Enemy/Standard/Hurt/Right.png</file>
+
+        <!-- ── Ennemi Standard (dead × 4 directions) ─────────────────── -->
+        <file>Textures/Enemy/Standard/Dead/Down.png</file>
+        <file>Textures/Enemy/Standard/Dead/Up.png</file>
+        <file>Textures/Enemy/Standard/Dead/Left.png</file>
+        <file>Textures/Enemy/Standard/Dead/Right.png</file>
+
+        <!-- ── Ennemi Launcher (idle × 4 directions) ─────────────────── -->
+        <file>Textures/Enemy/Launcher/Idle/Down.png</file>
+        <file>Textures/Enemy/Launcher/Idle/Up.png</file>
+        <file>Textures/Enemy/Launcher/Idle/Left.png</file>
+        <file>Textures/Enemy/Launcher/Idle/Right.png</file>
+
+        <!-- ── Ennemi Launcher (walk × 4 directions) ─────────────────── -->
+        <file>Textures/Enemy/Launcher/Move/Down.png</file>
+        <file>Textures/Enemy/Launcher/Move/Up.png</file>
+        <file>Textures/Enemy/Launcher/Move/Left.png</file>
+        <file>Textures/Enemy/Launcher/Move/Right.png</file>
+
+	<!-- ── Ennemi Launcher (hurt × 4 directions) ─────────────────── -->
+        <file>Textures/Enemy/Launcher/Hurt/Down.png</file>
+        <file>Textures/Enemy/Launcher/Hurt/Up.png</file>
+        <file>Textures/Enemy/Launcher/Hurt/Left.png</file>
+        <file>Textures/Enemy/Launcher/Hurt/Right.png</file>
+
+        <!-- ── Ennemi Launcher (dead × 4 directions) ─────────────────── -->
+        <file>Textures/Enemy/Launcher/Dead/Down.png</file>
+        <file>Textures/Enemy/Launcher/Dead/Up.png</file>
+        <file>Textures/Enemy/Launcher/Dead/Left.png</file>
+        <file>Textures/Enemy/Launcher/Dead/Right.png</file>
+
+        <!-- ── Boss (idle × 4 directions) ─────────────────── -->
+        <file>Textures/Enemy/Boss/Idle/Down.png</file>
+        <file>Textures/Enemy/Boss/Idle/Up.png</file>
+        <file>Textures/Enemy/Boss/Idle/Left.png</file>
+        <file>Textures/Enemy/Boss/Idle/Right.png</file>
+
+        <!-- ── Boss (walk × 4 directions) ─────────────────── -->
+        <file>Textures/Enemy/Boss/Move/Down.png</file>
+        <file>Textures/Enemy/Boss/Move/Up.png</file>
+        <file>Textures/Enemy/Boss/Move/Left.png</file>
+        <file>Textures/Enemy/Boss/Move/Right.png</file>
+
+	<!-- ── Boss (hurt × 4 directions) ─────────────────── -->
+        <file>Textures/Enemy/Boss/Hurt/Down.png</file>
+        <file>Textures/Enemy/Boss/Hurt/Up.png</file>
+        <file>Textures/Enemy/Boss/Hurt/Left.png</file>
+        <file>Textures/Enemy/Boss/Hurt/Right.png</file>
+
+        <!-- ── Boss (dead × 4 directions) ─────────────────── -->
+        <file>Textures/Enemy/Boss/Dead/Down.png</file>
+        <file>Textures/Enemy/Boss/Dead/Up.png</file>
+        <file>Textures/Enemy/Boss/Dead/Left.png</file>
+        <file>Textures/Enemy/Boss/Dead/Right.png</file>
 
         <!-- ── Tile mur ─────────────────── -->
         <file>Textures/Environment/Wall/wall_tileset.png</file>

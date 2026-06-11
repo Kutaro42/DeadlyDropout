@@ -30,6 +30,7 @@ BossView::BossView(bossModel* model, QGraphicsItem* parent) :
     , frameTimer(0.0f)
     , animSpeed(0.18f)
     , currentDir(0)     // DOWN par défaut
+    , deadAnimFinished(false)
 
 {
     const char* dirNames[DIR_COUNT] = { "Down", "Up", "Left", "Right" };
@@ -40,12 +41,17 @@ BossView::BossView(bossModel* model, QGraphicsItem* parent) :
         loadSheet(sprites[WALK][d],
                   QString(":/images/Textures/Enemy/Boss/Move/%1.png")
                       .arg(dirNames[d]));
+        loadSheet(sprites[HURT][d],
+                  QString(":/images/Textures/Enemy/Boss/Hurt/%1.png")
+                      .arg(dirNames[d]));
+        loadSheet(sprites[DEAD][d],
+                  QString(":/images/Textures/Enemy/Boss/Dead/%1.png")
+                      .arg(dirNames[d]));
     }
 
     setZValue(Cfg::Z_ENTITY);
     setPos(model->getPosition().toQPointF());
     setPixmap(!sprites[IDLE][0].isEmpty() ? sprites[IDLE][0][0] : makeFallback());
-
 
 }
 
@@ -59,7 +65,7 @@ void BossView::loadSheet(QVector<QPixmap>& frames, const QString& path)
     int count = sheet.width() / FRAME_W;
     for (int i = 0; i < count; ++i) {
         QPixmap raw = sheet.copy(i * FRAME_W, 0, FRAME_W, FRAME_H);
-        frames.append(raw.scaled(Cfg::ENTITY_SIZE, Cfg::ENTITY_SIZE,
+        frames.append(raw.scaled(Cfg::ENTITY_SIZE * 3, Cfg::ENTITY_SIZE * 3,
                                  Qt::IgnoreAspectRatio,
                                  Qt::FastTransformation));
     }
@@ -85,10 +91,7 @@ QPixmap BossView::makeFallback()
 
 // ─── Avance une frame ────────────────────────────────────────────────────────
 void BossView::advanceFrames(float dt, const QVector<QPixmap>& frames) {
-    // Sécurité si erreur d'importation des sprites.
     if (frames.isEmpty()) return;
-
-    // Mise a jour du timer pour ensuite afficher le bon sprite dans l'animation
     frameTimer += dt;
     if (frameTimer >= animSpeed) {
         frameTimer   = 0.0f;
@@ -99,19 +102,62 @@ void BossView::advanceFrames(float dt, const QVector<QPixmap>& frames) {
 
 // ─── Mise à jour chaque tick ──────────────────────────────────────────────────
 void BossView::updateView(float dt) {
+    if (!model) return;
 
-    // Sécurité pour ne plus afficher le boss si il est mort
-    if (!model || !model->isActive()) {
+    EnemyAIState state = model->getAIState();
+
+    // ── État DEAD : joue l'animation une seule fois, puis cache le sprite ──────
+    if (state == EnemyAIState::DEAD || deadAnimFinished) {
+        if (!deadAnimFinished) {
+            setPos(model->getPosition().toQPointF());
+            const QVector<QPixmap>& dead = sprites[DEAD][currentDir];
+            if (!dead.isEmpty()) {
+                frameTimer += dt;
+                if (frameTimer >= animSpeed) {
+                    frameTimer = 0.0f;
+                    if (currentFrame < dead.size() - 1) {
+                        ++currentFrame;
+                    } else {
+                        deadAnimFinished = true;
+                    }
+                }
+                setPixmap(dead[qMin(currentFrame, dead.size() - 1)]);
+            } else {
+                deadAnimFinished = true;
+            }
+        }
+        if (deadAnimFinished)
+            hide();
+        return;
+    }
+
+    // ── Ennemi inactif sans état DEAD ─────────────────────────────────────────
+    if (!model->isActive()) {
         hide();
         return;
     }
 
-    // lis le model pour syncroniser l'entité et le sprite
     setPos(model->getPosition().toQPointF());
-    Vector2f vel = model->getVelocity();
-    bool chasing = (model->getAIState() == EnemyAIState::CHASING);
 
-    // Déplace le boss si en chasse puis rafraichi le sprite selon l'état et le temps
+    // ── État HURT : animation en boucle pendant la durée du HURT ─────────────
+    if (state == EnemyAIState::HURT) {
+        const QVector<QPixmap>& hurt = sprites[HURT][currentDir];
+        if (!hurt.isEmpty()) {
+            frameTimer += dt;
+            if (frameTimer >= animSpeed) {
+                frameTimer   = 0.0f;
+                currentFrame = (currentFrame + 1) % hurt.size();
+            }
+            setPixmap(hurt[currentFrame]);
+        } else {
+            setPixmap(makeFallback());
+        }
+        return;
+    }
+
+    Vector2f vel = model->getVelocity();
+    bool chasing = (state == EnemyAIState::CHASING);
+
     if (chasing && vel.length() > 0.01f) {
         // ── Walk : direction déduite du vecteur vitesse ────────
         int newDir = dirIdx(velocityToDir(vel));
@@ -134,5 +180,3 @@ void BossView::updateView(float dt) {
         setPixmap(!idle.isEmpty() ? idle[0] : makeFallback());
     }
 }
-
-

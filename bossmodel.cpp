@@ -24,8 +24,11 @@ void bossModel::attack(PlayerModel* player)
 
 void bossModel::update(float dt, Vector2f playerPos)
 {
-    //Vérifie que le boss est en vie pour ne pas update un ennemi mort.
-    if (!isActive()) return;
+    //Vérifie que le boss est en vie (ou en train de mourir) pour ne pas update un ennemi déjà désactivé.
+    if (!isActive() && aiState != EnemyAIState::DEAD) return;
+
+    // Gestion des états transitoires (HURT, DEAD) — court-circuite l'IA si actif.
+    if (tickTransientStates(dt)) return;
 
     // Décompte du cooldown d'attaque.
     if (attackTimer > 0.0f)

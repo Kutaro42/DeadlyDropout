@@ -37,6 +37,7 @@ ZombieStdView::ZombieStdView(ZombieStdModel* m, QGraphicsItem* parent)
     , frameTimer(0.0f)
     , animSpeed(0.18f)
     , currentDir(0)     // DOWN par défaut
+    , deadAnimFinished(false)
 {
     const char* dirNames[DIR_COUNT] = { "Down", "Up", "Left", "Right" };
     for (int d = 0; d < DIR_COUNT; ++d) {
@@ -45,6 +46,12 @@ ZombieStdView::ZombieStdView(ZombieStdModel* m, QGraphicsItem* parent)
                   .arg(dirNames[d]));
         loadSheet(sprites[WALK][d],
                   QString(":/images/Textures/Enemy/Standard/Move/%1.png")
+                  .arg(dirNames[d]));
+        loadSheet(sprites[HURT][d],
+                  QString(":/images/Textures/Enemy/Standard/Hurt/%1.png")
+                  .arg(dirNames[d]));
+        loadSheet(sprites[DEAD][d],
+                  QString(":/images/Textures/Enemy/Standard/Dead/%1.png")
                   .arg(dirNames[d]));
     }
 
@@ -93,15 +100,64 @@ void ZombieStdView::advanceFrames(float dt, const QVector<QPixmap>& frames) {
 
 // ─── Mise à jour chaque tick ──────────────────────────────────────────────────
 void ZombieStdView::updateView(float dt) {
-    if (!model || !model->isActive()) {
+    if (!model) return;
+
+    EnemyAIState state = model->getAIState();
+
+    // ── État DEAD : joue l'animation une seule fois, puis cache le sprite ──────
+    if (state == EnemyAIState::DEAD || deadAnimFinished) {
+        if (!deadAnimFinished) {
+            setPos(model->getPosition().toQPointF());
+            const QVector<QPixmap>& dead = sprites[DEAD][currentDir];
+            if (!dead.isEmpty()) {
+                frameTimer += dt;
+                if (frameTimer >= animSpeed) {
+                    frameTimer = 0.0f;
+                    if (currentFrame < dead.size() - 1) {
+                        ++currentFrame;
+                    } else {
+                        // Dernière frame atteinte : on reste dessus et on marque la fin
+                        deadAnimFinished = true;
+                    }
+                }
+                setPixmap(dead[qMin(currentFrame, dead.size() - 1)]);
+            } else {
+                // Pas de spritesheet DEAD : disparaître immédiatement
+                deadAnimFinished = true;
+            }
+        }
+        if (deadAnimFinished)
+            hide();
+        return;
+    }
+
+    // ── Ennemi inactif sans état DEAD (ne devrait pas arriver) ────────────────
+    if (!model->isActive()) {
         hide();
         return;
     }
 
     setPos(model->getPosition().toQPointF());
 
+    // ── État HURT : joue l'animation en boucle pendant la durée du HURT ───────
+    if (state == EnemyAIState::HURT) {
+        const QVector<QPixmap>& hurt = sprites[HURT][currentDir];
+        if (!hurt.isEmpty()) {
+            frameTimer += dt;
+            if (frameTimer >= animSpeed) {
+                frameTimer   = 0.0f;
+                currentFrame = (currentFrame + 1) % hurt.size();
+            }
+            setPixmap(hurt[currentFrame]);
+        } else {
+            setPixmap(makeFallback());
+        }
+        return;
+    }
+
+    // ── Réinitialisation de currentFrame si on sort d'un état transitoire ─────
     Vector2f vel = model->getVelocity();
-    bool chasing = (model->getAIState() == EnemyAIState::CHASING);
+    bool chasing = (state == EnemyAIState::CHASING);
 
     if (chasing && vel.length() > 0.01f) {
         // ── Walk : direction déduite du vecteur vitesse ────────

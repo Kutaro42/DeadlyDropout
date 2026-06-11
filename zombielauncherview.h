@@ -61,7 +61,9 @@ private:
     // ─── Animation ────────────────────────────────────────────
     static constexpr int IDLE        = 0;
     static constexpr int WALK        = 1;
-    static constexpr int STATE_COUNT = 2;
+    static constexpr int HURT        = 2;  ///< Constante de l'état blessé.
+    static constexpr int DEAD        = 3;  ///< Constante de l'état de mort.
+    static constexpr int STATE_COUNT = 4;
     static constexpr int DIR_COUNT   = 4;
     static constexpr int FRAME_W     = 32; ///< Largeur d'une frame source (px).
     static constexpr int FRAME_H     = 32; ///< Hauteur d'une frame source (px).
@@ -72,6 +74,7 @@ private:
     float frameTimer;   ///< Temps écoulé sur la frame courante.
     float animSpeed;    ///< Durée d'affichage d'une frame en secondes.
     int   currentDir;   ///< Direction courante (index 0-3).
+    bool  deadAnimFinished; ///< True une fois que l'animation DEAD a été jouée entièrement.
 
     // ─── Helpers ──────────────────────────────────────────────
     static int             dirIdx(FacingDirection d);

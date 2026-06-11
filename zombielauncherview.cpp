@@ -68,6 +68,7 @@ ZombieLauncherView::ZombieLauncherView(ZombieLauncherModel* m,
     , frameTimer(0.0f)
     , animSpeed(0.18f)
     , currentDir(0)
+    , deadAnimFinished(false)
 {
     const char* dirNames[DIR_COUNT] = { "Down", "Up", "Left", "Right" };
     for (int d = 0; d < DIR_COUNT; ++d) {
@@ -76,6 +77,12 @@ ZombieLauncherView::ZombieLauncherView(ZombieLauncherModel* m,
                   .arg(dirNames[d]));
         loadSheet(sprites[WALK][d],
                   QString(":/images/Textures/Enemy/Launcher/Move/%1.png")
+                  .arg(dirNames[d]));
+        loadSheet(sprites[HURT][d],
+                  QString(":/images/Textures/Enemy/Launcher/Hurt/%1.png")
+                  .arg(dirNames[d]));
+        loadSheet(sprites[DEAD][d],
+                  QString(":/images/Textures/Enemy/Launcher/Dead/%1.png")
                   .arg(dirNames[d]));
     }
 
@@ -133,9 +140,44 @@ void ZombieLauncherView::syncRubbleViews()
 // ─── Mise à jour principale ───────────────────────────────────────
 void ZombieLauncherView::updateView(float dt)
 {
-    if (!model || !model->isActive()) {
+    if (!model) return;
+
+    EnemyAIState state = model->getAIState();
+
+    // ── État DEAD : joue l'animation une seule fois, puis cache le sprite ──────
+    if (state == EnemyAIState::DEAD || deadAnimFinished) {
+        if (!deadAnimFinished) {
+            setPos(model->getPosition().toQPointF());
+            const QVector<QPixmap>& dead = sprites[DEAD][currentDir];
+            if (!dead.isEmpty()) {
+                frameTimer += dt;
+                if (frameTimer >= animSpeed) {
+                    frameTimer = 0.0f;
+                    if (currentFrame < dead.size() - 1) {
+                        ++currentFrame;
+                    } else {
+                        deadAnimFinished = true;
+                    }
+                }
+                setPixmap(dead[qMin(currentFrame, dead.size() - 1)]);
+            } else {
+                deadAnimFinished = true;
+            }
+        }
+        if (deadAnimFinished) {
+            hide();
+            for (RubbleView* rv : rubbleViews) {
+                scene->removeItem(rv);
+                delete rv;
+            }
+            rubbleViews.clear();
+        }
+        return;
+    }
+
+    // ── Ennemi inactif sans état DEAD ─────────────────────────────────────────
+    if (!model->isActive()) {
         hide();
-        // Nettoyer les gravats restants si l'ennemi est mort
         for (RubbleView* rv : rubbleViews) {
             scene->removeItem(rv);
             delete rv;
@@ -146,9 +188,26 @@ void ZombieLauncherView::updateView(float dt)
 
     setPos(model->getPosition().toQPointF());
 
+    // ── État HURT : animation en boucle pendant la durée du HURT ─────────────
+    if (state == EnemyAIState::HURT) {
+        const QVector<QPixmap>& hurt = sprites[HURT][currentDir];
+        if (!hurt.isEmpty()) {
+            frameTimer += dt;
+            if (frameTimer >= animSpeed) {
+                frameTimer   = 0.0f;
+                currentFrame = (currentFrame + 1) % hurt.size();
+            }
+            setPixmap(hurt[currentFrame]);
+        } else {
+            setPixmap(makeFallback());
+        }
+        syncRubbleViews();
+        return;
+    }
+
     // ── Animation du lanceur ──────────────────────────────────
     Vector2f vel      = model->getVelocity();
-    bool     chasing  = (model->getAIState() == EnemyAIState::CHASING);
+    bool     chasing  = (state == EnemyAIState::CHASING);
 
     if (chasing && vel.length() > 0.01f) {
         int newDir = dirIdx(velocityToDir(vel));

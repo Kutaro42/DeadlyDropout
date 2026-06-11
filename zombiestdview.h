@@ -50,7 +50,9 @@ private:
 
     static constexpr int IDLE  = 0;         ///< Constante de l'état immobile.
     static constexpr int WALK  = 1;         ///< Constante de l'état en déplacement (Chasing).
-    static constexpr int STATE_COUNT = 2;   ///< Nombre total d'états d'animation gérés.
+    static constexpr int HURT  = 2;         ///< Constante de l'état blessé.
+    static constexpr int DEAD  = 3;         ///< Constante de l'état de mort.
+    static constexpr int STATE_COUNT = 4;   ///< Nombre total d'états d'animation gérés.
     static constexpr int DIR_COUNT   = 4;   ///< Nombre total de directions (DOWN, UP, LEFT, RIGHT).
     static constexpr int FRAME_W     = 32;  ///< Largeur unitaire d'une frame lue sur le spritesheet.
     static constexpr int FRAME_H     = 32;  ///< Hauteur unitaire d'une frame lue sur le spritesheet.
@@ -61,6 +63,7 @@ private:
     float frameTimer;   ///< Horloge accumulant le delta-time pour déclencher le changement de frame.
     float animSpeed;    ///< Délai d'attente (en s) avant de changer d'image de marche.
     int   currentDir;   ///< Index stockant la dernière direction calculée.
+    bool  deadAnimFinished; ///< True une fois que l'animation DEAD a été jouée entièrement.
 
     /**
      * @brief Convertit l'énumération FacingDirection en index entier de tableau.
