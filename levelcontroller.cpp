@@ -47,6 +47,7 @@ void LevelController::update(float dt,
         // Dès que l'attaque se termine, on réarme les ennemis
         // pour qu'ils puissent prendre des dégâts au prochain coup.
         for (Enemy* e : level.getEnemies()) {
+            if (e->getAIState() == EnemyAIState::DEAD) continue;
             e->setHitThisSlash(false);
         }
     }
@@ -67,7 +68,9 @@ void LevelController::updateEnemies(float dt,
                                     LevelModel&  level)
 {
     for (Enemy* e : level.getEnemies())
-        if (e->isActive())
+        // Les ennemis DEAD continuent à se ticker via leur propre update()
+        // pour décompter deadTimer, mais pas les ennemis déjà désactivés.
+        if (e->isActive() || e->getAIState() == EnemyAIState::DEAD)
             e->update(dt, player.getPosition());
 }
 
@@ -134,7 +137,7 @@ void LevelController::resolvePlayerWallCollisions(PlayerModel& player,
 void LevelController::resolveEnemyWallCollisions(LevelModel& level)
 {
     for (Enemy* e : level.getEnemies()) {
-        if (!e->isActive()) continue;
+        if (!e->isActive() || e->getAIState() == EnemyAIState::DEAD) continue;
         Vector2f refPos = e->getPosition();
         for (int pass = 0; pass < 4; ++pass) {
             for (WallModel* w : level.getWalls())
@@ -155,7 +158,7 @@ void LevelController::resolvePlayerVsEnemyWalls(PlayerModel& player,
                                                 LevelModel&  level)
 {
     for (Enemy* e : level.getEnemies()) {
-        if (!e->isActive()) continue;
+        if (!e->isActive() || e->getAIState() == EnemyAIState::DEAD) continue;
         resolveAABB(player, e->getCollider());
     }
 }
@@ -169,7 +172,7 @@ void LevelController::checkAndResolvePlayerEnemyCollisions(PlayerModel& player,
                                                            LevelModel&  level)
 {
     for (Enemy* e : level.getEnemies()) {
-        if (!e->isActive()) continue;
+        if (!e->isActive() || e->getAIState() == EnemyAIState::DEAD) continue;
         if (!player.getCollider().intersects(e->getCollider())) continue;
 
         e->attack(&player);
@@ -204,8 +207,8 @@ void LevelController::checkSlashZoneHits(PlayerModel& player,
 {
     QRectF slash = player.getSlashZone();
     for (Enemy* e : level.getEnemies()) {
-        // Si l'ennemi est inactif OU s'il a DÉJÀ pris un coup pendant cette animation, on l'ignore.
-        if (!e->isActive() || e->getHitThisSlash()) continue;
+        if (!e->isActive() || e->getAIState() == EnemyAIState::DEAD) continue;
+        if (e->getHitThisSlash()) continue;
 
         if (slash.intersects(e->getCollider())) {
             int dmg = player.getKatana().getDamage();
@@ -222,9 +225,9 @@ void LevelController::resolveEnemyEnemyCollisions(LevelModel& level)
     QVector<Enemy*>& enemies = level.getEnemies();
     int n = enemies.size();
     for (int i = 0; i < n; ++i) {
-        if (!enemies[i]->isActive()) continue;
+        if (!enemies[i]->isActive() || enemies[i]->getAIState() == EnemyAIState::DEAD) continue;
         for (int j = i + 1; j < n; ++j) {
-            if (!enemies[j]->isActive()) continue;
+            if (!enemies[j]->isActive() || enemies[j]->getAIState() == EnemyAIState::DEAD) continue;
 
             QRectF a = enemies[i]->getCollider();
             QRectF b = enemies[j]->getCollider();
@@ -315,7 +318,7 @@ void LevelController::checkBulletCollisions(PlayerModel& player,
         // Collision avec un ennemi
         bool hit = false;
         for (Enemy* e : level.getEnemies()) {
-            if (!e->isActive()) continue;
+            if (!e->isActive() || e->getAIState() == EnemyAIState::DEAD) continue;
             if (br.intersects(e->getCollider())) {
                 int dmg = b->getDamage();
                 e->takeDamage(dmg);
