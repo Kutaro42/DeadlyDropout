@@ -6,6 +6,7 @@
 #include "gameview.h"
 #include "zombielauncherview.h"
 #include "standarddoorview.h"
+#include "bossdoorview.h"
 #include "guiddef.h"
 #include <QFont>
 #include <QFontMetrics>
@@ -99,6 +100,8 @@ void GameView::updateAllViews(float dt, GameModel* model) {
             Bossv->updateView(dt);
         else if (auto* dv = dynamic_cast<StandardDoorView*>(item))
             dv->updateView();
+        else if (auto* bdv = dynamic_cast<BossDoorView*>(item))
+            bdv->updateView();
     }
 
     viewport()->update();

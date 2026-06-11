@@ -4,6 +4,7 @@
 #include "exitdoormodel.h"
 #include "zombielaunchermodel.h"
 #include "standarddoormodel.h"
+#include "bossdoormodel.h"
 #include "gunmodel.h"
 #include "bulletmodel.h"
 #include <QRectF>
@@ -53,6 +54,7 @@ void LevelController::update(float dt,
     checkBulletCollisions(player, level);
 
     checkStandardDoorInteractions(player, level);
+    checkBossDoorInteractions(player, level);
 
     checkExitCondition(player, level);
 }
@@ -136,6 +138,9 @@ void LevelController::resolveEnemyWallCollisions(LevelModel& level)
             // Les portes fermées sont opaques pour les ennemis
             for (StandardDoorModel* d : level.getStandardDoors())
                 if (!d->isOpen())
+                    resolveAABBWithRef(*e, d->getCollider(), refPos);
+            for (BossDoorModel* d : level.getBossDoors())
+                if (!d->isLocked())
                     resolveAABBWithRef(*e, d->getCollider(), refPos);
         }
     }
@@ -277,6 +282,15 @@ void LevelController::checkRubbleCollisions(PlayerModel& player,
                     break;
                 }
             }
+            if (!r->isActive()) continue;
+
+            // Collision avec une porte de boss (bloque les gravats dans tous les états)
+            for (BossDoorModel* d : level.getBossDoors()) {
+                if (rb.intersects(d->getCollider())) {
+                    r->setActive(false);
+                    break;
+                }
+            }
         }
     }
 }
@@ -321,6 +335,15 @@ void LevelController::checkBulletCollisions(PlayerModel& player,
                 break;
             }
         }
+        if (!b->isActive()) continue;
+
+        // Collision avec une porte de boss (bloque les balles dans tous les états)
+        for (BossDoorModel* d : level.getBossDoors()) {
+            if (br.intersects(d->getCollider())) {
+                b->setActive(false);
+                break;
+            }
+        }
     }
 }
 
@@ -341,6 +364,28 @@ void LevelController::checkStandardDoorInteractions(PlayerModel& player,
 
         // Porte encore fermée → bloque le joueur (même comportement qu'un mur)
         resolveAABB(player, door->getCollider());
+    }
+}
+
+
+// ── Portes de boss : ouverture à la mort du boss + collision tant que fermées ─
+// La porte s'ouvre automatiquement dès qu'aucun boss actif n'est présent dans
+// le niveau. Tant qu'elle est fermée, elle bloque le joueur comme un mur.
+// ── Portes de boss : téléportation unique puis verrouillage ───────────────────
+void LevelController::checkBossDoorInteractions(PlayerModel& player,
+                                                LevelModel&  level)
+{
+    for (BossDoorModel* door : level.getBossDoors()) {
+        if (door->isLocked()) {
+            // Verrouillée → bloque joueur, ennemis, balles, gravats (géré ailleurs)
+            resolveAABB(player, door->getCollider());
+            continue;
+        }
+
+        Vector2f teleportPos;
+        if (door->tryTraverse(player.getCollider(), teleportPos))
+            player.setPosition(teleportPos);
+        // Pas de resolveAABB si on vient de traverser (le joueur est déjà de l'autre côté)
     }
 }
 
