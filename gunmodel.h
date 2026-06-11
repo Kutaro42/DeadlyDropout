@@ -90,6 +90,7 @@ public:
 private:
     QVector<BulletModel*> bullets;   ///< Balles actuellement en vol.
     QSoundEffect *emptyMagSound;
+    QSoundEffect *gunFireSound;
 
     int   magSize;       ///< Capacité maximale du chargeur.
     int   mag;           ///< Balles restantes dans le chargeur.

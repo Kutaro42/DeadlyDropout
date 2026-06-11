@@ -106,6 +106,7 @@
         <file>Textures/Environment/Floor/floor_tileset.png</file>
 
 	<file>Sound/click.wav</file>
+	<file>Sound/gunFireSound.wav</file>
     </qresource>
 
     <!-- ── Matrices de niveaux (texte) ───────────────────────────── -->

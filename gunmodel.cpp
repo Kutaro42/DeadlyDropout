@@ -20,6 +20,9 @@ GunModel::GunModel(int magSz, int reserveSz)
     emptyMagSound = new QSoundEffect(this);
     emptyMagSound->setSource(QUrl("qrc:/images/Sound/click.wav"));
     emptyMagSound->setVolume(0.5f);
+    gunFireSound = new QSoundEffect(this);
+    gunFireSound->setSource(QUrl("qrc:/images/Sound/gunFireSound.wav"));
+    gunFireSound->setVolume(0.5f);
 }
 
 GunModel::~GunModel()
@@ -64,7 +67,7 @@ bool GunModel::tryShoot(Vector2f muzzlePos, Vector2f targetPos)
 
     Vector2f dir = (targetPos - muzzlePos).normalized();
     bullets.append(new BulletModel(muzzlePos, dir, computeDamage()));
-
+    gunFireSound->play();
     --mag;
     shootTimer = shootCooldown;
     return true;
