@@ -14,11 +14,11 @@ void LevelController::update(float dt, PlayerModel& player, LevelModel& level)
     updateEnemies(dt, player, level);
     distributeGold(player, level);
 
-    resolvePlayerWallCollisions(player, level);
-    resolveEnemyWallCollisions(level);
+    // resolvePlayerWallCollisions(player, level);
+    // resolveEnemyWallCollisions(level);
 
     resolveEnemyEnemyCollisions(level);
-    resolveEnemyWallCollisions(level);
+    // resolveEnemyWallCollisions(level);
 
     checkAndResolvePlayerEnemyCollisions(player, level);
 
@@ -36,7 +36,7 @@ void LevelController::update(float dt, PlayerModel& player, LevelModel& level)
 
     checkRubbleCollisions(player, level);
     checkBulletCollisions(player, level);
-    checkBossZonePattern(player, level);
+    // checkBossZonePattern(player, level);
 
     checkStandardDoorInteractions(player, level);
     checkBossDoorInteractions(player, level);
@@ -135,17 +135,14 @@ void LevelController::resolveEnemyWallCollisions(LevelModel& level)
     for (Enemy* e : level.getEnemies()) {
         if (!e->isActive() || e->getAIState() == EnemyAIState::DEAD) continue;
         Vector2f refPos = e->getPosition();
-        for (int pass = 0; pass < 4; ++pass) {
-            for (WallModel* w : level.getWalls())
-                resolveAABBWithRef(*e, w->getCollider(), refPos);
-            // Les portes fermées sont opaques pour les ennemis
-            for (StandardDoorModel* d : level.getStandardDoors())
-                if (!d->isOpen())
-                    resolveAABBWithRef(*e, d->getCollider(), refPos);
-            for (BossDoorModel* d : level.getBossDoors())
-                if (!d->isLocked())
-                    resolveAABBWithRef(*e, d->getCollider(), refPos);
-        }
+        for (WallModel* w : level.getWalls())
+            resolveAABBWithRef(*e, w->getCollider(), refPos);
+        for (StandardDoorModel* d : level.getStandardDoors())
+            if (!d->isOpen())
+                resolveAABBWithRef(*e, d->getCollider(), refPos);
+        for (BossDoorModel* d : level.getBossDoors())
+            if (!d->isLocked())
+                resolveAABBWithRef(*e, d->getCollider(), refPos);
     }
 }
 
