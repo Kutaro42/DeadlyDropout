@@ -69,6 +69,7 @@ ZombieLauncherView::ZombieLauncherView(ZombieLauncherModel* m,
     , animSpeed(0.18f)
     , currentDir(0)
     , deadAnimFinished(false)
+    , animSpeedDeath(0.01f)
 {
     const char* dirNames[DIR_COUNT] = { "Down", "Up", "Left", "Right" };
     for (int d = 0; d < DIR_COUNT; ++d) {
@@ -151,7 +152,7 @@ void ZombieLauncherView::updateView(float dt)
             const QVector<QPixmap>& dead = sprites[DEAD][currentDir];
             if (!dead.isEmpty()) {
                 frameTimer += dt;
-                if (frameTimer >= animSpeed) {
+                if (frameTimer >= animSpeedDeath) {
                     frameTimer = 0.0f;
                     if (currentFrame < dead.size() - 1) {
                         ++currentFrame;
