@@ -42,14 +42,14 @@ namespace Cfg {
     constexpr int   ZOMBIE_DMG_MIN      = 10;      ///< Dégâts minimum infligés par le zombie.
     constexpr int   ZOMBIE_DMG_MAX      = 17;     ///< Dégâts maximum infligés par le zombie.
     constexpr float ZOMBIE_ATK_CD       = 1.5f;   ///< Temps de recharge de l'attaque en secondes.
-    constexpr float ZOMBIE_DETECT_R     = 400.0f; ///< Rayon de la bulle de détection du joueur.
+    constexpr float ZOMBIE_DETECT_R     = 800.0f; ///< Rayon de la bulle de détection du joueur.
     constexpr int   ZOMBIE_GOLD_MIN     = 5;      ///< Quantité minimum d'or lâchée.
     constexpr int   ZOMBIE_GOLD_MAX     = 10;     ///< Quantité maximum d'or lâchée.
 
     // ─── Zombie lanceur ───────────────────────────────────────────
     constexpr int   LAUNCHER_MAX_HP     = 15;     ///< Points de vie du zombie lanceur.
     constexpr float LAUNCHER_SPEED      = 90.0f;  ///< Vitesse de poursuite (sort de portée de tir).
-    constexpr float LAUNCHER_DETECT_R   = 400.0f; ///< Rayon de détection du joueur.
+    constexpr float LAUNCHER_DETECT_R   = 1000.0f; ///< Rayon de détection du joueur.
     constexpr float LAUNCHER_SHOOT_R    = 320.0f; ///< Rayon de tir : reste immobile en dessous.
     constexpr float LAUNCHER_SHOOT_CD   = 2.0f;   ///< Intervalle entre deux tirs en secondes.
     constexpr int   LAUNCHER_GOLD_MIN   = 7;      ///< Or minimum lâché à la mort.
@@ -76,7 +76,7 @@ namespace Cfg {
     constexpr float GUN_OFFSET_Y        = 10.0f;  ///< Décalage Y du canon par rapport au centre du joueur.
 
     // ─── Boucle de jeu ────────────────────────────────────────────
-    constexpr int   TIMER_MS            = 16;     ///< Intervalle du timer principal (~60 FPS).
+    constexpr int   TIMER_MS            = 16;     ///< Intervalle du timer principal (~60 FPS).16
 
     // ─── Z-values (couches de rendu) ──────────────────────────────
     constexpr double Z_FLOOR            = 0.0;    ///< Profondeur d'affichage du sol.
