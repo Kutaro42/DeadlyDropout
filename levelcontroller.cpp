@@ -43,7 +43,7 @@ void LevelController::update(float dt, PlayerModel& player, LevelModel& level)
     checkBossZonePattern(player, level);
     checkExitCondition(player, level);
 
-    purgeDeadEnemies(level); // ← absolument en dernier
+    //purgeDeadEnemies(level); // ← absolument en dernier
 
 }
 // ── IA : mise à jour de chaque ennemi actif ───────────────────────

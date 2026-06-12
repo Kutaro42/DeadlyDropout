@@ -39,10 +39,9 @@ void LevelModel::setLevelId(int id)            { levelId = id;      }
 bool LevelModel::bossDefeat() {
     if (keyAlreadyGranted) return true;
     for (const auto* e : enemies)
-        if (e->getisBoss() && !e->isActive()) {
+        if (e->getisBoss() && !e->isActive())
+        {
             emit sigPlayerKeyObtain();
-            keyAlreadyGranted = true;
-            return true;
         }
     return false;
 
