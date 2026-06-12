@@ -38,9 +38,9 @@ namespace Cfg {
 
     // ─── Zombie standard ──────────────────────────────────────────
     constexpr int   ZOMBIE_MAX_HP       = 20;     ///< Points de vie maximum du zombie.
-    constexpr float ZOMBIE_SPEED        = 90.0f;  ///< Vitesse de déplacement du zombie en pixels/s.
-    constexpr int   ZOMBIE_DMG_MIN      = 7;      ///< Dégâts minimum infligés par le zombie.
-    constexpr int   ZOMBIE_DMG_MAX      = 12;     ///< Dégâts maximum infligés par le zombie.
+    constexpr float ZOMBIE_SPEED        = 120.0f;  ///< Vitesse de déplacement du zombie en pixels/s.
+    constexpr int   ZOMBIE_DMG_MIN      = 10;      ///< Dégâts minimum infligés par le zombie.
+    constexpr int   ZOMBIE_DMG_MAX      = 17;     ///< Dégâts maximum infligés par le zombie.
     constexpr float ZOMBIE_ATK_CD       = 1.5f;   ///< Temps de recharge de l'attaque en secondes.
     constexpr float ZOMBIE_DETECT_R     = 400.0f; ///< Rayon de la bulle de détection du joueur.
     constexpr int   ZOMBIE_GOLD_MIN     = 5;      ///< Quantité minimum d'or lâchée.
@@ -56,8 +56,8 @@ namespace Cfg {
     constexpr int   LAUNCHER_GOLD_MAX   = 14;     ///< Or maximum lâché à la mort.
 
     // ─── Gravat (projectile lanceur) ──────────────────────────────
-    constexpr float RUBBLE_SPEED        = 300.0f; ///< Vitesse de déplacement du gravat en pixels/s.
-    constexpr int   RUBBLE_DAMAGE       = 10;     ///< Dégâts infligés par un gravat.
+    constexpr float RUBBLE_SPEED        = 500.0f; ///< Vitesse de déplacement du gravat en pixels/s.
+    constexpr int   RUBBLE_DAMAGE       = 30;     ///< Dégâts infligés par un gravat.
     constexpr float RUBBLE_SIZE         = 16.0f;  ///< Taille (côté) du sprite du gravat en pixels.
 
     // ─── Balle (pistolet joueur) ──────────────────────────────────
