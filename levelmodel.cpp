@@ -37,10 +37,13 @@ void LevelModel::setPlayerSpawnPos(Vector2f p) { playerSpawnPos = p;}
 void LevelModel::setLevelId(int id)            { levelId = id;      }
 
 bool LevelModel::bossDefeat() {
+    if (keyAlreadyGranted) return true;
     for (const auto* e : enemies)
-        if (e->getisBoss() && !e->isActive())
-        {
-        emit sigPlayerKeyObtain();// signal de l'obtention de key
+        if (e->getisBoss() && !e->isActive()) {
+            emit sigPlayerKeyObtain();
+            keyAlreadyGranted = true;
+            return true;
         }
-    return true;
+    return false;
+
 }

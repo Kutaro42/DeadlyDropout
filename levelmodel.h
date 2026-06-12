@@ -37,6 +37,7 @@ private:
     ExitDoorModel* exitDoor;       ///< Modèle de la porte de fin de niveau.
     Vector2f             playerSpawnPos; ///< Coordonnées d'apparition du joueur.
     int                  levelId;        ///< Identifiant unique du niveau courant.
+    bool keyAlreadyGranted = false;
 
 public:
     /**

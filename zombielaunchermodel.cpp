@@ -65,11 +65,8 @@ void ZombieLauncherModel::shoot(Vector2f playerPos)
 void ZombieLauncherModel::update(float dt, Vector2f playerPos)
 {
     if (!isActive() && aiState != EnemyAIState::DEAD) return;
-
-    // Gestion des états transitoires (HURT, DEAD) — court-circuite l'IA si actif.
     if (tickTransientStates(dt)) return;
 
-    // Décompte du cooldown de tir
     if (shootTimer > 0.0f) {
         shootTimer -= dt;
         if (shootTimer < 0.0f) shootTimer = 0.0f;
@@ -81,22 +78,21 @@ void ZombieLauncherModel::update(float dt, Vector2f playerPos)
     case EnemyAIState::CHASING:
         chase(playerPos, dt);
         break;
-
     case EnemyAIState::ATTACKING:
-        // Tir si le cooldown est écoulé
         if (shootTimer <= 0.0f) {
             shoot(playerPos);
             shootTimer = Cfg::LAUNCHER_SHOOT_CD;
         }
         break;
-
-    default: // IDLE
+    default:
         break;
     }
 
-    // Avancer tous les gravats actifs
+    // Avancer les gravats actifs PUIS purger — jamais l'inverse
     for (RubbleModel* r : rubbles)
         if (r->isActive()) r->update(dt);
+
+    pruneInactiveRubbles(); // ← unique point de purge
 }
 
 // ─── Attaque de contact (non utilisée, satisfait l'interface) ─────

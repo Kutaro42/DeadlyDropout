@@ -17,9 +17,7 @@ LevelController::LevelController()
 {}
 
 // ── Point d'entrée principal ──────────────────────────────────────
-void LevelController::update(float dt,
-                             PlayerModel& player,
-                             LevelModel&  level)
+void LevelController::update(float dt, PlayerModel& player, LevelModel& level)
 {
     levelJustCompleted = false;
     pendingPopups.clear();
@@ -27,26 +25,20 @@ void LevelController::update(float dt,
     updateEnemies(dt, player, level);
     distributeGold(player, level);
 
-    // 1) Tout le monde sort des murs
     resolvePlayerWallCollisions(player, level);
     resolveEnemyWallCollisions(level);
 
-    // 2) Séparations entre ennemis, puis remise dans les murs
     resolveEnemyEnemyCollisions(level);
     resolveEnemyWallCollisions(level);
 
-    // 3) Attaque au contact + séparation symétrique joueur/ennemi
     checkAndResolvePlayerEnemyCollisions(player, level);
 
-    // 4) Remettre tout le monde dans les murs après séparation
     resolvePlayerWallCollisions(player, level);
     resolveEnemyWallCollisions(level);
 
     if (player.isKatanaActive()) {
         checkSlashZoneHits(player, level);
     } else {
-        // Dès que l'attaque se termine, on réarme les ennemis
-        // pour qu'ils puissent prendre des dégâts au prochain coup.
         for (Enemy* e : level.getEnemies()) {
             if (e->getAIState() == EnemyAIState::DEAD) continue;
             e->setHitThisSlash(false);
@@ -54,13 +46,14 @@ void LevelController::update(float dt,
     }
 
     checkRubbleCollisions(player, level);
-
     checkBulletCollisions(player, level);
 
     checkStandardDoorInteractions(player, level);
     checkBossDoorInteractions(player, level);
-
     checkExitCondition(player, level);
+
+    purgeDeadEnemies(level); // ← absolument en dernier
+
 }
 
 // ── IA : mise à jour de chaque ennemi actif ───────────────────────
@@ -69,10 +62,20 @@ void LevelController::updateEnemies(float dt,
                                     LevelModel&  level)
 {
     for (Enemy* e : level.getEnemies())
-        // Les ennemis DEAD continuent à se ticker via leur propre update()
-        // pour décompter deadTimer, mais pas les ennemis déjà désactivés.
         if (e->isActive() || e->getAIState() == EnemyAIState::DEAD)
             e->update(dt, player.getPosition());
+
+}
+
+void LevelController::purgeDeadEnemies(LevelModel& level)
+{
+    QVector<Enemy*>& enemies = level.getEnemies();
+    for (int i = enemies.size() - 1; i >= 0; --i) {
+        if (!enemies[i]->isActive() && enemies[i]->getAIState() != EnemyAIState::DEAD) {
+            delete enemies[i];
+            enemies.removeAt(i);
+        }
+    }
 }
 
 // ── Gold : distribué une seule fois à la mort de chaque ennemi ────
@@ -258,8 +261,7 @@ void LevelController::resolveEnemyEnemyCollisions(LevelModel& level)
 // ── Gravats (projectiles lanceur) / joueur + murs ─────────────────
 // Itère sur tous les ZombieLauncherModel (via dynamic_cast) et vérifie
 // les collisions de leurs RubbleModel avec le joueur et les murs.
-void LevelController::checkRubbleCollisions(PlayerModel& player,
-                                            LevelModel&  level)
+void LevelController::checkRubbleCollisions(PlayerModel& player, LevelModel& level)
 {
     for (Enemy* e : level.getEnemies()) {
         auto* launcher = dynamic_cast<ZombieLauncherModel*>(e);
@@ -270,46 +272,32 @@ void LevelController::checkRubbleCollisions(PlayerModel& player,
 
             QRectF rb = r->getCollider();
 
-            // Collision avec le joueur
             if (rb.intersects(player.getCollider())) {
                 player.takeDamage(r->getDamage());
                 r->setActive(false);
                 continue;
             }
 
-            // Collision avec un mur
             for (WallModel* w : level.getWalls()) {
-                if (rb.intersects(w->getCollider())) {
-                    r->setActive(false);
-                    break;
-                }
+                if (rb.intersects(w->getCollider())) { r->setActive(false); break; }
             }
-
             if (!r->isActive()) continue;
 
-            // Collision avec une porte standard fermée
             for (StandardDoorModel* d : level.getStandardDoors()) {
-                if (!d->isOpen() && rb.intersects(d->getCollider())) {
-                    r->setActive(false);
-                    break;
-                }
+                if (!d->isOpen() && rb.intersects(d->getCollider())) { r->setActive(false); break; }
             }
             if (!r->isActive()) continue;
 
-            // Collision avec une porte de boss (bloque les gravats dans tous les états)
             for (BossDoorModel* d : level.getBossDoors()) {
-                if (rb.intersects(d->getCollider())) {
-                    r->setActive(false);
-                    break;
-                }
+                if (rb.intersects(d->getCollider())) { r->setActive(false); break; }
             }
         }
+        // ← plus d'appel à pruneInactiveRubbles() ici
     }
 }
 
 // ── Balles joueur / ennemis + murs ───────────────────────────────
-void LevelController::checkBulletCollisions(PlayerModel& player,
-                                            LevelModel&  level)
+void LevelController::checkBulletCollisions(PlayerModel& player, LevelModel& level)
 {
     GunModel& gun = player.getGun();
 
@@ -317,9 +305,8 @@ void LevelController::checkBulletCollisions(PlayerModel& player,
         if (!b->isActive()) continue;
 
         QRectF br = b->getCollider();
-
-        // Collision avec un ennemi
         bool hit = false;
+
         for (Enemy* e : level.getEnemies()) {
             if (!e->isActive() || e->getAIState() == EnemyAIState::DEAD) continue;
             if (br.intersects(e->getCollider())) {
@@ -333,32 +320,23 @@ void LevelController::checkBulletCollisions(PlayerModel& player,
         }
         if (hit) continue;
 
-        // Collision avec un mur
         for (WallModel* w : level.getWalls()) {
-            if (br.intersects(w->getCollider())) {
-                b->setActive(false);
-                break;
-            }
+            if (br.intersects(w->getCollider())) { b->setActive(false); break; }
         }
         if (!b->isActive()) continue;
 
-        // Collision avec une porte standard fermée
         for (StandardDoorModel* d : level.getStandardDoors()) {
-            if (!d->isOpen() && br.intersects(d->getCollider())) {
-                b->setActive(false);
-                break;
-            }
+            if (!d->isOpen() && br.intersects(d->getCollider())) { b->setActive(false); break; }
         }
         if (!b->isActive()) continue;
 
-        // Collision avec une porte de boss (bloque les balles dans tous les états)
         for (BossDoorModel* d : level.getBossDoors()) {
-            if (br.intersects(d->getCollider())) {
-                b->setActive(false);
-                break;
-            }
+            if (br.intersects(d->getCollider())) { b->setActive(false); break; }
         }
     }
+
+    // ← purge des balles inactives
+    gun.pruneInactiveBullets();
 }
 
 // ── Portes standard : ouverture au contact + collision tant que fermées ───────
