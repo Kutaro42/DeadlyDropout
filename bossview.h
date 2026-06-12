@@ -11,6 +11,7 @@ class BossView : public QGraphicsPixmapItem
 {
 public:
     BossView(bossModel* model, QGraphicsItem* parent = nullptr);
+    ~BossView();
 
     void updateView(float dt);
 
@@ -33,6 +34,14 @@ private:
     float animSpeed;    ///< Délai d'attente (en s) avant de changer d'image de marche.
     int   currentDir;   ///< Index stockant la dernière direction calculée.
     bool  deadAnimFinished; ///< True une fois que l'animation DEAD a été jouée entièrement.
+
+    // ─── Zone d'attaque (pattern 2) ───────────────────────────────
+    QVector<QGraphicsRectItem*> zoneItems;  ///< Items Qt des tuiles de zone.
+    bool zoneVisible;                       ///< true si les items sont dans la scène.
+
+    void showZone();   ///< Crée et ajoute les items de zone à la scène.
+    void hideZone();   ///< Retire et détruit les items de zone (safe contre double-free).
+
 
     /**
      * @brief Convertit l'énumération FacingDirection en index entier de tableau.

@@ -1,16 +1,5 @@
 #include "levelcontroller.h"
-#include "enemy.h"
-#include "wallmodel.h"
-#include "exitdoormodel.h"
-#include "zombielaunchermodel.h"
-#include "standarddoormodel.h"
-#include "bossdoormodel.h"
-#include "gunmodel.h"
-#include "bulletmodel.h"
-#include <QRectF>
-#include <QPointF>
-#include <cmath>
-#include <cstdlib>
+#include "bossmodel.h"
 
 LevelController::LevelController()
     : levelJustCompleted(false)
@@ -47,15 +36,16 @@ void LevelController::update(float dt, PlayerModel& player, LevelModel& level)
 
     checkRubbleCollisions(player, level);
     checkBulletCollisions(player, level);
+    checkBossZonePattern(player, level);
 
     checkStandardDoorInteractions(player, level);
     checkBossDoorInteractions(player, level);
+    checkBossZonePattern(player, level);
     checkExitCondition(player, level);
 
     purgeDeadEnemies(level); // ← absolument en dernier
 
 }
-
 // ── IA : mise à jour de chaque ennemi actif ───────────────────────
 void LevelController::updateEnemies(float dt,
                                     PlayerModel& player,
@@ -398,6 +388,44 @@ void LevelController::checkExitCondition(PlayerModel& player,
     {
         player.setHasKey(false);
         levelJustCompleted = true;
+    }
+}
+
+void LevelController::checkBossZonePattern(PlayerModel& player,
+                                           LevelModel&  level)
+{
+    for (Enemy* e : level.getEnemies()) {
+        bossModel* boss = dynamic_cast<bossModel*>(e);
+        if (!boss || !boss->isActive()) continue;
+
+        // ── 1. Fournir les colliders de murs (calcul unique, mis en cache) ─
+        if (wallCollidersCache.isEmpty() && !level.getWalls().isEmpty()) {
+            wallCollidersCache.reserve(level.getWalls().size());
+            for (WallModel* w : level.getWalls())
+                wallCollidersCache.append(w->getCollider());
+        }
+        if (!wallCollidersCache.isEmpty())
+            boss->setWallColliders(wallCollidersCache);
+
+        // ── 2. Explosion : appliquer les dégâts ───────────────────────────
+        if (!boss->zoneJustExploded()) continue;
+        boss->clearZoneExploded();
+
+        QRectF playerRect = player.getCollider();
+        bool   hit        = false;
+
+        for (const ZoneTile& tile : boss->getZoneTiles()) {
+            if (tile.isSafe) continue;
+            if (playerRect.intersects(tile.rect)) { hit = true; break; }
+        }
+
+        if (hit) {
+            int hp = player.getHp();
+            if (hp <= 1)
+                player.takeDamage(hp);                  // mort directe
+            else
+                player.takeDamage(Cfg::BOSS_ZONE_DMG);  // 70 HP fixes
+        }
     }
 }
 

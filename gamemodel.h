@@ -46,6 +46,7 @@ public:
     PlayerModel* getPlayer() const { return player; }
     LevelModel* getLevel()  const { return level;  }
     int          getLevelIndex()   const { return currentLevelIndex; }
+    int a = 1;
 };
 
 #endif // GAMEMODEL_H

@@ -8,6 +8,8 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+#include <QRect>
+
 /**
  * @namespace Cfg
  * @brief Espace de nommage regroupant les constantes numériques du jeu.
@@ -82,6 +84,7 @@ namespace Cfg {
     constexpr double Z_ENTITY           = 2.0;    ///< Profondeur d'affichage des entités.
     constexpr double Z_PLAYER           = 3.0;    ///< Profondeur d'affichage du joueur.
     constexpr double Z_SLASH            = 4.0;    ///< Profondeur d'affichage de l'attaque.
+    constexpr double Z_BOSS_ZONE        = 1.5;    ///< Profondeur de la zone d'attaque du boss (entre sol et entités).
 
     // ─── Ennemis — états transitoires ────────────────────
     constexpr float ENEMY_HURT_DUR      = 0.3f;  ///< Durée (s) de l'état HURT avant retour à l'IA.
@@ -97,6 +100,14 @@ namespace Cfg {
     constexpr float BOSS_DETECT_R     = 400.0f; ///< Rayon de la bulle de détection du joueur.
     constexpr int   BOSS_GOLD_MIN     = 300;      ///< Quantité minimum d'or lâchée.
     constexpr int   BOSS_GOLD_MAX     = 400;     ///< Quantité maximum d'or lâchée.
+
+    // ─── Boss pattern 2 (zone) ────────────────────────────────────
+    constexpr float BOSS_ZONE_CHARGE_CD = 8.0f;   ///< Temps entre deux déclenchements du pattern 2 (s).
+    constexpr float BOSS_ZONE_TIMER     = 5.0f;   ///< Durée de charge avant explosion de la zone (s).
+    constexpr int   BOSS_ZONE_TILE_SIZE = 32;     ///< Taille d'une tuile de zone rouge (px).
+    constexpr int   BOSS_ZONE_DMG       = 70;     ///< Dégâts fixes infligés par l'explosion de zone (pattern 2).
+    constexpr int   BOSS_ZONE_SAFE_COUNT = 6;     ///< Nombre de tuiles de refuge (trous dans la zone).
+    constexpr int   BOSS_ZONE_RADIUS     = 384;   ///< Rayon en px autour du boss pour la zone d'attaque (6 tiles de 64px).
 
     // ─── HUD ──────────────────────────────────────────────────────
     constexpr int   HUD_MARGIN          = 12;     ///< Marge extérieure du HUD.
@@ -132,6 +143,15 @@ enum class TileType {
     STANDARD_DOOR   = 6,    ///< Porte standard ouvrable par contact du joueur.
     BOSS_SPAWN      = 7,
     BOSS_DOOR       = 8     ///< Porte verrouillée jusqu’à la mort du boss.
+};
+
+/**
+ * @struct ZoneTile
+ * @brief Tuile 32×32 de la zone d'attaque du boss (pattern 2).
+ */
+struct ZoneTile {
+    QRectF rect;    ///< Rectangle de collision/rendu (32×32 px, coordonnées scène).
+    bool   isSafe;  ///< true = refuge (transparent), false = zone dangereuse (rouge).
 };
 
 #endif // CONFIG_H

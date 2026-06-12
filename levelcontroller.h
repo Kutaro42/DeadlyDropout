@@ -73,9 +73,10 @@ private:
     void checkBulletCollisions(PlayerModel& player, LevelModel& level);
     void checkStandardDoorInteractions(PlayerModel& player, LevelModel& level);        ///< Ouvre les portes standards au contact du joueur et résout leur collision.
     void checkBossDoorInteractions(PlayerModel& player, LevelModel& level);             ///< Ouvre les portes de boss à la mort du boss et résout leur collision.
+    void checkBossZonePattern(PlayerModel& player, LevelModel& level);
     void purgeDeadEnemies(LevelModel& level); //nettoyer les ennemis mort en fin de frame
 
-
+    QVector<QRectF> wallCollidersCache; ///< Cache des colliders de murs (calculé une fois, réutilisé chaque tick).
     /**
      * @brief Résout une collision AABB (Axis-Aligned Bounding Box).
      * * Repousse l'entité mobile en dehors de l'obstacle en modifiant directement sa position.
