@@ -16,109 +16,110 @@
  */
 namespace Cfg {
 
-    // ─── Fenêtre ──────────────────────────────────────────────────
-    constexpr int   WINDOW_W            = 960;    ///< Largeur de la fenêtre de jeu en pixels.
-    constexpr int   WINDOW_H            = 650;    ///< Hauteur de la fenêtre de jeu en pixels.
+// ─── Fenêtre ──────────────────────────────────────────────────
+constexpr int   WINDOW_W            = 960;    ///< Largeur de la fenêtre de jeu en pixels.
+constexpr int   WINDOW_H            = 650;    ///< Hauteur de la fenêtre de jeu en pixels.
 
-    // ─── Tuiles ───────────────────────────────────────────────────
-    constexpr int   TILE_SIZE           = 64;     ///< Taille d'une tuile de sol ou de mur en pixels.
-    constexpr int   ENTITY_SIZE         = 64;     ///< Taille du sprite d'une entité en pixels.
+// ─── Tuiles ───────────────────────────────────────────────────
+constexpr int   TILE_SIZE           = 64;     ///< Taille d'une tuile de sol ou de mur en pixels.
+constexpr int   ENTITY_SIZE         = 64;     ///< Taille du sprite d'une entité en pixels.
 
-    // ─── Joueur ───────────────────────────────────────────────────
-    constexpr float PLAYER_SPEED        = 300.0f; ///< Vitesse de déplacement du joueur en pixels/s.
-    constexpr float PLAYER_SPEED_BOOSTED =1000.0f;///< Vitesse du joueur boosté
-    constexpr int   PLAYER_MAX_HP       = 100;    ///< Points de vie maximum du joueur.
+// ─── Joueur ───────────────────────────────────────────────────
+constexpr float PLAYER_SPEED        = 300.0f; ///< Vitesse de déplacement du joueur en pixels/s.
+constexpr float PLAYER_SPEED_BOOSTED =1000.0f;///< Vitesse du joueur boosté
+constexpr int   PLAYER_MAX_HP       = 100;    ///< Points de vie maximum du joueur.
 
-    // ─── Katana ───────────────────────────────────────────────────
-    constexpr int   KATANA_DAMAGE       = 30;     ///< Dégâts de base infligés par le katana.
-    constexpr float KATANA_SLASH_W      = 48.0f;  ///< Largeur de la SlashZone (perpendiculaire).
-    constexpr float KATANA_SLASH_D      = 40.0f;  ///< Profondeur de la SlashZone (portée).
-    constexpr float KATANA_ANIM_DUR     = 0.2f;   ///< Durée de l'animation d'attaque en secondes.
-    constexpr float KATANA_COOLDOWN     = 0.5f;   ///< Temps de recharge entre les attaques en secondes.
+// ─── Katana ───────────────────────────────────────────────────
+constexpr int   KATANA_DAMAGE       = 30;     ///< Dégâts de base infligés par le katana.
+constexpr float KATANA_SLASH_W      = 48.0f;  ///< Largeur de la SlashZone (perpendiculaire).
+constexpr float KATANA_SLASH_D      = 40.0f;  ///< Profondeur de la SlashZone (portée).
+constexpr float KATANA_ANIM_DUR     = 0.2f;   ///< Durée de l'animation d'attaque en secondes.
+constexpr float KATANA_COOLDOWN     = 0.5f;   ///< Temps de recharge entre les attaques en secondes.
 
-    // ─── Zombie standard ──────────────────────────────────────────
-    constexpr int   ZOMBIE_MAX_HP       = 20;     ///< Points de vie maximum du zombie.
-    constexpr float ZOMBIE_SPEED        = 120.0f;  ///< Vitesse de déplacement du zombie en pixels/s.
-    constexpr int   ZOMBIE_DMG_MIN      = 10;      ///< Dégâts minimum infligés par le zombie.
-    constexpr int   ZOMBIE_DMG_MAX      = 17;     ///< Dégâts maximum infligés par le zombie.
-    constexpr float ZOMBIE_ATK_CD       = 1.5f;   ///< Temps de recharge de l'attaque en secondes.
-    constexpr float ZOMBIE_DETECT_R     = 800.0f; ///< Rayon de la bulle de détection du joueur.
-    constexpr int   ZOMBIE_GOLD_MIN     = 5;      ///< Quantité minimum d'or lâchée.
-    constexpr int   ZOMBIE_GOLD_MAX     = 10;     ///< Quantité maximum d'or lâchée.
+// ─── Zombie standard ──────────────────────────────────────────
+constexpr int   ZOMBIE_MAX_HP       = 20;     ///< Points de vie maximum du zombie.
+constexpr float ZOMBIE_SPEED        = 120.0f;  ///< Vitesse de déplacement du zombie en pixels/s.
+constexpr int   ZOMBIE_DMG_MIN      = 10;      ///< Dégâts minimum infligés par le zombie.
+constexpr int   ZOMBIE_DMG_MAX      = 17;     ///< Dégâts maximum infligés par le zombie.
+constexpr float ZOMBIE_ATK_CD       = 1.5f;   ///< Temps de recharge de l'attaque en secondes.
+constexpr float ZOMBIE_DETECT_R     = 800.0f; ///< Rayon de la bulle de détection du joueur.
+constexpr int   ZOMBIE_GOLD_MIN     = 5;      ///< Quantité minimum d'or lâchée.
+constexpr int   ZOMBIE_GOLD_MAX     = 10;     ///< Quantité maximum d'or lâchée.
 
-    // ─── Zombie lanceur ───────────────────────────────────────────
-    constexpr int   LAUNCHER_MAX_HP     = 15;     ///< Points de vie du zombie lanceur.
-    constexpr float LAUNCHER_SPEED      = 90.0f;  ///< Vitesse de poursuite (sort de portée de tir).
-    constexpr float LAUNCHER_DETECT_R   = 800.0f; ///< Rayon de détection du joueur.
-    constexpr float LAUNCHER_SHOOT_R    = 320.0f; ///< Rayon de tir : reste immobile en dessous.
-    constexpr float LAUNCHER_SHOOT_CD   = 2.0f;   ///< Intervalle entre deux tirs en secondes.
-    constexpr int   LAUNCHER_GOLD_MIN   = 7;      ///< Or minimum lâché à la mort.
-    constexpr int   LAUNCHER_GOLD_MAX   = 14;     ///< Or maximum lâché à la mort.
+// ─── Zombie lanceur ───────────────────────────────────────────
+constexpr int   LAUNCHER_MAX_HP     = 15;     ///< Points de vie du zombie lanceur.
+constexpr float LAUNCHER_SPEED      = 90.0f;  ///< Vitesse de poursuite (sort de portée de tir).
+constexpr float LAUNCHER_DETECT_R   = 800.0f; ///< Rayon de détection du joueur.
+constexpr float LAUNCHER_SHOOT_R    = 320.0f; ///< Rayon de tir : reste immobile en dessous.
+constexpr float LAUNCHER_SHOOT_CD   = 2.0f;   ///< Intervalle entre deux tirs en secondes.
+constexpr int   LAUNCHER_GOLD_MIN   = 7;      ///< Or minimum lâché à la mort.
+constexpr int   LAUNCHER_GOLD_MAX   = 14;     ///< Or maximum lâché à la mort.
 
-    // ─── Gravat (projectile lanceur) ──────────────────────────────
-    constexpr float RUBBLE_SPEED        = 450.0f; ///< Vitesse de déplacement du gravat en pixels/s.
-    constexpr int   RUBBLE_DAMAGE       = 30;     ///< Dégâts infligés par un gravat.
-    constexpr float RUBBLE_SIZE         = 16.0f;  ///< Taille (côté) du sprite du gravat en pixels.
+// ─── Gravat (projectile lanceur) ──────────────────────────────
+constexpr float RUBBLE_SPEED        = 450.0f; ///< Vitesse de déplacement du gravat en pixels/s.
+constexpr int   RUBBLE_DAMAGE       = 30;     ///< Dégâts infligés par un gravat.
+constexpr float RUBBLE_SIZE         = 16.0f;  ///< Taille (côté) du sprite du gravat en pixels.
 
-    // ─── Balle (pistolet joueur) ──────────────────────────────────
-    constexpr float BULLET_SPEED        = 2000.0f; ///< Vitesse de déplacement d'une balle en pixels/s (GDD).
-    constexpr int   BULLET_DAMAGE       = 12;     ///< Dégâts de base d'une balle (GDD).
-    constexpr int   BULLET_BONUS_MIN    = 2;      ///< Bonus adaptatif minimum (GDD).
-    constexpr int   BULLET_BONUS_MAX    = 5;      ///< Bonus adaptatif maximum (GDD).
-    constexpr float BULLET_SIZE         = 8.0f;   ///< Taille (côté) du sprite de la balle en pixels.
-    constexpr float BULLET_CRIT_CHANCE  = 0.02f;  ///< Chance de coup critique (2 %, GDD).
-    constexpr float BULLET_CRIT_MULT    = 2.0f;   ///< Multiplicateur de dégâts critique (×2, GDD).
+// ─── Balle (pistolet joueur) ──────────────────────────────────
+constexpr float BULLET_SPEED        = 2000.0f; ///< Vitesse de déplacement d'une balle en pixels/s (GDD).
+constexpr int   BULLET_DAMAGE       = 12;     ///< Dégâts de base d'une balle (GDD).
+constexpr int   BULLET_BONUS_MIN    = 2;      ///< Bonus adaptatif minimum (GDD).
+constexpr int   BULLET_BONUS_MAX    = 5;      ///< Bonus adaptatif maximum (GDD).
+constexpr float BULLET_SIZE         = 8.0f;   ///< Taille (côté) du sprite de la balle en pixels.
+constexpr float BULLET_CRIT_CHANCE  = 0.02f;  ///< Chance de coup critique (2 %, GDD).
+constexpr float BULLET_CRIT_MULT    = 2.0f;   ///< Multiplicateur de dégâts critique (×2, GDD).
 
-    // ─── Pistolet (arme ranged joueur) ────────────────────────────
-    constexpr float GUN_SHOOT_CD        = 0.5f;   ///< Cooldown entre deux tirs en secondes (GDD).
-    constexpr int   GUN_MAG_SIZE        = 10;     ///< Taille du chargeur par défaut.
-    constexpr float GUN_OFFSET_X        = 20.0f;  ///< Décalage X du canon par rapport au centre du joueur.
-    constexpr float GUN_OFFSET_Y        = 10.0f;  ///< Décalage Y du canon par rapport au centre du joueur.
+// ─── Pistolet (arme ranged joueur) ────────────────────────────
+constexpr float GUN_SHOOT_CD        = 0.5f;   ///< Cooldown entre deux tirs en secondes (GDD).
+constexpr int   GUN_MAG_SIZE        = 10;     ///< Taille du chargeur par défaut.
+constexpr float GUN_OFFSET_X        = 20.0f;  ///< Décalage X du canon par rapport au centre du joueur.
+constexpr float GUN_OFFSET_Y        = 10.0f;  ///< Décalage Y du canon par rapport au centre du joueur.
 
-    // ─── Boucle de jeu ────────────────────────────────────────────
-    constexpr int   TIMER_MS            = 16;     ///< Intervalle du timer principal (~60 FPS).16
+// ─── Boucle de jeu ────────────────────────────────────────────
+constexpr int   TIMER_MS            = 16;     ///< Intervalle du timer principal (~60 FPS).16
 
-    // ─── Z-values (couches de rendu) ──────────────────────────────
-    constexpr double Z_FLOOR            = 0.0;    ///< Profondeur d'affichage du sol.
-    constexpr double Z_WALL             = 1.0;    ///< Profondeur d'affichage des murs.
-    constexpr double Z_ENTITY           = 2.0;    ///< Profondeur d'affichage des entités.
-    constexpr double Z_PLAYER           = 3.0;    ///< Profondeur d'affichage du joueur.
-    constexpr double Z_SLASH            = 4.0;    ///< Profondeur d'affichage de l'attaque.
-    constexpr double Z_BOSS_ZONE        = 1.5;    ///< Profondeur de la zone d'attaque du boss (entre sol et entités).
+// ─── Z-values (couches de rendu) ──────────────────────────────
+constexpr double Z_FLOOR            = 0.0;    ///< Profondeur d'affichage du sol.
+constexpr double Z_WALL             = 1.0;    ///< Profondeur d'affichage des murs.
+constexpr double Z_ENTITY           = 2.0;    ///< Profondeur d'affichage des entités.
+constexpr double Z_PLAYER           = 3.0;    ///< Profondeur d'affichage du joueur.
+constexpr double Z_SLASH            = 4.0;    ///< Profondeur d'affichage de l'attaque.
+constexpr double Z_BOSS_ZONE        = 1.5;    ///< Profondeur de la zone d'attaque du boss (entre sol et entités).
 
-    // ─── Ennemis — états transitoires ────────────────────
-    constexpr float ENEMY_HURT_DUR      = 0.3f;  ///< Durée (s) de l'état HURT avant retour à l'IA.
-    constexpr float ENEMY_DEAD_DUR      = 1.0f;  ///< Durée (s) de l'animation de mort avant désactivation.
+// ─── Ennemis — états transitoires ────────────────────
+constexpr float ENEMY_HURT_DUR      = 0.3f;  ///< Durée (s) de l'état HURT avant retour à l'IA.
+constexpr float ENEMY_DEAD_DUR      = 1.0f;  ///< Durée (s) de l'animation de mort avant désactivation.
 
-    // ─── Boss ────────────────────────────────────────────
-    constexpr int   BOSSP1_MAX_HP       = 300;     ///< Points de vie maximum du boss en phase 1.
-    constexpr int   BOSSP2_MAX_HP       = 300;     ///< Points de vie maximum du zombie.
-    constexpr int   BOSSP3_MAX_HP       = 300;     ///< Points de vie maximum du zombie.
-    constexpr float BOSS_SPEED        = 90.0f;  ///< Vitesse de déplacement du zombie en pixels/s.
-    constexpr int   BOSS_DMG            = 20;      ///< Dégâts infligés par le boss.
-    constexpr float BOSS_ATK_CD       = 1.5f;   ///< Temps de recharge de l'attaque en secondes.
-    constexpr float BOSS_DETECT_R     = 400.0f; ///< Rayon de la bulle de détection du joueur.
-    constexpr int   BOSS_GOLD_MIN     = 300;      ///< Quantité minimum d'or lâchée.
-    constexpr int   BOSS_GOLD_MAX     = 400;     ///< Quantité maximum d'or lâchée.
+// ─── Boss ────────────────────────────────────────────
+constexpr int   BOSSP1_MAX_HP       = 300;     ///< Points de vie maximum du boss en phase 1.
+constexpr int   BOSSP2_MAX_HP       = 300;     ///< Points de vie maximum du zombie.
+constexpr int   BOSSP3_MAX_HP       = 300;     ///< Points de vie maximum du zombie.
+constexpr float BOSS_SPEED        = 90.0f;  ///< Vitesse de déplacement du zombie en pixels/s.
+constexpr int   BOSS_DMG            = 20;      ///< Dégâts infligés par le boss.
+constexpr float BOSS_ATK_CD       = 1.5f;   ///< Temps de recharge de l'attaque en secondes.
+constexpr float BOSS_DETECT_R     = 400.0f; ///< Rayon de la bulle de détection du joueur.
+constexpr int   BOSS_GOLD_MIN     = 300;      ///< Quantité minimum d'or lâchée.
+constexpr int   BOSS_GOLD_MAX     = 400;     ///< Quantité maximum d'or lâchée.
 
-    // ─── Boss pattern 2 (zone) ────────────────────────────────────
-    constexpr float BOSS_ZONE_CHARGE_CD = 8.0f;   ///< Temps entre deux déclenchements du pattern 2 (s).
-    constexpr float BOSS_ZONE_TIMER     = 5.0f;   ///< Durée de charge avant explosion de la zone (s).
-    constexpr int   BOSS_ZONE_TILE_SIZE = 32;     ///< Taille d'une tuile de zone rouge (px).
-    constexpr int   BOSS_ZONE_DMG       = 70;     ///< Dégâts fixes infligés par l'explosion de zone (pattern 2).
-    constexpr int   BOSS_ZONE_SAFE_COUNT = 6;     ///< Nombre de tuiles de refuge (trous dans la zone).
-    constexpr int   BOSS_ZONE_RADIUS     = 384;   ///< Rayon en px autour du boss pour la zone d'attaque (6 tiles de 64px).
+// ─── Boss pattern 2 (zone) ────────────────────────────────────
+constexpr float BOSS_ZONE_CHARGE_CD2 = 1.5f;   ///< Temps entre deux déclenchements du pattern 2 niveau 3 (s).
+constexpr float BOSS_ZONE_TIMER     = 1.1f;   ///< Durée de charge avant explosion de la zone (s).
+constexpr float BOSS_ZONE_CHARGE_CD3 = 1.25f;   ///< Temps entre deux déclenchements du pattern 2 niveau 3 (s).
+constexpr int   BOSS_ZONE_TILE_SIZE = 32;     ///< Taille d'une tuile de zone rouge (px).
+constexpr int   BOSS_ZONE_DMG       = 70;     ///< Dégâts fixes infligés par l'explosion de zone (pattern 2).
+constexpr int   BOSS_ZONE_SAFE_COUNT = 7;     ///< Nombre de tuiles de refuge (trous dans la zone).
+constexpr int   BOSS_ZONE_RADIUS     = 384;   ///< Rayon en px autour du boss pour la zone d'attaque (6 tiles de 64px).
 
-    // ─── HUD ──────────────────────────────────────────────────────
-    constexpr int   HUD_MARGIN          = 12;     ///< Marge extérieure du HUD.
-    constexpr int   HP_BAR_W            = 180;    ///< Largeur de la barre de vie.
-    constexpr int   HP_BAR_H            = 16;     ///< Hauteur de la barre de vie.
+// ─── HUD ──────────────────────────────────────────────────────
+constexpr int   HUD_MARGIN          = 12;     ///< Marge extérieure du HUD.
+constexpr int   HP_BAR_W            = 180;    ///< Largeur de la barre de vie.
+constexpr int   HP_BAR_H            = 16;     ///< Hauteur de la barre de vie.
 
-    // ─── Popups flottants (dégâts / gold) ──────────────────────
-    constexpr double Z_POPUP         = 5.0;    ///< Au-dessus de tout.
-    constexpr float  POPUP_DMG_DUR   = 1.0f;  ///< Durée popup dégâts (s).
-    constexpr float  POPUP_GOLD_DUR  = 1.4f;  ///< Durée popup gold (s).
-    constexpr float  POPUP_RISE_PX   = 40.0f; ///< Montée verticale (px).
+// ─── Popups flottants (dégâts / gold) ──────────────────────
+constexpr double Z_POPUP         = 5.0;    ///< Au-dessus de tout.
+constexpr float  POPUP_DMG_DUR   = 1.0f;  ///< Durée popup dégâts (s).
+constexpr float  POPUP_GOLD_DUR  = 1.4f;  ///< Durée popup gold (s).
+constexpr float  POPUP_RISE_PX   = 40.0f; ///< Montée verticale (px).
 }
 
 // ─── Énumérations ─────────────────────────────────────────────────
