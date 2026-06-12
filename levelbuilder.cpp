@@ -102,7 +102,7 @@ void LevelBuilder::build(const LevelDescriptor& desc,
                 levelModel.setPlayerSpawnPos(pos);
                 break;
             case TileType::BOSS_SPAWN:{
-                auto* BossM = new bossModel(pos);
+                auto* BossM = new bossModel(pos, levelModel.getLevelId());
                 auto* BossV = new BossView(BossM);
                 levelModel.addEnemy(BossM);
                 scene->addItem(BossV);

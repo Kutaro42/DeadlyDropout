@@ -1,8 +1,14 @@
-#include "bossview.h"
+/**
+ * @file bossview.cpp
+ * @brief Vue du boss : sprite animé + rendu zone d'attaque (pattern 2).
+ * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
+ * @date Juin 2026
+ */
 
+#include "bossview.h"
 #include <QPainter>
 #include <QFont>
-#include <cmath>
+#include <QGraphicsScene>
 
 // ─── Direction → index ────────────────────────────────────────────────────────
 int BossView::dirIdx(FacingDirection d) {
@@ -55,6 +61,19 @@ BossView::BossView(bossModel* model, QGraphicsItem* parent) :
 
 }
 
+
+BossView::~BossView()
+{
+    // 2. Désallocation sécurisée de chaque tuile graphique
+    for (QGraphicsRectItem* item : zoneItems) {
+        if (item) {
+            scene()->removeItem(item);
+            delete item;
+
+        }
+    }
+}
+
 void BossView::loadSheet(QVector<QPixmap>& frames, const QString& path)
 {
     QPixmap sheet(path);
@@ -84,9 +103,61 @@ QPixmap BossView::makeFallback()
     return pm;
 }
 
+// ─── Affichage de la zone (pattern 2) ────────────────────────────
+void BossView::showZone()
+{
+    QGraphicsScene* sc = scene();
+    if (!sc) return;
+    hideZone(); // purger d'éventuels restes
+    int first = 0;
+    for (const ZoneTile& t : model->getZoneTiles()) {
+        auto* item = new QGraphicsRectItem(t.rect);
+        item->setZValue(Cfg::Z_BOSS_ZONE);
 
+        if (t.isSafe) {
+            // Refuge : complètement transparent
+            item->setBrush(Qt::NoBrush);
+            item->setPen(Qt::NoPen);
+        } else {
+            // Danger : rouge semi-transparent
+            item->setBrush(QBrush(QColor(220, 30, 30, 130)));
+            item->setPen(QPen(QColor(255, 60, 60, 200), 1));
+        }
+        sc->addItem(item);
+        zoneItems.append(item);
 
+    }
+    zoneVisible = true;
+}
 
+// ─── Suppression de la zone ───────────────────────────────────────
+// item->scene() est testé AVANT removeItem pour éviter le double-free
+// si scene()->clear() a déjà détruit les items (segfault précédent).
+void BossView::hideZone()
+{
+    // 1. On vérifie si la vue est bien rattachée à une scène Qt
+    if (!scene()) {
+        zoneItems.clear();
+        zoneVisible = false;
+        return;
+    }
+
+    // 2. Désallocation sécurisée de chaque tuile graphique
+    for (QGraphicsRectItem* item : zoneItems) {
+        if (item) {
+            // On le retire proprement de la scène de rendu
+            scene()->removeItem(item);
+            // On détruit la mémoire de l'item graphique
+            qDebug() << item;
+            //delete item;
+
+        }
+    }
+
+    // 3. On vide le conteneur et on reset le flag pour couper le rendu
+    zoneItems.clear();
+    zoneVisible = false;
+}
 
 
 // ─── Avance une frame ────────────────────────────────────────────────────────
@@ -138,6 +209,16 @@ void BossView::updateView(float dt) {
     }
 
     setPos(model->getPosition().toQPointF());
+
+    // ── Zone d'attaque ────────────────────────────────────────────
+    if (model->isZoneCharging()) {
+        if (!zoneVisible) showZone();   // créer une seule fois au déclenchement
+    } else {
+        if (zoneVisible)
+        {
+            hideZone();            // retirer après l'explosion (tick suivant)
+        }
+    }
 
     // ── État HURT : animation en boucle pendant la durée du HURT ─────────────
     if (state == EnemyAIState::HURT) {
