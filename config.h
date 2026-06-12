@@ -49,14 +49,14 @@ namespace Cfg {
     // ─── Zombie lanceur ───────────────────────────────────────────
     constexpr int   LAUNCHER_MAX_HP     = 15;     ///< Points de vie du zombie lanceur.
     constexpr float LAUNCHER_SPEED      = 90.0f;  ///< Vitesse de poursuite (sort de portée de tir).
-    constexpr float LAUNCHER_DETECT_R   = 1000.0f; ///< Rayon de détection du joueur.
+    constexpr float LAUNCHER_DETECT_R   = 800.0f; ///< Rayon de détection du joueur.
     constexpr float LAUNCHER_SHOOT_R    = 320.0f; ///< Rayon de tir : reste immobile en dessous.
     constexpr float LAUNCHER_SHOOT_CD   = 2.0f;   ///< Intervalle entre deux tirs en secondes.
     constexpr int   LAUNCHER_GOLD_MIN   = 7;      ///< Or minimum lâché à la mort.
     constexpr int   LAUNCHER_GOLD_MAX   = 14;     ///< Or maximum lâché à la mort.
 
     // ─── Gravat (projectile lanceur) ──────────────────────────────
-    constexpr float RUBBLE_SPEED        = 500.0f; ///< Vitesse de déplacement du gravat en pixels/s.
+    constexpr float RUBBLE_SPEED        = 450.0f; ///< Vitesse de déplacement du gravat en pixels/s.
     constexpr int   RUBBLE_DAMAGE       = 30;     ///< Dégâts infligés par un gravat.
     constexpr float RUBBLE_SIZE         = 16.0f;  ///< Taille (côté) du sprite du gravat en pixels.
 

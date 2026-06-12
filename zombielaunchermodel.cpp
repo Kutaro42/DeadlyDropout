@@ -64,6 +64,12 @@ void ZombieLauncherModel::shoot(Vector2f playerPos)
 // ─── Mise à jour principale (appelée par LevelController) ─────────
 void ZombieLauncherModel::update(float dt, Vector2f playerPos)
 {
+    // Toujours mettre à jour et purger les rubbles en vol,
+    // même si le launcher est mort
+    for (RubbleModel* r : rubbles)
+        if (r->isActive()) r->update(dt);
+    pruneInactiveRubbles();
+
     if (!isActive() && aiState != EnemyAIState::DEAD) return;
     if (tickTransientStates(dt)) return;
 
@@ -87,12 +93,6 @@ void ZombieLauncherModel::update(float dt, Vector2f playerPos)
     default:
         break;
     }
-
-    // Avancer les gravats actifs PUIS purger — jamais l'inverse
-    for (RubbleModel* r : rubbles)
-        if (r->isActive()) r->update(dt);
-
-    pruneInactiveRubbles(); // ← unique point de purge
 }
 
 // ─── Attaque de contact (non utilisée, satisfait l'interface) ─────

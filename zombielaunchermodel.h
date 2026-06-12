@@ -40,6 +40,10 @@ public:
      * @param pos Position de spawn dans le niveau.
      */
     explicit ZombieLauncherModel(Vector2f pos);
+    ~ZombieLauncherModel() override {
+        for (RubbleModel* r : rubbles) delete r;
+        rubbles.clear();
+    }
 
     // ─── Interface Enemy ──────────────────────────────────────
     /**

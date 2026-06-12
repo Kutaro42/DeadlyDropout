@@ -61,10 +61,16 @@ void LevelController::purgeDeadEnemies(LevelModel& level)
 {
     QVector<Enemy*>& enemies = level.getEnemies();
     for (int i = enemies.size() - 1; i >= 0; --i) {
-        if (!enemies[i]->isActive() && enemies[i]->getAIState() != EnemyAIState::DEAD) {
-            delete enemies[i];
-            enemies.removeAt(i);
-        }
+        if (enemies[i]->isActive() || enemies[i]->getAIState() == EnemyAIState::DEAD)
+            continue;
+
+        // Si c'est un launcher, attendre que tous ses rubbles soient consommés
+        auto* launcher = dynamic_cast<ZombieLauncherModel*>(enemies[i]);
+        if (launcher && !launcher->getRubbles().isEmpty())
+            continue; // pas encore supprimable
+
+        delete enemies[i];
+        enemies.removeAt(i);
     }
 }
 
