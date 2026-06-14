@@ -46,6 +46,11 @@ private:
     QSet<int>       pressedKeys;
     GameModel*      currentModel;
     QPointF         itsMouseViewPos;///< Position souris en coordonnées viewport (ne dépend pas de la caméra).
+    //----------------------------------------------
+    //--> boutons du menu pause
+    QPushButton* pauseResumeButton = nullptr;
+    QPushButton* pauseMenuButton   = nullptr;
+    bool showingPause = false;//pause active ?
 
 public:
     explicit GameView(QWidget* parent = nullptr);
@@ -61,6 +66,8 @@ public:
     void followPlayer(GameModel* model);
     void clearScene();
     void showOverlay(const QString& message);
+    void showPauseOverlay();
+    void hidePauseOverlay();
 
 protected:
     void keyPressEvent(QKeyEvent* e)         override;
@@ -112,6 +119,7 @@ signals:
     void sig_escapePressed();
     void sigRestartRq();
     void sigQuitRq();
+    void sigPauseMenu();
 };
 
 #endif // GAMEVIEW_H

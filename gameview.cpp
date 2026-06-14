@@ -242,6 +242,10 @@ void GameView::showOverlay(const QString& message) {
     connect(replayButton, &QPushButton::clicked, this, &GameView::sigRestartRq);
     connect(menuButton,   &QPushButton::clicked, this, &GameView::sigQuitRq);
 
+    // Masquer les boutons pause si présents
+    if (pauseResumeButton) pauseResumeButton->hide();
+    if (pauseMenuButton)   pauseMenuButton->hide();
+
     int centerY = this->height() / 2 + 50;
     menuButton->move(this->width() / 2 - 155, centerY);
     replayButton->move(this->width() / 2 + 15, centerY);
@@ -250,6 +254,48 @@ void GameView::showOverlay(const QString& message) {
     viewport()->update();
 }
 
+void GameView::showPauseOverlay() {
+    showingPause = true;
+
+    if (!pauseResumeButton) {
+        pauseResumeButton = new QPushButton("Reprendre", this);
+        pauseResumeButton->setFixedSize(140, 45);
+        pauseResumeButton->setStyleSheet(
+            "QPushButton {"
+            "  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #1a1a1a, stop:1 #0d0d0d);"
+            "  color: #00ffcc; font-size: 16px; font-weight: bold;"
+            "  border: 2px solid #00ffcc; border-radius: 8px; }"
+            "QPushButton:hover { background: #00ffcc; color: #000000; border: 2px solid #ffffff; }"
+            "QPushButton:pressed { background: #00cc99; color: #ffffff; }");
+        connect(pauseResumeButton, &QPushButton::clicked, this, &GameView::sig_escapePressed);
+    }
+    if (!pauseMenuButton) {
+        pauseMenuButton = new QPushButton("Menu", this);
+        pauseMenuButton->setFixedSize(140, 45);
+        pauseMenuButton->setStyleSheet(
+            "QPushButton {"
+            "  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #1a1a1a, stop:1 #0d0d0d);"
+            "  color: #ff3366; font-size: 16px; font-weight: bold;"
+            "  border: 2px solid #ff3366; border-radius: 8px; }"
+            "QPushButton:hover { background: #ff3366; color: #000000; border: 2px solid #ffffff; }"
+            "QPushButton:pressed { background: #cc0044; color: #ffffff; }");
+        connect(pauseMenuButton, &QPushButton::clicked, this, &GameView::sigPauseMenu);
+    }
+
+    int centerY = this->height() / 2 + 50;
+    pauseResumeButton->move(this->width() / 2 - 155, centerY);
+    pauseMenuButton->move(this->width() / 2 + 15, centerY);
+    pauseResumeButton->show();
+    pauseMenuButton->show();
+    viewport()->update();
+}
+
+void GameView::hidePauseOverlay() {
+    showingPause = false;
+    if (pauseResumeButton) pauseResumeButton->hide();
+    if (pauseMenuButton)   pauseMenuButton->hide();
+    viewport()->update();
+}
 // ─── Clavier ──────────────────────────────────────────────────────
 
 void GameView::keyPressEvent(QKeyEvent* e) {
@@ -277,12 +323,22 @@ void GameView::keyReleaseEvent(QKeyEvent* e) {
 void GameView::drawForeground(QPainter* painter, const QRectF&) {
     painter->resetTransform();
     if (currentModel) drawHUD(painter, currentModel);
+
+    if (showingPause) {
+        painter->fillRect(0, 0, Cfg::WINDOW_W, Cfg::WINDOW_H, QColor(0, 0, 0, 160));
+        QFont font("Arial", 28, QFont::Bold);
+        painter->setFont(font);
+        painter->setPen(QColor(255, 210, 0));
+        painter->drawText(QRect(0, this->height() / 2 - 80, Cfg::WINDOW_W, 60),
+                          Qt::AlignCenter, "PAUSE");
+    }
+
     if (showingOverlay) {
         painter->fillRect(0, 0, Cfg::WINDOW_W, Cfg::WINDOW_H, QColor(0, 0, 0, 160));
         QFont font("Arial", 28, QFont::Bold);
         painter->setFont(font);
-        painter->setPen(Qt::yellow);
-        painter->drawText(QRect(0, 0, Cfg::WINDOW_W, Cfg::WINDOW_H),
+        painter->setPen(QColor(255, 210, 0));
+        painter->drawText(QRect(0, this->height() / 2 - 80, Cfg::WINDOW_W, 60),
                           Qt::AlignCenter, overlayMessage);
     }
 }

@@ -72,6 +72,11 @@ private slots:
      */
     void slt_tick();
 
+    /**
+     * @brief Slot appelé pour afficher l'overlay de pause.
+     */
+    void sltPauseMenu();
+
 private:
     /**
      * @brief Charge et initialise un niveau spécifique via LevelRegistry.

@@ -26,12 +26,15 @@ GameController::~GameController() {
 }
 
 void GameController::init() {
+    //overlay de pause
+    connect(itsGameView, &GameView::sigPauseMenu, this, &GameController::sltPauseMenu);
 
     // ── Clic droit → attaque katana orientée vers le curseur ─────────────────
     connect(itsGameView, &GameView::sig_rightClicked,
             this, [this](QPointF scenePos) {
         if (currentState != AppState::PLAYING) return;
         if (!itsGameModel || !itsGameModel->getPlayer()) return;
+
 
         PlayerModel* player = itsGameModel->getPlayer();
 
@@ -44,6 +47,7 @@ void GameController::init() {
         float  angle = static_cast<float>(std::atan2(dy, dx));
 
         player->launchKatana(angle);
+
     });
 
     // ── Touche Échap → pause ──────────────────────────────────────
@@ -102,27 +106,18 @@ void GameController::init() {
 void GameController::togglePause() {
     if (currentState == AppState::PLAYING) {
         currentState = AppState::PAUSED;
-
-        pauseTextOverlay = new QGraphicsTextItem("--- JEU EN PAUSE ---\nAppuyez sur ECHAP pour reprendre");
-        QFont font("Arial", 22, QFont::Bold);
-        pauseTextOverlay->setFont(font);
-        pauseTextOverlay->setDefaultTextColor(Qt::white);
-        pauseTextOverlay->setZValue(100);
-        pauseTextOverlay->setPos(itsGameView->mapToScene(
-            itsGameView->width() / 2 - 150,
-            itsGameView->height() / 2 - 40));
-        itsGameView->getScene()->addItem(pauseTextOverlay);
+        itsGameView->showPauseOverlay();
     }
     else if (currentState == AppState::PAUSED) {
         currentState = AppState::PLAYING;
-
-        if (pauseTextOverlay) {
-            itsGameView->getScene()->removeItem(pauseTextOverlay);
-            delete pauseTextOverlay;
-            pauseTextOverlay = nullptr;
-        }
+        itsGameView->hidePauseOverlay();
         elapsedTimer.restart();
     }
+}
+
+void GameController::sltPauseMenu() {
+    itsGameView->hidePauseOverlay();
+    emit sigBackMenu();
 }
 
 void GameController::loadLevel(int index) {
