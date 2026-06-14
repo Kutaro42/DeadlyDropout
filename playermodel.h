@@ -83,6 +83,7 @@ public:
     bool            getHasKey()       const { return hasKey;    }
     bool            isMoving()        const { return moving;    }
     FacingDirection getFacing()       const { return facingDir; }
+    float           getSpeed()        const { return speed; }
 
     const Katana&   getKatana()       const { return katana;    }
     bool            isKatanaActive()  const { return katana.isAnimActive();   }

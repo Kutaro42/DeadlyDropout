@@ -80,6 +80,10 @@ public:
     float getCooldownRatio() const {
         return (shootCooldown > 0.0f) ? (shootTimer / shootCooldown) : 0.0f;
     } ///< Ratio cooldown gun : 1.0=vient de tirer, 0.0=prêt.
+//--------------Getters nécéssaires au shop-------------------------------------
+    float getShootCooldown() const { return shootCooldown; }
+    int   getBaseDamage()    const { return baseDamage;    }
+    float getCritChance()    const { return critChance;    }
 
     // ─── Setters upgrades ─────────────────────────────────────
     void addReserve(int amount)        { reserve += amount; }

@@ -87,8 +87,8 @@ void GameController::init() {
     LevelRegistry::instance().init();
 
     // ── Chargement du niveau 1 ────────────────────────────────────
-    loadLevel(0);
-
+    //loadLevel(0);
+    loadLevel(currentLevelIndex);
     // ── Liaison vue ↔ modèle ──────────────────────────────────────
     itsGameView->initWithModel(itsGameModel);
 
@@ -201,15 +201,17 @@ void GameController::handleInput(float dt) {
 void GameController::checkStateTransitions() {
     if (itsGameModel->getPlayer()->isDead()) {
         transitionTo(AppState::GAME_OVER);
-    } else if (levelCtrl->levelJustCompleted) {
-        int nextIndex = currentLevelIndex + 1;
-        if (nextIndex < LevelRegistry::instance().count()) {
-            loadLevel(nextIndex);
-            itsGameView->initWithModel(itsGameModel);
-        } else {
-            transitionTo(AppState::VICTORY);
-        }
+    }  else if (levelCtrl->levelJustCompleted) {
+    int nextIndex = currentLevelIndex + 1;
+    if (nextIndex < LevelRegistry::instance().count()) {
+        // Préparer le niveau suivant mais ouvrir le market d'abord
+        currentLevelIndex = nextIndex;
+        gameTimer.stop();
+        emit sigMarketRequest();
+    } else {
+        transitionTo(AppState::VICTORY);
     }
+}
 }
 
 void GameController::transitionTo(AppState state) {

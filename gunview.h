@@ -70,7 +70,7 @@ private:
     /// Modèles correspondants (même index que bulletViews).
     QVector<BulletModel*>   bulletModels;
 
-    /// Synchronise bulletViews ↔ getBullets() du modèle.
+    /// Synchronise bulletViews;  getBullets() du modèle.
     void syncBulletViews(QGraphicsScene* scene);
 
     /**

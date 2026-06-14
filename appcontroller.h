@@ -13,6 +13,7 @@
 #include "config.h"
 #include "menucontroller.h"
 #include "gamecontroller.h"
+#include "marketcontroller.h"
 
 /**
  * @class AppController
@@ -27,6 +28,7 @@ private:
     QStackedWidget *mainContainer;     ///< Conteneur Qt permettant le basculement entre vues (Menu / Jeu).
     MenuController *itsMenuController; ///< Contrôleur dédié au menu principal.
     GameController *itsGameController; ///< Contrôleur dédié à la gestion in-game.
+    MarketController* itsMarketController; ///< Controller dédié au market (logique métier et vue)
 
 public:
     /**
@@ -67,6 +69,15 @@ private slots:
      * @brief Slots qui relance ou quite la partie en fin de partit (Game Over ou Victory).
      */
     void sltRestart();
+
+    /**
+     * @brief Slot pour faire revenir au menu (possibilité de relancer une partie ou de quitter l'application.
+     */
     void sltBackMenu();
+
+    /**
+     * @brief Slots qui lance l'ouverture de l'overlay du market.
+     */
+    void sltOpenMarket();
 };
 #endif // AppController_H

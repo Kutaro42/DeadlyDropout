@@ -66,6 +66,14 @@ public:
      */
     GameView* getView() const { return itsGameView; }
 
+    /**
+     * @brief Accesseur pour le joueur.
+     * @return Le pointeur vers player, nullptr sinon.
+     */
+    PlayerModel* getPlayer() const {
+        return itsGameModel ? itsGameModel->getPlayer() : nullptr;
+    }
+
 private slots:
     /**
      * @brief Slot appelé à chaque tick du QTimer (environ 60 FPS).
@@ -107,6 +115,7 @@ private:
 signals:
     void sigRestart();
     void sigBackMenu();
+    void sigMarketRequest();
 };
 
 #endif // GAMECONTROLLER_H
