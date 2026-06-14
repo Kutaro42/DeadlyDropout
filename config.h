@@ -89,6 +89,7 @@ constexpr double Z_BOSS_ZONE        = 1.5;    ///< Profondeur de la zone d'attaq
 // ─── Ennemis — états transitoires ────────────────────
 constexpr float ENEMY_HURT_DUR      = 0.3f;  ///< Durée (s) de l'état HURT avant retour à l'IA.
 constexpr float ENEMY_DEAD_DUR      = 1.0f;  ///< Durée (s) de l'animation de mort avant désactivation.
+constexpr float ENEMY_CHASE_PERSIST = 4.0f; ///< Durée (s) pendant laquelle l'ennemi continue de chasser après avoir perdu le joueur de vue.
 
 // ─── Boss ────────────────────────────────────────────
 constexpr int   BOSSP1_MAX_HP       = 300;     ///< Points de vie maximum du boss en phase 1.

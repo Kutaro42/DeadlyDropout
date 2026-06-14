@@ -44,6 +44,7 @@ PlayerView::PlayerView(PlayerModel* m, QGraphicsItem* parent)
     , itsSlashFrame(0)
     , itsSlashFrameTimer(0.0f)
     , itsSlashFrameSpeed(Cfg::KATANA_ANIM_DUR / SLASH_FRAME_COUNT)
+    , itsSlashDone(false)
 {
     const char* dirNames[DIR_COUNT] = { "Down", "Up", "Left", "Right" };
     for (int d = 0; d < DIR_COUNT; ++d) {
@@ -238,27 +239,27 @@ void PlayerView::positionSlashItem()
 
 void PlayerView::updateSlash(float dt)
 {
+    // Aucune attaque n'a encore eu lieu : rien à afficher
+    if (!attackEverTriggered) {
+        itsSlashItem->hide();
+        return;
+    }
+
     const bool katanaActive = model->isKatanaActive();
 
-    // Pas de détection de front montant ici : elle est gérée centralement
-    // dans updateView() avant l'appel à updateSlash(), ce qui garantit que
-    // itsSlashFrame et itsSlashFrameTimer sont déjà remis à 0 au bon tick.
-
-    // L'effet est visible tant que l'animation katana est active OU
-    // tant que toutes les frames n'ont pas été jouées.
-    const float fullDur  = SLASH_FRAME_COUNT * itsSlashFrameSpeed;
-    // On réutilise attackTotalTimer (déjà géré dans updateView) pour la cohérence.
-    const bool  playing  = katanaActive || (attackEverTriggered && attackTotalTimer < fullDur);
-
-    if (playing && !itsSlashFrames.isEmpty()) {
+    if (!itsSlashDone && !itsSlashFrames.isEmpty()) {
         positionSlashItem();
 
-        // Avance la frame de slash
         itsSlashFrameTimer += dt;
         if (itsSlashFrameTimer >= itsSlashFrameSpeed) {
             itsSlashFrameTimer = 0.0f;
-            if (itsSlashFrame < SLASH_FRAME_COUNT - 1)
+            if (itsSlashFrame < SLASH_FRAME_COUNT - 1) {
                 ++itsSlashFrame;
+            } else {
+                itsSlashDone = true;
+                itsSlashItem->hide();
+                return;
+            }
         }
         int safeFrame = qMin(itsSlashFrame, itsSlashFrames.size() - 1);
         itsSlashItem->setPixmap(itsSlashFrames[safeFrame]);
@@ -289,6 +290,7 @@ void PlayerView::updateView(float dt) {
         // Reset slash : même front montant, même tick
         itsSlashFrame        = 0;
         itsSlashFrameTimer   = 0.0f;
+        itsSlashDone        = false;
     }
     wasKatanaActive = katanaActive;
 

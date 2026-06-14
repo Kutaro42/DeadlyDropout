@@ -47,6 +47,7 @@ void AppController::startGame()
 }*/
 
 #include "AppController.h"
+#include "musiccontroller.h"
 #include <iostream>
 
 AppController::AppController(QWidget *parent)
@@ -85,6 +86,9 @@ AppController::AppController(QWidget *parent)
     connect(this, &AppController::sigGameRq, this, &AppController::startGame);
     connect(itsGameController, &GameController::sigRestart, this, &AppController::sltRestart);
     connect(itsGameController, &GameController::sigBackMenu, this, &AppController::sltBackMenu);
+
+    // Démarrage de la musique du menu
+    MusicController::instance().playMenu();
 }
 
 AppController::~AppController()
@@ -98,6 +102,8 @@ AppController::~AppController()
 
 void AppController::startGame()
 {
+    MusicController::instance().stop();
+
     itsGameController->init();
 
     // Commentaire développeur : 
@@ -131,11 +137,16 @@ void AppController::reset()
 void AppController::sltRestart()
 {
     reset();
-    startGame();
+    // On réinitialise le jeu sans toucher à la musique déjà en cours
+    itsGameController->init(false);
+    mainContainer->setCurrentIndex(1);
+    if(itsGameController->getView())
+        itsGameController->getView()->setFocus();
 }
-
 void AppController::sltBackMenu()
 {
+    MusicController::instance().stop();
+    MusicController::instance().playMenu();
     reset();
     mainContainer->setCurrentIndex(0);
 }

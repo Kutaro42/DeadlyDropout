@@ -282,11 +282,34 @@ void GameView::showPauseOverlay() {
         connect(pauseMenuButton, &QPushButton::clicked, this, &GameView::sigPauseMenu);
     }
 
-    int centerY = this->height() / 2 + 50;
+    if (!pauseMusicButton) {
+        pauseMusicButton = new QPushButton("▐▐", this);
+        pauseMusicButton->setFixedSize(140, 38);
+        pauseMusicButton->setStyleSheet(
+            "QPushButton { background:#222; color:#ffaa00; font-size:14px;"
+            " border:2px solid #ffaa00; border-radius:8px; }"
+            "QPushButton:hover { background:#ffaa00; color:#000; }");
+        connect(pauseMusicButton, &QPushButton::clicked, this, &GameView::sigToggleMusic);
+    }
+    if (!pauseNextButton) {
+        pauseNextButton = new QPushButton("▶▶", this);
+        pauseNextButton->setFixedSize(140, 38);
+        pauseNextButton->setStyleSheet(
+            "QPushButton { background:#222; color:#ffaa00; font-size:14px;"
+            " border:2px solid #ffaa00; border-radius:8px; }"
+            "QPushButton:hover { background:#ffaa00; color:#000; }");
+        connect(pauseNextButton, &QPushButton::clicked, this, &GameView::sigNextTrack);
+    }
+
+    int centerY = this->height() / 2 + 20;
     pauseResumeButton->move(this->width() / 2 - 155, centerY);
-    pauseMenuButton->move(this->width() / 2 + 15, centerY);
+    pauseMenuButton->move(this->width() / 2 + 15,   centerY);
+    pauseMusicButton->move(this->width() / 2 - 155, centerY + 55);
+    pauseNextButton->move(this->width() / 2 + 15,   centerY + 55);
     pauseResumeButton->show();
     pauseMenuButton->show();
+    pauseMusicButton->show();
+    pauseNextButton->show();
     viewport()->update();
 }
 
@@ -294,6 +317,8 @@ void GameView::hidePauseOverlay() {
     showingPause = false;
     if (pauseResumeButton) pauseResumeButton->hide();
     if (pauseMenuButton)   pauseMenuButton->hide();
+    if (pauseMusicButton)  pauseMusicButton->hide();
+    if (pauseNextButton)   pauseNextButton->hide();
     viewport()->update();
 }
 // ─── Clavier ──────────────────────────────────────────────────────

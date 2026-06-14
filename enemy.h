@@ -39,6 +39,7 @@ protected:
     bool         hitThisSlash;       ///< Empêche les dégâts multiples par attaque.
     float        hurtTimer;          ///< Temps restant dans l'état HURT.
     float        deadTimer;          ///< Temps restant dans l'état DEAD avant désactivation.
+    float        chasePersistTimer;  ///< Temps restant avant de repasser en IDLE après perte de vision.
 
 public:
     /**
@@ -102,6 +103,14 @@ public:
      * @return true si détecté, false sinon.
      */
     bool detectsPlayer(Vector2f playerPos) const;
+
+    /** @brief Signale que le joueur est visible ce tick (réarme le timer de persistance). */
+    void refreshChaseTimer() { chasePersistTimer = Cfg::ENEMY_CHASE_PERSIST; }
+
+    /** @brief Décrémente le timer de persistance et repasse en IDLE si expiré.
+ *  @param dt Delta-time.
+ *  @return true si l'ennemi est encore en mode CHASING/ATTACKING. */
+    bool tickChaseTimer(float dt);
 
     // Appelé par LevelController pour distribuer le gold une seule fois
     bool  hasDroppedGold()  const { return goldAlreadyDropped; }
