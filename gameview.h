@@ -82,6 +82,7 @@ protected:
 private:
     void drawHUD(QPainter* painter, GameModel* model);
     void drawHpBar(QPainter* p, int hp, int maxHp, int x, int y);
+    void drawBossHpBar(QPainter* p, int hp, int maxHp, int x, int y);
 
     // ─── Popups flottants (dégâts / gold) ─────────────────────────
     struct PopupAnim {

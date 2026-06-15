@@ -27,3 +27,15 @@ void GameModel::obtainKey()
 {
     getPlayer()->collectKey();
 }
+
+Enemy* GameModel::getBoss()
+{
+    for (Enemy* e : level->getEnemies())
+    {
+        if (e->getisBoss())
+        {
+            return e;
+        }
+    }
+
+}

@@ -370,12 +370,19 @@ void GameView::drawForeground(QPainter* painter, const QRectF&) {
 
 void GameView::drawHUD(QPainter* p, GameModel* model) {
     PlayerModel* player = model->getPlayer();
-    if (!player) return;
+    Enemy* boss = model->getBoss();
+    if (!player || !boss) return;
 
     const int mx = Cfg::HUD_MARGIN;
     const int my = Cfg::HUD_MARGIN;
+    const int bossBarx = Cfg::BOSSBARX;
+    const int bossBarY = Cfg::BOSSBARY;
 
     drawHpBar(p, player->getHp(), player->getMaxHp(), mx, my);
+    if (boss->getAIState()!= EnemyAIState::IDLE)
+    {
+        drawBossHpBar(p, boss->getHp(), boss->getMaxHp(), bossBarx, bossBarY);
+    }
 
     QFont font("Arial", 9, QFont::Bold);
     p->setFont(font);
@@ -476,6 +483,26 @@ void GameView::drawHpBar(QPainter* p, int hp, int maxHp, int x, int y) {
         QColor col = (ratio > 0.6) ? QColor(60, 200, 60)
                    : (ratio > 0.3) ? QColor(220, 140, 0)
                                    : QColor(200, 30, 30);
+        p->fillRect(x, y, filled, bh, col);
+    }
+    p->setPen(QPen(Qt::white, 1));
+    p->drawRect(x, y, bw, bh);
+    QFont f("Arial", 8, QFont::Bold);
+    p->setFont(f);
+    p->setPen(Qt::white);
+    p->drawText(x + 4, y + bh - 3, QString("HP : %1 / %2").arg(hp).arg(maxHp));
+}
+
+void GameView::drawBossHpBar(QPainter* p, int hp, int maxHp, int x, int y)
+{
+    int bw = Cfg::BOSS_HP_BAR_W;
+    int bh = Cfg::BOSS_HP_BAR_H;
+    p->fillRect(x, y, bw, bh, QColor(50, 0, 0));
+    if (maxHp > 0) {
+        double ratio  = static_cast<double>(hp) / maxHp;
+        int    filled = static_cast<int>(bw * ratio);
+        QColor col = (ratio > 0.6) ? QColor(255, 0, 60)
+                                     : QColor(200, 30, 30);
         p->fillRect(x, y, filled, bh, col);
     }
     p->setPen(QPen(Qt::white, 1));

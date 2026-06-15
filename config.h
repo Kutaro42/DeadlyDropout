@@ -115,8 +115,12 @@ constexpr int   BOSS_ZONE_RADIUS     = 384;   ///< Rayon en px autour du boss po
 
 // ─── HUD ──────────────────────────────────────────────────────
 constexpr int   HUD_MARGIN          = 12;     ///< Marge extérieure du HUD.
-constexpr int   HP_BAR_W            = 180;    ///< Largeur de la barre de vie.
-constexpr int   HP_BAR_H            = 16;     ///< Hauteur de la barre de vie.
+constexpr int   HP_BAR_W            = 180;    ///< Largeur de la barre de vie du joueur.
+constexpr int   HP_BAR_H            = 16;     ///< Hauteur de la barre de vie du joueur.
+constexpr int   BOSSBARX            = 300;    ///< Position X de la bar de vie du boss.
+constexpr int   BOSSBARY            = 50;    ///< Position Y de la bar de vie du boss.
+constexpr int   BOSS_HP_BAR_W       = 400;    ///< Largeur de la bar de vie du boss
+constexpr int   BOSS_HP_BAR_H       = 20;    ///< Hauteur de la bar de vie du boss.
 
 // ─── Popups flottants (dégâts / gold) ──────────────────────
 constexpr double Z_POPUP         = 5.0;    ///< Au-dessus de tout.
