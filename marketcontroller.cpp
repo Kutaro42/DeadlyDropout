@@ -21,15 +21,17 @@ void MarketController::sltBuy(int itemId) {
     itsPlayer->addGold(-MarketView::ITEMS[itemId].cost);
 
     switch (itemId) {
-    case 0: itsPlayer->setMaxHp(itsPlayer->getMaxHp() + 20); break;
-    case 1: itsPlayer->getGun().setBaseDamage(itsPlayer->getGun().getBaseDamage() + 5); break;
-    case 2: itsPlayer->setKatanaDamage(itsPlayer->getKatana().getDamage() + 10); break;
-    case 3: itsPlayer->setKatanaRange(itsPlayer->getKatana().getRange() + 15); break;
-    case 4: itsPlayer->setSpeed(itsPlayer->getSpeed() + 20.0f); break;
-    case 5: itsPlayer->getGun().setCritChance(itsPlayer->getGun().getCritChance() + 0.03f); break;
-    case 6: itsPlayer->setKatanaCooldown(std::max(0.1f, itsPlayer->getKatana().getCooldownRatio() - 0.2f)); break;
-    case 7: itsPlayer->getGun().setShootCooldown(std::max(0.1f, itsPlayer->getGun().getShootCooldown() - 0.2f)); break;
-    case 8: itsPlayer->getGun().addReserve(10); break;
+    case 0: itsPlayer->setMaxHp(itsPlayer->getMaxHp() + BONUS_MAX_HP);
+            itsPlayer->setHp(itsPlayer->getHp() + BONUS_MAX_HP);
+            break;
+    case 1: itsPlayer->getGun().setBaseDamage(itsPlayer->getGun().getBaseDamage() +BONUS_GUN_MAX_DMG); break;
+    case 2: itsPlayer->setKatanaDamage(itsPlayer->getKatana().getDamage() + BONUS_KATANA_DMG); break;
+    case 3: itsPlayer->setKatanaRange(itsPlayer->getKatana().getRange() + BONUS_KATANA_RANGE); break;
+    case 4: itsPlayer->setSpeed(itsPlayer->getSpeed() + BONUS_SPEED); break;
+    case 5: itsPlayer->getGun().setCritChance(itsPlayer->getGun().getCritChance() + BONUS_CRIT_CHANCE); break;
+    case 6: itsPlayer->setKatanaCooldown(std::max(BONUS_KATANA_COOLDOWN_MIN, itsPlayer->getKatana().getCooldownRatio() - BONUS_KATANA_COOLDOWN_MAX)); break;
+    case 7: itsPlayer->getGun().setShootCooldown(std::max(BONUS_SHOOT_COOLDOWN_MIN, itsPlayer->getGun().getShootCooldown() - BONUS_SHOOT_COOLDOWN_MAX)); break;
+    case 8: itsPlayer->getGun().addReserve(BONUS_RESERVE); break;
     }
     itsView->refresh(itsPlayer);
 }

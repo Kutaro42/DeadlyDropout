@@ -7,7 +7,6 @@
 
 #include "bossview.h"
 #include <QPainter>
-#include <QFont>
 #include <QGraphicsScene>
 
 // ─── Direction → index ────────────────────────────────────────────────────────

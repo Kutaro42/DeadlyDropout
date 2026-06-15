@@ -110,6 +110,7 @@ public:
 
     // ─── Setters ──────────────────────────────────────────────────
     void setMaxHp(int v)          { maxHp = v;  }
+    void setHp(int life)          { hp = life;  }
     void setSpeed(float v)        { speed = v;  }
     bool getBoostState();
     void setHasKey(bool key);

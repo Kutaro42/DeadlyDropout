@@ -5,8 +5,6 @@
  * @date Juin 2026
  */
 #include "gunmodel.h"
-#include <cstdlib>
-#include <cmath>
 
 GunModel::GunModel(int magSz, int reserveSz)
     : magSize(magSz)

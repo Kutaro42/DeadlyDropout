@@ -5,6 +5,7 @@
 #include <algorithm>
 #include "marketview.h"
 #include "playermodel.h"
+#include "config.h"
 
 class MarketController : public QObject {
     Q_OBJECT

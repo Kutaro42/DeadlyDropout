@@ -7,8 +7,6 @@
 
 #include "playerview.h"
 #include <QPainter>
-#include <QFont>
-#include <cmath>
 
 // ─── Définition des tableaux de constantes statiques ────────────────────────
 constexpr int PlayerView::FRAME_W[PlayerView::STATE_COUNT];

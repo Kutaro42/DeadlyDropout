@@ -7,8 +7,6 @@
 
 #include "zombiestdview.h"
 #include <QPainter>
-#include <QFont>
-#include <cmath>
 
 // ─── Direction → index ────────────────────────────────────────────────────────
 int ZombieStdView::dirIdx(FacingDirection d) {

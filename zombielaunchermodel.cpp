@@ -7,7 +7,6 @@
 
 #include "zombielaunchermodel.h"
 #include "playermodel.h"
-#include <cmath>
 
 ZombieLauncherModel::ZombieLauncherModel(Vector2f pos)
     : Enemy(pos,
