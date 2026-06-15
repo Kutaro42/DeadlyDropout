@@ -4,7 +4,6 @@
  */
 
 #include "enemy.h"
-#include <cmath>
 
 Enemy::Enemy(Vector2f pos, int maxHp, float spd, int dmg,
              float detRadius, float w, float h, int gold)

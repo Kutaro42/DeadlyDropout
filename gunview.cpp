@@ -8,7 +8,6 @@
 #include <QPainter>
 #include <QGraphicsScene>
 #include <QGraphicsEllipseItem>
-#include <cmath>
 
 // ─── Chargement du sprite (cache statique) ───────────────────────
 //

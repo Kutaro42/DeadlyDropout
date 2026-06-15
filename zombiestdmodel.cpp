@@ -7,7 +7,6 @@
 
 #include "zombiestdmodel.h"
 #include "playermodel.h"
-#include <cstdlib>
 
 // Stats GDD : 20 HP, 90 px/s, 7 dégâts min, portée 400 px, 5 gold
 ZombieStdModel::ZombieStdModel(Vector2f pos)

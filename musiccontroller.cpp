@@ -3,7 +3,6 @@
  * @brief Implémentation du MusicController singleton.
  */
 #include "musiccontroller.h"
-#include <QUrl>
 
 MusicController::MusicController(QObject* parent)
     : QObject(parent)

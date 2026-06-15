@@ -7,8 +7,6 @@
 
 #include "zombielauncherview.h"
 #include <QPainter>
-#include <QFont>
-#include <cmath>
 
 // ─── Helpers statiques ────────────────────────────────────────────
 int ZombieLauncherView::dirIdx(FacingDirection d) {

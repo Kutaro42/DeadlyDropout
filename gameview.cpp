@@ -7,12 +7,8 @@
 #include "zombielauncherview.h"
 #include <QGraphicsTextItem>
 #include <QGraphicsOpacityEffect>
-#include <QFont>
 #include "standarddoorview.h"
 #include "bossdoorview.h"
-#include "guiddef.h"
-#include <QFont>
-#include <QFontMetrics>
 
 GameView::GameView(QWidget* parent)
     : QGraphicsView(parent),

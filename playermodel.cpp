@@ -6,7 +6,6 @@
  */
 
 #include "playermodel.h"
-#include <cmath>
 
 PlayerModel::PlayerModel(Vector2f startPos)
     : Entity(startPos,
