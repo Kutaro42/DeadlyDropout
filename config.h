@@ -94,8 +94,8 @@ constexpr float ENEMY_CHASE_PERSIST = 4.0f; ///< Durée (s) pendant laquelle l'e
 
 // ─── Boss ────────────────────────────────────────────
 constexpr int   BOSSP1_MAX_HP       = 300;     ///< Points de vie maximum du boss en phase 1.
-constexpr int   BOSSP2_MAX_HP       = 300;     ///< Points de vie maximum du zombie.
-constexpr int   BOSSP3_MAX_HP       = 300;     ///< Points de vie maximum du zombie.
+constexpr int   BOSSP2_MAX_HP       = 600;     ///< Points de vie maximum du zombie.
+constexpr int   BOSSP3_MAX_HP       = 850;     ///< Points de vie maximum du zombie.
 constexpr float BOSS_SPEED        = 90.0f;  ///< Vitesse de déplacement du zombie en pixels/s.
 constexpr int   BOSS_DMG            = 20;      ///< Dégâts infligés par le boss.
 constexpr float BOSS_ATK_CD       = 1.5f;   ///< Temps de recharge de l'attaque en secondes.
