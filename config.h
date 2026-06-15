@@ -129,6 +129,19 @@ constexpr float  POPUP_GOLD_DUR  = 1.4f;  ///< Durée popup gold (s).
 constexpr float  POPUP_RISE_PX   = 40.0f; ///< Montée verticale (px).
 }
 
+// ─── AMELIORATION DU MARKET (dégâts / gold) ──────────────────────
+constexpr float BONUS_MAX_HP =20.0f;
+constexpr float BONUS_GUN_MAX_DMG =5.0f;
+constexpr float BONUS_KATANA_DMG =10.0f;
+constexpr float BONUS_KATANA_RANGE =15.0f;
+constexpr float BONUS_SPEED =20.0f;
+constexpr float BONUS_CRIT_CHANCE =0.03;
+constexpr float BONUS_KATANA_COOLDOWN_MIN = 0.1f;
+constexpr float BONUS_KATANA_COOLDOWN_MAX =0.2f;
+constexpr float BONUS_SHOOT_COOLDOWN_MIN =0.1f;
+constexpr float BONUS_SHOOT_COOLDOWN_MAX =0.2f;
+constexpr float BONUS_RESERVE =10.0f;
+
 // ─── Énumérations ─────────────────────────────────────────────────
 
 /** @brief Direction de l'entité. */
