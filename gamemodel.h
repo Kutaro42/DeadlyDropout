@@ -8,6 +8,7 @@
 #ifndef GAMEMODEL_H
 #define GAMEMODEL_H
 
+#include "bossmodel.h"
 #include "playermodel.h"
 #include "levelmodel.h"
 
@@ -24,6 +25,7 @@ class GameModel : public QObject{
     Q_OBJECT
 private:
     PlayerModel* player;            ///< Modèle du joueur.
+    bossModel* boss;                ///< Modèle du boss.
     LevelModel* level;             ///< Données structurelles et entités du niveau actuel.
     int          currentLevelIndex; ///< Numéro du niveau en cours d'exécution.
 
@@ -44,6 +46,7 @@ public:
     void setCurrentLevelIndex(int i) { currentLevelIndex = i; }
 
     PlayerModel* getPlayer() const { return player; }
+    Enemy* getBoss();
     LevelModel* getLevel()  const { return level;  }
     int          getLevelIndex()   const { return currentLevelIndex; }
     int a = 1;

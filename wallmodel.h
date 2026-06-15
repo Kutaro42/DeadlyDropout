@@ -18,7 +18,7 @@ public:
      * @param tilesetCols Nombre de colonnes du tileset PNG.
      */
     WallModel(Vector2f pos, float w, float h,
-              int tileIndex = 1, int tilesetCols = 50);
+              int tileIndex = 1, int tilesetCols = 302);
 
     void update(float dt) override;
 

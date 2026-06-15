@@ -122,3 +122,5 @@ RESOURCES += \
 
 DISTFILES += \
     arborescence.txt
+
+CONFIG += resources_big

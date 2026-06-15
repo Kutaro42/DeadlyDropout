@@ -21,7 +21,26 @@ PlayerModel::PlayerModel(Vector2f startPos)
     , moving(false)
     , facingDir(FacingDirection::DOWN)
     , katana()
-{}
+{
+    // ─── Initialisation des sons ─────────────────────────────────
+    damageSound = new QSoundEffect();
+    damageSound->setSource(QUrl("qrc:/images/Sound/damage.wav"));
+    damageSound->setVolume(0.5f);
+
+    deathSound = new QSoundEffect();
+    deathSound->setSource(QUrl("qrc:/images/Sound/death.wav"));
+    deathSound->setVolume(0.5f);
+}
+
+PlayerModel::~PlayerModel()
+{
+    if (damageSound) {
+        damageSound->deleteLater();
+    }
+    if (deathSound) {
+        deathSound->deleteLater();
+    }
+}
 
 void PlayerModel::update(float dt) {
     katana.update(dt);
@@ -68,8 +87,19 @@ bool PlayerModel::launchKatana(float angleRad) {
 }
 
 void PlayerModel::takeDamage(int amount) {
+    bool wasDead = isDead(); // On vérifie si le joueur était déjà mort avant l'impact
+
     hp -= amount;
     if (hp < 0) hp = 0;
+
+    // On ne joue les sons que si le joueur n'était pas déjà mort
+    if (!wasDead) {
+        if (isDead()) {
+            deathSound->play(); // Le coup de grâce
+        } else {
+            damageSound->play(); // Un simple dégât
+        }
+    }
 }
 
 // ─── Conversion angle → cardinal ─────────────────────────────────────────────

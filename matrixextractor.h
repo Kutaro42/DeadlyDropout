@@ -93,8 +93,8 @@ public:
      */
     static DynamicLevelDescriptor load(int            levelId,
                                        const QString& basePath        = ":/levels",
-                                       int            tilesetCols      = 50,
-                                       int            floorTilesetCols = 50);
+                                       int            tilesetCols      = 302,
+                                       int            floorTilesetCols = 302);
 
 private:
     /**
