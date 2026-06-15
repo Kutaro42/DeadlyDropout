@@ -42,6 +42,7 @@ void Enemy::triggerDeath() {
     aiState   = EnemyAIState::DEAD;
     deadTimer = Cfg::ENEMY_DEAD_DUR;
     velocity  = Vector2f(0.0f, 0.0f);
+    onDeath(); // Hook : no-op par défaut, surchargé par les sous-classes si besoin
     // Ne pas mettre active = false ici : c'est tickTransientStates() qui le fera
     // une fois l'animation de mort terminée.
 }

@@ -72,6 +72,13 @@ public:
      */
     virtual void attack(PlayerModel* player) = 0;
 
+    /**
+     * @brief Hook appelé une seule fois lors du passage en état DEAD.
+     *        Implémentation vide par défaut ; les sous-classes peuvent surcharger
+     *        pour déclencher des effets spécifiques (son, particules, etc.).
+     */
+    virtual void onDeath() {}
+
     // ─── Comportements communs ────────────────────────────────
     
     /**

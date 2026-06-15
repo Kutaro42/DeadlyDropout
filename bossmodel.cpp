@@ -18,9 +18,26 @@ bossModel::bossModel(Vector2f pos, int levelIndex)
     , zoneExplosionTimer(0.0f)
     , zoneCharging      (false)
     , zoneExplodedFlag  (false)
+    , deathSound        (nullptr)
 {
     // Booléen indiquant que cette ennemie est le boss dans le vecteur d'ennemis.
     isBoss = true;
+
+    deathSound = new QSoundEffect();
+    deathSound->setSource(QUrl("qrc:/images/Sound/zombiedeath.wav"));
+    deathSound->setVolume(0.6f);
+}
+
+bossModel::~bossModel()
+{
+    if (deathSound)
+        deathSound->deleteLater();
+}
+
+void bossModel::onDeath()
+{
+    if (deathSound)
+        deathSound->play();
 }
 
 // ─── Fourniture des colliders de murs (depuis LevelController) ────

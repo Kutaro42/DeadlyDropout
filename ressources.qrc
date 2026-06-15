@@ -118,6 +118,7 @@
 	<file>Sound/damage.wav</file>
 	<file>Sound/death.wav</file>
 	<file>Sound/katana.wav</file>
+	<file>Sound/zombiedeath.wav</file>
     </qresource>
 
     <!-- ── Matrices de niveaux (texte) ───────────────────────────── -->
