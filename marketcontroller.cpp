@@ -21,7 +21,9 @@ void MarketController::sltBuy(int itemId) {
     itsPlayer->addGold(-MarketView::ITEMS[itemId].cost);
 
     switch (itemId) {
-    case 0: itsPlayer->setMaxHp(itsPlayer->getMaxHp() + BONUS_MAX_HP); break;
+    case 0: itsPlayer->setMaxHp(itsPlayer->getMaxHp() + BONUS_MAX_HP);
+            itsPlayer->setHp(itsPlayer->getHp() + BONUS_MAX_HP);
+            break;
     case 1: itsPlayer->getGun().setBaseDamage(itsPlayer->getGun().getBaseDamage() +BONUS_GUN_MAX_DMG); break;
     case 2: itsPlayer->setKatanaDamage(itsPlayer->getKatana().getDamage() + BONUS_KATANA_DMG); break;
     case 3: itsPlayer->setKatanaRange(itsPlayer->getKatana().getRange() + BONUS_KATANA_RANGE); break;
