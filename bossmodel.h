@@ -11,6 +11,7 @@
 #include "enemy.h"
 #include <QVector>
 #include <QRectF>
+#include <QSoundEffect>
 #include "config.h"
 
 /**
@@ -26,6 +27,12 @@ public:
      * @param pos: Position initial du boss.
      */
     explicit bossModel(Vector2f pos, int levelIndex = 1);
+    ~bossModel() override;
+
+    /**
+     * @brief Surcharge du hook de mort : joue zombiedeath.wav.
+     */
+    void onDeath() override;
 
     /**
      * @brief Rafraichissement du boss (interval d'attaque, état, déplaement).
@@ -57,6 +64,7 @@ public:
     void setWallColliders(const QVector<QRectF>& walls);
 
 private:
+    QSoundEffect*     deathSound;  ///< Son joué à la mort du boss.
     bool              hasPattern2;
     float             zoneChargeTimer;
     float             zoneExplosionTimer;
