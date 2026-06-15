@@ -22,13 +22,22 @@ MenuView::MenuView(QWidget* parent) : QWidget(parent)
     playButton->setFixedSize(200, 52);
     playButton->setStyleSheet(
         "QPushButton {"
-        "  background: qlineargradient(x1:0,y1:0,x2:0,y2:1,"
-        "    stop:0 #4a90e2, stop:1 #1a5fa8);"
-        "  color: white; font-size: 18px; font-weight: bold;"
-        "  border-radius: 10px; border: 1px solid #2266aa;"
+        "  background: qlineargradient(x1:0, y1:0, x2:0, y2:1,"
+        "    stop:0 #8b0000, stop:1 #4a0000);" // Dégradé rouge sombre
+        "  color: #ffffff;"
+        "  font-size: 18px; font-weight: bold;"
+        "  border-radius: 6px;"
+        "  border: 2px solid #ffffff;"         // Bordure blanche nette
         "}"
-        "QPushButton:hover { background: #5aaaf5; }"
-        "QPushButton:pressed { background: #1a4e8a; }");
+        "QPushButton:hover {"
+        "  background: qlineargradient(x1:0, y1:0, x2:0, y2:1,"
+        "    stop:0 #a80000, stop:1 #660000);" // Rouge plus vif au survol
+        "  border-color: #ffcccc;"            // Blanc incandécent au survol
+        "}"
+        "QPushButton:pressed {"
+        "  background: #2b0000;"              // Sang très sombre au clic
+        "  border-color: #aaaaaa;"            // Bordure blanche grisée au clic
+        "}");
 
     connect(playButton, &QPushButton::clicked, this, &MenuView::sigGameRq);
 
@@ -36,11 +45,22 @@ MenuView::MenuView(QWidget* parent) : QWidget(parent)
     quitButton->setFixedSize(200, 42);
     quitButton->setStyleSheet(
         "QPushButton {"
-        "  background: transparent;"
-        "  color: #8899bb; font-size: 14px;"
-        "  border: 1px solid #334466; border-radius: 8px;"
+        "  background: qlineargradient(x1:0, y1:0, x2:0, y2:1,"
+        "    stop:0 #8b0000, stop:1 #4a0000);" // Même dégradé rouge
+        "  color: #ffffff;"
+        "  font-size: 14px; font-weight: bold;" // Police un peu plus petite pour le Quit
+        "  border-radius: 6px;"
+        "  border: 2px solid #ffffff;"         // Même bordure blanche
         "}"
-        "QPushButton:hover { color: #ccddff; border-color: #6680aa; }");
+        "QPushButton:hover {"
+        "  background: qlineargradient(x1:0, y1:0, x2:0, y2:1,"
+        "    stop:0 #a80000, stop:1 #660000);"
+        "  border-color: #ffcccc;"
+        "}"
+        "QPushButton:pressed {"
+        "  background: #2b0000;"
+        "  border-color: #aaaaaa;"
+        "}");
 
     connect(quitButton, &QPushButton::clicked, this, &QApplication::quit);
 
