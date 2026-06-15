@@ -5,9 +5,6 @@
 
 #include "gamecontroller.h"
 #include "musiccontroller.h"
-#include <Qt>
-#include <algorithm>
-#include <cmath>
 #include <QDebug>
 #include "config.h"
 #include "marketcontroller.h"

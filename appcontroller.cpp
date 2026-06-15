@@ -49,7 +49,6 @@ void AppController::startGame()
 #include "AppController.h"
 #include "musiccontroller.h"
 #include "marketcontroller.h"
-#include <iostream>
 
 AppController::AppController(QWidget *parent)
     : QMainWindow(parent)
