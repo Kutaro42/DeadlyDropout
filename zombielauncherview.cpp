@@ -154,36 +154,24 @@ void ZombieLauncherView::updateView(float dt)
                 frameTimer += dt;
                 if (frameTimer >= animSpeedDeath) {
                     frameTimer = 0.0f;
-                    if (currentFrame < dead.size() - 1) {
+                    if (currentFrame < dead.size() - 1)
                         ++currentFrame;
-                    } else {
+                    else
                         deadAnimFinished = true;
-                    }
                 }
                 setPixmap(dead[qMin(currentFrame, dead.size() - 1)]);
             } else {
                 deadAnimFinished = true;
             }
         }
-        if (deadAnimFinished) {
-            hide();
-            for (RubbleView* rv : rubbleViews) {
-                scene->removeItem(rv);
-                delete rv;
-            }
-            rubbleViews.clear();
-        }
+        if (deadAnimFinished) hide();
+        syncRubbleViews(); // ← toujours appelé, même après deadAnimFinished
         return;
     }
 
-    // ── Ennemi inactif sans état DEAD ─────────────────────────────────────────
     if (!model->isActive()) {
         hide();
-        for (RubbleView* rv : rubbleViews) {
-            scene->removeItem(rv);
-            delete rv;
-        }
-        rubbleViews.clear();
+        syncRubbleViews();
         return;
     }
 
