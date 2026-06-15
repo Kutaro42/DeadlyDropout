@@ -78,7 +78,7 @@ void MenuView::paintEvent(QPaintEvent* event)
     QImage logo(":/images/Textures/Logo/logopixel.png");
     QImage imgFond(":/images/Textures/bata.png");
 
-    painter.drawImage(200, 0, imgFond); // image fond
+    painter.drawImage(0, 0, imgFond); // image fond
     painter.drawImage(
         QRect(225, 0, 518, 200), // taille souhaitée
         logo);
