@@ -4,6 +4,7 @@
  */
 
 #include "gamecontroller.h"
+#include "musiccontroller.h"
 #include <Qt>
 #include <algorithm>
 #include <cmath>
@@ -25,7 +26,9 @@ GameController::~GameController() {
     delete levelCtrl;
 }
 
-void GameController::init() {
+void GameController::init(bool startMusic) {
+    // ── Overlay de pause ──────────────────────────────────────────
+    connect(itsGameView, &GameView::sigPauseMenu, this, &GameController::sltPauseMenu);
 
     // ── Clic droit → attaque katana orientée vers le curseur ─────────────────
     connect(itsGameView, &GameView::sig_rightClicked,
@@ -77,6 +80,12 @@ void GameController::init() {
     connect(itsGameView, &GameView::sigRestartRq, this, &GameController::sigRestart);
     connect(itsGameView, &GameView::sigQuitRq,    this, &GameController::sigBackMenu);
 
+    // ── Boutons musique du menu pause (délégués à la vue) ─────────
+    connect(itsGameView, &GameView::sigToggleMusic,
+            this, []{ MusicController::instance().togglePause(); });
+    connect(itsGameView, &GameView::sigNextTrack,
+            this, []{ MusicController::instance().nextTrack(); });
+
     // ── Chargement du registre de niveaux ────────────────────────
     // DOIT être appelé avant tout loadLevel() — sans init(), count()
     // retourne 0 et le modulo dans loadLevel() provoque un SIGFPE.
@@ -97,32 +106,28 @@ void GameController::init() {
     gameTimer.start(Cfg::TIMER_MS);
 
     currentState = AppState::PLAYING;
+
+    // ── Musique in-game ───────────────────────────────────────────
+    // startMusic = false lors d'un Rejouer pour ne pas couper la piste en cours
+    if (startMusic)
+        MusicController::instance().playRandomGame();
 }
 
 void GameController::togglePause() {
     if (currentState == AppState::PLAYING) {
         currentState = AppState::PAUSED;
-
-        pauseTextOverlay = new QGraphicsTextItem("--- JEU EN PAUSE ---\nAppuyez sur ECHAP pour reprendre");
-        QFont font("Arial", 22, QFont::Bold);
-        pauseTextOverlay->setFont(font);
-        pauseTextOverlay->setDefaultTextColor(Qt::white);
-        pauseTextOverlay->setZValue(100);
-        pauseTextOverlay->setPos(itsGameView->mapToScene(
-            itsGameView->width() / 2 - 150,
-            itsGameView->height() / 2 - 40));
-        itsGameView->getScene()->addItem(pauseTextOverlay);
+        itsGameView->showPauseOverlay();
     }
     else if (currentState == AppState::PAUSED) {
         currentState = AppState::PLAYING;
-
-        if (pauseTextOverlay) {
-            itsGameView->getScene()->removeItem(pauseTextOverlay);
-            delete pauseTextOverlay;
-            pauseTextOverlay = nullptr;
-        }
+        itsGameView->hidePauseOverlay();
         elapsedTimer.restart();
     }
+}
+
+void GameController::sltPauseMenu() {
+    itsGameView->hidePauseOverlay();
+    emit sigBackMenu();
 }
 
 void GameController::loadLevel(int index) {

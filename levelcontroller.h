@@ -85,6 +85,10 @@ private:
      */
     void resolveAABB(Entity& mover, const QRectF& obstacle);
 
+    /** @brief Vérifie qu'aucun mur ne coupe le segment [from, to].
+ *  @return true si la ligne de vue est dégagée. */
+    bool hasLineOfSight(Vector2f from, Vector2f to, const QVector<QRectF>& walls) const;
+
     QVector<PopupRequest> pendingPopups;
     static QPointF popupPos(const Enemy* e); ///< Centre-haut d'un ennemi.
 };

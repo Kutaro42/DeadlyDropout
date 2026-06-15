@@ -34,6 +34,7 @@ SOURCES += \
     matrixextractor.cpp \
     menucontroller.cpp \
     menuview.cpp \
+    musiccontroller.cpp \
     playermodel.cpp    \
     playerview.cpp     \
     projectile.cpp \
@@ -76,6 +77,7 @@ HEADERS += \
     matrixextractor.h \
     menucontroller.h \
     menuview.h \
+    musiccontroller.h \
     projectile.h \
     rubblemodel.h \
     rubbleview.h \

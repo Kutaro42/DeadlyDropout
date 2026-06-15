@@ -51,10 +51,32 @@ void LevelController::updateEnemies(float dt,
                                     PlayerModel& player,
                                     LevelModel&  level)
 {
-    for (Enemy* e : level.getEnemies())
-        if (e->isActive() || e->getAIState() == EnemyAIState::DEAD)
-            e->update(dt, player.getPosition());
+    // Obstacles LOS = murs + portes standards encore fermées (calculé une fois)
+    QVector<QRectF> losObstacles = wallCollidersCache;
+    for (const StandardDoorModel* d : level.getStandardDoors())
+        if (!d->isOpen())
+            losObstacles.append(d->getCollider());
 
+    Vector2f pCenter(player.getPosition().x + player.getWidth()  / 2.0f,
+                     player.getPosition().y + player.getHeight() / 2.0f);
+
+    for (Enemy* e : level.getEnemies()) {
+        if (e->isActive() || e->getAIState() == EnemyAIState::DEAD) {
+
+            Vector2f eCenter(e->getPosition().x + e->getWidth()  / 2.0f,
+                             e->getPosition().y + e->getHeight() / 2.0f);
+
+            bool canSee = e->detectsPlayer(pCenter)
+                          && hasLineOfSight(eCenter, pCenter, losObstacles);
+
+            if (canSee)
+                e->refreshChaseTimer();
+            else
+                e->tickChaseTimer(dt);
+
+            e->update(dt, player.getPosition());
+        }
+    }
 }
 
 void LevelController::purgeDeadEnemies(LevelModel& level)
@@ -438,4 +460,46 @@ QPointF LevelController::popupPos(const Enemy* e)
     float cx = e->getPosition().x + e->getWidth()  / 2.0f;
     float ty = e->getPosition().y - 6.0f;
     return QPointF(static_cast<double>(cx), static_cast<double>(ty));
+}
+
+// ─── Line-of-Sight (raycasting AABB) ─────────────────────────────────────────
+// Teste si le segment [from → to] est bloqué par l'un des rectangles de murs.
+// Algorithme : paramétrique — on cherche l'intervalle [tEnter, tLeave] ∩ [0,1].
+bool LevelController::hasLineOfSight(Vector2f from, Vector2f to,
+                                     const QVector<QRectF>& walls) const
+{
+    float dx = to.x - from.x;
+    float dy = to.y - from.y;
+
+    for (const QRectF& w : walls) {
+        float tEnter = 0.0f, tLeave = 1.0f;
+
+        // Axe X
+        if (std::abs(dx) < 1e-6f) {
+            if (from.x < w.left() || from.x > w.right()) continue;
+        } else {
+            float tx1 = (static_cast<float>(w.left())  - from.x) / dx;
+            float tx2 = (static_cast<float>(w.right()) - from.x) / dx;
+            if (tx1 > tx2) std::swap(tx1, tx2);
+            tEnter = std::max(tEnter, tx1);
+            tLeave = std::min(tLeave, tx2);
+            if (tEnter > tLeave) continue;
+        }
+
+        // Axe Y
+        if (std::abs(dy) < 1e-6f) {
+            if (from.y < w.top() || from.y > w.bottom()) continue;
+        } else {
+            float ty1 = (static_cast<float>(w.top())    - from.y) / dy;
+            float ty2 = (static_cast<float>(w.bottom()) - from.y) / dy;
+            if (ty1 > ty2) std::swap(ty1, ty2);
+            tEnter = std::max(tEnter, ty1);
+            tLeave = std::min(tLeave, ty2);
+            if (tEnter > tLeave) continue;
+        }
+
+        // Le segment traverse ce mur
+        return false;
+    }
+    return true;
 }

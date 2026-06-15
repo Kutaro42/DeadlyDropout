@@ -28,14 +28,14 @@ float ZombieLauncherModel::updateAIState(Vector2f playerPos)
     float dy   = playerPos.y - (position.y + height / 2.0f);
     float dist = std::sqrt(dx * dx + dy * dy);
 
-    if (dist > Cfg::LAUNCHER_DETECT_R) {
+    // Le passage en CHASING initial est conditionné par le LOS géré dans
+    // LevelController. Ici on se base sur le chasePersistTimer + distance.
+    if (chasePersistTimer <= 0.0f) {
         aiState  = EnemyAIState::IDLE;
         velocity = Vector2f(0.0f, 0.0f);
     } else if (dist > Cfg::LAUNCHER_SHOOT_R) {
-        // Détecté mais hors portée de tir → poursuivre
         aiState = EnemyAIState::CHASING;
     } else {
-        // À portée de tir → rester immobile et tirer
         aiState  = EnemyAIState::ATTACKING;
         velocity = Vector2f(0.0f, 0.0f);
     }

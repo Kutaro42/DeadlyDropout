@@ -18,6 +18,7 @@
  * @return Le code de sortie de l'application Qt.
  */
 int main(int argc, char* argv[]) {
+    qputenv("QT_LOGGING_RULES", "qt.multimedia.*=false");
     QApplication app(argc, argv);
     app.setApplicationName("Deadly Dropout");
 

@@ -19,7 +19,10 @@ ZombieStdModel::ZombieStdModel(Vector2f pos)
 {}
 
 void ZombieStdModel::updateAIState(Vector2f playerPos) {
-    if (detectsPlayer(playerPos))
+    // La décision de passer en CHASING est décidée par le
+    // chasePersistTimer géré dans LevelController.
+    // on repasse en IDLE que si le timer est fini
+    if (chasePersistTimer > 0.0f)
         aiState = EnemyAIState::CHASING;
     else
         aiState = EnemyAIState::IDLE;

@@ -73,6 +73,7 @@ private:
     int   currentFrame; ///< Index de frame courant.
     float frameTimer;   ///< Temps écoulé sur la frame courante.
     float animSpeed;    ///< Durée d'affichage d'une frame en secondes.
+    float animSpeedDeath;
     int   currentDir;   ///< Direction courante (index 0-3).
     bool  deadAnimFinished; ///< True une fois que l'animation DEAD a été jouée entièrement.
 

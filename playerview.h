@@ -114,6 +114,7 @@ private:
     int                   itsSlashFrame;      ///< Index de frame courant de l'effet.
     float                 itsSlashFrameTimer; ///< Durée écoulée sur la frame courante.
     float                 itsSlashFrameSpeed; ///< Durée par frame = KATANA_ANIM_DUR / SLASH_FRAME_COUNT.
+    bool itsSlashDone;                        ///< Fin du slash, pour éviter le freeze sur la dernière frame
 
     // ─── Helpers ──────────────────────────────────────────────────
     static int  dirIdx(FacingDirection d);

@@ -18,7 +18,8 @@ Enemy::Enemy(Vector2f pos, int maxHp, float spd, int dmg,
       velocity(0.0f, 0.0f),
       hitThisSlash(false),
       hurtTimer(0.0f),
-      deadTimer(0.0f)
+      deadTimer(0.0f),
+      chasePersistTimer(0.0f)
 {}
 
 void Enemy::takeDamage(int amount) {
@@ -73,4 +74,11 @@ bool Enemy::detectsPlayer(Vector2f playerPos) const {
     float dy   = playerPos.y - (position.y + height / 2.0f);
     float dist = std::sqrt(dx * dx + dy * dy);
     return dist <= detectionRadius;
+}
+
+bool Enemy::tickChaseTimer(float dt) {
+    if (chasePersistTimer <= 0.0f) return false;
+    chasePersistTimer -= dt;
+    if (chasePersistTimer < 0.0f) chasePersistTimer = 0.0f;
+    return chasePersistTimer > 0.0f;
 }

@@ -62,6 +62,7 @@ private:
     int   currentFrame; ///< Indice de l'image actuellement rendue.
     float frameTimer;   ///< Horloge accumulant le delta-time pour déclencher le changement de frame.
     float animSpeed;    ///< Délai d'attente (en s) avant de changer d'image de marche.
+    float animSpeedDeath;
     int   currentDir;   ///< Index stockant la dernière direction calculée.
     bool  deadAnimFinished; ///< True une fois que l'animation DEAD a été jouée entièrement.
 

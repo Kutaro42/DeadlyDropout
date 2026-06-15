@@ -18,6 +18,7 @@
 #include "leveltemplate.h"
 #include "levelregistry.h"   // ← remplace l'ancien #include "leveltemplate.h" (LevelData)
 #include "config.h"
+#include "musiccontroller.h"
 
 // ═══════════════════════════════════════════════════════════════════
 //  GameController — contrôleur principal du jeu (couche Controller).
@@ -57,8 +58,9 @@ public:
 
     /**
      * @brief Initialise les modèles, la vue et lance la boucle de jeu.
+     * @param startMusic Si true, démarre la première piste in-game.
      */
-    void init();
+    void init(bool startMusic = true);
 
     /**
      * @brief Accesseur pour la vue de jeu.
@@ -71,6 +73,11 @@ private slots:
      * @brief Slot appelé à chaque tick du QTimer (environ 60 FPS).
      */
     void slt_tick();
+
+    /**
+     * @brief Slot appelé pour retourner au menu depuis le menu pause.
+     */
+    void sltPauseMenu();
 
 private:
     /**
@@ -96,8 +103,10 @@ private:
      */
     void transitionTo(AppState newState);
 
+    /**
+     * @brief Bascule l'état pause / jeu.
+     */
     void togglePause();
-    QGraphicsTextItem* pauseTextOverlay = nullptr; ///< Overlay texte affiché pendant la pause.
 
 signals:
     void sigRestart();

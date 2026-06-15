@@ -45,7 +45,14 @@ private:
     GunView*        gunView;
     QSet<int>       pressedKeys;
     GameModel*      currentModel;
-    QPointF         itsMouseViewPos;///< Position souris en coordonnées viewport (ne dépend pas de la caméra).
+    QPointF         itsMouseViewPos; ///< Position souris en coordonnées viewport (ne dépend pas de la caméra).
+
+    // ─── Boutons du menu pause ────────────────────────────────────
+    QPushButton* pauseResumeButton = nullptr;
+    QPushButton* pauseMenuButton   = nullptr;
+    QPushButton* pauseMusicButton  = nullptr;
+    QPushButton* pauseNextButton   = nullptr;
+    bool         showingPause      = false;
 
 public:
     explicit GameView(QWidget* parent = nullptr);
@@ -61,6 +68,8 @@ public:
     void followPlayer(GameModel* model);
     void clearScene();
     void showOverlay(const QString& message);
+    void showPauseOverlay();
+    void hidePauseOverlay();
 
 protected:
     void keyPressEvent(QKeyEvent* e)         override;
@@ -68,16 +77,15 @@ protected:
     void mousePressEvent(QMouseEvent* event) override;
     void mouseMoveEvent(QMouseEvent* event)  override;
     void drawForeground(QPainter* painter, const QRectF& rect) override;
-    void wheelEvent(QWheelEvent *event) override;//intercepter le scroll de la molette pour le désactiver
+    void wheelEvent(QWheelEvent *event)      override;
 
 private:
     void drawHUD(QPainter* painter, GameModel* model);
     void drawHpBar(QPainter* p, int hp, int maxHp, int x, int y);
 
     // ─── Popups flottants (dégâts / gold) ─────────────────────────
-    /** @brief État d'animation d'un popup flottant. */
     struct PopupAnim {
-        QGraphicsTextItem*     item;
+        QGraphicsTextItem*      item;
         QGraphicsOpacityEffect* fx;
         float elapsed;
         float duration;
@@ -112,6 +120,9 @@ signals:
     void sig_escapePressed();
     void sigRestartRq();
     void sigQuitRq();
+    void sigPauseMenu();
+    void sigToggleMusic();
+    void sigNextTrack();
 };
 
 #endif // GAMEVIEW_H
