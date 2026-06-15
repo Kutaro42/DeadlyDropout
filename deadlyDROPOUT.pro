@@ -31,6 +31,8 @@ SOURCES += \
     main.cpp           \
     entity.cpp         \
     enemy.cpp          \
+    marketcontroller.cpp \
+    marketview.cpp \
     matrixextractor.cpp \
     menucontroller.cpp \
     menuview.cpp \
@@ -74,6 +76,8 @@ HEADERS += \
     gunview.h \
     katana.h \
     levelregistry.h \
+    marketcontroller.h \
+    marketview.h \
     matrixextractor.h \
     menucontroller.h \
     menuview.h \

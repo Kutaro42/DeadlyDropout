@@ -8,6 +8,7 @@
 #ifndef GAMECONTROLLER_H
 #define GAMECONTROLLER_H
 
+#include "marketcontroller.h"
 #include <QObject>
 #include <QTimer>
 #include <QElapsedTimer>
@@ -39,14 +40,16 @@ class GameController : public QObject {
     Q_OBJECT
 
 private:
-    GameView*        itsGameView;       ///< Pointeur vers la vue principale du jeu.
-    GameModel*       itsGameModel;      ///< Pointeur vers l'état global du modèle de jeu.
-    LevelController* levelCtrl;         ///< Contrôleur spécifique à la gestion du niveau.
+    GameView*         itsGameView;       ///< Pointeur vers la vue principale du jeu.
+    GameModel*        itsGameModel;      ///< Pointeur vers l'état global du modèle de jeu.
+    LevelController*  levelCtrl;         ///< Contrôleur spécifique à la gestion du niveau.
+    MarketController* itsMarketController; ///< Controlleur du market
 
     AppState         currentState;      ///< État courant de la boucle de jeu.
     QTimer           gameTimer;         ///< Moteur temporel déclenchant les ticks (~60 FPS).
     QElapsedTimer    elapsedTimer;      ///< Chronomètre pour le calcul du delta-time (dt).
     int              currentLevelIndex; ///< Index (0-based) du niveau actuellement chargé.
+
 
 public:
     /**
@@ -55,6 +58,10 @@ public:
      */
     explicit GameController(QObject* parent);
     ~GameController();
+
+    PlayerModel* getPlayer() const {
+        return itsGameModel ? itsGameModel->getPlayer() : nullptr;
+    }
 
     /**
      * @brief Initialise les modèles, la vue et lance la boucle de jeu.
@@ -111,6 +118,7 @@ private:
 signals:
     void sigRestart();
     void sigBackMenu();
+    void sigMarketRequest();
 };
 
 #endif // GAMECONTROLLER_H

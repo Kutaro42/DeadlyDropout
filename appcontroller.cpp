@@ -48,6 +48,7 @@ void AppController::startGame()
 
 #include "AppController.h"
 #include "musiccontroller.h"
+#include "marketcontroller.h"
 #include <iostream>
 
 AppController::AppController(QWidget *parent)
@@ -66,11 +67,14 @@ AppController::AppController(QWidget *parent)
     // Création des contrôleurs
     itsMenuController = new MenuController();
     itsGameController = new GameController(this);
+    itsMarketController = new MarketController(this);
+
 
     // Commentaire développeur : 
     // On ajoute directement les VUES (et non leur parentWidget qui vaut nullptr)
     mainContainer->addWidget((itsMenuController->getMenuView()));
     mainContainer->addWidget(itsGameController->getView());
+    mainContainer->addWidget(itsMarketController->getView());
 
     // On intègre le QStackedWidget au cœur de la QMainWindow
     setCentralWidget(mainContainer);
@@ -86,9 +90,15 @@ AppController::AppController(QWidget *parent)
     connect(this, &AppController::sigGameRq, this, &AppController::startGame);
     connect(itsGameController, &GameController::sigRestart, this, &AppController::sltRestart);
     connect(itsGameController, &GameController::sigBackMenu, this, &AppController::sltBackMenu);
+    connect(itsGameController, &GameController::sigMarketRequest, this, &AppController::sltOpenMarket);
+    connect(itsMarketController, &MarketController::sigClosed, this, &AppController::startGame);
 
     // Démarrage de la musique du menu
     MusicController::instance().playMenu();
+
+
+
+
 }
 
 AppController::~AppController()
@@ -98,6 +108,7 @@ AppController::~AppController()
     delete itsMenuController;
     delete currentState;
     delete itsGameController;
+    delete itsMarketController;
 }
 
 void AppController::startGame()
@@ -149,4 +160,9 @@ void AppController::sltBackMenu()
     MusicController::instance().playMenu();
     reset();
     mainContainer->setCurrentIndex(0);
+}
+
+void AppController::sltOpenMarket() {
+    itsMarketController->open(itsGameController->getPlayer());
+    mainContainer->setCurrentWidget(itsMarketController->getView());
 }

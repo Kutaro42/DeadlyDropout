@@ -11,6 +11,7 @@
 #include <QMainWindow>
 #include <QStackedWidget>
 #include "config.h"
+#include "marketcontroller.h"
 #include "menucontroller.h"
 #include "gamecontroller.h"
 
@@ -26,7 +27,8 @@ private:
     AppState *currentState;            ///< Pointeur vers l'état applicatif courant.
     QStackedWidget *mainContainer;     ///< Conteneur Qt permettant le basculement entre vues (Menu / Jeu).
     MenuController *itsMenuController; ///< Contrôleur dédié au menu principal.
-    GameController *itsGameController; ///< Contrôleur dédié à la gestion in-game.
+    GameController *itsGameController; ///< Contrôleur dédié à la gestion du gameplay in-game.
+    MarketController* itsMarketController; ///< Contrôleur dédié à la gestion du market in-game.
 
 public:
     /**
@@ -68,5 +70,7 @@ private slots:
      */
     void sltRestart();
     void sltBackMenu();
+//slot ouvrir la fenêtre dialogue du market
+    void sltOpenMarket();
 };
 #endif // AppController_H

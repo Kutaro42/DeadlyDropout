@@ -10,6 +10,7 @@
 #include <cmath>
 #include <QDebug>
 #include "config.h"
+#include "marketcontroller.h"
 
 GameController::GameController(QObject* parent)
     : QObject(parent)
@@ -18,12 +19,14 @@ GameController::GameController(QObject* parent)
     , levelCtrl(new LevelController())
     , currentState(AppState::MENU)
     , currentLevelIndex(0)
+    , itsMarketController(new MarketController(nullptr))
 {}
 
 GameController::~GameController() {
     delete itsGameView;
     delete itsGameModel;
     delete levelCtrl;
+    delete itsMarketController;
 }
 
 void GameController::init(bool startMusic) {
@@ -48,6 +51,7 @@ void GameController::init(bool startMusic) {
 
         player->launchKatana(angle);
     });
+
 
     // ── Touche Échap → pause ──────────────────────────────────────
     connect(itsGameView, &GameView::sig_escapePressed, this, &GameController::togglePause);
@@ -92,7 +96,8 @@ void GameController::init(bool startMusic) {
     LevelRegistry::instance().init();
 
     // ── Chargement du niveau 1 ────────────────────────────────────
-    loadLevel(0);
+    //loadLevel(0);
+    loadLevel(currentLevelIndex);
 
     // ── Liaison vue ↔ modèle ──────────────────────────────────────
     itsGameView->initWithModel(itsGameModel);
@@ -213,9 +218,18 @@ void GameController::checkStateTransitions() {
         transitionTo(AppState::GAME_OVER);
     } else if (levelCtrl->levelJustCompleted) {
         int nextIndex = currentLevelIndex + 1;
-        if (nextIndex < LevelRegistry::instance().count()) {
+        if (nextIndex <= LevelRegistry::instance().count()) {
+
+
+            if (currentLevelIndex >1){// Ouvre le market (bloquant), puis relance
+                gameTimer.stop();
+                itsMarketController->open(itsGameModel->getPlayer());
+            }
+
             loadLevel(nextIndex);
             itsGameView->initWithModel(itsGameModel);
+            elapsedTimer.restart();
+            gameTimer.start(Cfg::TIMER_MS);
         } else {
             transitionTo(AppState::VICTORY);
         }
