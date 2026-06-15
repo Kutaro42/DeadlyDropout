@@ -124,3 +124,4 @@ DISTFILES += \
     arborescence.txt
 
 CONFIG += resources_big
+RC_ICONS = favi.ico
