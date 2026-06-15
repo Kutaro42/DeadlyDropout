@@ -94,8 +94,8 @@ inline LevelDescriptor makeDescriptor(int id, const QString& name,
                                       const LevelMatrix<ROWS, COLS>& entities,
                                       const LevelMatrix<ROWS, COLS>& walls,
                                       const LevelMatrix<ROWS, COLS>& floor,
-                                      int tilesetCols      = 50,
-                                      int floorTilesetCols = 8)
+                                      int tilesetCols      = 302,
+                                      int floorTilesetCols = 302)
 {
     return { id, name, ROWS, COLS,
              &entities.data[0][0],
@@ -110,7 +110,7 @@ template<int ROWS, int COLS>
 inline LevelDescriptor makeDescriptor(int id, const QString& name,
                                       const LevelMatrix<ROWS, COLS>& entities,
                                       const LevelMatrix<ROWS, COLS>& walls,
-                                      int tilesetCols = 50)
+                                      int tilesetCols = 302)
 {
     return { id, name, ROWS, COLS,
              &entities.data[0][0],
