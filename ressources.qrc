@@ -115,6 +115,9 @@
 
 	<file>Sound/click.wav</file>
 	<file>Sound/gunFireSound.wav</file>
+	<file>Sound/damage.wav</file>
+	<file>Sound/death.wav</file>
+	<file>Sound/katana.wav</file>
     </qresource>
 
     <!-- ── Matrices de niveaux (texte) ───────────────────────────── -->
@@ -150,5 +153,6 @@
         <file>music/track1.mp3</file>
         <file>music/track2.mp3</file>
         <file>music/track3.mp3</file>
+        <file>music/chad.wav</file>
     </qresource>
 </RCC>

@@ -13,6 +13,7 @@
 #include "gunmodel.h"
 #include "config.h"
 #include <cmath>
+#include <QSoundEffect>
 
 // ═══════════════════════════════════════════════════════════════════
 //  PlayerModel — état et logique du joueur (couche Model, MVC).
@@ -44,10 +45,12 @@ private:
     FacingDirection facingDir; ///< Direction cardinale courante (clavier ou attaque).
 
     Katana          katana;
-    GunModel        gun;
+    GunModel        gun;QSoundEffect* damageSound;
+    QSoundEffect* deathSound;
 
 public:
     explicit PlayerModel(Vector2f startPos);
+    ~PlayerModel();
 
     void update(float dt) override;
 

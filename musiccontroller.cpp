@@ -18,7 +18,8 @@ MusicController::MusicController(QObject* parent)
     // Adaptez ces chemins à vos ressources dans le .qrc
     gameTracks << "qrc:/sounds/music/track1.mp3"
                << "qrc:/sounds/music/track2.mp3"
-               << "qrc:/sounds/music/track3.mp3";
+               << "qrc:/sounds/music/track3.mp3"
+               << "qrc:/sounds/music/chad.wav";
 }
 
 void MusicController::playTrack(const QString& resourcePath)

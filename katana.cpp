@@ -16,7 +16,18 @@ Katana::Katana()
     , itsAnimTimer(0.0f)
     , itsSlashZone()
     , itsAttackAngle(0.0f)
-{}
+{// ─── Initialisation du son de slash ─────────────────────────
+    itsSlashSound = new QSoundEffect();
+    // Ajustez le nom exact du fichier de son (.wav) s'il s'appelle différemment
+    itsSlashSound->setSource(QUrl("qrc:/images/Sound/katana.wav"));
+    itsSlashSound->setVolume(0.5f);}
+
+Katana::~Katana()
+{
+    if (itsSlashSound) {
+        itsSlashSound->deleteLater();
+    }
+}
 
 void Katana::update(float dt) {
     if (itsAnimTimer > 0.0f) {
@@ -35,13 +46,18 @@ void Katana::update(float dt) {
 bool Katana::tryAttack(Vector2f playerPos, float playerW, float playerH,
                        float angleRad)
 {
-    if (!itsReady) return false;
+    if (!itsReady) return false; // L'arme est en cooldown, on ne fait rien
 
+    // L'attaque est prête et se lance :
     itsReady         = false;
     itsCooldownTimer = itsCooldown;
     itsAnimTimer     = Cfg::KATANA_ANIM_DUR;
     itsAttackAngle   = angleRad;
 
+    // ─── On joue le son de l'attaque ! ───────────────────────────
+    itsSlashSound->play();
+
+    // Calcul de la zone de collision (la suite du code reste identique)
     computeSlashZone(playerPos, playerW, playerH, angleRad);
     return true;
 }

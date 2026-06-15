@@ -11,6 +11,7 @@
 #include <QRectF>
 #include "config.h"
 #include "vector2f.h"
+#include <QSoundEffect>
 
 /**
  * @class Katana
@@ -34,6 +35,7 @@
 class Katana {
 public:
     Katana();
+    ~Katana();
 
     /**
      * @brief Met à jour les temporisateurs de l'arme (cooldown et animation).
@@ -92,6 +94,8 @@ private:
 
     /// Angle (radians) de la dernière attaque. Exposé pour le sprite de slash dans PlayerView.
     float  itsAttackAngle;
+
+    QSoundEffect* itsSlashSound;
 
     /**
      * @brief Calcule la SlashZone AABB pour un angle libre.
