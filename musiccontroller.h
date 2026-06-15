@@ -10,6 +10,7 @@
 #include <QAudioOutput>
 #include <QStringList>
 #include <QRandomGenerator>
+#include <QCoreApplication>
 
 class MusicController : public QObject
 {

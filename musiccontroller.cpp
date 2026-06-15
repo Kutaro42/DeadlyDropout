@@ -12,27 +12,42 @@ MusicController::MusicController(QObject* parent)
     , lastIndex(-1)
 {
     player->setAudioOutput(audioOutput);
-    audioOutput->setVolume(0.2f); // 50% — ajustez selon vos besoins
+    audioOutput->setVolume(0.2f);
 
-    // ── Liste des pistes in-game ──────────────────────────────────
-    // Adaptez ces chemins à vos ressources dans le .qrc
-    gameTracks << "qrc:/sounds/music/track1.mp3"
-               << "qrc:/sounds/music/track2.mp3"
-               << "qrc:/sounds/music/track3.mp3"
-               << "qrc:/sounds/music/chad.wav";
+    // ── Liste des musiques ingame
+    QString base = QCoreApplication::applicationDirPath() + "/music/";
+    gameTracks << base + "Zeal & Ardor - Götterdämmerung.ogg"
+               << base + "Wormhole Inversion.ogg"
+               << base + "Viande.ogg"
+               << base + "To Ost-Paris.ogg"
+               << base + "TNO OST Lebensraum.ogg"
+               << base + "The Toxic Avenger - My Only Chance.ogg"
+               << base + "The Atomic Siege - Ayden George.ogg"
+               << base + "Molchat Doma - Судно (Борис Рижий).ogg"
+               << base + "Mittsies - Vitality.ogg"
+               << base + "Mick Gordon - 02. Rip & Tear.ogg"
+               << base + "Locknar - Crawler.ogg"
+               << base + "Ho99o9 (Horror) - DeathKult Disciples (999 Anthem).ogg"
+               << base + "Fanning the Flames - Ayden George.ogg"
+               << base + "Eyes of Abomination - Malodorous.ogg"
+               << base + "BYEBYE.WAV - SXCREDMANE.ogg"
+               << base + "Bring Me The Horizon - Can You Feel My Heart - Metalfanaus.ogg"
+               << base + "assadist pussy got me actin strange.ogg";
 }
 
 void MusicController::playTrack(const QString& resourcePath)
 {
-    player->setSource(QUrl(resourcePath));
+    player->setSource(QUrl::fromLocalFile(resourcePath));
     player->setLoops(QMediaPlayer::Infinite);
     player->play();
 }
 
 void MusicController::playMenu()
 {
-    // Adaptez ce chemin à votre musique de menu dans le .qrc
-    playTrack("qrc:/sounds/music/menu.mp3");
+    QString path = QCoreApplication::applicationDirPath() + "/music/menu.ogg";
+    player->setSource(QUrl::fromLocalFile(path));
+    player->setLoops(QMediaPlayer::Infinite);
+    player->play();
 }
 
 void MusicController::stop()

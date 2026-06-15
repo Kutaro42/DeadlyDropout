@@ -149,11 +149,4 @@
         <!--   2. Ajouter trois lignes <file alias="level_N/...">      -->
         <!--   3. Incrémenter LEVEL_COUNT dans levelregistry.h         -->
     </qresource>
-    <qresource prefix="/sounds">
-        <file>music/menu.mp3</file>
-        <file>music/track1.mp3</file>
-        <file>music/track2.mp3</file>
-        <file>music/track3.mp3</file>
-        <file>music/chad.wav</file>
-    </qresource>
 </RCC>
