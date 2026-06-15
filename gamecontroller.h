@@ -118,7 +118,7 @@ private:
 signals:
     void sigRestart();
     void sigBackMenu();
-    void sigMarketRequest();
+    //void sigMarketRequest();
 };
 
 #endif // GAMECONTROLLER_H

@@ -71,6 +71,6 @@ private slots:
     void sltRestart();
     void sltBackMenu();
 //slot ouvrir la fenêtre dialogue du market
-    void sltOpenMarket();
+    //void sltOpenMarket();
 };
 #endif // AppController_H

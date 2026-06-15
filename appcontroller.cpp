@@ -74,7 +74,7 @@ AppController::AppController(QWidget *parent)
     // On ajoute directement les VUES (et non leur parentWidget qui vaut nullptr)
     mainContainer->addWidget((itsMenuController->getMenuView()));
     mainContainer->addWidget(itsGameController->getView());
-    mainContainer->addWidget(itsMarketController->getView());
+    //mainContainer->addWidget(itsMarketController->getView());
 
     // On intègre le QStackedWidget au cœur de la QMainWindow
     setCentralWidget(mainContainer);
@@ -90,8 +90,8 @@ AppController::AppController(QWidget *parent)
     connect(this, &AppController::sigGameRq, this, &AppController::startGame);
     connect(itsGameController, &GameController::sigRestart, this, &AppController::sltRestart);
     connect(itsGameController, &GameController::sigBackMenu, this, &AppController::sltBackMenu);
-    connect(itsGameController, &GameController::sigMarketRequest, this, &AppController::sltOpenMarket);
-    connect(itsMarketController, &MarketController::sigClosed, this, &AppController::startGame);
+    //connect(itsGameController, &GameController::sigMarketRequest, this, &AppController::sltOpenMarket);
+    //connect(itsMarketController, &MarketController::sigClosed, this, &AppController::startGame);
 
     // Démarrage de la musique du menu
     MusicController::instance().playMenu();
@@ -162,7 +162,7 @@ void AppController::sltBackMenu()
     mainContainer->setCurrentIndex(0);
 }
 
-void AppController::sltOpenMarket() {
+/*void AppController::sltOpenMarket() {
     itsMarketController->open(itsGameController->getPlayer());
     mainContainer->setCurrentWidget(itsMarketController->getView());
-}
+}*/

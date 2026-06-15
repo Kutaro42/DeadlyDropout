@@ -218,14 +218,10 @@ void GameController::checkStateTransitions() {
         transitionTo(AppState::GAME_OVER);
     } else if (levelCtrl->levelJustCompleted) {
         int nextIndex = currentLevelIndex + 1;
-        if (nextIndex <= LevelRegistry::instance().count()) {
-
-
-            if (currentLevelIndex >1){// Ouvre le market (bloquant), puis relance
-                gameTimer.stop();
-                itsMarketController->open(itsGameModel->getPlayer());
-            }
-
+        if (nextIndex < LevelRegistry::instance().count()) {
+            // Market entre chaque niveau (sauf avant le 1er)
+            gameTimer.stop();
+            itsMarketController->open(itsGameModel->getPlayer());
             loadLevel(nextIndex);
             itsGameView->initWithModel(itsGameModel);
             elapsedTimer.restart();
