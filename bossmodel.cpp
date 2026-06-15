@@ -14,7 +14,7 @@ bossModel::bossModel(Vector2f pos, int levelIndex)
             static_cast<float>(Cfg::ENTITY_SIZE * 3),
             Cfg::BOSS_GOLD_MIN)
     , hasPattern2       (levelIndex >= 2)
-    , zoneChargeTimer   (Cfg::BOSS_ZONE_CHARGE_CD)
+    , zoneChargeTimer   ((levelIndex > 2) ? Cfg::BOSS_ZONE_CHARGE_CD2 : Cfg::BOSS_ZONE_CHARGE_CD3)
     , zoneExplosionTimer(0.0f)
     , zoneCharging      (false)
     , zoneExplodedFlag  (false)
@@ -46,8 +46,14 @@ void bossModel::update(float dt, Vector2f playerPos)
 
     // Le flag d'explosion ne dure qu'un seul tick
     zoneExplodedFlag = false;
+    float initialTimer = zoneExplosionTimer;
 
     // Gestion des états transitoires (HURT, DEAD) — court-circuite l'IA si actif.
+    if (aiState == EnemyAIState::DEAD) {
+        zoneCharging      = false;
+        zoneExplodedFlag  = false;
+        zoneTiles.clear();
+    }
     if (tickTransientStates(dt)) return;
 
     // Décompte du cooldown d'attaque.
@@ -71,7 +77,7 @@ void bossModel::update(float dt, Vector2f playerPos)
                 // On laisse intentionnellement les tuiles en mémoire ici.
                 // BossView::hideZone() s'en servira pour nettoyer la scène Qt en toute sécurité.
 
-                zoneChargeTimer  = Cfg::BOSS_ZONE_CHARGE_CD;
+                zoneChargeTimer  = initialTimer;
             }
             return; // pas de déplacement pendant la charge
         }

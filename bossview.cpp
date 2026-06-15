@@ -179,6 +179,7 @@ void BossView::updateView(float dt) {
 
     // ── État DEAD : joue l'animation une seule fois, puis cache le sprite ──────
     if (state == EnemyAIState::DEAD || deadAnimFinished) {
+        if (zoneVisible) hideZone();
         if (!deadAnimFinished) {
             setPos(model->getPosition().toQPointF());
             const QVector<QPixmap>& dead = sprites[DEAD][currentDir];
