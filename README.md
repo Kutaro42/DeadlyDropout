@@ -18,7 +18,7 @@
 
 1\. Obtenir depuis le dépôt Git de la dernière version avec : 
 
-la commande `git clone https://forge.iut-larochelle.fr/2025-2026-but-info1-super\_sae/td\_b/tp\_b1/b13/deadly-dropout.git` :
+la commande `git clone https://forge.iut-larochelle.fr/2025-2026-but-info1-super_sae/td_b/tp_b1/b13/deadly-dropout.git` :
 
 ouvrer un terminal à l'endroit où vous souhaiteriez installer le jeu et lancer cette commande.
 
