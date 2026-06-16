@@ -1,8 +1,8 @@
 /**
  * @file exitdoorview.cpp
- * @brief Implémentation de la vue graphique pour la porte de sortie.
+ * @brief Implementation of the graphical view for the exit door.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
- * @date Juin 2026
+ * @date June 2026
  */
 
 #include "exitdoorview.h"
@@ -15,8 +15,8 @@ ExitDoorView::ExitDoorView(ExitDoorModel* m, QGraphicsItem* parent)
             static_cast<double>(model->getHeight()));
     setPos(model->getPosition().toQPointF());
     
-    // Configuration visuelle initiale
-    setBrush(QBrush(QColor(140, 20, 20)));  // fermé : rouge sombre
+    // Initial visual configuration
+    setBrush(QBrush(QColor(140, 20, 20)));
     setPen(QPen(Qt::yellow, 2));
     setZValue(Cfg::Z_ENTITY);
 }
@@ -25,12 +25,12 @@ void ExitDoorView::updateView() {
     if (!model) return;
     bool nowOpen = model->isOpen();
     
-    // Optimisation pour éviter un redraw inutile si l'état n'a pas basculé.
-    if (nowOpen == cachedOpen) return;   // pas de changement
+    // Optimization to avoid unnecessary redrawing if the state has not changed.
+    if (nowOpen == cachedOpen) return;
 
     cachedOpen = nowOpen;
     if (nowOpen)
-        setBrush(QBrush(QColor(30, 180, 60))); // ouvert : vert vif
+        setBrush(QBrush(QColor(30, 180, 60))); // open light green
     else
-        setBrush(QBrush(QColor(140, 20, 20))); // fermé  : rouge
+        setBrush(QBrush(QColor(140, 20, 20))); // close : red
 }

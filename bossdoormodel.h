@@ -1,8 +1,8 @@
 /**
  * @file bossdoormodel.h
- * @brief Déclaration du modèle de la porte de boss.
+ * @brief Declaration of the boss's door model.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
- * @date Juin 2026
+ * @date June 2026
  */
 
 #ifndef BOSSDOORMODEL_H
@@ -12,29 +12,35 @@
 
 /**
  * @class BossDoorModel
- * @brief Porte à usage unique : téléporte le joueur de l'autre côté au premier contact,
- *        puis se verrouille définitivement (obstacle infranchissable dans les deux sens).
+ * @brief single use door : teleport the player in the other side of the door after the first
+ *        colision and become locked forever (Can no longer be crossed).
  */
 class BossDoorModel : public GlobalDoor
 {
 public:
+    /**
+     * @brief Principal builder.
+     */
     BossDoorModel(Vector2f pos, float w, float h);
 
-    /** @return true si le joueur a déjà traversé (porte verrouillée). */
+    /**
+     *  @return true if the player already crossed it, otherwise false.
+     */
     bool isLocked() const { return locked; }
 
     /**
-     * @brief Tente de traverser la porte.
-     *        Si non verrouillée et que le joueur la touche : calcule la position
-     *        de téléportation, verrouille la porte, retourne true.
-     * @param playerCollider Hitbox du joueur.
-     * @param[out] teleportPos Position cible du joueur après téléportation.
-     * @return true si la téléportation doit avoir lieu.
+     * @brief Try to cross the door.
+     *        If open and touch by the player, calculate the new position after teleportation,
+     *        lock it and return true.
+     *        Tente de traverser la porte.
+     * @param playerCollider : Player hitbox.
+     * @param teleportPos : Player's target position after teleportation.
+     * @return true if a teleport is needed, otherwise return false.
      */
     bool tryTraverse(const QRectF& playerCollider, Vector2f& teleportPos);
 
 private:
-    bool locked; ///< false = franchissable une fois, true = mur permanent.
+    bool locked; ///< false = crossable one time, true = permanent wall.
 };
 
 #endif // BOSSDOORMODEL_H

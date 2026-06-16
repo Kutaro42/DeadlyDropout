@@ -1,6 +1,6 @@
 /**
  * @file enemy.cpp
- * @brief Implémentation des mécaniques communes (dégâts, détection) pour la classe Enemy.
+ * @brief Implementation of common mechanics (damage, detection) for the Enemy class.
  */
 
 #include "enemy.h"
@@ -22,7 +22,7 @@ Enemy::Enemy(Vector2f pos, int maxHp, float spd, int dmg,
 {}
 
 void Enemy::takeDamage(int amount) {
-    // Ignorer les dégâts si déjà en train de mourir
+    // Ignore damage if you're already dying
     if (aiState == EnemyAIState::DEAD) return;
 
     hp -= amount;
@@ -30,7 +30,7 @@ void Enemy::takeDamage(int amount) {
         hp = 0;
         triggerDeath();
     } else {
-        // Passer en état HURT (interrompt CHASING/ATTACKING)
+        // Switch to HURT mode (stops CHASING/ATTACKING)
         aiState   = EnemyAIState::HURT;
         hurtTimer = Cfg::ENEMY_HURT_DUR;
         velocity  = Vector2f(0.0f, 0.0f);
@@ -41,9 +41,7 @@ void Enemy::triggerDeath() {
     aiState   = EnemyAIState::DEAD;
     deadTimer = Cfg::ENEMY_DEAD_DUR;
     velocity  = Vector2f(0.0f, 0.0f);
-    onDeath(); // Hook : no-op par défaut, surchargé par les sous-classes si besoin
-    // Ne pas mettre active = false ici : c'est tickTransientStates() qui le fera
-    // une fois l'animation de mort terminée.
+    onDeath();
 }
 
 bool Enemy::tickTransientStates(float dt) {
@@ -51,16 +49,16 @@ bool Enemy::tickTransientStates(float dt) {
         deadTimer -= dt;
         if (deadTimer <= 0.0f) {
             deadTimer = 0.0f;
-            active    = false; // Désactivation réelle après l'animation
+            active    = false; // Actual deactivation after the animation
         }
-        return true; // Court-circuite toute autre logique
+        return true;
     }
 
     if (aiState == EnemyAIState::HURT) {
         hurtTimer -= dt;
         if (hurtTimer <= 0.0f) {
             hurtTimer = 0.0f;
-            aiState   = EnemyAIState::IDLE; // Retour à l'IA normale
+            aiState   = EnemyAIState::CHASING; // Back to CHASING after
         }
         return true;
     }
@@ -69,7 +67,7 @@ bool Enemy::tickTransientStates(float dt) {
 }
 
 bool Enemy::detectsPlayer(Vector2f playerPos) const {
-    // Calcul de la distance euclidienne entre le centre du sprite de l'ennemi et la position du joueur.
+    // Calculate the Euclidean distance between the center of the enemy sprite and the player's position.
     float dx   = playerPos.x - (position.x + width  / 2.0f);
     float dy   = playerPos.y - (position.y + height / 2.0f);
     float dist = std::sqrt(dx * dx + dy * dy);

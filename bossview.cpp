@@ -1,15 +1,15 @@
 /**
  * @file bossview.cpp
- * @brief Vue du boss : sprite animé + rendu zone d'attaque (pattern 2).
+ * @brief Boss view: animated sprite + attack area rendering (pattern 2).
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
- * @date Juin 2026
+ * @date June 2026
  */
 
 #include "bossview.h"
 #include <QPainter>
 #include <QGraphicsScene>
 
-// ─── Direction → index ────────────────────────────────────────────────────────
+
 int BossView::dirIdx(FacingDirection d) {
     switch (d) {
     case FacingDirection::DOWN:  return 0;
@@ -20,7 +20,7 @@ int BossView::dirIdx(FacingDirection d) {
     return 0;
 }
 
-// ─── Velocity → FacingDirection (axe dominant) ───────────────────────────────
+
 FacingDirection BossView::velocityToDir(Vector2f vel) {
     if (std::abs(vel.x) >= std::abs(vel.y))
         return (vel.x >= 0) ? FacingDirection::RIGHT : FacingDirection::LEFT;
@@ -34,7 +34,7 @@ BossView::BossView(bossModel* model, QGraphicsItem* parent) :
     , currentFrame(0)
     , frameTimer(0.0f)
     , animSpeed(0.18f)
-    , currentDir(0)     // DOWN par défaut
+    , currentDir(0)
     , deadAnimFinished(false)
     , animSpeedDeath(0.10f)
 
@@ -64,7 +64,7 @@ BossView::BossView(bossModel* model, QGraphicsItem* parent) :
 
 BossView::~BossView()
 {
-    // 2. Désallocation sécurisée de chaque tuile graphique
+    // Secure deallocation of each graphics tile
     for (QGraphicsRectItem* item : zoneItems) {
         if (item) {
             scene()->removeItem(item);
@@ -77,10 +77,14 @@ BossView::~BossView()
 void BossView::loadSheet(QVector<QPixmap>& frames, const QString& path)
 {
     QPixmap sheet(path);
+
+    // Security in case of an error with sheet to avoid crash
     if (sheet.isNull()) {
         qWarning("[BossView] Introuvable : %s", qPrintable(path));
         return;
     }
+
+    // cut the sprite sheet into several QPixmap for all picture of the animattion
     int count = sheet.width() / FRAME_W;
     for (int i = 0; i < count; ++i) {
         QPixmap raw = sheet.copy(i * FRAME_W, 0, FRAME_W, FRAME_H);
@@ -91,7 +95,7 @@ void BossView::loadSheet(QVector<QPixmap>& frames, const QString& path)
 }
 
 
-// ─── Fallback ────────────────────────────────────────────────────────────────
+
 QPixmap BossView::makeFallback()
 {
     QPixmap pm(Cfg::ENTITY_SIZE*3, Cfg::ENTITY_SIZE*3);
@@ -103,23 +107,21 @@ QPixmap BossView::makeFallback()
     return pm;
 }
 
-// ─── Affichage de la zone (pattern 2) ────────────────────────────
+
 void BossView::showZone()
 {
     QGraphicsScene* sc = scene();
     if (!sc) return;
-    hideZone(); // purger d'éventuels restes
-    int first = 0;
+    hideZone(); // delete some residue to avoid leak
     for (const ZoneTile& t : model->getZoneTiles()) {
         auto* item = new QGraphicsRectItem(t.rect);
         item->setZValue(Cfg::Z_BOSS_ZONE);
-
         if (t.isSafe) {
-            // Refuge : complètement transparent
+            // Shelter
             item->setBrush(Qt::NoBrush);
             item->setPen(Qt::NoPen);
         } else {
-            // Danger : rouge semi-transparent
+            // Danger : half translucent red
             item->setBrush(QBrush(QColor(220, 30, 30, 130)));
             item->setPen(QPen(QColor(255, 60, 60, 200), 1));
         }
@@ -130,39 +132,35 @@ void BossView::showZone()
     zoneVisible = true;
 }
 
-// ─── Suppression de la zone ───────────────────────────────────────
-// item->scene() est testé AVANT removeItem pour éviter le double-free
-// si scene()->clear() a déjà détruit les items (segfault précédent).
+
 void BossView::hideZone()
 {
-    // 1. On vérifie si la vue est bien rattachée à une scène Qt
+    // 1. checking whether the view is correctly attached to a Qt scene to avoid segfault
     if (!scene()) {
         zoneItems.clear();
         zoneVisible = false;
         return;
     }
 
-    // 2. Désallocation sécurisée de chaque tuile graphique
+    // 2. Secure deallocation of each graphics tile
     for (QGraphicsRectItem* item : zoneItems) {
         if (item) {
-            // On le retire proprement de la scène de rendu
             scene()->removeItem(item);
-            // On détruit la mémoire de l'item graphique
-            qDebug() << item;
-            //delete item;
-
         }
     }
 
-    // 3. On vide le conteneur et on reset le flag pour couper le rendu
+    // 3. Empty the container and reset "zoneVisible" to stop rendering
     zoneItems.clear();
     zoneVisible = false;
 }
 
 
-// ─── Avance une frame ────────────────────────────────────────────────────────
+
 void BossView::advanceFrames(float dt, const QVector<QPixmap>& frames) {
+    //security in  case of a empty to avoid crash
     if (frames.isEmpty()) return;
+
+    // Add the second passed to change the image if needed
     frameTimer += dt;
     if (frameTimer >= animSpeed) {
         frameTimer   = 0.0f;
@@ -171,13 +169,13 @@ void BossView::advanceFrames(float dt, const QVector<QPixmap>& frames) {
     setPixmap(frames[currentFrame]);
 }
 
-// ─── Mise à jour chaque tick ──────────────────────────────────────────────────
+
 void BossView::updateView(float dt) {
     if (!model) return;
 
     EnemyAIState state = model->getAIState();
 
-    // ── État DEAD : joue l'animation une seule fois, puis cache le sprite ──────
+    // ── DEAD state: plays the animation once, then hides the sprite ──────
     if (state == EnemyAIState::DEAD || deadAnimFinished) {
         if (zoneVisible) hideZone();
         if (!deadAnimFinished) {
@@ -203,7 +201,7 @@ void BossView::updateView(float dt) {
         return;
     }
 
-    // ── Ennemi inactif sans état DEAD ─────────────────────────────────────────
+    // ── Inactive enemy without the DEAD status ─────────────────────────────────────────
     if (!model->isActive()) {
         hide();
         return;
@@ -211,17 +209,17 @@ void BossView::updateView(float dt) {
 
     setPos(model->getPosition().toQPointF());
 
-    // ── Zone d'attaque ────────────────────────────────────────────
+    // ── attack area ────────────────────────────────────────────
     if (model->isZoneCharging()) {
-        if (!zoneVisible) showZone();   // créer une seule fois au déclenchement
+        if (!zoneVisible) showZone();   // create once on trigger
     } else {
         if (zoneVisible)
         {
-            hideZone();            // retirer après l'explosion (tick suivant)
+            hideZone();            // remove after the explosion (next tick)
         }
     }
 
-    // ── État HURT : animation en boucle pendant la durée du HURT ─────────────
+    // ── HURT status: looping animation for the duration of the HURT ─────────────
     if (state == EnemyAIState::HURT) {
         const QVector<QPixmap>& hurt = sprites[HURT][currentDir];
         if (!hurt.isEmpty()) {
@@ -241,7 +239,7 @@ void BossView::updateView(float dt) {
     bool chasing = (state == EnemyAIState::CHASING);
 
     if (chasing && vel.length() > 0.01f) {
-        // ── Walk : direction déduite du vecteur vitesse ────────
+        // ── Walk: direction derived from the velocity vector ────────
         int newDir = dirIdx(velocityToDir(vel));
         if (newDir != currentDir) {
             currentDir   = newDir;
@@ -255,7 +253,7 @@ void BossView::updateView(float dt) {
             setPixmap(makeFallback());
 
     } else {
-        // ── Idle : frame fixe, direction conservée ────────────
+        // ── Idle: frame held, direction maintained ────────────
         currentFrame = 0;
         frameTimer   = 0.0f;
         const QVector<QPixmap>& idle = sprites[IDLE][currentDir];

@@ -2,97 +2,92 @@
  * @file bossmodel.h
  * @brief Déclaration du modèle du boss gérant son attaque, ses déplacement et autre atribut
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
- * @date Juin 2026
+ * @date June 2026
  */
 
 #ifndef BOSSMODEL_H
 #define BOSSMODEL_H
 
 #include "enemy.h"
-#include <QVector>
-#include <QRectF>
-#include <QSoundEffect>
-#include "config.h"
 
 /**
  * @class bossModel
- * @brief Modèle du boss s'occupant de la logique du boss (attaque,déplacement,ect)
+ * @brief A boss model that handles the boss's behavior (attacks, movement, etc.)
  */
 class bossModel : public Enemy
 {
 public:
 
     /**
-     * @brief Constructeur du modèle
-     * @param pos: Position initial du boss.
+     * @brief Model builder
+     * @param pos: The boss's starting position.
      */
     explicit bossModel(Vector2f pos, int levelIndex = 1);
     ~bossModel() override;
 
     /**
-     * @brief Surcharge du hook de mort : joue zombiedeath.wav.
+     * @brief Death hook trigger: plays zombiedeath.wav.
      */
     void onDeath() override;
 
     /**
-     * @brief Rafraichissement du boss (interval d'attaque, état, déplaement).
-     * @param dt: Distance entre le joueur et le boss.
-     * @param playerPos: position du joueur.
+     * @brief Boss update (attack interval, status, movement).
+     * @param dt: Distance between the player and the boss.
+     * @param playerPos: player's position.
      */
     void update(float dt, Vector2f playerPos) ;
 
     /**
-     * @brief Attaque le joueur si le cooldown est a zéro.
-     * @param pos: modèle du joueur pour infliger des dégats.
+     * @brief Attack the player if the cooldown is at zero.
+     * @param pos: player model for dealing damage.
      */
     void attack(PlayerModel* player);
 
-    // ─── Interface pattern 2 ─────────────────────────────────────
+    // ─── Interface Pattern 2 ─────────────────────────────────────
     bool isZoneCharging()    const { return zoneCharging;     }
     bool zoneJustExploded()  const { return zoneExplodedFlag; }
     void clearZoneExploded()       { zoneExplodedFlag = false;}
     const QVector<ZoneTile>& getZoneTiles() const { return zoneTiles; }
 
     /**
-     * @brief Fournit les colliders des murs du niveau pour filtrer les tuiles de zone.
+     * @brief Provides the level wall colliders to filter the area tiles.
      *
-     * Appelé par LevelController à chaque tick avant le déclenchement du pattern 2.
-     * Permet à buildZoneTiles() d'éliminer les tuiles chevauchant un mur physique.
+     * Called by LevelController on every tick before pattern 2 is triggered.
+     * Allows buildZoneTiles() to remove tiles that overlap a physical wall.
      *
-     * @param walls Liste des rectangles de collision des murs du niveau.
+     * @param walls : List of collision boxes for the walls in the level.
      */
     void setWallColliders(const QVector<QRectF>& walls);
 
 private:
-    QSoundEffect*     deathSound;  ///< Son joué à la mort du boss.
-    bool              hasPattern2;
-    float             zoneChargeTimer;
-    float             zoneExplosionTimer;
-    bool              zoneCharging;
-    bool              zoneExplodedFlag;
-    QVector<ZoneTile> zoneTiles;
-    QVector<QRectF>   wallColliders; ///< Copie des colliders de murs pour filtrage.
+    QSoundEffect*     deathSound;                ///< Sound played when the boss is defeated.
+    bool              hasPattern2;               ///< Show if the boss can use the area attack
+    float             zoneChargeTimer;           ///< Timer during the attack loading
+    float             zoneExplosionTimer;        ///< Timer between the pattern show and the explosion
+    bool              zoneCharging;              ///< Show if the attack area is load
+    bool              zoneExplodedFlag;          ///< Show if the attack is done
+    QVector<ZoneTile> zoneTiles;                 ///< QVector that stores the attack area
+    QVector<QRectF>   wallColliders;             ///< Copy wall colliders for filtering.
 
 
     /**
-     * @brief Constructeur du modèle.
-     * @param playerPos: position du joueur.
-     * @param dt : distance entre le boss et le joueur.
+     * @brief Model builder.
+     * @param playerPos: Player position
+     * @param dt : distance the player and the boss.
      */
     void chase(Vector2f playerPos, float dt);
 
     /**
-     * @brief Vérifie l'état dans lequel doit être le boss.
-     * @param playerPos: Position du joueur.
+     * @brief Check the condition the boss should be in.
+     * @param playerPos: Player Position.
      */
     void updateAIState(Vector2f playerPos);
 
     /**
-     * @brief Génère les tuiles de la zone d'attaque.
-     *
-     * Crée une grille de tuiles 32×32 dans un rayon de BOSS_ZONE_RADIUS px autour
-     * du centre du boss. Supprime les tuiles chevauchant un mur (wallColliders).
-     * Tire aléatoirement BOSS_ZONE_SAFE_COUNT refuges parmi les tuiles restantes.
+     * @brief Generates the tiles for the attack area.
+     * Creates a 32×32 grid of tiles within a radius of BOSS_ZONE_RADIUS px around
+     * the center of the boss. Removes tiles that overlap a wall (wallColliders).
+     * Randomly selects BOSS_ZONE_SAFE_COUNT safe zones from the remaining tiles.
      */
     void buildZoneTiles();
 
