@@ -1,14 +1,14 @@
 #pragma once
 #include <QtTest/QtTest>
-#include "levelcontroller.h"
-#include "levelmodel.h"
-#include "playermodel.h"
-#include "wallmodel.h"
-#include "zombiestdmodel.h"
-#include "exitdoormodel.h"
-#include "standarddoormodel.h"
-#include "bossdoormodel.h"
-#include "zombielaunchermodel.h"
+#include "../DEADLY_DROPOUT/levelcontroller.h"
+#include "../DEADLY_DROPOUT/levelmodel.h"
+#include "../DEADLY_DROPOUT/playermodel.h"
+#include "../DEADLY_DROPOUT/wallmodel.h"
+#include "../DEADLY_DROPOUT/zombiestdmodel.h"
+#include "../DEADLY_DROPOUT/exitdoormodel.h"
+#include "../DEADLY_DROPOUT/standarddoormodel.h"
+#include "../DEADLY_DROPOUT/bossdoormodel.h"
+#include "../DEADLY_DROPOUT/zombielaunchermodel.h"
 
 class TestLevelController : public QObject {
     Q_OBJECT

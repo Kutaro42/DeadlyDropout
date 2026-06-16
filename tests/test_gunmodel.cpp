@@ -1,6 +1,6 @@
 #pragma once
 #include <QtTest/QtTest>
-#include "gunmodel.h"
+#include "../DEADLY_DROPOUT/gunmodel.h"
 
 class TestGunModel : public QObject {
     Q_OBJECT

@@ -1,7 +1,7 @@
 #pragma once
 #include <QtTest/QtTest>
-#include "bulletmodel.h"
-#include "rubblemodel.h"
+#include "../DEADLY_DROPOUT/bulletmodel.h"
+#include "../DEADLY_DROPOUT/rubblemodel.h"
 
 class TestProjectile : public QObject {
     Q_OBJECT

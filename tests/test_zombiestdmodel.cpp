@@ -1,7 +1,7 @@
 #pragma once
 #include <QtTest/QtTest>
-#include "zombiestdmodel.h"
-#include "playermodel.h"
+#include "../DEADLY_DROPOUT/zombiestdmodel.h"
+#include "../DEADLY_DROPOUT/playermodel.h"
 
 class TestZombieStdModel : public QObject {
     Q_OBJECT

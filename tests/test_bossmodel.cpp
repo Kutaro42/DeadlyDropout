@@ -1,7 +1,7 @@
 #pragma once
 #include <QtTest/QtTest>
-#include "bossmodel.h"
-#include "playermodel.h"
+#include "../DEADLY_DROPOUT/bossmodel.h"
+#include "../DEADLY_DROPOUT/playermodel.h"
 
 class TestBossModel : public QObject {
     Q_OBJECT
@@ -54,17 +54,17 @@ private slots:
     void p2ZoneTriggersAfterCooldown() {
         bossModel b(Vector2f(0,0), 2);
         // Simuler suffisamment de ticks avec le joueur proche
-        b.update(Cfg::BOSS_ZONE_CHARGE_CD + 0.1f, Vector2f(100,0));
+        b.update(Cfg::BOSS_ZONE_CHARGE_CD2 + 0.1f, Vector2f(100,0));
         QVERIFY(b.isZoneCharging());
     }
     void p1NoZone() {
         bossModel b(Vector2f(0,0), 1);
-        b.update(Cfg::BOSS_ZONE_CHARGE_CD + 0.5f, Vector2f(100,0));
+        b.update(Cfg::BOSS_ZONE_CHARGE_CD2 + 0.5f, Vector2f(100,0));
         QVERIFY(!b.isZoneCharging());
     }
     void zoneExplodesAfterTimer() {
         bossModel b(Vector2f(0,0), 2);
-        b.update(Cfg::BOSS_ZONE_CHARGE_CD + 0.1f, Vector2f(100,0));
+        b.update(Cfg::BOSS_ZONE_CHARGE_CD2 + 0.1f, Vector2f(100,0));
         if (b.isZoneCharging()) {
             b.update(Cfg::BOSS_ZONE_TIMER + 0.1f, Vector2f(100,0));
             QVERIFY(b.zoneJustExploded());
@@ -72,7 +72,7 @@ private slots:
     }
     void clearZoneExploded() {
         bossModel b(Vector2f(0,0), 2);
-        b.update(Cfg::BOSS_ZONE_CHARGE_CD + 0.1f, Vector2f(100,0));
+        b.update(Cfg::BOSS_ZONE_CHARGE_CD2 + 0.1f, Vector2f(100,0));
         if (b.isZoneCharging()) {
             b.update(Cfg::BOSS_ZONE_TIMER + 0.1f, Vector2f(100,0));
             b.clearZoneExploded();

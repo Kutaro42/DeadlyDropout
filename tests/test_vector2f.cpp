@@ -1,6 +1,6 @@
 #pragma once
 #include <QtTest/QtTest>
-#include "vector2f.h"
+#include "../DEADLY_DROPOUT/vector2f.h"
 
 class TestVector2f : public QObject {
     Q_OBJECT

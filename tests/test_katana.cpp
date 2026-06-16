@@ -1,6 +1,6 @@
 #pragma once
 #include <QtTest/QtTest>
-#include "katana.h"
+#include "../DEADLY_DROPOUT/katana.h"
 #include <cmath>
 
 class TestKatana : public QObject {

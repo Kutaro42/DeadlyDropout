@@ -1,6 +1,6 @@
 #pragma once
 #include <QtTest/QtTest>
-#include "playermodel.h"
+#include "../DEADLY_DROPOUT/playermodel.h"
 
 class TestPlayerModel : public QObject {
     Q_OBJECT

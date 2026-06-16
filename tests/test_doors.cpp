@@ -1,9 +1,9 @@
 #pragma once
 #include <QtTest/QtTest>
-#include "exitdoormodel.h"
-#include "standarddoormodel.h"
-#include "bossdoormodel.h"
-#include "playermodel.h"
+#include "../DEADLY_DROPOUT/exitdoormodel.h"
+#include "../DEADLY_DROPOUT/standarddoormodel.h"
+#include "../DEADLY_DROPOUT/bossdoormodel.h"
+#include "../DEADLY_DROPOUT/playermodel.h"
 
 class TestDoors : public QObject {
     Q_OBJECT

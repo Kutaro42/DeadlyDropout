@@ -1,12 +1,12 @@
 #pragma once
 #include <QtTest/QtTest>
-#include "levelmodel.h"
-#include "wallmodel.h"
-#include "floormodel.h"
-#include "zombiestdmodel.h"
-#include "exitdoormodel.h"
-#include "standarddoormodel.h"
-#include "bossdoormodel.h"
+#include "../DEADLY_DROPOUT/levelmodel.h"
+#include "../DEADLY_DROPOUT/wallmodel.h"
+#include "../DEADLY_DROPOUT/floormodel.h"
+#include "../DEADLY_DROPOUT/zombiestdmodel.h"
+#include "../DEADLY_DROPOUT/exitdoormodel.h"
+#include "../DEADLY_DROPOUT/standarddoormodel.h"
+#include "../DEADLY_DROPOUT/bossdoormodel.h"
 
 class TestLevelModel : public QObject {
     Q_OBJECT

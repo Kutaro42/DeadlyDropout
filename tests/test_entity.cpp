@@ -1,6 +1,6 @@
 #pragma once
 #include <QtTest/QtTest>
-#include "entity.h"
+#include "../DEADLY_DROPOUT/entity.h"
 
 class TestEntity : public QObject {
     Q_OBJECT
