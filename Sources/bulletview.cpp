@@ -1,3 +1,8 @@
+/**
+ * @file bulletview.cpp
+ * @brief Implementation of the bullet's view.
+ */
+
 #include "Headers/bulletview.h"
 #include <QPainter>
 #include <QDebug>
@@ -13,7 +18,7 @@ QPixmap BulletView::loadSprite()
                          Qt::IgnoreAspectRatio,
                          Qt::SmoothTransformation);
 
-    // Fallback : cercle jaune
+    // Fallback : yellow circle
     int sz = static_cast<int>(Cfg::BULLET_SIZE);
     pm = QPixmap(sz, sz);
     pm.fill(Qt::transparent);

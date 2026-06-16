@@ -1,8 +1,8 @@
 /**
  * @file exitdoormodel.h
- * @brief Déclaration du modèle de la porte de fin de niveau.
+ * @brief Declaration of the end-of-level door model.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
- * @date Juin 2026
+ * @date June 2026
  */
 
 #ifndef EXITDOORMODEL_H
@@ -12,26 +12,25 @@
 #include "config.h"
 #include "globaldoor.h"
 
-class PlayerModel; // forward declaration
 
 // ═══════════════════════════════════════════════════════════════════
-//  ExitDoorModel — zone de sortie du niveau.
-//  Fermée par défaut.
-//  Le joueur doit se trouver sur cette zone ET la porte doit être
-//  ouverte pour déclencher la victoire.
+//  ExitDoorModel — level exit zone.
+//  Closed by default.
+//  The player must be in this area AND the door must be
+//  open to trigger the victory.
 // ═══════════════════════════════════════════════════════════════════
 
 /**
  * @class ExitDoorModel
- * @brief Représente le portail permettant de passer au niveau suivant.
+ * @brief Represents the portal that allows you to advance to the next level.
  */
 class ExitDoorModel : public GlobalDoor {
 private:
-    bool open; ///< Indique si la porte est déverrouillée.
+    bool open; ///< Indicates whether the door is unlocked.
 
 public:
     /**
-     * @brief Constructeur de la zone de sortie.
+     * @brief Constructor of the exit zone.
      */
     ExitDoorModel(Vector2f pos, float w, float h);
     void update(float dt) override;

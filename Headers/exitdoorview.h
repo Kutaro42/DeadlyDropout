@@ -1,8 +1,8 @@
 /**
  * @file exitdoorview.h
- * @brief Déclaration de la vue graphique pour la porte de sortie.
+ * @brief Graphical view declaration for the exit door.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
- * @date Juin 2026
+ * @date June 2026
  */
 
 #ifndef EXITDOORVIEW_H
@@ -15,29 +15,29 @@
 #include "config.h"
 
 // ═══════════════════════════════════════════════════════════════════
-//  ExitDoorView — représentation visuelle de la porte de sortie.
-//  Couleur rouge foncé = fermée, vert vif = ouverte.
+//  ExitDoorView — visual representation of the exit door.
+//  Dark red = closed, bright green = open.
 // ═══════════════════════════════════════════════════════════════════
 
 /**
  * @class ExitDoorView
- * @brief Rendu Qt de la porte gérant son code couleur en fonction de son verrouillage.
+ * @brief A Qt rendering of the door that changes its color based on its lock status.
  */
 class ExitDoorView : public QGraphicsRectItem {
 private:
-    ExitDoorModel* model;       ///< Référence vers le modèle logique de la porte.
-    bool           cachedOpen;  ///< Mémorisation de l'état pour économiser des calculs de pinceau (Brush).
+    ExitDoorModel* model;       ///< Reference to the logical model of the gate.
+    bool           cachedOpen;  ///< State caching to reduce brush calculations.
 
 public:
     /**
-     * @brief Constructeur de la vue graphique de la porte de sortie.
-     * @param model Modèle physique source.
-     * @param parent Élément parent dans la scène graphique Qt.
+     * @brief Builder of the graphical view of the exit door.
+     * @param model : Source physical model.
+     * @param parent : Parent element in the Qt graphics scene.
      */
     explicit ExitDoorView(ExitDoorModel* model, QGraphicsItem* parent = nullptr);
 
     /**
-     * @brief Actualise les attributs graphiques (couleur, taille) selon l'état du modèle.
+     * @brief Updates the graphical attributes (color, size) based on the model's state.
      */
     void updateView();
 };

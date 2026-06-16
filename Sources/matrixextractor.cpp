@@ -39,7 +39,6 @@ QVector<int> MatrixExtractor::readMatrixFile(const QString& filePath,
 
     QFile file(filePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qWarning() << "[MatrixExtractor] Impossible d'ouvrir :" << filePath;
         return {};
     }
 
@@ -47,12 +46,10 @@ QVector<int> MatrixExtractor::readMatrixFile(const QString& filePath,
 
     // ── Ligne d'en-tête : "<rows> <cols>" ─────────────────────────
     if (in.atEnd()) {
-        qWarning() << "[MatrixExtractor] Fichier vide :" << filePath;
         return {};
     }
     in >> rows >> cols;
     if (rows <= 0 || cols <= 0) {
-        qWarning() << "[MatrixExtractor] En-tête invalide dans :" << filePath;
         return {};
     }
 
@@ -63,9 +60,6 @@ QVector<int> MatrixExtractor::readMatrixFile(const QString& filePath,
     for (int r = 0; r < rows; ++r) {
         for (int c = 0; c < cols; ++c) {
             if (in.atEnd()) {
-                qWarning() << "[MatrixExtractor] Fichier tronqué :"
-                           << filePath
-                           << "(attendu" << rows * cols << "valeurs)";
                 return {};
             }
             int val;
@@ -98,7 +92,6 @@ DynamicLevelDescriptor MatrixExtractor::load(int            levelId,
     int rowsE = 0, colsE = 0;
     dld.entityBuf = readMatrixFile(dir + "/entities.txt", rowsE, colsE);
     if (dld.entityBuf.isEmpty()) {
-        qCritical() << "[MatrixExtractor] Échec lecture entities.txt pour le niveau" << levelId;
         return dld; // rows == 0 → appelant peut détecter l'échec
     }
 
@@ -106,7 +99,6 @@ DynamicLevelDescriptor MatrixExtractor::load(int            levelId,
     int rowsW = 0, colsW = 0;
     dld.wallBuf = readMatrixFile(dir + "/walls.txt", rowsW, colsW);
     if (dld.wallBuf.isEmpty()) {
-        qCritical() << "[MatrixExtractor] Échec lecture walls.txt pour le niveau" << levelId;
         return dld;
     }
 
@@ -116,18 +108,11 @@ DynamicLevelDescriptor MatrixExtractor::load(int            levelId,
     // La matrice sol est optionnelle : si absente, floorBuf reste vide
     // et LevelBuilder ignorera la couche sol (floorData == nullptr).
     if (!dld.floorBuf.isEmpty() && (rowsF != rowsE || colsF != colsE)) {
-        qWarning() << "[MatrixExtractor] Dimensions sol (" << rowsF << "x" << colsF
-                   << ") différentes des entités (" << rowsE << "x" << colsE
-                   << ") pour le niveau" << levelId << "— couche sol ignorée.";
         dld.floorBuf.clear();
     }
 
     // ── Validation cohérence entités / murs ───────────────────────
     if (rowsW != rowsE || colsW != colsE) {
-        qCritical() << "[MatrixExtractor] Dimensions incohérentes entre"
-                    << "walls (" << rowsW << "x" << colsW << ") et"
-                    << "entities (" << rowsE << "x" << colsE << ")"
-                    << "pour le niveau" << levelId;
         dld.entityBuf.clear();
         dld.wallBuf.clear();
         return dld;
@@ -136,7 +121,5 @@ DynamicLevelDescriptor MatrixExtractor::load(int            levelId,
     dld.rows = rowsE;
     dld.cols = colsE;
 
-    qDebug() << "[MatrixExtractor] Niveau" << levelId << "chargé :"
-             << dld.rows << "x" << dld.cols;
     return dld;
 }

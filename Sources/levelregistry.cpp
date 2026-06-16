@@ -38,7 +38,6 @@ void LevelRegistry::init(const QString& basePath) {
     for (const DynamicLevelDescriptor& dld : m_dynamics)
         m_descriptors.append(dld.asDescriptor());
 
-    qDebug() << "[LevelRegistry]" << m_descriptors.size() << "niveau(x) chargé(s).";
 }
 
 int LevelRegistry::count() const {

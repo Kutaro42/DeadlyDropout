@@ -1,6 +1,6 @@
 /**
  * @file gameview.cpp
- * @brief Implémentation du moteur de rendu 2D et de la captation des inputs.
+ * @brief Implementation of the 2D render engine and of the inputs
  */
 
 #include "Headers/gameview.h"
@@ -29,18 +29,18 @@ GameView::GameView(QWidget* parent)
 {
     setScene(scene);
     setFixedSize(Cfg::WINDOW_W, Cfg::WINDOW_H);
-    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); // Turns off Qt's default scrolling
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setRenderHint(QPainter::Antialiasing,          false);
+    setRenderHint(QPainter::Antialiasing,          false); // Visual parameter, turns off antialiasing
     setRenderHint(QPainter::SmoothPixmapTransform, false);
     setBackgroundBrush(QBrush(QColor(15, 12, 8)));
     setFocusPolicy(Qt::StrongFocus);
-    setWindowTitle("Deadly Dropout");
+    setWindowTitle("Deadly Dropout - Gotta Kill 'Em All");
     setMouseTracking(true);
 
-    // ── Chargement spritesheets cooldown HUD ──────────────────────
-    // gun : 15 frames 26×26 | katana : 21 frames 26×26
-    // frame 0 = arme prête, dernière frame = vient d'être utilisée
+    // ── Loading of the cooldown spritesheets for the weapons on the HUD ──────────────────────
+    // gun : 15 frames, 26×26 | katana : 21 frames, 26×26
+    // frame 0 = weapon ready, last frame = just been used, start of the cooldown
     auto loadCdSheet = [](const QString& path, int nFrames,
                           QVector<QPixmap>& out) {
         QPixmap sheet(path);
@@ -54,6 +54,10 @@ GameView::GameView(QWidget* parent)
 
 GameView::~GameView() {}
 
+/**
+ * @brief Display the player (if not already displayed) and their weapon during initialization
+ * @param model
+ */
 void GameView::initWithModel(GameModel* model) {
     currentModel = model;
     if (!model || !model->getPlayer()) return;
@@ -63,29 +67,41 @@ void GameView::initWithModel(GameModel* model) {
     scene->addItem(gunView);
 }
 
+/**
+ * @brief Properly destroys objects in the scene to prevent pointer errors
+ */
 void GameView::clearScene() {
-    activePopups.clear(); // items détruits par scene->clear(), on vide juste les structs
+    activePopups.clear(); // Items destroyed by scene->clear() we just clear the structs
     scene->clear();
     playerView = nullptr;
     gunView    = nullptr;
 }
 
 // ─── Souris ───────────────────────────────────────────────────────
+/**
+ * @brief Disabling the scroll wheel, which is enabled by default in Qt
+ * @param event
+ */
 void GameView::wheelEvent(QWheelEvent *event)
 {
-    // On accepte l'événement pour indiquer qu'il est géré,
-    // mais on ne fait rien, ce qui désactive le scroll.
     event->ignore();
 }
 
+/**
+ * @brief Send the position of the mouse cursor on the window
+ * @param event
+ */
 void GameView::mouseMoveEvent(QMouseEvent* event) {
     itsMouseViewPos = event->pos();
     QGraphicsView::mouseMoveEvent(event);
     itsMouseViewPos = event->pos();
 }
 
+/**
+ * @brief Send the click event
+ * @param event
+ */
 void GameView::mousePressEvent(QMouseEvent* event) {
-
     itsMouseViewPos = event->pos();
     QPointF scenePos = mapToScene(event->pos());
     if (event->button() == Qt::RightButton)
@@ -96,11 +112,17 @@ void GameView::mousePressEvent(QMouseEvent* event) {
 
 // ─── Mise à jour ──────────────────────────────────────────────────
 
+/**
+ * @brief GameView::updateAllViews
+ * @param dt : game speed
+ * @param model
+ * @param levelCtrl
+ */
 void GameView::updateAllViews(float dt, GameModel* model, LevelController* levelCtrl) {
     if (!model) return;
     currentModel = model;
 
-    // ── Clignotement gold ─────────────────────────────────────────
+    // ── Blinking gold counter ─────────────────────────────────────────
     if (model->getPlayer()) {
         int currentGold = model->getPlayer()->getGold();
         if (lastGold >= 0 && currentGold > lastGold) {
@@ -117,7 +139,7 @@ void GameView::updateAllViews(float dt, GameModel* model, LevelController* level
         if (goldFlashTimer <= 0.0f) { goldFlashTimer = 0.0f; goldFlashVisible = false; }
     }
 
-    // ── Clignotement clé ──────────────────────────────────────────
+    // ── Blinking key indicator ──────────────────────────────────────────
     if (model->getPlayer()) {
         bool currentKey = model->getPlayer()->getHasKey();
         if (currentKey && !lastHasKey) {
@@ -134,7 +156,8 @@ void GameView::updateAllViews(float dt, GameModel* model, LevelController* level
         if (keyFlashTimer <= 0.0f) { keyFlashTimer = 0.0f; keyFlashVisible = false; }
     }
 
-    // ── Création des popups (données reçues du Controller) ───────
+    // ── Creation of the popups (data received from Controller) ───────
+    // Display the enemy damage indicators
     if (levelCtrl) {
         for (const PopupRequest& req : levelCtrl->getPendingPopups()) {
             auto* item = new QGraphicsTextItem();
@@ -146,7 +169,7 @@ void GameView::updateAllViews(float dt, GameModel* model, LevelController* level
             item->setFont(f);
             item->setDefaultTextColor(isDmg ? QColor(255,60,60) : QColor(255,200,0));
             item->setZValue(Cfg::Z_POPUP);
-            // Centrer horizontalement sur la position
+            // Center horizontaly on the position
             item->setPos(req.pos.x() - item->boundingRect().width() / 2.0,
                          req.pos.y());
             auto* fx = new QGraphicsOpacityEffect();

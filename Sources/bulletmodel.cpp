@@ -1,8 +1,8 @@
 /**
  * @file bulletmodel.cpp
- * @brief Implémentation du modèle de balle (délègue tout à Projectile).
+ * @brief Implementation of the ball model (delegates everything to Projectile).
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
- * @date Juin 2026
+ * @date June 2026
  */
 #include "Headers/bulletmodel.h"
 
