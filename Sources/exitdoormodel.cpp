@@ -3,7 +3,7 @@
  * @brief Implémentation du comportement de la porte de sortie.
  */
 
-#include "exitdoormodel.h"
+#include "Headers/exitdoormodel.h"
 
 ExitDoorModel::ExitDoorModel(Vector2f pos, float w, float h)
     : GlobalDoor(pos, w, h), open(false) {}

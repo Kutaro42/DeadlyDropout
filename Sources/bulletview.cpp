@@ -1,4 +1,4 @@
-#include "bulletview.h"
+#include "Headers/bulletview.h"
 #include <QPainter>
 #include <QDebug>
 

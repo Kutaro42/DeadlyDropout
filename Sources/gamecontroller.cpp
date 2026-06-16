@@ -3,11 +3,11 @@
  * @brief Implementation of the main game-loop controller.
  */
 
-#include "gamecontroller.h"
-#include "musiccontroller.h"
+#include "Headers/gamecontroller.h"
+#include "Headers/musiccontroller.h"
 #include <QDebug>
-#include "config.h"
-#include "marketcontroller.h"
+#include "Headers/config.h"
+#include "Headers/marketcontroller.h"
 
 GameController::GameController(QObject* parent)
     : QObject(parent)

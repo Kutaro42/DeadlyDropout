@@ -8,6 +8,6 @@
  * the inheritance chain remains easy to extend.
  */
 
-#include "globaldoor.h"
+#include "Headers/globaldoor.h"
 
 GlobalDoor::GlobalDoor(Vector2f pos, float w, float h) : Entity(pos, w, h) {}

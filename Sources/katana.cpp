@@ -3,7 +3,7 @@
  * @brief Implementation of Katana: behaviour, timers and attack-zone computation.
  */
 
-#include "katana.h"
+#include "Headers/katana.h"
 #include <cmath>
 #include <algorithm>
 

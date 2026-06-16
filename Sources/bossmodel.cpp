@@ -1,5 +1,5 @@
-#include "bossmodel.h"
-#include "playermodel.h"
+#include "Headers/bossmodel.h"
+#include "Headers/playermodel.h"
 #include <QRandomGenerator>
 #include <QSet>
 

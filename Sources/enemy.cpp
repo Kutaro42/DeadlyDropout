@@ -3,7 +3,7 @@
  * @brief Implémentation des mécaniques communes (dégâts, détection) pour la classe Enemy.
  */
 
-#include "enemy.h"
+#include "Headers/enemy.h"
 
 Enemy::Enemy(Vector2f pos, int maxHp, float spd, int dmg,
              float detRadius, float w, float h, int gold)

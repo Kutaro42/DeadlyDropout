@@ -1,9 +1,9 @@
-#include "levelmodel.h"
-#include "floormodel.h"
-#include "enemy.h"
-#include "standarddoormodel.h"
-#include "bossdoormodel.h"
-#include "enemy.h"
+#include "Headers/levelmodel.h"
+#include "Headers/floormodel.h"
+#include "Headers/enemy.h"
+#include "Headers/standarddoormodel.h"
+#include "Headers/bossdoormodel.h"
+#include "Headers/enemy.h"
 
 LevelModel::LevelModel()
     : exitDoor(nullptr), levelId(0)

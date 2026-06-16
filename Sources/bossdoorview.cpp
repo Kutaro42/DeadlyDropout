@@ -3,7 +3,7 @@
  * @brief Implémentation de la vue de la porte de boss.
  */
 
-#include "bossdoorview.h"
+#include "Headers/bossdoorview.h"
 
 BossDoorView::BossDoorView(BossDoorModel* model, QGraphicsItem* parent)
     : QGraphicsPixmapItem(parent)

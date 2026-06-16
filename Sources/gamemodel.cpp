@@ -3,7 +3,7 @@
  * @brief Implementation of the root game model.
  */
 
-#include "gamemodel.h"
+#include "Headers/gamemodel.h"
 
 GameModel::GameModel()
     : player(nullptr),

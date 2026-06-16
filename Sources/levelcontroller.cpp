@@ -1,5 +1,5 @@
-#include "levelcontroller.h"
-#include "bossmodel.h"
+#include "Headers/levelcontroller.h"
+#include "Headers/bossmodel.h"
 
 LevelController::LevelController()
     : levelJustCompleted(false)

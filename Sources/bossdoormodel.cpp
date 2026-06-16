@@ -3,7 +3,7 @@
  * @brief Implémentation du modèle de la porte de boss.
  */
 
-#include "bossdoormodel.h"
+#include "Headers/bossdoormodel.h"
 
 BossDoorModel::BossDoorModel(Vector2f pos, float w, float h)
     : GlobalDoor(pos, w, h)

@@ -4,7 +4,7 @@
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
  * @date June 2026
  */
-#include "gunmodel.h"
+#include "Headers/gunmodel.h"
 
 GunModel::GunModel(int magSz, int reserveSz)
     : magSize(magSz)

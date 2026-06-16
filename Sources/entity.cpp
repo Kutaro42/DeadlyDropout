@@ -3,7 +3,7 @@
  * @brief Implémentation des mécanismes de base de la classe Entity.
  */
 
-#include "entity.h"
+#include "Headers/entity.h"
 
 Entity::Entity(Vector2f pos, float w, float h)
     : position(pos), width(w), height(h), active(true) {}

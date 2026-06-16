@@ -4,7 +4,7 @@
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
  * @date June 2026
  */
-#include "gunview.h"
+#include "Headers/gunview.h"
 #include <QPainter>
 #include <QGraphicsScene>
 #include <QGraphicsEllipseItem>

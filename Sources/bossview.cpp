@@ -5,7 +5,7 @@
  * @date Juin 2026
  */
 
-#include "bossview.h"
+#include "Headers/bossview.h"
 #include <QPainter>
 #include <QGraphicsScene>
 

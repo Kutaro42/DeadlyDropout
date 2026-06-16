@@ -3,12 +3,12 @@
  * @brief Implémentation du moteur de rendu 2D et de la captation des inputs.
  */
 
-#include "gameview.h"
-#include "zombielauncherview.h"
+#include "Headers/gameview.h"
+#include "Headers/zombielauncherview.h"
 #include <QGraphicsTextItem>
 #include <QGraphicsOpacityEffect>
-#include "standarddoorview.h"
-#include "bossdoorview.h"
+#include "Headers/standarddoorview.h"
+#include "Headers/bossdoorview.h"
 
 GameView::GameView(QWidget* parent)
     : QGraphicsView(parent),

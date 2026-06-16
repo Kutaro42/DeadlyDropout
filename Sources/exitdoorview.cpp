@@ -5,7 +5,7 @@
  * @date Juin 2026
  */
 
-#include "exitdoorview.h"
+#include "Headers/exitdoorview.h"
 
 ExitDoorView::ExitDoorView(ExitDoorModel* m, QGraphicsItem* parent)
     : QGraphicsRectItem(parent), model(m), cachedOpen(false)

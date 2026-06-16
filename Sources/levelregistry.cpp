@@ -3,7 +3,7 @@
  * @brief Implémentation de LevelRegistry.
  */
 
-#include "levelregistry.h"
+#include "Headers/levelregistry.h"
 #include <QDebug>
 
 LevelRegistry& LevelRegistry::instance() {

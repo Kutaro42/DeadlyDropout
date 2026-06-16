@@ -5,7 +5,7 @@
  * @date Juin 2026
  */
 
-#include "floorview.h"
+#include "Headers/floorview.h"
 
 // ── Cache statique du tileset de sol ─────────────────────────────
 const QPixmap& FloorView::tileset()
