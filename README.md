@@ -28,7 +28,7 @@ ouvrer un terminal à l'endroit où vous souhaiteriez installer le jeu et lancer
 
 
 
-3\. \*\*Double-cliquer sur l'executable, et profiter du jeu !\*\*
+3\. \*\*Double-cliquer sur l'executable ==> ATTENTION ! : L'executable n'est pas signé nuùériquement car nous ne possèdons pas de license commerciale. Il est donc TOUT A FAIT NORMAL que votre système d'exploitation (si vous êtes sur windows) vous empêche de lancer le jeu. Pour pouvoir profiter des services de l'application, cliquer sur le bouton "avancé" puis "executer quand même". Après cela, vous pourrez profiter du jeu pleinement !\*\*
 
 
 
