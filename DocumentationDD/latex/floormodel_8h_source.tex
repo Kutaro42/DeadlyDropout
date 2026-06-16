@@ -1,0 +1,29 @@
+\doxysection{floormodel.\+h}
+\hypertarget{floormodel_8h_source}{}\label{floormodel_8h_source}\index{Headers/floormodel.h@{Headers/floormodel.h}}
+\doxymbox{\hyperlink{floormodel_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ FLOORMODEL\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ FLOORMODEL\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{entity_8h}{entity.h}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_floor_model_a8c1b2498b187d20d6c83200ca626907c}{FloorModel}}\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_entity_acaf2ad84607691b229cddab1da0bf819}{Entity}}\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \doxymbox{\hyperlink{class_floor_model_a8c1b2498b187d20d6c83200ca626907c}{FloorModel}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ pos,\ \textcolor{keywordtype}{float}\ w,\ \textcolor{keywordtype}{float}\ h,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_floor_model_a7090098f6817decbbbf9363572fb592e}{tileIndex}}\ =\ 1,\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_floor_model_a8fd2486909eb2c4b581dfcf6c7297d2b}{tilesetCols}}\ =\ 8);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_floor_model_af5aa54cf8192864a22ae0f2b75e85300}{update}}(\textcolor{keywordtype}{float}\ dt)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_floor_model_a47e5b52accc0e4d469655529c3f539f0}{getTileIndex}}()\textcolor{keyword}{\ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_floor_model_a7090098f6817decbbbf9363572fb592e}{tileIndex}};\ \ \ \}\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_floor_model_a9a6739eaedbf7deec82b39d9d514e166}{getTilesetCols}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_floor_model_a8fd2486909eb2c4b581dfcf6c7297d2b}{tilesetCols}};\ \ \}\ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_floor_model_a7090098f6817decbbbf9363572fb592e}{tileIndex}};\ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_floor_model_a8fd2486909eb2c4b581dfcf6c7297d2b}{tilesetCols}};\ \ }
+\DoxyCodeLine{00044\ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ FLOORMODEL\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,37 @@
+\doxysection{exitdoormodel.\+h}
+\hypertarget{exitdoormodel_8h_source}{}\label{exitdoormodel_8h_source}\index{Headers/exitdoormodel.h@{Headers/exitdoormodel.h}}
+\doxymbox{\hyperlink{exitdoormodel_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ EXITDOORMODEL\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ EXITDOORMODEL\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{entity_8h}{entity.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{globaldoor_8h}{globaldoor.h}}"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \ ExitDoorModel\ —\ level\ exit\ zone.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ \ Closed\ by\ default.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ \ The\ player\ must\ be\ in\ this\ area\ AND\ the\ door\ must\ be}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \ open\ to\ trigger\ the\ victory.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_exit_door_model_a1aac743f1b0a64b2cff1609a80514e8a}{ExitDoorModel}}\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_global_door_ad9b6202569c5bc960e9527ded51b5f27}{GlobalDoor}}\ \{}
+\DoxyCodeLine{00028\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_exit_door_model_a8179954e124e0fd2ac64a71808c65d16}{open}};\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \doxymbox{\hyperlink{class_exit_door_model_a1aac743f1b0a64b2cff1609a80514e8a}{ExitDoorModel}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ pos,\ \textcolor{keywordtype}{float}\ w,\ \textcolor{keywordtype}{float}\ h);}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_exit_door_model_ad1c1fa748d835b10c6f40176d4c29948}{update}}(\textcolor{keywordtype}{float}\ dt)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_exit_door_model_a9cfae32daa5f29a8c725d8dc5d506596}{openDoor}}()\ \ \ \ \ \ \{\ \doxymbox{\hyperlink{class_exit_door_model_a8179954e124e0fd2ac64a71808c65d16}{open}}\ =\ \textcolor{keyword}{true};\ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_exit_door_model_ad79afe25cc1620a1aaa2a15c83136d2e}{isOpen}}()\textcolor{keyword}{\ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_exit_door_model_a8179954e124e0fd2ac64a71808c65d16}{open}};\ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EXITDOORMODEL\_H}}
+
+\end{DoxyCode}

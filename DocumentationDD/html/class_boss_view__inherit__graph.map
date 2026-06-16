@@ -1,0 +1,5 @@
+<map id="BossView" name="BossView">
+<area shape="rect" id="Node000001" title="Boss&#39;s view. Display the different boss&#39;s sprites and the area damage." alt="" coords="11,123,142,747"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,148,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,87,79,123,74,123,77,92"/>
+</map>

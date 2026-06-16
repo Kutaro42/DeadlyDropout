@@ -1,0 +1,14 @@
+<map id="BulletView" name="BulletView">
+<area shape="rect" id="Node000001" title="Bullet&#39;s view. Display a quick bullet across the map." alt="" coords="73,1037,173,1149"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,896,148,965"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,977,110,1037,105,1037,89,982"/>
+<area shape="rect" id="Node000003" href="$class_bullet_model.html" title="Projectile fired by the player (semi&#45;automatic pistol)." alt="" coords="172,896,272,965"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="203,963,168,1025,164,1021,200,967"/>
+<area shape="rect" id="Node000004" href="$class_projectile.html" title="Abstract base class for any projectile moving in a straight line." alt="" coords="171,649,273,847"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="223,859,225,897,219,895,221,864"/>
+<area shape="rect" id="Node000005" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="268,296,365,600"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="265,612,255,650,251,648,263,617"/>
+<area shape="rect" id="Node000006" href="$class_vector2f.html" title="Mathematical class describing 2D vectors (position, velocity)." alt="" coords="154,5,250,224"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="193,221,188,401,189,501,195,600,200,633,194,632,190,600,184,501,183,400,192,227"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="239,221,265,290,260,291,239,226"/>
+</map>

@@ -1,0 +1,13 @@
+<map id="BossDoorView" name="BossDoorView">
+<area shape="rect" id="Node000001" title="Boss&#39;s door view. Display an open srite while it&#39;s none open, then switch to lock after it crossed." alt="" coords="66,952,186,1128"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,789,148,859"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,871,109,952,103,952,87,876"/>
+<area shape="rect" id="Node000003" href="$class_boss_door_model.html" title="single use door : teleport the player in the other side of the door after the first colision and beco..." alt="" coords="172,768,296,880"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="208,878,180,938,175,936,205,882"/>
+<area shape="rect" id="Node000004" href="$class_global_door.html" title="Base entity from which standard doors, boss doors and level&#45;exit zones inherit." alt="" coords="186,649,282,719"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="235,731,237,769,231,768,233,736"/>
+<area shape="rect" id="Node000005" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="186,296,282,600"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="235,612,237,650,231,649,233,618"/>
+<area shape="rect" id="Node000006" href="$class_vector2f.html" title="Mathematical class describing 2D vectors (position, velocity)." alt="" coords="186,5,282,224"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="234,221,237,279,231,279,234,226"/>
+</map>

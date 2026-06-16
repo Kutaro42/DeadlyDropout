@@ -1,0 +1,9 @@
+<map id="ExitDoorModel" name="ExitDoorModel">
+<area shape="rect" id="Node000001" title="Represents the portal that allows you to advance to the next level." alt="" coords="5,768,123,901"/>
+<area shape="rect" id="Node000002" href="$class_global_door.html" title="Base entity from which standard doors, boss doors and level&#45;exit zones inherit." alt="" coords="16,649,113,719"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,731,67,768,62,768,64,736"/>
+<area shape="rect" id="Node000003" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="16,296,113,600"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="65,612,67,650,62,649,64,618"/>
+<area shape="rect" id="Node000004" href="$class_vector2f.html" title="Mathematical class describing 2D vectors (position, velocity)." alt="" coords="17,5,112,224"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="64,221,67,279,62,279,64,226"/>
+</map>

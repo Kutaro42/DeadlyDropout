@@ -1,0 +1,13 @@
+<map id="ExitDoorView" name="ExitDoorView">
+<area shape="rect" id="Node000001" title="A Qt rendering of the door that changes its color based on its lock status." alt="" coords="34,973,146,1064"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,800,132,869"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,882,87,973,82,973,73,886"/>
+<area shape="rect" id="Node000003" href="$class_exit_door_model.html" title="Represents the portal that allows you to advance to the next level." alt="" coords="156,768,274,901"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="172,899,132,962,128,958,168,903"/>
+<area shape="rect" id="Node000004" href="$class_global_door.html" title="Base entity from which standard doors, boss doors and level&#45;exit zones inherit." alt="" coords="167,649,264,719"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="216,731,218,769,213,767,214,736"/>
+<area shape="rect" id="Node000005" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="167,296,264,600"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="216,612,218,650,213,649,215,618"/>
+<area shape="rect" id="Node000006" href="$class_vector2f.html" title="Mathematical class describing 2D vectors (position, velocity)." alt="" coords="168,5,263,224"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="216,221,218,279,213,279,215,226"/>
+</map>

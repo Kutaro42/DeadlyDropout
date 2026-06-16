@@ -1,0 +1,36 @@
+\doxysection{levelregistry.\+h}
+\hypertarget{levelregistry_8h_source}{}\label{levelregistry_8h_source}\index{Headers/levelregistry.h@{Headers/levelregistry.h}}
+\doxymbox{\hyperlink{levelregistry_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#ifndef\ LEVELREGISTRY\_H}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ LEVELREGISTRY\_H}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{matrixextractor_8h}{matrixextractor.h}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <QVector>}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_level_registry_a558029dd2c44dbe83e72a3507bb86fff}{LevelRegistry}}\ \{}
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ ──\ Nombre\ total\ de\ niveaux\ déclarés\ ──────────────────────────}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_level_registry_a79e97a769927c158c2bac7455f7200b3}{LEVEL\_COUNT}}\ =\ 3;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{static}\ \doxymbox{\hyperlink{class_level_registry_a558029dd2c44dbe83e72a3507bb86fff}{LevelRegistry}}\&\ \doxymbox{\hyperlink{class_level_registry_a1e7b2e25c64d76acfe55520b08c5c8e4}{instance}}();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_registry_a2f62eb2dcf0c4eb1d90e6903b3f0a36f}{init}}(\textcolor{keyword}{const}\ QString\&\ basePath\ =\ \textcolor{stringliteral}{"{}:/levels"{}});}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_level_registry_ae38e903cf2537cd83e302a2ae479b97d}{count}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_level_descriptor}{LevelDescriptor}}*\ \doxymbox{\hyperlink{class_level_registry_a86df0eb3990e2ed32ef512c780c6b7c4}{descriptorAt}}(\textcolor{keywordtype}{int}\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00069\ \ \ \ \ \doxymbox{\hyperlink{class_level_registry_a558029dd2c44dbe83e72a3507bb86fff}{LevelRegistry}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00072\ \ \ \ \ QVector<DynamicLevelDescriptor>\ \doxymbox{\hyperlink{class_level_registry_a522439dd57d53288443e0dca8990cb72}{m\_dynamics}};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00077\ \ \ \ \ QVector<LevelDescriptor>\ \doxymbox{\hyperlink{class_level_registry_a2bfb98533b366816a4099d5c1fd38638}{m\_descriptors}};}
+\DoxyCodeLine{00078\ \};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ LEVELREGISTRY\_H}}
+
+\end{DoxyCode}

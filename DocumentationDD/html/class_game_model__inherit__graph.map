@@ -1,0 +1,5 @@
+<map id="GameModel" name="GameModel">
+<area shape="rect" id="Node000001" title="Root model aggregating persistent game&#45;session data (MVC Model layer)." alt="" coords="5,123,161,448"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="54,5,113,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,87,86,123,81,122,83,93"/>
+</map>

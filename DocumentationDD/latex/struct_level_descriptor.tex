@@ -1,0 +1,163 @@
+\doxysection{Level\+Descriptor Struct Reference}
+\hypertarget{struct_level_descriptor}{}\label{struct_level_descriptor}\index{LevelDescriptor@{LevelDescriptor}}
+
+
+Vue non-\/propriétaire sur les trois matrices d\textquotesingle{}un niveau.  
+
+
+
+
+{\ttfamily \+\#include $<$leveltemplate.\+h$>$}
+
+
+
+Collaboration diagram for Level\+Descriptor:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{struct_level_descriptor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{struct_level_descriptor_aeff25eb8891193647d981977741349b0}{entity\+At}} (int r, int c) const
+\item 
+int \doxymbox{\hyperlink{struct_level_descriptor_acf22c06c1fcffb3d7abcebc7be70ba29}{wall\+At}} (int r, int c) const
+\item 
+int \doxymbox{\hyperlink{struct_level_descriptor_acd0aeffdda91375a37bbd38ea4a3349f}{floor\+At}} (int r, int c) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{struct_level_descriptor_a80ca34132a1f5842793d06a26a13fdfc}{id}}
+\item 
+QString \doxymbox{\hyperlink{struct_level_descriptor_a942f8fdeac17281a94a6586456d74e7f}{name}}
+\item 
+int \doxymbox{\hyperlink{struct_level_descriptor_a9ac8da51045ace5388f8271ebcf035f1}{rows}}
+\item 
+int \doxymbox{\hyperlink{struct_level_descriptor_a9889aab1dcf3a066cda03040c4984cb3}{cols}}
+\item 
+const int \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{struct_level_descriptor_a95ab2ecc6e21eae2b89af8bdcb560452}{entity\+Data}}
+\begin{DoxyCompactList}\small\item\em Matrice entités (spawns, sortie…). \end{DoxyCompactList}\item 
+const int \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{struct_level_descriptor_acdc6220a9512c0fa8684351597133032}{wall\+Data}}
+\begin{DoxyCompactList}\small\item\em Matrice murs (0 = vide, N = index tileset murs). \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{struct_level_descriptor_ab97b8ef46a9c22c6bf90f45488203a43}{tileset\+Cols}}
+\begin{DoxyCompactList}\small\item\em Nombre de colonnes du tileset de murs PNG. \end{DoxyCompactList}\item 
+const int \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{struct_level_descriptor_ac0525460a2cfef142d8d86924b980cf3}{floor\+Data}}
+\begin{DoxyCompactList}\small\item\em Matrice sol (0 = fond uni, N = index tileset sol). \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{struct_level_descriptor_ad525a3b446376fdef7a59d46da6d26d0}{floor\+Tileset\+Cols}}
+\begin{DoxyCompactList}\small\item\em Nombre de colonnes du tileset de sol PNG. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Vue non-\/propriétaire sur les trois matrices d\textquotesingle{}un niveau. 
+
+Les pointeurs entity\+Data, wall\+Data et floor\+Data NE POSSÈ\+DENT PAS les données :\+ leur durée de vie est gérée par l\textquotesingle{}appelant (buffer statique constexpr ou \doxylink{struct_dynamic_level_descriptor}{Dynamic\+Level\+Descriptor}). 
+
+\label{struct_level_descriptor_doc-func-members}
+\Hypertarget{struct_level_descriptor_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_level_descriptor_aeff25eb8891193647d981977741349b0}\index{LevelDescriptor@{LevelDescriptor}!entityAt@{entityAt}}
+\index{entityAt@{entityAt}!LevelDescriptor@{LevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{entityAt()}{entityAt()}}
+{\footnotesize\ttfamily \label{struct_level_descriptor_aeff25eb8891193647d981977741349b0} 
+int Level\+Descriptor::\+entity\+At (\begin{DoxyParamCaption}\item[{int}]{r}{, }\item[{int}]{c}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{struct_level_descriptor_acd0aeffdda91375a37bbd38ea4a3349f}\index{LevelDescriptor@{LevelDescriptor}!floorAt@{floorAt}}
+\index{floorAt@{floorAt}!LevelDescriptor@{LevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{floorAt()}{floorAt()}}
+{\footnotesize\ttfamily \label{struct_level_descriptor_acd0aeffdda91375a37bbd38ea4a3349f} 
+int Level\+Descriptor::\+floor\+At (\begin{DoxyParamCaption}\item[{int}]{r}{, }\item[{int}]{c}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{struct_level_descriptor_acf22c06c1fcffb3d7abcebc7be70ba29}\index{LevelDescriptor@{LevelDescriptor}!wallAt@{wallAt}}
+\index{wallAt@{wallAt}!LevelDescriptor@{LevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{wallAt()}{wallAt()}}
+{\footnotesize\ttfamily \label{struct_level_descriptor_acf22c06c1fcffb3d7abcebc7be70ba29} 
+int Level\+Descriptor::\+wall\+At (\begin{DoxyParamCaption}\item[{int}]{r}{, }\item[{int}]{c}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{struct_level_descriptor_doc-variable-members}
+\Hypertarget{struct_level_descriptor_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_level_descriptor_a9889aab1dcf3a066cda03040c4984cb3}\index{LevelDescriptor@{LevelDescriptor}!cols@{cols}}
+\index{cols@{cols}!LevelDescriptor@{LevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{cols}{cols}}
+{\footnotesize\ttfamily \label{struct_level_descriptor_a9889aab1dcf3a066cda03040c4984cb3} 
+int Level\+Descriptor::\+cols}
+
+\Hypertarget{struct_level_descriptor_a95ab2ecc6e21eae2b89af8bdcb560452}\index{LevelDescriptor@{LevelDescriptor}!entityData@{entityData}}
+\index{entityData@{entityData}!LevelDescriptor@{LevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{entityData}{entityData}}
+{\footnotesize\ttfamily \label{struct_level_descriptor_a95ab2ecc6e21eae2b89af8bdcb560452} 
+const int\texorpdfstring{$\ast$}{*} Level\+Descriptor::\+entity\+Data}
+
+
+
+Matrice entités (spawns, sortie…). 
+
+\Hypertarget{struct_level_descriptor_ac0525460a2cfef142d8d86924b980cf3}\index{LevelDescriptor@{LevelDescriptor}!floorData@{floorData}}
+\index{floorData@{floorData}!LevelDescriptor@{LevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{floorData}{floorData}}
+{\footnotesize\ttfamily \label{struct_level_descriptor_ac0525460a2cfef142d8d86924b980cf3} 
+const int\texorpdfstring{$\ast$}{*} Level\+Descriptor::\+floor\+Data}
+
+
+
+Matrice sol (0 = fond uni, N = index tileset sol). 
+
+\Hypertarget{struct_level_descriptor_ad525a3b446376fdef7a59d46da6d26d0}\index{LevelDescriptor@{LevelDescriptor}!floorTilesetCols@{floorTilesetCols}}
+\index{floorTilesetCols@{floorTilesetCols}!LevelDescriptor@{LevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{floorTilesetCols}{floorTilesetCols}}
+{\footnotesize\ttfamily \label{struct_level_descriptor_ad525a3b446376fdef7a59d46da6d26d0} 
+int Level\+Descriptor::\+floor\+Tileset\+Cols}
+
+
+
+Nombre de colonnes du tileset de sol PNG. 
+
+\Hypertarget{struct_level_descriptor_a80ca34132a1f5842793d06a26a13fdfc}\index{LevelDescriptor@{LevelDescriptor}!id@{id}}
+\index{id@{id}!LevelDescriptor@{LevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{struct_level_descriptor_a80ca34132a1f5842793d06a26a13fdfc} 
+int Level\+Descriptor::\+id}
+
+\Hypertarget{struct_level_descriptor_a942f8fdeac17281a94a6586456d74e7f}\index{LevelDescriptor@{LevelDescriptor}!name@{name}}
+\index{name@{name}!LevelDescriptor@{LevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily \label{struct_level_descriptor_a942f8fdeac17281a94a6586456d74e7f} 
+QString Level\+Descriptor::\+name}
+
+\Hypertarget{struct_level_descriptor_a9ac8da51045ace5388f8271ebcf035f1}\index{LevelDescriptor@{LevelDescriptor}!rows@{rows}}
+\index{rows@{rows}!LevelDescriptor@{LevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{rows}{rows}}
+{\footnotesize\ttfamily \label{struct_level_descriptor_a9ac8da51045ace5388f8271ebcf035f1} 
+int Level\+Descriptor::\+rows}
+
+\Hypertarget{struct_level_descriptor_ab97b8ef46a9c22c6bf90f45488203a43}\index{LevelDescriptor@{LevelDescriptor}!tilesetCols@{tilesetCols}}
+\index{tilesetCols@{tilesetCols}!LevelDescriptor@{LevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{tilesetCols}{tilesetCols}}
+{\footnotesize\ttfamily \label{struct_level_descriptor_ab97b8ef46a9c22c6bf90f45488203a43} 
+int Level\+Descriptor::\+tileset\+Cols}
+
+
+
+Nombre de colonnes du tileset de murs PNG. 
+
+\Hypertarget{struct_level_descriptor_acdc6220a9512c0fa8684351597133032}\index{LevelDescriptor@{LevelDescriptor}!wallData@{wallData}}
+\index{wallData@{wallData}!LevelDescriptor@{LevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{wallData}{wallData}}
+{\footnotesize\ttfamily \label{struct_level_descriptor_acdc6220a9512c0fa8684351597133032} 
+const int\texorpdfstring{$\ast$}{*} Level\+Descriptor::\+wall\+Data}
+
+
+
+Matrice murs (0 = vide, N = index tileset murs). 
+
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{leveltemplate_8h}{leveltemplate.\+h}}\end{DoxyCompactItemize}

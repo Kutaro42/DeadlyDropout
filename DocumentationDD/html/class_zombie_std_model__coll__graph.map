@@ -1,0 +1,10 @@
+<map id="ZombieStdModel" name="ZombieStdModel">
+<area shape="rect" id="Node000001" title="Business logic of a &quot;standard zombie&quot; enemy implementing the Enemy parent class." alt="" coords="13,1515,143,1669"/>
+<area shape="rect" id="Node000002" href="$class_enemy.html" title="Base class defining the structure and mechanics of a hostile entity." alt="" coords="5,649,150,1465"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,1478,80,1515,75,1514,77,1483"/>
+<area shape="rect" id="Node000003" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="120,296,217,600"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="143,617,141,650,136,649,144,612"/>
+<area shape="rect" id="Node000004" href="$class_vector2f.html" title="Mathematical class describing 2D vectors (position, velocity)." alt="" coords="10,5,105,224"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="51,227,51,296,48,448,51,600,52,632,47,632,46,600,43,448,46,296,51,221"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="94,221,117,286,112,287,94,226"/>
+</map>

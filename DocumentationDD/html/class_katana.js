@@ -1,0 +1,27 @@
+var class_katana =
+[
+    [ "Katana", "class_katana.html#a0467e00bd35a8e8b41d65307a24e4a90", null ],
+    [ "~Katana", "class_katana.html#af5a0bdfdb409f8192fbb738703b5a224", null ],
+    [ "computeSlashZone", "class_katana.html#a839e570d5651262592fc2b54d1b77bae", null ],
+    [ "getAttackAngle", "class_katana.html#a23f153c60311b77b53f7f6256129d0ed", null ],
+    [ "getCooldownRatio", "class_katana.html#a114bb2dc0a049ee58672e7354f1f3a20", null ],
+    [ "getDamage", "class_katana.html#ad3def81b3f3648ea5db0475361aff94d", null ],
+    [ "getRange", "class_katana.html#a9871aea0f1a2c317d00c61737506c07a", null ],
+    [ "getSlashZone", "class_katana.html#aca178b00a3a69321c2b209d8fde7f4da", null ],
+    [ "isAnimActive", "class_katana.html#aadf8f13d9fc8c7851839eed7b72c3e8f", null ],
+    [ "isReady", "class_katana.html#a5fae1d1ee55af7351d64b26f1433f4b9", null ],
+    [ "setCooldown", "class_katana.html#a3449cc5400405553cb1e9103ad6aa229", null ],
+    [ "setDamage", "class_katana.html#a2105da0898c4481d22afa3a38d51bdfb", null ],
+    [ "setRange", "class_katana.html#aff3b4a322f7a1ba0643b9c9a148dfe15", null ],
+    [ "tryAttack", "class_katana.html#aa1b0b7ffb114657c094e97c97df9cc58", null ],
+    [ "update", "class_katana.html#adb3ffa4c620553de576d77c7bc88ea6a", null ],
+    [ "itsAnimTimer", "class_katana.html#a2557292c2d81a5212314901d6f8f936d", null ],
+    [ "itsAttackAngle", "class_katana.html#ab67810007aadcf3541d6f0a5400dcd3e", null ],
+    [ "itsCooldown", "class_katana.html#a733e8c443749182ab2c65b6e0f5156f6", null ],
+    [ "itsCooldownTimer", "class_katana.html#a8aa3820122dbcff298c1ea79542be9ca", null ],
+    [ "itsDamage", "class_katana.html#abed50403c6aca7308c7e0fd6ebec5a49", null ],
+    [ "itsRange", "class_katana.html#af255d92f84bd975c7c9e980824b142c3", null ],
+    [ "itsReady", "class_katana.html#ac454ad1a9e521813a70965bab0b812c9", null ],
+    [ "itsSlashSound", "class_katana.html#a00a85a94d7c6831624d3a4360f9866f9", null ],
+    [ "itsSlashZone", "class_katana.html#a9db026f80021284b8345ac927d628ef3", null ]
+];

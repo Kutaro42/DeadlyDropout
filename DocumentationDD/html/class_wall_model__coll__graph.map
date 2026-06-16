@@ -1,0 +1,7 @@
+<map id="WallModel" name="WallModel">
+<area shape="rect" id="Node000001" title="Entité statique bloquant le passage, associée à un index de tile du tileset." alt="" coords="5,649,117,804"/>
+<area shape="rect" id="Node000002" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="13,296,110,600"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="62,612,64,650,59,649,61,618"/>
+<area shape="rect" id="Node000003" href="$class_vector2f.html" title="Mathematical class describing 2D vectors (position, velocity)." alt="" coords="14,5,109,224"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="61,221,64,279,59,279,61,226"/>
+</map>

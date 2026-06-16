@@ -1,0 +1,14 @@
+<map id="RubbleView" name="RubbleView">
+<area shape="rect" id="Node000001" title="Qt graphics item synchronized with a RubbleModel." alt="" coords="74,1037,176,1149"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,896,148,965"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,977,111,1037,106,1037,90,982"/>
+<area shape="rect" id="Node000003" href="$class_rubble_model.html" title="Rubble (projectile) fired by the launcher zombie." alt="" coords="172,896,280,965"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="207,963,170,1025,166,1021,203,967"/>
+<area shape="rect" id="Node000004" href="$class_projectile.html" title="Abstract base class for any projectile moving in a straight line." alt="" coords="175,649,277,847"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="227,859,229,897,223,895,225,864"/>
+<area shape="rect" id="Node000005" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="272,296,369,600"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="269,612,259,650,255,648,267,617"/>
+<area shape="rect" id="Node000006" href="$class_vector2f.html" title="Mathematical class describing 2D vectors (position, velocity)." alt="" coords="158,5,254,224"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="197,221,192,401,193,501,199,600,204,633,198,632,194,600,188,501,187,400,196,227"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="243,221,269,291,264,291,243,226"/>
+</map>

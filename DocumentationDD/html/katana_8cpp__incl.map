@@ -1,0 +1,22 @@
+<map id="Sources/katana.cpp" name="Sources/katana.cpp">
+<area shape="rect" id="Node000001" title="Implementation of Katana: behaviour, timers and attack&#45;zone computation." alt="" coords="362,5,500,32"/>
+<area shape="rect" id="Node000002" href="$katana_8h.html" title="Declaration of the Katana class, the player&#39;s melee weapon." alt="" coords="166,80,290,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="393,34,279,77,277,72,398,31"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="345,229,402,256"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="432,30,427,98,419,140,408,182,391,218,388,214,403,180,414,139,422,97,429,34"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="468,80,543,107"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="445,30,485,70,479,69,443,35"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,155,73,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="194,110,88,151,85,146,196,105"/>
+<area shape="rect" id="Node000004" href="$config_8h.html" title="Global constants and configuration enumerations for the game Deadly Dropout." alt="" coords="97,155,165,181"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="214,106,161,148,158,143,209,109"/>
+<area shape="rect" id="Node000006" href="$vector2f_8h.html" title="Declaration of the Vector2f math class for the game&#39;s 2D geometry." alt="" coords="189,155,268,181"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="230,105,231,140,226,138,227,109"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="292,155,394,181"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="249,105,313,146,307,146,248,110"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="101,229,161,256"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="133,180,133,215,129,213,129,184"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="254,179,337,222,332,222,253,184"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="194,229,263,256"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="230,180,231,215,226,212,226,184"/>
+</map>

@@ -1,0 +1,54 @@
+\doxysection{musiccontroller.\+h}
+\hypertarget{musiccontroller_8h_source}{}\label{musiccontroller_8h_source}\index{Headers/musiccontroller.h@{Headers/musiccontroller.h}}
+\doxymbox{\hyperlink{musiccontroller_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ MUSICCONTROLLER\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ MUSICCONTROLLER\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <QObject>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <QMediaPlayer>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QAudioOutput>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QStringList>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QRandomGenerator>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QCoreApplication>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_music_controller_a1aae49ce913229099dd94394cf307007}{MusicController}}\ :\ \textcolor{keyword}{public}\ QObject}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{static}\ \doxymbox{\hyperlink{class_music_controller_a1aae49ce913229099dd94394cf307007}{MusicController}}\&\ \doxymbox{\hyperlink{class_music_controller_a72d7fd5326ff52da34881e8424741f62}{instance}}()\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \doxymbox{\hyperlink{class_music_controller_a1aae49ce913229099dd94394cf307007}{MusicController}}\ inst;}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inst;}
+\DoxyCodeLine{00022\ \ \ \ \ \}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_music_controller_a18c4424e158480c5c5593ac27a9d27d0}{playMenu}}();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_music_controller_a163cd893b28ccb1b41f5f9369a007463}{stop}}();}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_music_controller_ac1f0910fe70ac45127a761eba603de2f}{playRandomGame}}();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_music_controller_ab11c798c00f6530d9e4f404e0e4575fd}{togglePause}}();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_music_controller_a4d2e05162c999ac6339c37ec14ca7d66}{nextTrack}}();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_music_controller_a15ed03d0587e60caaed39bd86d3267aa}{isPlaying}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_music_controller_a1aae49ce913229099dd94394cf307007}{MusicController}}(QObject*\ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00043\ \ \ \ \ \doxymbox{\hyperlink{class_music_controller_ae5360a0f90c5e5815d17be070a7ef36f}{\string~MusicController}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00044\ \ \ \ \ \doxymbox{\hyperlink{class_music_controller_a6160bb5ef8574175a53977aba79446f6}{MusicController}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_music_controller_a1aae49ce913229099dd94394cf307007}{MusicController}}\&)\ \ \ \ \ \ \ \ \ \ \ \ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00045\ \ \ \ \ \doxymbox{\hyperlink{class_music_controller_a1aae49ce913229099dd94394cf307007}{MusicController}}\&\ \doxymbox{\hyperlink{class_music_controller_a371454267a8137403535384bdb4b640a}{operator=}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_music_controller_a1aae49ce913229099dd94394cf307007}{MusicController}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_music_controller_a0665f51898f95f6eb4537a04014718eb}{playTrack}}(\textcolor{keyword}{const}\ QString\&\ resourcePath);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ QMediaPlayer*\ \doxymbox{\hyperlink{class_music_controller_aaa9d9d36c8f818748313b2e56bc79ab3}{player}};}
+\DoxyCodeLine{00050\ \ \ \ \ QAudioOutput*\ \doxymbox{\hyperlink{class_music_controller_a6d488f7b343705c29c42115dbfce2b15}{audioOutput}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ QStringList\ \ \ \doxymbox{\hyperlink{class_music_controller_a1a889e5579a4b2f5b9cbd642b0338e1e}{gameTracks}};\ \ \ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_music_controller_a8e36fb0ba96b849ce15a73a818691867}{lastIndex}};\ \ \ \ }
+\DoxyCodeLine{00054\ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MUSICCONTROLLER\_H}}
+
+\end{DoxyCode}

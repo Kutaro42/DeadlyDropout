@@ -1,0 +1,233 @@
+\doxysection{App\+Controller Class Reference}
+\hypertarget{class_app_controller}{}\label{class_app_controller}\index{AppController@{AppController}}
+
+
+Routeur global contrôlant l\textquotesingle{}empilement des interfaces et l\textquotesingle{}état général de la partie.  
+
+
+
+
+{\ttfamily \+\#include $<$appcontroller.\+h$>$}
+
+
+
+Inheritance diagram for App\+Controller:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{class_app_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for App\+Controller:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_app_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_app_controller_aba0be0e87507455eaf8e8c86ceab1b15}{sig\+Game\+Rq}} ()
+\begin{DoxyCompactList}\small\item\em Signal émis en interne pour signifier la volonté de démarrer une partie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_app_controller_aceb4ec057d02fa4d6ed50a10a82e89fb}{App\+Controller}} (QWidget \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructeur principal. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_app_controller_a2aeb07ffaa5dbb2320bf2173f4ffa178}{\texorpdfstring{$\sim$}{\string~}\+App\+Controller}} ()
+\item 
+void \doxymbox{\hyperlink{class_app_controller_adf97a6b5b19bf078cd9e8915acb7ac13}{switch\+State}} (\doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428}{App\+State}} \texorpdfstring{$\ast$}{*}next)
+\begin{DoxyCompactList}\small\item\em Demande le passage à un nouvel état de l\textquotesingle{}application. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_app_controller_a5398b6afda8962a76be7e9dd8059091b}{start\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Déclenche l\textquotesingle{}initialisation de la partie et passe la vue sur le moteur de jeu. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_app_controller_a89987b5c5c12efbd9c9aa2ad6bf6cdbc}{run}} ()
+\begin{DoxyCompactList}\small\item\em Affiche la fenêtre globale et maintient la boucle applicative active. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_app_controller_ab0e694e1fe8921982255c01138261d0a}{reset}} ()
+\begin{DoxyCompactList}\small\item\em Initialise une nouvelle partit en supprimant puis recréant un gamecontroller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_app_controller_a8f5dd5291fe1634debd8c4ddad610730}{slt\+Restart}} ()
+\begin{DoxyCompactList}\small\item\em Slots qui relance ou quite la partie en fin de partit (Game Over ou Victory). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_app_controller_a6bbd1b6c009f61e0af2ba05686168a1b}{slt\+Back\+Menu}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428}{App\+State}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_app_controller_ab0a4b59cbf92f1678e68035027078f63}{current\+State}}
+\begin{DoxyCompactList}\small\item\em Pointeur vers l\textquotesingle{}état applicatif courant. \end{DoxyCompactList}\item 
+QStacked\+Widget \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_app_controller_a8ab23b0f71f4c620ac5cd601299ec05e}{main\+Container}}
+\begin{DoxyCompactList}\small\item\em Conteneur Qt permettant le basculement entre vues (Menu /\+ Jeu). \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_menu_controller}{Menu\+Controller}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_app_controller_aad2c92eb6cca018dc268746d221219fa}{its\+Menu\+Controller}}
+\begin{DoxyCompactList}\small\item\em Contrôleur dédié au menu principal. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_game_controller}{Game\+Controller}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_app_controller_a9819d9b431b195d3c770094c7d109b87}{its\+Game\+Controller}}
+\begin{DoxyCompactList}\small\item\em Contrôleur dédié à la gestion du gameplay in-\/game. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_market_controller}{Market\+Controller}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_app_controller_afd65ea17663a93ff364f9d8514194fa3}{its\+Market\+Controller}}
+\begin{DoxyCompactList}\small\item\em Contrôleur dédié à la gestion du market in-\/game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Routeur global contrôlant l\textquotesingle{}empilement des interfaces et l\textquotesingle{}état général de la partie. 
+
+\label{class_app_controller_doc-constructors}
+\Hypertarget{class_app_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_app_controller_aceb4ec057d02fa4d6ed50a10a82e89fb}\index{AppController@{AppController}!AppController@{AppController}}
+\index{AppController@{AppController}!AppController@{AppController}}
+\doxysubsubsection{\texorpdfstring{AppController()}{AppController()}}
+{\footnotesize\ttfamily \label{class_app_controller_aceb4ec057d02fa4d6ed50a10a82e89fb} 
+App\+Controller::\+\+App\+Controller (\begin{DoxyParamCaption}\item[{QWidget \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})}
+
+
+
+Constructeur principal. 
+
+\Hypertarget{class_app_controller_a2aeb07ffaa5dbb2320bf2173f4ffa178}\index{AppController@{AppController}!````~AppController@{\texorpdfstring{$\sim$}{\string~}AppController}}
+\index{````~AppController@{\texorpdfstring{$\sim$}{\string~}AppController}!AppController@{AppController}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}AppController()}{\string~AppController()}}
+{\footnotesize\ttfamily \label{class_app_controller_a2aeb07ffaa5dbb2320bf2173f4ffa178} 
+App\+Controller::\+\texorpdfstring{$\sim$}{\string~}\+App\+Controller (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\label{class_app_controller_doc-func-members}
+\Hypertarget{class_app_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_app_controller_ab0e694e1fe8921982255c01138261d0a}\index{AppController@{AppController}!reset@{reset}}
+\index{reset@{reset}!AppController@{AppController}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{class_app_controller_ab0e694e1fe8921982255c01138261d0a} 
+void App\+Controller::\+reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initialise une nouvelle partit en supprimant puis recréant un gamecontroller. 
+
+\Hypertarget{class_app_controller_a89987b5c5c12efbd9c9aa2ad6bf6cdbc}\index{AppController@{AppController}!run@{run}}
+\index{run@{run}!AppController@{AppController}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{class_app_controller_a89987b5c5c12efbd9c9aa2ad6bf6cdbc} 
+void App\+Controller::\+run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Affiche la fenêtre globale et maintient la boucle applicative active. 
+
+\Hypertarget{class_app_controller_aba0be0e87507455eaf8e8c86ceab1b15}\index{AppController@{AppController}!sigGameRq@{sigGameRq}}
+\index{sigGameRq@{sigGameRq}!AppController@{AppController}}
+\doxysubsubsection{\texorpdfstring{sigGameRq}{sigGameRq}}
+{\footnotesize\ttfamily \label{class_app_controller_aba0be0e87507455eaf8e8c86ceab1b15} 
+void App\+Controller::\+sig\+Game\+Rq (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal émis en interne pour signifier la volonté de démarrer une partie. 
+
+\Hypertarget{class_app_controller_a6bbd1b6c009f61e0af2ba05686168a1b}\index{AppController@{AppController}!sltBackMenu@{sltBackMenu}}
+\index{sltBackMenu@{sltBackMenu}!AppController@{AppController}}
+\doxysubsubsection{\texorpdfstring{sltBackMenu}{sltBackMenu}}
+{\footnotesize\ttfamily \label{class_app_controller_a6bbd1b6c009f61e0af2ba05686168a1b} 
+void App\+Controller::\+slt\+Back\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+\Hypertarget{class_app_controller_a8f5dd5291fe1634debd8c4ddad610730}\index{AppController@{AppController}!sltRestart@{sltRestart}}
+\index{sltRestart@{sltRestart}!AppController@{AppController}}
+\doxysubsubsection{\texorpdfstring{sltRestart}{sltRestart}}
+{\footnotesize\ttfamily \label{class_app_controller_a8f5dd5291fe1634debd8c4ddad610730} 
+void App\+Controller::\+slt\+Restart (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Slots qui relance ou quite la partie en fin de partit (Game Over ou Victory). 
+
+\Hypertarget{class_app_controller_a5398b6afda8962a76be7e9dd8059091b}\index{AppController@{AppController}!startGame@{startGame}}
+\index{startGame@{startGame}!AppController@{AppController}}
+\doxysubsubsection{\texorpdfstring{startGame()}{startGame()}}
+{\footnotesize\ttfamily \label{class_app_controller_a5398b6afda8962a76be7e9dd8059091b} 
+void App\+Controller::\+start\+Game (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Déclenche l\textquotesingle{}initialisation de la partie et passe la vue sur le moteur de jeu. 
+
+\Hypertarget{class_app_controller_adf97a6b5b19bf078cd9e8915acb7ac13}\index{AppController@{AppController}!switchState@{switchState}}
+\index{switchState@{switchState}!AppController@{AppController}}
+\doxysubsubsection{\texorpdfstring{switchState()}{switchState()}}
+{\footnotesize\ttfamily \label{class_app_controller_adf97a6b5b19bf078cd9e8915acb7ac13} 
+void App\+Controller::\+switch\+State (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428}{App\+State}} \texorpdfstring{$\ast$}{*}}]{next}{}\end{DoxyParamCaption})}
+
+
+
+Demande le passage à un nouvel état de l\textquotesingle{}application. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em next} & Pointeur vers le futur état. \\
+\hline
+\end{DoxyParams}
+
+
+\label{class_app_controller_doc-variable-members}
+\Hypertarget{class_app_controller_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_app_controller_ab0a4b59cbf92f1678e68035027078f63}\index{AppController@{AppController}!currentState@{currentState}}
+\index{currentState@{currentState}!AppController@{AppController}}
+\doxysubsubsection{\texorpdfstring{currentState}{currentState}}
+{\footnotesize\ttfamily \label{class_app_controller_ab0a4b59cbf92f1678e68035027078f63} 
+\doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428}{App\+State}}\texorpdfstring{$\ast$}{*} App\+Controller::\+current\+State\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointeur vers l\textquotesingle{}état applicatif courant. 
+
+\Hypertarget{class_app_controller_a9819d9b431b195d3c770094c7d109b87}\index{AppController@{AppController}!itsGameController@{itsGameController}}
+\index{itsGameController@{itsGameController}!AppController@{AppController}}
+\doxysubsubsection{\texorpdfstring{itsGameController}{itsGameController}}
+{\footnotesize\ttfamily \label{class_app_controller_a9819d9b431b195d3c770094c7d109b87} 
+\doxymbox{\hyperlink{class_game_controller}{Game\+Controller}}\texorpdfstring{$\ast$}{*} App\+Controller::\+its\+Game\+Controller\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Contrôleur dédié à la gestion du gameplay in-\/game. 
+
+\Hypertarget{class_app_controller_afd65ea17663a93ff364f9d8514194fa3}\index{AppController@{AppController}!itsMarketController@{itsMarketController}}
+\index{itsMarketController@{itsMarketController}!AppController@{AppController}}
+\doxysubsubsection{\texorpdfstring{itsMarketController}{itsMarketController}}
+{\footnotesize\ttfamily \label{class_app_controller_afd65ea17663a93ff364f9d8514194fa3} 
+\doxymbox{\hyperlink{class_market_controller}{Market\+Controller}}\texorpdfstring{$\ast$}{*} App\+Controller::\+its\+Market\+Controller\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Contrôleur dédié à la gestion du market in-\/game. 
+
+\Hypertarget{class_app_controller_aad2c92eb6cca018dc268746d221219fa}\index{AppController@{AppController}!itsMenuController@{itsMenuController}}
+\index{itsMenuController@{itsMenuController}!AppController@{AppController}}
+\doxysubsubsection{\texorpdfstring{itsMenuController}{itsMenuController}}
+{\footnotesize\ttfamily \label{class_app_controller_aad2c92eb6cca018dc268746d221219fa} 
+\doxymbox{\hyperlink{class_menu_controller}{Menu\+Controller}}\texorpdfstring{$\ast$}{*} App\+Controller::\+its\+Menu\+Controller\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Contrôleur dédié au menu principal. 
+
+\Hypertarget{class_app_controller_a8ab23b0f71f4c620ac5cd601299ec05e}\index{AppController@{AppController}!mainContainer@{mainContainer}}
+\index{mainContainer@{mainContainer}!AppController@{AppController}}
+\doxysubsubsection{\texorpdfstring{mainContainer}{mainContainer}}
+{\footnotesize\ttfamily \label{class_app_controller_a8ab23b0f71f4c620ac5cd601299ec05e} 
+QStacked\+Widget\texorpdfstring{$\ast$}{*} App\+Controller::\+main\+Container\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Conteneur Qt permettant le basculement entre vues (Menu /\+ Jeu). 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{appcontroller_8h}{appcontroller.\+h}}\item 
+build/\+\+Desktop\+\_\+\+Qt\+\_\+6\+\_\+10\+\_\+0\+\_\+\+Min\+GW\+\_\+64\+\_\+bit-\/\+Release/\+release/\+\doxymbox{\hyperlink{moc__appcontroller_8cpp}{moc\+\_\+appcontroller.\+cpp}}\item 
+Sources/\+\doxymbox{\hyperlink{appcontroller_8cpp}{appcontroller.\+cpp}}\end{DoxyCompactItemize}

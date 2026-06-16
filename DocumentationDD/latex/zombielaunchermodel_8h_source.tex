@@ -1,0 +1,64 @@
+\doxysection{zombielaunchermodel.\+h}
+\hypertarget{zombielaunchermodel_8h_source}{}\label{zombielaunchermodel_8h_source}\index{Headers/zombielaunchermodel.h@{Headers/zombielaunchermodel.h}}
+\doxymbox{\hyperlink{zombielaunchermodel_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ ZOMBIELAUNCHERMODEL\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ ZOMBIELAUNCHERMODEL\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{enemy_8h}{enemy.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{rubblemodel_8h}{rubblemodel.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QVector>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{playermodel_8h}{playermodel.h}}"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \ ZombieLauncherModel\ —\ launcher\ zombie\ (iteration\ 2).}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ \ AI:}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \ \ \ IDLE\ \ \ \ \ \ →\ no\ action\ (outside\ detection\ range)}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \ \ \ CHASING\ \ \ →\ player\ detected\ BUT\ out\ of\ firing\ range:}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ the\ enemy\ chases\ to\ get\ closer}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ \ \ \ ATTACKING\ →\ player\ within\ firing\ range:}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ the\ enemy\ stays\ STILL\ and\ fires\ a\ rubble}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ every\ LAUNCHER\_SHOOT\_CD\ seconds}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ \ Projectile\ ownership:}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ \ \ \ Created\ RubbleModel\ instances\ are\ stored\ in\ an\ internal\ vector.}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ \ \ \ LevelController\ retrieves\ them\ via\ getRubbles()\ to\ update\ them}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ \ \ \ and\ detect\ their\ collisions\ with\ the\ player/walls.}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_zombie_launcher_model_a44a3a03353cfc8e66d7e0268af6ad707}{ZombieLauncherModel}}\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_enemy_acb9b3f2b8d2c900ea75aa54bb218a6b1}{Enemy}}\ \{}
+\DoxyCodeLine{00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_zombie_launcher_model_a44a3a03353cfc8e66d7e0268af6ad707}{ZombieLauncherModel}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ pos);}
+\DoxyCodeLine{00044\ \ \ \ \ \doxymbox{\hyperlink{class_zombie_launcher_model_ac9da38b24b0fb050b29bddbf8318c746}{\string~ZombieLauncherModel}}()\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\doxymbox{\hyperlink{class_rubble_model}{RubbleModel}}*\ r\ :\ \doxymbox{\hyperlink{class_zombie_launcher_model_ad7c11949a1c5aa0ddcba70a5218378c4}{rubbles}})\ \textcolor{keyword}{delete}\ r;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_zombie_launcher_model_ad7c11949a1c5aa0ddcba70a5218378c4}{rubbles}}.clear();}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/\ Enemy\ interface\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_zombie_launcher_model_a8292218d064812455ddbc07a5511a2d6}{update}}(\textcolor{keywordtype}{float}\ dt,\ \doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ playerPos)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_zombie_launcher_model_a78ed2957821f84cc14e7add157ab99fb}{attack}}(\doxymbox{\hyperlink{class_player_model}{PlayerModel}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/\ Projectile\ access\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00068\ \ \ \ \ QVector<RubbleModel*>\&\ \doxymbox{\hyperlink{class_zombie_launcher_model_a5469a1cee88144a99addd3dd6fd37396}{getRubbles}}()\ \{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_zombie_launcher_model_ad7c11949a1c5aa0ddcba70a5218378c4}{rubbles}};\ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_zombie_launcher_model_a22fba63c67c48bd5faedbfa9d7fc4dd2}{pruneInactiveRubbles}}();}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00077\ \ \ \ \ QVector<RubbleModel*>\ \doxymbox{\hyperlink{class_zombie_launcher_model_ad7c11949a1c5aa0ddcba70a5218378c4}{rubbles}};\ \ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_zombie_launcher_model_a3bdb16f3b3b1459e071e2c36eb5a4d37}{shootTimer}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/\ AI\ sub-\/methods\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_zombie_launcher_model_ac36a57fdc724f644ffe0068f7c71cef9}{updateAIState}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ playerPos);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_zombie_launcher_model_a0d09da51610106888da2a532d894e8a7}{chase}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ playerPos,\ \textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_zombie_launcher_model_a752698ae2c67ca057685c156800024fe}{shoot}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ playerPos);}
+\DoxyCodeLine{00100\ \};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ZOMBIELAUNCHERMODEL\_H}}
+
+\end{DoxyCode}

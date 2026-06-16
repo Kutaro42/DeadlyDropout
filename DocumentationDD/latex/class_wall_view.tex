@@ -1,0 +1,90 @@
+\doxysection{Wall\+View Class Reference}
+\hypertarget{class_wall_view}{}\label{class_wall_view}\index{WallView@{WallView}}
+
+
+Affiche un mur en découpant la bonne tile depuis le tileset.  
+
+
+
+
+{\ttfamily \+\#include $<$wallview.\+h$>$}
+
+
+
+Inheritance diagram for Wall\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{class_wall_view__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Wall\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{class_wall_view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_wall_view_a5038f22b94078f0f97ef76df574b1da5}{Wall\+View}} (\doxymbox{\hyperlink{class_wall_model}{Wall\+Model}} \texorpdfstring{$\ast$}{*}model, QGraphics\+Item \texorpdfstring{$\ast$}{*}parent=nullptr)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const QPixmap \& \doxymbox{\hyperlink{class_wall_view_a8359bca572ecb8d68d036c620d35084d}{tileset}} ()
+\begin{DoxyCompactList}\small\item\em Retourne le tileset (chargé une seule fois). \end{DoxyCompactList}\item 
+static QPixmap \doxymbox{\hyperlink{class_wall_view_a3227219c74b663e2566f9fc9e30c9b5f}{extract\+Tile}} (int tile\+Index, int tileset\+Cols, int tileW, int tileH)
+\begin{DoxyCompactList}\small\item\em Découpe et retourne la tile correspondant à l\textquotesingle{}index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Affiche un mur en découpant la bonne tile depuis le tileset. 
+
+Le tileset doit être chargé une seule fois (cache statique). La tile est sélectionnée via l\textquotesingle{}index stocké dans \doxylink{class_wall_model}{Wall\+Model} :\+ col = (index -\/ 1) \% tileset\+Cols row = (index -\/ 1) /\+ tileset\+Cols 
+
+\label{class_wall_view_doc-constructors}
+\Hypertarget{class_wall_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_wall_view_a5038f22b94078f0f97ef76df574b1da5}\index{WallView@{WallView}!WallView@{WallView}}
+\index{WallView@{WallView}!WallView@{WallView}}
+\doxysubsubsection{\texorpdfstring{WallView()}{WallView()}}
+{\footnotesize\ttfamily \label{class_wall_view_a5038f22b94078f0f97ef76df574b1da5} 
+Wall\+View::\+\+Wall\+View (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_wall_model}{Wall\+Model}} \texorpdfstring{$\ast$}{*}}]{model}{, }\item[{QGraphics\+Item \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\label{class_wall_view_doc-func-members}
+\Hypertarget{class_wall_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_wall_view_a3227219c74b663e2566f9fc9e30c9b5f}\index{WallView@{WallView}!extractTile@{extractTile}}
+\index{extractTile@{extractTile}!WallView@{WallView}}
+\doxysubsubsection{\texorpdfstring{extractTile()}{extractTile()}}
+{\footnotesize\ttfamily \label{class_wall_view_a3227219c74b663e2566f9fc9e30c9b5f} 
+QPixmap Wall\+View::\+extract\+Tile (\begin{DoxyParamCaption}\item[{int}]{tile\+Index}{, }\item[{int}]{tileset\+Cols}{, }\item[{int}]{tileW}{, }\item[{int}]{tileH}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Découpe et retourne la tile correspondant à l\textquotesingle{}index. 
+
+\Hypertarget{class_wall_view_a8359bca572ecb8d68d036c620d35084d}\index{WallView@{WallView}!tileset@{tileset}}
+\index{tileset@{tileset}!WallView@{WallView}}
+\doxysubsubsection{\texorpdfstring{tileset()}{tileset()}}
+{\footnotesize\ttfamily \label{class_wall_view_a8359bca572ecb8d68d036c620d35084d} 
+const QPixmap \& Wall\+View::\+tileset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Retourne le tileset (chargé une seule fois). 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{wallview_8h}{wallview.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{wallview_8cpp}{wallview.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,26 @@
+var class_zombie_std_view =
+[
+    [ "ZombieStdView", "class_zombie_std_view.html#a92f42eb50db0938614e70266afb31554", null ],
+    [ "advanceFrames", "class_zombie_std_view.html#a701cd87c089a85cf755d9d1e26be7055", null ],
+    [ "dirIdx", "class_zombie_std_view.html#a82e38ceac867dde8d5e41aa3b85eccd0", null ],
+    [ "loadSheet", "class_zombie_std_view.html#a3c613fa874838035622dd51c9a63e601", null ],
+    [ "makeFallback", "class_zombie_std_view.html#a2325f62346e18469b223d7d6611956ea", null ],
+    [ "updateView", "class_zombie_std_view.html#ab6f69896d3f40ca5edf6bb3a9f68d554", null ],
+    [ "velocityToDir", "class_zombie_std_view.html#a62fbf0ef0394eed74815340a0f88f65a", null ],
+    [ "animSpeed", "class_zombie_std_view.html#a1574922306e4a612a2776d38f0c6d7b7", null ],
+    [ "animSpeedDeath", "class_zombie_std_view.html#aacd6bf15d91dc93591f892a32d689230", null ],
+    [ "currentDir", "class_zombie_std_view.html#a360f10ea7ce00325be775bca500f2a59", null ],
+    [ "currentFrame", "class_zombie_std_view.html#a679f193449323815fa507ee3b624aa2d", null ],
+    [ "DEAD", "class_zombie_std_view.html#a5e20b9842f0132d6d337a8b647a8f4a2", null ],
+    [ "deadAnimFinished", "class_zombie_std_view.html#a830a0591b141d12207109cf7db73144e", null ],
+    [ "DIR_COUNT", "class_zombie_std_view.html#aaa2ff7c9fce495e857cd0584948a587d", null ],
+    [ "FRAME_H", "class_zombie_std_view.html#a7a3fbe5b8667d7cd377b8cb4cb6f563e", null ],
+    [ "FRAME_W", "class_zombie_std_view.html#a04f80bfe7f2773b5a058d5f179299362", null ],
+    [ "frameTimer", "class_zombie_std_view.html#ac108cc13b70cd4a5c164cfeeb4be4df4", null ],
+    [ "HURT", "class_zombie_std_view.html#a87f0f785f3f500295bc444669da9e457", null ],
+    [ "IDLE", "class_zombie_std_view.html#a39b4e2f0ddc3912456a2dad026720b23", null ],
+    [ "model", "class_zombie_std_view.html#a6131066664ba0bfac8f173ba3e3ace43", null ],
+    [ "sprites", "class_zombie_std_view.html#aca05e70455fe95f5c74c765a21f61a91", null ],
+    [ "STATE_COUNT", "class_zombie_std_view.html#a9dfdd714ef8caf7a39ca6c71fc7b9dab", null ],
+    [ "WALK", "class_zombie_std_view.html#aeb67d230d3e0f0c3fc842913b3ea7058", null ]
+];

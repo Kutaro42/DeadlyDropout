@@ -1,0 +1,382 @@
+\doxysection{Game\+Controller Class Reference}
+\hypertarget{class_game_controller}{}\label{class_game_controller}\index{GameController@{GameController}}
+
+
+Orchestrator of the in-\/game MVC loop.  
+
+
+
+
+{\ttfamily \+\#include $<$gamecontroller.\+h$>$}
+
+
+
+Inheritance diagram for Game\+Controller:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{class_game_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Game\+Controller:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_game_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_game_controller_a4952e9017b93fb13fa44afab4fdfcddd}{sig\+Restart}} ()
+\begin{DoxyCompactList}\small\item\em Bubbled up to \doxylink{class_app_controller}{App\+Controller} to re-\/create a fresh \doxylink{class_game_controller}{Game\+Controller} (full restart). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_controller_a41c8fd3ed6f37bcea5ef50c50b2275e9}{sig\+Back\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Bubbled up to \doxylink{class_app_controller}{App\+Controller} to return to the main menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_game_controller_aef3561983ace9c1bbaba75cb69c21daf}{Game\+Controller}} (QObject \texorpdfstring{$\ast$}{*}parent)
+\begin{DoxyCompactList}\small\item\em Constructs \doxylink{class_game_controller}{Game\+Controller} and allocates all owned sub-\/objects. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_game_controller_aab436961a422d078975bc7a49bdfcab7}{\texorpdfstring{$\sim$}{\string~}\+Game\+Controller}} ()
+\item 
+\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_controller_a60b0ae58b0cba05e669742e959429d69}{get\+Player}} () const
+\begin{DoxyCompactList}\small\item\em Returns the player model for external queries (e.\+g. \doxylink{class_app_controller}{App\+Controller} HUD). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_controller_ae4f4427947217135ce9f51fd737388bb}{init}} (bool start\+Music=true)
+\begin{DoxyCompactList}\small\item\em Wires all signals, loads the first level and starts the game loop. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_game_view}{Game\+View}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_controller_a2b9c7a512a367adafbd9673734b2d271}{get\+View}} () const
+\begin{DoxyCompactList}\small\item\em Returns the game view so \doxylink{class_app_controller}{App\+Controller} can embed it in the main window. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_game_controller_ab1eba12fd26da477e91cddf3bd9b5496}{slt\+\_\+tick}} ()
+\begin{DoxyCompactList}\small\item\em Main game-\/loop tick — called by game\+Timer at \texorpdfstring{$\sim$}{\string~}60 FPS. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_controller_ad9ace4b20a5635adb22fcb97dbd09bbb}{slt\+Pause\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Slot triggered when the player chooses "{}\+Back to menu"{} from the pause overlay. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_game_controller_a8c27c7d42c5275f7b8407e2c982b490d}{load\+Level}} (int index)
+\begin{DoxyCompactList}\small\item\em Loads and initialises a level by index using \doxylink{class_level_registry}{Level\+Registry}. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_controller_aff737ecca819c0b724405246c8d23d95}{handle\+Input}} (float dt)
+\begin{DoxyCompactList}\small\item\em Reads the keyboard state from \doxylink{class_game_view}{Game\+View} and moves the player. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_controller_ab7973098f16a6e9693a3bc8f9b8be16b}{check\+State\+Transitions}} ()
+\begin{DoxyCompactList}\small\item\em Checks for win/\+loss conditions and level-\/completion after each tick. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_controller_acd33dbab7544eb14b29a42d406c90d8c}{transition\+To}} (\doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428}{App\+State}} new\+State)
+\begin{DoxyCompactList}\small\item\em Moves the application to a terminal state (GAME\+\_\+\+OVER or VICTORY). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_controller_a5233fae69bd8d2e248154bf880e15efb}{toggle\+Pause}} ()
+\begin{DoxyCompactList}\small\item\em Toggles between PLAYING and PAUSED states. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_game_view}{Game\+View}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_controller_a321699ec1dc75c7017fa8b77f265eeef}{its\+Game\+View}}
+\begin{DoxyCompactList}\small\item\em Owned pointer to the main game view. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_game_model}{Game\+Model}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_controller_af3b514a4651190e777aca2016d8d657c}{its\+Game\+Model}}
+\begin{DoxyCompactList}\small\item\em Owned pointer to the global game state. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_level_controller}{Level\+Controller}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_controller_a55e8feea79da14acef9e1f18a2f3040b}{level\+Ctrl}}
+\begin{DoxyCompactList}\small\item\em Handles per-\/level entity logic and collisions. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_market_controller}{Market\+Controller}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_controller_a2138f4c951799fcd067ddccf309e1f3f}{its\+Market\+Controller}}
+\begin{DoxyCompactList}\small\item\em Manages the between-\/level upgrade shop. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428}{App\+State}} \doxymbox{\hyperlink{class_game_controller_ab2fd1cda3de597b26f8cacf121f5f547}{current\+State}}
+\begin{DoxyCompactList}\small\item\em Drives which branch of \doxylink{class_game_controller_ab1eba12fd26da477e91cddf3bd9b5496}{slt\+\_\+tick()} executes. \end{DoxyCompactList}\item 
+QTimer \doxymbox{\hyperlink{class_game_controller_ae07676567bf0d97ce7da0134afba428e}{game\+Timer}}
+\begin{DoxyCompactList}\small\item\em Fires \doxylink{class_game_controller_ab1eba12fd26da477e91cddf3bd9b5496}{slt\+\_\+tick()} at \texorpdfstring{$\sim$}{\string~}60 FPS. \end{DoxyCompactList}\item 
+QElapsed\+Timer \doxymbox{\hyperlink{class_game_controller_a5be026de2023c616d2c97e510529e3e7}{elapsed\+Timer}}
+\begin{DoxyCompactList}\small\item\em Measures real elapsed time for dt calculation. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_game_controller_aafeb8e14344219616092aed665d029d7}{current\+Level\+Index}}
+\begin{DoxyCompactList}\small\item\em 0-\/based index of the currently loaded level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Orchestrator of the in-\/game MVC loop. 
+
+Responsibilities (single-\/responsibility breakdown):\+
+\begin{DoxyItemize}
+\item Creates and links \doxylink{class_game_model}{Game\+Model}, \doxylink{class_game_view}{Game\+View} and \doxylink{class_level_controller}{Level\+Controller}.
+\item Loads a level via \doxylink{class_level_builder}{Level\+Builder} using descriptors from \doxylink{class_level_registry}{Level\+Registry}.
+\item Reads keyboard/\+mouse input from \doxylink{class_game_view}{Game\+View} on every tick.
+\item Delegates physics and AI to \doxylink{class_level_controller_aae80ed7c5005afa9ed3c1f9b4ce7db00}{Level\+Controller::\+update()}.
+\item Detects state transitions (PLAYING → GAME\+\_\+\+OVER /\+ VICTORY /\+ MARKET).
+\item Opens \doxylink{class_market_controller}{Market\+Controller} between levels without exposing it to the view.
+\end{DoxyItemize}
+
+The QTimer drives the game loop at \texorpdfstring{$\sim$}{\string~}60 FPS (\doxylink{namespace_cfg_a66f5c4418edf282f2c5800098d222412}{Cfg::\+\+TIMER\+\_\+\+MS}). QElapsed\+Timer measures real elapsed milliseconds so that dt is accurate even if a tick fires slightly late (avoids physics drift on slow machines). 
+
+\label{class_game_controller_doc-constructors}
+\Hypertarget{class_game_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_game_controller_aef3561983ace9c1bbaba75cb69c21daf}\index{GameController@{GameController}!GameController@{GameController}}
+\index{GameController@{GameController}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{GameController()}{GameController()}}
+{\footnotesize\ttfamily \label{class_game_controller_aef3561983ace9c1bbaba75cb69c21daf} 
+Game\+Controller::\+\+Game\+Controller (\begin{DoxyParamCaption}\item[{QObject \texorpdfstring{$\ast$}{*}}]{parent}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs \doxylink{class_game_controller}{Game\+Controller} and allocates all owned sub-\/objects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Qt parent object (usually \doxylink{class_app_controller}{App\+Controller}). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_controller_aab436961a422d078975bc7a49bdfcab7}\index{GameController@{GameController}!````~GameController@{\texorpdfstring{$\sim$}{\string~}GameController}}
+\index{````~GameController@{\texorpdfstring{$\sim$}{\string~}GameController}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}GameController()}{\string~GameController()}}
+{\footnotesize\ttfamily \label{class_game_controller_aab436961a422d078975bc7a49bdfcab7} 
+Game\+Controller::\+\texorpdfstring{$\sim$}{\string~}\+Game\+Controller (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\label{class_game_controller_doc-func-members}
+\Hypertarget{class_game_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_game_controller_ab7973098f16a6e9693a3bc8f9b8be16b}\index{GameController@{GameController}!checkStateTransitions@{checkStateTransitions}}
+\index{checkStateTransitions@{checkStateTransitions}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{checkStateTransitions()}{checkStateTransitions()}}
+{\footnotesize\ttfamily \label{class_game_controller_ab7973098f16a6e9693a3bc8f9b8be16b} 
+void Game\+Controller::\+check\+State\+Transitions (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks for win/\+loss conditions and level-\/completion after each tick. 
+
+Separated from \doxylink{class_game_controller_ab1eba12fd26da477e91cddf3bd9b5496}{slt\+\_\+tick()} to keep the tick function readable. Triggers \doxylink{class_game_controller_a8c27c7d42c5275f7b8407e2c982b490d}{load\+Level()}, \doxylink{class_market_controller_af72fd62631683d7f0eee5172acb20bf0}{Market\+Controller::\+open()} or \doxylink{class_game_controller_acd33dbab7544eb14b29a42d406c90d8c}{transition\+To()} as needed. \Hypertarget{class_game_controller_a60b0ae58b0cba05e669742e959429d69}\index{GameController@{GameController}!getPlayer@{getPlayer}}
+\index{getPlayer@{getPlayer}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{getPlayer()}{getPlayer()}}
+{\footnotesize\ttfamily \label{class_game_controller_a60b0ae58b0cba05e669742e959429d69} 
+\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \texorpdfstring{$\ast$}{*} Game\+Controller::\+get\+Player (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the player model for external queries (e.\+g. \doxylink{class_app_controller}{App\+Controller} HUD). 
+
+\begin{DoxyReturn}{Returns}
+Pointer to \doxylink{class_player_model}{Player\+Model}, or nullptr if the model is not yet initialised. 
+\end{DoxyReturn}
+\Hypertarget{class_game_controller_a2b9c7a512a367adafbd9673734b2d271}\index{GameController@{GameController}!getView@{getView}}
+\index{getView@{getView}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{getView()}{getView()}}
+{\footnotesize\ttfamily \label{class_game_controller_a2b9c7a512a367adafbd9673734b2d271} 
+\doxymbox{\hyperlink{class_game_view}{Game\+View}} \texorpdfstring{$\ast$}{*} Game\+Controller::\+get\+View (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the game view so \doxylink{class_app_controller}{App\+Controller} can embed it in the main window. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to \doxylink{class_game_view}{Game\+View}. 
+\end{DoxyReturn}
+\Hypertarget{class_game_controller_aff737ecca819c0b724405246c8d23d95}\index{GameController@{GameController}!handleInput@{handleInput}}
+\index{handleInput@{handleInput}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{handleInput()}{handleInput()}}
+{\footnotesize\ttfamily \label{class_game_controller_aff737ecca819c0b724405246c8d23d95} 
+void Game\+Controller::\+handle\+Input (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reads the keyboard state from \doxylink{class_game_view}{Game\+View} and moves the player. 
+
+Movement uses AZERTY (Z/\+\+Q/\+\+S/\+D) and arrow keys as specified in the GDD (Step 5 — Movement rules). Diagonal movement is supported naturally because multiple keys can be held simultaneously.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta-\/time in seconds. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_controller_ae4f4427947217135ce9f51fd737388bb}\index{GameController@{GameController}!init@{init}}
+\index{init@{init}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{class_game_controller_ae4f4427947217135ce9f51fd737388bb} 
+void Game\+Controller::\+init (\begin{DoxyParamCaption}\item[{bool}]{start\+Music}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+
+
+Wires all signals, loads the first level and starts the game loop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Music} & If true, picks a random in-\/game track. Pass false on "{}\+Restart"{} to avoid cutting the current track mid-\/play. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_controller_a8c27c7d42c5275f7b8407e2c982b490d}\index{GameController@{GameController}!loadLevel@{loadLevel}}
+\index{loadLevel@{loadLevel}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{loadLevel()}{loadLevel()}}
+{\footnotesize\ttfamily \label{class_game_controller_a8c27c7d42c5275f7b8407e2c982b490d} 
+void Game\+Controller::\+load\+Level (\begin{DoxyParamCaption}\item[{int}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Loads and initialises a level by index using \doxylink{class_level_registry}{Level\+Registry}. 
+
+Clears the current scene, asks \doxylink{class_level_builder}{Level\+Builder} to populate model + scene, then repositions the player at the new spawn point. \doxylink{class_level_registry_a2f62eb2dcf0c4eb1d90e6903b3f0a36f}{Level\+Registry::\+init()} MUST be called before the first \doxylink{class_game_controller_a8c27c7d42c5275f7b8407e2c982b490d}{load\+Level()} call to avoid a modulo-\/by-\/zero crash.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & 0-\/based level index. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_controller_a41c8fd3ed6f37bcea5ef50c50b2275e9}\index{GameController@{GameController}!sigBackMenu@{sigBackMenu}}
+\index{sigBackMenu@{sigBackMenu}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{sigBackMenu}{sigBackMenu}}
+{\footnotesize\ttfamily \label{class_game_controller_a41c8fd3ed6f37bcea5ef50c50b2275e9} 
+void Game\+Controller::\+sig\+Back\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Bubbled up to \doxylink{class_app_controller}{App\+Controller} to return to the main menu. 
+
+\Hypertarget{class_game_controller_a4952e9017b93fb13fa44afab4fdfcddd}\index{GameController@{GameController}!sigRestart@{sigRestart}}
+\index{sigRestart@{sigRestart}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{sigRestart}{sigRestart}}
+{\footnotesize\ttfamily \label{class_game_controller_a4952e9017b93fb13fa44afab4fdfcddd} 
+void Game\+Controller::\+sig\+Restart (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Bubbled up to \doxylink{class_app_controller}{App\+Controller} to re-\/create a fresh \doxylink{class_game_controller}{Game\+Controller} (full restart). 
+
+\Hypertarget{class_game_controller_ab1eba12fd26da477e91cddf3bd9b5496}\index{GameController@{GameController}!slt\_tick@{slt\_tick}}
+\index{slt\_tick@{slt\_tick}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{slt\_tick}{slt\_tick}}
+{\footnotesize\ttfamily \label{class_game_controller_ab1eba12fd26da477e91cddf3bd9b5496} 
+void Game\+Controller::\+slt\+\_\+tick (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Main game-\/loop tick — called by game\+Timer at \texorpdfstring{$\sim$}{\string~}60 FPS. 
+
+Computes dt, dispatches input, updates model, checks transitions and requests a view repaint, in that order. \Hypertarget{class_game_controller_ad9ace4b20a5635adb22fcb97dbd09bbb}\index{GameController@{GameController}!sltPauseMenu@{sltPauseMenu}}
+\index{sltPauseMenu@{sltPauseMenu}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{sltPauseMenu}{sltPauseMenu}}
+{\footnotesize\ttfamily \label{class_game_controller_ad9ace4b20a5635adb22fcb97dbd09bbb} 
+void Game\+Controller::\+slt\+Pause\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Slot triggered when the player chooses "{}\+Back to menu"{} from the pause overlay. 
+
+Intercepts the "{}back to menu"{} signal from the pause overlay.
+
+Hides the pause overlay and bubbles sig\+Back\+Menu up to \doxylink{class_app_controller}{App\+Controller} so the state machine transition (PLAYING → MENU) stays in \doxylink{class_app_controller}{App\+Controller}. \Hypertarget{class_game_controller_a5233fae69bd8d2e248154bf880e15efb}\index{GameController@{GameController}!togglePause@{togglePause}}
+\index{togglePause@{togglePause}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{togglePause()}{togglePause()}}
+{\footnotesize\ttfamily \label{class_game_controller_a5233fae69bd8d2e248154bf880e15efb} 
+void Game\+Controller::\+toggle\+Pause (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Toggles between PLAYING and PAUSED states. 
+
+Also restarts elapsed\+Timer on resume to prevent a large dt spike that would cause entities to jump after a long pause. \Hypertarget{class_game_controller_acd33dbab7544eb14b29a42d406c90d8c}\index{GameController@{GameController}!transitionTo@{transitionTo}}
+\index{transitionTo@{transitionTo}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{transitionTo()}{transitionTo()}}
+{\footnotesize\ttfamily \label{class_game_controller_acd33dbab7544eb14b29a42d406c90d8c} 
+void Game\+Controller::\+transition\+To (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428}{App\+State}}}]{new\+State}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Moves the application to a terminal state (GAME\+\_\+\+OVER or VICTORY). 
+
+Stops the game timer so no further ticks execute, then asks the view to display the appropriate overlay message.
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+State} & Target state (\doxylink{config_8h_a83fc559664fc7c7e310c93586457b428af8454a27e1df41397bf42444fe5aa45b}{App\+State::\+\+GAME\+\_\+\+OVER} or \doxylink{config_8h_a83fc559664fc7c7e310c93586457b428ae0651864a549515538cb104b7b32e75d}{App\+State::\+\+VICTORY}). \\
+\hline
+\end{DoxyParams}
+
+
+\label{class_game_controller_doc-variable-members}
+\Hypertarget{class_game_controller_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_game_controller_aafeb8e14344219616092aed665d029d7}\index{GameController@{GameController}!currentLevelIndex@{currentLevelIndex}}
+\index{currentLevelIndex@{currentLevelIndex}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{currentLevelIndex}{currentLevelIndex}}
+{\footnotesize\ttfamily \label{class_game_controller_aafeb8e14344219616092aed665d029d7} 
+int Game\+Controller::\+current\+Level\+Index\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+0-\/based index of the currently loaded level. 
+
+\Hypertarget{class_game_controller_ab2fd1cda3de597b26f8cacf121f5f547}\index{GameController@{GameController}!currentState@{currentState}}
+\index{currentState@{currentState}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{currentState}{currentState}}
+{\footnotesize\ttfamily \label{class_game_controller_ab2fd1cda3de597b26f8cacf121f5f547} 
+\doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428}{App\+State}} Game\+Controller::\+current\+State\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Drives which branch of \doxylink{class_game_controller_ab1eba12fd26da477e91cddf3bd9b5496}{slt\+\_\+tick()} executes. 
+
+\Hypertarget{class_game_controller_a5be026de2023c616d2c97e510529e3e7}\index{GameController@{GameController}!elapsedTimer@{elapsedTimer}}
+\index{elapsedTimer@{elapsedTimer}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{elapsedTimer}{elapsedTimer}}
+{\footnotesize\ttfamily \label{class_game_controller_a5be026de2023c616d2c97e510529e3e7} 
+QElapsed\+Timer Game\+Controller::\+elapsed\+Timer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Measures real elapsed time for dt calculation. 
+
+\Hypertarget{class_game_controller_ae07676567bf0d97ce7da0134afba428e}\index{GameController@{GameController}!gameTimer@{gameTimer}}
+\index{gameTimer@{gameTimer}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{gameTimer}{gameTimer}}
+{\footnotesize\ttfamily \label{class_game_controller_ae07676567bf0d97ce7da0134afba428e} 
+QTimer Game\+Controller::\+game\+Timer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Fires \doxylink{class_game_controller_ab1eba12fd26da477e91cddf3bd9b5496}{slt\+\_\+tick()} at \texorpdfstring{$\sim$}{\string~}60 FPS. 
+
+\Hypertarget{class_game_controller_af3b514a4651190e777aca2016d8d657c}\index{GameController@{GameController}!itsGameModel@{itsGameModel}}
+\index{itsGameModel@{itsGameModel}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{itsGameModel}{itsGameModel}}
+{\footnotesize\ttfamily \label{class_game_controller_af3b514a4651190e777aca2016d8d657c} 
+\doxymbox{\hyperlink{class_game_model}{Game\+Model}}\texorpdfstring{$\ast$}{*} Game\+Controller::\+its\+Game\+Model\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Owned pointer to the global game state. 
+
+\Hypertarget{class_game_controller_a321699ec1dc75c7017fa8b77f265eeef}\index{GameController@{GameController}!itsGameView@{itsGameView}}
+\index{itsGameView@{itsGameView}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{itsGameView}{itsGameView}}
+{\footnotesize\ttfamily \label{class_game_controller_a321699ec1dc75c7017fa8b77f265eeef} 
+\doxymbox{\hyperlink{class_game_view}{Game\+View}}\texorpdfstring{$\ast$}{*} Game\+Controller::\+its\+Game\+View\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Owned pointer to the main game view. 
+
+\Hypertarget{class_game_controller_a2138f4c951799fcd067ddccf309e1f3f}\index{GameController@{GameController}!itsMarketController@{itsMarketController}}
+\index{itsMarketController@{itsMarketController}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{itsMarketController}{itsMarketController}}
+{\footnotesize\ttfamily \label{class_game_controller_a2138f4c951799fcd067ddccf309e1f3f} 
+\doxymbox{\hyperlink{class_market_controller}{Market\+Controller}}\texorpdfstring{$\ast$}{*} Game\+Controller::\+its\+Market\+Controller\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Manages the between-\/level upgrade shop. 
+
+\Hypertarget{class_game_controller_a55e8feea79da14acef9e1f18a2f3040b}\index{GameController@{GameController}!levelCtrl@{levelCtrl}}
+\index{levelCtrl@{levelCtrl}!GameController@{GameController}}
+\doxysubsubsection{\texorpdfstring{levelCtrl}{levelCtrl}}
+{\footnotesize\ttfamily \label{class_game_controller_a55e8feea79da14acef9e1f18a2f3040b} 
+\doxymbox{\hyperlink{class_level_controller}{Level\+Controller}}\texorpdfstring{$\ast$}{*} Game\+Controller::\+level\+Ctrl\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Handles per-\/level entity logic and collisions. 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{gamecontroller_8h}{gamecontroller.\+h}}\item 
+build/\+\+Desktop\+\_\+\+Qt\+\_\+6\+\_\+10\+\_\+0\+\_\+\+Min\+GW\+\_\+64\+\_\+bit-\/\+Release/\+release/\+\doxymbox{\hyperlink{moc__gamecontroller_8cpp}{moc\+\_\+gamecontroller.\+cpp}}\item 
+Sources/\+\doxymbox{\hyperlink{gamecontroller_8cpp}{gamecontroller.\+cpp}}\end{DoxyCompactItemize}

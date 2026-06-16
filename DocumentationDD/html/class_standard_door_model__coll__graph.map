@@ -1,0 +1,9 @@
+<map id="StandardDoorModel" name="StandardDoorModel">
+<area shape="rect" id="Node000001" title="Standard door that opens on simple contact with the player." alt="" coords="5,768,152,923"/>
+<area shape="rect" id="Node000002" href="$class_global_door.html" title="Base entity from which standard doors, boss doors and level&#45;exit zones inherit." alt="" coords="30,649,127,719"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,731,81,769,76,768,78,736"/>
+<area shape="rect" id="Node000003" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="30,296,127,600"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="79,612,81,650,76,649,78,618"/>
+<area shape="rect" id="Node000004" href="$class_vector2f.html" title="Mathematical class describing 2D vectors (position, velocity)." alt="" coords="31,5,126,224"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="79,221,81,279,76,279,79,226"/>
+</map>

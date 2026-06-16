@@ -1,0 +1,5 @@
+<map id="FloorModel" name="FloorModel">
+<area shape="rect" id="Node000001" title="Entité statique décorative représentant une tile de sol." alt="" coords="5,379,121,533"/>
+<area shape="rect" id="Node000002" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="15,5,112,331"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,343,66,379,61,378,63,348"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="GameController" name="GameController">
+<area shape="rect" id="Node000001" title="Orchestrator of the in&#45;game MVC loop." alt="" coords="5,123,167,576"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="57,5,116,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,87,89,123,84,123,86,92"/>
+</map>

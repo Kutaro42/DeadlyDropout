@@ -1,0 +1,150 @@
+\doxysection{Menu\+Controller Class Reference}
+\hypertarget{class_menu_controller}{}\label{class_menu_controller}\index{MenuController@{MenuController}}
+
+
+Controller responsible for handling interactions on the welcome screen.  
+
+
+
+
+{\ttfamily \+\#include $<$menucontroller.\+h$>$}
+
+
+
+Inheritance diagram for Menu\+Controller:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{class_menu_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Menu\+Controller:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{class_menu_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_menu_controller_a791101315168ab9588fb18d3b65b3808}{sig\+Game\+Request}} ()
+\begin{DoxyCompactList}\small\item\em Emitted when the player clicks "{}\+Play"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_menu_controller_a112262cb5208b4b0aa7589aa4cc118e3}{Menu\+Controller}} (QObject \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructs \doxylink{class_menu_controller}{Menu\+Controller} and connects \doxylink{class_menu_view}{Menu\+View} signals. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_menu_controller_af33dcf0d9c7e0f8eac0f1f04729d77e3}{\texorpdfstring{$\sim$}{\string~}\+Menu\+Controller}} ()
+\begin{DoxyCompactList}\small\item\em Destructor — frees the owned \doxylink{class_menu_view}{Menu\+View}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_menu_view}{Menu\+View}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_menu_controller_adc76c13e18e560947a4b17dff7cc39e0}{get\+Menu\+View}} ()
+\begin{DoxyCompactList}\small\item\em Accessor for the managed \doxylink{class_menu_view}{Menu\+View} instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_menu_view}{Menu\+View}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_menu_controller_a6356168136c9d5cc27c5cfb40cbfb47c}{its\+Menu\+View}}
+\begin{DoxyCompactList}\small\item\em Pointer to the menu GUI; owned and deleted by this controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controller responsible for handling interactions on the welcome screen. 
+
+Sits between \doxylink{class_menu_view}{Menu\+View} and \doxylink{class_app_controller}{App\+Controller} in the MVC chain. Its only job is to relay the "{}\+Play"{} click upward as sig\+Game\+Request so that \doxylink{class_app_controller}{App\+Controller} — not the view — owns the decision to switch application state. Keeping this relay in a dedicated controller means the view can be replaced (e.\+g. a full-\/screen animated intro) without changing \doxylink{class_app_controller}{App\+Controller}. 
+
+\label{class_menu_controller_doc-constructors}
+\Hypertarget{class_menu_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_menu_controller_a112262cb5208b4b0aa7589aa4cc118e3}\index{MenuController@{MenuController}!MenuController@{MenuController}}
+\index{MenuController@{MenuController}!MenuController@{MenuController}}
+\doxysubsubsection{\texorpdfstring{MenuController()}{MenuController()}}
+{\footnotesize\ttfamily \label{class_menu_controller_a112262cb5208b4b0aa7589aa4cc118e3} 
+Menu\+Controller::\+\+Menu\+Controller (\begin{DoxyParamCaption}\item[{QObject \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})}
+
+
+
+Constructs \doxylink{class_menu_controller}{Menu\+Controller} and connects \doxylink{class_menu_view}{Menu\+View} signals. 
+
+Constructs \doxylink{class_menu_controller}{Menu\+Controller}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Optional Qt parent object (nullptr by default).\\
+\hline
+\end{DoxyParams}
+Allocates the view and wires its sig\+Game\+Rq signal to the local sig\+Game\+Request signal so the caller (\doxylink{class_app_controller}{App\+Controller}) only has to know about one signal type, decoupling it from \doxylink{class_menu_view}{Menu\+View}\textquotesingle{}s internal naming.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Optional Qt parent object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_menu_controller_af33dcf0d9c7e0f8eac0f1f04729d77e3}\index{MenuController@{MenuController}!````~MenuController@{\texorpdfstring{$\sim$}{\string~}MenuController}}
+\index{````~MenuController@{\texorpdfstring{$\sim$}{\string~}MenuController}!MenuController@{MenuController}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}MenuController()}{\string~MenuController()}}
+{\footnotesize\ttfamily \label{class_menu_controller_af33dcf0d9c7e0f8eac0f1f04729d77e3} 
+Menu\+Controller::\+\texorpdfstring{$\sim$}{\string~}\+Menu\+Controller (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor — frees the owned \doxylink{class_menu_view}{Menu\+View}. 
+
+Destructor — releases the owned \doxylink{class_menu_view}{Menu\+View}. 
+
+\label{class_menu_controller_doc-func-members}
+\Hypertarget{class_menu_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_menu_controller_adc76c13e18e560947a4b17dff7cc39e0}\index{MenuController@{MenuController}!getMenuView@{getMenuView}}
+\index{getMenuView@{getMenuView}!MenuController@{MenuController}}
+\doxysubsubsection{\texorpdfstring{getMenuView()}{getMenuView()}}
+{\footnotesize\ttfamily \label{class_menu_controller_adc76c13e18e560947a4b17dff7cc39e0} 
+\doxymbox{\hyperlink{class_menu_view}{Menu\+View}} \texorpdfstring{$\ast$}{*} Menu\+Controller::\+get\+Menu\+View (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Accessor for the managed \doxylink{class_menu_view}{Menu\+View} instance. 
+
+Returns a pointer to the managed \doxylink{class_menu_view}{Menu\+View}.
+
+\doxylink{class_app_controller}{App\+Controller} calls this to embed the widget inside the main QStacked\+Widget without having to create the view itself, preserving encapsulation.
+
+\begin{DoxyReturn}{Returns}
+Pointer to the \doxylink{class_menu_view}{Menu\+View} instance.
+
+Pointer to the \doxylink{class_menu_view}{Menu\+View} instance. 
+\end{DoxyReturn}
+\Hypertarget{class_menu_controller_a791101315168ab9588fb18d3b65b3808}\index{MenuController@{MenuController}!sigGameRequest@{sigGameRequest}}
+\index{sigGameRequest@{sigGameRequest}!MenuController@{MenuController}}
+\doxysubsubsection{\texorpdfstring{sigGameRequest}{sigGameRequest}}
+{\footnotesize\ttfamily \label{class_menu_controller_a791101315168ab9588fb18d3b65b3808} 
+void Menu\+Controller::\+sig\+Game\+Request (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Emitted when the player clicks "{}\+Play"{}. 
+
+\doxylink{class_app_controller}{App\+Controller} connects to this signal to trigger the MENU → PLAYING state transition defined in the GDD state machine (Step 7). 
+
+\label{class_menu_controller_doc-variable-members}
+\Hypertarget{class_menu_controller_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_menu_controller_a6356168136c9d5cc27c5cfb40cbfb47c}\index{MenuController@{MenuController}!itsMenuView@{itsMenuView}}
+\index{itsMenuView@{itsMenuView}!MenuController@{MenuController}}
+\doxysubsubsection{\texorpdfstring{itsMenuView}{itsMenuView}}
+{\footnotesize\ttfamily \label{class_menu_controller_a6356168136c9d5cc27c5cfb40cbfb47c} 
+\doxymbox{\hyperlink{class_menu_view}{Menu\+View}}\texorpdfstring{$\ast$}{*} Menu\+Controller::\+its\+Menu\+View\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the menu GUI; owned and deleted by this controller. 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{menucontroller_8h}{menucontroller.\+h}}\item 
+build/\+\+Desktop\+\_\+\+Qt\+\_\+6\+\_\+10\+\_\+0\+\_\+\+Min\+GW\+\_\+64\+\_\+bit-\/\+Release/\+release/\+\doxymbox{\hyperlink{moc__menucontroller_8cpp}{moc\+\_\+menucontroller.\+cpp}}\item 
+Sources/\+\doxymbox{\hyperlink{menucontroller_8cpp}{menucontroller.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,5 @@
+<map id="PlayerModel" name="PlayerModel">
+<area shape="rect" id="Node000001" title="Model encapsulating the player&#39;s properties, resources and actions." alt="" coords="5,379,154,1387"/>
+<area shape="rect" id="Node000002" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="31,5,128,331"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,343,82,379,77,379,80,348"/>
+</map>

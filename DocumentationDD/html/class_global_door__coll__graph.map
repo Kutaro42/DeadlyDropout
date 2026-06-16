@@ -1,0 +1,7 @@
+<map id="GlobalDoor" name="GlobalDoor">
+<area shape="rect" id="Node000001" title="Base entity from which standard doors, boss doors and level&#45;exit zones inherit." alt="" coords="5,649,102,719"/>
+<area shape="rect" id="Node000002" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="5,296,102,600"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="55,613,56,650,51,649,53,617"/>
+<area shape="rect" id="Node000003" href="$class_vector2f.html" title="Mathematical class describing 2D vectors (position, velocity)." alt="" coords="6,5,101,224"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="54,221,56,279,51,279,54,226"/>
+</map>

@@ -1,0 +1,160 @@
+\doxysection{Exit\+Door\+Model Class Reference}
+\hypertarget{class_exit_door_model}{}\label{class_exit_door_model}\index{ExitDoorModel@{ExitDoorModel}}
+
+
+Represents the portal that allows you to advance to the next level.  
+
+
+
+
+{\ttfamily \+\#include $<$exitdoormodel.\+h$>$}
+
+
+
+Inheritance diagram for Exit\+Door\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{class_exit_door_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Exit\+Door\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_exit_door_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_exit_door_model_a1aac743f1b0a64b2cff1609a80514e8a}{Exit\+Door\+Model}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float w, float h)
+\begin{DoxyCompactList}\small\item\em Constructor of the exit zone. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_exit_door_model_ad1c1fa748d835b10c6f40176d4c29948}{update}} (float dt) override
+\begin{DoxyCompactList}\small\item\em Update to the entity\textquotesingle{}s internal logic. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_exit_door_model_a9cfae32daa5f29a8c725d8dc5d506596}{open\+Door}} ()
+\item 
+bool \doxymbox{\hyperlink{class_exit_door_model_ad79afe25cc1620a1aaa2a15c83136d2e}{is\+Open}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_global_door}{Global\+Door}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_global_door_ad9b6202569c5bc960e9527ded51b5f27}{Global\+Door}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float w, float h)
+\begin{DoxyCompactList}\small\item\em Constructs a door entity at a given position with explicit dimensions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_entity_acaf2ad84607691b229cddab1da0bf819}{Entity}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float w, float h)
+\begin{DoxyCompactList}\small\item\em Constructor of the entity. \end{DoxyCompactList}\item 
+virtual \doxymbox{\hyperlink{class_entity_ac479d009ddde62dfb378ca0a70d81307}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual shredder. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_afdda0263db3d2e465a6ae6bad91eb990}{get\+Position}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a5f154968f2a478ea924460c78e0cd39e}{get\+Width}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a1332918563adb284c0fd432d47486d44}{get\+Height}} () const
+\item 
+bool \doxymbox{\hyperlink{class_entity_aea1c1568b4123d989c5310697030ad77}{is\+Active}} () const
+\item 
+void \doxymbox{\hyperlink{class_entity_ac5164b8c832f9a055df976527fe10032}{set\+Active}} (bool a)
+\item 
+void \doxymbox{\hyperlink{class_entity_a575ec530746fbb3eca1baddec2d0b030}{set\+Position}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos)
+\item 
+QRectF \doxymbox{\hyperlink{class_entity_ae00b70bd40800a8bd23c38b1c84404a9}{get\+Collider}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the entity\textquotesingle{}s collision bounding box. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{class_exit_door_model_a8179954e124e0fd2ac64a71808c65d16}{open}}
+\begin{DoxyCompactList}\small\item\em Indicates whether the door is unlocked. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_a6af9d6498134ad0906011778bc5736db}{position}}
+\begin{DoxyCompactList}\small\item\em The entity\textquotesingle{}s 2D coordinates. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_adadfcc784f30b51b8e49f8230a56b793}{width}}
+\begin{DoxyCompactList}\small\item\em The physical width of the entity in pixels. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_a4550dc1011f47f6c4bb86e564e7d605b}{height}}
+\begin{DoxyCompactList}\small\item\em The physical height of the entity in pixels. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_entity_a939da33e8b67b1d2ee227930aa72da3b}{active}}
+\begin{DoxyCompactList}\small\item\em Status of the entity (false if dead or destroyed). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the portal that allows you to advance to the next level. 
+
+\label{class_exit_door_model_doc-constructors}
+\Hypertarget{class_exit_door_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_exit_door_model_a1aac743f1b0a64b2cff1609a80514e8a}\index{ExitDoorModel@{ExitDoorModel}!ExitDoorModel@{ExitDoorModel}}
+\index{ExitDoorModel@{ExitDoorModel}!ExitDoorModel@{ExitDoorModel}}
+\doxysubsubsection{\texorpdfstring{ExitDoorModel()}{ExitDoorModel()}}
+{\footnotesize\ttfamily \label{class_exit_door_model_a1aac743f1b0a64b2cff1609a80514e8a} 
+Exit\+Door\+Model::\+\+Exit\+Door\+Model (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{pos}{, }\item[{float}]{w}{, }\item[{float}]{h}{}\end{DoxyParamCaption})}
+
+
+
+Constructor of the exit zone. 
+
+
+
+\label{class_exit_door_model_doc-func-members}
+\Hypertarget{class_exit_door_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_exit_door_model_ad79afe25cc1620a1aaa2a15c83136d2e}\index{ExitDoorModel@{ExitDoorModel}!isOpen@{isOpen}}
+\index{isOpen@{isOpen}!ExitDoorModel@{ExitDoorModel}}
+\doxysubsubsection{\texorpdfstring{isOpen()}{isOpen()}}
+{\footnotesize\ttfamily \label{class_exit_door_model_ad79afe25cc1620a1aaa2a15c83136d2e} 
+bool Exit\+Door\+Model::\+is\+Open (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_exit_door_model_a9cfae32daa5f29a8c725d8dc5d506596}\index{ExitDoorModel@{ExitDoorModel}!openDoor@{openDoor}}
+\index{openDoor@{openDoor}!ExitDoorModel@{ExitDoorModel}}
+\doxysubsubsection{\texorpdfstring{openDoor()}{openDoor()}}
+{\footnotesize\ttfamily \label{class_exit_door_model_a9cfae32daa5f29a8c725d8dc5d506596} 
+void Exit\+Door\+Model::\+open\+Door (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_exit_door_model_ad1c1fa748d835b10c6f40176d4c29948}\index{ExitDoorModel@{ExitDoorModel}!update@{update}}
+\index{update@{update}!ExitDoorModel@{ExitDoorModel}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_exit_door_model_ad1c1fa748d835b10c6f40176d4c29948} 
+void Exit\+Door\+Model::\+update (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Update to the entity\textquotesingle{}s internal logic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & :\+ Time elapsed since the last update (in seconds). \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \doxymbox{\hyperlink{class_entity_a21ab7babefa5e4525535a76cef1415f2}{Entity}}.
+
+
+
+\label{class_exit_door_model_doc-variable-members}
+\Hypertarget{class_exit_door_model_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_exit_door_model_a8179954e124e0fd2ac64a71808c65d16}\index{ExitDoorModel@{ExitDoorModel}!open@{open}}
+\index{open@{open}!ExitDoorModel@{ExitDoorModel}}
+\doxysubsubsection{\texorpdfstring{open}{open}}
+{\footnotesize\ttfamily \label{class_exit_door_model_a8179954e124e0fd2ac64a71808c65d16} 
+bool Exit\+Door\+Model::\+open\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Indicates whether the door is unlocked. 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{exitdoormodel_8h}{exitdoormodel.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{exitdoormodel_8cpp}{exitdoormodel.\+cpp}}\end{DoxyCompactItemize}

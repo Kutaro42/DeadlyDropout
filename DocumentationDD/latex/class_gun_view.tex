@@ -1,0 +1,252 @@
+\doxysection{Gun\+View Class Reference}
+\hypertarget{class_gun_view}{}\label{class_gun_view}\index{GunView@{GunView}}
+
+
+Graphics item for the pistol:\+ anchored on the player and rotated toward the cursor.  
+
+
+
+
+{\ttfamily \+\#include $<$gunview.\+h$>$}
+
+
+
+Inheritance diagram for Gun\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{class_gun_view__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Gun\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_gun_view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_gun_view_ad3696cdf833dcbe5155c8032f1ebabbb}{Gun\+View}} (\doxymbox{\hyperlink{class_gun_model}{Gun\+Model}} \texorpdfstring{$\ast$}{*}gun\+Model, \doxymbox{\hyperlink{class_player_model}{Player\+Model}} \texorpdfstring{$\ast$}{*}player\+Model, QGraphics\+Item \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructs \doxylink{class_gun_view}{Gun\+View} and sets the rotation anchor point. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_gun_view_add328418b12809fd128caa1a6b8245d0}{update\+View}} (float dt, QPointF mouse\+Scene, QGraphics\+Scene \texorpdfstring{$\ast$}{*}scene)
+\begin{DoxyCompactList}\small\item\em Updates gun position/\+rotation and synchronises bullet views. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_gun_view_a17314b4905c6839604dc0cf32285526f}{sync\+Bullet\+Views}} (QGraphics\+Scene \texorpdfstring{$\ast$}{*}scene)
+\begin{DoxyCompactList}\small\item\em Keeps bullet\+Views in sync with the gun model\textquotesingle{}s active bullet list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static QPixmap \doxymbox{\hyperlink{class_gun_view_a22fe9a8ab5451645e3dd919c364ff632}{load\+Gun\+Sprite}} ()
+\begin{DoxyCompactList}\small\item\em Loads the gun sprite from resources or generates a procedural fallback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_gun_model}{Gun\+Model}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_gun_view_a15b6d68fedf94e3571dbb6757ea957cf}{gun}}
+\begin{DoxyCompactList}\small\item\em Non-\/owning pointer to the gun model. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_gun_view_a80fb6b4a3c4e1a19b430371f1a0ff32e}{player}}
+\begin{DoxyCompactList}\small\item\em Non-\/owning pointer to the player model (for position). \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_gun_view_a888ac1d3215b8f97062676ad14886bc4}{flipped}}
+\begin{DoxyCompactList}\small\item\em True when the sprite is currently displayed mirrored vertically. \end{DoxyCompactList}\item 
+QVector$<$ \doxymbox{\hyperlink{class_bullet_view}{Bullet\+View}} \texorpdfstring{$\ast$}{*} $>$ \doxymbox{\hyperlink{class_gun_view_aaf910a7cd3a8e0bea4ebdd7191f65f87}{bullet\+Views}}
+\begin{DoxyCompactList}\small\item\em Scene items for bullets in flight. \end{DoxyCompactList}\item 
+QVector$<$ \doxymbox{\hyperlink{class_bullet_model}{Bullet\+Model}} \texorpdfstring{$\ast$}{*} $>$ \doxymbox{\hyperlink{class_gun_view_ae6fb6d5498463015b643eae4e465efda}{bullet\+Models}}
+\begin{DoxyCompactList}\small\item\em Parallel array:\+ same indices as bullet\+Views. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr int \doxymbox{\hyperlink{class_gun_view_af0302a6f24ac0c280ab266c7e55bf3dd}{GUN\+\_\+W}} = 32
+\begin{DoxyCompactList}\small\item\em Display width of the gun sprite (px). \end{DoxyCompactList}\item 
+static constexpr int \doxymbox{\hyperlink{class_gun_view_acb1ad76977ec6cd3331cf8ff89d9faa1}{GUN\+\_\+H}} = 32
+\begin{DoxyCompactList}\small\item\em Display height of the gun sprite (px). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Graphics item for the pistol:\+ anchored on the player and rotated toward the cursor. 
+
+Positioning strategy:\+
+\begin{DoxyItemize}
+\item The rotation pivot is set to the LEFT edge of the sprite (anchor point on the player).
+\item set\+Rotation(deg) rotates the sprite around that pivot → no positional drift.
+\item When the cursor is to the left of the player, the sprite is pre-\/flipped vertically via a mirrored QPixmap (NOT via set\+Transform) to avoid conflicting with set\+Rotation.
+\end{DoxyItemize}
+
+Sprite loading order (first non-\/null wins):\+
+\begin{DoxyEnumerate}
+\item :\+/\+images/\+\+Textures/\+\+Player/\+\+Gun/\+gun.png
+\item :\+/\+images/\+\+Textures/\+\+Player/\+gun.png
+\item Procedural fallback (dark-\/grey body + barrel, GUN\+\_\+W × GUN\+\_\+H).
+\end{DoxyEnumerate}
+
+Expected PNG convention:\+ barrel pointing RIGHT (angle 0°), transparent background, any source dimensions (scaled to GUN\+\_\+W × GUN\+\_\+H at runtime).
+
+Bullet management:\+ A \doxylink{class_bullet_view}{Bullet\+View} is created for each new \doxylink{class_bullet_model}{Bullet\+Model} and removed from the scene as soon as the model becomes inactive, keeping scene items in sync with the model. 
+
+\label{class_gun_view_doc-constructors}
+\Hypertarget{class_gun_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_gun_view_ad3696cdf833dcbe5155c8032f1ebabbb}\index{GunView@{GunView}!GunView@{GunView}}
+\index{GunView@{GunView}!GunView@{GunView}}
+\doxysubsubsection{\texorpdfstring{GunView()}{GunView()}}
+{\footnotesize\ttfamily \label{class_gun_view_ad3696cdf833dcbe5155c8032f1ebabbb} 
+Gun\+View::\+\+Gun\+View (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_gun_model}{Gun\+Model}} \texorpdfstring{$\ast$}{*}}]{gun\+Model}{, }\item[{\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \texorpdfstring{$\ast$}{*}}]{player\+Model}{, }\item[{QGraphics\+Item \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs \doxylink{class_gun_view}{Gun\+View} and sets the rotation anchor point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gun\+Model} & Logical gun model owning the \doxylink{class_bullet_model}{Bullet\+Model} list. \\
+\hline
+{\em player\+Model} & Player model providing the anchor position. \\
+\hline
+{\em parent} & Qt parent graphics item (nullptr = directly in scene). \\
+\hline
+\end{DoxyParams}
+
+
+\label{class_gun_view_doc-func-members}
+\Hypertarget{class_gun_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_gun_view_a22fe9a8ab5451645e3dd919c364ff632}\index{GunView@{GunView}!loadGunSprite@{loadGunSprite}}
+\index{loadGunSprite@{loadGunSprite}!GunView@{GunView}}
+\doxysubsubsection{\texorpdfstring{loadGunSprite()}{loadGunSprite()}}
+{\footnotesize\ttfamily \label{class_gun_view_a22fe9a8ab5451645e3dd919c364ff632} 
+QPixmap Gun\+View::\+load\+Gun\+Sprite (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Loads the gun sprite from resources or generates a procedural fallback. 
+
+Result is cached in a static local variable so the file is only read once per process lifetime regardless of how many \doxylink{class_gun_view}{Gun\+View} instances are created.
+
+\begin{DoxyReturn}{Returns}
+Scaled QPixmap ready for set\+Pixmap(). 
+\end{DoxyReturn}
+\Hypertarget{class_gun_view_a17314b4905c6839604dc0cf32285526f}\index{GunView@{GunView}!syncBulletViews@{syncBulletViews}}
+\index{syncBulletViews@{syncBulletViews}!GunView@{GunView}}
+\doxysubsubsection{\texorpdfstring{syncBulletViews()}{syncBulletViews()}}
+{\footnotesize\ttfamily \label{class_gun_view_a17314b4905c6839604dc0cf32285526f} 
+void Gun\+View::\+sync\+Bullet\+Views (\begin{DoxyParamCaption}\item[{QGraphics\+Scene \texorpdfstring{$\ast$}{*}}]{scene}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Keeps bullet\+Views in sync with the gun model\textquotesingle{}s active bullet list. 
+
+Creates new \doxylink{class_bullet_view}{Bullet\+View} entries for newly spawned bullets and removes entries for bullets that have become inactive (hit a wall or enemy). Runs in O(n) per tick where n = number of active bullets.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Qt scene for item insertion/\+removal. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_gun_view_add328418b12809fd128caa1a6b8245d0}\index{GunView@{GunView}!updateView@{updateView}}
+\index{updateView@{updateView}!GunView@{GunView}}
+\doxysubsubsection{\texorpdfstring{updateView()}{updateView()}}
+{\footnotesize\ttfamily \label{class_gun_view_add328418b12809fd128caa1a6b8245d0} 
+void Gun\+View::\+update\+View (\begin{DoxyParamCaption}\item[{float}]{dt}{, }\item[{QPointF}]{mouse\+Scene}{, }\item[{QGraphics\+Scene \texorpdfstring{$\ast$}{*}}]{scene}{}\end{DoxyParamCaption})}
+
+
+
+Updates gun position/\+rotation and synchronises bullet views. 
+
+Called once per game-\/loop tick by \doxylink{class_game_view_a78c5580f2f11884359a2be26fb5942be}{Game\+View::\+update\+All\+Views()}. The cursor position must be in scene coordinates (not widget coordinates) so that the aim direction is correct regardless of camera scroll.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta-\/time in seconds (unused currently, kept for API consistency). \\
+\hline
+{\em mouse\+Scene} & Current cursor position in scene coordinates. \\
+\hline
+{\em scene} & Qt scene used to add/\+remove \doxylink{class_bullet_view}{Bullet\+View} items. \\
+\hline
+\end{DoxyParams}
+
+
+\label{class_gun_view_doc-variable-members}
+\Hypertarget{class_gun_view_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_gun_view_ae6fb6d5498463015b643eae4e465efda}\index{GunView@{GunView}!bulletModels@{bulletModels}}
+\index{bulletModels@{bulletModels}!GunView@{GunView}}
+\doxysubsubsection{\texorpdfstring{bulletModels}{bulletModels}}
+{\footnotesize\ttfamily \label{class_gun_view_ae6fb6d5498463015b643eae4e465efda} 
+QVector$<$\doxymbox{\hyperlink{class_bullet_model}{Bullet\+Model}}\texorpdfstring{$\ast$}{*}$>$ Gun\+View::\+bullet\+Models\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parallel array:\+ same indices as bullet\+Views. 
+
+\Hypertarget{class_gun_view_aaf910a7cd3a8e0bea4ebdd7191f65f87}\index{GunView@{GunView}!bulletViews@{bulletViews}}
+\index{bulletViews@{bulletViews}!GunView@{GunView}}
+\doxysubsubsection{\texorpdfstring{bulletViews}{bulletViews}}
+{\footnotesize\ttfamily \label{class_gun_view_aaf910a7cd3a8e0bea4ebdd7191f65f87} 
+QVector$<$\doxymbox{\hyperlink{class_bullet_view}{Bullet\+View}}\texorpdfstring{$\ast$}{*}$>$ Gun\+View::\+bullet\+Views\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Scene items for bullets in flight. 
+
+\Hypertarget{class_gun_view_a888ac1d3215b8f97062676ad14886bc4}\index{GunView@{GunView}!flipped@{flipped}}
+\index{flipped@{flipped}!GunView@{GunView}}
+\doxysubsubsection{\texorpdfstring{flipped}{flipped}}
+{\footnotesize\ttfamily \label{class_gun_view_a888ac1d3215b8f97062676ad14886bc4} 
+bool Gun\+View::\+flipped\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+True when the sprite is currently displayed mirrored vertically. 
+
+\Hypertarget{class_gun_view_a15b6d68fedf94e3571dbb6757ea957cf}\index{GunView@{GunView}!gun@{gun}}
+\index{gun@{gun}!GunView@{GunView}}
+\doxysubsubsection{\texorpdfstring{gun}{gun}}
+{\footnotesize\ttfamily \label{class_gun_view_a15b6d68fedf94e3571dbb6757ea957cf} 
+\doxymbox{\hyperlink{class_gun_model}{Gun\+Model}}\texorpdfstring{$\ast$}{*} Gun\+View::\+gun\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Non-\/owning pointer to the gun model. 
+
+\Hypertarget{class_gun_view_acb1ad76977ec6cd3331cf8ff89d9faa1}\index{GunView@{GunView}!GUN\_H@{GUN\_H}}
+\index{GUN\_H@{GUN\_H}!GunView@{GunView}}
+\doxysubsubsection{\texorpdfstring{GUN\_H}{GUN\_H}}
+{\footnotesize\ttfamily \label{class_gun_view_acb1ad76977ec6cd3331cf8ff89d9faa1} 
+int Gun\+View::\+\+GUN\+\_\+H = 32\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Display height of the gun sprite (px). 
+
+\Hypertarget{class_gun_view_af0302a6f24ac0c280ab266c7e55bf3dd}\index{GunView@{GunView}!GUN\_W@{GUN\_W}}
+\index{GUN\_W@{GUN\_W}!GunView@{GunView}}
+\doxysubsubsection{\texorpdfstring{GUN\_W}{GUN\_W}}
+{\footnotesize\ttfamily \label{class_gun_view_af0302a6f24ac0c280ab266c7e55bf3dd} 
+int Gun\+View::\+\+GUN\+\_\+W = 32\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Display width of the gun sprite (px). 
+
+\Hypertarget{class_gun_view_a80fb6b4a3c4e1a19b430371f1a0ff32e}\index{GunView@{GunView}!player@{player}}
+\index{player@{player}!GunView@{GunView}}
+\doxysubsubsection{\texorpdfstring{player}{player}}
+{\footnotesize\ttfamily \label{class_gun_view_a80fb6b4a3c4e1a19b430371f1a0ff32e} 
+\doxymbox{\hyperlink{class_player_model}{Player\+Model}}\texorpdfstring{$\ast$}{*} Gun\+View::\+player\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Non-\/owning pointer to the player model (for position). 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{gunview_8h}{gunview.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{gunview_8cpp}{gunview.\+cpp}}\end{DoxyCompactItemize}

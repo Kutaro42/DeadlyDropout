@@ -1,0 +1,116 @@
+\doxysection{Exit\+Door\+View Class Reference}
+\hypertarget{class_exit_door_view}{}\label{class_exit_door_view}\index{ExitDoorView@{ExitDoorView}}
+
+
+A Qt rendering of the door that changes its color based on its lock status.  
+
+
+
+
+{\ttfamily \+\#include $<$exitdoorview.\+h$>$}
+
+
+
+Inheritance diagram for Exit\+Door\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{class_exit_door_view__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Exit\+Door\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_exit_door_view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_exit_door_view_a9caf4a24ceee3e9065f7bc859c02305c}{Exit\+Door\+View}} (\doxymbox{\hyperlink{class_exit_door_model}{Exit\+Door\+Model}} \texorpdfstring{$\ast$}{*}model, QGraphics\+Item \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Builder of the graphical view of the exit door. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_exit_door_view_a8270fe6af46f149e875a33a139ed214b}{update\+View}} ()
+\begin{DoxyCompactList}\small\item\em Updates the graphical attributes (color, size) based on the model\textquotesingle{}s state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_exit_door_model}{Exit\+Door\+Model}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_exit_door_view_ad72768496515578bf126abf16c620162}{model}}
+\begin{DoxyCompactList}\small\item\em Reference to the logical model of the gate. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_exit_door_view_a275a4d322fbdca8ec7f25a9dbb214643}{cached\+Open}}
+\begin{DoxyCompactList}\small\item\em State caching to reduce brush calculations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A Qt rendering of the door that changes its color based on its lock status. 
+
+\label{class_exit_door_view_doc-constructors}
+\Hypertarget{class_exit_door_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_exit_door_view_a9caf4a24ceee3e9065f7bc859c02305c}\index{ExitDoorView@{ExitDoorView}!ExitDoorView@{ExitDoorView}}
+\index{ExitDoorView@{ExitDoorView}!ExitDoorView@{ExitDoorView}}
+\doxysubsubsection{\texorpdfstring{ExitDoorView()}{ExitDoorView()}}
+{\footnotesize\ttfamily \label{class_exit_door_view_a9caf4a24ceee3e9065f7bc859c02305c} 
+Exit\+Door\+View::\+\+Exit\+Door\+View (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_exit_door_model}{Exit\+Door\+Model}} \texorpdfstring{$\ast$}{*}}]{model}{, }\item[{QGraphics\+Item \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Builder of the graphical view of the exit door. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & :\+ Source physical model. \\
+\hline
+{\em parent} & :\+ Parent element in the Qt graphics scene. \\
+\hline
+\end{DoxyParams}
+
+
+\label{class_exit_door_view_doc-func-members}
+\Hypertarget{class_exit_door_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_exit_door_view_a8270fe6af46f149e875a33a139ed214b}\index{ExitDoorView@{ExitDoorView}!updateView@{updateView}}
+\index{updateView@{updateView}!ExitDoorView@{ExitDoorView}}
+\doxysubsubsection{\texorpdfstring{updateView()}{updateView()}}
+{\footnotesize\ttfamily \label{class_exit_door_view_a8270fe6af46f149e875a33a139ed214b} 
+void Exit\+Door\+View::\+update\+View (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Updates the graphical attributes (color, size) based on the model\textquotesingle{}s state. 
+
+
+
+\label{class_exit_door_view_doc-variable-members}
+\Hypertarget{class_exit_door_view_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_exit_door_view_a275a4d322fbdca8ec7f25a9dbb214643}\index{ExitDoorView@{ExitDoorView}!cachedOpen@{cachedOpen}}
+\index{cachedOpen@{cachedOpen}!ExitDoorView@{ExitDoorView}}
+\doxysubsubsection{\texorpdfstring{cachedOpen}{cachedOpen}}
+{\footnotesize\ttfamily \label{class_exit_door_view_a275a4d322fbdca8ec7f25a9dbb214643} 
+bool Exit\+Door\+View::\+cached\+Open\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+State caching to reduce brush calculations. 
+
+\Hypertarget{class_exit_door_view_ad72768496515578bf126abf16c620162}\index{ExitDoorView@{ExitDoorView}!model@{model}}
+\index{model@{model}!ExitDoorView@{ExitDoorView}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{class_exit_door_view_ad72768496515578bf126abf16c620162} 
+\doxymbox{\hyperlink{class_exit_door_model}{Exit\+Door\+Model}}\texorpdfstring{$\ast$}{*} Exit\+Door\+View::\+model\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reference to the logical model of the gate. 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{exitdoorview_8h}{exitdoorview.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{exitdoorview_8cpp}{exitdoorview.\+cpp}}\end{DoxyCompactItemize}

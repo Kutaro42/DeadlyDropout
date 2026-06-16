@@ -1,0 +1,5 @@
+<map id="BossDoorView" name="BossDoorView">
+<area shape="rect" id="Node000001" title="Boss&#39;s door view. Display an open srite while it&#39;s none open, then switch to lock after it crossed." alt="" coords="17,123,137,320"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,148,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,87,79,123,74,122,76,92"/>
+</map>

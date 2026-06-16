@@ -1,0 +1,453 @@
+\doxysection{boss\+Model Class Reference}
+\hypertarget{classboss_model}{}\label{classboss_model}\index{bossModel@{bossModel}}
+
+
+A boss model that handles the boss\textquotesingle{}s behavior (attacks, movement, etc.).  
+
+
+
+
+{\ttfamily \+\#include $<$bossmodel.\+h$>$}
+
+
+
+Inheritance diagram for boss\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classboss_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for boss\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classboss_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classboss_model_a4013db30ab019f7a68fd2b5cfb59b91c}{boss\+Model}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, int level\+Index=1)
+\begin{DoxyCompactList}\small\item\em Model builder. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{classboss_model_ada71014773598d2410d3ca39a25c55d9}{\texorpdfstring{$\sim$}{\string~}boss\+Model}} () override
+\item 
+void \doxymbox{\hyperlink{classboss_model_a3c69ecf97ac6bfcd45bb905155deb458}{on\+Death}} () override
+\begin{DoxyCompactList}\small\item\em Death hook trigger:\+ plays zombiedeath.\+wav. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{classboss_model_a2d948a32594d30dd1e6a5f9bd6887216}{update}} (float dt, \doxymbox{\hyperlink{class_vector2f}{Vector2f}} player\+Pos)
+\begin{DoxyCompactList}\small\item\em Boss update (attack interval, status, movement). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{classboss_model_a91a404844ae740d479dfceb47daba1f8}{attack}} (\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em Attack the player if the cooldown is at zero. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{classboss_model_a78691f3b547c8f00bb819ed56ed0fe9e}{is\+Zone\+Charging}} () const
+\item 
+bool \doxymbox{\hyperlink{classboss_model_a183de3ab95c4d952346389dbec81e9c1}{zone\+Just\+Exploded}} () const
+\item 
+void \doxymbox{\hyperlink{classboss_model_a1f33de44930cc267c7b0f956e57d96f4}{clear\+Zone\+Exploded}} ()
+\item 
+const QVector$<$ \doxymbox{\hyperlink{struct_zone_tile}{Zone\+Tile}} $>$ \& \doxymbox{\hyperlink{classboss_model_aae079def1830c32e76ba812d94275e25}{get\+Zone\+Tiles}} () const
+\item 
+void \doxymbox{\hyperlink{classboss_model_a880102b0b7459ed2261dcab11a7d0dff}{set\+Wall\+Colliders}} (const QVector$<$ QRectF $>$ \&walls)
+\begin{DoxyCompactList}\small\item\em Provides the level wall colliders to filter the area tiles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_enemy}{Enemy}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_enemy_acb9b3f2b8d2c900ea75aa54bb218a6b1}{Enemy}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, int max\+Hp, float speed, int dmg, float det\+Radius, float w, float h, int gold)
+\begin{DoxyCompactList}\small\item\em \doxylink{class_enemy}{Enemy} builder. \end{DoxyCompactList}\item 
+virtual \doxymbox{\hyperlink{class_enemy_aafb628c66008e33afdd750e2f492bd98}{\texorpdfstring{$\sim$}{\string~}\+Enemy}} ()=default
+\item 
+void \doxymbox{\hyperlink{class_enemy_a29465820c3774a2fd58176e20cc9ffcd}{take\+Damage}} (int amount)
+\begin{DoxyCompactList}\small\item\em Reduces the enemy\textquotesingle{}s health. Puts the enemy in the HURT state, or triggers the death animation if health drops to zero. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_enemy_aa8061b986af89459a0229764c269caf6}{trigger\+Death}} ()
+\begin{DoxyCompactList}\small\item\em Sets the enemy to the DEAD state and starts the death animation timer. The enemy will be effectively deactivated (active = false) once the timer has elapsed, via tick\+Dead\+State(). \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_enemy_a83454276708a4d53ff6bd416a7ed9b68}{tick\+Transient\+States}} (float dt)
+\begin{DoxyCompactList}\small\item\em Decrements the HURT and DEAD timers; must be called at the beginning of each \doxylink{class_enemy_ae99c0c4859aa823fc56a2afb6ebe7e5a}{update()} method in subclasses. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_enemy_a6522d23d6f804be482a9d1c5acd85332}{detects\+Player}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} player\+Pos) const
+\begin{DoxyCompactList}\small\item\em Checks whether the player\textquotesingle{}s position is within the detection cone/\+radius. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_enemy_aa303f416300a30ae68914495964cb5c1}{refresh\+Chase\+Timer}} ()
+\begin{DoxyCompactList}\small\item\em Indicates that the player is visible this tick (resets the persistence timer). \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_enemy_a699329cc207df9aa66978887051441d0}{tick\+Chase\+Timer}} (float dt)
+\begin{DoxyCompactList}\small\item\em Decrement the persistence timer and return to IDLE if it has expired. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_enemy_ae776a5e255a4b47426e7d997fb0cb966}{has\+Dropped\+Gold}} () const
+\item 
+void \doxymbox{\hyperlink{class_enemy_af2037832dbf4bda5669a850c9a3cba8e}{mark\+Gold\+Dropped}} ()
+\item 
+bool \doxymbox{\hyperlink{class_enemy_aae548d86271be8d62fed25cb6ba63380}{get\+Hit\+This\+Slash}} () const
+\item 
+void \doxymbox{\hyperlink{class_enemy_a50b40e0dc971e516b30e095c996c10aa}{set\+Hit\+This\+Slash}} (bool b)
+\item 
+int \doxymbox{\hyperlink{class_enemy_abc4b83878be690920a59499a17d6019c}{get\+Hp}} () const
+\item 
+int \doxymbox{\hyperlink{class_enemy_a5970616d8efe048e0be00f89e0cd1172}{get\+Max\+Hp}} () const
+\item 
+int \doxymbox{\hyperlink{class_enemy_afe0dd7e7a4db1c802267dcf383376480}{get\+Gold\+Drop}} () const
+\item 
+bool \doxymbox{\hyperlink{class_enemy_a2a029ea00e6924377c7e8bcb1368fc55}{getis\+Boss}} () const
+\item 
+\doxymbox{\hyperlink{config_8h_a588700cbbd7d8e80b51ef81b140213fc}{Enemy\+AIState}} \doxymbox{\hyperlink{class_enemy_a957b449f7b027ea4af52fb39d57cbdb4}{get\+AIState}} () const
+\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_enemy_a1379d4a478531ac50a34b46d42b16a83}{get\+Velocity}} () const
+\item 
+void \doxymbox{\hyperlink{class_enemy_ab6a3b691be209d9fce40f760bb479a11}{update}} (float dt) override
+\begin{DoxyCompactList}\small\item\em Update to the entity\textquotesingle{}s internal logic. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_entity_acaf2ad84607691b229cddab1da0bf819}{Entity}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float w, float h)
+\begin{DoxyCompactList}\small\item\em Constructor of the entity. \end{DoxyCompactList}\item 
+virtual \doxymbox{\hyperlink{class_entity_ac479d009ddde62dfb378ca0a70d81307}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual shredder. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_afdda0263db3d2e465a6ae6bad91eb990}{get\+Position}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a5f154968f2a478ea924460c78e0cd39e}{get\+Width}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a1332918563adb284c0fd432d47486d44}{get\+Height}} () const
+\item 
+bool \doxymbox{\hyperlink{class_entity_aea1c1568b4123d989c5310697030ad77}{is\+Active}} () const
+\item 
+void \doxymbox{\hyperlink{class_entity_ac5164b8c832f9a055df976527fe10032}{set\+Active}} (bool a)
+\item 
+void \doxymbox{\hyperlink{class_entity_a575ec530746fbb3eca1baddec2d0b030}{set\+Position}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos)
+\item 
+QRectF \doxymbox{\hyperlink{class_entity_ae00b70bd40800a8bd23c38b1c84404a9}{get\+Collider}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the entity\textquotesingle{}s collision bounding box. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{classboss_model_a53911e2accca4c5b012ac4f882635be9}{chase}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} player\+Pos, float dt)
+\begin{DoxyCompactList}\small\item\em Model builder. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{classboss_model_a1da530d4cab4fcf9252febc3980b0a18}{update\+AIState}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} player\+Pos)
+\begin{DoxyCompactList}\small\item\em Check the condition the boss should be in. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{classboss_model_a57ee6aea7589f1e10a98fcdc01219ad0}{build\+Zone\+Tiles}} ()
+\begin{DoxyCompactList}\small\item\em Generates the tiles for the attack area. Creates a 32×32 grid of tiles within a radius of BOSS\+\_\+\+ZONE\+\_\+\+RADIUS px around the center of the boss. Removes tiles that overlap a wall (wall\+Colliders). Randomly selects BOSS\+\_\+\+ZONE\+\_\+\+SAFE\+\_\+\+COUNT safe zones from the remaining tiles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QSound\+Effect \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classboss_model_a66314ffbb017776d3c038b096c3e6d41}{death\+Sound}}
+\begin{DoxyCompactList}\small\item\em Sound played when the boss is defeated. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{classboss_model_a837a326e86f80f21ccd98d4131255838}{has\+Pattern2}}
+\begin{DoxyCompactList}\small\item\em Show if the boss can use the area attack. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{classboss_model_aab6b0eff0623e50de16cbfb5dab69ed8}{zone\+Charge\+Timer}}
+\begin{DoxyCompactList}\small\item\em Timer during the attack loading. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{classboss_model_aa5eadc353117e1942bedd2c160564a00}{zone\+Explosion\+Timer}}
+\begin{DoxyCompactList}\small\item\em Timer between the pattern show and the explosion. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{classboss_model_a4eed38aa7ad18a0ba815275dd1f2e290}{zone\+Charging}}
+\begin{DoxyCompactList}\small\item\em Show if the attack area is load. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{classboss_model_a24dfedccf614565f01f0c87e31950011}{zone\+Exploded\+Flag}}
+\begin{DoxyCompactList}\small\item\em Show if the attack is done. \end{DoxyCompactList}\item 
+QVector$<$ \doxymbox{\hyperlink{struct_zone_tile}{Zone\+Tile}} $>$ \doxymbox{\hyperlink{classboss_model_a15a720f1d6bae208660a5c583626943b}{zone\+Tiles}}
+\begin{DoxyCompactList}\small\item\em QVector that stores the attack area. \end{DoxyCompactList}\item 
+QVector$<$ QRectF $>$ \doxymbox{\hyperlink{classboss_model_a1c04a7cd20ad396f22538861bef89d5f}{wall\+Colliders}}
+\begin{DoxyCompactList}\small\item\em Copy wall colliders for filtering. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_enemy}{Enemy}}}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{class_enemy_a278d70100af07c946743db1b7a1a9f59}{hp}}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_enemy}{Enemy}\textquotesingle{}s current health points. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_enemy_ab48bc28310a5ca396fbfaf6edc74996d}{max\+Hp}}
+\begin{DoxyCompactList}\small\item\em Maximum health points. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_enemy_a98766d083fc49e746a37d0dc69be09e0}{speed}}
+\begin{DoxyCompactList}\small\item\em Linear travel speed. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_enemy_a506a6addb65f3811f1c2cd448cd7c812}{base\+Damage}}
+\begin{DoxyCompactList}\small\item\em Base damage dealt to the player. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_enemy_a573af3a6b672a882ae23263bfbcdf440}{attack\+Cooldown}}
+\begin{DoxyCompactList}\small\item\em Time required between two attacks. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_enemy_a22529e5dec1b3efeb774388f26f07cb3}{attack\+Timer}}
+\begin{DoxyCompactList}\small\item\em Internal timer that controls the attack duration. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_enemy_a729555629fedb465788a81e74163ce9a}{detection\+Radius}}
+\begin{DoxyCompactList}\small\item\em Range of the aggro/\+detection zone. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_enemy_a0f73c8c470381f070758926bbaa6564c}{gold\+Drop}}
+\begin{DoxyCompactList}\small\item\em A golden reward granted upon death. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_enemy_ae6b5fe8b5e8527b19cea1d188cf4384f}{gold\+Already\+Dropped}}
+\begin{DoxyCompactList}\small\item\em Anti-\/duplicate flag for gold loot. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_enemy_ab655b54a6e1638dc9935a2f8cf449b51}{is\+Boss}} = false
+\begin{DoxyCompactList}\small\item\em Point to the boss. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{config_8h_a588700cbbd7d8e80b51ef81b140213fc}{Enemy\+AIState}} \doxymbox{\hyperlink{class_enemy_a827dc8b29d6f3d75dea9504bcd9200ad}{ai\+State}}
+\begin{DoxyCompactList}\small\item\em State of the AI state machine. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_enemy_ae1137a68d2dc4174bc9e66123bd6218a}{velocity}}
+\begin{DoxyCompactList}\small\item\em Current direction of motion. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_enemy_a3d5e24c63037e5711fa9d0d9dfa0a967}{hit\+This\+Slash}}
+\begin{DoxyCompactList}\small\item\em Prevents multiple hits per attack. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_enemy_a5d56bf6b94d31989895663c379600bcc}{hurt\+Timer}}
+\begin{DoxyCompactList}\small\item\em Time remaining in the HURT state. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_enemy_a5144f514fca210ed75fa4ebb97f6a42d}{dead\+Timer}}
+\begin{DoxyCompactList}\small\item\em Time remaining in the DEAD state before deactivation. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_enemy_aa6522d79858918e3408e0ed084d47438}{chase\+Persist\+Timer}}
+\begin{DoxyCompactList}\small\item\em Time remaining before returning to IDLE after loss of sight. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_a6af9d6498134ad0906011778bc5736db}{position}}
+\begin{DoxyCompactList}\small\item\em The entity\textquotesingle{}s 2D coordinates. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_adadfcc784f30b51b8e49f8230a56b793}{width}}
+\begin{DoxyCompactList}\small\item\em The physical width of the entity in pixels. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_a4550dc1011f47f6c4bb86e564e7d605b}{height}}
+\begin{DoxyCompactList}\small\item\em The physical height of the entity in pixels. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_entity_a939da33e8b67b1d2ee227930aa72da3b}{active}}
+\begin{DoxyCompactList}\small\item\em Status of the entity (false if dead or destroyed). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A boss model that handles the boss\textquotesingle{}s behavior (attacks, movement, etc.). 
+
+\label{classboss_model_doc-constructors}
+\Hypertarget{classboss_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classboss_model_a4013db30ab019f7a68fd2b5cfb59b91c}\index{bossModel@{bossModel}!bossModel@{bossModel}}
+\index{bossModel@{bossModel}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{bossModel()}{bossModel()}}
+{\footnotesize\ttfamily \label{classboss_model_a4013db30ab019f7a68fd2b5cfb59b91c} 
+boss\+Model::\+boss\+Model (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{pos}{, }\item[{int}]{level\+Index}{ = {\ttfamily 1}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Model builder. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & The boss\textquotesingle{}s starting position. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classboss_model_ada71014773598d2410d3ca39a25c55d9}\index{bossModel@{bossModel}!````~bossModel@{\texorpdfstring{$\sim$}{\string~}bossModel}}
+\index{````~bossModel@{\texorpdfstring{$\sim$}{\string~}bossModel}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}bossModel()}{\string~bossModel()}}
+{\footnotesize\ttfamily \label{classboss_model_ada71014773598d2410d3ca39a25c55d9} 
+boss\+Model::\+\texorpdfstring{$\sim$}{\string~}boss\+Model (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+\label{classboss_model_doc-func-members}
+\Hypertarget{classboss_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classboss_model_a91a404844ae740d479dfceb47daba1f8}\index{bossModel@{bossModel}!attack@{attack}}
+\index{attack@{attack}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{attack()}{attack()}}
+{\footnotesize\ttfamily \label{classboss_model_a91a404844ae740d479dfceb47daba1f8} 
+void boss\+Model::\+attack (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \texorpdfstring{$\ast$}{*}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Attack the player if the cooldown is at zero. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & player model for dealing damage. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \doxymbox{\hyperlink{class_enemy_abbccbc565cab606af4bc79ccab00cde7}{Enemy}}.
+
+\Hypertarget{classboss_model_a57ee6aea7589f1e10a98fcdc01219ad0}\index{bossModel@{bossModel}!buildZoneTiles@{buildZoneTiles}}
+\index{buildZoneTiles@{buildZoneTiles}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{buildZoneTiles()}{buildZoneTiles()}}
+{\footnotesize\ttfamily \label{classboss_model_a57ee6aea7589f1e10a98fcdc01219ad0} 
+void boss\+Model::\+build\+Zone\+Tiles (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Generates the tiles for the attack area. Creates a 32×32 grid of tiles within a radius of BOSS\+\_\+\+ZONE\+\_\+\+RADIUS px around the center of the boss. Removes tiles that overlap a wall (wall\+Colliders). Randomly selects BOSS\+\_\+\+ZONE\+\_\+\+SAFE\+\_\+\+COUNT safe zones from the remaining tiles. 
+
+\Hypertarget{classboss_model_a53911e2accca4c5b012ac4f882635be9}\index{bossModel@{bossModel}!chase@{chase}}
+\index{chase@{chase}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{chase()}{chase()}}
+{\footnotesize\ttfamily \label{classboss_model_a53911e2accca4c5b012ac4f882635be9} 
+void boss\+Model::\+chase (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{player\+Pos}{, }\item[{float}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Model builder. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player\+Pos} & Player position \\
+\hline
+{\em dt} & :\+ distance the player and the boss. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classboss_model_a1f33de44930cc267c7b0f956e57d96f4}\index{bossModel@{bossModel}!clearZoneExploded@{clearZoneExploded}}
+\index{clearZoneExploded@{clearZoneExploded}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{clearZoneExploded()}{clearZoneExploded()}}
+{\footnotesize\ttfamily \label{classboss_model_a1f33de44930cc267c7b0f956e57d96f4} 
+void boss\+Model::\+clear\+Zone\+Exploded (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classboss_model_aae079def1830c32e76ba812d94275e25}\index{bossModel@{bossModel}!getZoneTiles@{getZoneTiles}}
+\index{getZoneTiles@{getZoneTiles}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{getZoneTiles()}{getZoneTiles()}}
+{\footnotesize\ttfamily \label{classboss_model_aae079def1830c32e76ba812d94275e25} 
+const QVector$<$ \doxymbox{\hyperlink{struct_zone_tile}{Zone\+Tile}} $>$ \& boss\+Model::\+get\+Zone\+Tiles (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classboss_model_a78691f3b547c8f00bb819ed56ed0fe9e}\index{bossModel@{bossModel}!isZoneCharging@{isZoneCharging}}
+\index{isZoneCharging@{isZoneCharging}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{isZoneCharging()}{isZoneCharging()}}
+{\footnotesize\ttfamily \label{classboss_model_a78691f3b547c8f00bb819ed56ed0fe9e} 
+bool boss\+Model::\+is\+Zone\+Charging (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classboss_model_a3c69ecf97ac6bfcd45bb905155deb458}\index{bossModel@{bossModel}!onDeath@{onDeath}}
+\index{onDeath@{onDeath}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{onDeath()}{onDeath()}}
+{\footnotesize\ttfamily \label{classboss_model_a3c69ecf97ac6bfcd45bb905155deb458} 
+void boss\+Model::\+on\+Death (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Death hook trigger:\+ plays zombiedeath.\+wav. 
+
+
+
+Reimplemented from \doxymbox{\hyperlink{class_enemy_aaee485ba8d59fa74103a9fd27cc0977f}{Enemy}}.
+
+\Hypertarget{classboss_model_a880102b0b7459ed2261dcab11a7d0dff}\index{bossModel@{bossModel}!setWallColliders@{setWallColliders}}
+\index{setWallColliders@{setWallColliders}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{setWallColliders()}{setWallColliders()}}
+{\footnotesize\ttfamily \label{classboss_model_a880102b0b7459ed2261dcab11a7d0dff} 
+void boss\+Model::\+set\+Wall\+Colliders (\begin{DoxyParamCaption}\item[{const QVector$<$ QRectF $>$ \&}]{walls}{}\end{DoxyParamCaption})}
+
+
+
+Provides the level wall colliders to filter the area tiles. 
+
+Called by \doxylink{class_level_controller}{Level\+Controller} on every tick before pattern 2 is triggered. Allows \doxylink{classboss_model_a57ee6aea7589f1e10a98fcdc01219ad0}{build\+Zone\+Tiles()} to remove tiles that overlap a physical wall.
+
+
+\begin{DoxyParams}{Parameters}
+{\em walls} & :\+ List of collision boxes for the walls in the level. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classboss_model_a2d948a32594d30dd1e6a5f9bd6887216}\index{bossModel@{bossModel}!update@{update}}
+\index{update@{update}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classboss_model_a2d948a32594d30dd1e6a5f9bd6887216} 
+void boss\+Model::\+update (\begin{DoxyParamCaption}\item[{float}]{dt}{, }\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{player\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Boss update (attack interval, status, movement). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Distance between the player and the boss. \\
+\hline
+{\em player\+Pos} & player\textquotesingle{}s position. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \doxymbox{\hyperlink{class_enemy_ae99c0c4859aa823fc56a2afb6ebe7e5a}{Enemy}}.
+
+\Hypertarget{classboss_model_a1da530d4cab4fcf9252febc3980b0a18}\index{bossModel@{bossModel}!updateAIState@{updateAIState}}
+\index{updateAIState@{updateAIState}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{updateAIState()}{updateAIState()}}
+{\footnotesize\ttfamily \label{classboss_model_a1da530d4cab4fcf9252febc3980b0a18} 
+void boss\+Model::\+update\+AIState (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{player\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Check the condition the boss should be in. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player\+Pos} & Player Position. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classboss_model_a183de3ab95c4d952346389dbec81e9c1}\index{bossModel@{bossModel}!zoneJustExploded@{zoneJustExploded}}
+\index{zoneJustExploded@{zoneJustExploded}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{zoneJustExploded()}{zoneJustExploded()}}
+{\footnotesize\ttfamily \label{classboss_model_a183de3ab95c4d952346389dbec81e9c1} 
+bool boss\+Model::\+zone\+Just\+Exploded (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{classboss_model_doc-variable-members}
+\Hypertarget{classboss_model_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{classboss_model_a66314ffbb017776d3c038b096c3e6d41}\index{bossModel@{bossModel}!deathSound@{deathSound}}
+\index{deathSound@{deathSound}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{deathSound}{deathSound}}
+{\footnotesize\ttfamily \label{classboss_model_a66314ffbb017776d3c038b096c3e6d41} 
+QSound\+Effect\texorpdfstring{$\ast$}{*} boss\+Model::\+death\+Sound\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sound played when the boss is defeated. 
+
+\Hypertarget{classboss_model_a837a326e86f80f21ccd98d4131255838}\index{bossModel@{bossModel}!hasPattern2@{hasPattern2}}
+\index{hasPattern2@{hasPattern2}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{hasPattern2}{hasPattern2}}
+{\footnotesize\ttfamily \label{classboss_model_a837a326e86f80f21ccd98d4131255838} 
+bool boss\+Model::\+has\+Pattern2\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Show if the boss can use the area attack. 
+
+\Hypertarget{classboss_model_a1c04a7cd20ad396f22538861bef89d5f}\index{bossModel@{bossModel}!wallColliders@{wallColliders}}
+\index{wallColliders@{wallColliders}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{wallColliders}{wallColliders}}
+{\footnotesize\ttfamily \label{classboss_model_a1c04a7cd20ad396f22538861bef89d5f} 
+QVector$<$QRectF$>$ boss\+Model::\+wall\+Colliders\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Copy wall colliders for filtering. 
+
+\Hypertarget{classboss_model_aab6b0eff0623e50de16cbfb5dab69ed8}\index{bossModel@{bossModel}!zoneChargeTimer@{zoneChargeTimer}}
+\index{zoneChargeTimer@{zoneChargeTimer}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{zoneChargeTimer}{zoneChargeTimer}}
+{\footnotesize\ttfamily \label{classboss_model_aab6b0eff0623e50de16cbfb5dab69ed8} 
+float boss\+Model::\+zone\+Charge\+Timer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Timer during the attack loading. 
+
+\Hypertarget{classboss_model_a4eed38aa7ad18a0ba815275dd1f2e290}\index{bossModel@{bossModel}!zoneCharging@{zoneCharging}}
+\index{zoneCharging@{zoneCharging}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{zoneCharging}{zoneCharging}}
+{\footnotesize\ttfamily \label{classboss_model_a4eed38aa7ad18a0ba815275dd1f2e290} 
+bool boss\+Model::\+zone\+Charging\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Show if the attack area is load. 
+
+\Hypertarget{classboss_model_a24dfedccf614565f01f0c87e31950011}\index{bossModel@{bossModel}!zoneExplodedFlag@{zoneExplodedFlag}}
+\index{zoneExplodedFlag@{zoneExplodedFlag}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{zoneExplodedFlag}{zoneExplodedFlag}}
+{\footnotesize\ttfamily \label{classboss_model_a24dfedccf614565f01f0c87e31950011} 
+bool boss\+Model::\+zone\+Exploded\+Flag\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Show if the attack is done. 
+
+\Hypertarget{classboss_model_aa5eadc353117e1942bedd2c160564a00}\index{bossModel@{bossModel}!zoneExplosionTimer@{zoneExplosionTimer}}
+\index{zoneExplosionTimer@{zoneExplosionTimer}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{zoneExplosionTimer}{zoneExplosionTimer}}
+{\footnotesize\ttfamily \label{classboss_model_aa5eadc353117e1942bedd2c160564a00} 
+float boss\+Model::\+zone\+Explosion\+Timer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Timer between the pattern show and the explosion. 
+
+\Hypertarget{classboss_model_a15a720f1d6bae208660a5c583626943b}\index{bossModel@{bossModel}!zoneTiles@{zoneTiles}}
+\index{zoneTiles@{zoneTiles}!bossModel@{bossModel}}
+\doxysubsubsection{\texorpdfstring{zoneTiles}{zoneTiles}}
+{\footnotesize\ttfamily \label{classboss_model_a15a720f1d6bae208660a5c583626943b} 
+QVector$<$\doxymbox{\hyperlink{struct_zone_tile}{Zone\+Tile}}$>$ boss\+Model::\+zone\+Tiles\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+QVector that stores the attack area. 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{bossmodel_8h}{bossmodel.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{bossmodel_8cpp}{bossmodel.\+cpp}}\end{DoxyCompactItemize}

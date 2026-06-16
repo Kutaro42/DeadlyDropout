@@ -1,0 +1,126 @@
+\doxysection{gameview.\+h}
+\hypertarget{gameview_8h_source}{}\label{gameview_8h_source}\index{Headers/gameview.h@{Headers/gameview.h}}
+\doxymbox{\hyperlink{gameview_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ GAMEVIEW\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ GAMEVIEW\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QGraphicsView>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QGraphicsScene>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QSet>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QKeyEvent>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <QPainter>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <QVector>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <QPixmap>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{playerview_8h}{playerview.h}}"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{zombiestdview_8h}{zombiestdview.h}}"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{zombielauncherview_8h}{zombielauncherview.h}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{bossview_8h}{bossview.h}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{exitdoorview_8h}{exitdoorview.h}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{standarddoorview_8h}{standarddoorview.h}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{gunview_8h}{gunview.h}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{gamemodel_8h}{gamemodel.h}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{levelcontroller_8h}{levelcontroller.h}}"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <QGraphicsTextItem>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <QGraphicsOpacityEffect>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <QMouseEvent>}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <QPushButton>}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <QPointF>}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_game_view_aef54ba65c9d6737feb11011a7ee249a9}{GameView}}\ :\ \textcolor{keyword}{public}\ QGraphicsView\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00043\ \ \ \ \ QGraphicsScene*\ \doxymbox{\hyperlink{class_game_view_aa96ff0163839f95478ed0de98d3e4e51}{scene}};}
+\DoxyCodeLine{00044\ \ \ \ \ \doxymbox{\hyperlink{class_player_view}{PlayerView}}*\ \ \ \ \ \doxymbox{\hyperlink{class_game_view_aecf891d9f7053c4322ae53b5977d692c}{playerView}};}
+\DoxyCodeLine{00045\ \ \ \ \ \doxymbox{\hyperlink{class_gun_view}{GunView}}*\ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_game_view_ac334e8335ec1678d664039082168dca4}{gunView}};}
+\DoxyCodeLine{00046\ \ \ \ \ QSet<int>\ \ \ \ \ \ \ \doxymbox{\hyperlink{class_game_view_a898746ace2f0d1253090e99527909ea5}{pressedKeys}};}
+\DoxyCodeLine{00047\ \ \ \ \ \doxymbox{\hyperlink{class_game_model}{GameModel}}*\ \ \ \ \ \ \doxymbox{\hyperlink{class_game_view_af083f28ba361b0ed48a69199bd349342}{currentModel}};}
+\DoxyCodeLine{00048\ \ \ \ \ QPointF\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_game_view_a3a70f40f35adcb2ee6869ddb6ffb7065}{itsMouseViewPos}};\ }
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ ───\ Boutons\ du\ menu\ pause\ ────────────────────────────────────}}
+\DoxyCodeLine{00051\ \ \ \ \ QPushButton*\ \doxymbox{\hyperlink{class_game_view_a444fa4a462034c81725fd78321d21972}{pauseResumeButton}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00052\ \ \ \ \ QPushButton*\ \doxymbox{\hyperlink{class_game_view_aaaa1a2adf657b30902c1ce2b0991bcd0}{pauseMenuButton}}\ \ \ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00053\ \ \ \ \ QPushButton*\ \doxymbox{\hyperlink{class_game_view_a82020fb22ce4bf6119d6735b68f829eb}{pauseMusicButton}}\ \ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00054\ \ \ \ \ QPushButton*\ \doxymbox{\hyperlink{class_game_view_a191ffa106de45536c518f9bdf61ae11e}{pauseNextButton}}\ \ \ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_game_view_ae25b10e9f137ff8ee29a9d1734be20e2}{showingPause}}\ \ \ \ \ \ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_game_view_aef54ba65c9d6737feb11011a7ee249a9}{GameView}}(QWidget*\ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00059\ \ \ \ \ \doxymbox{\hyperlink{class_game_view_a778c2392645142e3b29f6d054d551223}{\string~GameView}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ QGraphicsScene*\ \doxymbox{\hyperlink{class_game_view_a0cc09f7f625d616b761d038af3971194}{getScene}}()\textcolor{keyword}{\ \ \ \ \ \ \ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_game_view_aa96ff0163839f95478ed0de98d3e4e51}{scene}};\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ QSet<int>\ \ \ \ \ \ \ \doxymbox{\hyperlink{class_game_view_a8a8777404d0f8cea007fbb7ef2040b11}{getPressedKeys}}()\textcolor{keyword}{\ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_game_view_a898746ace2f0d1253090e99527909ea5}{pressedKeys}};\ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \doxymbox{\hyperlink{class_player_view}{PlayerView}}*\ \ \ \ \ \doxymbox{\hyperlink{class_game_view_a3734237c67d52074f570146432a9d53d}{getPlayerView}}()\textcolor{keyword}{\ \ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_game_view_aecf891d9f7053c4322ae53b5977d692c}{playerView}};\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ QPointF\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_game_view_ad930fb4debc17d13dc59fcf79e6df7f8}{getMouseScenePos}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ mapToScene(\doxymbox{\hyperlink{class_game_view_a3a70f40f35adcb2ee6869ddb6ffb7065}{itsMouseViewPos}}.toPoint());\ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_ace9a878efb6018b2def308f4ce1b167f}{initWithModel}}(\doxymbox{\hyperlink{class_game_model}{GameModel}}*\ model);}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_a78c5580f2f11884359a2be26fb5942be}{updateAllViews}}(\textcolor{keywordtype}{float}\ dt,\ \doxymbox{\hyperlink{class_game_model}{GameModel}}*\ model,\ \doxymbox{\hyperlink{class_level_controller}{LevelController}}*\ levelCtrl\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_a761230cac54cbb0f674a603f331e0b3f}{followPlayer}}(\doxymbox{\hyperlink{class_game_model}{GameModel}}*\ model);}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_a8a0da9cdf62672b8236e37fc151cee90}{clearScene}}();}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_a1c9ae2771c1a07ef54a5f24abf459308}{showOverlay}}(\textcolor{keyword}{const}\ QString\&\ message);}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_a5c9ef732bf343ad68f3a591b6a58d6f5}{showPauseOverlay}}();}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_af56ba5fed389b920062ad6e57b425e5c}{hidePauseOverlay}}();}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_a2b85df4d5a5e8fd4abde82ba9ee82767}{keyPressEvent}}(QKeyEvent*\ e)\ \ \ \ \ \ \ \ \ \textcolor{keyword}{override};}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_afbc631b032b94b8d6c2a2ed5f638d3f3}{keyReleaseEvent}}(QKeyEvent*\ e)\ \ \ \ \ \ \ \textcolor{keyword}{override};}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_aa19d281b58511938f22701171c213afb}{mousePressEvent}}(QMouseEvent*\ event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_ab73d4c4e8440a7e64691fbfb3b78cdd8}{mouseMoveEvent}}(QMouseEvent*\ event)\ \ \textcolor{keyword}{override};}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_aa7a66316ec811c854c259428432c3f7c}{drawForeground}}(QPainter*\ painter,\ \textcolor{keyword}{const}\ QRectF\&\ rect)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_a506d3bac1adc75bf359c5157bdb36ded}{wheelEvent}}(QWheelEvent\ *event)\ \ \ \ \ \ \textcolor{keyword}{override};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_ac694ee2b86cfb154ad99a87e2cd93bf0}{drawHUD}}(QPainter*\ painter,\ \doxymbox{\hyperlink{class_game_model}{GameModel}}*\ model);}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_a55ce85dc8b39420daab993018885855c}{drawHpBar}}(QPainter*\ p,\ \textcolor{keywordtype}{int}\ hp,\ \textcolor{keywordtype}{int}\ maxHp,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_a95d16311c0d9ac0c6afeb33bfcad60e0}{drawBossHpBar}}(QPainter*\ p,\ \textcolor{keywordtype}{int}\ hp,\ \textcolor{keywordtype}{int}\ maxHp,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//\ ───\ Popups\ flottants\ (dégâts\ /\ gold)\ ─────────────────────────}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_game_view_1_1_popup_anim}{PopupAnim}}\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ QGraphicsTextItem*\ \ \ \ \ \ \doxymbox{\hyperlink{struct_game_view_1_1_popup_anim_a885a7d3335d57ee1dad2bbdbd96977cd}{item}};}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ QGraphicsOpacityEffect*\ \doxymbox{\hyperlink{struct_game_view_1_1_popup_anim_ab346eeef3ba9c28caf80421786a6251f}{fx}};}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{struct_game_view_1_1_popup_anim_af28de5c35b7575d70ce70de9159c6482}{elapsed}};}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{struct_game_view_1_1_popup_anim_ab1be668d48ebe0dc2de204865c816fde}{duration}};}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{struct_game_view_1_1_popup_anim_ab0f801c06cff174a7956ca400d5099ba}{originY}};}
+\DoxyCodeLine{00094\ \ \ \ \ \};}
+\DoxyCodeLine{00095\ \ \ \ \ QVector<PopupAnim>\ \doxymbox{\hyperlink{class_game_view_a26b543132577f0534c53ca3727ee9149}{activePopups}};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ QString\ \ \ \ \ \ \doxymbox{\hyperlink{class_game_view_a4d2ead093c4a8e5d22194640049542de}{overlayMessage}};}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_game_view_ac39fe4feb88c7c5d5adfb2f66395b592}{showingOverlay}};}
+\DoxyCodeLine{00099\ \ \ \ \ QPushButton*\ \doxymbox{\hyperlink{class_game_view_a8b220171ec9b33c0e4bcf306a5130ce6}{menuButton}}\ \ \ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00100\ \ \ \ \ QPushButton*\ \doxymbox{\hyperlink{class_game_view_ac1dabfcf31852c36e00cfb13d88842ed}{replayButton}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ ───\ Clignotement\ gold\ ────────────────────────────────────────}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{class_game_view_a1b260e3c571fec8c3cb64bc9ac5b05f5}{lastGold}};}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_game_view_aa141323224dcdd3c20d9a27c94c8e419}{goldFlashTimer}};}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \doxymbox{\hyperlink{class_game_view_ab333373b53354369e63e1aca90f8696d}{goldFlashVisible}};}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_game_view_ae04d2fc93af36ec77dcd8f98e56d5be2}{goldFlashCycle}};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//\ ───\ Clignotement\ clé\ ─────────────────────────────────────────}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \doxymbox{\hyperlink{class_game_view_a9ce1704dcebc0eac506b352521109ca6}{lastHasKey}};}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_game_view_a919580e70b5ca2f66eceea06dd4babc3}{keyFlashTimer}};}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \doxymbox{\hyperlink{class_game_view_a9d9849a39b89d22a92f17f4f84973a45}{keyFlashVisible}};}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_game_view_ade3a221d45ec97857f2a6491ea87fe4b}{keyFlashCycle}};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{//\ ───\ Sprites\ cooldown\ HUD\ ─────────────────────────────────────}}
+\DoxyCodeLine{00115\ \ \ \ \ QVector<QPixmap>\ \doxymbox{\hyperlink{class_game_view_aa7066bf0bf9a63c9abacaec88156ead2}{gunCdFrames}};\ \ \ \ }
+\DoxyCodeLine{00116\ \ \ \ \ QVector<QPixmap>\ \doxymbox{\hyperlink{class_game_view_a58efe821ef33768e08bbcf7b75da1244}{katanaCdFrames}};\ }
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ signals:}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_a326271b747a7e0bdbd6f8cb521869e2c}{sig\_rightClicked}}(QPointF\ scenePos);}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_ab0b7c4cecc3cfb063a6c7e155db455a2}{sig\_leftClicked}}(QPointF\ scenePos);}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_a63e946f0c1cb30c58589925766443972}{sig\_escapePressed}}();}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_a20d8599b690c5fe62d48dcc5579a757f}{sigRestartRq}}();}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_a3b273d94caf901eb371f1ff202bfac3d}{sigQuitRq}}();}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_a7575f41c2cfb4e757fe61f59cffea674}{sigPauseMenu}}();}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_a41252fb9b4beb1023859b56b70c8a242}{sigToggleMusic}}();}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_view_aeca199d179d8072f793e94afa177d1cf}{sigNextTrack}}();}
+\DoxyCodeLine{00127\ \};}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GAMEVIEW\_H}}
+
+\end{DoxyCode}

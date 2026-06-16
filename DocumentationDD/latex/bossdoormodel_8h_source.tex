@@ -1,0 +1,27 @@
+\doxysection{bossdoormodel.\+h}
+\hypertarget{bossdoormodel_8h_source}{}\label{bossdoormodel_8h_source}\index{Headers/bossdoormodel.h@{Headers/bossdoormodel.h}}
+\doxymbox{\hyperlink{bossdoormodel_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ BOSSDOORMODEL\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ BOSSDOORMODEL\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{globaldoor_8h}{globaldoor.h}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_boss_door_model_a3027e6f26a2ebfbcdc7eb53ddddcf235}{BossDoorModel}}\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_global_door_ad9b6202569c5bc960e9527ded51b5f27}{GlobalDoor}}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ \doxymbox{\hyperlink{class_boss_door_model_a3027e6f26a2ebfbcdc7eb53ddddcf235}{BossDoorModel}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ pos,\ \textcolor{keywordtype}{float}\ w,\ \textcolor{keywordtype}{float}\ h);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_boss_door_model_aced70b15e6c33302c5b37a7b7ca23ed3}{isLocked}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_boss_door_model_aa4c9eec536b2300c22c1f170faaf6762}{locked}};\ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_boss_door_model_a86d40b8ce1efd078f3e572e1c588ddd7}{tryTraverse}}(\textcolor{keyword}{const}\ QRectF\&\ playerCollider,\ \doxymbox{\hyperlink{class_vector2f}{Vector2f}}\&\ teleportPos);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_boss_door_model_aa4c9eec536b2300c22c1f170faaf6762}{locked}};\ }
+\DoxyCodeLine{00044\ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ BOSSDOORMODEL\_H}}
+
+\end{DoxyCode}

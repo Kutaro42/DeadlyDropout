@@ -1,0 +1,436 @@
+\doxysection{Gun\+Model Class Reference}
+\hypertarget{class_gun_model}{}\label{class_gun_model}\index{GunModel@{GunModel}}
+
+
+Manages firing logic, magazine, ammo reserve and shoot cooldown (GDD Step 5).  
+
+
+
+
+{\ttfamily \+\#include $<$gunmodel.\+h$>$}
+
+
+
+Inheritance diagram for Gun\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_gun_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Gun\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_gun_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_gun_model_ad45f18cc96f96ec6771bd53e45be480f}{Gun\+Model}} (int mag\+Size=\doxymbox{\hyperlink{namespace_cfg_a66f9c304797399fb33cf77739fe797ba}{Cfg::\+\+GUN\+\_\+\+MAG\+\_\+\+SIZE}}, int reserve\+Size=\doxymbox{\hyperlink{namespace_cfg_a66f9c304797399fb33cf77739fe797ba}{Cfg::\+\+GUN\+\_\+\+MAG\+\_\+\+SIZE}} \texorpdfstring{$\ast$}{*}2)
+\begin{DoxyCompactList}\small\item\em Constructs \doxylink{class_gun_model}{Gun\+Model} with configurable magazine and reserve sizes. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_gun_model_a338f5ecef3d45b543145022975baceb1}{\texorpdfstring{$\sim$}{\string~}\+Gun\+Model}} ()
+\item 
+void \doxymbox{\hyperlink{class_gun_model_ab5cb120a634b41577fe99c09ba9543a1}{update}} (float dt)
+\begin{DoxyCompactList}\small\item\em Advances the shoot timer and moves all active bullets. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_gun_model_a98c747edd5cb9c0919346170c09d0804}{try\+Shoot}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} muzzle\+Pos, \doxymbox{\hyperlink{class_vector2f}{Vector2f}} target\+Pos)
+\begin{DoxyCompactList}\small\item\em Attempts to fire one bullet if the cooldown has elapsed and the mag is non-\/empty. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_gun_model_a561ec29bbd1f959221efcb263f8c6630}{reload}} ()
+\begin{DoxyCompactList}\small\item\em Reloads the magazine from the general reserve (GDD ammo rules). \end{DoxyCompactList}\item 
+QVector$<$ \doxymbox{\hyperlink{class_bullet_model}{Bullet\+Model}} \texorpdfstring{$\ast$}{*} $>$ \& \doxymbox{\hyperlink{class_gun_model_a0163b15d49a3fdb6cbef3654a346e732}{get\+Bullets}} ()
+\begin{DoxyCompactList}\small\item\em Returns the live bullet list for collision processing by \doxylink{class_level_controller}{Level\+Controller}. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_gun_model_a4dd21ae86d5fc550d6432b16d5dc50d6}{prune\+Inactive\+Bullets}} ()
+\begin{DoxyCompactList}\small\item\em Removes inactive bullets from the list and frees their memory. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_gun_model_a050f8bc46b5385e66b75dc2c275d8e36}{get\+Mag}} () const
+\begin{DoxyCompactList}\small\item\em Rounds remaining in the magazine. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_gun_model_ac425f43285c5c352e5448cf2948bb6f9}{get\+Mag\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Maximum magazine capacity. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_gun_model_a4775ad3e5b091196a3b532d6b38b0f1a}{get\+Reserve}} () const
+\begin{DoxyCompactList}\small\item\em Rounds in the general reserve. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_gun_model_ae5ef6d482ea260ecc34e71946ce8e441}{is\+Ready}} () const
+\begin{DoxyCompactList}\small\item\em True when the cooldown has elapsed. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_gun_model_a71d30480bbc93621f1f47126fcaa5fad}{get\+Cooldown\+Ratio}} () const
+\begin{DoxyCompactList}\small\item\em Cooldown progress ratio for HUD display (1.\+0 = just fired, 0.\+0 = ready). \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_gun_model_af2fba4b5f57f2fd96e51e51c2170c078}{get\+Shoot\+Cooldown}} () const
+\item 
+int \doxymbox{\hyperlink{class_gun_model_acc613839edc910e2f1b587f7f965c461}{get\+Base\+Damage}} () const
+\item 
+float \doxymbox{\hyperlink{class_gun_model_a1231b74065bdfa89aebe2575b07e4a92}{get\+Crit\+Chance}} () const
+\item 
+void \doxymbox{\hyperlink{class_gun_model_aaad38850a53454ce2c84b1e8cc0436b2}{add\+Reserve}} (int amount)
+\item 
+void \doxymbox{\hyperlink{class_gun_model_a6fae29db043c84eacde657f891759baf}{set\+Shoot\+Cooldown}} (float cd)
+\item 
+void \doxymbox{\hyperlink{class_gun_model_a3b1633dcd2f81d1895e5213f422c524b}{set\+Base\+Damage}} (int d)
+\item 
+void \doxymbox{\hyperlink{class_gun_model_a3952273675f613040c9ad908bb2b9b8d}{set\+Crit\+Chance}} (float c)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{class_gun_model_a1a472a18416555d172bab9a295afe2f3}{compute\+Damage}} () const
+\begin{DoxyCompactList}\small\item\em Computes final bullet damage:\+ base + random bonus + optional critical. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QVector$<$ \doxymbox{\hyperlink{class_bullet_model}{Bullet\+Model}} \texorpdfstring{$\ast$}{*} $>$ \doxymbox{\hyperlink{class_gun_model_ad1730b3e2b74cd4b752f8b1ff5f2784c}{bullets}}
+\begin{DoxyCompactList}\small\item\em All bullets currently in flight (active or awaiting cleanup). \end{DoxyCompactList}\item 
+QSound\+Effect \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_gun_model_a7e9bcd7f126385e59497fc25704d285d}{empty\+Mag\+Sound}}
+\begin{DoxyCompactList}\small\item\em Played when the player tries to fire an empty magazine. \end{DoxyCompactList}\item 
+QSound\+Effect \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_gun_model_aeb23105e72c24ab5a2352fd38bc47f7f}{gun\+Fire\+Sound}}
+\begin{DoxyCompactList}\small\item\em Played on every successful shot. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_gun_model_ac4f81dd3af557677057a45b20bd433db}{mag\+Size}}
+\begin{DoxyCompactList}\small\item\em Maximum rounds the magazine can hold. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_gun_model_a4ef4f0563a13ba8dc665adbdd2e2ff91}{mag}}
+\begin{DoxyCompactList}\small\item\em Rounds currently in the magazine. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_gun_model_a4580c31a5b6bfdf4a479c832fee5e968}{reserve}}
+\begin{DoxyCompactList}\small\item\em Rounds held in the general reserve. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_gun_model_a670cb78b0a051f78dec19c4b3187a477}{shoot\+Cooldown}}
+\begin{DoxyCompactList}\small\item\em Minimum time between shots in seconds (GDD:\+ 0.\+5 s base). \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_gun_model_aac8230a60677d99eb819b5f710c8816c}{shoot\+Timer}}
+\begin{DoxyCompactList}\small\item\em Time remaining before the next shot is allowed. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_gun_model_a32c87ce6ab9d6a9e0db5099247fa3a5a}{base\+Damage}}
+\begin{DoxyCompactList}\small\item\em Base damage before random bonus and critical multiplier. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_gun_model_a1cc86892311e2d637ac3a4b1c924467d}{crit\+Chance}}
+\begin{DoxyCompactList}\small\item\em Probability of a critical hit \+[0..1]\+ (GDD:\+ 2 \% base). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages firing logic, magazine, ammo reserve and shoot cooldown (GDD Step 5). 
+
+GDD ammunition rules:\+
+\begin{DoxyItemize}
+\item Semi-\/auto:\+ 1 click = 1 shot, 0.\+5 s cooldown between shots.
+\item Magazine (mag) + general reserve (reserve).
+\item Press R to reload:\+ fills the magazine from reserve, preserving existing rounds.
+\item Damage:\+ 12 base + random 2–5 bonus + 2 \% critical chance × 2 multiplier.
+\item Bullet speed:\+ 500 px/\+s.
+\end{DoxyItemize}
+
+\doxylink{class_bullet_model}{Bullet\+Model} instances are owned by \doxylink{class_gun_model}{Gun\+Model} and updated every tick. \doxylink{class_level_controller}{Level\+Controller} accesses \doxylink{class_gun_model_a0163b15d49a3fdb6cbef3654a346e732}{get\+Bullets()} to resolve collision with enemies.
+
+Sound effects are allocated here rather than in the view because the trigger condition (successful shot /\+ empty mag) is a model-\/level event, and playing audio in the view would require it to poll the model state every frame. 
+
+\label{class_gun_model_doc-constructors}
+\Hypertarget{class_gun_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_gun_model_ad45f18cc96f96ec6771bd53e45be480f}\index{GunModel@{GunModel}!GunModel@{GunModel}}
+\index{GunModel@{GunModel}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{GunModel()}{GunModel()}}
+{\footnotesize\ttfamily \label{class_gun_model_ad45f18cc96f96ec6771bd53e45be480f} 
+Gun\+Model::\+\+Gun\+Model (\begin{DoxyParamCaption}\item[{int}]{mag\+Size}{ = {\ttfamily \doxymbox{\hyperlink{namespace_cfg_a66f9c304797399fb33cf77739fe797ba}{Cfg::\+\+GUN\+\_\+\+MAG\+\_\+\+SIZE}}}, }\item[{int}]{reserve\+Size}{ = {\ttfamily \doxymbox{\hyperlink{namespace_cfg_a66f9c304797399fb33cf77739fe797ba}{Cfg::\+\+GUN\+\_\+\+MAG\+\_\+\+SIZE}}~\texorpdfstring{$\ast$}{*}~2}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs \doxylink{class_gun_model}{Gun\+Model} with configurable magazine and reserve sizes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mag\+Size} & Magazine capacity (\doxylink{namespace_cfg_a66f9c304797399fb33cf77739fe797ba}{Cfg::\+\+GUN\+\_\+\+MAG\+\_\+\+SIZE} by default). \\
+\hline
+{\em reserve\+Size} & Initial reserve ammo (2 × mag\+Size by default). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_gun_model_a338f5ecef3d45b543145022975baceb1}\index{GunModel@{GunModel}!````~GunModel@{\texorpdfstring{$\sim$}{\string~}GunModel}}
+\index{````~GunModel@{\texorpdfstring{$\sim$}{\string~}GunModel}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}GunModel()}{\string~GunModel()}}
+{\footnotesize\ttfamily \label{class_gun_model_a338f5ecef3d45b543145022975baceb1} 
+Gun\+Model::\+\texorpdfstring{$\sim$}{\string~}\+Gun\+Model (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\label{class_gun_model_doc-func-members}
+\Hypertarget{class_gun_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_gun_model_aaad38850a53454ce2c84b1e8cc0436b2}\index{GunModel@{GunModel}!addReserve@{addReserve}}
+\index{addReserve@{addReserve}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{addReserve()}{addReserve()}}
+{\footnotesize\ttfamily \label{class_gun_model_aaad38850a53454ce2c84b1e8cc0436b2} 
+void Gun\+Model::\+add\+Reserve (\begin{DoxyParamCaption}\item[{int}]{amount}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_gun_model_a1a472a18416555d172bab9a295afe2f3}\index{GunModel@{GunModel}!computeDamage@{computeDamage}}
+\index{computeDamage@{computeDamage}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{computeDamage()}{computeDamage()}}
+{\footnotesize\ttfamily \label{class_gun_model_a1a472a18416555d172bab9a295afe2f3} 
+int Gun\+Model::\+compute\+Damage (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Computes final bullet damage:\+ base + random bonus + optional critical. 
+
+Called once per shot so that each bullet has its own independent damage roll, matching the GDD\textquotesingle{}s "{}random law"{} specification for ammunition damage.
+
+\begin{DoxyReturn}{Returns}
+Final damage value for the new bullet. 
+\end{DoxyReturn}
+\Hypertarget{class_gun_model_acc613839edc910e2f1b587f7f965c461}\index{GunModel@{GunModel}!getBaseDamage@{getBaseDamage}}
+\index{getBaseDamage@{getBaseDamage}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{getBaseDamage()}{getBaseDamage()}}
+{\footnotesize\ttfamily \label{class_gun_model_acc613839edc910e2f1b587f7f965c461} 
+int Gun\+Model::\+get\+Base\+Damage (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_gun_model_a0163b15d49a3fdb6cbef3654a346e732}\index{GunModel@{GunModel}!getBullets@{getBullets}}
+\index{getBullets@{getBullets}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{getBullets()}{getBullets()}}
+{\footnotesize\ttfamily \label{class_gun_model_a0163b15d49a3fdb6cbef3654a346e732} 
+QVector$<$ \doxymbox{\hyperlink{class_bullet_model}{Bullet\+Model}} \texorpdfstring{$\ast$}{*} $>$ \& Gun\+Model::\+get\+Bullets (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the live bullet list for collision processing by \doxylink{class_level_controller}{Level\+Controller}. 
+
+\Hypertarget{class_gun_model_a71d30480bbc93621f1f47126fcaa5fad}\index{GunModel@{GunModel}!getCooldownRatio@{getCooldownRatio}}
+\index{getCooldownRatio@{getCooldownRatio}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{getCooldownRatio()}{getCooldownRatio()}}
+{\footnotesize\ttfamily \label{class_gun_model_a71d30480bbc93621f1f47126fcaa5fad} 
+float Gun\+Model::\+get\+Cooldown\+Ratio (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cooldown progress ratio for HUD display (1.\+0 = just fired, 0.\+0 = ready). 
+
+\Hypertarget{class_gun_model_a1231b74065bdfa89aebe2575b07e4a92}\index{GunModel@{GunModel}!getCritChance@{getCritChance}}
+\index{getCritChance@{getCritChance}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{getCritChance()}{getCritChance()}}
+{\footnotesize\ttfamily \label{class_gun_model_a1231b74065bdfa89aebe2575b07e4a92} 
+float Gun\+Model::\+get\+Crit\+Chance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_gun_model_a050f8bc46b5385e66b75dc2c275d8e36}\index{GunModel@{GunModel}!getMag@{getMag}}
+\index{getMag@{getMag}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{getMag()}{getMag()}}
+{\footnotesize\ttfamily \label{class_gun_model_a050f8bc46b5385e66b75dc2c275d8e36} 
+int Gun\+Model::\+get\+Mag (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Rounds remaining in the magazine. 
+
+\Hypertarget{class_gun_model_ac425f43285c5c352e5448cf2948bb6f9}\index{GunModel@{GunModel}!getMagSize@{getMagSize}}
+\index{getMagSize@{getMagSize}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{getMagSize()}{getMagSize()}}
+{\footnotesize\ttfamily \label{class_gun_model_ac425f43285c5c352e5448cf2948bb6f9} 
+int Gun\+Model::\+get\+Mag\+Size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Maximum magazine capacity. 
+
+\Hypertarget{class_gun_model_a4775ad3e5b091196a3b532d6b38b0f1a}\index{GunModel@{GunModel}!getReserve@{getReserve}}
+\index{getReserve@{getReserve}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{getReserve()}{getReserve()}}
+{\footnotesize\ttfamily \label{class_gun_model_a4775ad3e5b091196a3b532d6b38b0f1a} 
+int Gun\+Model::\+get\+Reserve (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Rounds in the general reserve. 
+
+\Hypertarget{class_gun_model_af2fba4b5f57f2fd96e51e51c2170c078}\index{GunModel@{GunModel}!getShootCooldown@{getShootCooldown}}
+\index{getShootCooldown@{getShootCooldown}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{getShootCooldown()}{getShootCooldown()}}
+{\footnotesize\ttfamily \label{class_gun_model_af2fba4b5f57f2fd96e51e51c2170c078} 
+float Gun\+Model::\+get\+Shoot\+Cooldown (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_gun_model_ae5ef6d482ea260ecc34e71946ce8e441}\index{GunModel@{GunModel}!isReady@{isReady}}
+\index{isReady@{isReady}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{isReady()}{isReady()}}
+{\footnotesize\ttfamily \label{class_gun_model_ae5ef6d482ea260ecc34e71946ce8e441} 
+bool Gun\+Model::\+is\+Ready (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+True when the cooldown has elapsed. 
+
+\Hypertarget{class_gun_model_a4dd21ae86d5fc550d6432b16d5dc50d6}\index{GunModel@{GunModel}!pruneInactiveBullets@{pruneInactiveBullets}}
+\index{pruneInactiveBullets@{pruneInactiveBullets}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{pruneInactiveBullets()}{pruneInactiveBullets()}}
+{\footnotesize\ttfamily \label{class_gun_model_a4dd21ae86d5fc550d6432b16d5dc50d6} 
+void Gun\+Model::\+prune\+Inactive\+Bullets (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Removes inactive bullets from the list and frees their memory. 
+
+Called by \doxylink{class_gun_view}{Gun\+View} after updating bullet positions so that dead bullets are not processed again in the next tick. \Hypertarget{class_gun_model_a561ec29bbd1f959221efcb263f8c6630}\index{GunModel@{GunModel}!reload@{reload}}
+\index{reload@{reload}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{reload()}{reload()}}
+{\footnotesize\ttfamily \label{class_gun_model_a561ec29bbd1f959221efcb263f8c6630} 
+void Gun\+Model::\+reload (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reloads the magazine from the general reserve (GDD ammo rules). 
+
+Preserves rounds already in the mag and only transfers what is needed to fill it, so the player does not waste ammo by reloading mid-\/magazine. \Hypertarget{class_gun_model_a3b1633dcd2f81d1895e5213f422c524b}\index{GunModel@{GunModel}!setBaseDamage@{setBaseDamage}}
+\index{setBaseDamage@{setBaseDamage}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{setBaseDamage()}{setBaseDamage()}}
+{\footnotesize\ttfamily \label{class_gun_model_a3b1633dcd2f81d1895e5213f422c524b} 
+void Gun\+Model::\+set\+Base\+Damage (\begin{DoxyParamCaption}\item[{int}]{d}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_gun_model_a3952273675f613040c9ad908bb2b9b8d}\index{GunModel@{GunModel}!setCritChance@{setCritChance}}
+\index{setCritChance@{setCritChance}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{setCritChance()}{setCritChance()}}
+{\footnotesize\ttfamily \label{class_gun_model_a3952273675f613040c9ad908bb2b9b8d} 
+void Gun\+Model::\+set\+Crit\+Chance (\begin{DoxyParamCaption}\item[{float}]{c}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_gun_model_a6fae29db043c84eacde657f891759baf}\index{GunModel@{GunModel}!setShootCooldown@{setShootCooldown}}
+\index{setShootCooldown@{setShootCooldown}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{setShootCooldown()}{setShootCooldown()}}
+{\footnotesize\ttfamily \label{class_gun_model_a6fae29db043c84eacde657f891759baf} 
+void Gun\+Model::\+set\+Shoot\+Cooldown (\begin{DoxyParamCaption}\item[{float}]{cd}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_gun_model_a98c747edd5cb9c0919346170c09d0804}\index{GunModel@{GunModel}!tryShoot@{tryShoot}}
+\index{tryShoot@{tryShoot}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{tryShoot()}{tryShoot()}}
+{\footnotesize\ttfamily \label{class_gun_model_a98c747edd5cb9c0919346170c09d0804} 
+bool Gun\+Model::\+try\+Shoot (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{muzzle\+Pos}{, }\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{target\+Pos}{}\end{DoxyParamCaption})}
+
+
+
+Attempts to fire one bullet if the cooldown has elapsed and the mag is non-\/empty. 
+
+Returns false (and plays an empty-\/mag click) when no shot can be fired. This pattern avoids exposing internal timer state to callers.
+
+
+\begin{DoxyParams}{Parameters}
+{\em muzzle\+Pos} & World-\/space position of the gun barrel tip. \\
+\hline
+{\em target\+Pos} & World-\/space position of the mouse cursor (aim target). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a bullet was successfully created. 
+\end{DoxyReturn}
+\Hypertarget{class_gun_model_ab5cb120a634b41577fe99c09ba9543a1}\index{GunModel@{GunModel}!update@{update}}
+\index{update@{update}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_gun_model_ab5cb120a634b41577fe99c09ba9543a1} 
+void Gun\+Model::\+update (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})}
+
+
+
+Advances the shoot timer and moves all active bullets. 
+
+Must be called once per game-\/loop tick so that cooldown tracking and bullet positions stay in sync with the rest of the simulation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta-\/time in seconds. \\
+\hline
+\end{DoxyParams}
+
+
+\label{class_gun_model_doc-variable-members}
+\Hypertarget{class_gun_model_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_gun_model_a32c87ce6ab9d6a9e0db5099247fa3a5a}\index{GunModel@{GunModel}!baseDamage@{baseDamage}}
+\index{baseDamage@{baseDamage}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{baseDamage}{baseDamage}}
+{\footnotesize\ttfamily \label{class_gun_model_a32c87ce6ab9d6a9e0db5099247fa3a5a} 
+int Gun\+Model::\+base\+Damage\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Base damage before random bonus and critical multiplier. 
+
+\Hypertarget{class_gun_model_ad1730b3e2b74cd4b752f8b1ff5f2784c}\index{GunModel@{GunModel}!bullets@{bullets}}
+\index{bullets@{bullets}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{bullets}{bullets}}
+{\footnotesize\ttfamily \label{class_gun_model_ad1730b3e2b74cd4b752f8b1ff5f2784c} 
+QVector$<$\doxymbox{\hyperlink{class_bullet_model}{Bullet\+Model}}\texorpdfstring{$\ast$}{*}$>$ Gun\+Model::\+bullets\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+All bullets currently in flight (active or awaiting cleanup). 
+
+\Hypertarget{class_gun_model_a1cc86892311e2d637ac3a4b1c924467d}\index{GunModel@{GunModel}!critChance@{critChance}}
+\index{critChance@{critChance}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{critChance}{critChance}}
+{\footnotesize\ttfamily \label{class_gun_model_a1cc86892311e2d637ac3a4b1c924467d} 
+float Gun\+Model::\+crit\+Chance\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Probability of a critical hit \+[0..1]\+ (GDD:\+ 2 \% base). 
+
+\Hypertarget{class_gun_model_a7e9bcd7f126385e59497fc25704d285d}\index{GunModel@{GunModel}!emptyMagSound@{emptyMagSound}}
+\index{emptyMagSound@{emptyMagSound}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{emptyMagSound}{emptyMagSound}}
+{\footnotesize\ttfamily \label{class_gun_model_a7e9bcd7f126385e59497fc25704d285d} 
+QSound\+Effect\texorpdfstring{$\ast$}{*} Gun\+Model::\+empty\+Mag\+Sound\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Played when the player tries to fire an empty magazine. 
+
+\Hypertarget{class_gun_model_aeb23105e72c24ab5a2352fd38bc47f7f}\index{GunModel@{GunModel}!gunFireSound@{gunFireSound}}
+\index{gunFireSound@{gunFireSound}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{gunFireSound}{gunFireSound}}
+{\footnotesize\ttfamily \label{class_gun_model_aeb23105e72c24ab5a2352fd38bc47f7f} 
+QSound\+Effect\texorpdfstring{$\ast$}{*} Gun\+Model::\+gun\+Fire\+Sound\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Played on every successful shot. 
+
+\Hypertarget{class_gun_model_a4ef4f0563a13ba8dc665adbdd2e2ff91}\index{GunModel@{GunModel}!mag@{mag}}
+\index{mag@{mag}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{mag}{mag}}
+{\footnotesize\ttfamily \label{class_gun_model_a4ef4f0563a13ba8dc665adbdd2e2ff91} 
+int Gun\+Model::\+mag\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Rounds currently in the magazine. 
+
+\Hypertarget{class_gun_model_ac4f81dd3af557677057a45b20bd433db}\index{GunModel@{GunModel}!magSize@{magSize}}
+\index{magSize@{magSize}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{magSize}{magSize}}
+{\footnotesize\ttfamily \label{class_gun_model_ac4f81dd3af557677057a45b20bd433db} 
+int Gun\+Model::\+mag\+Size\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Maximum rounds the magazine can hold. 
+
+\Hypertarget{class_gun_model_a4580c31a5b6bfdf4a479c832fee5e968}\index{GunModel@{GunModel}!reserve@{reserve}}
+\index{reserve@{reserve}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{reserve}{reserve}}
+{\footnotesize\ttfamily \label{class_gun_model_a4580c31a5b6bfdf4a479c832fee5e968} 
+int Gun\+Model::\+reserve\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Rounds held in the general reserve. 
+
+\Hypertarget{class_gun_model_a670cb78b0a051f78dec19c4b3187a477}\index{GunModel@{GunModel}!shootCooldown@{shootCooldown}}
+\index{shootCooldown@{shootCooldown}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{shootCooldown}{shootCooldown}}
+{\footnotesize\ttfamily \label{class_gun_model_a670cb78b0a051f78dec19c4b3187a477} 
+float Gun\+Model::\+shoot\+Cooldown\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Minimum time between shots in seconds (GDD:\+ 0.\+5 s base). 
+
+\Hypertarget{class_gun_model_aac8230a60677d99eb819b5f710c8816c}\index{GunModel@{GunModel}!shootTimer@{shootTimer}}
+\index{shootTimer@{shootTimer}!GunModel@{GunModel}}
+\doxysubsubsection{\texorpdfstring{shootTimer}{shootTimer}}
+{\footnotesize\ttfamily \label{class_gun_model_aac8230a60677d99eb819b5f710c8816c} 
+float Gun\+Model::\+shoot\+Timer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Time remaining before the next shot is allowed. 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{gunmodel_8h}{gunmodel.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{gunmodel_8cpp}{gunmodel.\+cpp}}\end{DoxyCompactItemize}

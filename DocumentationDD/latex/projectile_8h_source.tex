@@ -1,0 +1,50 @@
+\doxysection{projectile.\+h}
+\hypertarget{projectile_8h_source}{}\label{projectile_8h_source}\index{Headers/projectile.h@{Headers/projectile.h}}
+\doxymbox{\hyperlink{projectile_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ PROJECTILE\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ PROJECTILE\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{entity_8h}{entity.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ \ Projectile\ —\ abstract\ intermediate\ class\ between\ Entity\ and}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ \ concrete\ projectiles\ (RubbleModel,\ BulletModel…).}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ \ Factors\ out:}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ \ \ \ -\/\ normalized\ movement\ direction}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \ \ \ -\/\ speed\ in\ pixels/s}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \ \ \ -\/\ damage\ inflicted\ on\ impact}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ \ \ \ -\/\ straight-\/line\ movement\ (update)}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ \ Subclasses\ only\ need\ to\ call\ the\ protected\ constructor\ and}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ \ can\ override\ update()\ if\ they\ require\ specific\ ballistic}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ \ behavior\ (gravity,\ curve…).}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_projectile_a1bd98c79e3575b2addf0c2f79428d9c9}{Projectile}}\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_entity_acaf2ad84607691b229cddab1da0bf819}{Entity}}\ \{}
+\DoxyCodeLine{00034\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00035\ \ \ \ \ \doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ \doxymbox{\hyperlink{class_projectile_abb984ec56a4e00541813b8e171955fa2}{direction}};\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \doxymbox{\hyperlink{class_projectile_a70ff500bdae54f3ad1e9e759b0ecd1fe}{speed}};\ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \doxymbox{\hyperlink{class_projectile_a90f5793efb184c30d6c74544a6b91bb4}{damage}};\ \ \ \ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00047\ \ \ \ \ \doxymbox{\hyperlink{class_projectile_a1bd98c79e3575b2addf0c2f79428d9c9}{Projectile}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ pos,\ \textcolor{keywordtype}{float}\ size,}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ dir,\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_projectile_a70ff500bdae54f3ad1e9e759b0ecd1fe}{speed}},\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_projectile_a90f5793efb184c30d6c74544a6b91bb4}{damage}});}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{virtual}\ \doxymbox{\hyperlink{class_projectile_a954a349fe38dfd24ff9e427b44ac9619}{\string~Projectile}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_projectile_ac5ebfb8b93e602f5c063d465944838fa}{update}}(\textcolor{keywordtype}{float}\ dt)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/\ Getters\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \doxymbox{\hyperlink{class_projectile_af5cd30772ad4cb3894629ca76c6b8f79}{getDamage}}()\textcolor{keyword}{\ \ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_projectile_a90f5793efb184c30d6c74544a6b91bb4}{damage}};\ \ \ \ \}\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \doxymbox{\hyperlink{class_projectile_a4f08dfe10b62cce1c2134b066e6b9d28}{getSpeed}}()\textcolor{keyword}{\ \ \ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_projectile_a70ff500bdae54f3ad1e9e759b0ecd1fe}{speed}};\ \ \ \ \ \}\ }
+\DoxyCodeLine{00063\ \ \ \ \ \doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ \doxymbox{\hyperlink{class_projectile_aef62b952dd6b52adc08a5b02331fe9ba}{getDirection}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_projectile_abb984ec56a4e00541813b8e171955fa2}{direction}};\ \}\ }
+\DoxyCodeLine{00064\ \};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PROJECTILE\_H}}
+
+\end{DoxyCode}

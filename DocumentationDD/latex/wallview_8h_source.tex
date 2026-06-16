@@ -1,0 +1,26 @@
+\doxysection{wallview.\+h}
+\hypertarget{wallview_8h_source}{}\label{wallview_8h_source}\index{Headers/wallview.h@{Headers/wallview.h}}
+\doxymbox{\hyperlink{wallview_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ WALLVIEW\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ WALLVIEW\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QGraphicsPixmapItem>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QPixmap>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{wallmodel_8h}{wallmodel.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_wall_view_a5038f22b94078f0f97ef76df574b1da5}{WallView}}\ :\ \textcolor{keyword}{public}\ QGraphicsPixmapItem\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_wall_view_a5038f22b94078f0f97ef76df574b1da5}{WallView}}(\doxymbox{\hyperlink{class_wall_model}{WallModel}}*\ model,\ QGraphicsItem*\ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ QPixmap\&\ \doxymbox{\hyperlink{class_wall_view_a8359bca572ecb8d68d036c620d35084d}{tileset}}();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static}\ QPixmap\ \doxymbox{\hyperlink{class_wall_view_a3227219c74b663e2566f9fc9e30c9b5f}{extractTile}}(\textcolor{keywordtype}{int}\ tileIndex,\ \textcolor{keywordtype}{int}\ tilesetCols,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tileW,\ \textcolor{keywordtype}{int}\ tileH);}
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ WALLVIEW\_H}}
+
+\end{DoxyCode}

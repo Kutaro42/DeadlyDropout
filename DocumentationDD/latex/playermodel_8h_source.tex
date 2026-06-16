@@ -1,0 +1,100 @@
+\doxysection{playermodel.\+h}
+\hypertarget{playermodel_8h_source}{}\label{playermodel_8h_source}\index{Headers/playermodel.h@{Headers/playermodel.h}}
+\doxymbox{\hyperlink{playermodel_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ PLAYERMODEL\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ PLAYERMODEL\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{entity_8h}{entity.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{katana_8h}{katana.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{gunmodel_8h}{gunmodel.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <QSoundEffect>}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ \ PlayerModel\ —\ player\ state\ and\ logic\ (Model\ layer,\ MVC).}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \ Delegates\ all\ weapon-\/related\ logic\ to\ the\ Katana\ object.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_player_model_a0aac1826048e63c145efe7c3cd4da5c8}{PlayerModel}}\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_entity_acaf2ad84607691b229cddab1da0bf819}{Entity}}\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_model_a470dadd9082ce5c18a36fadd5f00acc2}{hp}};}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_model_af76cfc041631f856eba5be2952b2fff0}{maxHp}};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_model_a7ba1b80a0f0bd0ccd8096ec82b645730}{speed}};}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_model_aab85495240002bb90f82102f03f73ce3}{speedBoosted}};}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_model_a5e9df8e8607129568b81964cab564863}{gold}};}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_model_a7bc606b10d75c681a045d02f3defe069}{hasKey}};}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_model_a7cec3c0523804eaae322ca51f98a2080}{moving}};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{FacingDirection}}\ \doxymbox{\hyperlink{class_player_model_a8f600f070fef027aaeba5b68021e3625}{facingDir}};\ }
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \doxymbox{\hyperlink{class_katana}{Katana}}\ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_model_a1b6eca16be40442c80389ad6806d0b2f}{katana}};}
+\DoxyCodeLine{00048\ \ \ \ \ \doxymbox{\hyperlink{class_gun_model}{GunModel}}\ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_model_abc275b42e75c484948e8526a9ccde243}{gun}};}
+\DoxyCodeLine{00049\ \ \ \ \ QSoundEffect*\ \doxymbox{\hyperlink{class_player_model_a30198c78b02b6f6ed57c4f20da550da4}{damageSound}};}
+\DoxyCodeLine{00050\ \ \ \ \ QSoundEffect*\ \doxymbox{\hyperlink{class_player_model_adcc9f38576771129be697a1c9f91d022}{deathSound}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/\ Katana\ attack\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00058\ \ \ \ \ \doxymbox{\hyperlink{class_player_model_a0aac1826048e63c145efe7c3cd4da5c8}{PlayerModel}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ startPos);}
+\DoxyCodeLine{00062\ \ \ \ \ \doxymbox{\hyperlink{class_player_model_ac72aa34f2769aff6bed1ebe198454769}{\string~PlayerModel}}();}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_model_a0d99c3c69f67b94362c35d557105d3e2}{update}}(\textcolor{keywordtype}{float}\ dt)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/\ Movement\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_model_aa9a082f8b7cfb69d726da217543ac4a3}{move}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ inputDir,\ \textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_model_a299e54d1f348bc55533496df4142623e}{stopMoving}}()\ \{\ \doxymbox{\hyperlink{class_player_model_a7cec3c0523804eaae322ca51f98a2080}{moving}}\ =\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/\ Katana\ attack\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_player_model_a3e403a4d837cd7b6c0eb49370dfc3eea}{launchKatana}}(\textcolor{keywordtype}{float}\ angleRad);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/\ HP\ and\ player\ state\ management\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_model_a7516751b6c87cc061c48d90389cb7b86}{takeDamage}}(\textcolor{keywordtype}{int}\ amount);}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_player_model_aaac7b6f5fe8f3de063c05a94fb439520}{isDead}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_player_model_a470dadd9082ce5c18a36fadd5f00acc2}{hp}}\ <=\ 0;\ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/\ Gold\ and\ key\ management\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_model_add60893f62ef69c9de834c43027a2e0c}{addGold}}(\textcolor{keywordtype}{int}\ amount)\ \{\ \doxymbox{\hyperlink{class_player_model_a5e9df8e8607129568b81964cab564863}{gold}}\ +=\ amount;\ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_model_a87f08a4a1c5f74a22881a5f08b81c953}{collectKey}}()\ \ \ \ \ \ \ \ \{\ \doxymbox{\hyperlink{class_player_model_a7bc606b10d75c681a045d02f3defe069}{hasKey}}\ =\ \textcolor{keyword}{true};\ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/\ Getters\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_model_a09270f49304381391c42790b88c3910b}{getHp}}()\textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_player_model_a470dadd9082ce5c18a36fadd5f00acc2}{hp}};\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_model_aba8154a74346a722fa9d7598545200b4}{getMaxHp}}()\textcolor{keyword}{\ \ \ \ \ \ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_player_model_af76cfc041631f856eba5be2952b2fff0}{maxHp}};\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_model_a5840bd007bc4b2ebd1a45f887c76338d}{getGold}}()\textcolor{keyword}{\ \ \ \ \ \ \ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_player_model_a5e9df8e8607129568b81964cab564863}{gold}};\ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_model_a54cf5917cc35c5195b004d2366d5e1e8}{getHasKey}}()\textcolor{keyword}{\ \ \ \ \ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_player_model_a7bc606b10d75c681a045d02f3defe069}{hasKey}};\ \ \ \ \}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_model_a3c69f9e1a422e3f8c8dcab8e86f54995}{isMoving}}()\textcolor{keyword}{\ \ \ \ \ \ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_player_model_a7cec3c0523804eaae322ca51f98a2080}{moving}};\ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{FacingDirection}}\ \doxymbox{\hyperlink{class_player_model_aa36f87d53761fdea977aee987d939b82}{getFacing}}()\textcolor{keyword}{\ \ \ \ \ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_player_model_a8f600f070fef027aaeba5b68021e3625}{facingDir}};\ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_model_a133b084259071e2fa4641a8c1e982d48}{getSpeed}}()\textcolor{keyword}{\ \ \ \ \ \ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_player_model_a7ba1b80a0f0bd0ccd8096ec82b645730}{speed}};\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_katana}{Katana}}\&\ \ \ \doxymbox{\hyperlink{class_player_model_a4d7cfebe2130f429d2ce54b5878ccaf9}{getKatana}}()\textcolor{keyword}{\ \ \ \ \ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_player_model_a1b6eca16be40442c80389ad6806d0b2f}{katana}};\ \ \ \ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_model_a8f78295a06475ac70bf0f2a632808193}{isKatanaActive}}()\textcolor{keyword}{\ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_player_model_a1b6eca16be40442c80389ad6806d0b2f}{katana}}.isAnimActive();\ \ \ \}}
+\DoxyCodeLine{00121\ \ \ \ \ QRectF\ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_model_a9aa7e1b4b83a05bb6d53eb85fb045e19}{getSlashZone}}()\textcolor{keyword}{\ \ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_player_model_a1b6eca16be40442c80389ad6806d0b2f}{katana}}.getSlashZone();\ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_model_aad848a4e286e0c210c14a54d19c95e64}{getAttackAngle}}()\textcolor{keyword}{\ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_player_model_a1b6eca16be40442c80389ad6806d0b2f}{katana}}.getAttackAngle();\ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \doxymbox{\hyperlink{class_gun_model}{GunModel}}\&\ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_model_af6aaeeff7358b5153610a1f93bf534c1}{getGun}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_player_model_abc275b42e75c484948e8526a9ccde243}{gun}};\ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_gun_model}{GunModel}}\&\ \doxymbox{\hyperlink{class_player_model_a22a790e1befdd1a3eb3d8a2cece997dd}{getGun}}()\textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_player_model_abc275b42e75c484948e8526a9ccde243}{gun}};\ \}\ \ \textcolor{comment}{//\ Note\ for\ alex:\ Why\ two?}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_player_model_a2bc2bd467ad50f7df74cebaa673f3abe}{shootGun}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ muzzlePos,\ \doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ targetPos)}
+\DoxyCodeLine{00134\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_player_model_abc275b42e75c484948e8526a9ccde243}{gun}}.tryShoot(muzzlePos,\ targetPos);\ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_model_a576c6fca92db2deea75539fd7c811e82}{reloadGun}}()\ \{\ \doxymbox{\hyperlink{class_player_model_abc275b42e75c484948e8526a9ccde243}{gun}}.reload();\ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/\ Setters\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_model_abacde7c6b46f2ff5cdef1efe1b6c257a}{setMaxHp}}(\textcolor{keywordtype}{int}\ v)\ \ \ \ \ \ \ \ \ \ \{\ \doxymbox{\hyperlink{class_player_model_af76cfc041631f856eba5be2952b2fff0}{maxHp}}\ =\ v;\ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_model_ac9c7f5e666cf1f90811915e4bdbf3e45}{setHp}}(\textcolor{keywordtype}{int}\ life)\ \ \ \ \ \ \ \ \ \ \{\ \doxymbox{\hyperlink{class_player_model_a470dadd9082ce5c18a36fadd5f00acc2}{hp}}\ =\ life;\ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_model_aab2d65041399bc02bfcef8eda6adca2f}{setSpeed}}(\textcolor{keywordtype}{float}\ v)\ \ \ \ \ \ \ \ \{\ \doxymbox{\hyperlink{class_player_model_a7ba1b80a0f0bd0ccd8096ec82b645730}{speed}}\ =\ v;\ \ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_player_model_aae5ddbd76ea71bdc58d1eed4e80dc479}{getBoostState}}();}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_model_a92162a7f6d0b5d5ab81fc49977802e2b}{setHasKey}}(\textcolor{keywordtype}{bool}\ key);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_model_a141172ad032a28b794860ee90fd968de}{setKatanaDamage}}(\textcolor{keywordtype}{int}\ v)\ \ \ \ \{\ \doxymbox{\hyperlink{class_player_model_a1b6eca16be40442c80389ad6806d0b2f}{katana}}.setDamage(v);\ \ \ \ \}}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_model_aa830104236ba74ab279b4267fe57c817}{setKatanaRange}}(\textcolor{keywordtype}{int}\ v)\ \ \ \ \ \{\ \doxymbox{\hyperlink{class_player_model_a1b6eca16be40442c80389ad6806d0b2f}{katana}}.setRange(v);\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_model_a3774ae4552a70aa4e9f543ba8bac5dea}{setKatanaCooldown}}(\textcolor{keywordtype}{float}\ v)\{\ \doxymbox{\hyperlink{class_player_model_a1b6eca16be40442c80389ad6806d0b2f}{katana}}.setCooldown(v);\ \ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{static}\ \doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{FacingDirection}}\ \doxymbox{\hyperlink{class_player_model_aa98efc2f1a9481847343b2897884d548}{angleToFacing}}(\textcolor{keywordtype}{float}\ angleRad);}
+\DoxyCodeLine{00157\ \};}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYERMODEL\_H}}
+
+\end{DoxyCode}

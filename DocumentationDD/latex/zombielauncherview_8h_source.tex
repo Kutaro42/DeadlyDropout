@@ -1,0 +1,77 @@
+\doxysection{zombielauncherview.\+h}
+\hypertarget{zombielauncherview_8h_source}{}\label{zombielauncherview_8h_source}\index{Headers/zombielauncherview.h@{Headers/zombielauncherview.h}}
+\doxymbox{\hyperlink{zombielauncherview_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ ZOMBIELAUNCHERVIEW\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ ZOMBIELAUNCHERVIEW\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QGraphicsPixmapItem>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QGraphicsScene>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QVector>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QPixmap>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{zombielaunchermodel_8h}{zombielaunchermodel.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{rubbleview_8h}{rubbleview.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \ ZombieLauncherView\ —\ visual\ representation\ of\ the\ launcher\ zombie.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ \ Expected\ spritesheets\ (Qt\ resources):}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ \ \ \ :/images/Textures/Enemy/Launcher/Idle/\{Down,Up,Left,Right\}.png}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ \ \ \ :/images/Textures/Enemy/Launcher/Move/\{Down,Up,Left,Right\}.png}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ \ →\ 2\ frames\ of\ 32×32\ side\ by\ side,\ like\ ZombieStdView.}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ \ If\ missing,\ a\ purple\ rectangle\ annotated\ "{}L"{}\ is\ used.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ \ RubbleView\ management:}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ \ \ \ On\ every\ tick,\ updateView()\ synchronizes\ the\ RubbleView\ list}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ \ \ \ with\ the\ RubbleModel\ instances\ created\ by\ the\ model,\ then\ calls}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ \ \ \ pruneInactiveRubbles()\ to\ free\ memory.}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_zombie_launcher_view_a8c4d6f1bafa0c16500c82dcd731ff3eb}{ZombieLauncherView}}\ :\ \textcolor{keyword}{public}\ QGraphicsPixmapItem\ \{}
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_zombie_launcher_view_a8c4d6f1bafa0c16500c82dcd731ff3eb}{ZombieLauncherView}}(\doxymbox{\hyperlink{class_zombie_launcher_model}{ZombieLauncherModel}}*\ \doxymbox{\hyperlink{class_zombie_launcher_view_af03c1b8af93be1519e209676975026cb}{model}},}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QGraphicsScene*\ \ \ \ \ \ \doxymbox{\hyperlink{class_zombie_launcher_view_a938767259b5130117a2e31873c561370}{scene}},}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QGraphicsItem*\ \ \ \ \ \ \ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_zombie_launcher_view_a5bd5635571ad1abe45aff6629d1a6032}{updateView}}(\textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00057\ \ \ \ \ \doxymbox{\hyperlink{class_zombie_launcher_model}{ZombieLauncherModel}}*\ \doxymbox{\hyperlink{class_zombie_launcher_view_af03c1b8af93be1519e209676975026cb}{model}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ QGraphicsScene*\ \ \ \ \ \ \doxymbox{\hyperlink{class_zombie_launcher_view_a938767259b5130117a2e31873c561370}{scene}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ QVector<RubbleView*>\ \doxymbox{\hyperlink{class_zombie_launcher_view_a9cd8a855a9db42a1112d9153bea4c730}{rubbleViews}};\ \ \ \ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ ───\ Animation\ ────────────────────────────────────────────}}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_zombie_launcher_view_a448ce3da85548e725b6d9cde34e342bb}{IDLE}}\ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_zombie_launcher_view_adaae5dfd289d87d2ad09e019c52da517}{WALK}}\ \ \ \ \ \ \ \ =\ 1;}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_zombie_launcher_view_a139ebff31d5fd18d8d492392bdde8a0f}{HURT}}\ \ \ \ \ \ \ \ =\ 2;\ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_zombie_launcher_view_a619f813d1b35ec636fa2798d70026d11}{DEAD}}\ \ \ \ \ \ \ \ =\ 3;\ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_zombie_launcher_view_a8543f7ac54deb86f6a2e60f2061d15d2}{STATE\_COUNT}}\ =\ 4;}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_zombie_launcher_view_ab2df2086444401e148067b1dc2cbf503}{DIR\_COUNT}}\ \ \ =\ 4;}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_zombie_launcher_view_a9e33c4ec18509991ac1eba898366766a}{FRAME\_W}}\ \ \ \ \ =\ 32;\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_zombie_launcher_view_a4e6e858f25487426bdecf5a2d898f318}{FRAME\_H}}\ \ \ \ \ =\ 32;\ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ QVector<QPixmap>\ \doxymbox{\hyperlink{class_zombie_launcher_view_ab1f80865f450969ef4b54d147d549170}{sprites}}[\doxymbox{\hyperlink{class_zombie_launcher_view_a8543f7ac54deb86f6a2e60f2061d15d2}{STATE\_COUNT}}][\doxymbox{\hyperlink{class_zombie_launcher_view_ab2df2086444401e148067b1dc2cbf503}{DIR\_COUNT}}];\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{class_zombie_launcher_view_af6a2fce30a5fec70ff30c3ceebe6fcdb}{currentFrame}};\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_zombie_launcher_view_a952bf03d3ff32cab77a227419fc44c6b}{frameTimer}};\ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_zombie_launcher_view_a6105e1398d66a5943840581973a6b138}{animSpeed}};\ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_zombie_launcher_view_ad98b67a1ddf31a448606db3c2d134966}{animSpeedDeath}};}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{class_zombie_launcher_view_acffc47c114fec2f77b9d7203ab9a4231}{currentDir}};\ \ \ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \doxymbox{\hyperlink{class_zombie_launcher_view_a3dd675893fc0b7b86917c928a612e99b}{deadAnimFinished}};\ }
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ ───\ Helpers\ ──────────────────────────────────────────────}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_zombie_launcher_view_a5daeaa2491b89a5885c15ad43fcb4ae3}{dirIdx}}(\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{FacingDirection}}\ d);}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{static}\ \doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{FacingDirection}}\ \doxymbox{\hyperlink{class_zombie_launcher_view_a6729cf462f6da1897cc3381a0e816967}{velocityToDir}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ vel);}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_zombie_launcher_view_aaf1d51d576673baa9240ad12406a11c2}{loadSheet}}(QVector<QPixmap>\&\ frames,\ \textcolor{keyword}{const}\ QString\&\ path);}
+\DoxyCodeLine{00084\ \ \ \ \ QPixmap\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_zombie_launcher_view_ae3370534a573d67f83c079b30dcc3f73}{makeFallback}}();}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_zombie_launcher_view_ae0f752fb208891ac699371abae4c121c}{advanceFrames}}(\textcolor{keywordtype}{float}\ dt,\ \textcolor{keyword}{const}\ QVector<QPixmap>\&\ frames);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_zombie_launcher_view_a1216fbcffa72820371c3a3760dda2d4f}{syncRubbleViews}}();}
+\DoxyCodeLine{00093\ \};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ZOMBIELAUNCHERVIEW\_H}}
+
+\end{DoxyCode}

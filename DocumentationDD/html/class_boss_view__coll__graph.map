@@ -1,0 +1,14 @@
+<map id="BossView" name="BossView">
+<area shape="rect" id="Node000001" title="Boss&#39;s view. Display the different boss&#39;s sprites and the area damage." alt="" coords="63,2061,194,2664"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,1717,148,1787"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,1799,106,2061,100,2062,80,1804"/>
+<area shape="rect" id="Node000003" href="$classboss_model.html" title="A boss model that handles the boss&#39;s behavior (attacks, movement, etc.)." alt="" coords="172,1515,315,1989"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="199,1987,191,2045,186,2044,198,1992"/>
+<area shape="rect" id="Node000004" href="$class_enemy.html" title="Base class defining the structure and mechanics of a hostile entity." alt="" coords="171,649,316,1465"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="244,1478,246,1515,241,1515,243,1483"/>
+<area shape="rect" id="Node000005" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="286,296,382,600"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="309,617,307,650,301,649,310,612"/>
+<area shape="rect" id="Node000006" href="$class_vector2f.html" title="Mathematical class describing 2D vectors (position, velocity)." alt="" coords="176,5,271,224"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="217,221,217,296,214,448,217,600,218,632,212,632,211,600,208,448,211,296,217,227"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="259,221,283,286,278,286,260,226"/>
+</map>

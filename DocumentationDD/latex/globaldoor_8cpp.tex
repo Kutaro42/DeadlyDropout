@@ -1,0 +1,22 @@
+\doxysection{Sources/\+globaldoor.cpp File Reference}
+\hypertarget{globaldoor_8cpp}{}\label{globaldoor_8cpp}\index{Sources/globaldoor.cpp@{Sources/globaldoor.cpp}}
+
+
+Implementation of the \doxylink{class_global_door}{Global\+Door} base class.  
+
+
+{\ttfamily \+\#include "{}Headers/\+globaldoor.\+h"{}}\newline
+Include dependency graph for globaldoor.\+cpp:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=277pt]{globaldoor_8cpp__incl}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the \doxylink{class_global_door}{Global\+Door} base class. 
+
+The constructor simply forwards position and dimensions to \doxylink{class_entity}{Entity}. All door-\/specific logic (open/\+close state, teleportation, key checking) lives in the concrete subclasses so that this file stays minimal and the inheritance chain remains easy to extend. 

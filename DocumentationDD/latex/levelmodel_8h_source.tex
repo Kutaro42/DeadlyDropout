@@ -1,0 +1,67 @@
+\doxysection{levelmodel.\+h}
+\hypertarget{levelmodel_8h_source}{}\label{levelmodel_8h_source}\index{Headers/levelmodel.h@{Headers/levelmodel.h}}
+\doxymbox{\hyperlink{levelmodel_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ LEVELMODEL\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ LEVELMODEL\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QVector>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QObject>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{wallmodel_8h}{wallmodel.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{floormodel_8h}{floormodel.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{exitdoormodel_8h}{exitdoormodel.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{standarddoormodel_8h}{standarddoormodel.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{bossdoormodel_8h}{bossdoormodel.h}}"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{vector2f_8h}{vector2f.h}}"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_enemy}{Enemy}};\ \textcolor{comment}{//\ forward\ declaration}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_level_model_aa5a97cf1007cd601333033e652c6c1ce}{LevelModel}}\ :\ \textcolor{keyword}{public}\ QObject\{}
+\DoxyCodeLine{00030\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00031\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00032\ \ \ \ \ QVector<WallModel*>\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_level_model_a44c9ceab2025713bc17c394959a6e45c}{walls}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ QVector<FloorModel*>\ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_level_model_a643616a9a202c1af56fdf3fc7cb8689d}{floorTiles}};\ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ QVector<Enemy*>\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_level_model_ae9065abff8a2f28e662173138e9d3c26}{enemies}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ QVector<StandardDoorModel*>\ \doxymbox{\hyperlink{class_level_model_adcadb066de8445fd50611cbecc7df8c1}{standardDoors}};\ \ }
+\DoxyCodeLine{00036\ \ \ \ \ QVector<BossDoorModel*>\ \ \ \ \doxymbox{\hyperlink{class_level_model_a9fcd2c6c31e17ff0fbb185bbc6ac0286}{bossDoors}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \doxymbox{\hyperlink{class_exit_door_model}{ExitDoorModel}}*\ \doxymbox{\hyperlink{class_level_model_a32a870cda9d321b3c088ca8c2148af8d}{exitDoor}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_level_model_ae726ad1fcfad1f3b8faf2a96d45298c1}{playerSpawnPos}};\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_level_model_ab46ac8c3e4bd1b74f603816e7c68ae05}{levelId}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \doxymbox{\hyperlink{class_level_model_aa5a97cf1007cd601333033e652c6c1ce}{LevelModel}}();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00050\ \ \ \ \ \doxymbox{\hyperlink{class_level_model_a9145bb70d25bac71f332c4baaaa5c4d9}{\string~LevelModel}}();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_model_af0377d313b51e87462fa179cded56538}{clear}}();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ ───\ Ajout\ d'entités\ (utilisé\ par\ LevelBuilder)\ ───────────}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_model_ad17431481889b9306af0eb0e89387e17}{addWall}}(\doxymbox{\hyperlink{class_wall_model}{WallModel}}*\ w);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_model_a3de70484549a5b581f6cc5cae0b7b8ea}{addFloorTile}}(\doxymbox{\hyperlink{class_floor_model}{FloorModel}}*\ f);\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_model_a2d0b176b0f4a955398be5bec0c321d56}{addEnemy}}(\doxymbox{\hyperlink{class_enemy}{Enemy}}*\ e);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_model_a0b52b2340430d5315ef6c5bfc39d2f6f}{addStandardDoor}}(\doxymbox{\hyperlink{class_standard_door_model}{StandardDoorModel}}*\ d);\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_model_a5f3ae346df93310ecad5532c8172666c}{addBossDoor}}(\doxymbox{\hyperlink{class_boss_door_model}{BossDoorModel}}*\ d);\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_model_a6ef1a22a2b6f85acdd9cc4ab40447c87}{setExitDoor}}(\doxymbox{\hyperlink{class_exit_door_model}{ExitDoorModel}}*\ d);\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_model_a0cc24b3cf14e8466bed507ac18a20631}{setPlayerSpawnPos}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ pos);\ \ \ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_model_abe417fe55f30601ff2e8a3afca57e94d}{setLevelId}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ ───\ Accesseurs\ ───────────────────────────────────────────}}
+\DoxyCodeLine{00068\ \ \ \ \ QVector<WallModel*>\&\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_level_model_ab8f57c397d0356007b73d46f12ab6aaa}{getWalls}}()\ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_level_model_a44c9ceab2025713bc17c394959a6e45c}{walls}};\ \ \ \ \ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{00069\ \ \ \ \ QVector<FloorModel*>\&\ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_level_model_a937302f402d3844ed54ce8426ffaa87a}{getFloorTiles}}()\ \ \ \ \{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_level_model_a643616a9a202c1af56fdf3fc7cb8689d}{floorTiles}};\ \ \ \ \ \ \}\ }
+\DoxyCodeLine{00070\ \ \ \ \ QVector<Enemy*>\&\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_level_model_a3b454c4e30a819593bc96e9feee09dcc}{getEnemies}}()\ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_level_model_ae9065abff8a2f28e662173138e9d3c26}{enemies}};\ \ \ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{00071\ \ \ \ \ QVector<StandardDoorModel*>\&\ \doxymbox{\hyperlink{class_level_model_a425f5eb681aa4c3fd19a4c4cf334b0a3}{getStandardDoors}}()\ \{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_level_model_adcadb066de8445fd50611cbecc7df8c1}{standardDoors}};\ \ \ \}\ }
+\DoxyCodeLine{00072\ \ \ \ \ QVector<BossDoorModel*>\&\ \ \ \ \doxymbox{\hyperlink{class_level_model_acfcaa96a787f89dfea5cdf027b7f06e5}{getBossDoors}}()\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_level_model_a9fcd2c6c31e17ff0fbb185bbc6ac0286}{bossDoors}};\ \ \ \ \ \ \}\ }
+\DoxyCodeLine{00073\ \ \ \ \ \doxymbox{\hyperlink{class_exit_door_model}{ExitDoorModel}}*\ \doxymbox{\hyperlink{class_level_model_a4c5aef7de9a8edd44a0111ea55da5dbc}{getExitDoor}}()\textcolor{keyword}{\ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_level_model_a32a870cda9d321b3c088ca8c2148af8d}{exitDoor}};\ \ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{00074\ \ \ \ \ \doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_level_model_a20fc82bd1a61c70824d077aa03b06aeb}{getSpawnPos}}()\textcolor{keyword}{\ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_level_model_ae726ad1fcfad1f3b8faf2a96d45298c1}{playerSpawnPos}};\ \ \}\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_level_model_aba24b5beec5608fd8f67a1d1851c5ca1}{getLevelId}}()\textcolor{keyword}{\ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_level_model_ab46ac8c3e4bd1b74f603816e7c68ae05}{levelId}};\ \ \ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_level_model_a1ac9c2658ab7f80f9a435233824972fe}{bossDefeat}}()\ ;}
+\DoxyCodeLine{00082\ \ \ \ \ signals:}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_model_a869791b975a69c9a234bf360f6c31249}{sigPlayerKeyObtain}}();\textcolor{comment}{//attribue\ la\ clé\ au\ joueur\ par\ appel}}
+\DoxyCodeLine{00084\ \};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ LEVELMODEL\_H}}
+
+\end{DoxyCode}

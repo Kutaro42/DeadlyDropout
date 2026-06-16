@@ -1,0 +1,121 @@
+\doxysection{playerview.\+h}
+\hypertarget{playerview_8h_source}{}\label{playerview_8h_source}\index{Headers/playerview.h@{Headers/playerview.h}}
+\doxymbox{\hyperlink{playerview_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ PLAYERVIEW\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ PLAYERVIEW\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QGraphicsPixmapItem>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QVector>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QPixmap>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QTransform>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{playermodel_8h}{playermodel.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ \ PlayerView\ —\ visual\ representation\ of\ the\ player.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \ Spritesheets\ (prefix\ /images,\ ressources.qrc):}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ \ \ \ Textures/Player/Idle/\{Down,Up,Left,Right\}.png\ \ \ →\ 2\ frames\ 36×36}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ \ \ \ Textures/Player/Move/\{Down,Up,Left,Right\}.png\ \ \ →\ 2\ frames\ 36×36}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ \ \ \ Textures/Player/Attack/\{Down,Up,Left,Right\}.png\ →\ 6\ frames\ 128×128}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ \ \ \ Textures/Player/Slash/slash.png\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ →\ N\ frames\ (horizontal}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sprite\ sheet,\ size\ SLASH\_FRAME\_SRC²)}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ \ Animation\ priority:\ ATTACK\ >\ WALK\ >\ IDLE}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ \ Slash\ effect\ (SlashView):}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ \ \ \ A\ child\ QGraphicsPixmapItem\ (itsSlashItem)\ is\ attached\ to\ PlayerView.}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ \ \ \ It\ displays\ the\ Slash/\ spritesheet\ rotated\ to\ the\ exact\ attack\ angle.}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ \ \ \ It\ is\ hidden\ when\ the\ katana\ is\ not\ animating.}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ \ Centering:}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ \ \ \ The\ sprite\ may\ have\ a\ different\ display\ size\ depending\ on\ the\ state}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ \ \ \ (SPRITE\_SIZE[state]).\ setOffset()\ re-\/centers\ the\ pixmap\ on\ the\ hitbox.}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_player_view_a355f5e4fec130c8cb3d026ca83b345bf}{PlayerView}}\ :\ \textcolor{keyword}{public}\ QGraphicsPixmapItem\ \{}
+\DoxyCodeLine{00045\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_player_view_a355f5e4fec130c8cb3d026ca83b345bf}{PlayerView}}(\doxymbox{\hyperlink{class_player_model}{PlayerModel}}*\ \doxymbox{\hyperlink{class_player_view_afbce70f6817baf01912fd021483e723f}{model}},\ QGraphicsItem*\ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_view_ada7ade21c8ac06f10bb061c45de644fa}{updateView}}(\textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00055\ \ \ \ \ \doxymbox{\hyperlink{class_player_model}{PlayerModel}}*\ \doxymbox{\hyperlink{class_player_view_afbce70f6817baf01912fd021483e723f}{model}};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/\ Player\ animation\ states\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_player_view_ac576a0aa95f1e2adcbab7c563803762c}{IDLE}}\ \ \ =\ 0;}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_player_view_ab4f1a91cb4b2020257cdcba636537164}{WALK}}\ \ \ =\ 1;}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_player_view_af2b886d667c889edccab3d5ac8cdfffc}{ATTACK}}\ =\ 2;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_player_view_aad5178af06de33eb615031a31255231b}{STATE\_COUNT}}\ \ \ \ \ \ \ \ =\ 3;}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_player_view_a59d1305d8096be72bfb27d71889fbad0}{DIR\_COUNT}}\ \ \ \ \ \ \ \ \ \ =\ 4;}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_player_view_a98ebeb9704be9ae00d80e8891a5c966d}{ATTACK\_FRAME\_COUNT}}\ =\ 4;}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_player_view_a10de1644d9f51b4d8f79a5c4d9ff8a0f}{FRAME\_W}}[\doxymbox{\hyperlink{class_player_view_aad5178af06de33eb615031a31255231b}{STATE\_COUNT}}]\ =\ \{\ 18,\ 18,\ 32\ \};}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_player_view_ad39b225d2157852de2ed0d7b80b0e868}{FRAME\_H}}[\doxymbox{\hyperlink{class_player_view_aad5178af06de33eb615031a31255231b}{STATE\_COUNT}}]\ =\ \{\ 18,\ 18,\ 32\ \};}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_player_view_adc6a8ed49f8cc6bf96142c0022ac7cdd}{SPRITE\_SIZE}}[\doxymbox{\hyperlink{class_player_view_aad5178af06de33eb615031a31255231b}{STATE\_COUNT}}]\ =\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespace_cfg_a3e672c9b491fbb0b0134ff8a962b06bc}{Cfg::ENTITY\_SIZE}},}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespace_cfg_a3e672c9b491fbb0b0134ff8a962b06bc}{Cfg::ENTITY\_SIZE}},}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespace_cfg_a3e672c9b491fbb0b0134ff8a962b06bc}{Cfg::ENTITY\_SIZE}}\ +\ 50,}
+\DoxyCodeLine{00072\ \ \ \ \ \};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ QVector<QPixmap>\ \doxymbox{\hyperlink{class_player_view_a55e0ac6b4782e372246044403182c094}{sprites}}[\doxymbox{\hyperlink{class_player_view_aad5178af06de33eb615031a31255231b}{STATE\_COUNT}}][\doxymbox{\hyperlink{class_player_view_a59d1305d8096be72bfb27d71889fbad0}{DIR\_COUNT}}];}
+\DoxyCodeLine{00075\ \ \ \ \ QPixmap\ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_view_a17a91d185c9aba44da6fc91f75c4f368}{cachedFallback}}[\doxymbox{\hyperlink{class_player_view_a59d1305d8096be72bfb27d71889fbad0}{DIR\_COUNT}}];}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/\ IDLE\ /\ WALK\ timers\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{class_player_view_aed208723c222647b679a10e90e7f2cf7}{currentFrame}};}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_player_view_a020252c947ef70f1685f621d477fef9b}{frameTimer}};}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_player_view_aabefe443c72bcb0029e8742cd9f2f32c}{animSpeed}};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/\ ATTACK\ timers\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{class_player_view_a293bb24b1ad59835b825291c84532a3a}{attackFrame}};}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_player_view_a14fa1c37391e46948a7ea42ce8a410b6}{attackFrameTimer}};}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_player_view_ac06649510fe695882311957c70ab25a3}{attackTotalTimer}};}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_player_view_a34486e83809a800c1ae39ffb5d1878f0}{attackAnimSpeed}};}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \doxymbox{\hyperlink{class_player_view_a44df56c5ff03b5ee9e4ad8e7e8d283e2}{wasKatanaActive}};}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \doxymbox{\hyperlink{class_player_view_a9b3dbd446fb850066fe66cbdc3c5e32b}{attackEverTriggered}};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ \ Slash\ effect\ sprite}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_player_view_a3a7a11f5b618289b84678052d266e98f}{SLASH\_FRAME\_SRC}}\ \ =\ 128;\ }
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_player_view_a396151a54dd5f39819d6bdeeeb555560}{SLASH\_DISPLAY}}\ \ \ \ =\ 128;\ \ }
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_player_view_ac4d195697b019aaa9c24bdd561aefd11}{SLASH\_FRAME\_COUNT}}\ =\ 3;}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ QVector<QPixmap>\ \ \ \ \ \ \doxymbox{\hyperlink{class_player_view_a98fdb691915a24cb96a99644d47b7c9e}{itsSlashFrames}};\ \ \ \ \ }
+\DoxyCodeLine{00113\ \ \ \ \ QGraphicsPixmapItem*\ \ \doxymbox{\hyperlink{class_player_view_ad7e41467f349494f54e71c9f7cc301ec}{itsSlashItem}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_view_ae01fa9c1b1e493c6e48f71709768fc9c}{itsSlashFrame}};\ \ \ \ \ \ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_view_aa7016d6446ddf1adc5754d38aa53fda6}{itsSlashFrameTimer}};\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_view_a544e818fe4a6242675c233a7a85120f0}{itsSlashFrameSpeed}};\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_player_view_af396cfa5f6cb481e83780323be5c8a9d}{itsSlashDone}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{//\ ───\ Helpers\ ──────────────────────────────────────────────────}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_player_view_a4b99812436372640c83a1bbb851ab55c}{dirIdx}}(\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{FacingDirection}}\ d);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_view_a7fa0a576382f4b5015bff3883a748b38}{loadSheet}}(QVector<QPixmap>\&\ frames,\ \textcolor{keyword}{const}\ QString\&\ path,}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ fw,\ \textcolor{keywordtype}{int}\ fh,\ \textcolor{keywordtype}{int}\ targetSize);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00138\ \ \ \ \ QPixmap\ \doxymbox{\hyperlink{class_player_view_a79b699b1c6a6bdfe59437eb3b9316cb1}{makeFallback}}(\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{FacingDirection}}\ dir);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_view_a74323c0e8b7c2f7816e0cfebd6c8ac6f}{advanceFrames}}(\textcolor{keywordtype}{float}\ dt,\ \textcolor{keyword}{const}\ QVector<QPixmap>\&\ frames,\ \textcolor{keywordtype}{float}\ speed);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_view_a2c027b67abe541b24f918838c08a3e90}{applyCenter}}(\textcolor{keywordtype}{int}\ spriteSize);}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{//\ ───\ Slash\ helpers\ ────────────────────────────────────────────}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_view_aec62815ca34603afc61a5738ae52a402}{loadSlashSheet}}();}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_view_af91326ae80f9146a12435fa6ff2770f4}{updateSlash}}(\textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_view_af84aafcb106971e398a0451de82271dc}{positionSlashItem}}();}
+\DoxyCodeLine{00172\ \};}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYERVIEW\_H}}
+
+\end{DoxyCode}

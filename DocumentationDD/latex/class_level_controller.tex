@@ -1,0 +1,388 @@
+\doxysection{Level\+Controller Class Reference}
+\hypertarget{class_level_controller}{}\label{class_level_controller}\index{LevelController@{LevelController}}
+
+
+Orchestre la logique physique et les règles métier d\textquotesingle{}un niveau.  
+
+
+
+
+{\ttfamily \+\#include $<$levelcontroller.\+h$>$}
+
+
+
+Collaboration diagram for Level\+Controller:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{class_level_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_level_controller_a0ab35b1b7d8e537d4e43a87397c6114b}{Level\+Controller}} ()
+\begin{DoxyCompactList}\small\item\em Constructeur par défaut. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_level_controller_aae80ed7c5005afa9ed3c1f9b4ce7db00}{update}} (float dt, \doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&player, \doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&level)
+\begin{DoxyCompactList}\small\item\em Met à jour toute la logique du niveau. \end{DoxyCompactList}\item 
+const QVector$<$ \doxymbox{\hyperlink{struct_popup_request}{Popup\+Request}} $>$ \& \doxymbox{\hyperlink{class_level_controller_a5f60a680d9791388b2f2489fa8831b93}{get\+Pending\+Popups}} () const
+\begin{DoxyCompactList}\small\item\em Requêtes popup produites ce tick. Consommées par \doxylink{class_game_view}{Game\+View}. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_level_controller_acfba7abf9bb1824ac715d17704102887}{clear\+Pending\+Popups}} ()
+\begin{DoxyCompactList}\small\item\em Drapeau mis à vrai lorsque le niveau est terminé et réussi. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{class_level_controller_abedb57a9be518035304a696340b43535}{level\+Just\+Completed}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_level_controller_adce023edc85892ca6dd01acc41f64e0f}{update\+Enemies}} (float dt, \doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&player, \doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&level)
+\begin{DoxyCompactList}\small\item\em Met à jour l\textquotesingle{}IA des ennemis. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_level_controller_ac3401e4e52e17be354182b720a84d60c}{distribute\+Gold}} (\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&player, \doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&level)
+\begin{DoxyCompactList}\small\item\em Distribue l\textquotesingle{}or des ennemis morts. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_level_controller_a3c415991df6784e421546de0217d5949}{resolve\+Player\+Wall\+Collisions}} (\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&player, \doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&level)
+\begin{DoxyCompactList}\small\item\em Gère les collisions joueur/\+murs. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_level_controller_a0106d84403b2bab919147d4b78816b81}{resolve\+Enemy\+Wall\+Collisions}} (\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&level)
+\begin{DoxyCompactList}\small\item\em Gère les collisions ennemis/\+murs. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_level_controller_a2509aadd0d9b363d7c4394522791a769}{check\+Player\+Enemy\+Collisions}} (\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&player, \doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&level)
+\begin{DoxyCompactList}\small\item\em Vérifie si les ennemis touchent le joueur. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_level_controller_a9510eb2b9623bb12f66c18d134dcb5ee}{check\+Slash\+Zone\+Hits}} (\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&player, \doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&level)
+\begin{DoxyCompactList}\small\item\em Applique les dégâts du katana aux ennemis. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_level_controller_a0f6f9446ea3d849fb06553ed121e4814}{check\+Exit\+Condition}} (\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&player, \doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&level)
+\begin{DoxyCompactList}\small\item\em Vérifie si la porte de sortie doit s\textquotesingle{}ouvrir. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_level_controller_a8e1a44fe832374d513a63b601c0c424d}{check\+And\+Resolve\+Player\+Enemy\+Collisions}} (\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&player, \doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&level)
+\begin{DoxyCompactList}\small\item\em Attaque + séparation physique joueur/\+ennemis en une passe. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_level_controller_aaa0247c8a67743a3c98536ac0c5aae9b}{resolve\+Player\+Vs\+Enemy\+Walls}} (\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&player, \doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&level)
+\begin{DoxyCompactList}\small\item\em Bloque le joueur contre les ennemis (ennemis = obstacles solides). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_level_controller_abd33f1056ce0dd59cff8ffc3804ce900}{resolve\+Enemy\+Enemy\+Collisions}} (\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&level)
+\begin{DoxyCompactList}\small\item\em Empêche les ennemis de se chevaucher entre eux. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_level_controller_a39156e9f77d885532a6c5eacbd56c66d}{check\+Rubble\+Collisions}} (\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&player, \doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&level)
+\begin{DoxyCompactList}\small\item\em Détecte les impacts des gravats sur le joueur et les murs. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_level_controller_a1390cb51714507a3e13885c7b1d95605}{check\+Bullet\+Collisions}} (\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&player, \doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&level)
+\item 
+void \doxymbox{\hyperlink{class_level_controller_accf247023833f7892ee5957224727768}{check\+Standard\+Door\+Interactions}} (\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&player, \doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&level)
+\begin{DoxyCompactList}\small\item\em Ouvre les portes standards au contact du joueur et résout leur collision. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_level_controller_a93b00b02594d6b94af23b840c110c1f7}{check\+Boss\+Door\+Interactions}} (\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&player, \doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&level)
+\begin{DoxyCompactList}\small\item\em Ouvre les portes de boss à la mort du boss et résout leur collision. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_level_controller_a79fb60e5d890bd8c8b1f9690656a2148}{check\+Boss\+Zone\+Pattern}} (\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&player, \doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&level)
+\item 
+void \doxymbox{\hyperlink{class_level_controller_a703d2cd6d1d333a3c662b46fc99d73d2}{purge\+Dead\+Enemies}} (\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&level)
+\item 
+void \doxymbox{\hyperlink{class_level_controller_a2640cc292a630894b65548de52c5d528}{resolve\+AABB}} (\doxymbox{\hyperlink{class_entity}{Entity}} \&mover, const QRectF \&obstacle)
+\begin{DoxyCompactList}\small\item\em Résout une collision AABB (Axis-\/\+Aligned Bounding Box). \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_level_controller_abfbaca88f9f471570be8d9d9faf34448}{has\+Line\+Of\+Sight}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} from, \doxymbox{\hyperlink{class_vector2f}{Vector2f}} to, const QVector$<$ QRectF $>$ \&walls) const
+\begin{DoxyCompactList}\small\item\em Vérifie qu\textquotesingle{}aucun mur ne coupe le segment \+[from, to]\+. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static QPointF \doxymbox{\hyperlink{class_level_controller_a5bde2a67b8da584266dd41b5fdcfa834}{popup\+Pos}} (const \doxymbox{\hyperlink{class_enemy}{Enemy}} \texorpdfstring{$\ast$}{*}e)
+\begin{DoxyCompactList}\small\item\em Centre-\/haut d\textquotesingle{}un ennemi. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QVector$<$ QRectF $>$ \doxymbox{\hyperlink{class_level_controller_aa7a1b99d18b0d0dc933109c943559a14}{wall\+Colliders\+Cache}}
+\begin{DoxyCompactList}\small\item\em Cache des colliders de murs (calculé une fois, réutilisé chaque tick). \end{DoxyCompactList}\item 
+QVector$<$ \doxymbox{\hyperlink{struct_popup_request}{Popup\+Request}} $>$ \doxymbox{\hyperlink{class_level_controller_a4ee0d022305183565cb665c1620bc09a}{pending\+Popups}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Orchestre la logique physique et les règles métier d\textquotesingle{}un niveau. 
+
+
+\begin{DoxyItemize}
+\item Ce contrôleur gère la mise à jour de l\textquotesingle{}IA ennemie, la résolution des collisions AABB, les interactions de combat (Slash\+Zone), la distribution du butin (gold) et la validation des conditions de victoire.
+\item \begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+\end{DoxyItemize}
+
+\label{class_level_controller_doc-constructors}
+\Hypertarget{class_level_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_level_controller_a0ab35b1b7d8e537d4e43a87397c6114b}\index{LevelController@{LevelController}!LevelController@{LevelController}}
+\index{LevelController@{LevelController}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{LevelController()}{LevelController()}}
+{\footnotesize\ttfamily \label{class_level_controller_a0ab35b1b7d8e537d4e43a87397c6114b} 
+Level\+Controller::\+\+Level\+Controller (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructeur par défaut. 
+
+
+
+\label{class_level_controller_doc-func-members}
+\Hypertarget{class_level_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_level_controller_a8e1a44fe832374d513a63b601c0c424d}\index{LevelController@{LevelController}!checkAndResolvePlayerEnemyCollisions@{checkAndResolvePlayerEnemyCollisions}}
+\index{checkAndResolvePlayerEnemyCollisions@{checkAndResolvePlayerEnemyCollisions}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{checkAndResolvePlayerEnemyCollisions()}{checkAndResolvePlayerEnemyCollisions()}}
+{\footnotesize\ttfamily \label{class_level_controller_a8e1a44fe832374d513a63b601c0c424d} 
+void Level\+Controller::\+check\+And\+Resolve\+Player\+Enemy\+Collisions (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&}]{player}{, }\item[{\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&}]{level}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Attaque + séparation physique joueur/\+ennemis en une passe. 
+
+\Hypertarget{class_level_controller_a93b00b02594d6b94af23b840c110c1f7}\index{LevelController@{LevelController}!checkBossDoorInteractions@{checkBossDoorInteractions}}
+\index{checkBossDoorInteractions@{checkBossDoorInteractions}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{checkBossDoorInteractions()}{checkBossDoorInteractions()}}
+{\footnotesize\ttfamily \label{class_level_controller_a93b00b02594d6b94af23b840c110c1f7} 
+void Level\+Controller::\+check\+Boss\+Door\+Interactions (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&}]{player}{, }\item[{\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&}]{level}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Ouvre les portes de boss à la mort du boss et résout leur collision. 
+
+\Hypertarget{class_level_controller_a79fb60e5d890bd8c8b1f9690656a2148}\index{LevelController@{LevelController}!checkBossZonePattern@{checkBossZonePattern}}
+\index{checkBossZonePattern@{checkBossZonePattern}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{checkBossZonePattern()}{checkBossZonePattern()}}
+{\footnotesize\ttfamily \label{class_level_controller_a79fb60e5d890bd8c8b1f9690656a2148} 
+void Level\+Controller::\+check\+Boss\+Zone\+Pattern (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&}]{player}{, }\item[{\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&}]{level}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_controller_a1390cb51714507a3e13885c7b1d95605}\index{LevelController@{LevelController}!checkBulletCollisions@{checkBulletCollisions}}
+\index{checkBulletCollisions@{checkBulletCollisions}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{checkBulletCollisions()}{checkBulletCollisions()}}
+{\footnotesize\ttfamily \label{class_level_controller_a1390cb51714507a3e13885c7b1d95605} 
+void Level\+Controller::\+check\+Bullet\+Collisions (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&}]{player}{, }\item[{\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&}]{level}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_controller_a0f6f9446ea3d849fb06553ed121e4814}\index{LevelController@{LevelController}!checkExitCondition@{checkExitCondition}}
+\index{checkExitCondition@{checkExitCondition}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{checkExitCondition()}{checkExitCondition()}}
+{\footnotesize\ttfamily \label{class_level_controller_a0f6f9446ea3d849fb06553ed121e4814} 
+void Level\+Controller::\+check\+Exit\+Condition (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&}]{player}{, }\item[{\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&}]{level}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Vérifie si la porte de sortie doit s\textquotesingle{}ouvrir. 
+
+\Hypertarget{class_level_controller_a2509aadd0d9b363d7c4394522791a769}\index{LevelController@{LevelController}!checkPlayerEnemyCollisions@{checkPlayerEnemyCollisions}}
+\index{checkPlayerEnemyCollisions@{checkPlayerEnemyCollisions}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{checkPlayerEnemyCollisions()}{checkPlayerEnemyCollisions()}}
+{\footnotesize\ttfamily \label{class_level_controller_a2509aadd0d9b363d7c4394522791a769} 
+void Level\+Controller::\+check\+Player\+Enemy\+Collisions (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&}]{player}{, }\item[{\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&}]{level}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Vérifie si les ennemis touchent le joueur. 
+
+\Hypertarget{class_level_controller_a39156e9f77d885532a6c5eacbd56c66d}\index{LevelController@{LevelController}!checkRubbleCollisions@{checkRubbleCollisions}}
+\index{checkRubbleCollisions@{checkRubbleCollisions}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{checkRubbleCollisions()}{checkRubbleCollisions()}}
+{\footnotesize\ttfamily \label{class_level_controller_a39156e9f77d885532a6c5eacbd56c66d} 
+void Level\+Controller::\+check\+Rubble\+Collisions (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&}]{player}{, }\item[{\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&}]{level}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Détecte les impacts des gravats sur le joueur et les murs. 
+
+\Hypertarget{class_level_controller_a9510eb2b9623bb12f66c18d134dcb5ee}\index{LevelController@{LevelController}!checkSlashZoneHits@{checkSlashZoneHits}}
+\index{checkSlashZoneHits@{checkSlashZoneHits}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{checkSlashZoneHits()}{checkSlashZoneHits()}}
+{\footnotesize\ttfamily \label{class_level_controller_a9510eb2b9623bb12f66c18d134dcb5ee} 
+void Level\+Controller::\+check\+Slash\+Zone\+Hits (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&}]{player}{, }\item[{\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&}]{level}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Applique les dégâts du katana aux ennemis. 
+
+\Hypertarget{class_level_controller_accf247023833f7892ee5957224727768}\index{LevelController@{LevelController}!checkStandardDoorInteractions@{checkStandardDoorInteractions}}
+\index{checkStandardDoorInteractions@{checkStandardDoorInteractions}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{checkStandardDoorInteractions()}{checkStandardDoorInteractions()}}
+{\footnotesize\ttfamily \label{class_level_controller_accf247023833f7892ee5957224727768} 
+void Level\+Controller::\+check\+Standard\+Door\+Interactions (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&}]{player}{, }\item[{\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&}]{level}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Ouvre les portes standards au contact du joueur et résout leur collision. 
+
+\Hypertarget{class_level_controller_acfba7abf9bb1824ac715d17704102887}\index{LevelController@{LevelController}!clearPendingPopups@{clearPendingPopups}}
+\index{clearPendingPopups@{clearPendingPopups}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{clearPendingPopups()}{clearPendingPopups()}}
+{\footnotesize\ttfamily \label{class_level_controller_acfba7abf9bb1824ac715d17704102887} 
+void Level\+Controller::\+clear\+Pending\+Popups (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Drapeau mis à vrai lorsque le niveau est terminé et réussi. 
+
+\Hypertarget{class_level_controller_ac3401e4e52e17be354182b720a84d60c}\index{LevelController@{LevelController}!distributeGold@{distributeGold}}
+\index{distributeGold@{distributeGold}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{distributeGold()}{distributeGold()}}
+{\footnotesize\ttfamily \label{class_level_controller_ac3401e4e52e17be354182b720a84d60c} 
+void Level\+Controller::\+distribute\+Gold (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&}]{player}{, }\item[{\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&}]{level}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Distribue l\textquotesingle{}or des ennemis morts. 
+
+\Hypertarget{class_level_controller_a5f60a680d9791388b2f2489fa8831b93}\index{LevelController@{LevelController}!getPendingPopups@{getPendingPopups}}
+\index{getPendingPopups@{getPendingPopups}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{getPendingPopups()}{getPendingPopups()}}
+{\footnotesize\ttfamily \label{class_level_controller_a5f60a680d9791388b2f2489fa8831b93} 
+const QVector$<$ \doxymbox{\hyperlink{struct_popup_request}{Popup\+Request}} $>$ \& Level\+Controller::\+get\+Pending\+Popups (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Requêtes popup produites ce tick. Consommées par \doxylink{class_game_view}{Game\+View}. 
+
+\Hypertarget{class_level_controller_abfbaca88f9f471570be8d9d9faf34448}\index{LevelController@{LevelController}!hasLineOfSight@{hasLineOfSight}}
+\index{hasLineOfSight@{hasLineOfSight}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{hasLineOfSight()}{hasLineOfSight()}}
+{\footnotesize\ttfamily \label{class_level_controller_abfbaca88f9f471570be8d9d9faf34448} 
+bool Level\+Controller::\+has\+Line\+Of\+Sight (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{from}{, }\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{to}{, }\item[{const QVector$<$ QRectF $>$ \&}]{walls}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Vérifie qu\textquotesingle{}aucun mur ne coupe le segment \+[from, to]\+. 
+
+\begin{DoxyReturn}{Returns}
+true si la ligne de vue est dégagée. 
+\end{DoxyReturn}
+\Hypertarget{class_level_controller_a5bde2a67b8da584266dd41b5fdcfa834}\index{LevelController@{LevelController}!popupPos@{popupPos}}
+\index{popupPos@{popupPos}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{popupPos()}{popupPos()}}
+{\footnotesize\ttfamily \label{class_level_controller_a5bde2a67b8da584266dd41b5fdcfa834} 
+QPointF Level\+Controller::\+popup\+Pos (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_enemy}{Enemy}} \texorpdfstring{$\ast$}{*}}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Centre-\/haut d\textquotesingle{}un ennemi. 
+
+\Hypertarget{class_level_controller_a703d2cd6d1d333a3c662b46fc99d73d2}\index{LevelController@{LevelController}!purgeDeadEnemies@{purgeDeadEnemies}}
+\index{purgeDeadEnemies@{purgeDeadEnemies}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{purgeDeadEnemies()}{purgeDeadEnemies()}}
+{\footnotesize\ttfamily \label{class_level_controller_a703d2cd6d1d333a3c662b46fc99d73d2} 
+void Level\+Controller::\+purge\+Dead\+Enemies (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&}]{level}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_controller_a2640cc292a630894b65548de52c5d528}\index{LevelController@{LevelController}!resolveAABB@{resolveAABB}}
+\index{resolveAABB@{resolveAABB}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{resolveAABB()}{resolveAABB()}}
+{\footnotesize\ttfamily \label{class_level_controller_a2640cc292a630894b65548de52c5d528} 
+void Level\+Controller::\+resolve\+AABB (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_entity}{Entity}} \&}]{mover}{, }\item[{const QRectF \&}]{obstacle}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Résout une collision AABB (Axis-\/\+Aligned Bounding Box). 
+
+
+\begin{DoxyItemize}
+\item Repousse l\textquotesingle{}entité mobile en dehors de l\textquotesingle{}obstacle en modifiant directement sa position.
+\item 
+\begin{DoxyParams}{Parameters}
+{\em mover} & L\textquotesingle{}entité mobile (Joueur ou Ennemi). \\
+\hline
+{\em obstacle} & Le rectangle de collision de l\textquotesingle{}obstacle (Mur). \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\Hypertarget{class_level_controller_abd33f1056ce0dd59cff8ffc3804ce900}\index{LevelController@{LevelController}!resolveEnemyEnemyCollisions@{resolveEnemyEnemyCollisions}}
+\index{resolveEnemyEnemyCollisions@{resolveEnemyEnemyCollisions}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{resolveEnemyEnemyCollisions()}{resolveEnemyEnemyCollisions()}}
+{\footnotesize\ttfamily \label{class_level_controller_abd33f1056ce0dd59cff8ffc3804ce900} 
+void Level\+Controller::\+resolve\+Enemy\+Enemy\+Collisions (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&}]{level}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Empêche les ennemis de se chevaucher entre eux. 
+
+\Hypertarget{class_level_controller_a0106d84403b2bab919147d4b78816b81}\index{LevelController@{LevelController}!resolveEnemyWallCollisions@{resolveEnemyWallCollisions}}
+\index{resolveEnemyWallCollisions@{resolveEnemyWallCollisions}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{resolveEnemyWallCollisions()}{resolveEnemyWallCollisions()}}
+{\footnotesize\ttfamily \label{class_level_controller_a0106d84403b2bab919147d4b78816b81} 
+void Level\+Controller::\+resolve\+Enemy\+Wall\+Collisions (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&}]{level}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gère les collisions ennemis/\+murs. 
+
+\Hypertarget{class_level_controller_aaa0247c8a67743a3c98536ac0c5aae9b}\index{LevelController@{LevelController}!resolvePlayerVsEnemyWalls@{resolvePlayerVsEnemyWalls}}
+\index{resolvePlayerVsEnemyWalls@{resolvePlayerVsEnemyWalls}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{resolvePlayerVsEnemyWalls()}{resolvePlayerVsEnemyWalls()}}
+{\footnotesize\ttfamily \label{class_level_controller_aaa0247c8a67743a3c98536ac0c5aae9b} 
+void Level\+Controller::\+resolve\+Player\+Vs\+Enemy\+Walls (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&}]{player}{, }\item[{\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&}]{level}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Bloque le joueur contre les ennemis (ennemis = obstacles solides). 
+
+\Hypertarget{class_level_controller_a3c415991df6784e421546de0217d5949}\index{LevelController@{LevelController}!resolvePlayerWallCollisions@{resolvePlayerWallCollisions}}
+\index{resolvePlayerWallCollisions@{resolvePlayerWallCollisions}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{resolvePlayerWallCollisions()}{resolvePlayerWallCollisions()}}
+{\footnotesize\ttfamily \label{class_level_controller_a3c415991df6784e421546de0217d5949} 
+void Level\+Controller::\+resolve\+Player\+Wall\+Collisions (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&}]{player}{, }\item[{\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&}]{level}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gère les collisions joueur/\+murs. 
+
+\Hypertarget{class_level_controller_aae80ed7c5005afa9ed3c1f9b4ce7db00}\index{LevelController@{LevelController}!update@{update}}
+\index{update@{update}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_level_controller_aae80ed7c5005afa9ed3c1f9b4ce7db00} 
+void Level\+Controller::\+update (\begin{DoxyParamCaption}\item[{float}]{dt}{, }\item[{\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&}]{player}{, }\item[{\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&}]{level}{}\end{DoxyParamCaption})}
+
+
+
+Met à jour toute la logique du niveau. 
+
+
+\begin{DoxyItemize}
+\item Appelé à chaque itération de la boucle principale par le \doxylink{class_game_controller}{Game\+Controller}.
+\item 
+\begin{DoxyParams}{Parameters}
+{\em dt} & Temps écoulé (Delta-\/time) depuis la dernière frame. \\
+\hline
+{\em player} & Référence au modèle du joueur. \\
+\hline
+{\em level} & Référence au modèle du niveau en cours. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\Hypertarget{class_level_controller_adce023edc85892ca6dd01acc41f64e0f}\index{LevelController@{LevelController}!updateEnemies@{updateEnemies}}
+\index{updateEnemies@{updateEnemies}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{updateEnemies()}{updateEnemies()}}
+{\footnotesize\ttfamily \label{class_level_controller_adce023edc85892ca6dd01acc41f64e0f} 
+void Level\+Controller::\+update\+Enemies (\begin{DoxyParamCaption}\item[{float}]{dt}{, }\item[{\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&}]{player}{, }\item[{\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \&}]{level}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Met à jour l\textquotesingle{}IA des ennemis. 
+
+
+
+\label{class_level_controller_doc-variable-members}
+\Hypertarget{class_level_controller_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_level_controller_abedb57a9be518035304a696340b43535}\index{LevelController@{LevelController}!levelJustCompleted@{levelJustCompleted}}
+\index{levelJustCompleted@{levelJustCompleted}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{levelJustCompleted}{levelJustCompleted}}
+{\footnotesize\ttfamily \label{class_level_controller_abedb57a9be518035304a696340b43535} 
+bool Level\+Controller::\+level\+Just\+Completed}
+
+\Hypertarget{class_level_controller_a4ee0d022305183565cb665c1620bc09a}\index{LevelController@{LevelController}!pendingPopups@{pendingPopups}}
+\index{pendingPopups@{pendingPopups}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{pendingPopups}{pendingPopups}}
+{\footnotesize\ttfamily \label{class_level_controller_a4ee0d022305183565cb665c1620bc09a} 
+QVector$<$\doxymbox{\hyperlink{struct_popup_request}{Popup\+Request}}$>$ Level\+Controller::\+pending\+Popups\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_level_controller_aa7a1b99d18b0d0dc933109c943559a14}\index{LevelController@{LevelController}!wallCollidersCache@{wallCollidersCache}}
+\index{wallCollidersCache@{wallCollidersCache}!LevelController@{LevelController}}
+\doxysubsubsection{\texorpdfstring{wallCollidersCache}{wallCollidersCache}}
+{\footnotesize\ttfamily \label{class_level_controller_aa7a1b99d18b0d0dc933109c943559a14} 
+QVector$<$QRectF$>$ Level\+Controller::\+wall\+Colliders\+Cache\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Cache des colliders de murs (calculé une fois, réutilisé chaque tick). 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{levelcontroller_8h}{levelcontroller.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{levelcontroller_8cpp}{levelcontroller.\+cpp}}\end{DoxyCompactItemize}

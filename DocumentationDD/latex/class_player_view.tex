@@ -1,0 +1,516 @@
+\doxysection{Player\+View Class Reference}
+\hypertarget{class_player_view}{}\label{class_player_view}\index{PlayerView@{PlayerView}}
+
+
+Graphics class managing the player\textquotesingle{}s animations and the slash visual effect.  
+
+
+
+
+{\ttfamily \+\#include $<$playerview.\+h$>$}
+
+
+
+Inheritance diagram for Player\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_player_view__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Player\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_player_view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_player_view_a355f5e4fec130c8cb3d026ca83b345bf}{Player\+View}} (\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \texorpdfstring{$\ast$}{*}model, QGraphics\+Item \texorpdfstring{$\ast$}{*}parent=nullptr)
+\item 
+void \doxymbox{\hyperlink{class_player_view_ada7ade21c8ac06f10bb061c45de644fa}{update\+View}} (float dt)
+\begin{DoxyCompactList}\small\item\em Updates the player\textquotesingle{}s position, animation and slash effect. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_player_view_a7fa0a576382f4b5015bff3883a748b38}{load\+Sheet}} (QVector$<$ QPixmap $>$ \&frames, const QString \&path, int fw, int fh, int target\+Size)
+\begin{DoxyCompactList}\small\item\em Slices a horizontal spritesheet and scales each frame to target\+Size. \end{DoxyCompactList}\item 
+QPixmap \doxymbox{\hyperlink{class_player_view_a79b699b1c6a6bdfe59437eb3b9316cb1}{make\+Fallback}} (\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}} dir)
+\begin{DoxyCompactList}\small\item\em Generates an annotated colored sprite if the PNG resource is missing. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_view_a74323c0e8b7c2f7816e0cfebd6c8ac6f}{advance\+Frames}} (float dt, const QVector$<$ QPixmap $>$ \&frames, float speed)
+\begin{DoxyCompactList}\small\item\em Advances one frame in an IDLE or WALK animation according to the timer. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_view_a2c027b67abe541b24f918838c08a3e90}{apply\+Center}} (int sprite\+Size)
+\begin{DoxyCompactList}\small\item\em Re-\/centers the pixmap on the player\textquotesingle{}s hitbox according to the active sprite size. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_view_aec62815ca34603afc61a5738ae52a402}{load\+Slash\+Sheet}} ()
+\begin{DoxyCompactList}\small\item\em Loads the slash spritesheet from the resources. Called only once in the constructor. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_view_af91326ae80f9146a12435fa6ff2770f4}{update\+Slash}} (float dt)
+\begin{DoxyCompactList}\small\item\em Updates the slash item (position, rotation, frame, visibility). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_view_af84aafcb106971e398a0451de82271dc}{position\+Slash\+Item}} ()
+\begin{DoxyCompactList}\small\item\em Positions the slash item in front of the player according to the attack angle. The sprite is centered on the hitbox edge in the direction of the attack. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \doxymbox{\hyperlink{class_player_view_a4b99812436372640c83a1bbb851ab55c}{dir\+Idx}} (\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}} d)
+\begin{DoxyCompactList}\small\item\em Converts a \doxylink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction} to a table index (0=Down,1=Up,2=Left,3=Right). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_player_view_afbce70f6817baf01912fd021483e723f}{model}}
+\item 
+QVector$<$ QPixmap $>$ \doxymbox{\hyperlink{class_player_view_a55e0ac6b4782e372246044403182c094}{sprites}} \+[\doxymbox{\hyperlink{class_player_view_aad5178af06de33eb615031a31255231b}{STATE\+\_\+\+COUNT}}]\+\+[\doxymbox{\hyperlink{class_player_view_a59d1305d8096be72bfb27d71889fbad0}{DIR\+\_\+\+COUNT}}]\+
+\item 
+QPixmap \doxymbox{\hyperlink{class_player_view_a17a91d185c9aba44da6fc91f75c4f368}{cached\+Fallback}} \+[\doxymbox{\hyperlink{class_player_view_a59d1305d8096be72bfb27d71889fbad0}{DIR\+\_\+\+COUNT}}]\+
+\item 
+int \doxymbox{\hyperlink{class_player_view_aed208723c222647b679a10e90e7f2cf7}{current\+Frame}}
+\item 
+float \doxymbox{\hyperlink{class_player_view_a020252c947ef70f1685f621d477fef9b}{frame\+Timer}}
+\item 
+float \doxymbox{\hyperlink{class_player_view_aabefe443c72bcb0029e8742cd9f2f32c}{anim\+Speed}}
+\item 
+int \doxymbox{\hyperlink{class_player_view_a293bb24b1ad59835b825291c84532a3a}{attack\+Frame}}
+\item 
+float \doxymbox{\hyperlink{class_player_view_a14fa1c37391e46948a7ea42ce8a410b6}{attack\+Frame\+Timer}}
+\item 
+float \doxymbox{\hyperlink{class_player_view_ac06649510fe695882311957c70ab25a3}{attack\+Total\+Timer}}
+\item 
+float \doxymbox{\hyperlink{class_player_view_a34486e83809a800c1ae39ffb5d1878f0}{attack\+Anim\+Speed}}
+\item 
+bool \doxymbox{\hyperlink{class_player_view_a44df56c5ff03b5ee9e4ad8e7e8d283e2}{was\+Katana\+Active}}
+\item 
+bool \doxymbox{\hyperlink{class_player_view_a9b3dbd446fb850066fe66cbdc3c5e32b}{attack\+Ever\+Triggered}}
+\item 
+QVector$<$ QPixmap $>$ \doxymbox{\hyperlink{class_player_view_a98fdb691915a24cb96a99644d47b7c9e}{its\+Slash\+Frames}}
+\begin{DoxyCompactList}\small\item\em Slash effect frames (pre-\/loaded). \end{DoxyCompactList}\item 
+QGraphics\+Pixmap\+Item \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_player_view_ad7e41467f349494f54e71c9f7cc301ec}{its\+Slash\+Item}}
+\begin{DoxyCompactList}\small\item\em Child item displayed on top of the player. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_player_view_ae01fa9c1b1e493c6e48f71709768fc9c}{its\+Slash\+Frame}}
+\begin{DoxyCompactList}\small\item\em Current frame index of the effect. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_player_view_aa7016d6446ddf1adc5754d38aa53fda6}{its\+Slash\+Frame\+Timer}}
+\begin{DoxyCompactList}\small\item\em Time elapsed on the current frame. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_player_view_a544e818fe4a6242675c233a7a85120f0}{its\+Slash\+Frame\+Speed}}
+\begin{DoxyCompactList}\small\item\em Duration per frame = KATANA\+\_\+\+ANIM\+\_\+\+DUR /\+ SLASH\+\_\+\+FRAME\+\_\+\+COUNT. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_player_view_af396cfa5f6cb481e83780323be5c8a9d}{its\+Slash\+Done}}
+\begin{DoxyCompactList}\small\item\em Slash finished, prevents freezing on the last frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr int \doxymbox{\hyperlink{class_player_view_ac576a0aa95f1e2adcbab7c563803762c}{IDLE}} = 0
+\item 
+static constexpr int \doxymbox{\hyperlink{class_player_view_ab4f1a91cb4b2020257cdcba636537164}{WALK}} = 1
+\item 
+static constexpr int \doxymbox{\hyperlink{class_player_view_af2b886d667c889edccab3d5ac8cdfffc}{ATTACK}} = 2
+\item 
+static constexpr int \doxymbox{\hyperlink{class_player_view_aad5178af06de33eb615031a31255231b}{STATE\+\_\+\+COUNT}} = 3
+\item 
+static constexpr int \doxymbox{\hyperlink{class_player_view_a59d1305d8096be72bfb27d71889fbad0}{DIR\+\_\+\+COUNT}} = 4
+\item 
+static constexpr int \doxymbox{\hyperlink{class_player_view_a98ebeb9704be9ae00d80e8891a5c966d}{ATTACK\+\_\+\+FRAME\+\_\+\+COUNT}} = 4
+\item 
+static constexpr int \doxymbox{\hyperlink{class_player_view_a10de1644d9f51b4d8f79a5c4d9ff8a0f}{FRAME\+\_\+W}} \+[\doxymbox{\hyperlink{class_player_view_aad5178af06de33eb615031a31255231b}{STATE\+\_\+\+COUNT}}]\+ = \{ 18, 18, 32 \}
+\item 
+static constexpr int \doxymbox{\hyperlink{class_player_view_ad39b225d2157852de2ed0d7b80b0e868}{FRAME\+\_\+H}} \+[\doxymbox{\hyperlink{class_player_view_aad5178af06de33eb615031a31255231b}{STATE\+\_\+\+COUNT}}]\+ = \{ 18, 18, 32 \}
+\item 
+static constexpr int \doxymbox{\hyperlink{class_player_view_adc6a8ed49f8cc6bf96142c0022ac7cdd}{SPRITE\+\_\+\+SIZE}} \+[\doxymbox{\hyperlink{class_player_view_aad5178af06de33eb615031a31255231b}{STATE\+\_\+\+COUNT}}]\+
+\item 
+static constexpr int \doxymbox{\hyperlink{class_player_view_a3a7a11f5b618289b84678052d266e98f}{SLASH\+\_\+\+FRAME\+\_\+\+SRC}} = 128
+\begin{DoxyCompactList}\small\item\em Source dimensions of each frame in the slash spritesheet. Adjust if your PNG has frames of a different size. \end{DoxyCompactList}\item 
+static constexpr int \doxymbox{\hyperlink{class_player_view_a396151a54dd5f39819d6bdeeeb555560}{SLASH\+\_\+\+DISPLAY}} = 128
+\begin{DoxyCompactList}\small\item\em On-\/screen display size of the slash sprite. Increase to enlarge the effect. \end{DoxyCompactList}\item 
+static constexpr int \doxymbox{\hyperlink{class_player_view_ac4d195697b019aaa9c24bdd561aefd11}{SLASH\+\_\+\+FRAME\+\_\+\+COUNT}} = 3
+\begin{DoxyCompactList}\small\item\em Number of frames in the slash spritesheet. Adjust according to your PNG file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Graphics class managing the player\textquotesingle{}s animations and the slash visual effect. 
+
+\label{class_player_view_doc-constructors}
+\Hypertarget{class_player_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_player_view_a355f5e4fec130c8cb3d026ca83b345bf}\index{PlayerView@{PlayerView}!PlayerView@{PlayerView}}
+\index{PlayerView@{PlayerView}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{PlayerView()}{PlayerView()}}
+{\footnotesize\ttfamily \label{class_player_view_a355f5e4fec130c8cb3d026ca83b345bf} 
+Player\+View::\+\+Player\+View (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \texorpdfstring{$\ast$}{*}}]{model}{, }\item[{QGraphics\+Item \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\label{class_player_view_doc-func-members}
+\Hypertarget{class_player_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_player_view_a74323c0e8b7c2f7816e0cfebd6c8ac6f}\index{PlayerView@{PlayerView}!advanceFrames@{advanceFrames}}
+\index{advanceFrames@{advanceFrames}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{advanceFrames()}{advanceFrames()}}
+{\footnotesize\ttfamily \label{class_player_view_a74323c0e8b7c2f7816e0cfebd6c8ac6f} 
+void Player\+View::\+advance\+Frames (\begin{DoxyParamCaption}\item[{float}]{dt}{, }\item[{const QVector$<$ QPixmap $>$ \&}]{frames}{, }\item[{float}]{speed}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Advances one frame in an IDLE or WALK animation according to the timer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta-\/time in seconds. \\
+\hline
+{\em frames} & Frames of the current animation. \\
+\hline
+{\em speed} & Duration per frame (s). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_player_view_a2c027b67abe541b24f918838c08a3e90}\index{PlayerView@{PlayerView}!applyCenter@{applyCenter}}
+\index{applyCenter@{applyCenter}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{applyCenter()}{applyCenter()}}
+{\footnotesize\ttfamily \label{class_player_view_a2c027b67abe541b24f918838c08a3e90} 
+void Player\+View::\+apply\+Center (\begin{DoxyParamCaption}\item[{int}]{sprite\+Size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Re-\/centers the pixmap on the player\textquotesingle{}s hitbox according to the active sprite size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sprite\+Size} & Size of the active sprite. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_player_view_a4b99812436372640c83a1bbb851ab55c}\index{PlayerView@{PlayerView}!dirIdx@{dirIdx}}
+\index{dirIdx@{dirIdx}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{dirIdx()}{dirIdx()}}
+{\footnotesize\ttfamily \label{class_player_view_a4b99812436372640c83a1bbb851ab55c} 
+int Player\+View::\+dir\+Idx (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}}}]{d}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Converts a \doxylink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction} to a table index (0=Down,1=Up,2=Left,3=Right). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Cardinal direction. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_player_view_a7fa0a576382f4b5015bff3883a748b38}\index{PlayerView@{PlayerView}!loadSheet@{loadSheet}}
+\index{loadSheet@{loadSheet}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{loadSheet()}{loadSheet()}}
+{\footnotesize\ttfamily \label{class_player_view_a7fa0a576382f4b5015bff3883a748b38} 
+void Player\+View::\+load\+Sheet (\begin{DoxyParamCaption}\item[{QVector$<$ QPixmap $>$ \&}]{frames}{, }\item[{const QString \&}]{path}{, }\item[{int}]{fw}{, }\item[{int}]{fh}{, }\item[{int}]{target\+Size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Slices a horizontal spritesheet and scales each frame to target\+Size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frames} & Target vector to store the frames. \\
+\hline
+{\em path} & Qt resource path. \\
+\hline
+{\em fw/\+fh} & Dimensions of one frame in the source PNG. \\
+\hline
+{\em target\+Size} & Desired display size. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_player_view_aec62815ca34603afc61a5738ae52a402}\index{PlayerView@{PlayerView}!loadSlashSheet@{loadSlashSheet}}
+\index{loadSlashSheet@{loadSlashSheet}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{loadSlashSheet()}{loadSlashSheet()}}
+{\footnotesize\ttfamily \label{class_player_view_aec62815ca34603afc61a5738ae52a402} 
+void Player\+View::\+load\+Slash\+Sheet (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Loads the slash spritesheet from the resources. Called only once in the constructor. 
+
+\Hypertarget{class_player_view_a79b699b1c6a6bdfe59437eb3b9316cb1}\index{PlayerView@{PlayerView}!makeFallback@{makeFallback}}
+\index{makeFallback@{makeFallback}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{makeFallback()}{makeFallback()}}
+{\footnotesize\ttfamily \label{class_player_view_a79b699b1c6a6bdfe59437eb3b9316cb1} 
+QPixmap Player\+View::\+make\+Fallback (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}}}]{dir}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Generates an annotated colored sprite if the PNG resource is missing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dir} & Direction of the sprite to generate. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_player_view_af84aafcb106971e398a0451de82271dc}\index{PlayerView@{PlayerView}!positionSlashItem@{positionSlashItem}}
+\index{positionSlashItem@{positionSlashItem}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{positionSlashItem()}{positionSlashItem()}}
+{\footnotesize\ttfamily \label{class_player_view_af84aafcb106971e398a0451de82271dc} 
+void Player\+View::\+position\+Slash\+Item (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Positions the slash item in front of the player according to the attack angle. The sprite is centered on the hitbox edge in the direction of the attack. 
+
+\Hypertarget{class_player_view_af91326ae80f9146a12435fa6ff2770f4}\index{PlayerView@{PlayerView}!updateSlash@{updateSlash}}
+\index{updateSlash@{updateSlash}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{updateSlash()}{updateSlash()}}
+{\footnotesize\ttfamily \label{class_player_view_af91326ae80f9146a12435fa6ff2770f4} 
+void Player\+View::\+update\+Slash (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Updates the slash item (position, rotation, frame, visibility). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta-\/time in seconds. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_player_view_ada7ade21c8ac06f10bb061c45de644fa}\index{PlayerView@{PlayerView}!updateView@{updateView}}
+\index{updateView@{updateView}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{updateView()}{updateView()}}
+{\footnotesize\ttfamily \label{class_player_view_ada7ade21c8ac06f10bb061c45de644fa} 
+void Player\+View::\+update\+View (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})}
+
+
+
+Updates the player\textquotesingle{}s position, animation and slash effect. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta-\/time in seconds. \\
+\hline
+\end{DoxyParams}
+
+
+\label{class_player_view_doc-variable-members}
+\Hypertarget{class_player_view_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_player_view_aabefe443c72bcb0029e8742cd9f2f32c}\index{PlayerView@{PlayerView}!animSpeed@{animSpeed}}
+\index{animSpeed@{animSpeed}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{animSpeed}{animSpeed}}
+{\footnotesize\ttfamily \label{class_player_view_aabefe443c72bcb0029e8742cd9f2f32c} 
+float Player\+View::\+anim\+Speed\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_view_af2b886d667c889edccab3d5ac8cdfffc}\index{PlayerView@{PlayerView}!ATTACK@{ATTACK}}
+\index{ATTACK@{ATTACK}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{ATTACK}{ATTACK}}
+{\footnotesize\ttfamily \label{class_player_view_af2b886d667c889edccab3d5ac8cdfffc} 
+int Player\+View::\+\+ATTACK = 2\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{class_player_view_a98ebeb9704be9ae00d80e8891a5c966d}\index{PlayerView@{PlayerView}!ATTACK\_FRAME\_COUNT@{ATTACK\_FRAME\_COUNT}}
+\index{ATTACK\_FRAME\_COUNT@{ATTACK\_FRAME\_COUNT}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{ATTACK\_FRAME\_COUNT}{ATTACK\_FRAME\_COUNT}}
+{\footnotesize\ttfamily \label{class_player_view_a98ebeb9704be9ae00d80e8891a5c966d} 
+int Player\+View::\+\+ATTACK\+\_\+\+FRAME\+\_\+\+COUNT = 4\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{class_player_view_a34486e83809a800c1ae39ffb5d1878f0}\index{PlayerView@{PlayerView}!attackAnimSpeed@{attackAnimSpeed}}
+\index{attackAnimSpeed@{attackAnimSpeed}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{attackAnimSpeed}{attackAnimSpeed}}
+{\footnotesize\ttfamily \label{class_player_view_a34486e83809a800c1ae39ffb5d1878f0} 
+float Player\+View::\+attack\+Anim\+Speed\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_view_a9b3dbd446fb850066fe66cbdc3c5e32b}\index{PlayerView@{PlayerView}!attackEverTriggered@{attackEverTriggered}}
+\index{attackEverTriggered@{attackEverTriggered}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{attackEverTriggered}{attackEverTriggered}}
+{\footnotesize\ttfamily \label{class_player_view_a9b3dbd446fb850066fe66cbdc3c5e32b} 
+bool Player\+View::\+attack\+Ever\+Triggered\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_view_a293bb24b1ad59835b825291c84532a3a}\index{PlayerView@{PlayerView}!attackFrame@{attackFrame}}
+\index{attackFrame@{attackFrame}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{attackFrame}{attackFrame}}
+{\footnotesize\ttfamily \label{class_player_view_a293bb24b1ad59835b825291c84532a3a} 
+int Player\+View::\+attack\+Frame\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_view_a14fa1c37391e46948a7ea42ce8a410b6}\index{PlayerView@{PlayerView}!attackFrameTimer@{attackFrameTimer}}
+\index{attackFrameTimer@{attackFrameTimer}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{attackFrameTimer}{attackFrameTimer}}
+{\footnotesize\ttfamily \label{class_player_view_a14fa1c37391e46948a7ea42ce8a410b6} 
+float Player\+View::\+attack\+Frame\+Timer\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_view_ac06649510fe695882311957c70ab25a3}\index{PlayerView@{PlayerView}!attackTotalTimer@{attackTotalTimer}}
+\index{attackTotalTimer@{attackTotalTimer}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{attackTotalTimer}{attackTotalTimer}}
+{\footnotesize\ttfamily \label{class_player_view_ac06649510fe695882311957c70ab25a3} 
+float Player\+View::\+attack\+Total\+Timer\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_view_a17a91d185c9aba44da6fc91f75c4f368}\index{PlayerView@{PlayerView}!cachedFallback@{cachedFallback}}
+\index{cachedFallback@{cachedFallback}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{cachedFallback}{cachedFallback}}
+{\footnotesize\ttfamily \label{class_player_view_a17a91d185c9aba44da6fc91f75c4f368} 
+QPixmap Player\+View::\+cached\+Fallback\+[\doxymbox{\hyperlink{class_player_view_a59d1305d8096be72bfb27d71889fbad0}{DIR\+\_\+\+COUNT}}]\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_view_aed208723c222647b679a10e90e7f2cf7}\index{PlayerView@{PlayerView}!currentFrame@{currentFrame}}
+\index{currentFrame@{currentFrame}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{currentFrame}{currentFrame}}
+{\footnotesize\ttfamily \label{class_player_view_aed208723c222647b679a10e90e7f2cf7} 
+int Player\+View::\+current\+Frame\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_view_a59d1305d8096be72bfb27d71889fbad0}\index{PlayerView@{PlayerView}!DIR\_COUNT@{DIR\_COUNT}}
+\index{DIR\_COUNT@{DIR\_COUNT}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{DIR\_COUNT}{DIR\_COUNT}}
+{\footnotesize\ttfamily \label{class_player_view_a59d1305d8096be72bfb27d71889fbad0} 
+int Player\+View::\+\+DIR\+\_\+\+COUNT = 4\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{class_player_view_ad39b225d2157852de2ed0d7b80b0e868}\index{PlayerView@{PlayerView}!FRAME\_H@{FRAME\_H}}
+\index{FRAME\_H@{FRAME\_H}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{FRAME\_H}{FRAME\_H}}
+{\footnotesize\ttfamily \label{class_player_view_ad39b225d2157852de2ed0d7b80b0e868} 
+int Player\+View::\+\+FRAME\+\_\+H = \{ 18, 18, 32 \}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{class_player_view_a10de1644d9f51b4d8f79a5c4d9ff8a0f}\index{PlayerView@{PlayerView}!FRAME\_W@{FRAME\_W}}
+\index{FRAME\_W@{FRAME\_W}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{FRAME\_W}{FRAME\_W}}
+{\footnotesize\ttfamily \label{class_player_view_a10de1644d9f51b4d8f79a5c4d9ff8a0f} 
+int Player\+View::\+\+FRAME\+\_\+W = \{ 18, 18, 32 \}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{class_player_view_a020252c947ef70f1685f621d477fef9b}\index{PlayerView@{PlayerView}!frameTimer@{frameTimer}}
+\index{frameTimer@{frameTimer}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{frameTimer}{frameTimer}}
+{\footnotesize\ttfamily \label{class_player_view_a020252c947ef70f1685f621d477fef9b} 
+float Player\+View::\+frame\+Timer\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_view_ac576a0aa95f1e2adcbab7c563803762c}\index{PlayerView@{PlayerView}!IDLE@{IDLE}}
+\index{IDLE@{IDLE}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{IDLE}{IDLE}}
+{\footnotesize\ttfamily \label{class_player_view_ac576a0aa95f1e2adcbab7c563803762c} 
+int Player\+View::\+\+IDLE = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{class_player_view_af396cfa5f6cb481e83780323be5c8a9d}\index{PlayerView@{PlayerView}!itsSlashDone@{itsSlashDone}}
+\index{itsSlashDone@{itsSlashDone}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{itsSlashDone}{itsSlashDone}}
+{\footnotesize\ttfamily \label{class_player_view_af396cfa5f6cb481e83780323be5c8a9d} 
+bool Player\+View::\+its\+Slash\+Done\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Slash finished, prevents freezing on the last frame. 
+
+\Hypertarget{class_player_view_ae01fa9c1b1e493c6e48f71709768fc9c}\index{PlayerView@{PlayerView}!itsSlashFrame@{itsSlashFrame}}
+\index{itsSlashFrame@{itsSlashFrame}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{itsSlashFrame}{itsSlashFrame}}
+{\footnotesize\ttfamily \label{class_player_view_ae01fa9c1b1e493c6e48f71709768fc9c} 
+int Player\+View::\+its\+Slash\+Frame\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current frame index of the effect. 
+
+\Hypertarget{class_player_view_a98fdb691915a24cb96a99644d47b7c9e}\index{PlayerView@{PlayerView}!itsSlashFrames@{itsSlashFrames}}
+\index{itsSlashFrames@{itsSlashFrames}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{itsSlashFrames}{itsSlashFrames}}
+{\footnotesize\ttfamily \label{class_player_view_a98fdb691915a24cb96a99644d47b7c9e} 
+QVector$<$QPixmap$>$ Player\+View::\+its\+Slash\+Frames\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Slash effect frames (pre-\/loaded). 
+
+\Hypertarget{class_player_view_a544e818fe4a6242675c233a7a85120f0}\index{PlayerView@{PlayerView}!itsSlashFrameSpeed@{itsSlashFrameSpeed}}
+\index{itsSlashFrameSpeed@{itsSlashFrameSpeed}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{itsSlashFrameSpeed}{itsSlashFrameSpeed}}
+{\footnotesize\ttfamily \label{class_player_view_a544e818fe4a6242675c233a7a85120f0} 
+float Player\+View::\+its\+Slash\+Frame\+Speed\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Duration per frame = KATANA\+\_\+\+ANIM\+\_\+\+DUR /\+ SLASH\+\_\+\+FRAME\+\_\+\+COUNT. 
+
+\Hypertarget{class_player_view_aa7016d6446ddf1adc5754d38aa53fda6}\index{PlayerView@{PlayerView}!itsSlashFrameTimer@{itsSlashFrameTimer}}
+\index{itsSlashFrameTimer@{itsSlashFrameTimer}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{itsSlashFrameTimer}{itsSlashFrameTimer}}
+{\footnotesize\ttfamily \label{class_player_view_aa7016d6446ddf1adc5754d38aa53fda6} 
+float Player\+View::\+its\+Slash\+Frame\+Timer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Time elapsed on the current frame. 
+
+\Hypertarget{class_player_view_ad7e41467f349494f54e71c9f7cc301ec}\index{PlayerView@{PlayerView}!itsSlashItem@{itsSlashItem}}
+\index{itsSlashItem@{itsSlashItem}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{itsSlashItem}{itsSlashItem}}
+{\footnotesize\ttfamily \label{class_player_view_ad7e41467f349494f54e71c9f7cc301ec} 
+QGraphics\+Pixmap\+Item\texorpdfstring{$\ast$}{*} Player\+View::\+its\+Slash\+Item\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Child item displayed on top of the player. 
+
+\Hypertarget{class_player_view_afbce70f6817baf01912fd021483e723f}\index{PlayerView@{PlayerView}!model@{model}}
+\index{model@{model}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{class_player_view_afbce70f6817baf01912fd021483e723f} 
+\doxymbox{\hyperlink{class_player_model}{Player\+Model}}\texorpdfstring{$\ast$}{*} Player\+View::\+model\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_view_a396151a54dd5f39819d6bdeeeb555560}\index{PlayerView@{PlayerView}!SLASH\_DISPLAY@{SLASH\_DISPLAY}}
+\index{SLASH\_DISPLAY@{SLASH\_DISPLAY}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{SLASH\_DISPLAY}{SLASH\_DISPLAY}}
+{\footnotesize\ttfamily \label{class_player_view_a396151a54dd5f39819d6bdeeeb555560} 
+int Player\+View::\+\+SLASH\+\_\+\+DISPLAY = 128\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+On-\/screen display size of the slash sprite. Increase to enlarge the effect. 
+
+Display size (px) of the slash sprite. \Hypertarget{class_player_view_ac4d195697b019aaa9c24bdd561aefd11}\index{PlayerView@{PlayerView}!SLASH\_FRAME\_COUNT@{SLASH\_FRAME\_COUNT}}
+\index{SLASH\_FRAME\_COUNT@{SLASH\_FRAME\_COUNT}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{SLASH\_FRAME\_COUNT}{SLASH\_FRAME\_COUNT}}
+{\footnotesize\ttfamily \label{class_player_view_ac4d195697b019aaa9c24bdd561aefd11} 
+int Player\+View::\+\+SLASH\+\_\+\+FRAME\+\_\+\+COUNT = 3\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Number of frames in the slash spritesheet. Adjust according to your PNG file. 
+
+\Hypertarget{class_player_view_a3a7a11f5b618289b84678052d266e98f}\index{PlayerView@{PlayerView}!SLASH\_FRAME\_SRC@{SLASH\_FRAME\_SRC}}
+\index{SLASH\_FRAME\_SRC@{SLASH\_FRAME\_SRC}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{SLASH\_FRAME\_SRC}{SLASH\_FRAME\_SRC}}
+{\footnotesize\ttfamily \label{class_player_view_a3a7a11f5b618289b84678052d266e98f} 
+int Player\+View::\+\+SLASH\+\_\+\+FRAME\+\_\+\+SRC = 128\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Source dimensions of each frame in the slash spritesheet. Adjust if your PNG has frames of a different size. 
+
+Source size (px) of one slash frame. \Hypertarget{class_player_view_adc6a8ed49f8cc6bf96142c0022ac7cdd}\index{PlayerView@{PlayerView}!SPRITE\_SIZE@{SPRITE\_SIZE}}
+\index{SPRITE\_SIZE@{SPRITE\_SIZE}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{SPRITE\_SIZE}{SPRITE\_SIZE}}
+{\footnotesize\ttfamily \label{class_player_view_adc6a8ed49f8cc6bf96142c0022ac7cdd} 
+int Player\+View::\+\+SPRITE\+\_\+\+SIZE\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \{}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{namespace_cfg_a3e672c9b491fbb0b0134ff8a962b06bc}{Cfg::ENTITY\_SIZE}},}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{namespace_cfg_a3e672c9b491fbb0b0134ff8a962b06bc}{Cfg::ENTITY\_SIZE}},}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{namespace_cfg_a3e672c9b491fbb0b0134ff8a962b06bc}{Cfg::ENTITY\_SIZE}}\ +\ 50,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{class_player_view_a55e0ac6b4782e372246044403182c094}\index{PlayerView@{PlayerView}!sprites@{sprites}}
+\index{sprites@{sprites}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{sprites}{sprites}}
+{\footnotesize\ttfamily \label{class_player_view_a55e0ac6b4782e372246044403182c094} 
+QVector$<$QPixmap$>$ Player\+View::\+sprites\+[\doxymbox{\hyperlink{class_player_view_aad5178af06de33eb615031a31255231b}{STATE\+\_\+\+COUNT}}]\+\+[\doxymbox{\hyperlink{class_player_view_a59d1305d8096be72bfb27d71889fbad0}{DIR\+\_\+\+COUNT}}]\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_view_aad5178af06de33eb615031a31255231b}\index{PlayerView@{PlayerView}!STATE\_COUNT@{STATE\_COUNT}}
+\index{STATE\_COUNT@{STATE\_COUNT}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{STATE\_COUNT}{STATE\_COUNT}}
+{\footnotesize\ttfamily \label{class_player_view_aad5178af06de33eb615031a31255231b} 
+int Player\+View::\+\+STATE\+\_\+\+COUNT = 3\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{class_player_view_ab4f1a91cb4b2020257cdcba636537164}\index{PlayerView@{PlayerView}!WALK@{WALK}}
+\index{WALK@{WALK}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{WALK}{WALK}}
+{\footnotesize\ttfamily \label{class_player_view_ab4f1a91cb4b2020257cdcba636537164} 
+int Player\+View::\+\+WALK = 1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{class_player_view_a44df56c5ff03b5ee9e4ad8e7e8d283e2}\index{PlayerView@{PlayerView}!wasKatanaActive@{wasKatanaActive}}
+\index{wasKatanaActive@{wasKatanaActive}!PlayerView@{PlayerView}}
+\doxysubsubsection{\texorpdfstring{wasKatanaActive}{wasKatanaActive}}
+{\footnotesize\ttfamily \label{class_player_view_a44df56c5ff03b5ee9e4ad8e7e8d283e2} 
+bool Player\+View::\+was\+Katana\+Active\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{playerview_8h}{playerview.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{playerview_8cpp}{playerview.\+cpp}}\end{DoxyCompactItemize}

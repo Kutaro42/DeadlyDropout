@@ -1,0 +1,226 @@
+\doxysection{Entity Class Reference}
+\hypertarget{class_entity}{}\label{class_entity}\index{Entity@{Entity}}
+
+
+An abstract base class representing any interactive or physical object in the game.  
+
+
+
+
+{\ttfamily \+\#include $<$entity.\+h$>$}
+
+
+
+Inheritance diagram for Entity:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_entity__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Entity:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=161pt]{class_entity__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_entity_acaf2ad84607691b229cddab1da0bf819}{Entity}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float w, float h)
+\begin{DoxyCompactList}\small\item\em Constructor of the entity. \end{DoxyCompactList}\item 
+virtual \doxymbox{\hyperlink{class_entity_ac479d009ddde62dfb378ca0a70d81307}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual shredder. \end{DoxyCompactList}\item 
+virtual void \doxymbox{\hyperlink{class_entity_a21ab7babefa5e4525535a76cef1415f2}{update}} (float dt)
+\begin{DoxyCompactList}\small\item\em Update to the entity\textquotesingle{}s internal logic. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_afdda0263db3d2e465a6ae6bad91eb990}{get\+Position}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a5f154968f2a478ea924460c78e0cd39e}{get\+Width}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a1332918563adb284c0fd432d47486d44}{get\+Height}} () const
+\item 
+bool \doxymbox{\hyperlink{class_entity_aea1c1568b4123d989c5310697030ad77}{is\+Active}} () const
+\item 
+void \doxymbox{\hyperlink{class_entity_ac5164b8c832f9a055df976527fe10032}{set\+Active}} (bool a)
+\item 
+void \doxymbox{\hyperlink{class_entity_a575ec530746fbb3eca1baddec2d0b030}{set\+Position}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos)
+\item 
+QRectF \doxymbox{\hyperlink{class_entity_ae00b70bd40800a8bd23c38b1c84404a9}{get\+Collider}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the entity\textquotesingle{}s collision bounding box. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_a6af9d6498134ad0906011778bc5736db}{position}}
+\begin{DoxyCompactList}\small\item\em The entity\textquotesingle{}s 2D coordinates. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_adadfcc784f30b51b8e49f8230a56b793}{width}}
+\begin{DoxyCompactList}\small\item\em The physical width of the entity in pixels. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_a4550dc1011f47f6c4bb86e564e7d605b}{height}}
+\begin{DoxyCompactList}\small\item\em The physical height of the entity in pixels. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_entity_a939da33e8b67b1d2ee227930aa72da3b}{active}}
+\begin{DoxyCompactList}\small\item\em Status of the entity (false if dead or destroyed). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An abstract base class representing any interactive or physical object in the game. 
+
+\label{class_entity_doc-constructors}
+\Hypertarget{class_entity_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_entity_acaf2ad84607691b229cddab1da0bf819}\index{Entity@{Entity}!Entity@{Entity}}
+\index{Entity@{Entity}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{Entity()}{Entity()}}
+{\footnotesize\ttfamily \label{class_entity_acaf2ad84607691b229cddab1da0bf819} 
+Entity::\+\+Entity (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{pos}{, }\item[{float}]{w}{, }\item[{float}]{h}{}\end{DoxyParamCaption})}
+
+
+
+Constructor of the entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & :\+ Starting position. \\
+\hline
+{\em w} & :\+ width. \\
+\hline
+{\em h} & :\+ Height. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_entity_ac479d009ddde62dfb378ca0a70d81307}\index{Entity@{Entity}!````~Entity@{\texorpdfstring{$\sim$}{\string~}Entity}}
+\index{````~Entity@{\texorpdfstring{$\sim$}{\string~}Entity}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Entity()}{\string~Entity()}}
+{\footnotesize\ttfamily \label{class_entity_ac479d009ddde62dfb378ca0a70d81307} 
+virtual Entity::\+\texorpdfstring{$\sim$}{\string~}\+Entity (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Virtual shredder. 
+
+
+
+\label{class_entity_doc-func-members}
+\Hypertarget{class_entity_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_entity_ae00b70bd40800a8bd23c38b1c84404a9}\index{Entity@{Entity}!getCollider@{getCollider}}
+\index{getCollider@{getCollider}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{getCollider()}{getCollider()}}
+{\footnotesize\ttfamily \label{class_entity_ae00b70bd40800a8bd23c38b1c84404a9} 
+QRectF Entity::\+get\+Collider (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the entity\textquotesingle{}s collision bounding box. 
+
+\begin{DoxyReturn}{Returns}
+Rectangle délimitant la hitbox (AABB) de l\textquotesingle{}entité. 
+\end{DoxyReturn}
+\Hypertarget{class_entity_a1332918563adb284c0fd432d47486d44}\index{Entity@{Entity}!getHeight@{getHeight}}
+\index{getHeight@{getHeight}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{getHeight()}{getHeight()}}
+{\footnotesize\ttfamily \label{class_entity_a1332918563adb284c0fd432d47486d44} 
+float Entity::\+get\+Height (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_entity_afdda0263db3d2e465a6ae6bad91eb990}\index{Entity@{Entity}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily \label{class_entity_afdda0263db3d2e465a6ae6bad91eb990} 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} Entity::\+get\+Position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_entity_a5f154968f2a478ea924460c78e0cd39e}\index{Entity@{Entity}!getWidth@{getWidth}}
+\index{getWidth@{getWidth}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{getWidth()}{getWidth()}}
+{\footnotesize\ttfamily \label{class_entity_a5f154968f2a478ea924460c78e0cd39e} 
+float Entity::\+get\+Width (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_entity_aea1c1568b4123d989c5310697030ad77}\index{Entity@{Entity}!isActive@{isActive}}
+\index{isActive@{isActive}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{isActive()}{isActive()}}
+{\footnotesize\ttfamily \label{class_entity_aea1c1568b4123d989c5310697030ad77} 
+bool Entity::\+is\+Active (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_entity_ac5164b8c832f9a055df976527fe10032}\index{Entity@{Entity}!setActive@{setActive}}
+\index{setActive@{setActive}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{setActive()}{setActive()}}
+{\footnotesize\ttfamily \label{class_entity_ac5164b8c832f9a055df976527fe10032} 
+void Entity::\+set\+Active (\begin{DoxyParamCaption}\item[{bool}]{a}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_entity_a575ec530746fbb3eca1baddec2d0b030}\index{Entity@{Entity}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}}
+{\footnotesize\ttfamily \label{class_entity_a575ec530746fbb3eca1baddec2d0b030} 
+void Entity::\+set\+Position (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_entity_a21ab7babefa5e4525535a76cef1415f2}\index{Entity@{Entity}!update@{update}}
+\index{update@{update}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_entity_a21ab7babefa5e4525535a76cef1415f2} 
+void Entity::\+update (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Update to the entity\textquotesingle{}s internal logic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & :\+ Time elapsed since the last update (in seconds). \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \doxymbox{\hyperlink{class_enemy_ab6a3b691be209d9fce40f760bb479a11}{Enemy}}, \doxymbox{\hyperlink{class_exit_door_model_ad1c1fa748d835b10c6f40176d4c29948}{Exit\+Door\+Model}}, \doxymbox{\hyperlink{class_floor_model_af5aa54cf8192864a22ae0f2b75e85300}{Floor\+Model}}, \doxymbox{\hyperlink{class_player_model_a0d99c3c69f67b94362c35d557105d3e2}{Player\+Model}}, \doxymbox{\hyperlink{class_projectile_ac5ebfb8b93e602f5c063d465944838fa}{Projectile}}, \doxymbox{\hyperlink{class_standard_door_model_a5dcd7a60d396e8dadf3a2f8f64145a90}{Standard\+Door\+Model}}, and \doxymbox{\hyperlink{class_wall_model_a76923e728808b8b56bfb8ff011bad22e}{Wall\+Model}}.
+
+
+
+\label{class_entity_doc-variable-members}
+\Hypertarget{class_entity_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_entity_a939da33e8b67b1d2ee227930aa72da3b}\index{Entity@{Entity}!active@{active}}
+\index{active@{active}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{active}{active}}
+{\footnotesize\ttfamily \label{class_entity_a939da33e8b67b1d2ee227930aa72da3b} 
+bool Entity::\+active\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Status of the entity (false if dead or destroyed). 
+
+\Hypertarget{class_entity_a4550dc1011f47f6c4bb86e564e7d605b}\index{Entity@{Entity}!height@{height}}
+\index{height@{height}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily \label{class_entity_a4550dc1011f47f6c4bb86e564e7d605b} 
+float Entity::\+height\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The physical height of the entity in pixels. 
+
+\Hypertarget{class_entity_a6af9d6498134ad0906011778bc5736db}\index{Entity@{Entity}!position@{position}}
+\index{position@{position}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily \label{class_entity_a6af9d6498134ad0906011778bc5736db} 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} Entity::\+position\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The entity\textquotesingle{}s 2D coordinates. 
+
+\Hypertarget{class_entity_adadfcc784f30b51b8e49f8230a56b793}\index{Entity@{Entity}!width@{width}}
+\index{width@{width}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily \label{class_entity_adadfcc784f30b51b8e49f8230a56b793} 
+float Entity::\+width\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The physical width of the entity in pixels. 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{entity_8h}{entity.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{entity_8cpp}{entity.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,573 @@
+\doxysection{Headers/\+config.h File Reference}
+\hypertarget{config_8h}{}\label{config_8h}\index{Headers/config.h@{Headers/config.h}}
+
+
+Global constants and configuration enumerations for the game Deadly Dropout.  
+
+
+{\ttfamily \+\#include $<$QRect$>$}\newline
+Include dependency graph for config.\+h:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{config_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{config_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_zone_tile}{Zone\+Tile}}
+\begin{DoxyCompactList}\small\item\em 32×32 tile in the boss\textquotesingle{}s attack zone (pattern 2). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \doxymbox{\hyperlink{namespace_cfg}{Cfg}}
+\begin{DoxyCompactList}\small\item\em A namespace containing the game\textquotesingle{}s numerical constants. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}} \{ \doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11afbaedde498cdead4f2780217646e9ba1}{UP}}
+, \doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11ac4e0e4e3118472beeb2ae75827450f1f}{DOWN}}
+, \doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11a684d325a7303f52e64011467ff5c5758}{LEFT}}
+, \doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11a21507b40c80068eda19865706fdc2403}{RIGHT}}
+ \}
+\begin{DoxyCompactList}\small\item\em Management of the entity. \end{DoxyCompactList}\item 
+enum class \doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428}{App\+State}} \{ \newline
+\doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428a3ed53fbeb1eab0443561b68ca0c0b5cf}{MENU}}
+, \doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428a50366a49630a416ab3ccaa004196027e}{PLAYING}}
+, \doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428af8454a27e1df41397bf42444fe5aa45b}{GAME\+\_\+\+OVER}}
+, \doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428ae0651864a549515538cb104b7b32e75d}{VICTORY}}
+, \newline
+\doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428a99b2439e63f73ad515f7ab2447a80673}{PAUSED}}
+ \}
+\begin{DoxyCompactList}\small\item\em Machine states within the application\textquotesingle{}s global state machine. \end{DoxyCompactList}\item 
+enum class \doxymbox{\hyperlink{config_8h_a588700cbbd7d8e80b51ef81b140213fc}{Enemy\+AIState}} \{ \newline
+\doxymbox{\hyperlink{config_8h_a588700cbbd7d8e80b51ef81b140213fcaa5daf7f2ebbba4975d61dab1c40188c7}{IDLE}}
+, \doxymbox{\hyperlink{config_8h_a588700cbbd7d8e80b51ef81b140213fcab1cdb24e3483650f45299987269d835e}{CHASING}}
+, \doxymbox{\hyperlink{config_8h_a588700cbbd7d8e80b51ef81b140213fca99cca61d90b4e79f0193e587ba5fbf69}{ATTACKING}}
+, \doxymbox{\hyperlink{config_8h_a588700cbbd7d8e80b51ef81b140213fca0f1484d199a29e1d494be6d0cdd42864}{HURT}}
+, \newline
+\doxymbox{\hyperlink{config_8h_a588700cbbd7d8e80b51ef81b140213fcabb4784231ff45108ee20bad16e4a2e8c}{DEAD}}
+ \}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_enemy}{Enemy} AI states. \end{DoxyCompactList}\item 
+enum class \doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1}{Tile\+Type}} \{ \newline
+\doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a56c1e354d36beb85b0d881c5b2e24cbe}{FLOOR}} = 0
+, \doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a48d536b2de1195d0c9f6ea8ab884085e}{WALL}} = 1
+, \doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a382044fabc1ec2d60b0fd1550a62a9e3}{ZOMBIE\+\_\+\+SPAWN}} = 2
+, \doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a7c8b96a12894a1f3c4054f26b23c3bc8}{EXIT\+\_\+\+DOOR}} = 3
+, \newline
+\doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1aefeaff06f16214cf788e86a06c8d8c5b}{PLAYER\+\_\+\+SPAWN}} = 4
+, \doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a555a25221ed749d4aa972d072af25088}{LAUNCHER\+\_\+\+SPAWN}} = 5
+, \doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a59095c3a84f7f79c4612475dc4f230d2}{STANDARD\+\_\+\+DOOR}} = 6
+, \doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1aa8da0dfa571e20718a3499a453bb0c4d}{BOSS\+\_\+\+SPAWN}} = 7
+, \newline
+\doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a83b61399dcb6bec370fb84c54c3f7fe4}{BOSS\+\_\+\+DOOR}} = 8
+ \}
+\begin{DoxyCompactList}\small\item\em Tile IDs for generating the level matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a09e5025e5edfa810ccda60d19df150a6}{Cfg::\+\+WINDOW\+\_\+W}} = 960
+\begin{DoxyCompactList}\small\item\em Width of the game window in pixels. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a6c655a3f445da8796df1ee5b959bbdc3}{Cfg::\+\+WINDOW\+\_\+H}} = 650
+\begin{DoxyCompactList}\small\item\em The height of the game window in pixels. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a17ab5868f500a65306163d0180acfeeb}{Cfg::\+\+TILE\+\_\+\+SIZE}} = 64
+\begin{DoxyCompactList}\small\item\em The size of a floor or wall tile in pixels. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a3e672c9b491fbb0b0134ff8a962b06bc}{Cfg::\+\+ENTITY\+\_\+\+SIZE}} = 64
+\begin{DoxyCompactList}\small\item\em The size of an entity\textquotesingle{}s sprite in pixels. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_a63f4a64383e284ba5c94cd6f677e84e9}{Cfg::\+\+PLAYER\+\_\+\+SPEED}} = 300.\+0f
+\begin{DoxyCompactList}\small\item\em The player\textquotesingle{}s movement speed in pixels per second. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_ac5f995b06af491a115cdf02aa4fd98ef}{Cfg::\+\+PLAYER\+\_\+\+SPEED\+\_\+\+BOOSTED}} =1000.\+0f
+\begin{DoxyCompactList}\small\item\em Boosted player speed. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a49a32f31a668b539fe92f7eda0616719}{Cfg::\+\+PLAYER\+\_\+\+MAX\+\_\+\+HP}} = 100
+\begin{DoxyCompactList}\small\item\em The player\textquotesingle{}s maximum health points. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a4ebef866f625fb7d92e2e41f6264bfd7}{Cfg::\+\+KATANA\+\_\+\+DAMAGE}} = 30
+\begin{DoxyCompactList}\small\item\em Base damage dealt by the katana. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_ab80a5523b5cd537c51f2841e5ab487d9}{Cfg::\+\+KATANA\+\_\+\+SLASH\+\_\+W}} = 48.\+0f
+\begin{DoxyCompactList}\small\item\em Width of the Slash\+Zone (perpendicular). \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_a074987ba4de60cc200c602d7b5911120}{Cfg::\+\+KATANA\+\_\+\+SLASH\+\_\+D}} = 40.\+0f
+\begin{DoxyCompactList}\small\item\em Depth of the Slash\+Zone (range). \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_a2d507ddb58ba57bc55de165e34bc6dd4}{Cfg::\+\+KATANA\+\_\+\+ANIM\+\_\+\+DUR}} = 0.\+2f
+\begin{DoxyCompactList}\small\item\em Duration of the attack animation in seconds. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_a9c890c3579608a5befffb138dd98814e}{Cfg::\+\+KATANA\+\_\+\+COOLDOWN}} = 0.\+5f
+\begin{DoxyCompactList}\small\item\em Cooldown time between attacks in seconds. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a3320bca2ce6793763a3729c175a40fb7}{Cfg::\+\+ZOMBIE\+\_\+\+MAX\+\_\+\+HP}} = 20
+\begin{DoxyCompactList}\small\item\em The zombie\textquotesingle{}s maximum health points. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_a92ea920a468b013476ff315771a0e98e}{Cfg::\+\+ZOMBIE\+\_\+\+SPEED}} = 120.\+0f
+\begin{DoxyCompactList}\small\item\em The zombie\textquotesingle{}s movement speed in pixels per second. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a1be6e623fee7cf983617a4eb5ce6307b}{Cfg::\+\+ZOMBIE\+\_\+\+DMG\+\_\+\+MIN}} = 10
+\begin{DoxyCompactList}\small\item\em Minimum damage dealt by the zombie. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_adb312a3118fd44878208c97bf6e75a65}{Cfg::\+\+ZOMBIE\+\_\+\+DMG\+\_\+\+MAX}} = 17
+\begin{DoxyCompactList}\small\item\em Maximum damage dealt by the zombie. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_ad7ca8f61e3a1fb3915bea5351fc01ccc}{Cfg::\+\+ZOMBIE\+\_\+\+ATK\+\_\+\+CD}} = 1.\+5f
+\begin{DoxyCompactList}\small\item\em Attack cooldown in seconds. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_afe4845d3f69d23ad08fa07e15656ea1b}{Cfg::\+\+ZOMBIE\+\_\+\+DETECT\+\_\+R}} = 800.\+0f
+\begin{DoxyCompactList}\small\item\em The radius of the player\textquotesingle{}s detection bubble. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a2cb4e51e1013e6851adaf3ab8e7b01f1}{Cfg::\+\+ZOMBIE\+\_\+\+GOLD\+\_\+\+MIN}} = 5
+\begin{DoxyCompactList}\small\item\em Minimum amount of gold dropped. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_ac01bf650c6ea9e820ba3593dbf10b8ce}{Cfg::\+\+ZOMBIE\+\_\+\+GOLD\+\_\+\+MAX}} = 10
+\begin{DoxyCompactList}\small\item\em Maximum amount of gold dropped. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_afa7986ea01f3e62eb8b7277e279a4762}{Cfg::\+\+LAUNCHER\+\_\+\+MAX\+\_\+\+HP}} = 15
+\begin{DoxyCompactList}\small\item\em The zombie thrower\textquotesingle{}s health points. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_abb3d1ce042e2071872a1ab04572a3ec1}{Cfg::\+\+LAUNCHER\+\_\+\+SPEED}} = 90.\+0f
+\begin{DoxyCompactList}\small\item\em Pursuit speed (exits firing range). \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_ad415184da2a2ea930c0ffa8af56b7e1d}{Cfg::\+\+LAUNCHER\+\_\+\+DETECT\+\_\+R}} = 800.\+0f
+\begin{DoxyCompactList}\small\item\em Player detection radius. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_aba771fff429f12dd11477f79c1b2c5e0}{Cfg::\+\+LAUNCHER\+\_\+\+SHOOT\+\_\+R}} = 320.\+0f
+\begin{DoxyCompactList}\small\item\em Range:\+ stay still underneath. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_adad254534cf6400f56207aa0d6d0df96}{Cfg::\+\+LAUNCHER\+\_\+\+SHOOT\+\_\+\+CD}} = 2.\+0f
+\begin{DoxyCompactList}\small\item\em Interval between two shots in seconds. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a81d30992a4daf3d3f2eed94235616f6c}{Cfg::\+\+LAUNCHER\+\_\+\+GOLD\+\_\+\+MIN}} = 7
+\begin{DoxyCompactList}\small\item\em Minimum gold dropped upon death. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a472364124cbdf2285b1eb451de38a8bc}{Cfg::\+\+LAUNCHER\+\_\+\+GOLD\+\_\+\+MAX}} = 14
+\begin{DoxyCompactList}\small\item\em Maximum gold dropped upon death. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_abd675e3a4c149f48f8d9a6b5b22195a4}{Cfg::\+\+RUBBLE\+\_\+\+SPEED}} = 450.\+0f
+\begin{DoxyCompactList}\small\item\em Velocity of the debris in pixels per second. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a75476e8260a27bf30eb122e35c87d33c}{Cfg::\+\+RUBBLE\+\_\+\+DAMAGE}} = 30
+\begin{DoxyCompactList}\small\item\em Damage dealt by a rubble. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_a3f112aeaa52b99c457511344b665e847}{Cfg::\+\+RUBBLE\+\_\+\+SIZE}} = 16.\+0f
+\begin{DoxyCompactList}\small\item\em Size (side) of the rubble sprite in pixels. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_a0efd46ed0d32586db7ba848804331044}{Cfg::\+\+BULLET\+\_\+\+SPEED}} = 2000.\+0f
+\begin{DoxyCompactList}\small\item\em Ball travel speed in pixels per second (GDD). \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a3689e297f3ba29b4fc476ad8bbd8c73c}{Cfg::\+\+BULLET\+\_\+\+DAMAGE}} = 12
+\begin{DoxyCompactList}\small\item\em Base damage of a bullet (BD). \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_ad1e9593f991095db3bda556b12bf3033}{Cfg::\+\+BULLET\+\_\+\+BONUS\+\_\+\+MIN}} = 2
+\begin{DoxyCompactList}\small\item\em Minimum adaptive bonus (GDD). \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a97104e9a00cb7a7ea56bcec3e140117d}{Cfg::\+\+BULLET\+\_\+\+BONUS\+\_\+\+MAX}} = 5
+\begin{DoxyCompactList}\small\item\em Maximum adaptive bonus (GDD). \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_a49f6606943333682facbb6ee2473f0ce}{Cfg::\+\+BULLET\+\_\+\+SIZE}} = 8.\+0f
+\begin{DoxyCompactList}\small\item\em Size (side) of the ball sprite in pixels. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_ad8a5f735e9f52267c0e4cfc6604d194f}{Cfg::\+\+BULLET\+\_\+\+CRIT\+\_\+\+CHANCE}} = 0.\+02f
+\begin{DoxyCompactList}\small\item\em Critical hit chance (2\%, GDD). \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_a35165a25f2cdc8c0fc32a49201a22956}{Cfg::\+\+BULLET\+\_\+\+CRIT\+\_\+\+MULT}} = 2.\+0f
+\begin{DoxyCompactList}\small\item\em Critical damage multiplier (×2, GDD). \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_aaa6a314cf637c03a3508d9145def9a3e}{Cfg::\+\+GUN\+\_\+\+SHOOT\+\_\+\+CD}} = 0.\+5f
+\begin{DoxyCompactList}\small\item\em Cooldown between shots in seconds (GDD). \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a66f9c304797399fb33cf77739fe797ba}{Cfg::\+\+GUN\+\_\+\+MAG\+\_\+\+SIZE}} = 10
+\begin{DoxyCompactList}\small\item\em Default magazine size. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_a6f37df8320c9fd33173a93a268e61880}{Cfg::\+\+GUN\+\_\+\+OFFSET\+\_\+X}} = 20.\+0f
+\begin{DoxyCompactList}\small\item\em X-\/axis offset of the cannon relative to the player\textquotesingle{}s centre. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_a099d17d417863e4ed41c949c656c0a65}{Cfg::\+\+GUN\+\_\+\+OFFSET\+\_\+Y}} = 10.\+0f
+\begin{DoxyCompactList}\small\item\em Y-\/axis offset of the cannon relative to the player\textquotesingle{}s centre. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a66f5c4418edf282f2c5800098d222412}{Cfg::\+\+TIMER\+\_\+\+MS}} = 16
+\begin{DoxyCompactList}\small\item\em Main timer interval (\texorpdfstring{$\sim$}{\string~}60 FPS).16. \end{DoxyCompactList}\item 
+constexpr double \doxymbox{\hyperlink{namespace_cfg_a6204b3783c7e8feb11c9413fb6a2d09b}{Cfg::\+\+Z\+\_\+\+FLOOR}} = 0.\+0
+\begin{DoxyCompactList}\small\item\em Display depth of the ground. \end{DoxyCompactList}\item 
+constexpr double \doxymbox{\hyperlink{namespace_cfg_a70fab0db6aab804c168b7f769c703e79}{Cfg::\+\+Z\+\_\+\+WALL}} = 1.\+0
+\begin{DoxyCompactList}\small\item\em Wall display depth. \end{DoxyCompactList}\item 
+constexpr double \doxymbox{\hyperlink{namespace_cfg_af73137b6a521576045b682b3974bad11}{Cfg::\+\+Z\+\_\+\+ENTITY}} = 2.\+0
+\begin{DoxyCompactList}\small\item\em Display depth of features. \end{DoxyCompactList}\item 
+constexpr double \doxymbox{\hyperlink{namespace_cfg_acedf2a9afe92d238f1cc9c2b97dfd815}{Cfg::\+\+Z\+\_\+\+PLAYER}} = 3.\+0
+\begin{DoxyCompactList}\small\item\em Player display depth. \end{DoxyCompactList}\item 
+constexpr double \doxymbox{\hyperlink{namespace_cfg_af6f96b815643cc3547e1fe94bad14cc7}{Cfg::\+\+Z\+\_\+\+SLASH}} = 4.\+0
+\begin{DoxyCompactList}\small\item\em Display depth of the attack. \end{DoxyCompactList}\item 
+constexpr double \doxymbox{\hyperlink{namespace_cfg_ac039e075550657ce3a19f0826f23425c}{Cfg::\+\+Z\+\_\+\+BOSS\+\_\+\+ZONE}} = 1.\+5
+\begin{DoxyCompactList}\small\item\em Depth of the boss\textquotesingle{}s attack zone (between the ground and entities). \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_adb9224f1e2cceba6f199082391f089b4}{Cfg::\+\+ENEMY\+\_\+\+HURT\+\_\+\+DUR}} = 0.\+3f
+\begin{DoxyCompactList}\small\item\em Duration (in seconds) of the HURT state before returning to the AI. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_a9469e8b2e9440599573bd51096cc813e}{Cfg::\+\+ENEMY\+\_\+\+DEAD\+\_\+\+DUR}} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em Duration (in seconds) of the death animation before it is deactivated. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_aa5299d4fa06e82ad2abbb285b3e61f64}{Cfg::\+\+ENEMY\+\_\+\+CHASE\+\_\+\+PERSIST}} = 4.\+0f
+\begin{DoxyCompactList}\small\item\em The length of time (in seconds) for which the enemy continues to pursue the player after losing sight of them. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_ac29feee2119363be6a392bc751b44ac3}{Cfg::\+\+BOSSP1\+\_\+\+MAX\+\_\+\+HP}} = 300
+\begin{DoxyCompactList}\small\item\em The boss\textquotesingle{}s maximum health in Phase 1. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_abe2c68ed7f46fecfa23f34527a780f67}{Cfg::\+\+BOSSP2\+\_\+\+MAX\+\_\+\+HP}} = 600
+\begin{DoxyCompactList}\small\item\em The boss\textquotesingle{}s maximum health in Phase 2. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a6294fb94c5a0ffd79d59c7dd71761b22}{Cfg::\+\+BOSSP3\+\_\+\+MAX\+\_\+\+HP}} = 850
+\begin{DoxyCompactList}\small\item\em The boss\textquotesingle{}s maximum health in Phase 3. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_a3247c2771e4864848a7169e4db4486eb}{Cfg::\+\+BOSS\+\_\+\+SPEED}} = 90.\+0f
+\begin{DoxyCompactList}\small\item\em The zombie\textquotesingle{}s movement speed in pixels per second. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a0e6c82bcd8df8d1e84d1bd1990b0da2d}{Cfg::\+\+BOSS\+\_\+\+DMG}} = 20
+\begin{DoxyCompactList}\small\item\em Damage dealt by the boss. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_abe69a9f8370a3acb2b763c4d5783e510}{Cfg::\+\+BOSS\+\_\+\+ATK\+\_\+\+CD}} = 1.\+5f
+\begin{DoxyCompactList}\small\item\em Attack cooldown in seconds. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_a807e93d8c0b4dc2ddaa7d7a136d7d956}{Cfg::\+\+BOSS\+\_\+\+DETECT\+\_\+R}} = 800.\+0f
+\begin{DoxyCompactList}\small\item\em The radius of the player\textquotesingle{}s detection bubble. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_aac560eec8c36823e0a54e5e2d03ba5b8}{Cfg::\+\+BOSS\+\_\+\+GOLD\+\_\+\+MIN}} = 300
+\begin{DoxyCompactList}\small\item\em Minimum amount of gold dropped. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a65bd333cb95aca744d50c5a5118d3b38}{Cfg::\+\+BOSS\+\_\+\+GOLD\+\_\+\+MAX}} = 400
+\begin{DoxyCompactList}\small\item\em Maximum amount of gold dropped. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_a893447a1961ff777713e0d1c46c5fcb4}{Cfg::\+\+BOSS\+\_\+\+ZONE\+\_\+\+CHARGE\+\_\+\+CD2}} = 1.\+5f
+\begin{DoxyCompactList}\small\item\em Time between two occurrences of pattern 2, level 3 (s). \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_a6944da3caa5c598145a2cd4b2d75fcba}{Cfg::\+\+BOSS\+\_\+\+ZONE\+\_\+\+TIMER}} = 1.\+1f
+\begin{DoxyCompactList}\small\item\em Time taken to charge before the area explodes (s). \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_a7da71cff5034d5fed960e976d2126fa2}{Cfg::\+\+BOSS\+\_\+\+ZONE\+\_\+\+CHARGE\+\_\+\+CD3}} = 1.\+25f
+\begin{DoxyCompactList}\small\item\em Time between two occurrences of pattern 2, level 3 (s). \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a6f7ebab1fc4a5d2969429eeb6c5b464d}{Cfg::\+\+BOSS\+\_\+\+ZONE\+\_\+\+TILE\+\_\+\+SIZE}} = 32
+\begin{DoxyCompactList}\small\item\em Size of a red zone tile (px). \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_aec55d546c6ae4e85c960aa60143d5c1c}{Cfg::\+\+BOSS\+\_\+\+ZONE\+\_\+\+DMG}} = 70
+\begin{DoxyCompactList}\small\item\em Fixed damage dealt by the area-\/of-\/effect explosion (pattern 2). \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a1b85a9277899625c98b32372de521623}{Cfg::\+\+BOSS\+\_\+\+ZONE\+\_\+\+SAFE\+\_\+\+COUNT}} = 7
+\begin{DoxyCompactList}\small\item\em Number of safe tiles (holes in the area). \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a632bd64456ae7f06ed942d4a817d9a9c}{Cfg::\+\+BOSS\+\_\+\+ZONE\+\_\+\+RADIUS}} = 384
+\begin{DoxyCompactList}\small\item\em Radius in pixels around the boss for the attack area (6 tiles of 64px). \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_adda8df5f6d590bbe962a34f83edb9023}{Cfg::\+\+HUD\+\_\+\+MARGIN}} = 12
+\begin{DoxyCompactList}\small\item\em Outer edge of the HUD. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_abc33c2e86355a02ab36b9879c527c414}{Cfg::\+\+HP\+\_\+\+BAR\+\_\+W}} = 180
+\begin{DoxyCompactList}\small\item\em Width of the player\textquotesingle{}s health bar. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a32ac7169aabd8397d7f65ade9be65a9d}{Cfg::\+\+HP\+\_\+\+BAR\+\_\+H}} = 16
+\begin{DoxyCompactList}\small\item\em The height of the player\textquotesingle{}s health bar. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a0db018ddfa1b048f69f76556d4c9b496}{Cfg::\+\+BOSSBARX}} = 300
+\begin{DoxyCompactList}\small\item\em Position X on the boss\textquotesingle{}s health bar. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_a34de1326255d422bbdd00c4b9deb41e5}{Cfg::\+\+BOSSBARY}} = 50
+\begin{DoxyCompactList}\small\item\em Position Y on the boss\textquotesingle{}s health bar. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_aa3157c26f9410c4cddc1ba516e4d8258}{Cfg::\+\+BOSS\+\_\+\+HP\+\_\+\+BAR\+\_\+W}} = 400
+\begin{DoxyCompactList}\small\item\em Width of the boss\textquotesingle{}s health bar. \end{DoxyCompactList}\item 
+constexpr int \doxymbox{\hyperlink{namespace_cfg_abfbafc34880f7077c04fa1c060ca93f0}{Cfg::\+\+BOSS\+\_\+\+HP\+\_\+\+BAR\+\_\+H}} = 20
+\begin{DoxyCompactList}\small\item\em Height of the boss\textquotesingle{}s health bar. \end{DoxyCompactList}\item 
+constexpr double \doxymbox{\hyperlink{namespace_cfg_ae9783128baa1492a576823a08ee9ab39}{Cfg::\+\+Z\+\_\+\+POPUP}} = 5.\+0
+\begin{DoxyCompactList}\small\item\em Above all else. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_a397b85a443d90265f0ce9840f2df6940}{Cfg::\+\+POPUP\+\_\+\+DMG\+\_\+\+DUR}} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em Pop-\/up damage duration (s). \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_ac00f046834bd5c43b0ebae2195117b34}{Cfg::\+\+POPUP\+\_\+\+GOLD\+\_\+\+DUR}} = 1.\+4f
+\begin{DoxyCompactList}\small\item\em Duration of gold pop-\/up (seconds). \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{namespace_cfg_a78778e36997c745e20eb8857ce7cd23f}{Cfg::\+\+POPUP\+\_\+\+RISE\+\_\+\+PX}} = 40.\+0f
+\begin{DoxyCompactList}\small\item\em Vertical rise (px). \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{config_8h_acd6c0ebedeb8d172534ba728738ea737}{BONUS\+\_\+\+MAX\+\_\+\+HP}} = 20.\+0f
+\begin{DoxyCompactList}\small\item\em Max HP upgrade. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{config_8h_a957d18efe948cc8c7aa55815e1459cee}{BONUS\+\_\+\+GUN\+\_\+\+MAX\+\_\+\+DMG}} = 5.\+0f
+\begin{DoxyCompactList}\small\item\em Gun max damage upgrade. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{config_8h_a90df1038d14e36e222cdc4a0161bb3e4}{BONUS\+\_\+\+KATANA\+\_\+\+DMG}} = 10.\+0f
+\begin{DoxyCompactList}\small\item\em \doxylink{class_katana}{Katana} max damage upgrade. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{config_8h_a4abbbdcd4dad21c73f70d7ba4eb3262d}{BONUS\+\_\+\+KATANA\+\_\+\+RANGE}} = 15.\+0f
+\begin{DoxyCompactList}\small\item\em \doxylink{class_katana}{Katana} range attack upgrade. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{config_8h_a072ff1b1ceeb3cd60ed8eb13b2ef8777}{BONUS\+\_\+\+SPEED}} = 20.\+0f
+\begin{DoxyCompactList}\small\item\em Walk speed upgrade. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{config_8h_a1f5624110d53e40faf39811bec6367e2}{BONUS\+\_\+\+CRIT\+\_\+\+CHANCE}} =0.\+03
+\begin{DoxyCompactList}\small\item\em Crit chance upgrade. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{config_8h_a57aaac0f5e508ed7a9df5e16dbb83a84}{BONUS\+\_\+\+KATANA\+\_\+\+COOLDOWN\+\_\+\+MIN}} = 0.\+1f
+\begin{DoxyCompactList}\small\item\em \doxylink{class_katana}{Katana} cooldown upgrade. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{config_8h_a3c3d1682302dc4745a95c57f6cc365ae}{BONUS\+\_\+\+KATANA\+\_\+\+COOLDOWN\+\_\+\+MAX}} = 0.\+2f
+\begin{DoxyCompactList}\small\item\em \doxylink{class_katana}{Katana} cooldown upgrade. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{config_8h_af0b980a80b2fc64c738f8f437dfbbde9}{BONUS\+\_\+\+SHOOT\+\_\+\+COOLDOWN\+\_\+\+MIN}} = 0.\+1f
+\begin{DoxyCompactList}\small\item\em Fire cooldown upgrade. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{config_8h_a9b3e2f2ab1253fb68ea36f823f84e44c}{BONUS\+\_\+\+SHOOT\+\_\+\+COOLDOWN\+\_\+\+MAX}} = 0.\+2f
+\begin{DoxyCompactList}\small\item\em Fire cooldown upgrade. \end{DoxyCompactList}\item 
+constexpr float \doxymbox{\hyperlink{config_8h_a46a17ffe6d6a5b423b691f12f8b4e918}{BONUS\+\_\+\+RESERVE}} = 10.\+0f
+\begin{DoxyCompactList}\small\item\em magazine size upgrade. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Global constants and configuration enumerations for the game Deadly Dropout. 
+
+\begin{DoxyAuthor}{Author}
+Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+June 2026 
+\end{DoxyDate}
+
+
+\label{config_8h_doc-enum-members}
+\Hypertarget{config_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{config_8h_a83fc559664fc7c7e310c93586457b428}\index{config.h@{config.h}!AppState@{AppState}}
+\index{AppState@{AppState}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{AppState}{AppState}}
+{\footnotesize\ttfamily \label{config_8h_a83fc559664fc7c7e310c93586457b428} 
+enum class \doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428}{App\+State}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Machine states within the application\textquotesingle{}s global state machine. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MENU@{MENU}!config.h@{config.h}}
+\index{config.h@{config.h}!MENU@{MENU}}
+}\Hypertarget{config_8h_a83fc559664fc7c7e310c93586457b428a3ed53fbeb1eab0443561b68ca0c0b5cf}\label{config_8h_a83fc559664fc7c7e310c93586457b428a3ed53fbeb1eab0443561b68ca0c0b5cf} 
+MENU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYING@{PLAYING}!config.h@{config.h}}
+\index{config.h@{config.h}!PLAYING@{PLAYING}}
+}\Hypertarget{config_8h_a83fc559664fc7c7e310c93586457b428a50366a49630a416ab3ccaa004196027e}\label{config_8h_a83fc559664fc7c7e310c93586457b428a50366a49630a416ab3ccaa004196027e} 
+PLAYING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GAME\_OVER@{GAME\_OVER}!config.h@{config.h}}
+\index{config.h@{config.h}!GAME\_OVER@{GAME\_OVER}}
+}\Hypertarget{config_8h_a83fc559664fc7c7e310c93586457b428af8454a27e1df41397bf42444fe5aa45b}\label{config_8h_a83fc559664fc7c7e310c93586457b428af8454a27e1df41397bf42444fe5aa45b} 
+GAME\+\_\+\+OVER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VICTORY@{VICTORY}!config.h@{config.h}}
+\index{config.h@{config.h}!VICTORY@{VICTORY}}
+}\Hypertarget{config_8h_a83fc559664fc7c7e310c93586457b428ae0651864a549515538cb104b7b32e75d}\label{config_8h_a83fc559664fc7c7e310c93586457b428ae0651864a549515538cb104b7b32e75d} 
+VICTORY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PAUSED@{PAUSED}!config.h@{config.h}}
+\index{config.h@{config.h}!PAUSED@{PAUSED}}
+}\Hypertarget{config_8h_a83fc559664fc7c7e310c93586457b428a99b2439e63f73ad515f7ab2447a80673}\label{config_8h_a83fc559664fc7c7e310c93586457b428a99b2439e63f73ad515f7ab2447a80673} 
+PAUSED&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{config_8h_a588700cbbd7d8e80b51ef81b140213fc}\index{config.h@{config.h}!EnemyAIState@{EnemyAIState}}
+\index{EnemyAIState@{EnemyAIState}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{EnemyAIState}{EnemyAIState}}
+{\footnotesize\ttfamily \label{config_8h_a588700cbbd7d8e80b51ef81b140213fc} 
+enum class \doxymbox{\hyperlink{config_8h_a588700cbbd7d8e80b51ef81b140213fc}{Enemy\+AIState}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+\doxylink{class_enemy}{Enemy} AI states. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDLE@{IDLE}!config.h@{config.h}}
+\index{config.h@{config.h}!IDLE@{IDLE}}
+}\Hypertarget{config_8h_a588700cbbd7d8e80b51ef81b140213fcaa5daf7f2ebbba4975d61dab1c40188c7}\label{config_8h_a588700cbbd7d8e80b51ef81b140213fcaa5daf7f2ebbba4975d61dab1c40188c7} 
+IDLE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CHASING@{CHASING}!config.h@{config.h}}
+\index{config.h@{config.h}!CHASING@{CHASING}}
+}\Hypertarget{config_8h_a588700cbbd7d8e80b51ef81b140213fcab1cdb24e3483650f45299987269d835e}\label{config_8h_a588700cbbd7d8e80b51ef81b140213fcab1cdb24e3483650f45299987269d835e} 
+CHASING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ATTACKING@{ATTACKING}!config.h@{config.h}}
+\index{config.h@{config.h}!ATTACKING@{ATTACKING}}
+}\Hypertarget{config_8h_a588700cbbd7d8e80b51ef81b140213fca99cca61d90b4e79f0193e587ba5fbf69}\label{config_8h_a588700cbbd7d8e80b51ef81b140213fca99cca61d90b4e79f0193e587ba5fbf69} 
+ATTACKING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HURT@{HURT}!config.h@{config.h}}
+\index{config.h@{config.h}!HURT@{HURT}}
+}\Hypertarget{config_8h_a588700cbbd7d8e80b51ef81b140213fca0f1484d199a29e1d494be6d0cdd42864}\label{config_8h_a588700cbbd7d8e80b51ef81b140213fca0f1484d199a29e1d494be6d0cdd42864} 
+HURT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEAD@{DEAD}!config.h@{config.h}}
+\index{config.h@{config.h}!DEAD@{DEAD}}
+}\Hypertarget{config_8h_a588700cbbd7d8e80b51ef81b140213fcabb4784231ff45108ee20bad16e4a2e8c}\label{config_8h_a588700cbbd7d8e80b51ef81b140213fcabb4784231ff45108ee20bad16e4a2e8c} 
+DEAD&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}\index{config.h@{config.h}!FacingDirection@{FacingDirection}}
+\index{FacingDirection@{FacingDirection}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{FacingDirection}{FacingDirection}}
+{\footnotesize\ttfamily \label{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11} 
+enum class \doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Management of the entity. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UP@{UP}!config.h@{config.h}}
+\index{config.h@{config.h}!UP@{UP}}
+}\Hypertarget{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11afbaedde498cdead4f2780217646e9ba1}\label{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11afbaedde498cdead4f2780217646e9ba1} 
+UP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DOWN@{DOWN}!config.h@{config.h}}
+\index{config.h@{config.h}!DOWN@{DOWN}}
+}\Hypertarget{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11ac4e0e4e3118472beeb2ae75827450f1f}\label{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11ac4e0e4e3118472beeb2ae75827450f1f} 
+DOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEFT@{LEFT}!config.h@{config.h}}
+\index{config.h@{config.h}!LEFT@{LEFT}}
+}\Hypertarget{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11a684d325a7303f52e64011467ff5c5758}\label{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11a684d325a7303f52e64011467ff5c5758} 
+LEFT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RIGHT@{RIGHT}!config.h@{config.h}}
+\index{config.h@{config.h}!RIGHT@{RIGHT}}
+}\Hypertarget{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11a21507b40c80068eda19865706fdc2403}\label{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11a21507b40c80068eda19865706fdc2403} 
+RIGHT&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1}\index{config.h@{config.h}!TileType@{TileType}}
+\index{TileType@{TileType}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{TileType}{TileType}}
+{\footnotesize\ttfamily \label{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1} 
+enum class \doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1}{Tile\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Tile IDs for generating the level matrix. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FLOOR@{FLOOR}!config.h@{config.h}}
+\index{config.h@{config.h}!FLOOR@{FLOOR}}
+}\Hypertarget{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a56c1e354d36beb85b0d881c5b2e24cbe}\label{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a56c1e354d36beb85b0d881c5b2e24cbe} 
+FLOOR&Map floor. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WALL@{WALL}!config.h@{config.h}}
+\index{config.h@{config.h}!WALL@{WALL}}
+}\Hypertarget{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a48d536b2de1195d0c9f6ea8ab884085e}\label{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a48d536b2de1195d0c9f6ea8ab884085e} 
+WALL&Map wall. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ZOMBIE\_SPAWN@{ZOMBIE\_SPAWN}!config.h@{config.h}}
+\index{config.h@{config.h}!ZOMBIE\_SPAWN@{ZOMBIE\_SPAWN}}
+}\Hypertarget{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a382044fabc1ec2d60b0fd1550a62a9e3}\label{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a382044fabc1ec2d60b0fd1550a62a9e3} 
+ZOMBIE\+\_\+\+SPAWN&Zombie spawn. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXIT\_DOOR@{EXIT\_DOOR}!config.h@{config.h}}
+\index{config.h@{config.h}!EXIT\_DOOR@{EXIT\_DOOR}}
+}\Hypertarget{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a7c8b96a12894a1f3c4054f26b23c3bc8}\label{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a7c8b96a12894a1f3c4054f26b23c3bc8} 
+EXIT\+\_\+\+DOOR&The exit door opens when you defeat the boss. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER\_SPAWN@{PLAYER\_SPAWN}!config.h@{config.h}}
+\index{config.h@{config.h}!PLAYER\_SPAWN@{PLAYER\_SPAWN}}
+}\Hypertarget{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1aefeaff06f16214cf788e86a06c8d8c5b}\label{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1aefeaff06f16214cf788e86a06c8d8c5b} 
+PLAYER\+\_\+\+SPAWN&Player spawn. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LAUNCHER\_SPAWN@{LAUNCHER\_SPAWN}!config.h@{config.h}}
+\index{config.h@{config.h}!LAUNCHER\_SPAWN@{LAUNCHER\_SPAWN}}
+}\Hypertarget{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a555a25221ed749d4aa972d072af25088}\label{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a555a25221ed749d4aa972d072af25088} 
+LAUNCHER\+\_\+\+SPAWN&Launcher zombie spawn. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STANDARD\_DOOR@{STANDARD\_DOOR}!config.h@{config.h}}
+\index{config.h@{config.h}!STANDARD\_DOOR@{STANDARD\_DOOR}}
+}\Hypertarget{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a59095c3a84f7f79c4612475dc4f230d2}\label{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a59095c3a84f7f79c4612475dc4f230d2} 
+STANDARD\+\_\+\+DOOR&Standard door that opens when touched by a player. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOSS\_SPAWN@{BOSS\_SPAWN}!config.h@{config.h}}
+\index{config.h@{config.h}!BOSS\_SPAWN@{BOSS\_SPAWN}}
+}\Hypertarget{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1aa8da0dfa571e20718a3499a453bb0c4d}\label{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1aa8da0dfa571e20718a3499a453bb0c4d} 
+BOSS\+\_\+\+SPAWN&Boss spawn. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOSS\_DOOR@{BOSS\_DOOR}!config.h@{config.h}}
+\index{config.h@{config.h}!BOSS\_DOOR@{BOSS\_DOOR}}
+}\Hypertarget{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a83b61399dcb6bec370fb84c54c3f7fe4}\label{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a83b61399dcb6bec370fb84c54c3f7fe4} 
+BOSS\+\_\+\+DOOR&The door locks once you enter the boss area. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{config_8h_doc-var-members}
+\Hypertarget{config_8h_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{config_8h_a1f5624110d53e40faf39811bec6367e2}\index{config.h@{config.h}!BONUS\_CRIT\_CHANCE@{BONUS\_CRIT\_CHANCE}}
+\index{BONUS\_CRIT\_CHANCE@{BONUS\_CRIT\_CHANCE}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{BONUS\_CRIT\_CHANCE}{BONUS\_CRIT\_CHANCE}}
+{\footnotesize\ttfamily \label{config_8h_a1f5624110d53e40faf39811bec6367e2} 
+float BONUS\+\_\+\+CRIT\+\_\+\+CHANCE =0.\+03\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Crit chance upgrade. 
+
+\Hypertarget{config_8h_a957d18efe948cc8c7aa55815e1459cee}\index{config.h@{config.h}!BONUS\_GUN\_MAX\_DMG@{BONUS\_GUN\_MAX\_DMG}}
+\index{BONUS\_GUN\_MAX\_DMG@{BONUS\_GUN\_MAX\_DMG}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{BONUS\_GUN\_MAX\_DMG}{BONUS\_GUN\_MAX\_DMG}}
+{\footnotesize\ttfamily \label{config_8h_a957d18efe948cc8c7aa55815e1459cee} 
+float BONUS\+\_\+\+GUN\+\_\+\+MAX\+\_\+\+DMG = 5.\+0f\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Gun max damage upgrade. 
+
+\Hypertarget{config_8h_a3c3d1682302dc4745a95c57f6cc365ae}\index{config.h@{config.h}!BONUS\_KATANA\_COOLDOWN\_MAX@{BONUS\_KATANA\_COOLDOWN\_MAX}}
+\index{BONUS\_KATANA\_COOLDOWN\_MAX@{BONUS\_KATANA\_COOLDOWN\_MAX}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{BONUS\_KATANA\_COOLDOWN\_MAX}{BONUS\_KATANA\_COOLDOWN\_MAX}}
+{\footnotesize\ttfamily \label{config_8h_a3c3d1682302dc4745a95c57f6cc365ae} 
+float BONUS\+\_\+\+KATANA\+\_\+\+COOLDOWN\+\_\+\+MAX = 0.\+2f\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+\doxylink{class_katana}{Katana} cooldown upgrade. 
+
+\Hypertarget{config_8h_a57aaac0f5e508ed7a9df5e16dbb83a84}\index{config.h@{config.h}!BONUS\_KATANA\_COOLDOWN\_MIN@{BONUS\_KATANA\_COOLDOWN\_MIN}}
+\index{BONUS\_KATANA\_COOLDOWN\_MIN@{BONUS\_KATANA\_COOLDOWN\_MIN}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{BONUS\_KATANA\_COOLDOWN\_MIN}{BONUS\_KATANA\_COOLDOWN\_MIN}}
+{\footnotesize\ttfamily \label{config_8h_a57aaac0f5e508ed7a9df5e16dbb83a84} 
+float BONUS\+\_\+\+KATANA\+\_\+\+COOLDOWN\+\_\+\+MIN = 0.\+1f\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+\doxylink{class_katana}{Katana} cooldown upgrade. 
+
+\Hypertarget{config_8h_a90df1038d14e36e222cdc4a0161bb3e4}\index{config.h@{config.h}!BONUS\_KATANA\_DMG@{BONUS\_KATANA\_DMG}}
+\index{BONUS\_KATANA\_DMG@{BONUS\_KATANA\_DMG}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{BONUS\_KATANA\_DMG}{BONUS\_KATANA\_DMG}}
+{\footnotesize\ttfamily \label{config_8h_a90df1038d14e36e222cdc4a0161bb3e4} 
+float BONUS\+\_\+\+KATANA\+\_\+\+DMG = 10.\+0f\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+\doxylink{class_katana}{Katana} max damage upgrade. 
+
+\Hypertarget{config_8h_a4abbbdcd4dad21c73f70d7ba4eb3262d}\index{config.h@{config.h}!BONUS\_KATANA\_RANGE@{BONUS\_KATANA\_RANGE}}
+\index{BONUS\_KATANA\_RANGE@{BONUS\_KATANA\_RANGE}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{BONUS\_KATANA\_RANGE}{BONUS\_KATANA\_RANGE}}
+{\footnotesize\ttfamily \label{config_8h_a4abbbdcd4dad21c73f70d7ba4eb3262d} 
+float BONUS\+\_\+\+KATANA\+\_\+\+RANGE = 15.\+0f\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+\doxylink{class_katana}{Katana} range attack upgrade. 
+
+\Hypertarget{config_8h_acd6c0ebedeb8d172534ba728738ea737}\index{config.h@{config.h}!BONUS\_MAX\_HP@{BONUS\_MAX\_HP}}
+\index{BONUS\_MAX\_HP@{BONUS\_MAX\_HP}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{BONUS\_MAX\_HP}{BONUS\_MAX\_HP}}
+{\footnotesize\ttfamily \label{config_8h_acd6c0ebedeb8d172534ba728738ea737} 
+float BONUS\+\_\+\+MAX\+\_\+\+HP = 20.\+0f\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Max HP upgrade. 
+
+\Hypertarget{config_8h_a46a17ffe6d6a5b423b691f12f8b4e918}\index{config.h@{config.h}!BONUS\_RESERVE@{BONUS\_RESERVE}}
+\index{BONUS\_RESERVE@{BONUS\_RESERVE}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{BONUS\_RESERVE}{BONUS\_RESERVE}}
+{\footnotesize\ttfamily \label{config_8h_a46a17ffe6d6a5b423b691f12f8b4e918} 
+float BONUS\+\_\+\+RESERVE = 10.\+0f\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+magazine size upgrade. 
+
+\Hypertarget{config_8h_a9b3e2f2ab1253fb68ea36f823f84e44c}\index{config.h@{config.h}!BONUS\_SHOOT\_COOLDOWN\_MAX@{BONUS\_SHOOT\_COOLDOWN\_MAX}}
+\index{BONUS\_SHOOT\_COOLDOWN\_MAX@{BONUS\_SHOOT\_COOLDOWN\_MAX}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{BONUS\_SHOOT\_COOLDOWN\_MAX}{BONUS\_SHOOT\_COOLDOWN\_MAX}}
+{\footnotesize\ttfamily \label{config_8h_a9b3e2f2ab1253fb68ea36f823f84e44c} 
+float BONUS\+\_\+\+SHOOT\+\_\+\+COOLDOWN\+\_\+\+MAX = 0.\+2f\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Fire cooldown upgrade. 
+
+\Hypertarget{config_8h_af0b980a80b2fc64c738f8f437dfbbde9}\index{config.h@{config.h}!BONUS\_SHOOT\_COOLDOWN\_MIN@{BONUS\_SHOOT\_COOLDOWN\_MIN}}
+\index{BONUS\_SHOOT\_COOLDOWN\_MIN@{BONUS\_SHOOT\_COOLDOWN\_MIN}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{BONUS\_SHOOT\_COOLDOWN\_MIN}{BONUS\_SHOOT\_COOLDOWN\_MIN}}
+{\footnotesize\ttfamily \label{config_8h_af0b980a80b2fc64c738f8f437dfbbde9} 
+float BONUS\+\_\+\+SHOOT\+\_\+\+COOLDOWN\+\_\+\+MIN = 0.\+1f\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Fire cooldown upgrade. 
+
+\Hypertarget{config_8h_a072ff1b1ceeb3cd60ed8eb13b2ef8777}\index{config.h@{config.h}!BONUS\_SPEED@{BONUS\_SPEED}}
+\index{BONUS\_SPEED@{BONUS\_SPEED}!config.h@{config.h}}
+\doxysubsubsection{\texorpdfstring{BONUS\_SPEED}{BONUS\_SPEED}}
+{\footnotesize\ttfamily \label{config_8h_a072ff1b1ceeb3cd60ed8eb13b2ef8777} 
+float BONUS\+\_\+\+SPEED = 20.\+0f\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Walk speed upgrade. 
+

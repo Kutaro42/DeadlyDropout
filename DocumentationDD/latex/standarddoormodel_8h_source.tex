@@ -1,0 +1,42 @@
+\doxysection{standarddoormodel.\+h}
+\hypertarget{standarddoormodel_8h_source}{}\label{standarddoormodel_8h_source}\index{Headers/standarddoormodel.h@{Headers/standarddoormodel.h}}
+\doxymbox{\hyperlink{standarddoormodel_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ STANDARDDOORMODEL\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ STANDARDDOORMODEL\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{globaldoor_8h}{globaldoor.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_player_model}{PlayerModel}};\ }
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \ StandardDoorModel\ —\ junction\ door\ between\ rooms/corridors.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ \ Closed\ by\ default.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ \ Opens\ as\ soon\ as\ the\ player\ makes\ contact\ with\ it\ and}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \ stays\ open\ until\ the\ end\ of\ the\ level.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \ Once\ open,\ it\ no\ longer\ creates\ a\ collision\ (the\ player}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ \ can\ pass\ through\ freely).}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_standard_door_model_a999f8852e49cb7891d9dd07c07a51da9}{StandardDoorModel}}\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_global_door_ad9b6202569c5bc960e9527ded51b5f27}{GlobalDoor}}\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_standard_door_model_aafbc16eb5973137ec3f85f85a65d3182}{open}};\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \doxymbox{\hyperlink{class_standard_door_model_a999f8852e49cb7891d9dd07c07a51da9}{StandardDoorModel}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ pos,\ \textcolor{keywordtype}{float}\ w,\ \textcolor{keywordtype}{float}\ h);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_standard_door_model_a5dcd7a60d396e8dadf3a2f8f64145a90}{update}}(\textcolor{keywordtype}{float}\ dt)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_standard_door_model_aa90f90210616d560aae8a6e598593551}{openDoor}}()\ \{\ \doxymbox{\hyperlink{class_standard_door_model_aafbc16eb5973137ec3f85f85a65d3182}{open}}\ =\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_standard_door_model_ac4af7e7470ebea78874b93966777cd54}{isOpen}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_standard_door_model_aafbc16eb5973137ec3f85f85a65d3182}{open}};\ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_standard_door_model_a18be14e811044f95c028008d57d2d70d}{tryOpen}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_player_model}{PlayerModel}}\&\ player);}
+\DoxyCodeLine{00062\ \};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ STANDARDDOORMODEL\_H}}
+
+\end{DoxyCode}

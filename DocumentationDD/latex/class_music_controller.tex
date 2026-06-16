@@ -1,0 +1,195 @@
+\doxysection{Music\+Controller Class Reference}
+\hypertarget{class_music_controller}{}\label{class_music_controller}\index{MusicController@{MusicController}}
+
+
+{\ttfamily \+\#include $<$musiccontroller.\+h$>$}
+
+
+
+Inheritance diagram for Music\+Controller:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=185pt]{class_music_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Music\+Controller:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=185pt]{class_music_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_music_controller_a18c4424e158480c5c5593ac27a9d27d0}{play\+Menu}} ()
+\item 
+void \doxymbox{\hyperlink{class_music_controller_a163cd893b28ccb1b41f5f9369a007463}{stop}} ()
+\item 
+void \doxymbox{\hyperlink{class_music_controller_ac1f0910fe70ac45127a761eba603de2f}{play\+Random\+Game}} ()
+\item 
+void \doxymbox{\hyperlink{class_music_controller_ab11c798c00f6530d9e4f404e0e4575fd}{toggle\+Pause}} ()
+\item 
+void \doxymbox{\hyperlink{class_music_controller_a4d2e05162c999ac6339c37ec14ca7d66}{next\+Track}} ()
+\item 
+bool \doxymbox{\hyperlink{class_music_controller_a15ed03d0587e60caaed39bd86d3267aa}{is\+Playing}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_music_controller}{Music\+Controller}} \& \doxymbox{\hyperlink{class_music_controller_a72d7fd5326ff52da34881e8424741f62}{instance}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_music_controller_a1aae49ce913229099dd94394cf307007}{Music\+Controller}} (QObject \texorpdfstring{$\ast$}{*}parent=nullptr)
+\item 
+\doxymbox{\hyperlink{class_music_controller_ae5360a0f90c5e5815d17be070a7ef36f}{\texorpdfstring{$\sim$}{\string~}\+Music\+Controller}} ()=default
+\item 
+\doxymbox{\hyperlink{class_music_controller_a6160bb5ef8574175a53977aba79446f6}{Music\+Controller}} (const \doxymbox{\hyperlink{class_music_controller}{Music\+Controller}} \&)=delete
+\item 
+\doxymbox{\hyperlink{class_music_controller}{Music\+Controller}} \& \doxymbox{\hyperlink{class_music_controller_a371454267a8137403535384bdb4b640a}{operator=}} (const \doxymbox{\hyperlink{class_music_controller}{Music\+Controller}} \&)=delete
+\item 
+void \doxymbox{\hyperlink{class_music_controller_a0665f51898f95f6eb4537a04014718eb}{play\+Track}} (const QString \&resource\+Path)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QMedia\+Player \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_music_controller_aaa9d9d36c8f818748313b2e56bc79ab3}{player}}
+\item 
+QAudio\+Output \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_music_controller_a6d488f7b343705c29c42115dbfce2b15}{audio\+Output}}
+\item 
+QString\+List \doxymbox{\hyperlink{class_music_controller_a1a889e5579a4b2f5b9cbd642b0338e1e}{game\+Tracks}}
+\begin{DoxyCompactList}\small\item\em Liste des chemins Qt resource des pistes in-\/game. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_music_controller_a8e36fb0ba96b849ce15a73a818691867}{last\+Index}}
+\begin{DoxyCompactList}\small\item\em Dernier index joué (pour éviter répétition immédiate). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{class_music_controller_doc-constructors}
+\Hypertarget{class_music_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_music_controller_a1aae49ce913229099dd94394cf307007}\index{MusicController@{MusicController}!MusicController@{MusicController}}
+\index{MusicController@{MusicController}!MusicController@{MusicController}}
+\doxysubsubsection{\texorpdfstring{MusicController()}{MusicController()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_music_controller_a1aae49ce913229099dd94394cf307007} 
+Music\+Controller::\+\+Music\+Controller (\begin{DoxyParamCaption}\item[{QObject \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [private]}}
+
+\Hypertarget{class_music_controller_ae5360a0f90c5e5815d17be070a7ef36f}\index{MusicController@{MusicController}!````~MusicController@{\texorpdfstring{$\sim$}{\string~}MusicController}}
+\index{````~MusicController@{\texorpdfstring{$\sim$}{\string~}MusicController}!MusicController@{MusicController}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}MusicController()}{\string~MusicController()}}
+{\footnotesize\ttfamily \label{class_music_controller_ae5360a0f90c5e5815d17be070a7ef36f} 
+Music\+Controller::\+\texorpdfstring{$\sim$}{\string~}\+Music\+Controller (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [default]}}
+
+\Hypertarget{class_music_controller_a6160bb5ef8574175a53977aba79446f6}\index{MusicController@{MusicController}!MusicController@{MusicController}}
+\index{MusicController@{MusicController}!MusicController@{MusicController}}
+\doxysubsubsection{\texorpdfstring{MusicController()}{MusicController()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_music_controller_a6160bb5ef8574175a53977aba79446f6} 
+Music\+Controller::\+\+Music\+Controller (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_music_controller}{Music\+Controller}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [delete]}}
+
+
+
+\label{class_music_controller_doc-func-members}
+\Hypertarget{class_music_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_music_controller_a72d7fd5326ff52da34881e8424741f62}\index{MusicController@{MusicController}!instance@{instance}}
+\index{instance@{instance}!MusicController@{MusicController}}
+\doxysubsubsection{\texorpdfstring{instance()}{instance()}}
+{\footnotesize\ttfamily \label{class_music_controller_a72d7fd5326ff52da34881e8424741f62} 
+\doxymbox{\hyperlink{class_music_controller}{Music\+Controller}} \& Music\+Controller::\+instance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{class_music_controller_a15ed03d0587e60caaed39bd86d3267aa}\index{MusicController@{MusicController}!isPlaying@{isPlaying}}
+\index{isPlaying@{isPlaying}!MusicController@{MusicController}}
+\doxysubsubsection{\texorpdfstring{isPlaying()}{isPlaying()}}
+{\footnotesize\ttfamily \label{class_music_controller_a15ed03d0587e60caaed39bd86d3267aa} 
+bool Music\+Controller::\+is\+Playing (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_music_controller_a4d2e05162c999ac6339c37ec14ca7d66}\index{MusicController@{MusicController}!nextTrack@{nextTrack}}
+\index{nextTrack@{nextTrack}!MusicController@{MusicController}}
+\doxysubsubsection{\texorpdfstring{nextTrack()}{nextTrack()}}
+{\footnotesize\ttfamily \label{class_music_controller_a4d2e05162c999ac6339c37ec14ca7d66} 
+void Music\+Controller::\+next\+Track (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Passe à la prochaine piste aléatoire in-\/game. \Hypertarget{class_music_controller_a371454267a8137403535384bdb4b640a}\index{MusicController@{MusicController}!operator=@{operator=}}
+\index{operator=@{operator=}!MusicController@{MusicController}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_music_controller_a371454267a8137403535384bdb4b640a} 
+\doxymbox{\hyperlink{class_music_controller}{Music\+Controller}} \& Music\+Controller::\+operator= (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_music_controller}{Music\+Controller}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [delete]}}
+
+\Hypertarget{class_music_controller_a18c4424e158480c5c5593ac27a9d27d0}\index{MusicController@{MusicController}!playMenu@{playMenu}}
+\index{playMenu@{playMenu}!MusicController@{MusicController}}
+\doxysubsubsection{\texorpdfstring{playMenu()}{playMenu()}}
+{\footnotesize\ttfamily \label{class_music_controller_a18c4424e158480c5c5593ac27a9d27d0} 
+void Music\+Controller::\+play\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Démarre la musique du menu (en boucle). \Hypertarget{class_music_controller_ac1f0910fe70ac45127a761eba603de2f}\index{MusicController@{MusicController}!playRandomGame@{playRandomGame}}
+\index{playRandomGame@{playRandomGame}!MusicController@{MusicController}}
+\doxysubsubsection{\texorpdfstring{playRandomGame()}{playRandomGame()}}
+{\footnotesize\ttfamily \label{class_music_controller_ac1f0910fe70ac45127a761eba603de2f} 
+void Music\+Controller::\+play\+Random\+Game (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Lance une piste in-\/game aléatoire. \Hypertarget{class_music_controller_a0665f51898f95f6eb4537a04014718eb}\index{MusicController@{MusicController}!playTrack@{playTrack}}
+\index{playTrack@{playTrack}!MusicController@{MusicController}}
+\doxysubsubsection{\texorpdfstring{playTrack()}{playTrack()}}
+{\footnotesize\ttfamily \label{class_music_controller_a0665f51898f95f6eb4537a04014718eb} 
+void Music\+Controller::\+play\+Track (\begin{DoxyParamCaption}\item[{const QString \&}]{resource\+Path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_music_controller_a163cd893b28ccb1b41f5f9369a007463}\index{MusicController@{MusicController}!stop@{stop}}
+\index{stop@{stop}!MusicController@{MusicController}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \label{class_music_controller_a163cd893b28ccb1b41f5f9369a007463} 
+void Music\+Controller::\+stop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Arrête toute musique en cours. \Hypertarget{class_music_controller_ab11c798c00f6530d9e4f404e0e4575fd}\index{MusicController@{MusicController}!togglePause@{togglePause}}
+\index{togglePause@{togglePause}!MusicController@{MusicController}}
+\doxysubsubsection{\texorpdfstring{togglePause()}{togglePause()}}
+{\footnotesize\ttfamily \label{class_music_controller_ab11c798c00f6530d9e4f404e0e4575fd} 
+void Music\+Controller::\+toggle\+Pause (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Met en pause /\+ reprend la piste courante. 
+
+\label{class_music_controller_doc-variable-members}
+\Hypertarget{class_music_controller_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_music_controller_a6d488f7b343705c29c42115dbfce2b15}\index{MusicController@{MusicController}!audioOutput@{audioOutput}}
+\index{audioOutput@{audioOutput}!MusicController@{MusicController}}
+\doxysubsubsection{\texorpdfstring{audioOutput}{audioOutput}}
+{\footnotesize\ttfamily \label{class_music_controller_a6d488f7b343705c29c42115dbfce2b15} 
+QAudio\+Output\texorpdfstring{$\ast$}{*} Music\+Controller::\+audio\+Output\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_music_controller_a1a889e5579a4b2f5b9cbd642b0338e1e}\index{MusicController@{MusicController}!gameTracks@{gameTracks}}
+\index{gameTracks@{gameTracks}!MusicController@{MusicController}}
+\doxysubsubsection{\texorpdfstring{gameTracks}{gameTracks}}
+{\footnotesize\ttfamily \label{class_music_controller_a1a889e5579a4b2f5b9cbd642b0338e1e} 
+QString\+List Music\+Controller::\+game\+Tracks\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Liste des chemins Qt resource des pistes in-\/game. 
+
+\Hypertarget{class_music_controller_a8e36fb0ba96b849ce15a73a818691867}\index{MusicController@{MusicController}!lastIndex@{lastIndex}}
+\index{lastIndex@{lastIndex}!MusicController@{MusicController}}
+\doxysubsubsection{\texorpdfstring{lastIndex}{lastIndex}}
+{\footnotesize\ttfamily \label{class_music_controller_a8e36fb0ba96b849ce15a73a818691867} 
+int Music\+Controller::\+last\+Index\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Dernier index joué (pour éviter répétition immédiate). 
+
+\Hypertarget{class_music_controller_aaa9d9d36c8f818748313b2e56bc79ab3}\index{MusicController@{MusicController}!player@{player}}
+\index{player@{player}!MusicController@{MusicController}}
+\doxysubsubsection{\texorpdfstring{player}{player}}
+{\footnotesize\ttfamily \label{class_music_controller_aaa9d9d36c8f818748313b2e56bc79ab3} 
+QMedia\+Player\texorpdfstring{$\ast$}{*} Music\+Controller::\+player\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{musiccontroller_8h}{musiccontroller.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{musiccontroller_8cpp}{musiccontroller.\+cpp}}\end{DoxyCompactItemize}

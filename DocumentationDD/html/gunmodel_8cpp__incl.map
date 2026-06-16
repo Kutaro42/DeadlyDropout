@@ -1,0 +1,31 @@
+<map id="Sources/gunmodel.cpp" name="Sources/gunmodel.cpp">
+<area shape="rect" id="Node000001" title="Implementation of the semi&#45;automatic pistol logic." alt="" coords="142,5,297,32"/>
+<area shape="rect" id="Node000002" href="$gunmodel_8h.html" title="Model of the player&#39;s semi&#45;automatic pistol." alt="" coords="149,80,290,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="220,30,222,65,217,64,219,35"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,155,74,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="187,109,87,151,83,146,190,105"/>
+<area shape="rect" id="Node000004" href="$bulletmodel_8h.html" title="A model of a bullet fired from the player&#39;s pistol." alt="" coords="170,155,269,181"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="220,105,222,140,217,138,219,110"/>
+<area shape="rect" id="Node000008" href="$vector2f_8h.html" title="Declaration of the Vector2f math class for the game&#39;s 2D geometry." alt="" coords="312,379,391,405"/>
+<area shape="poly" id="edge15_Node000002_Node000008" title=" " alt="" coords="236,105,261,126,283,153,310,209,330,267,350,364,345,363,325,268,305,211,279,156,257,130,237,110"/>
+<area shape="rect" id="Node000011" href="$config_8h.html" title="Global constants and configuration enumerations for the game Deadly Dropout." alt="" coords="128,379,196,405"/>
+<area shape="poly" id="edge14_Node000002_Node000011" title=" " alt="" coords="198,109,179,129,161,156,152,183,146,211,144,269,149,322,158,364,152,363,144,322,139,269,141,211,146,181,156,153,175,126,202,105"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="388,155,491,181"/>
+<area shape="poly" id="edge16_Node000002_Node000013" title=" " alt="" coords="258,105,389,148,384,151,258,110"/>
+<area shape="rect" id="Node000005" href="$projectile_8h.html" title="Declaration of the abstract class Projectile, the common base for all projectiles." alt="" coords="200,229,284,256"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="224,179,236,215,231,214,223,184"/>
+<area shape="poly" id="edge13_Node000004_Node000011" title=" " alt="" coords="213,179,190,230,173,301,166,364,161,362,168,300,185,228,210,184"/>
+<area shape="rect" id="Node000006" href="$entity_8h.html" title="Declaration of the Entity base class." alt="" coords="250,304,314,331"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="250,254,271,291,265,290,248,259"/>
+<area shape="poly" id="edge12_Node000005_Node000011" title=" " alt="" coords="238,255,178,366,174,363,233,258"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="220,379,288,405"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="279,329,267,366,262,362,275,333"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="295,329,332,367,326,367,293,334"/>
+<area shape="poly" id="edge10_Node000006_Node000011" title=" " alt="" coords="264,330,197,373,195,368,259,333"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="367,453,424,480"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="360,404,383,441,378,439,358,408"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="273,453,342,480"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="346,405,325,442,321,438,342,407"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="132,453,192,480"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="164,404,165,439,160,436,160,408"/>
+</map>

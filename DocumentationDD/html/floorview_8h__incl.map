@@ -1,0 +1,24 @@
+<map id="Headers/floorview.h" name="Headers/floorview.h">
+<area shape="rect" id="Node000001" title="Affiche une tile de sol en découpant le bon sprite depuis le tileset de sol." alt="" coords="206,5,342,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,159,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="239,35,131,76,128,72,242,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="183,80,258,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="266,30,241,69,237,66,263,35"/>
+<area shape="rect" id="Node000004" href="$floormodel_8h.html" title="Entité statique décorative de sol, associée à un index de tile du tileset de sol." alt="" coords="282,80,375,107"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="284,30,313,67,307,67,283,35"/>
+<area shape="rect" id="Node000010" href="$config_8h.html" title="Global constants and configuration enumerations for the game Deadly Dropout." alt="" coords="384,229,452,256"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="317,30,356,49,374,62,390,78,407,112,417,148,422,215,417,213,412,149,402,114,385,82,371,66,354,53,318,35"/>
+<area shape="rect" id="Node000005" href="$entity_8h.html" title="Declaration of the Entity base class." alt="" coords="296,155,359,181"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="330,105,330,140,325,138,327,109"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="190,229,257,256"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="312,181,255,223,252,218,307,183"/>
+<area shape="rect" id="Node000007" href="$vector2f_8h.html" title="Declaration of the Vector2f math class for the game&#39;s 2D geometry." alt="" coords="281,229,360,256"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="328,180,325,215,321,212,324,184"/>
+<area shape="poly" id="edge9_Node000005_Node000010" title=" " alt="" coords="344,179,393,220,388,220,342,184"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="208,304,265,331"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="309,256,264,296,261,291,304,257"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="290,304,359,331"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="323,255,325,290,321,287,320,259"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="388,304,448,331"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="420,255,420,290,416,287,416,258"/>
+</map>

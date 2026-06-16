@@ -1,0 +1,5 @@
+<map id="LevelModel" name="LevelModel">
+<area shape="rect" id="Node000001" title="Conteneur de données pour les entités d&#39;un niveau." alt="" coords="5,123,155,747"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="51,5,110,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,87,83,123,78,123,80,92"/>
+</map>

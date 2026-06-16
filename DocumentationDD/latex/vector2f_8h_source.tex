@@ -1,0 +1,44 @@
+\doxysection{vector2f.\+h}
+\hypertarget{vector2f_8h_source}{}\label{vector2f_8h_source}\index{Headers/vector2f.h@{Headers/vector2f.h}}
+\doxymbox{\hyperlink{vector2f_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ VECTOR2F\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ VECTOR2F\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QPointF>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_vector2f_a6d62ebbc70e3602a872e716aacdee3f8}{Vector2f}}\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_vector2f_add58d2378e3a3abdb76cf0ac51c9acfc}{x}};\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_vector2f_a14874a72597fd358b15f8ba34b999c4d}{y}};\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00029\ \ \ \ \ \doxymbox{\hyperlink{class_vector2f_a6d62ebbc70e3602a872e716aacdee3f8}{Vector2f}}(\textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_vector2f_add58d2378e3a3abdb76cf0ac51c9acfc}{x}}\ =\ 0.0f,\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_vector2f_a14874a72597fd358b15f8ba34b999c4d}{y}}\ =\ 0.0f)\ :\ \doxymbox{\hyperlink{class_vector2f_add58d2378e3a3abdb76cf0ac51c9acfc}{x}}(\doxymbox{\hyperlink{class_vector2f_add58d2378e3a3abdb76cf0ac51c9acfc}{x}}),\ \doxymbox{\hyperlink{class_vector2f_a14874a72597fd358b15f8ba34b999c4d}{y}}(\doxymbox{\hyperlink{class_vector2f_a14874a72597fd358b15f8ba34b999c4d}{y}})\ \{\}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_vector2f_ab0220c31bc8afc05cf0b920636ede6cf}{length}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::sqrt(\doxymbox{\hyperlink{class_vector2f_add58d2378e3a3abdb76cf0ac51c9acfc}{x}}\ *\ \doxymbox{\hyperlink{class_vector2f_add58d2378e3a3abdb76cf0ac51c9acfc}{x}}\ +\ \doxymbox{\hyperlink{class_vector2f_a14874a72597fd358b15f8ba34b999c4d}{y}}\ *\ \doxymbox{\hyperlink{class_vector2f_a14874a72597fd358b15f8ba34b999c4d}{y}});}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00044\ \ \ \ \ \doxymbox{\hyperlink{class_vector2f_a6d62ebbc70e3602a872e716aacdee3f8}{Vector2f}}\ \doxymbox{\hyperlink{class_vector2f_a898bd965c37a1a5c03e0af70ca2544f7}{normalized}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ len\ =\ \doxymbox{\hyperlink{class_vector2f_ab0220c31bc8afc05cf0b920636ede6cf}{length}}();}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (len\ >\ 0)\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_vector2f_a6d62ebbc70e3602a872e716aacdee3f8}{Vector2f}}(\doxymbox{\hyperlink{class_vector2f_add58d2378e3a3abdb76cf0ac51c9acfc}{x}}\ /\ len,\ \doxymbox{\hyperlink{class_vector2f_a14874a72597fd358b15f8ba34b999c4d}{y}}\ /\ len);}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_vector2f_a6d62ebbc70e3602a872e716aacdee3f8}{Vector2f}}(0.0f,\ 0.0f);}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ ───\ Arithmetic\ operator\ overloads\ ─────────────────────}}
+\DoxyCodeLine{00051\ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ \doxymbox{\hyperlink{class_vector2f_a6d62ebbc70e3602a872e716aacdee3f8}{Vector2f}}\ \doxymbox{\hyperlink{class_vector2f_a7e43f36501701a1d5bf3165940cc3b6c}{operator+}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_vector2f_a6d62ebbc70e3602a872e716aacdee3f8}{Vector2f}}\&\ v)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_vector2f_a6d62ebbc70e3602a872e716aacdee3f8}{Vector2f}}(\doxymbox{\hyperlink{class_vector2f_add58d2378e3a3abdb76cf0ac51c9acfc}{x}}\ +\ v.\doxymbox{\hyperlink{class_vector2f_add58d2378e3a3abdb76cf0ac51c9acfc}{x}},\ \doxymbox{\hyperlink{class_vector2f_a14874a72597fd358b15f8ba34b999c4d}{y}}\ +\ v.\doxymbox{\hyperlink{class_vector2f_a14874a72597fd358b15f8ba34b999c4d}{y}});\ \}}
+\DoxyCodeLine{00056\ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \doxymbox{\hyperlink{class_vector2f_a6d62ebbc70e3602a872e716aacdee3f8}{Vector2f}}\ \doxymbox{\hyperlink{class_vector2f_af5187c3a99ca7fb1681c65f5c7fc0367}{operator-\/}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_vector2f_a6d62ebbc70e3602a872e716aacdee3f8}{Vector2f}}\&\ v)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_vector2f_a6d62ebbc70e3602a872e716aacdee3f8}{Vector2f}}(\doxymbox{\hyperlink{class_vector2f_add58d2378e3a3abdb76cf0ac51c9acfc}{x}}\ -\/\ v.\doxymbox{\hyperlink{class_vector2f_add58d2378e3a3abdb76cf0ac51c9acfc}{x}},\ \doxymbox{\hyperlink{class_vector2f_a14874a72597fd358b15f8ba34b999c4d}{y}}\ -\/\ v.\doxymbox{\hyperlink{class_vector2f_a14874a72597fd358b15f8ba34b999c4d}{y}});\ \}}
+\DoxyCodeLine{00061\ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \doxymbox{\hyperlink{class_vector2f_a6d62ebbc70e3602a872e716aacdee3f8}{Vector2f}}\ \doxymbox{\hyperlink{class_vector2f_ad0368f7625942a18d2507d9ee21a2776}{operator*}}(\textcolor{keywordtype}{float}\ s)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_vector2f_a6d62ebbc70e3602a872e716aacdee3f8}{Vector2f}}(\doxymbox{\hyperlink{class_vector2f_add58d2378e3a3abdb76cf0ac51c9acfc}{x}}\ *\ s,\ \doxymbox{\hyperlink{class_vector2f_a14874a72597fd358b15f8ba34b999c4d}{y}}\ *\ s);\ \}}
+\DoxyCodeLine{00066\ \ \ \ \ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ Qt\ compatibility}}
+\DoxyCodeLine{00072\ \ \ \ \ QPointF\ \doxymbox{\hyperlink{class_vector2f_ac39e600b906a12192a24bfd64659a61f}{toQPointF}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ QPointF(\doxymbox{\hyperlink{class_vector2f_add58d2378e3a3abdb76cf0ac51c9acfc}{x}},\ \doxymbox{\hyperlink{class_vector2f_a14874a72597fd358b15f8ba34b999c4d}{y}});\ \}}
+\DoxyCodeLine{00073\ \};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ VECTOR2F\_H}}
+
+\end{DoxyCode}

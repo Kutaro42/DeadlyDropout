@@ -1,0 +1,25 @@
+<map id="build/Desktop_Qt_6_10_0_MinGW_64_bit&#45;Release/release/moc_musiccontroller.cpp" name="build/Desktop_Qt_6_10_0_MinGW_64_bit&#45;Release/release/moc_musiccontroller.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="600,5,816,64"/>
+<area shape="rect" id="Node000002" href="$musiccontroller_8h.html" title="Singleton gérant la lecture musicale (menu et in&#45;game)." alt="" coords="233,112,442,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="597,62,406,111,404,105,602,61"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="466,112,606,139"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="655,64,575,107,573,102,650,65"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="630,112,786,139"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="710,62,710,98,706,94,706,66"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="810,112,878,139"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="753,62,815,104,809,103,752,67"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="902,112,1063,139"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="798,62,932,107,927,107,797,67"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,187,75,213"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="284,142,91,188,89,183,283,137"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="99,187,202,213"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="307,139,198,183,197,178,302,140"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="227,187,330,213"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="330,138,300,177,297,172,325,140"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="354,187,440,213"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="349,137,380,176,375,174,347,142"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="465,187,602,213"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="372,137,487,181,482,181,371,142"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="626,187,750,213"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="399,137,614,183,609,184,399,142"/>
+</map>

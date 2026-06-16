@@ -1,0 +1,135 @@
+\doxysection{Bullet\+Model Class Reference}
+\hypertarget{class_bullet_model}{}\label{class_bullet_model}\index{BulletModel@{BulletModel}}
+
+
+\doxylink{class_projectile}{Projectile} fired by the player (semi-\/automatic pistol).  
+
+
+
+
+{\ttfamily \+\#include $<$bulletmodel.\+h$>$}
+
+
+
+Inheritance diagram for Bullet\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_bullet_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Bullet\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_bullet_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_bullet_model_a1490010d3e161b9e8e67f1e50687acd8}{Bullet\+Model}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, \doxymbox{\hyperlink{class_vector2f}{Vector2f}} dir, int damage=\doxymbox{\hyperlink{namespace_cfg_a3689e297f3ba29b4fc476ad8bbd8c73c}{Cfg::\+\+BULLET\+\_\+\+DAMAGE}}, float speed=\doxymbox{\hyperlink{namespace_cfg_a0efd46ed0d32586db7ba848804331044}{Cfg::\+\+BULLET\+\_\+\+SPEED}})
+\begin{DoxyCompactList}\small\item\em Create a bullet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_projectile}{Projectile}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \doxymbox{\hyperlink{class_projectile_a954a349fe38dfd24ff9e427b44ac9619}{\texorpdfstring{$\sim$}{\string~}\+Projectile}} ()=default
+\item 
+void \doxymbox{\hyperlink{class_projectile_ac5ebfb8b93e602f5c063d465944838fa}{update}} (float dt) override
+\begin{DoxyCompactList}\small\item\em Advances the projectile in its direction over the given delta-\/time. Can be overridden by subclasses (e.\+g. curved trajectory). \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_projectile_af5cd30772ad4cb3894629ca76c6b8f79}{get\+Damage}} () const
+\begin{DoxyCompactList}\small\item\em Damage on impact. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_projectile_a4f08dfe10b62cce1c2134b066e6b9d28}{get\+Speed}} () const
+\begin{DoxyCompactList}\small\item\em Speed in pixels/\+s. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_projectile_aef62b952dd6b52adc08a5b02331fe9ba}{get\+Direction}} () const
+\begin{DoxyCompactList}\small\item\em Unit displacement vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_entity_acaf2ad84607691b229cddab1da0bf819}{Entity}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float w, float h)
+\begin{DoxyCompactList}\small\item\em Constructor of the entity. \end{DoxyCompactList}\item 
+virtual \doxymbox{\hyperlink{class_entity_ac479d009ddde62dfb378ca0a70d81307}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual shredder. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_afdda0263db3d2e465a6ae6bad91eb990}{get\+Position}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a5f154968f2a478ea924460c78e0cd39e}{get\+Width}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a1332918563adb284c0fd432d47486d44}{get\+Height}} () const
+\item 
+bool \doxymbox{\hyperlink{class_entity_aea1c1568b4123d989c5310697030ad77}{is\+Active}} () const
+\item 
+void \doxymbox{\hyperlink{class_entity_ac5164b8c832f9a055df976527fe10032}{set\+Active}} (bool a)
+\item 
+void \doxymbox{\hyperlink{class_entity_a575ec530746fbb3eca1baddec2d0b030}{set\+Position}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos)
+\item 
+QRectF \doxymbox{\hyperlink{class_entity_ae00b70bd40800a8bd23c38b1c84404a9}{get\+Collider}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the entity\textquotesingle{}s collision bounding box. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{class_projectile}{Projectile}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_projectile_a1bd98c79e3575b2addf0c2f79428d9c9}{Projectile}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float size, \doxymbox{\hyperlink{class_vector2f}{Vector2f}} dir, float speed, int damage)
+\begin{DoxyCompactList}\small\item\em Protected constructor:\+ only subclasses can instantiate. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_projectile}{Projectile}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_projectile_abb984ec56a4e00541813b8e171955fa2}{direction}}
+\begin{DoxyCompactList}\small\item\em Unit displacement vector. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_projectile_a70ff500bdae54f3ad1e9e759b0ecd1fe}{speed}}
+\begin{DoxyCompactList}\small\item\em Speed in pixels/\+s. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_projectile_a90f5793efb184c30d6c74544a6b91bb4}{damage}}
+\begin{DoxyCompactList}\small\item\em Damage inflicted on contact with the target. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_a6af9d6498134ad0906011778bc5736db}{position}}
+\begin{DoxyCompactList}\small\item\em The entity\textquotesingle{}s 2D coordinates. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_adadfcc784f30b51b8e49f8230a56b793}{width}}
+\begin{DoxyCompactList}\small\item\em The physical width of the entity in pixels. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_a4550dc1011f47f6c4bb86e564e7d605b}{height}}
+\begin{DoxyCompactList}\small\item\em The physical height of the entity in pixels. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_entity_a939da33e8b67b1d2ee227930aa72da3b}{active}}
+\begin{DoxyCompactList}\small\item\em Status of the entity (false if dead or destroyed). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_projectile}{Projectile} fired by the player (semi-\/automatic pistol). 
+
+Inherits from \doxylink{class_projectile}{Projectile}:\+ moves in a straight line at a constant speed. Deactivates (set\+Active(false)) upon collision with a wall or an enemy, handled by \doxylink{class_level_controller_a1390cb51714507a3e13885c7b1d95605}{Level\+Controller::\+check\+Bullet\+Collisions()}.
+
+Damage:\+ 12 base points + adaptive bonus 2–5 + critical hit ×2 (GDD). Speed:\+ 500 px/\+s (GDD). 
+
+\label{class_bullet_model_doc-constructors}
+\Hypertarget{class_bullet_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_bullet_model_a1490010d3e161b9e8e67f1e50687acd8}\index{BulletModel@{BulletModel}!BulletModel@{BulletModel}}
+\index{BulletModel@{BulletModel}!BulletModel@{BulletModel}}
+\doxysubsubsection{\texorpdfstring{BulletModel()}{BulletModel()}}
+{\footnotesize\ttfamily \label{class_bullet_model_a1490010d3e161b9e8e67f1e50687acd8} 
+Bullet\+Model::\+\+Bullet\+Model (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{pos}{, }\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{dir}{, }\item[{int}]{damage}{ = {\ttfamily \doxymbox{\hyperlink{namespace_cfg_a3689e297f3ba29b4fc476ad8bbd8c73c}{Cfg::\+\+BULLET\+\_\+\+DAMAGE}}}, }\item[{float}]{speed}{ = {\ttfamily \doxymbox{\hyperlink{namespace_cfg_a0efd46ed0d32586db7ba848804331044}{Cfg::\+\+BULLET\+\_\+\+SPEED}}}}\end{DoxyParamCaption})}
+
+
+
+Create a bullet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & :\+ Starting position (nozzle). \\
+\hline
+{\em dir} & :\+ Standard direction towards the mouse cursor. \\
+\hline
+{\em damage} & :\+ Damage already calculated (base + bonus + critical) by \doxylink{class_gun_model}{Gun\+Model}. \\
+\hline
+{\em speed} & :\+ Speed in px/\+s (default:\+ \doxylink{namespace_cfg_a0efd46ed0d32586db7ba848804331044}{Cfg::\+\+BULLET\+\_\+\+SPEED}). \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{bulletmodel_8h}{bulletmodel.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{bulletmodel_8cpp}{bulletmodel.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,589 @@
+\doxysection{Game\+View Class Reference}
+\hypertarget{class_game_view}{}\label{class_game_view}\index{GameView@{GameView}}
+
+
+Gère le rendu visuel du jeu, l\textquotesingle{}affichage du HUD, la caméra et capte les événements.  
+
+
+
+
+{\ttfamily \+\#include $<$gameview.\+h$>$}
+
+
+
+Inheritance diagram for Game\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_game_view__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Game\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_game_view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_game_view_1_1_popup_anim}{Popup\+Anim}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_game_view_a326271b747a7e0bdbd6f8cb521869e2c}{sig\+\_\+right\+Clicked}} (QPointF scene\+Pos)
+\item 
+void \doxymbox{\hyperlink{class_game_view_ab0b7c4cecc3cfb063a6c7e155db455a2}{sig\+\_\+left\+Clicked}} (QPointF scene\+Pos)
+\item 
+void \doxymbox{\hyperlink{class_game_view_a63e946f0c1cb30c58589925766443972}{sig\+\_\+escape\+Pressed}} ()
+\item 
+void \doxymbox{\hyperlink{class_game_view_a20d8599b690c5fe62d48dcc5579a757f}{sig\+Restart\+Rq}} ()
+\item 
+void \doxymbox{\hyperlink{class_game_view_a3b273d94caf901eb371f1ff202bfac3d}{sig\+Quit\+Rq}} ()
+\item 
+void \doxymbox{\hyperlink{class_game_view_a7575f41c2cfb4e757fe61f59cffea674}{sig\+Pause\+Menu}} ()
+\item 
+void \doxymbox{\hyperlink{class_game_view_a41252fb9b4beb1023859b56b70c8a242}{sig\+Toggle\+Music}} ()
+\item 
+void \doxymbox{\hyperlink{class_game_view_aeca199d179d8072f793e94afa177d1cf}{sig\+Next\+Track}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_game_view_aef54ba65c9d6737feb11011a7ee249a9}{Game\+View}} (QWidget \texorpdfstring{$\ast$}{*}parent=nullptr)
+\item 
+\doxymbox{\hyperlink{class_game_view_a778c2392645142e3b29f6d054d551223}{\texorpdfstring{$\sim$}{\string~}\+Game\+View}} () override
+\item 
+QGraphics\+Scene \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_view_a0cc09f7f625d616b761d038af3971194}{get\+Scene}} () const
+\item 
+QSet$<$ int $>$ \doxymbox{\hyperlink{class_game_view_a8a8777404d0f8cea007fbb7ef2040b11}{get\+Pressed\+Keys}} () const
+\item 
+\doxymbox{\hyperlink{class_player_view}{Player\+View}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_view_a3734237c67d52074f570146432a9d53d}{get\+Player\+View}} () const
+\item 
+QPointF \doxymbox{\hyperlink{class_game_view_ad930fb4debc17d13dc59fcf79e6df7f8}{get\+Mouse\+Scene\+Pos}} () const
+\item 
+void \doxymbox{\hyperlink{class_game_view_ace9a878efb6018b2def308f4ce1b167f}{init\+With\+Model}} (\doxymbox{\hyperlink{class_game_model}{Game\+Model}} \texorpdfstring{$\ast$}{*}model)
+\begin{DoxyCompactList}\small\item\em Display the player (if not already displayed) and their weapon during initialization. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_view_a78c5580f2f11884359a2be26fb5942be}{update\+All\+Views}} (float dt, \doxymbox{\hyperlink{class_game_model}{Game\+Model}} \texorpdfstring{$\ast$}{*}model, \doxymbox{\hyperlink{class_level_controller}{Level\+Controller}} \texorpdfstring{$\ast$}{*}level\+Ctrl=nullptr)
+\begin{DoxyCompactList}\small\item\em \doxylink{class_game_view_a78c5580f2f11884359a2be26fb5942be}{Game\+View::\+update\+All\+Views}. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_view_a761230cac54cbb0f674a603f331e0b3f}{follow\+Player}} (\doxymbox{\hyperlink{class_game_model}{Game\+Model}} \texorpdfstring{$\ast$}{*}model)
+\item 
+void \doxymbox{\hyperlink{class_game_view_a8a0da9cdf62672b8236e37fc151cee90}{clear\+Scene}} ()
+\begin{DoxyCompactList}\small\item\em Properly destroys objects in the scene to prevent pointer errors. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_view_a1c9ae2771c1a07ef54a5f24abf459308}{show\+Overlay}} (const QString \&message)
+\item 
+void \doxymbox{\hyperlink{class_game_view_a5c9ef732bf343ad68f3a591b6a58d6f5}{show\+Pause\+Overlay}} ()
+\item 
+void \doxymbox{\hyperlink{class_game_view_af56ba5fed389b920062ad6e57b425e5c}{hide\+Pause\+Overlay}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_game_view_a2b85df4d5a5e8fd4abde82ba9ee82767}{key\+Press\+Event}} (QKey\+Event \texorpdfstring{$\ast$}{*}e) override
+\item 
+void \doxymbox{\hyperlink{class_game_view_afbc631b032b94b8d6c2a2ed5f638d3f3}{key\+Release\+Event}} (QKey\+Event \texorpdfstring{$\ast$}{*}e) override
+\item 
+void \doxymbox{\hyperlink{class_game_view_aa19d281b58511938f22701171c213afb}{mouse\+Press\+Event}} (QMouse\+Event \texorpdfstring{$\ast$}{*}event) override
+\begin{DoxyCompactList}\small\item\em Send the click event. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_view_ab73d4c4e8440a7e64691fbfb3b78cdd8}{mouse\+Move\+Event}} (QMouse\+Event \texorpdfstring{$\ast$}{*}event) override
+\begin{DoxyCompactList}\small\item\em Send the position of the mouse cursor on the window. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_view_aa7a66316ec811c854c259428432c3f7c}{draw\+Foreground}} (QPainter \texorpdfstring{$\ast$}{*}painter, const QRectF \&rect) override
+\item 
+void \doxymbox{\hyperlink{class_game_view_a506d3bac1adc75bf359c5157bdb36ded}{wheel\+Event}} (QWheel\+Event \texorpdfstring{$\ast$}{*}event) override
+\begin{DoxyCompactList}\small\item\em Disabling the scroll wheel, which is enabled by default in Qt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_game_view_ac694ee2b86cfb154ad99a87e2cd93bf0}{draw\+HUD}} (QPainter \texorpdfstring{$\ast$}{*}painter, \doxymbox{\hyperlink{class_game_model}{Game\+Model}} \texorpdfstring{$\ast$}{*}model)
+\item 
+void \doxymbox{\hyperlink{class_game_view_a55ce85dc8b39420daab993018885855c}{draw\+Hp\+Bar}} (QPainter \texorpdfstring{$\ast$}{*}p, int hp, int max\+Hp, int x, int y)
+\item 
+void \doxymbox{\hyperlink{class_game_view_a95d16311c0d9ac0c6afeb33bfcad60e0}{draw\+Boss\+Hp\+Bar}} (QPainter \texorpdfstring{$\ast$}{*}p, int hp, int max\+Hp, int x, int y)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QGraphics\+Scene \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_view_aa96ff0163839f95478ed0de98d3e4e51}{scene}}
+\item 
+\doxymbox{\hyperlink{class_player_view}{Player\+View}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_view_aecf891d9f7053c4322ae53b5977d692c}{player\+View}}
+\item 
+\doxymbox{\hyperlink{class_gun_view}{Gun\+View}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_view_ac334e8335ec1678d664039082168dca4}{gun\+View}}
+\item 
+QSet$<$ int $>$ \doxymbox{\hyperlink{class_game_view_a898746ace2f0d1253090e99527909ea5}{pressed\+Keys}}
+\item 
+\doxymbox{\hyperlink{class_game_model}{Game\+Model}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_view_af083f28ba361b0ed48a69199bd349342}{current\+Model}}
+\item 
+QPointF \doxymbox{\hyperlink{class_game_view_a3a70f40f35adcb2ee6869ddb6ffb7065}{its\+Mouse\+View\+Pos}}
+\begin{DoxyCompactList}\small\item\em Position souris en coordonnées viewport (ne dépend pas de la caméra). \end{DoxyCompactList}\item 
+QPush\+Button \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_view_a444fa4a462034c81725fd78321d21972}{pause\+Resume\+Button}} = nullptr
+\item 
+QPush\+Button \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_view_aaaa1a2adf657b30902c1ce2b0991bcd0}{pause\+Menu\+Button}} = nullptr
+\item 
+QPush\+Button \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_view_a82020fb22ce4bf6119d6735b68f829eb}{pause\+Music\+Button}} = nullptr
+\item 
+QPush\+Button \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_view_a191ffa106de45536c518f9bdf61ae11e}{pause\+Next\+Button}} = nullptr
+\item 
+bool \doxymbox{\hyperlink{class_game_view_ae25b10e9f137ff8ee29a9d1734be20e2}{showing\+Pause}} = false
+\item 
+QVector$<$ \doxymbox{\hyperlink{struct_game_view_1_1_popup_anim}{Popup\+Anim}} $>$ \doxymbox{\hyperlink{class_game_view_a26b543132577f0534c53ca3727ee9149}{active\+Popups}}
+\item 
+QString \doxymbox{\hyperlink{class_game_view_a4d2ead093c4a8e5d22194640049542de}{overlay\+Message}}
+\item 
+bool \doxymbox{\hyperlink{class_game_view_ac39fe4feb88c7c5d5adfb2f66395b592}{showing\+Overlay}}
+\item 
+QPush\+Button \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_view_a8b220171ec9b33c0e4bcf306a5130ce6}{menu\+Button}} = nullptr
+\item 
+QPush\+Button \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_view_ac1dabfcf31852c36e00cfb13d88842ed}{replay\+Button}} = nullptr
+\item 
+int \doxymbox{\hyperlink{class_game_view_a1b260e3c571fec8c3cb64bc9ac5b05f5}{last\+Gold}}
+\item 
+float \doxymbox{\hyperlink{class_game_view_aa141323224dcdd3c20d9a27c94c8e419}{gold\+Flash\+Timer}}
+\item 
+bool \doxymbox{\hyperlink{class_game_view_ab333373b53354369e63e1aca90f8696d}{gold\+Flash\+Visible}}
+\item 
+float \doxymbox{\hyperlink{class_game_view_ae04d2fc93af36ec77dcd8f98e56d5be2}{gold\+Flash\+Cycle}}
+\item 
+bool \doxymbox{\hyperlink{class_game_view_a9ce1704dcebc0eac506b352521109ca6}{last\+Has\+Key}}
+\item 
+float \doxymbox{\hyperlink{class_game_view_a919580e70b5ca2f66eceea06dd4babc3}{key\+Flash\+Timer}}
+\item 
+bool \doxymbox{\hyperlink{class_game_view_a9d9849a39b89d22a92f17f4f84973a45}{key\+Flash\+Visible}}
+\item 
+float \doxymbox{\hyperlink{class_game_view_ade3a221d45ec97857f2a6491ea87fe4b}{key\+Flash\+Cycle}}
+\item 
+QVector$<$ QPixmap $>$ \doxymbox{\hyperlink{class_game_view_aa7066bf0bf9a63c9abacaec88156ead2}{gun\+Cd\+Frames}}
+\begin{DoxyCompactList}\small\item\em 15 frames 26×26 cooldown pistolet. \end{DoxyCompactList}\item 
+QVector$<$ QPixmap $>$ \doxymbox{\hyperlink{class_game_view_a58efe821ef33768e08bbcf7b75da1244}{katana\+Cd\+Frames}}
+\begin{DoxyCompactList}\small\item\em 21 frames 26×26 cooldown katana. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Gère le rendu visuel du jeu, l\textquotesingle{}affichage du HUD, la caméra et capte les événements. 
+
+\label{class_game_view_doc-constructors}
+\Hypertarget{class_game_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_game_view_aef54ba65c9d6737feb11011a7ee249a9}\index{GameView@{GameView}!GameView@{GameView}}
+\index{GameView@{GameView}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{GameView()}{GameView()}}
+{\footnotesize\ttfamily \label{class_game_view_aef54ba65c9d6737feb11011a7ee249a9} 
+Game\+View::\+\+Game\+View (\begin{DoxyParamCaption}\item[{QWidget \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+\Hypertarget{class_game_view_a778c2392645142e3b29f6d054d551223}\index{GameView@{GameView}!````~GameView@{\texorpdfstring{$\sim$}{\string~}GameView}}
+\index{````~GameView@{\texorpdfstring{$\sim$}{\string~}GameView}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}GameView()}{\string~GameView()}}
+{\footnotesize\ttfamily \label{class_game_view_a778c2392645142e3b29f6d054d551223} 
+Game\+View::\+\texorpdfstring{$\sim$}{\string~}\+Game\+View (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+\label{class_game_view_doc-func-members}
+\Hypertarget{class_game_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_game_view_a8a0da9cdf62672b8236e37fc151cee90}\index{GameView@{GameView}!clearScene@{clearScene}}
+\index{clearScene@{clearScene}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{clearScene()}{clearScene()}}
+{\footnotesize\ttfamily \label{class_game_view_a8a0da9cdf62672b8236e37fc151cee90} 
+void Game\+View::\+clear\+Scene (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Properly destroys objects in the scene to prevent pointer errors. 
+
+\Hypertarget{class_game_view_a95d16311c0d9ac0c6afeb33bfcad60e0}\index{GameView@{GameView}!drawBossHpBar@{drawBossHpBar}}
+\index{drawBossHpBar@{drawBossHpBar}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{drawBossHpBar()}{drawBossHpBar()}}
+{\footnotesize\ttfamily \label{class_game_view_a95d16311c0d9ac0c6afeb33bfcad60e0} 
+void Game\+View::\+draw\+Boss\+Hp\+Bar (\begin{DoxyParamCaption}\item[{QPainter \texorpdfstring{$\ast$}{*}}]{p}{, }\item[{int}]{hp}{, }\item[{int}]{max\+Hp}{, }\item[{int}]{x}{, }\item[{int}]{y}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_aa7a66316ec811c854c259428432c3f7c}\index{GameView@{GameView}!drawForeground@{drawForeground}}
+\index{drawForeground@{drawForeground}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{drawForeground()}{drawForeground()}}
+{\footnotesize\ttfamily \label{class_game_view_aa7a66316ec811c854c259428432c3f7c} 
+void Game\+View::\+draw\+Foreground (\begin{DoxyParamCaption}\item[{QPainter \texorpdfstring{$\ast$}{*}}]{painter}{, }\item[{const QRectF \&}]{rect}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_game_view_a55ce85dc8b39420daab993018885855c}\index{GameView@{GameView}!drawHpBar@{drawHpBar}}
+\index{drawHpBar@{drawHpBar}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{drawHpBar()}{drawHpBar()}}
+{\footnotesize\ttfamily \label{class_game_view_a55ce85dc8b39420daab993018885855c} 
+void Game\+View::\+draw\+Hp\+Bar (\begin{DoxyParamCaption}\item[{QPainter \texorpdfstring{$\ast$}{*}}]{p}{, }\item[{int}]{hp}{, }\item[{int}]{max\+Hp}{, }\item[{int}]{x}{, }\item[{int}]{y}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_ac694ee2b86cfb154ad99a87e2cd93bf0}\index{GameView@{GameView}!drawHUD@{drawHUD}}
+\index{drawHUD@{drawHUD}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{drawHUD()}{drawHUD()}}
+{\footnotesize\ttfamily \label{class_game_view_ac694ee2b86cfb154ad99a87e2cd93bf0} 
+void Game\+View::\+draw\+HUD (\begin{DoxyParamCaption}\item[{QPainter \texorpdfstring{$\ast$}{*}}]{painter}{, }\item[{\doxymbox{\hyperlink{class_game_model}{Game\+Model}} \texorpdfstring{$\ast$}{*}}]{model}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_a761230cac54cbb0f674a603f331e0b3f}\index{GameView@{GameView}!followPlayer@{followPlayer}}
+\index{followPlayer@{followPlayer}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{followPlayer()}{followPlayer()}}
+{\footnotesize\ttfamily \label{class_game_view_a761230cac54cbb0f674a603f331e0b3f} 
+void Game\+View::\+follow\+Player (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_game_model}{Game\+Model}} \texorpdfstring{$\ast$}{*}}]{model}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_game_view_ad930fb4debc17d13dc59fcf79e6df7f8}\index{GameView@{GameView}!getMouseScenePos@{getMouseScenePos}}
+\index{getMouseScenePos@{getMouseScenePos}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{getMouseScenePos()}{getMouseScenePos()}}
+{\footnotesize\ttfamily \label{class_game_view_ad930fb4debc17d13dc59fcf79e6df7f8} 
+QPointF Game\+View::\+get\+Mouse\+Scene\+Pos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_game_view_a3734237c67d52074f570146432a9d53d}\index{GameView@{GameView}!getPlayerView@{getPlayerView}}
+\index{getPlayerView@{getPlayerView}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{getPlayerView()}{getPlayerView()}}
+{\footnotesize\ttfamily \label{class_game_view_a3734237c67d52074f570146432a9d53d} 
+\doxymbox{\hyperlink{class_player_view}{Player\+View}} \texorpdfstring{$\ast$}{*} Game\+View::\+get\+Player\+View (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_game_view_a8a8777404d0f8cea007fbb7ef2040b11}\index{GameView@{GameView}!getPressedKeys@{getPressedKeys}}
+\index{getPressedKeys@{getPressedKeys}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{getPressedKeys()}{getPressedKeys()}}
+{\footnotesize\ttfamily \label{class_game_view_a8a8777404d0f8cea007fbb7ef2040b11} 
+QSet$<$ int $>$ Game\+View::\+get\+Pressed\+Keys (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_game_view_a0cc09f7f625d616b761d038af3971194}\index{GameView@{GameView}!getScene@{getScene}}
+\index{getScene@{getScene}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{getScene()}{getScene()}}
+{\footnotesize\ttfamily \label{class_game_view_a0cc09f7f625d616b761d038af3971194} 
+QGraphics\+Scene \texorpdfstring{$\ast$}{*} Game\+View::\+get\+Scene (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_game_view_af56ba5fed389b920062ad6e57b425e5c}\index{GameView@{GameView}!hidePauseOverlay@{hidePauseOverlay}}
+\index{hidePauseOverlay@{hidePauseOverlay}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{hidePauseOverlay()}{hidePauseOverlay()}}
+{\footnotesize\ttfamily \label{class_game_view_af56ba5fed389b920062ad6e57b425e5c} 
+void Game\+View::\+hide\+Pause\+Overlay (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_game_view_ace9a878efb6018b2def308f4ce1b167f}\index{GameView@{GameView}!initWithModel@{initWithModel}}
+\index{initWithModel@{initWithModel}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{initWithModel()}{initWithModel()}}
+{\footnotesize\ttfamily \label{class_game_view_ace9a878efb6018b2def308f4ce1b167f} 
+void Game\+View::\+init\+With\+Model (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_game_model}{Game\+Model}} \texorpdfstring{$\ast$}{*}}]{model}{}\end{DoxyParamCaption})}
+
+
+
+Display the player (if not already displayed) and their weapon during initialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_view_a2b85df4d5a5e8fd4abde82ba9ee82767}\index{GameView@{GameView}!keyPressEvent@{keyPressEvent}}
+\index{keyPressEvent@{keyPressEvent}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{keyPressEvent()}{keyPressEvent()}}
+{\footnotesize\ttfamily \label{class_game_view_a2b85df4d5a5e8fd4abde82ba9ee82767} 
+void Game\+View::\+key\+Press\+Event (\begin{DoxyParamCaption}\item[{QKey\+Event \texorpdfstring{$\ast$}{*}}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_game_view_afbc631b032b94b8d6c2a2ed5f638d3f3}\index{GameView@{GameView}!keyReleaseEvent@{keyReleaseEvent}}
+\index{keyReleaseEvent@{keyReleaseEvent}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{keyReleaseEvent()}{keyReleaseEvent()}}
+{\footnotesize\ttfamily \label{class_game_view_afbc631b032b94b8d6c2a2ed5f638d3f3} 
+void Game\+View::\+key\+Release\+Event (\begin{DoxyParamCaption}\item[{QKey\+Event \texorpdfstring{$\ast$}{*}}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+\Hypertarget{class_game_view_ab73d4c4e8440a7e64691fbfb3b78cdd8}\index{GameView@{GameView}!mouseMoveEvent@{mouseMoveEvent}}
+\index{mouseMoveEvent@{mouseMoveEvent}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{mouseMoveEvent()}{mouseMoveEvent()}}
+{\footnotesize\ttfamily \label{class_game_view_ab73d4c4e8440a7e64691fbfb3b78cdd8} 
+void Game\+View::\+mouse\+Move\+Event (\begin{DoxyParamCaption}\item[{QMouse\+Event \texorpdfstring{$\ast$}{*}}]{event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+
+
+Send the position of the mouse cursor on the window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_view_aa19d281b58511938f22701171c213afb}\index{GameView@{GameView}!mousePressEvent@{mousePressEvent}}
+\index{mousePressEvent@{mousePressEvent}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{mousePressEvent()}{mousePressEvent()}}
+{\footnotesize\ttfamily \label{class_game_view_aa19d281b58511938f22701171c213afb} 
+void Game\+View::\+mouse\+Press\+Event (\begin{DoxyParamCaption}\item[{QMouse\+Event \texorpdfstring{$\ast$}{*}}]{event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+
+
+Send the click event. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_view_a1c9ae2771c1a07ef54a5f24abf459308}\index{GameView@{GameView}!showOverlay@{showOverlay}}
+\index{showOverlay@{showOverlay}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{showOverlay()}{showOverlay()}}
+{\footnotesize\ttfamily \label{class_game_view_a1c9ae2771c1a07ef54a5f24abf459308} 
+void Game\+View::\+show\+Overlay (\begin{DoxyParamCaption}\item[{const QString \&}]{message}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_game_view_a5c9ef732bf343ad68f3a591b6a58d6f5}\index{GameView@{GameView}!showPauseOverlay@{showPauseOverlay}}
+\index{showPauseOverlay@{showPauseOverlay}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{showPauseOverlay()}{showPauseOverlay()}}
+{\footnotesize\ttfamily \label{class_game_view_a5c9ef732bf343ad68f3a591b6a58d6f5} 
+void Game\+View::\+show\+Pause\+Overlay (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_game_view_a63e946f0c1cb30c58589925766443972}\index{GameView@{GameView}!sig\_escapePressed@{sig\_escapePressed}}
+\index{sig\_escapePressed@{sig\_escapePressed}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{sig\_escapePressed}{sig\_escapePressed}}
+{\footnotesize\ttfamily \label{class_game_view_a63e946f0c1cb30c58589925766443972} 
+void Game\+View::\+sig\+\_\+escape\+Pressed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+\Hypertarget{class_game_view_ab0b7c4cecc3cfb063a6c7e155db455a2}\index{GameView@{GameView}!sig\_leftClicked@{sig\_leftClicked}}
+\index{sig\_leftClicked@{sig\_leftClicked}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{sig\_leftClicked}{sig\_leftClicked}}
+{\footnotesize\ttfamily \label{class_game_view_ab0b7c4cecc3cfb063a6c7e155db455a2} 
+void Game\+View::\+sig\+\_\+left\+Clicked (\begin{DoxyParamCaption}\item[{QPointF}]{scene\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+\Hypertarget{class_game_view_a326271b747a7e0bdbd6f8cb521869e2c}\index{GameView@{GameView}!sig\_rightClicked@{sig\_rightClicked}}
+\index{sig\_rightClicked@{sig\_rightClicked}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{sig\_rightClicked}{sig\_rightClicked}}
+{\footnotesize\ttfamily \label{class_game_view_a326271b747a7e0bdbd6f8cb521869e2c} 
+void Game\+View::\+sig\+\_\+right\+Clicked (\begin{DoxyParamCaption}\item[{QPointF}]{scene\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+\Hypertarget{class_game_view_aeca199d179d8072f793e94afa177d1cf}\index{GameView@{GameView}!sigNextTrack@{sigNextTrack}}
+\index{sigNextTrack@{sigNextTrack}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{sigNextTrack}{sigNextTrack}}
+{\footnotesize\ttfamily \label{class_game_view_aeca199d179d8072f793e94afa177d1cf} 
+void Game\+View::\+sig\+Next\+Track (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+\Hypertarget{class_game_view_a7575f41c2cfb4e757fe61f59cffea674}\index{GameView@{GameView}!sigPauseMenu@{sigPauseMenu}}
+\index{sigPauseMenu@{sigPauseMenu}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{sigPauseMenu}{sigPauseMenu}}
+{\footnotesize\ttfamily \label{class_game_view_a7575f41c2cfb4e757fe61f59cffea674} 
+void Game\+View::\+sig\+Pause\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+\Hypertarget{class_game_view_a3b273d94caf901eb371f1ff202bfac3d}\index{GameView@{GameView}!sigQuitRq@{sigQuitRq}}
+\index{sigQuitRq@{sigQuitRq}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{sigQuitRq}{sigQuitRq}}
+{\footnotesize\ttfamily \label{class_game_view_a3b273d94caf901eb371f1ff202bfac3d} 
+void Game\+View::\+sig\+Quit\+Rq (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+\Hypertarget{class_game_view_a20d8599b690c5fe62d48dcc5579a757f}\index{GameView@{GameView}!sigRestartRq@{sigRestartRq}}
+\index{sigRestartRq@{sigRestartRq}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{sigRestartRq}{sigRestartRq}}
+{\footnotesize\ttfamily \label{class_game_view_a20d8599b690c5fe62d48dcc5579a757f} 
+void Game\+View::\+sig\+Restart\+Rq (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+\Hypertarget{class_game_view_a41252fb9b4beb1023859b56b70c8a242}\index{GameView@{GameView}!sigToggleMusic@{sigToggleMusic}}
+\index{sigToggleMusic@{sigToggleMusic}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{sigToggleMusic}{sigToggleMusic}}
+{\footnotesize\ttfamily \label{class_game_view_a41252fb9b4beb1023859b56b70c8a242} 
+void Game\+View::\+sig\+Toggle\+Music (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+\Hypertarget{class_game_view_a78c5580f2f11884359a2be26fb5942be}\index{GameView@{GameView}!updateAllViews@{updateAllViews}}
+\index{updateAllViews@{updateAllViews}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{updateAllViews()}{updateAllViews()}}
+{\footnotesize\ttfamily \label{class_game_view_a78c5580f2f11884359a2be26fb5942be} 
+void Game\+View::\+update\+All\+Views (\begin{DoxyParamCaption}\item[{float}]{dt}{, }\item[{\doxymbox{\hyperlink{class_game_model}{Game\+Model}} \texorpdfstring{$\ast$}{*}}]{model}{, }\item[{\doxymbox{\hyperlink{class_level_controller}{Level\+Controller}} \texorpdfstring{$\ast$}{*}}]{level\+Ctrl}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})}
+
+
+
+\doxylink{class_game_view_a78c5580f2f11884359a2be26fb5942be}{Game\+View::\+update\+All\+Views}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & :\+ game speed \\
+\hline
+{\em model} & \\
+\hline
+{\em level\+Ctrl} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_view_a506d3bac1adc75bf359c5157bdb36ded}\index{GameView@{GameView}!wheelEvent@{wheelEvent}}
+\index{wheelEvent@{wheelEvent}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{wheelEvent()}{wheelEvent()}}
+{\footnotesize\ttfamily \label{class_game_view_a506d3bac1adc75bf359c5157bdb36ded} 
+void Game\+View::\+wheel\+Event (\begin{DoxyParamCaption}\item[{QWheel\+Event \texorpdfstring{$\ast$}{*}}]{event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+
+
+Disabling the scroll wheel, which is enabled by default in Qt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+
+
+\label{class_game_view_doc-variable-members}
+\Hypertarget{class_game_view_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_game_view_a26b543132577f0534c53ca3727ee9149}\index{GameView@{GameView}!activePopups@{activePopups}}
+\index{activePopups@{activePopups}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{activePopups}{activePopups}}
+{\footnotesize\ttfamily \label{class_game_view_a26b543132577f0534c53ca3727ee9149} 
+QVector$<$\doxymbox{\hyperlink{struct_game_view_1_1_popup_anim}{Popup\+Anim}}$>$ Game\+View::\+active\+Popups\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_af083f28ba361b0ed48a69199bd349342}\index{GameView@{GameView}!currentModel@{currentModel}}
+\index{currentModel@{currentModel}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{currentModel}{currentModel}}
+{\footnotesize\ttfamily \label{class_game_view_af083f28ba361b0ed48a69199bd349342} 
+\doxymbox{\hyperlink{class_game_model}{Game\+Model}}\texorpdfstring{$\ast$}{*} Game\+View::\+current\+Model\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_ae04d2fc93af36ec77dcd8f98e56d5be2}\index{GameView@{GameView}!goldFlashCycle@{goldFlashCycle}}
+\index{goldFlashCycle@{goldFlashCycle}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{goldFlashCycle}{goldFlashCycle}}
+{\footnotesize\ttfamily \label{class_game_view_ae04d2fc93af36ec77dcd8f98e56d5be2} 
+float Game\+View::\+gold\+Flash\+Cycle\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_aa141323224dcdd3c20d9a27c94c8e419}\index{GameView@{GameView}!goldFlashTimer@{goldFlashTimer}}
+\index{goldFlashTimer@{goldFlashTimer}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{goldFlashTimer}{goldFlashTimer}}
+{\footnotesize\ttfamily \label{class_game_view_aa141323224dcdd3c20d9a27c94c8e419} 
+float Game\+View::\+gold\+Flash\+Timer\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_ab333373b53354369e63e1aca90f8696d}\index{GameView@{GameView}!goldFlashVisible@{goldFlashVisible}}
+\index{goldFlashVisible@{goldFlashVisible}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{goldFlashVisible}{goldFlashVisible}}
+{\footnotesize\ttfamily \label{class_game_view_ab333373b53354369e63e1aca90f8696d} 
+bool Game\+View::\+gold\+Flash\+Visible\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_aa7066bf0bf9a63c9abacaec88156ead2}\index{GameView@{GameView}!gunCdFrames@{gunCdFrames}}
+\index{gunCdFrames@{gunCdFrames}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{gunCdFrames}{gunCdFrames}}
+{\footnotesize\ttfamily \label{class_game_view_aa7066bf0bf9a63c9abacaec88156ead2} 
+QVector$<$QPixmap$>$ Game\+View::\+gun\+Cd\+Frames\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+15 frames 26×26 cooldown pistolet. 
+
+\Hypertarget{class_game_view_ac334e8335ec1678d664039082168dca4}\index{GameView@{GameView}!gunView@{gunView}}
+\index{gunView@{gunView}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{gunView}{gunView}}
+{\footnotesize\ttfamily \label{class_game_view_ac334e8335ec1678d664039082168dca4} 
+\doxymbox{\hyperlink{class_gun_view}{Gun\+View}}\texorpdfstring{$\ast$}{*} Game\+View::\+gun\+View\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_a3a70f40f35adcb2ee6869ddb6ffb7065}\index{GameView@{GameView}!itsMouseViewPos@{itsMouseViewPos}}
+\index{itsMouseViewPos@{itsMouseViewPos}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{itsMouseViewPos}{itsMouseViewPos}}
+{\footnotesize\ttfamily \label{class_game_view_a3a70f40f35adcb2ee6869ddb6ffb7065} 
+QPointF Game\+View::\+its\+Mouse\+View\+Pos\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Position souris en coordonnées viewport (ne dépend pas de la caméra). 
+
+\Hypertarget{class_game_view_a58efe821ef33768e08bbcf7b75da1244}\index{GameView@{GameView}!katanaCdFrames@{katanaCdFrames}}
+\index{katanaCdFrames@{katanaCdFrames}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{katanaCdFrames}{katanaCdFrames}}
+{\footnotesize\ttfamily \label{class_game_view_a58efe821ef33768e08bbcf7b75da1244} 
+QVector$<$QPixmap$>$ Game\+View::\+katana\+Cd\+Frames\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+21 frames 26×26 cooldown katana. 
+
+\Hypertarget{class_game_view_ade3a221d45ec97857f2a6491ea87fe4b}\index{GameView@{GameView}!keyFlashCycle@{keyFlashCycle}}
+\index{keyFlashCycle@{keyFlashCycle}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{keyFlashCycle}{keyFlashCycle}}
+{\footnotesize\ttfamily \label{class_game_view_ade3a221d45ec97857f2a6491ea87fe4b} 
+float Game\+View::\+key\+Flash\+Cycle\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_a919580e70b5ca2f66eceea06dd4babc3}\index{GameView@{GameView}!keyFlashTimer@{keyFlashTimer}}
+\index{keyFlashTimer@{keyFlashTimer}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{keyFlashTimer}{keyFlashTimer}}
+{\footnotesize\ttfamily \label{class_game_view_a919580e70b5ca2f66eceea06dd4babc3} 
+float Game\+View::\+key\+Flash\+Timer\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_a9d9849a39b89d22a92f17f4f84973a45}\index{GameView@{GameView}!keyFlashVisible@{keyFlashVisible}}
+\index{keyFlashVisible@{keyFlashVisible}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{keyFlashVisible}{keyFlashVisible}}
+{\footnotesize\ttfamily \label{class_game_view_a9d9849a39b89d22a92f17f4f84973a45} 
+bool Game\+View::\+key\+Flash\+Visible\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_a1b260e3c571fec8c3cb64bc9ac5b05f5}\index{GameView@{GameView}!lastGold@{lastGold}}
+\index{lastGold@{lastGold}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{lastGold}{lastGold}}
+{\footnotesize\ttfamily \label{class_game_view_a1b260e3c571fec8c3cb64bc9ac5b05f5} 
+int Game\+View::\+last\+Gold\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_a9ce1704dcebc0eac506b352521109ca6}\index{GameView@{GameView}!lastHasKey@{lastHasKey}}
+\index{lastHasKey@{lastHasKey}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{lastHasKey}{lastHasKey}}
+{\footnotesize\ttfamily \label{class_game_view_a9ce1704dcebc0eac506b352521109ca6} 
+bool Game\+View::\+last\+Has\+Key\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_a8b220171ec9b33c0e4bcf306a5130ce6}\index{GameView@{GameView}!menuButton@{menuButton}}
+\index{menuButton@{menuButton}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{menuButton}{menuButton}}
+{\footnotesize\ttfamily \label{class_game_view_a8b220171ec9b33c0e4bcf306a5130ce6} 
+QPush\+Button\texorpdfstring{$\ast$}{*} Game\+View::\+menu\+Button = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_a4d2ead093c4a8e5d22194640049542de}\index{GameView@{GameView}!overlayMessage@{overlayMessage}}
+\index{overlayMessage@{overlayMessage}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{overlayMessage}{overlayMessage}}
+{\footnotesize\ttfamily \label{class_game_view_a4d2ead093c4a8e5d22194640049542de} 
+QString Game\+View::\+overlay\+Message\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_aaaa1a2adf657b30902c1ce2b0991bcd0}\index{GameView@{GameView}!pauseMenuButton@{pauseMenuButton}}
+\index{pauseMenuButton@{pauseMenuButton}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{pauseMenuButton}{pauseMenuButton}}
+{\footnotesize\ttfamily \label{class_game_view_aaaa1a2adf657b30902c1ce2b0991bcd0} 
+QPush\+Button\texorpdfstring{$\ast$}{*} Game\+View::\+pause\+Menu\+Button = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_a82020fb22ce4bf6119d6735b68f829eb}\index{GameView@{GameView}!pauseMusicButton@{pauseMusicButton}}
+\index{pauseMusicButton@{pauseMusicButton}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{pauseMusicButton}{pauseMusicButton}}
+{\footnotesize\ttfamily \label{class_game_view_a82020fb22ce4bf6119d6735b68f829eb} 
+QPush\+Button\texorpdfstring{$\ast$}{*} Game\+View::\+pause\+Music\+Button = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_a191ffa106de45536c518f9bdf61ae11e}\index{GameView@{GameView}!pauseNextButton@{pauseNextButton}}
+\index{pauseNextButton@{pauseNextButton}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{pauseNextButton}{pauseNextButton}}
+{\footnotesize\ttfamily \label{class_game_view_a191ffa106de45536c518f9bdf61ae11e} 
+QPush\+Button\texorpdfstring{$\ast$}{*} Game\+View::\+pause\+Next\+Button = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_a444fa4a462034c81725fd78321d21972}\index{GameView@{GameView}!pauseResumeButton@{pauseResumeButton}}
+\index{pauseResumeButton@{pauseResumeButton}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{pauseResumeButton}{pauseResumeButton}}
+{\footnotesize\ttfamily \label{class_game_view_a444fa4a462034c81725fd78321d21972} 
+QPush\+Button\texorpdfstring{$\ast$}{*} Game\+View::\+pause\+Resume\+Button = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_aecf891d9f7053c4322ae53b5977d692c}\index{GameView@{GameView}!playerView@{playerView}}
+\index{playerView@{playerView}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{playerView}{playerView}}
+{\footnotesize\ttfamily \label{class_game_view_aecf891d9f7053c4322ae53b5977d692c} 
+\doxymbox{\hyperlink{class_player_view}{Player\+View}}\texorpdfstring{$\ast$}{*} Game\+View::\+player\+View\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_a898746ace2f0d1253090e99527909ea5}\index{GameView@{GameView}!pressedKeys@{pressedKeys}}
+\index{pressedKeys@{pressedKeys}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{pressedKeys}{pressedKeys}}
+{\footnotesize\ttfamily \label{class_game_view_a898746ace2f0d1253090e99527909ea5} 
+QSet$<$int$>$ Game\+View::\+pressed\+Keys\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_ac1dabfcf31852c36e00cfb13d88842ed}\index{GameView@{GameView}!replayButton@{replayButton}}
+\index{replayButton@{replayButton}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{replayButton}{replayButton}}
+{\footnotesize\ttfamily \label{class_game_view_ac1dabfcf31852c36e00cfb13d88842ed} 
+QPush\+Button\texorpdfstring{$\ast$}{*} Game\+View::\+replay\+Button = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_aa96ff0163839f95478ed0de98d3e4e51}\index{GameView@{GameView}!scene@{scene}}
+\index{scene@{scene}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{scene}{scene}}
+{\footnotesize\ttfamily \label{class_game_view_aa96ff0163839f95478ed0de98d3e4e51} 
+QGraphics\+Scene\texorpdfstring{$\ast$}{*} Game\+View::\+scene\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_ac39fe4feb88c7c5d5adfb2f66395b592}\index{GameView@{GameView}!showingOverlay@{showingOverlay}}
+\index{showingOverlay@{showingOverlay}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{showingOverlay}{showingOverlay}}
+{\footnotesize\ttfamily \label{class_game_view_ac39fe4feb88c7c5d5adfb2f66395b592} 
+bool Game\+View::\+showing\+Overlay\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_game_view_ae25b10e9f137ff8ee29a9d1734be20e2}\index{GameView@{GameView}!showingPause@{showingPause}}
+\index{showingPause@{showingPause}!GameView@{GameView}}
+\doxysubsubsection{\texorpdfstring{showingPause}{showingPause}}
+{\footnotesize\ttfamily \label{class_game_view_ae25b10e9f137ff8ee29a9d1734be20e2} 
+bool Game\+View::\+showing\+Pause = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{gameview_8h}{gameview.\+h}}\item 
+build/\+\+Desktop\+\_\+\+Qt\+\_\+6\+\_\+10\+\_\+0\+\_\+\+Min\+GW\+\_\+64\+\_\+bit-\/\+Release/\+release/\+\doxymbox{\hyperlink{moc__gameview_8cpp}{moc\+\_\+gameview.\+cpp}}\item 
+Sources/\+\doxymbox{\hyperlink{gameview_8cpp}{gameview.\+cpp}}\end{DoxyCompactItemize}

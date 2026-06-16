@@ -1,0 +1,21 @@
+<map id="Sources/levelregistry.cpp" name="Sources/levelregistry.cpp">
+<area shape="rect" id="Node000001" title="Implémentation de LevelRegistry." alt="" coords="169,5,336,32"/>
+<area shape="rect" id="Node000002" href="$levelregistry_8h.html" title="Registre centralisé des niveaux du jeu." alt="" coords="108,80,262,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="239,35,209,70,205,67,242,30"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="286,80,355,107"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="265,30,301,68,296,69,264,35"/>
+<area shape="rect" id="Node000003" href="$matrixextractor_8h.html" title="Déclaration de MatrixExtractor : lecture des matrices de niveau depuis des fichiers texte." alt="" coords="77,155,196,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="175,109,156,143,151,140,178,105"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="208,229,276,256"/>
+<area shape="poly" id="edge9_Node000002_Node000005" title=" " alt="" coords="190,104,211,154,235,215,229,215,206,156,189,110"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,304,71,331"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="113,184,89,204,64,231,51,260,44,290,38,288,46,258,60,228,85,200,116,180"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="155,179,214,219,209,221,155,185"/>
+<area shape="rect" id="Node000006" href="$leveltemplate_8h.html" title="Structures de description de niveaux (LevelMatrix, LevelDescriptor, makeDescriptor)." alt="" coords="74,229,183,256"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="136,179,134,214,129,213,134,184"/>
+<area shape="poly" id="edge8_Node000006_Node000004" title=" " alt="" coords="112,259,67,296,63,293,114,254"/>
+<area shape="rect" id="Node000007" href="$config_8h.html" title="Global constants and configuration enumerations for the game Deadly Dropout." alt="" coords="95,304,162,331"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="130,254,131,289,126,288,127,259"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="99,379,158,405"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="130,329,131,364,126,362,127,333"/>
+</map>

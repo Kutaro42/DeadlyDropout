@@ -1,0 +1,78 @@
+<map id="Headers/enemy.h" name="Headers/enemy.h">
+<area shape="rect" id="Node000001" title="Declaration of the abstract class Enemy, which manages enemy behavior." alt="" coords="1556,5,1680,32"/>
+<area shape="rect" id="Node000002" href="$bossmodel_8h.html" title="Déclaration du modèle du boss gérant son attaque, ses déplacement et autre atribut." alt="" coords="638,80,787,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1539,28,788,89,787,83,1543,24"/>
+<area shape="rect" id="Node000022" href="$zombielaunchermodel_8h.html" title="Description of the rubble&#45;throwing zombie model." alt="" coords="1142,80,1353,107"/>
+<area shape="poly" id="edge24_Node000001_Node000022" title=" " alt="" coords="1539,36,1313,82,1311,77,1544,34"/>
+<area shape="rect" id="Node000027" href="$zombiestdmodel_8h.html" title="Declaration of the ZombieStdModel class, which handles the zombie&#39;s data and logic." alt="" coords="1528,80,1708,107"/>
+<area shape="poly" id="edge36_Node000001_Node000027" title=" " alt="" coords="1620,46,1620,81,1616,78,1616,50"/>
+<area shape="rect" id="Node000031" href="$enemy_8cpp.html" title="Implementation of common mechanics (damage, detection) for the Enemy class." alt="" coords="1732,80,1869,107"/>
+<area shape="poly" id="edge43_Node000001_Node000031" title=" " alt="" coords="1664,35,1771,79,1766,79,1664,41"/>
+<area shape="rect" id="Node000032" href="$levelmodel_8cpp.html" title=" " alt="" coords="1892,80,2053,107"/>
+<area shape="poly" id="edge44_Node000001_Node000032" title=" " alt="" coords="1695,33,1913,79,1908,80,1695,38"/>
+<area shape="rect" id="Node000003" href="$bossview_8h.html" title="Declaration of the boss&#39;s view." alt="" coords="794,155,933,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="752,111,840,154,834,154,752,116"/>
+<area shape="rect" id="Node000016" href="$levelbuilder_8cpp.html" title=" " alt="" coords="1359,245,1522,272"/>
+<area shape="poly" id="edge22_Node000002_Node000016" title=" " alt="" coords="802,98,975,116,1074,131,1172,152,1287,193,1413,245,1408,245,1285,197,1171,157,1073,136,974,121,803,103"/>
+<area shape="rect" id="Node000017" href="$gamemodel_8h.html" title="Declaration of GameModel, the central model storing all in&#45;game entities." alt="" coords="364,155,517,181"/>
+<area shape="poly" id="edge16_Node000002_Node000017" title=" " alt="" coords="648,113,490,156,487,152,653,110"/>
+<area shape="rect" id="Node000020" href="$bossmodel_8cpp.html" title="Implementation of the boss gate model." alt="" coords="179,155,340,181"/>
+<area shape="poly" id="edge21_Node000002_Node000020" title=" " alt="" coords="621,111,340,157,338,151,625,107"/>
+<area shape="rect" id="Node000021" href="$levelcontroller_8cpp.html" title=" " alt="" coords="472,245,650,272"/>
+<area shape="poly" id="edge23_Node000002_Node000021" title=" " alt="" coords="652,114,623,132,595,156,581,178,572,203,564,246,559,243,567,201,576,176,591,153,620,128,656,111"/>
+<area shape="rect" id="Node000004" href="$gameview_8h.html" title="Déclaration de la vue principale (QGraphicsView) du jeu in&#45;game." alt="" coords="725,245,868,272"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="847,192,808,247,804,243,843,196"/>
+<area shape="rect" id="Node000015" href="$bossview_8cpp.html" title="Boss view: animated sprite + attack area rendering (pattern 2)." alt="" coords="892,245,1045,272"/>
+<area shape="poly" id="edge14_Node000003_Node000015" title=" " alt="" coords="890,189,956,245,951,245,889,194"/>
+<area shape="poly" id="edge15_Node000003_Node000016" title=" " alt="" coords="948,179,1062,191,1150,198,1238,207,1348,227,1406,245,1401,245,1347,232,1237,213,1150,203,1061,196,948,184"/>
+<area shape="rect" id="Node000005" href="$gamecontroller_8h.html" title="Declaration of GameController, the main controller managing the game loop and logic." alt="" coords="522,352,692,379"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="763,279,631,354,629,349,758,281"/>
+<area shape="rect" id="Node000013" href="$gameview_8cpp.html" title="Implementation of the 2D render engine and of the inputs." alt="" coords="982,352,1139,379"/>
+<area shape="poly" id="edge12_Node000004_Node000013" title=" " alt="" coords="843,275,1031,351,1026,352,842,281"/>
+<area shape="rect" id="Node000014" href="$moc__gameview_8cpp.html" title=" " alt="" coords="716,336,917,395"/>
+<area shape="poly" id="edge13_Node000004_Node000014" title=" " alt="" coords="803,285,814,337,809,334,801,290"/>
+<area shape="rect" id="Node000006" href="$appcontroller_8h.html" title="Déclaration du contrôleur principal de l&#39;application orchestrant les scènes (MVC)." alt="" coords="332,459,491,485"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="573,385,436,460,434,456,568,387"/>
+<area shape="rect" id="Node000011" href="$gamecontroller_8cpp.html" title="Implementation of the main game&#45;loop controller." alt="" coords="516,459,699,485"/>
+<area shape="poly" id="edge10_Node000005_Node000011" title=" " alt="" coords="609,392,610,460,605,457,606,396"/>
+<area shape="rect" id="Node000012" href="$moc__gamecontroller_8cpp.html" title=" " alt="" coords="723,443,937,501"/>
+<area shape="poly" id="edge11_Node000005_Node000012" title=" " alt="" coords="648,383,772,442,766,442,647,388"/>
+<area shape="rect" id="Node000007" href="$_headers_2main_8cpp.html" title="Entry point of the Deadly Dropout application." alt="" coords="88,565,215,592"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="368,493,184,567,182,562,364,490"/>
+<area shape="rect" id="Node000008" href="$appcontroller_8cpp.html" title="Implémentation du routeur principal Qt et de l&#39;initialisation des sous&#45;contrôleurs." alt="" coords="238,565,411,592"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="394,496,337,567,333,563,389,498"/>
+<area shape="rect" id="Node000009" href="$_sources_2main_8cpp.html" title="Entry point of the Deadly Dropout application." alt="" coords="435,565,561,592"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="432,495,490,566,485,564,430,499"/>
+<area shape="rect" id="Node000010" href="$moc__appcontroller_8cpp.html" title=" " alt="" coords="585,549,787,608"/>
+<area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="459,489,613,549,608,549,458,494"/>
+<area shape="poly" id="edge18_Node000017_Node000004" title=" " alt="" coords="506,183,748,244,743,246,506,188"/>
+<area shape="poly" id="edge17_Node000017_Node000005" title=" " alt="" coords="439,195,444,242,450,265,462,286,482,308,506,325,561,351,555,352,504,330,478,312,457,290,445,267,439,243,437,199"/>
+<area shape="rect" id="Node000018" href="$gamemodel_8cpp.html" title="Implementation of the root game model." alt="" coords="231,245,397,272"/>
+<area shape="poly" id="edge19_Node000017_Node000018" title=" " alt="" coords="408,192,334,247,330,243,412,189"/>
+<area shape="rect" id="Node000019" href="$moc__gamemodel_8cpp.html" title=" " alt="" coords="5,229,207,288"/>
+<area shape="poly" id="edge20_Node000017_Node000019" title=" " alt="" coords="377,188,209,233,206,228,380,184"/>
+<area shape="poly" id="edge34_Node000022_Node000016" title=" " alt="" coords="1251,120,1259,152,1275,180,1296,196,1330,213,1406,245,1401,245,1327,217,1293,200,1271,183,1254,153,1248,124"/>
+<area shape="rect" id="Node000023" href="$levelcontroller_8h.html" title="Déclaration du LevelController, le moteur logique des niveaux." alt="" coords="605,155,770,181"/>
+<area shape="poly" id="edge25_Node000022_Node000023" title=" " alt="" coords="1132,110,771,159,770,153,1137,108"/>
+<area shape="rect" id="Node000024" href="$zombielauncherview_8h.html" title="Declaration of the zombie launcher&#39;s graphical view." alt="" coords="957,155,1159,181"/>
+<area shape="poly" id="edge29_Node000022_Node000024" title=" " alt="" coords="1198,114,1092,157,1090,152,1203,112"/>
+<area shape="rect" id="Node000026" href="$zombielaunchermodel_8cpp.html" title="Implementation of the AI and firing system for the zombie launcher." alt="" coords="1284,155,1509,181"/>
+<area shape="poly" id="edge35_Node000022_Node000026" title=" " alt="" coords="1287,111,1373,154,1368,154,1287,117"/>
+<area shape="poly" id="edge27_Node000023_Node000004" title=" " alt="" coords="715,189,784,245,778,245,715,194"/>
+<area shape="poly" id="edge26_Node000023_Node000005" title=" " alt="" coords="686,195,680,241,664,289,643,325,620,354,617,349,639,322,660,287,675,240,683,199"/>
+<area shape="poly" id="edge28_Node000023_Node000021" title=" " alt="" coords="659,189,580,247,577,243,654,192"/>
+<area shape="poly" id="edge30_Node000024_Node000004" title=" " alt="" coords="1004,188,835,247,833,242,1009,186"/>
+<area shape="poly" id="edge31_Node000024_Node000013" title=" " alt="" coords="1060,195,1063,353,1058,350,1057,199"/>
+<area shape="poly" id="edge32_Node000024_Node000016" title=" " alt="" coords="1142,182,1348,227,1404,245,1399,245,1347,232,1142,187"/>
+<area shape="rect" id="Node000025" href="$zombielauncherview_8cpp.html" title="Implementation of the zombie launcher view and debris view management." alt="" coords="1120,245,1335,272"/>
+<area shape="poly" id="edge33_Node000024_Node000025" title=" " alt="" coords="1096,186,1206,245,1200,245,1095,192"/>
+<area shape="poly" id="edge41_Node000027_Node000016" title=" " alt="" coords="1666,111,1692,125,1713,142,1724,161,1723,172,1718,183,1698,204,1678,216,1657,222,1636,224,1589,224,1563,226,1535,232,1482,247,1481,242,1533,227,1562,221,1589,219,1636,219,1656,217,1676,211,1695,199,1713,180,1718,171,1718,162,1709,145,1689,129,1665,116"/>
+<area shape="rect" id="Node000028" href="$zombiestdview_8h.html" title="Declaration of the ZombieStdView class, which manages the visual appearance of the standard zombie." alt="" coords="1532,155,1704,181"/>
+<area shape="poly" id="edge37_Node000027_Node000028" title=" " alt="" coords="1620,120,1620,156,1616,153,1616,125"/>
+<area shape="rect" id="Node000030" href="$zombiestdmodel_8cpp.html" title="Implementation of the basic zombie&#39;s behavior and artificial intelligence." alt="" coords="1779,155,1972,181"/>
+<area shape="poly" id="edge42_Node000027_Node000030" title=" " alt="" coords="1677,109,1833,154,1827,154,1677,114"/>
+<area shape="poly" id="edge38_Node000028_Node000004" title=" " alt="" coords="1514,182,1337,195,1196,197,1057,205,976,215,881,232,829,247,828,242,880,227,975,210,1056,200,1196,192,1337,190,1520,181"/>
+<area shape="poly" id="edge39_Node000028_Node000016" title=" " alt="" coords="1581,188,1467,247,1465,242,1576,190"/>
+<area shape="rect" id="Node000029" href="$zombiestdview_8cpp.html" title="Implementation of the animation and graphics rendering system for standard zombies." alt="" coords="1546,245,1730,272"/>
+<area shape="poly" id="edge40_Node000028_Node000029" title=" " alt="" coords="1626,194,1637,246,1633,243,1623,199"/>
+</map>

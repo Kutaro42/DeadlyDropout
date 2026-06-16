@@ -1,0 +1,574 @@
+\doxysection{Player\+Model Class Reference}
+\hypertarget{class_player_model}{}\label{class_player_model}\index{PlayerModel@{PlayerModel}}
+
+
+Model encapsulating the player\textquotesingle{}s properties, resources and actions.  
+
+
+
+
+{\ttfamily \+\#include $<$playermodel.\+h$>$}
+
+
+
+Inheritance diagram for Player\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_player_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Player\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_player_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_player_model_a0aac1826048e63c145efe7c3cd4da5c8}{Player\+Model}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} start\+Pos)
+\begin{DoxyCompactList}\small\item\em \doxylink{class_player_model}{Player\+Model} constructor. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_player_model_ac72aa34f2769aff6bed1ebe198454769}{\texorpdfstring{$\sim$}{\string~}\+Player\+Model}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_player_model}{Player\+Model} destructor, releases sound resources. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_model_a0d99c3c69f67b94362c35d557105d3e2}{update}} (float dt) override
+\begin{DoxyCompactList}\small\item\em Updates the player state (cooldowns, animations, etc.). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_model_aa9a082f8b7cfb69d726da217543ac4a3}{move}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} input\+Dir, float dt)
+\begin{DoxyCompactList}\small\item\em Moves the player according to an input direction and delta time. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_model_a299e54d1f348bc55533496df4142623e}{stop\+Moving}} ()
+\item 
+bool \doxymbox{\hyperlink{class_player_model_a3e403a4d837cd7b6c0eb49370dfc3eea}{launch\+Katana}} (float angle\+Rad)
+\begin{DoxyCompactList}\small\item\em Launches a katana attack aimed at a free angle. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_model_a7516751b6c87cc061c48d90389cb7b86}{take\+Damage}} (int amount)
+\begin{DoxyCompactList}\small\item\em Applies damage to the player. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_player_model_aaac7b6f5fe8f3de063c05a94fb439520}{is\+Dead}} () const
+\item 
+void \doxymbox{\hyperlink{class_player_model_add60893f62ef69c9de834c43027a2e0c}{add\+Gold}} (int amount)
+\begin{DoxyCompactList}\small\item\em Adds gold to the player. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_model_a87f08a4a1c5f74a22881a5f08b81c953}{collect\+Key}} ()
+\begin{DoxyCompactList}\small\item\em Sets has\+Key to true, indicating the player has collected a key. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_player_model_a09270f49304381391c42790b88c3910b}{get\+Hp}} () const
+\item 
+int \doxymbox{\hyperlink{class_player_model_aba8154a74346a722fa9d7598545200b4}{get\+Max\+Hp}} () const
+\item 
+int \doxymbox{\hyperlink{class_player_model_a5840bd007bc4b2ebd1a45f887c76338d}{get\+Gold}} () const
+\item 
+bool \doxymbox{\hyperlink{class_player_model_a54cf5917cc35c5195b004d2366d5e1e8}{get\+Has\+Key}} () const
+\item 
+bool \doxymbox{\hyperlink{class_player_model_a3c69f9e1a422e3f8c8dcab8e86f54995}{is\+Moving}} () const
+\item 
+\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}} \doxymbox{\hyperlink{class_player_model_aa36f87d53761fdea977aee987d939b82}{get\+Facing}} () const
+\item 
+float \doxymbox{\hyperlink{class_player_model_a133b084259071e2fa4641a8c1e982d48}{get\+Speed}} () const
+\item 
+const \doxymbox{\hyperlink{class_katana}{Katana}} \& \doxymbox{\hyperlink{class_player_model_a4d7cfebe2130f429d2ce54b5878ccaf9}{get\+Katana}} () const
+\item 
+bool \doxymbox{\hyperlink{class_player_model_a8f78295a06475ac70bf0f2a632808193}{is\+Katana\+Active}} () const
+\item 
+QRectF \doxymbox{\hyperlink{class_player_model_a9aa7e1b4b83a05bb6d53eb85fb045e19}{get\+Slash\+Zone}} () const
+\item 
+float \doxymbox{\hyperlink{class_player_model_aad848a4e286e0c210c14a54d19c95e64}{get\+Attack\+Angle}} () const
+\item 
+\doxymbox{\hyperlink{class_gun_model}{Gun\+Model}} \& \doxymbox{\hyperlink{class_player_model_af6aaeeff7358b5153610a1f93bf534c1}{get\+Gun}} ()
+\item 
+const \doxymbox{\hyperlink{class_gun_model}{Gun\+Model}} \& \doxymbox{\hyperlink{class_player_model_a22a790e1befdd1a3eb3d8a2cece997dd}{get\+Gun}} () const
+\item 
+bool \doxymbox{\hyperlink{class_player_model_a2bc2bd467ad50f7df74cebaa673f3abe}{shoot\+Gun}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} muzzle\+Pos, \doxymbox{\hyperlink{class_vector2f}{Vector2f}} target\+Pos)
+\begin{DoxyCompactList}\small\item\em Attempts to fire a bullet toward target\+Pos (scene coordinates). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_model_a576c6fca92db2deea75539fd7c811e82}{reload\+Gun}} ()
+\begin{DoxyCompactList}\small\item\em Reloads the gun (R key). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_model_abacde7c6b46f2ff5cdef1efe1b6c257a}{set\+Max\+Hp}} (int v)
+\item 
+void \doxymbox{\hyperlink{class_player_model_ac9c7f5e666cf1f90811915e4bdbf3e45}{set\+Hp}} (int life)
+\item 
+void \doxymbox{\hyperlink{class_player_model_aab2d65041399bc02bfcef8eda6adca2f}{set\+Speed}} (float v)
+\item 
+bool \doxymbox{\hyperlink{class_player_model_aae5ddbd76ea71bdc58d1eed4e80dc479}{get\+Boost\+State}} ()
+\item 
+void \doxymbox{\hyperlink{class_player_model_a92162a7f6d0b5d5ab81fc49977802e2b}{set\+Has\+Key}} (bool key)
+\item 
+void \doxymbox{\hyperlink{class_player_model_a141172ad032a28b794860ee90fd968de}{set\+Katana\+Damage}} (int v)
+\item 
+void \doxymbox{\hyperlink{class_player_model_aa830104236ba74ab279b4267fe57c817}{set\+Katana\+Range}} (int v)
+\item 
+void \doxymbox{\hyperlink{class_player_model_a3774ae4552a70aa4e9f543ba8bac5dea}{set\+Katana\+Cooldown}} (float v)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_entity_acaf2ad84607691b229cddab1da0bf819}{Entity}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float w, float h)
+\begin{DoxyCompactList}\small\item\em Constructor of the entity. \end{DoxyCompactList}\item 
+virtual \doxymbox{\hyperlink{class_entity_ac479d009ddde62dfb378ca0a70d81307}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual shredder. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_afdda0263db3d2e465a6ae6bad91eb990}{get\+Position}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a5f154968f2a478ea924460c78e0cd39e}{get\+Width}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a1332918563adb284c0fd432d47486d44}{get\+Height}} () const
+\item 
+bool \doxymbox{\hyperlink{class_entity_aea1c1568b4123d989c5310697030ad77}{is\+Active}} () const
+\item 
+void \doxymbox{\hyperlink{class_entity_ac5164b8c832f9a055df976527fe10032}{set\+Active}} (bool a)
+\item 
+void \doxymbox{\hyperlink{class_entity_a575ec530746fbb3eca1baddec2d0b030}{set\+Position}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos)
+\item 
+QRectF \doxymbox{\hyperlink{class_entity_ae00b70bd40800a8bd23c38b1c84404a9}{get\+Collider}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the entity\textquotesingle{}s collision bounding box. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}} \doxymbox{\hyperlink{class_player_model_aa98efc2f1a9481847343b2897884d548}{angle\+To\+Facing}} (float angle\+Rad)
+\begin{DoxyCompactList}\small\item\em Converts a radian angle into the dominant cardinal \doxylink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{class_player_model_a470dadd9082ce5c18a36fadd5f00acc2}{hp}}
+\item 
+int \doxymbox{\hyperlink{class_player_model_af76cfc041631f856eba5be2952b2fff0}{max\+Hp}}
+\item 
+float \doxymbox{\hyperlink{class_player_model_a7ba1b80a0f0bd0ccd8096ec82b645730}{speed}}
+\item 
+bool \doxymbox{\hyperlink{class_player_model_aab85495240002bb90f82102f03f73ce3}{speed\+Boosted}}
+\item 
+int \doxymbox{\hyperlink{class_player_model_a5e9df8e8607129568b81964cab564863}{gold}}
+\item 
+bool \doxymbox{\hyperlink{class_player_model_a7bc606b10d75c681a045d02f3defe069}{has\+Key}}
+\item 
+bool \doxymbox{\hyperlink{class_player_model_a7cec3c0523804eaae322ca51f98a2080}{moving}}
+\item 
+\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}} \doxymbox{\hyperlink{class_player_model_a8f600f070fef027aaeba5b68021e3625}{facing\+Dir}}
+\begin{DoxyCompactList}\small\item\em Current cardinal direction (keyboard or attack). \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_katana}{Katana}} \doxymbox{\hyperlink{class_player_model_a1b6eca16be40442c80389ad6806d0b2f}{katana}}
+\item 
+\doxymbox{\hyperlink{class_gun_model}{Gun\+Model}} \doxymbox{\hyperlink{class_player_model_abc275b42e75c484948e8526a9ccde243}{gun}}
+\item 
+QSound\+Effect \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_player_model_a30198c78b02b6f6ed57c4f20da550da4}{damage\+Sound}}
+\item 
+QSound\+Effect \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_player_model_adcc9f38576771129be697a1c9f91d022}{death\+Sound}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_a6af9d6498134ad0906011778bc5736db}{position}}
+\begin{DoxyCompactList}\small\item\em The entity\textquotesingle{}s 2D coordinates. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_adadfcc784f30b51b8e49f8230a56b793}{width}}
+\begin{DoxyCompactList}\small\item\em The physical width of the entity in pixels. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_a4550dc1011f47f6c4bb86e564e7d605b}{height}}
+\begin{DoxyCompactList}\small\item\em The physical height of the entity in pixels. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_entity_a939da33e8b67b1d2ee227930aa72da3b}{active}}
+\begin{DoxyCompactList}\small\item\em Status of the entity (false if dead or destroyed). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Model encapsulating the player\textquotesingle{}s properties, resources and actions. 
+
+Manages HP, speed, gold, keys and cardinal orientation. \doxylink{class_katana}{Katana} actions are delegated to the internal instance.
+
+The cardinal orientation (facing\+Dir) is determined either by keyboard movement or by the attack angle passed to \doxylink{class_player_model_a3e403a4d837cd7b6c0eb49370dfc3eea}{launch\+Katana()}. Priority rule:\+ if the player is attacking, the cardinal direction is the one closest to the attack angle; otherwise it follows the keyboard. 
+
+\label{class_player_model_doc-constructors}
+\Hypertarget{class_player_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_player_model_a0aac1826048e63c145efe7c3cd4da5c8}\index{PlayerModel@{PlayerModel}!PlayerModel@{PlayerModel}}
+\index{PlayerModel@{PlayerModel}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{PlayerModel()}{PlayerModel()}}
+{\footnotesize\ttfamily \label{class_player_model_a0aac1826048e63c145efe7c3cd4da5c8} 
+Player\+Model::\+\+Player\+Model (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{start\+Pos}{}\end{DoxyParamCaption})}
+
+
+
+\doxylink{class_player_model}{Player\+Model} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Pos} & Player starting position. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_player_model_ac72aa34f2769aff6bed1ebe198454769}\index{PlayerModel@{PlayerModel}!````~PlayerModel@{\texorpdfstring{$\sim$}{\string~}PlayerModel}}
+\index{````~PlayerModel@{\texorpdfstring{$\sim$}{\string~}PlayerModel}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}PlayerModel()}{\string~PlayerModel()}}
+{\footnotesize\ttfamily \label{class_player_model_ac72aa34f2769aff6bed1ebe198454769} 
+Player\+Model::\+\texorpdfstring{$\sim$}{\string~}\+Player\+Model (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\doxylink{class_player_model}{Player\+Model} destructor, releases sound resources. 
+
+
+
+\label{class_player_model_doc-func-members}
+\Hypertarget{class_player_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_player_model_add60893f62ef69c9de834c43027a2e0c}\index{PlayerModel@{PlayerModel}!addGold@{addGold}}
+\index{addGold@{addGold}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{addGold()}{addGold()}}
+{\footnotesize\ttfamily \label{class_player_model_add60893f62ef69c9de834c43027a2e0c} 
+void Player\+Model::\+add\+Gold (\begin{DoxyParamCaption}\item[{int}]{amount}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds gold to the player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & Amount of gold to add. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_player_model_aa98efc2f1a9481847343b2897884d548}\index{PlayerModel@{PlayerModel}!angleToFacing@{angleToFacing}}
+\index{angleToFacing@{angleToFacing}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{angleToFacing()}{angleToFacing()}}
+{\footnotesize\ttfamily \label{class_player_model_aa98efc2f1a9481847343b2897884d548} 
+\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}} Player\+Model::\+angle\+To\+Facing (\begin{DoxyParamCaption}\item[{float}]{angle\+Rad}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Converts a radian angle into the dominant cardinal \doxylink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em angle\+Rad} & Angle (standard atan2). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The closest cardinal direction. 
+\end{DoxyReturn}
+\Hypertarget{class_player_model_a87f08a4a1c5f74a22881a5f08b81c953}\index{PlayerModel@{PlayerModel}!collectKey@{collectKey}}
+\index{collectKey@{collectKey}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{collectKey()}{collectKey()}}
+{\footnotesize\ttfamily \label{class_player_model_a87f08a4a1c5f74a22881a5f08b81c953} 
+void Player\+Model::\+collect\+Key (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets has\+Key to true, indicating the player has collected a key. 
+
+\Hypertarget{class_player_model_aad848a4e286e0c210c14a54d19c95e64}\index{PlayerModel@{PlayerModel}!getAttackAngle@{getAttackAngle}}
+\index{getAttackAngle@{getAttackAngle}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{getAttackAngle()}{getAttackAngle()}}
+{\footnotesize\ttfamily \label{class_player_model_aad848a4e286e0c210c14a54d19c95e64} 
+float Player\+Model::\+get\+Attack\+Angle (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_aae5ddbd76ea71bdc58d1eed4e80dc479}\index{PlayerModel@{PlayerModel}!getBoostState@{getBoostState}}
+\index{getBoostState@{getBoostState}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{getBoostState()}{getBoostState()}}
+{\footnotesize\ttfamily \label{class_player_model_aae5ddbd76ea71bdc58d1eed4e80dc479} 
+bool Player\+Model::\+get\+Boost\+State (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_player_model_aa36f87d53761fdea977aee987d939b82}\index{PlayerModel@{PlayerModel}!getFacing@{getFacing}}
+\index{getFacing@{getFacing}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{getFacing()}{getFacing()}}
+{\footnotesize\ttfamily \label{class_player_model_aa36f87d53761fdea977aee987d939b82} 
+\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}} Player\+Model::\+get\+Facing (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_a5840bd007bc4b2ebd1a45f887c76338d}\index{PlayerModel@{PlayerModel}!getGold@{getGold}}
+\index{getGold@{getGold}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{getGold()}{getGold()}}
+{\footnotesize\ttfamily \label{class_player_model_a5840bd007bc4b2ebd1a45f887c76338d} 
+int Player\+Model::\+get\+Gold (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_af6aaeeff7358b5153610a1f93bf534c1}\index{PlayerModel@{PlayerModel}!getGun@{getGun}}
+\index{getGun@{getGun}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{getGun()}{getGun()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_player_model_af6aaeeff7358b5153610a1f93bf534c1} 
+\doxymbox{\hyperlink{class_gun_model}{Gun\+Model}} \& Player\+Model::\+get\+Gun (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_a22a790e1befdd1a3eb3d8a2cece997dd}\index{PlayerModel@{PlayerModel}!getGun@{getGun}}
+\index{getGun@{getGun}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{getGun()}{getGun()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_player_model_a22a790e1befdd1a3eb3d8a2cece997dd} 
+const \doxymbox{\hyperlink{class_gun_model}{Gun\+Model}} \& Player\+Model::\+get\+Gun (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_a54cf5917cc35c5195b004d2366d5e1e8}\index{PlayerModel@{PlayerModel}!getHasKey@{getHasKey}}
+\index{getHasKey@{getHasKey}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{getHasKey()}{getHasKey()}}
+{\footnotesize\ttfamily \label{class_player_model_a54cf5917cc35c5195b004d2366d5e1e8} 
+bool Player\+Model::\+get\+Has\+Key (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_a09270f49304381391c42790b88c3910b}\index{PlayerModel@{PlayerModel}!getHp@{getHp}}
+\index{getHp@{getHp}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{getHp()}{getHp()}}
+{\footnotesize\ttfamily \label{class_player_model_a09270f49304381391c42790b88c3910b} 
+int Player\+Model::\+get\+Hp (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_a4d7cfebe2130f429d2ce54b5878ccaf9}\index{PlayerModel@{PlayerModel}!getKatana@{getKatana}}
+\index{getKatana@{getKatana}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{getKatana()}{getKatana()}}
+{\footnotesize\ttfamily \label{class_player_model_a4d7cfebe2130f429d2ce54b5878ccaf9} 
+const \doxymbox{\hyperlink{class_katana}{Katana}} \& Player\+Model::\+get\+Katana (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_aba8154a74346a722fa9d7598545200b4}\index{PlayerModel@{PlayerModel}!getMaxHp@{getMaxHp}}
+\index{getMaxHp@{getMaxHp}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{getMaxHp()}{getMaxHp()}}
+{\footnotesize\ttfamily \label{class_player_model_aba8154a74346a722fa9d7598545200b4} 
+int Player\+Model::\+get\+Max\+Hp (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_a9aa7e1b4b83a05bb6d53eb85fb045e19}\index{PlayerModel@{PlayerModel}!getSlashZone@{getSlashZone}}
+\index{getSlashZone@{getSlashZone}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{getSlashZone()}{getSlashZone()}}
+{\footnotesize\ttfamily \label{class_player_model_a9aa7e1b4b83a05bb6d53eb85fb045e19} 
+QRectF Player\+Model::\+get\+Slash\+Zone (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_a133b084259071e2fa4641a8c1e982d48}\index{PlayerModel@{PlayerModel}!getSpeed@{getSpeed}}
+\index{getSpeed@{getSpeed}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{getSpeed()}{getSpeed()}}
+{\footnotesize\ttfamily \label{class_player_model_a133b084259071e2fa4641a8c1e982d48} 
+float Player\+Model::\+get\+Speed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_aaac7b6f5fe8f3de063c05a94fb439520}\index{PlayerModel@{PlayerModel}!isDead@{isDead}}
+\index{isDead@{isDead}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{isDead()}{isDead()}}
+{\footnotesize\ttfamily \label{class_player_model_aaac7b6f5fe8f3de063c05a94fb439520} 
+bool Player\+Model::\+is\+Dead (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_a8f78295a06475ac70bf0f2a632808193}\index{PlayerModel@{PlayerModel}!isKatanaActive@{isKatanaActive}}
+\index{isKatanaActive@{isKatanaActive}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{isKatanaActive()}{isKatanaActive()}}
+{\footnotesize\ttfamily \label{class_player_model_a8f78295a06475ac70bf0f2a632808193} 
+bool Player\+Model::\+is\+Katana\+Active (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_a3c69f9e1a422e3f8c8dcab8e86f54995}\index{PlayerModel@{PlayerModel}!isMoving@{isMoving}}
+\index{isMoving@{isMoving}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{isMoving()}{isMoving()}}
+{\footnotesize\ttfamily \label{class_player_model_a3c69f9e1a422e3f8c8dcab8e86f54995} 
+bool Player\+Model::\+is\+Moving (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_a3e403a4d837cd7b6c0eb49370dfc3eea}\index{PlayerModel@{PlayerModel}!launchKatana@{launchKatana}}
+\index{launchKatana@{launchKatana}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{launchKatana()}{launchKatana()}}
+{\footnotesize\ttfamily \label{class_player_model_a3e403a4d837cd7b6c0eb49370dfc3eea} 
+bool Player\+Model::\+launch\+Katana (\begin{DoxyParamCaption}\item[{float}]{angle\+Rad}{}\end{DoxyParamCaption})}
+
+
+
+Launches a katana attack aimed at a free angle. 
+
+Converts the angle into the dominant cardinal direction to pick the correct sprite, then delegates to \doxylink{class_katana_aa1b0b7ffb114657c094e97c97df9cc58}{Katana::\+try\+Attack()} with the exact angle so that the Slash\+Zone is oriented precisely toward the cursor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em angle\+Rad} & Angle in radians (standard atan2:\+ 0=right, π/\+2=down). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the attack was triggered, false if the katana is on cooldown. 
+\end{DoxyReturn}
+\Hypertarget{class_player_model_aa9a082f8b7cfb69d726da217543ac4a3}\index{PlayerModel@{PlayerModel}!move@{move}}
+\index{move@{move}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily \label{class_player_model_aa9a082f8b7cfb69d726da217543ac4a3} 
+void Player\+Model::\+move (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{input\+Dir}{, }\item[{float}]{dt}{}\end{DoxyParamCaption})}
+
+
+
+Moves the player according to an input direction and delta time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+Dir} & Raw input direction (e.\+g. keyboard), not normalized. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_player_model_a576c6fca92db2deea75539fd7c811e82}\index{PlayerModel@{PlayerModel}!reloadGun@{reloadGun}}
+\index{reloadGun@{reloadGun}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{reloadGun()}{reloadGun()}}
+{\footnotesize\ttfamily \label{class_player_model_a576c6fca92db2deea75539fd7c811e82} 
+void Player\+Model::\+reload\+Gun (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reloads the gun (R key). 
+
+\Hypertarget{class_player_model_a92162a7f6d0b5d5ab81fc49977802e2b}\index{PlayerModel@{PlayerModel}!setHasKey@{setHasKey}}
+\index{setHasKey@{setHasKey}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{setHasKey()}{setHasKey()}}
+{\footnotesize\ttfamily \label{class_player_model_a92162a7f6d0b5d5ab81fc49977802e2b} 
+void Player\+Model::\+set\+Has\+Key (\begin{DoxyParamCaption}\item[{bool}]{key}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_player_model_ac9c7f5e666cf1f90811915e4bdbf3e45}\index{PlayerModel@{PlayerModel}!setHp@{setHp}}
+\index{setHp@{setHp}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{setHp()}{setHp()}}
+{\footnotesize\ttfamily \label{class_player_model_ac9c7f5e666cf1f90811915e4bdbf3e45} 
+void Player\+Model::\+set\+Hp (\begin{DoxyParamCaption}\item[{int}]{life}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_a3774ae4552a70aa4e9f543ba8bac5dea}\index{PlayerModel@{PlayerModel}!setKatanaCooldown@{setKatanaCooldown}}
+\index{setKatanaCooldown@{setKatanaCooldown}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{setKatanaCooldown()}{setKatanaCooldown()}}
+{\footnotesize\ttfamily \label{class_player_model_a3774ae4552a70aa4e9f543ba8bac5dea} 
+void Player\+Model::\+set\+Katana\+Cooldown (\begin{DoxyParamCaption}\item[{float}]{v}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_a141172ad032a28b794860ee90fd968de}\index{PlayerModel@{PlayerModel}!setKatanaDamage@{setKatanaDamage}}
+\index{setKatanaDamage@{setKatanaDamage}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{setKatanaDamage()}{setKatanaDamage()}}
+{\footnotesize\ttfamily \label{class_player_model_a141172ad032a28b794860ee90fd968de} 
+void Player\+Model::\+set\+Katana\+Damage (\begin{DoxyParamCaption}\item[{int}]{v}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_aa830104236ba74ab279b4267fe57c817}\index{PlayerModel@{PlayerModel}!setKatanaRange@{setKatanaRange}}
+\index{setKatanaRange@{setKatanaRange}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{setKatanaRange()}{setKatanaRange()}}
+{\footnotesize\ttfamily \label{class_player_model_aa830104236ba74ab279b4267fe57c817} 
+void Player\+Model::\+set\+Katana\+Range (\begin{DoxyParamCaption}\item[{int}]{v}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_abacde7c6b46f2ff5cdef1efe1b6c257a}\index{PlayerModel@{PlayerModel}!setMaxHp@{setMaxHp}}
+\index{setMaxHp@{setMaxHp}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{setMaxHp()}{setMaxHp()}}
+{\footnotesize\ttfamily \label{class_player_model_abacde7c6b46f2ff5cdef1efe1b6c257a} 
+void Player\+Model::\+set\+Max\+Hp (\begin{DoxyParamCaption}\item[{int}]{v}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_aab2d65041399bc02bfcef8eda6adca2f}\index{PlayerModel@{PlayerModel}!setSpeed@{setSpeed}}
+\index{setSpeed@{setSpeed}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{setSpeed()}{setSpeed()}}
+{\footnotesize\ttfamily \label{class_player_model_aab2d65041399bc02bfcef8eda6adca2f} 
+void Player\+Model::\+set\+Speed (\begin{DoxyParamCaption}\item[{float}]{v}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_a2bc2bd467ad50f7df74cebaa673f3abe}\index{PlayerModel@{PlayerModel}!shootGun@{shootGun}}
+\index{shootGun@{shootGun}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{shootGun()}{shootGun()}}
+{\footnotesize\ttfamily \label{class_player_model_a2bc2bd467ad50f7df74cebaa673f3abe} 
+bool Player\+Model::\+shoot\+Gun (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{muzzle\+Pos}{, }\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{target\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Attempts to fire a bullet toward target\+Pos (scene coordinates). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em muzzle\+Pos} & Position of the gun muzzle. \\
+\hline
+{\em target\+Pos} & Target position (mouse cursor in scene coordinates). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a shot was fired. 
+\end{DoxyReturn}
+\Hypertarget{class_player_model_a299e54d1f348bc55533496df4142623e}\index{PlayerModel@{PlayerModel}!stopMoving@{stopMoving}}
+\index{stopMoving@{stopMoving}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{stopMoving()}{stopMoving()}}
+{\footnotesize\ttfamily \label{class_player_model_a299e54d1f348bc55533496df4142623e} 
+void Player\+Model::\+stop\+Moving (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_model_a7516751b6c87cc061c48d90389cb7b86}\index{PlayerModel@{PlayerModel}!takeDamage@{takeDamage}}
+\index{takeDamage@{takeDamage}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{takeDamage()}{takeDamage()}}
+{\footnotesize\ttfamily \label{class_player_model_a7516751b6c87cc061c48d90389cb7b86} 
+void Player\+Model::\+take\+Damage (\begin{DoxyParamCaption}\item[{int}]{amount}{}\end{DoxyParamCaption})}
+
+
+
+Applies damage to the player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & Amount of damage to inflict. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_player_model_a0d99c3c69f67b94362c35d557105d3e2}\index{PlayerModel@{PlayerModel}!update@{update}}
+\index{update@{update}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_player_model_a0d99c3c69f67b94362c35d557105d3e2} 
+void Player\+Model::\+update (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Updates the player state (cooldowns, animations, etc.). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta time. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \doxymbox{\hyperlink{class_entity_a21ab7babefa5e4525535a76cef1415f2}{Entity}}.
+
+
+
+\label{class_player_model_doc-variable-members}
+\Hypertarget{class_player_model_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_player_model_a30198c78b02b6f6ed57c4f20da550da4}\index{PlayerModel@{PlayerModel}!damageSound@{damageSound}}
+\index{damageSound@{damageSound}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{damageSound}{damageSound}}
+{\footnotesize\ttfamily \label{class_player_model_a30198c78b02b6f6ed57c4f20da550da4} 
+QSound\+Effect\texorpdfstring{$\ast$}{*} Player\+Model::\+damage\+Sound\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_model_adcc9f38576771129be697a1c9f91d022}\index{PlayerModel@{PlayerModel}!deathSound@{deathSound}}
+\index{deathSound@{deathSound}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{deathSound}{deathSound}}
+{\footnotesize\ttfamily \label{class_player_model_adcc9f38576771129be697a1c9f91d022} 
+QSound\+Effect\texorpdfstring{$\ast$}{*} Player\+Model::\+death\+Sound\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_model_a8f600f070fef027aaeba5b68021e3625}\index{PlayerModel@{PlayerModel}!facingDir@{facingDir}}
+\index{facingDir@{facingDir}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{facingDir}{facingDir}}
+{\footnotesize\ttfamily \label{class_player_model_a8f600f070fef027aaeba5b68021e3625} 
+\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}} Player\+Model::\+facing\+Dir\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current cardinal direction (keyboard or attack). 
+
+\Hypertarget{class_player_model_a5e9df8e8607129568b81964cab564863}\index{PlayerModel@{PlayerModel}!gold@{gold}}
+\index{gold@{gold}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{gold}{gold}}
+{\footnotesize\ttfamily \label{class_player_model_a5e9df8e8607129568b81964cab564863} 
+int Player\+Model::\+gold\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_model_abc275b42e75c484948e8526a9ccde243}\index{PlayerModel@{PlayerModel}!gun@{gun}}
+\index{gun@{gun}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{gun}{gun}}
+{\footnotesize\ttfamily \label{class_player_model_abc275b42e75c484948e8526a9ccde243} 
+\doxymbox{\hyperlink{class_gun_model}{Gun\+Model}} Player\+Model::\+gun\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_model_a7bc606b10d75c681a045d02f3defe069}\index{PlayerModel@{PlayerModel}!hasKey@{hasKey}}
+\index{hasKey@{hasKey}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{hasKey}{hasKey}}
+{\footnotesize\ttfamily \label{class_player_model_a7bc606b10d75c681a045d02f3defe069} 
+bool Player\+Model::\+has\+Key\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_model_a470dadd9082ce5c18a36fadd5f00acc2}\index{PlayerModel@{PlayerModel}!hp@{hp}}
+\index{hp@{hp}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{hp}{hp}}
+{\footnotesize\ttfamily \label{class_player_model_a470dadd9082ce5c18a36fadd5f00acc2} 
+int Player\+Model::\+hp\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_model_a1b6eca16be40442c80389ad6806d0b2f}\index{PlayerModel@{PlayerModel}!katana@{katana}}
+\index{katana@{katana}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{katana}{katana}}
+{\footnotesize\ttfamily \label{class_player_model_a1b6eca16be40442c80389ad6806d0b2f} 
+\doxymbox{\hyperlink{class_katana}{Katana}} Player\+Model::\+katana\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_model_af76cfc041631f856eba5be2952b2fff0}\index{PlayerModel@{PlayerModel}!maxHp@{maxHp}}
+\index{maxHp@{maxHp}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{maxHp}{maxHp}}
+{\footnotesize\ttfamily \label{class_player_model_af76cfc041631f856eba5be2952b2fff0} 
+int Player\+Model::\+max\+Hp\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_model_a7cec3c0523804eaae322ca51f98a2080}\index{PlayerModel@{PlayerModel}!moving@{moving}}
+\index{moving@{moving}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{moving}{moving}}
+{\footnotesize\ttfamily \label{class_player_model_a7cec3c0523804eaae322ca51f98a2080} 
+bool Player\+Model::\+moving\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_model_a7ba1b80a0f0bd0ccd8096ec82b645730}\index{PlayerModel@{PlayerModel}!speed@{speed}}
+\index{speed@{speed}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{speed}{speed}}
+{\footnotesize\ttfamily \label{class_player_model_a7ba1b80a0f0bd0ccd8096ec82b645730} 
+float Player\+Model::\+speed\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_model_aab85495240002bb90f82102f03f73ce3}\index{PlayerModel@{PlayerModel}!speedBoosted@{speedBoosted}}
+\index{speedBoosted@{speedBoosted}!PlayerModel@{PlayerModel}}
+\doxysubsubsection{\texorpdfstring{speedBoosted}{speedBoosted}}
+{\footnotesize\ttfamily \label{class_player_model_aab85495240002bb90f82102f03f73ce3} 
+bool Player\+Model::\+speed\+Boosted\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{playermodel_8h}{playermodel.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{playermodel_8cpp}{playermodel.\+cpp}}\end{DoxyCompactItemize}

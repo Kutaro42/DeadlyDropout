@@ -1,0 +1,5 @@
+<map id="MarketView" name="MarketView">
+<area shape="rect" id="Node000001" title="Modal dialog presenting the upgrade shop between levels (GDD Step 5)." alt="" coords="5,123,106,256"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="27,5,85,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="56,87,58,123,53,123,55,93"/>
+</map>

@@ -1,0 +1,185 @@
+\doxysection{Market\+View Class Reference}
+\hypertarget{class_market_view}{}\label{class_market_view}\index{MarketView@{MarketView}}
+
+
+Modal dialog presenting the upgrade shop between levels (GDD Step 5).  
+
+
+
+
+{\ttfamily \+\#include $<$marketview.\+h$>$}
+
+
+
+Inheritance diagram for Market\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=156pt]{class_market_view__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Market\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=156pt]{class_market_view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_market_view_1_1_item_btn}{Item\+Btn}}
+\begin{DoxyCompactList}\small\item\em Internal pairing of a button widget with its item index. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_market_view_1_1_item_def}{Item\+Def}}
+\begin{DoxyCompactList}\small\item\em Descriptor for a single market item (id, display name, cost, description). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_market_view_a01d8fc956d8382ddb2c404ce25a0f949}{sig\+Buy}} (int item\+Id)
+\begin{DoxyCompactList}\small\item\em Emitted when the player clicks a buy button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_market_view_a1f183f22f0a4cfa525f7a5ddd3ed2fd2}{Market\+View}} (QWidget \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructs the market dialog and lays out all item buttons. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_market_view_abe24c7414fe76fdaf98cccaeccb0e51b}{refresh}} (\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em Refreshes the gold label and enables/\+disables buttons based on current gold. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const QVector$<$ \doxymbox{\hyperlink{struct_market_view_1_1_item_def}{Item\+Def}} $>$ \doxymbox{\hyperlink{class_market_view_a8047c81421a8b87fa090131e3bd09ff8}{ITEMS}}
+\begin{DoxyCompactList}\small\item\em Ordered list of all purchasable upgrades. Order defines button layout (row-\/major, 3 columns). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QLabel \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_market_view_ae2307009b1c1b436f2dbd4ca2af1abf9}{gold\+Label}}
+\begin{DoxyCompactList}\small\item\em Displays the player\textquotesingle{}s current gold balance. \end{DoxyCompactList}\item 
+QVector$<$ \doxymbox{\hyperlink{struct_market_view_1_1_item_btn}{Item\+Btn}} $>$ \doxymbox{\hyperlink{class_market_view_aba12711067053eb63cbacb3c09c368d5}{item\+Btns}}
+\begin{DoxyCompactList}\small\item\em All purchasable item buttons, iterated in \doxylink{class_market_view_abe24c7414fe76fdaf98cccaeccb0e51b}{refresh()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Modal dialog presenting the upgrade shop between levels (GDD Step 5). 
+
+The view is kept intentionally dumb:\+ it displays item names, costs and descriptions, disables buttons the player cannot afford, and emits sig\+Buy when a button is clicked. All balance values and stat changes live in \doxylink{class_market_controller}{Market\+Controller}, not here, so the GDD balancing can be adjusted without touching the UI code.
+
+ITEMS is a static table so it can be shared between \doxylink{class_market_view}{Market\+View} (display) and \doxylink{class_market_controller}{Market\+Controller} (cost lookup) without duplicating data. 
+
+\label{class_market_view_doc-constructors}
+\Hypertarget{class_market_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_market_view_a1f183f22f0a4cfa525f7a5ddd3ed2fd2}\index{MarketView@{MarketView}!MarketView@{MarketView}}
+\index{MarketView@{MarketView}!MarketView@{MarketView}}
+\doxysubsubsection{\texorpdfstring{MarketView()}{MarketView()}}
+{\footnotesize\ttfamily \label{class_market_view_a1f183f22f0a4cfa525f7a5ddd3ed2fd2} 
+Market\+View::\+\+Market\+View (\begin{DoxyParamCaption}\item[{QWidget \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs the market dialog and lays out all item buttons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Qt widget parent (nullptr = top-\/level window). \\
+\hline
+\end{DoxyParams}
+
+
+\label{class_market_view_doc-func-members}
+\Hypertarget{class_market_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_market_view_abe24c7414fe76fdaf98cccaeccb0e51b}\index{MarketView@{MarketView}!refresh@{refresh}}
+\index{refresh@{refresh}!MarketView@{MarketView}}
+\doxysubsubsection{\texorpdfstring{refresh()}{refresh()}}
+{\footnotesize\ttfamily \label{class_market_view_abe24c7414fe76fdaf98cccaeccb0e51b} 
+void Market\+View::\+refresh (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \texorpdfstring{$\ast$}{*}}]{player}{}\end{DoxyParamCaption})}
+
+
+
+Refreshes the gold label and enables/\+disables buttons based on current gold. 
+
+Called by \doxylink{class_market_controller}{Market\+Controller} after each purchase so the UI stays in sync with the player model without the view holding a permanent player pointer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & The current player (read-\/only access to gold balance). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_market_view_a01d8fc956d8382ddb2c404ce25a0f949}\index{MarketView@{MarketView}!sigBuy@{sigBuy}}
+\index{sigBuy@{sigBuy}!MarketView@{MarketView}}
+\doxysubsubsection{\texorpdfstring{sigBuy}{sigBuy}}
+{\footnotesize\ttfamily \label{class_market_view_a01d8fc956d8382ddb2c404ce25a0f949} 
+void Market\+View::\+sig\+Buy (\begin{DoxyParamCaption}\item[{int}]{item\+Id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Emitted when the player clicks a buy button. 
+
+\doxylink{class_market_controller}{Market\+Controller} listens to this signal to validate gold and apply the upgrade, keeping all business logic out of the view layer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Id} & Index into ITEMS identifying which upgrade was requested. \\
+\hline
+\end{DoxyParams}
+
+
+\label{class_market_view_doc-variable-members}
+\Hypertarget{class_market_view_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_market_view_ae2307009b1c1b436f2dbd4ca2af1abf9}\index{MarketView@{MarketView}!goldLabel@{goldLabel}}
+\index{goldLabel@{goldLabel}!MarketView@{MarketView}}
+\doxysubsubsection{\texorpdfstring{goldLabel}{goldLabel}}
+{\footnotesize\ttfamily \label{class_market_view_ae2307009b1c1b436f2dbd4ca2af1abf9} 
+QLabel\texorpdfstring{$\ast$}{*} Market\+View::\+gold\+Label\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Displays the player\textquotesingle{}s current gold balance. 
+
+\Hypertarget{class_market_view_aba12711067053eb63cbacb3c09c368d5}\index{MarketView@{MarketView}!itemBtns@{itemBtns}}
+\index{itemBtns@{itemBtns}!MarketView@{MarketView}}
+\doxysubsubsection{\texorpdfstring{itemBtns}{itemBtns}}
+{\footnotesize\ttfamily \label{class_market_view_aba12711067053eb63cbacb3c09c368d5} 
+QVector$<$\doxymbox{\hyperlink{struct_market_view_1_1_item_btn}{Item\+Btn}}$>$ Market\+View::\+item\+Btns\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+All purchasable item buttons, iterated in \doxylink{class_market_view_abe24c7414fe76fdaf98cccaeccb0e51b}{refresh()}. 
+
+\Hypertarget{class_market_view_a8047c81421a8b87fa090131e3bd09ff8}\index{MarketView@{MarketView}!ITEMS@{ITEMS}}
+\index{ITEMS@{ITEMS}!MarketView@{MarketView}}
+\doxysubsubsection{\texorpdfstring{ITEMS}{ITEMS}}
+{\footnotesize\ttfamily \label{class_market_view_a8047c81421a8b87fa090131e3bd09ff8} 
+const QVector$<$ \doxymbox{\hyperlink{struct_market_view_1_1_item_def}{Market\+View::\+\+Item\+Def}} $>$ Market\+View::\+\+ITEMS\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \{}
+\DoxyCodeLine{\{0,\ \textcolor{stringliteral}{"{}LifePowerUp"{}},\ \ \ \ \ \ \ \ 450,\ \ \textcolor{stringliteral}{"{}+20\ HP\ max"{}}\},}
+\DoxyCodeLine{\{1,\ \textcolor{stringliteral}{"{}BulletPowerUp"{}},\ \ \ \ \ \ 500,\ \ \textcolor{stringliteral}{"{}+5\ dégâts\ balle"{}}\},}
+\DoxyCodeLine{\{2,\ \textcolor{stringliteral}{"{}KatanaPowerUp"{}},\ \ \ \ \ \ 700,\ \ \textcolor{stringliteral}{"{}+10\ dégâts\ katana"{}}\},}
+\DoxyCodeLine{\{3,\ \textcolor{stringliteral}{"{}KatanaRangePowerUp"{}},\ 1000,\ \textcolor{stringliteral}{"{}+15px\ portée\ katana"{}}\},}
+\DoxyCodeLine{\{4,\ \textcolor{stringliteral}{"{}SpeedPowerUp"{}},\ \ \ \ \ \ \ 600,\ \ \textcolor{stringliteral}{"{}+20\ px/s\ vitesse"{}}\},}
+\DoxyCodeLine{\{5,\ \textcolor{stringliteral}{"{}CritPowerUp"{}},\ \ \ \ \ \ \ \ 720,\ \ \textcolor{stringliteral}{"{}+3\%\ chance\ critique"{}}\},}
+\DoxyCodeLine{\{6,\ \textcolor{stringliteral}{"{}AttackSpeedPowerUp"{}},\ 740,\ \ \textcolor{stringliteral}{"{}-\/0.2s\ cooldown\ katana"{}}\},}
+\DoxyCodeLine{\{7,\ \textcolor{stringliteral}{"{}ReloadPowerUp"{}},\ \ \ \ \ \ 670,\ \ \textcolor{stringliteral}{"{}-\/0.2s\ cooldown\ gun"{}}\},}
+\DoxyCodeLine{\{8,\ \textcolor{stringliteral}{"{}Ammo\ x10"{}},\ \ \ \ \ \ \ \ \ \ \ 100,\ \ \textcolor{stringliteral}{"{}+10\ munitions\ réserve"{}}\},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Ordered list of all purchasable upgrades. Order defines button layout (row-\/major, 3 columns). 
+
+Static item table — single source of truth for item IDs, names, costs and descriptions. Order must match the switch-\/case in \doxylink{class_market_controller_a4886231988e773eb555a726e6978344c}{Market\+Controller::\+slt\+Buy()}. Costs are taken directly from the GDD (Step 5 — Power-\/up rules). 
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{marketview_8h}{marketview.\+h}}\item 
+build/\+\+Desktop\+\_\+\+Qt\+\_\+6\+\_\+10\+\_\+0\+\_\+\+Min\+GW\+\_\+64\+\_\+bit-\/\+Release/\+release/\+\doxymbox{\hyperlink{moc__marketview_8cpp}{moc\+\_\+marketview.\+cpp}}\item 
+Sources/\+\doxymbox{\hyperlink{marketview_8cpp}{marketview.\+cpp}}\end{DoxyCompactItemize}

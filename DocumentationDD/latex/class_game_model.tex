@@ -1,0 +1,226 @@
+\doxysection{Game\+Model Class Reference}
+\hypertarget{class_game_model}{}\label{class_game_model}\index{GameModel@{GameModel}}
+
+
+Root model aggregating persistent game-\/session data (MVC Model layer).  
+
+
+
+
+{\ttfamily \+\#include $<$gamemodel.\+h$>$}
+
+
+
+Inheritance diagram for Game\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{class_game_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Game\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_game_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_game_model_aa5637be937d4a2ffe81541d513838424}{Game\+Model}} ()
+\begin{DoxyCompactList}\small\item\em Constructs \doxylink{class_game_model}{Game\+Model} and allocates an empty \doxylink{class_level_model}{Level\+Model}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_game_model_ac72de76e47bb6be675de3c49c15ac4af}{\texorpdfstring{$\sim$}{\string~}\+Game\+Model}} ()
+\item 
+void \doxymbox{\hyperlink{class_game_model_a02ba6b114c30dd80a2d46519f1362d47}{init\+Player}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} spawn\+Pos)
+\begin{DoxyCompactList}\small\item\em Creates (or resets) the player at the given spawn position. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_model_a20f61d52cbd6f78ff8e23b4cacbb6a1d}{obtain\+Key}} ()
+\begin{DoxyCompactList}\small\item\em Slot:\+ forwards the key-\/collected event to the player inventory. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_model_a5cbc91fa5e9c262f0a9c9c8176244880}{set\+Current\+Level\+Index}} (int i)
+\item 
+\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_model_aadf6cf5eb397785027b33d7694bf06f2}{get\+Player}} () const
+\item 
+\doxymbox{\hyperlink{class_enemy}{Enemy}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_model_a105a6348247bebafabe3d5cd27506ed8}{get\+Boss}} ()
+\begin{DoxyCompactList}\small\item\em Searches the level\textquotesingle{}s enemy list and returns the first boss found. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_model_a5586ae4e846da79f56b6581164606962}{get\+Level}} () const
+\item 
+int \doxymbox{\hyperlink{class_game_model_a75d9ce36897fd10c77af2d91d1ae09fd}{get\+Level\+Index}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{class_game_model_ad949a6388331d36449a6f39b1e3ce8e3}{a}} = 1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_model_a24e13006635cf3948142a55eb0c31f9e}{player}}
+\begin{DoxyCompactList}\small\item\em Owned player model; nullptr until \doxylink{class_game_model_a02ba6b114c30dd80a2d46519f1362d47}{init\+Player()} is called. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{classboss_model}{boss\+Model}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_model_a3039b4268d637a0c63f435215de80cc4}{boss}}
+\begin{DoxyCompactList}\small\item\em Convenience pointer to the current boss (may be nullptr). \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_game_model_a01e955a32630846296aa9d06d3b85c34}{level}}
+\begin{DoxyCompactList}\small\item\em Structural and entity data for the current level. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_game_model_a0c297780ad4b457c8d583e37147fbe05}{current\+Level\+Index}}
+\begin{DoxyCompactList}\small\item\em 0-\/based index of the level currently loaded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Root model aggregating persistent game-\/session data (MVC Model layer). 
+
+Owns exactly one \doxylink{class_player_model}{Player\+Model} and one \doxylink{class_level_model}{Level\+Model} at any time. It does NOT own game logic — that responsibility belongs to \doxylink{class_game_controller}{Game\+Controller} and \doxylink{class_level_controller}{Level\+Controller}. Keeping data and logic separate means the model can be serialised, reset or inspected by tests without running the game loop.
+
+The boss pointer is kept here (rather than only in \doxylink{class_level_model}{Level\+Model}) so that \doxylink{class_game_controller}{Game\+Controller} can query boss state for music/\+\+UI purposes without having to search the enemy list every frame. 
+
+\label{class_game_model_doc-constructors}
+\Hypertarget{class_game_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_game_model_aa5637be937d4a2ffe81541d513838424}\index{GameModel@{GameModel}!GameModel@{GameModel}}
+\index{GameModel@{GameModel}!GameModel@{GameModel}}
+\doxysubsubsection{\texorpdfstring{GameModel()}{GameModel()}}
+{\footnotesize\ttfamily \label{class_game_model_aa5637be937d4a2ffe81541d513838424} 
+Game\+Model::\+\+Game\+Model (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructs \doxylink{class_game_model}{Game\+Model} and allocates an empty \doxylink{class_level_model}{Level\+Model}. 
+
+\doxylink{class_player_model}{Player\+Model} is NOT created here because the spawn position is only known after \doxylink{class_level_builder_a655722e0cf515cca591d71fc5a4503ee}{Level\+Builder::\+build()} has parsed the level descriptor. \Hypertarget{class_game_model_ac72de76e47bb6be675de3c49c15ac4af}\index{GameModel@{GameModel}!````~GameModel@{\texorpdfstring{$\sim$}{\string~}GameModel}}
+\index{````~GameModel@{\texorpdfstring{$\sim$}{\string~}GameModel}!GameModel@{GameModel}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}GameModel()}{\string~GameModel()}}
+{\footnotesize\ttfamily \label{class_game_model_ac72de76e47bb6be675de3c49c15ac4af} 
+Game\+Model::\+\texorpdfstring{$\sim$}{\string~}\+Game\+Model (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\label{class_game_model_doc-func-members}
+\Hypertarget{class_game_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_game_model_a105a6348247bebafabe3d5cd27506ed8}\index{GameModel@{GameModel}!getBoss@{getBoss}}
+\index{getBoss@{getBoss}!GameModel@{GameModel}}
+\doxysubsubsection{\texorpdfstring{getBoss()}{getBoss()}}
+{\footnotesize\ttfamily \label{class_game_model_a105a6348247bebafabe3d5cd27506ed8} 
+\doxymbox{\hyperlink{class_enemy}{Enemy}} \texorpdfstring{$\ast$}{*} Game\+Model::\+get\+Boss (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Searches the level\textquotesingle{}s enemy list and returns the first boss found. 
+
+Linear search is acceptable because it is only called on state transitions (not every frame) and boss counts per level are at most 1 (GDD Step 9).
+
+\begin{DoxyReturn}{Returns}
+Pointer to the boss \doxylink{class_enemy}{Enemy}, or nullptr if none exists. 
+\end{DoxyReturn}
+\Hypertarget{class_game_model_a5586ae4e846da79f56b6581164606962}\index{GameModel@{GameModel}!getLevel@{getLevel}}
+\index{getLevel@{getLevel}!GameModel@{GameModel}}
+\doxysubsubsection{\texorpdfstring{getLevel()}{getLevel()}}
+{\footnotesize\ttfamily \label{class_game_model_a5586ae4e846da79f56b6581164606962} 
+\doxymbox{\hyperlink{class_level_model}{Level\+Model}} \texorpdfstring{$\ast$}{*} Game\+Model::\+get\+Level (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_game_model_a75d9ce36897fd10c77af2d91d1ae09fd}\index{GameModel@{GameModel}!getLevelIndex@{getLevelIndex}}
+\index{getLevelIndex@{getLevelIndex}!GameModel@{GameModel}}
+\doxysubsubsection{\texorpdfstring{getLevelIndex()}{getLevelIndex()}}
+{\footnotesize\ttfamily \label{class_game_model_a75d9ce36897fd10c77af2d91d1ae09fd} 
+int Game\+Model::\+get\+Level\+Index (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_game_model_aadf6cf5eb397785027b33d7694bf06f2}\index{GameModel@{GameModel}!getPlayer@{getPlayer}}
+\index{getPlayer@{getPlayer}!GameModel@{GameModel}}
+\doxysubsubsection{\texorpdfstring{getPlayer()}{getPlayer()}}
+{\footnotesize\ttfamily \label{class_game_model_aadf6cf5eb397785027b33d7694bf06f2} 
+\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \texorpdfstring{$\ast$}{*} Game\+Model::\+get\+Player (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_game_model_a02ba6b114c30dd80a2d46519f1362d47}\index{GameModel@{GameModel}!initPlayer@{initPlayer}}
+\index{initPlayer@{initPlayer}!GameModel@{GameModel}}
+\doxysubsubsection{\texorpdfstring{initPlayer()}{initPlayer()}}
+{\footnotesize\ttfamily \label{class_game_model_a02ba6b114c30dd80a2d46519f1362d47} 
+void Game\+Model::\+init\+Player (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{spawn\+Pos}{}\end{DoxyParamCaption})}
+
+
+
+Creates (or resets) the player at the given spawn position. 
+
+Called by \doxylink{class_game_controller}{Game\+Controller} after \doxylink{class_level_builder}{Level\+Builder} has populated the level so that the spawn coordinate is valid. Also wires the level\textquotesingle{}s key-\/obtained signal to \doxylink{class_game_model_a20f61d52cbd6f78ff8e23b4cacbb6a1d}{Game\+Model::\+obtain\+Key} so the player inventory stays in sync.
+
+
+\begin{DoxyParams}{Parameters}
+{\em spawn\+Pos} & World-\/space position where the player should appear. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_game_model_a20f61d52cbd6f78ff8e23b4cacbb6a1d}\index{GameModel@{GameModel}!obtainKey@{obtainKey}}
+\index{obtainKey@{obtainKey}!GameModel@{GameModel}}
+\doxysubsubsection{\texorpdfstring{obtainKey()}{obtainKey()}}
+{\footnotesize\ttfamily \label{class_game_model_a20f61d52cbd6f78ff8e23b4cacbb6a1d} 
+void Game\+Model::\+obtain\+Key (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Slot:\+ forwards the key-\/collected event to the player inventory. 
+
+Decouples \doxylink{class_level_model}{Level\+Model} (which detects key pickup) from \doxylink{class_player_model}{Player\+Model} (which tracks inventory) — neither class needs a direct pointer to the other. \Hypertarget{class_game_model_a5cbc91fa5e9c262f0a9c9c8176244880}\index{GameModel@{GameModel}!setCurrentLevelIndex@{setCurrentLevelIndex}}
+\index{setCurrentLevelIndex@{setCurrentLevelIndex}!GameModel@{GameModel}}
+\doxysubsubsection{\texorpdfstring{setCurrentLevelIndex()}{setCurrentLevelIndex()}}
+{\footnotesize\ttfamily \label{class_game_model_a5cbc91fa5e9c262f0a9c9c8176244880} 
+void Game\+Model::\+set\+Current\+Level\+Index (\begin{DoxyParamCaption}\item[{int}]{i}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{class_game_model_doc-variable-members}
+\Hypertarget{class_game_model_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_game_model_ad949a6388331d36449a6f39b1e3ce8e3}\index{GameModel@{GameModel}!a@{a}}
+\index{a@{a}!GameModel@{GameModel}}
+\doxysubsubsection{\texorpdfstring{a}{a}}
+{\footnotesize\ttfamily \label{class_game_model_ad949a6388331d36449a6f39b1e3ce8e3} 
+int Game\+Model::\+a = 1}
+
+\begin{DoxyRefDesc}{Todo}
+\item[\doxymbox{\hyperlink{todo__todo000001}{Todo}}]Remove — debug artifact, no longer needed. \end{DoxyRefDesc}
+\Hypertarget{class_game_model_a3039b4268d637a0c63f435215de80cc4}\index{GameModel@{GameModel}!boss@{boss}}
+\index{boss@{boss}!GameModel@{GameModel}}
+\doxysubsubsection{\texorpdfstring{boss}{boss}}
+{\footnotesize\ttfamily \label{class_game_model_a3039b4268d637a0c63f435215de80cc4} 
+\doxymbox{\hyperlink{classboss_model}{boss\+Model}}\texorpdfstring{$\ast$}{*} Game\+Model::\+boss\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Convenience pointer to the current boss (may be nullptr). 
+
+\Hypertarget{class_game_model_a0c297780ad4b457c8d583e37147fbe05}\index{GameModel@{GameModel}!currentLevelIndex@{currentLevelIndex}}
+\index{currentLevelIndex@{currentLevelIndex}!GameModel@{GameModel}}
+\doxysubsubsection{\texorpdfstring{currentLevelIndex}{currentLevelIndex}}
+{\footnotesize\ttfamily \label{class_game_model_a0c297780ad4b457c8d583e37147fbe05} 
+int Game\+Model::\+current\+Level\+Index\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+0-\/based index of the level currently loaded. 
+
+\Hypertarget{class_game_model_a01e955a32630846296aa9d06d3b85c34}\index{GameModel@{GameModel}!level@{level}}
+\index{level@{level}!GameModel@{GameModel}}
+\doxysubsubsection{\texorpdfstring{level}{level}}
+{\footnotesize\ttfamily \label{class_game_model_a01e955a32630846296aa9d06d3b85c34} 
+\doxymbox{\hyperlink{class_level_model}{Level\+Model}}\texorpdfstring{$\ast$}{*} Game\+Model::\+level\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Structural and entity data for the current level. 
+
+\Hypertarget{class_game_model_a24e13006635cf3948142a55eb0c31f9e}\index{GameModel@{GameModel}!player@{player}}
+\index{player@{player}!GameModel@{GameModel}}
+\doxysubsubsection{\texorpdfstring{player}{player}}
+{\footnotesize\ttfamily \label{class_game_model_a24e13006635cf3948142a55eb0c31f9e} 
+\doxymbox{\hyperlink{class_player_model}{Player\+Model}}\texorpdfstring{$\ast$}{*} Game\+Model::\+player\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Owned player model; nullptr until \doxylink{class_game_model_a02ba6b114c30dd80a2d46519f1362d47}{init\+Player()} is called. 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{gamemodel_8h}{gamemodel.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{gamemodel_8cpp}{gamemodel.\+cpp}}\end{DoxyCompactItemize}

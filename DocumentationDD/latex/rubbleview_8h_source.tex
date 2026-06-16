@@ -1,0 +1,37 @@
+\doxysection{rubbleview.\+h}
+\hypertarget{rubbleview_8h_source}{}\label{rubbleview_8h_source}\index{Headers/rubbleview.h@{Headers/rubbleview.h}}
+\doxymbox{\hyperlink{rubbleview_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ RUBBLEVIEW\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ RUBBLEVIEW\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QGraphicsPixmapItem>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QPixmap>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{rubblemodel_8h}{rubblemodel.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \ RubbleView\ —\ graphical\ representation\ of\ a\ rubble\ projectile.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ \ Expected\ sprite\ (Qt\ resources):}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \ \ \ :/images/Textures/Enemy/Launcher/rubble.png\ \ (16×16\ or\ 32×32)}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \ If\ the\ file\ is\ missing,\ a\ grey-\/brown\ square\ is\ drawn\ as\ fallback.}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_rubble_view_af77fab049749e534fd16782e0ff3fa0a}{RubbleView}}\ :\ \textcolor{keyword}{public}\ QGraphicsPixmapItem\ \{}
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_rubble_view_af77fab049749e534fd16782e0ff3fa0a}{RubbleView}}(\doxymbox{\hyperlink{class_rubble_model}{RubbleModel}}*\ \doxymbox{\hyperlink{class_rubble_view_a692e8236e011b52edb519408d66bf4b0}{model}},\ QGraphicsItem*\ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_rubble_view_a250e94478bbf9c7614362429eb44dad7}{updateView}}();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00043\ \ \ \ \ \doxymbox{\hyperlink{class_rubble_model}{RubbleModel}}*\ \doxymbox{\hyperlink{class_rubble_view_a692e8236e011b52edb519408d66bf4b0}{model}};\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{static}\ QPixmap\ \doxymbox{\hyperlink{class_rubble_view_a6505d5bbf87db8382c674b38f8695f04}{loadSprite}}();}
+\DoxyCodeLine{00047\ \};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ RUBBLEVIEW\_H}}
+
+\end{DoxyCode}

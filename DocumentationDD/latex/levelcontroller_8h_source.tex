@@ -1,0 +1,65 @@
+\doxysection{levelcontroller.\+h}
+\hypertarget{levelcontroller_8h_source}{}\label{levelcontroller_8h_source}\index{Headers/levelcontroller.h@{Headers/levelcontroller.h}}
+\doxymbox{\hyperlink{levelcontroller_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ LEVELCONTROLLER\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ LEVELCONTROLLER\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{levelmodel_8h}{levelmodel.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{playermodel_8h}{playermodel.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{zombielaunchermodel_8h}{zombielaunchermodel.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QRectF>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <QPointF>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <QVector>}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_popup_request}{PopupRequest}}\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \doxymbox{\hyperlink{struct_popup_request_a3a7b672d71f8f9d7973c8f5bdac229ae}{Type}}\ \{\ \doxymbox{\hyperlink{struct_popup_request_a3a7b672d71f8f9d7973c8f5bdac229aeab9f24e83531326204197015b2f43a93f}{Damage}},\ \doxymbox{\hyperlink{struct_popup_request_a3a7b672d71f8f9d7973c8f5bdac229aea9768feb3fdb1f267b06093bc572952dd}{Gold}}\ \};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \doxymbox{\hyperlink{struct_popup_request_a567ea4d18d0ad5a5772cfe4706b01db8}{value}};}
+\DoxyCodeLine{00026\ \ \ \ \ \doxymbox{\hyperlink{struct_popup_request_a3a7b672d71f8f9d7973c8f5bdac229ae}{Type}}\ \ \ \ \doxymbox{\hyperlink{struct_popup_request_af9eff117d6fa587224d36abfb36ea536}{type}};}
+\DoxyCodeLine{00027\ \ \ \ \ QPointF\ \doxymbox{\hyperlink{struct_popup_request_ac543d25c627879d58c08736075ccb548}{pos}};\ \ \ }
+\DoxyCodeLine{00028\ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_level_controller_a0ab35b1b7d8e537d4e43a87397c6114b}{LevelController}}\ \{}
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \doxymbox{\hyperlink{class_level_controller_a0ab35b1b7d8e537d4e43a87397c6114b}{LevelController}}();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_controller_aae80ed7c5005afa9ed3c1f9b4ce7db00}{update}}(\textcolor{keywordtype}{float}\ dt,\ \doxymbox{\hyperlink{class_player_model}{PlayerModel}}\&\ player,\ \doxymbox{\hyperlink{class_level_model}{LevelModel}}\&\ level);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_level_controller_abedb57a9be518035304a696340b43535}{levelJustCompleted}};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{const}\ QVector<PopupRequest>\&\ \doxymbox{\hyperlink{class_level_controller_a5f60a680d9791388b2f2489fa8831b93}{getPendingPopups}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_level_controller_a4ee0d022305183565cb665c1620bc09a}{pendingPopups}};\ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_controller_acfba7abf9bb1824ac715d17704102887}{clearPendingPopups}}()\ \{\ \doxymbox{\hyperlink{class_level_controller_a4ee0d022305183565cb665c1620bc09a}{pendingPopups}}.clear();\ \}\ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ ───\ Sous-\/étapes\ de\ mise\ à\ jour\ ───────────────────────────}}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_controller_adce023edc85892ca6dd01acc41f64e0f}{updateEnemies}}(\textcolor{keywordtype}{float}\ dt,\ \doxymbox{\hyperlink{class_player_model}{PlayerModel}}\&\ player,\ \doxymbox{\hyperlink{class_level_model}{LevelModel}}\&\ level);\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_controller_ac3401e4e52e17be354182b720a84d60c}{distributeGold}}(\doxymbox{\hyperlink{class_player_model}{PlayerModel}}\&\ player,\ \doxymbox{\hyperlink{class_level_model}{LevelModel}}\&\ level);\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_controller_a3c415991df6784e421546de0217d5949}{resolvePlayerWallCollisions}}(\doxymbox{\hyperlink{class_player_model}{PlayerModel}}\&\ player,\ \doxymbox{\hyperlink{class_level_model}{LevelModel}}\&\ level);\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_controller_a0106d84403b2bab919147d4b78816b81}{resolveEnemyWallCollisions}}(\doxymbox{\hyperlink{class_level_model}{LevelModel}}\&\ level);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_controller_a2509aadd0d9b363d7c4394522791a769}{checkPlayerEnemyCollisions}}(\doxymbox{\hyperlink{class_player_model}{PlayerModel}}\&\ player,\ \doxymbox{\hyperlink{class_level_model}{LevelModel}}\&\ level);\ \ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_controller_a9510eb2b9623bb12f66c18d134dcb5ee}{checkSlashZoneHits}}(\doxymbox{\hyperlink{class_player_model}{PlayerModel}}\&\ player,\ \doxymbox{\hyperlink{class_level_model}{LevelModel}}\&\ level);\ \ \ \ \ \ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_controller_a0f6f9446ea3d849fb06553ed121e4814}{checkExitCondition}}(\doxymbox{\hyperlink{class_player_model}{PlayerModel}}\&\ player,\ \doxymbox{\hyperlink{class_level_model}{LevelModel}}\&\ level);\ \ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_controller_a8e1a44fe832374d513a63b601c0c424d}{checkAndResolvePlayerEnemyCollisions}}(\doxymbox{\hyperlink{class_player_model}{PlayerModel}}\&\ player,\ \doxymbox{\hyperlink{class_level_model}{LevelModel}}\&\ level);\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_controller_aaa0247c8a67743a3c98536ac0c5aae9b}{resolvePlayerVsEnemyWalls}}(\doxymbox{\hyperlink{class_player_model}{PlayerModel}}\&\ player,\ \doxymbox{\hyperlink{class_level_model}{LevelModel}}\&\ level);\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_controller_abd33f1056ce0dd59cff8ffc3804ce900}{resolveEnemyEnemyCollisions}}(\doxymbox{\hyperlink{class_level_model}{LevelModel}}\&\ level);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_controller_a39156e9f77d885532a6c5eacbd56c66d}{checkRubbleCollisions}}(\doxymbox{\hyperlink{class_player_model}{PlayerModel}}\&\ player,\ \doxymbox{\hyperlink{class_level_model}{LevelModel}}\&\ level);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_controller_a1390cb51714507a3e13885c7b1d95605}{checkBulletCollisions}}(\doxymbox{\hyperlink{class_player_model}{PlayerModel}}\&\ player,\ \doxymbox{\hyperlink{class_level_model}{LevelModel}}\&\ level);}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_controller_accf247023833f7892ee5957224727768}{checkStandardDoorInteractions}}(\doxymbox{\hyperlink{class_player_model}{PlayerModel}}\&\ player,\ \doxymbox{\hyperlink{class_level_model}{LevelModel}}\&\ level);\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_controller_a93b00b02594d6b94af23b840c110c1f7}{checkBossDoorInteractions}}(\doxymbox{\hyperlink{class_player_model}{PlayerModel}}\&\ player,\ \doxymbox{\hyperlink{class_level_model}{LevelModel}}\&\ level);\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_controller_a79fb60e5d890bd8c8b1f9690656a2148}{checkBossZonePattern}}(\doxymbox{\hyperlink{class_player_model}{PlayerModel}}\&\ player,\ \doxymbox{\hyperlink{class_level_model}{LevelModel}}\&\ level);}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_controller_a703d2cd6d1d333a3c662b46fc99d73d2}{purgeDeadEnemies}}(\doxymbox{\hyperlink{class_level_model}{LevelModel}}\&\ level);\ \textcolor{comment}{//nettoyer\ les\ ennemis\ mort\ en\ fin\ de\ frame}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ QVector<QRectF>\ \doxymbox{\hyperlink{class_level_controller_aa7a1b99d18b0d0dc933109c943559a14}{wallCollidersCache}};\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_controller_a2640cc292a630894b65548de52c5d528}{resolveAABB}}(\doxymbox{\hyperlink{class_entity}{Entity}}\&\ mover,\ \textcolor{keyword}{const}\ QRectF\&\ obstacle);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_level_controller_abfbaca88f9f471570be8d9d9faf34448}{hasLineOfSight}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ from,\ \doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ to,\ \textcolor{keyword}{const}\ QVector<QRectF>\&\ walls)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ QVector<PopupRequest>\ \doxymbox{\hyperlink{class_level_controller_a4ee0d022305183565cb665c1620bc09a}{pendingPopups}};}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{static}\ QPointF\ \doxymbox{\hyperlink{class_level_controller_a5bde2a67b8da584266dd41b5fdcfa834}{popupPos}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_enemy}{Enemy}}*\ e);\ }
+\DoxyCodeLine{00094\ \};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ LEVELCONTROLLER\_H}}
+
+\end{DoxyCode}

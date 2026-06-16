@@ -1,0 +1,131 @@
+\doxysection{Rubble\+Model Class Reference}
+\hypertarget{class_rubble_model}{}\label{class_rubble_model}\index{RubbleModel@{RubbleModel}}
+
+
+Rubble (projectile) fired by the launcher zombie.  
+
+
+
+
+{\ttfamily \+\#include $<$rubblemodel.\+h$>$}
+
+
+
+Inheritance diagram for Rubble\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_rubble_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Rubble\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_rubble_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_rubble_model_a41687fbfc54484d04a3a5ce710e366b5}{Rubble\+Model}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, \doxymbox{\hyperlink{class_vector2f}{Vector2f}} dir, int damage=\doxymbox{\hyperlink{namespace_cfg_a75476e8260a27bf30eb122e35c87d33c}{Cfg::\+\+RUBBLE\+\_\+\+DAMAGE}}, float speed=\doxymbox{\hyperlink{namespace_cfg_abd675e3a4c149f48f8d9a6b5b22195a4}{Cfg::\+\+RUBBLE\+\_\+\+SPEED}})
+\begin{DoxyCompactList}\small\item\em Constructs a rubble projectile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_projectile}{Projectile}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \doxymbox{\hyperlink{class_projectile_a954a349fe38dfd24ff9e427b44ac9619}{\texorpdfstring{$\sim$}{\string~}\+Projectile}} ()=default
+\item 
+void \doxymbox{\hyperlink{class_projectile_ac5ebfb8b93e602f5c063d465944838fa}{update}} (float dt) override
+\begin{DoxyCompactList}\small\item\em Advances the projectile in its direction over the given delta-\/time. Can be overridden by subclasses (e.\+g. curved trajectory). \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_projectile_af5cd30772ad4cb3894629ca76c6b8f79}{get\+Damage}} () const
+\begin{DoxyCompactList}\small\item\em Damage on impact. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_projectile_a4f08dfe10b62cce1c2134b066e6b9d28}{get\+Speed}} () const
+\begin{DoxyCompactList}\small\item\em Speed in pixels/\+s. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_projectile_aef62b952dd6b52adc08a5b02331fe9ba}{get\+Direction}} () const
+\begin{DoxyCompactList}\small\item\em Unit displacement vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_entity_acaf2ad84607691b229cddab1da0bf819}{Entity}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float w, float h)
+\begin{DoxyCompactList}\small\item\em Constructor of the entity. \end{DoxyCompactList}\item 
+virtual \doxymbox{\hyperlink{class_entity_ac479d009ddde62dfb378ca0a70d81307}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual shredder. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_afdda0263db3d2e465a6ae6bad91eb990}{get\+Position}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a5f154968f2a478ea924460c78e0cd39e}{get\+Width}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a1332918563adb284c0fd432d47486d44}{get\+Height}} () const
+\item 
+bool \doxymbox{\hyperlink{class_entity_aea1c1568b4123d989c5310697030ad77}{is\+Active}} () const
+\item 
+void \doxymbox{\hyperlink{class_entity_ac5164b8c832f9a055df976527fe10032}{set\+Active}} (bool a)
+\item 
+void \doxymbox{\hyperlink{class_entity_a575ec530746fbb3eca1baddec2d0b030}{set\+Position}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos)
+\item 
+QRectF \doxymbox{\hyperlink{class_entity_ae00b70bd40800a8bd23c38b1c84404a9}{get\+Collider}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the entity\textquotesingle{}s collision bounding box. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{class_projectile}{Projectile}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_projectile_a1bd98c79e3575b2addf0c2f79428d9c9}{Projectile}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float size, \doxymbox{\hyperlink{class_vector2f}{Vector2f}} dir, float speed, int damage)
+\begin{DoxyCompactList}\small\item\em Protected constructor:\+ only subclasses can instantiate. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_projectile}{Projectile}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_projectile_abb984ec56a4e00541813b8e171955fa2}{direction}}
+\begin{DoxyCompactList}\small\item\em Unit displacement vector. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_projectile_a70ff500bdae54f3ad1e9e759b0ecd1fe}{speed}}
+\begin{DoxyCompactList}\small\item\em Speed in pixels/\+s. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_projectile_a90f5793efb184c30d6c74544a6b91bb4}{damage}}
+\begin{DoxyCompactList}\small\item\em Damage inflicted on contact with the target. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_a6af9d6498134ad0906011778bc5736db}{position}}
+\begin{DoxyCompactList}\small\item\em The entity\textquotesingle{}s 2D coordinates. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_adadfcc784f30b51b8e49f8230a56b793}{width}}
+\begin{DoxyCompactList}\small\item\em The physical width of the entity in pixels. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_a4550dc1011f47f6c4bb86e564e7d605b}{height}}
+\begin{DoxyCompactList}\small\item\em The physical height of the entity in pixels. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_entity_a939da33e8b67b1d2ee227930aa72da3b}{active}}
+\begin{DoxyCompactList}\small\item\em Status of the entity (false if dead or destroyed). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Rubble (projectile) fired by the launcher zombie. 
+
+\label{class_rubble_model_doc-constructors}
+\Hypertarget{class_rubble_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_rubble_model_a41687fbfc54484d04a3a5ce710e366b5}\index{RubbleModel@{RubbleModel}!RubbleModel@{RubbleModel}}
+\index{RubbleModel@{RubbleModel}!RubbleModel@{RubbleModel}}
+\doxysubsubsection{\texorpdfstring{RubbleModel()}{RubbleModel()}}
+{\footnotesize\ttfamily \label{class_rubble_model_a41687fbfc54484d04a3a5ce710e366b5} 
+Rubble\+Model::\+\+Rubble\+Model (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{pos}{, }\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{dir}{, }\item[{int}]{damage}{ = {\ttfamily \doxymbox{\hyperlink{namespace_cfg_a75476e8260a27bf30eb122e35c87d33c}{Cfg::\+\+RUBBLE\+\_\+\+DAMAGE}}}, }\item[{float}]{speed}{ = {\ttfamily \doxymbox{\hyperlink{namespace_cfg_abd675e3a4c149f48f8d9a6b5b22195a4}{Cfg::\+\+RUBBLE\+\_\+\+SPEED}}}}\end{DoxyParamCaption})}
+
+
+
+Constructs a rubble projectile. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & Starting position (launcher center, adjusted). \\
+\hline
+{\em dir} & Normalized direction toward the target at the time of firing. \\
+\hline
+{\em damage} & Damage inflicted on the player on impact. \\
+\hline
+{\em speed} & Speed in pixels/\+s (default:\+ \doxylink{namespace_cfg_abd675e3a4c149f48f8d9a6b5b22195a4}{Cfg::\+\+RUBBLE\+\_\+\+SPEED}). \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{rubblemodel_8h}{rubblemodel.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{rubblemodel_8cpp}{rubblemodel.\+cpp}}\end{DoxyCompactItemize}

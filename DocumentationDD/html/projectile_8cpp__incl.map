@@ -1,0 +1,20 @@
+<map id="Sources/projectile.cpp" name="Sources/projectile.cpp">
+<area shape="rect" id="Node000001" title="Implementation of the abstract Projectile class." alt="" coords="109,5,260,32"/>
+<area shape="rect" id="Node000002" href="$projectile_8h.html" title="Declaration of the abstract class Projectile, the common base for all projectiles." alt="" coords="142,80,226,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,30,187,65,182,64,183,35"/>
+<area shape="rect" id="Node000003" href="$entity_8h.html" title="Declaration of the Entity base class." alt="" coords="118,155,181,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="180,105,165,142,160,139,177,109"/>
+<area shape="rect" id="Node000008" href="$config_8h.html" title="Global constants and configuration enumerations for the game Deadly Dropout." alt="" coords="200,229,267,256"/>
+<area shape="poly" id="edge9_Node000002_Node000008" title=" " alt="" coords="190,105,227,215,222,215,187,109"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,229,73,256"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="129,184,73,223,69,219,132,180"/>
+<area shape="rect" id="Node000005" href="$vector2f_8h.html" title="Declaration of the Vector2f math class for the game&#39;s 2D geometry." alt="" coords="97,229,176,256"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="149,180,144,215,139,213,146,184"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="165,179,210,219,205,219,164,184"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="24,304,81,331"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="124,256,80,296,77,292,119,257"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="106,304,175,331"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="139,255,141,289,136,287,135,259"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="204,304,263,331"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="236,255,236,290,231,287,232,258"/>
+</map>

@@ -1,0 +1,44 @@
+\doxysection{gamemodel.\+h}
+\hypertarget{gamemodel_8h_source}{}\label{gamemodel_8h_source}\index{Headers/gamemodel.h@{Headers/gamemodel.h}}
+\doxymbox{\hyperlink{gamemodel_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ GAMEMODEL\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ GAMEMODEL\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{bossmodel_8h}{bossmodel.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{playermodel_8h}{playermodel.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{levelmodel_8h}{levelmodel.h}}"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_game_model_aa5637be937d4a2ffe81541d513838424}{GameModel}}\ :\ \textcolor{keyword}{public}\ QObject\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ \ \ \ \ \doxymbox{\hyperlink{class_player_model}{PlayerModel}}*\ \doxymbox{\hyperlink{class_game_model_a24e13006635cf3948142a55eb0c31f9e}{player}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \doxymbox{\hyperlink{classboss_model}{bossModel}}*\ \ \ \doxymbox{\hyperlink{class_game_model_a3039b4268d637a0c63f435215de80cc4}{boss}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ \doxymbox{\hyperlink{class_level_model}{LevelModel}}*\ \ \doxymbox{\hyperlink{class_game_model_a01e955a32630846296aa9d06d3b85c34}{level}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_game_model_a0c297780ad4b457c8d583e37147fbe05}{currentLevelIndex}};\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \doxymbox{\hyperlink{class_game_model_aa5637be937d4a2ffe81541d513838424}{GameModel}}();}
+\DoxyCodeLine{00044\ \ \ \ \ \doxymbox{\hyperlink{class_game_model_ac72de76e47bb6be675de3c49c15ac4af}{\string~GameModel}}();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_model_a02ba6b114c30dd80a2d46519f1362d47}{initPlayer}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ spawnPos);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_model_a20f61d52cbd6f78ff8e23b4cacbb6a1d}{obtainKey}}();}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_model_a5cbc91fa5e9c262f0a9c9c8176244880}{setCurrentLevelIndex}}(\textcolor{keywordtype}{int}\ i)\ \{\ \doxymbox{\hyperlink{class_game_model_a0c297780ad4b457c8d583e37147fbe05}{currentLevelIndex}}\ =\ i;\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \doxymbox{\hyperlink{class_player_model}{PlayerModel}}*\ \doxymbox{\hyperlink{class_game_model_aadf6cf5eb397785027b33d7694bf06f2}{getPlayer}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_game_model_a24e13006635cf3948142a55eb0c31f9e}{player}};\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00077\ \ \ \ \ \doxymbox{\hyperlink{class_enemy}{Enemy}}*\ \doxymbox{\hyperlink{class_game_model_a105a6348247bebafabe3d5cd27506ed8}{getBoss}}();}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \doxymbox{\hyperlink{class_level_model}{LevelModel}}*\ \doxymbox{\hyperlink{class_game_model_a5586ae4e846da79f56b6581164606962}{getLevel}}()\textcolor{keyword}{\ \ \ \ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_game_model_a01e955a32630846296aa9d06d3b85c34}{level}};\ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_game_model_a75d9ce36897fd10c77af2d91d1ae09fd}{getLevelIndex}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_game_model_a0c297780ad4b457c8d583e37147fbe05}{currentLevelIndex}};\ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_game_model_ad949a6388331d36449a6f39b1e3ce8e3}{a}}\ =\ 1;\ }
+\DoxyCodeLine{00083\ \};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GAMEMODEL\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,73 @@
+\doxysection{gunmodel.\+h}
+\hypertarget{gunmodel_8h_source}{}\label{gunmodel_8h_source}\index{Headers/gunmodel.h@{Headers/gunmodel.h}}
+\doxymbox{\hyperlink{gunmodel_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ GUNMODEL\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ GUNMODEL\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QVector>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{bulletmodel_8h}{bulletmodel.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{vector2f_8h}{vector2f.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QSoundEffect>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_gun_model_ad45f18cc96f96ec6771bd53e45be480f}{GunModel}}\ :\ \textcolor{keyword}{public}\ QObject}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_gun_model_ad45f18cc96f96ec6771bd53e45be480f}{GunModel}}(\textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_gun_model_ac4f81dd3af557677057a45b20bd433db}{magSize}}\ \ \ \ \ =\ \doxymbox{\hyperlink{namespace_cfg_a66f9c304797399fb33cf77739fe797ba}{Cfg::GUN\_MAG\_SIZE}},}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ reserveSize\ =\ \doxymbox{\hyperlink{namespace_cfg_a66f9c304797399fb33cf77739fe797ba}{Cfg::GUN\_MAG\_SIZE}}\ *\ 2);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \doxymbox{\hyperlink{class_gun_model_a338f5ecef3d45b543145022975baceb1}{\string~GunModel}}();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_gun_model_ab5cb120a634b41577fe99c09ba9543a1}{update}}(\textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_gun_model_a98c747edd5cb9c0919346170c09d0804}{tryShoot}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ muzzlePos,\ \doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ targetPos);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_gun_model_a561ec29bbd1f959221efcb263f8c6630}{reload}}();}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00079\ \ \ \ \ QVector<BulletModel*>\&\ \doxymbox{\hyperlink{class_gun_model_a0163b15d49a3fdb6cbef3654a346e732}{getBullets}}()\ \{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_gun_model_ad1730b3e2b74cd4b752f8b1ff5f2784c}{bullets}};\ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_gun_model_a4dd21ae86d5fc550d6432b16d5dc50d6}{pruneInactiveBullets}}();}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{//\ ───\ HUD\ getters\ ──────────────────────────────────────────}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{class_gun_model_a050f8bc46b5385e66b75dc2c275d8e36}{getMag}}()\textcolor{keyword}{\ \ \ \ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_gun_model_a4ef4f0563a13ba8dc665adbdd2e2ff91}{mag}};\ \ \ \ \ \ \}\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{class_gun_model_ac425f43285c5c352e5448cf2948bb6f9}{getMagSize}}()\textcolor{keyword}{\ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_gun_model_ac4f81dd3af557677057a45b20bd433db}{magSize}};\ \ \}\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{class_gun_model_a4775ad3e5b091196a3b532d6b38b0f1a}{getReserve}}()\textcolor{keyword}{\ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_gun_model_a4580c31a5b6bfdf4a479c832fee5e968}{reserve}};\ \ \}\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \doxymbox{\hyperlink{class_gun_model_ae5ef6d482ea260ecc34e71946ce8e441}{isReady}}()\textcolor{keyword}{\ \ \ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_gun_model_aac8230a60677d99eb819b5f710c8816c}{shootTimer}}\ <=\ 0.0f;\ \}\ }
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_gun_model_a71d30480bbc93621f1f47126fcaa5fad}{getCooldownRatio}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\doxymbox{\hyperlink{class_gun_model_a670cb78b0a051f78dec19c4b3187a477}{shootCooldown}}\ >\ 0.0f)\ ?\ (\doxymbox{\hyperlink{class_gun_model_aac8230a60677d99eb819b5f710c8816c}{shootTimer}}\ /\ \doxymbox{\hyperlink{class_gun_model_a670cb78b0a051f78dec19c4b3187a477}{shootCooldown}})\ :\ 0.0f;}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_gun_model_af2fba4b5f57f2fd96e51e51c2170c078}{getShootCooldown}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_gun_model_a670cb78b0a051f78dec19c4b3187a477}{shootCooldown}};\ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{class_gun_model_acc613839edc910e2f1b587f7f965c461}{getBaseDamage}}()\textcolor{keyword}{\ \ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_gun_model_a32c87ce6ab9d6a9e0db5099247fa3a5a}{baseDamage}};\ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_gun_model_a1231b74065bdfa89aebe2575b07e4a92}{getCritChance}}()\textcolor{keyword}{\ \ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_gun_model_a1cc86892311e2d637ac3a4b1c924467d}{critChance}};\ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ ───\ Upgrade\ setters\ ──────────────────────────────────────}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_gun_model_aaad38850a53454ce2c84b1e8cc0436b2}{addReserve}}(\textcolor{keywordtype}{int}\ amount)\ \ \ \ \ \ \ \ \{\ \doxymbox{\hyperlink{class_gun_model_a4580c31a5b6bfdf4a479c832fee5e968}{reserve}}\ +=\ amount;\ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_gun_model_a6fae29db043c84eacde657f891759baf}{setShootCooldown}}(\textcolor{keywordtype}{float}\ cd)\ \ \ \ \{\ \doxymbox{\hyperlink{class_gun_model_a670cb78b0a051f78dec19c4b3187a477}{shootCooldown}}\ =\ cd;\ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_gun_model_a3b1633dcd2f81d1895e5213f422c524b}{setBaseDamage}}(\textcolor{keywordtype}{int}\ d)\ \ \ \ \ \ \ \ \ \ \{\ \doxymbox{\hyperlink{class_gun_model_a32c87ce6ab9d6a9e0db5099247fa3a5a}{baseDamage}}\ =\ d;\ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_gun_model_a3952273675f613040c9ad908bb2b9b8d}{setCritChance}}(\textcolor{keywordtype}{float}\ c)\ \ \ \ \ \ \ \ \{\ \doxymbox{\hyperlink{class_gun_model_a1cc86892311e2d637ac3a4b1c924467d}{critChance}}\ =\ c;\ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00112\ \ \ \ \ QVector<BulletModel*>\ \doxymbox{\hyperlink{class_gun_model_ad1730b3e2b74cd4b752f8b1ff5f2784c}{bullets}};\ \ \ }
+\DoxyCodeLine{00113\ \ \ \ \ QSoundEffect*\ \doxymbox{\hyperlink{class_gun_model_a7e9bcd7f126385e59497fc25704d285d}{emptyMagSound}};\ \ \ \ \ }
+\DoxyCodeLine{00114\ \ \ \ \ QSoundEffect*\ \doxymbox{\hyperlink{class_gun_model_aeb23105e72c24ab5a2352fd38bc47f7f}{gunFireSound}};\ \ \ \ \ \ }
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{class_gun_model_ac4f81dd3af557677057a45b20bd433db}{magSize}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{class_gun_model_a4ef4f0563a13ba8dc665adbdd2e2ff91}{mag}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{class_gun_model_a4580c31a5b6bfdf4a479c832fee5e968}{reserve}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_gun_model_a670cb78b0a051f78dec19c4b3187a477}{shootCooldown}};\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_gun_model_aac8230a60677d99eb819b5f710c8816c}{shootTimer}};\ \ \ \ }
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{class_gun_model_a32c87ce6ab9d6a9e0db5099247fa3a5a}{baseDamage}};\ \ \ \ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_gun_model_a1cc86892311e2d637ac3a4b1c924467d}{critChance}};\ \ \ \ }
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_gun_model_a1a472a18416555d172bab9a295afe2f3}{computeDamage}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00135\ \};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GUNMODEL\_H}}
+
+\end{DoxyCode}

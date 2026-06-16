@@ -1,0 +1,27 @@
+\doxysection{wallmodel.\+h}
+\hypertarget{wallmodel_8h_source}{}\label{wallmodel_8h_source}\index{Headers/wallmodel.h@{Headers/wallmodel.h}}
+\doxymbox{\hyperlink{wallmodel_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ WALLMODEL\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ WALLMODEL\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{entity_8h}{entity.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_wall_model_a816af2c2a0189a7461f6f9eefd5d15cf}{WallModel}}\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_entity_acaf2ad84607691b229cddab1da0bf819}{Entity}}\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \doxymbox{\hyperlink{class_wall_model_a816af2c2a0189a7461f6f9eefd5d15cf}{WallModel}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ pos,\ \textcolor{keywordtype}{float}\ w,\ \textcolor{keywordtype}{float}\ h,}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_wall_model_a6af67a90ef7c1f37801701330f8e5c3a}{tileIndex}}\ =\ 1,\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_wall_model_a09eb5aa6da377fa5d7c36ba79548e1fa}{tilesetCols}}\ =\ 302);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_wall_model_a76923e728808b8b56bfb8ff011bad22e}{update}}(\textcolor{keywordtype}{float}\ dt)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_wall_model_a88a57e0d1309f049c33862fc531b92e3}{getTileIndex}}()\textcolor{keyword}{\ \ \ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_wall_model_a6af67a90ef7c1f37801701330f8e5c3a}{tileIndex}};\ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_wall_model_af26ecc3c54bd8995275a613dd7652883}{gettilesetCols}}()\textcolor{keyword}{\ \ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_wall_model_a09eb5aa6da377fa5d7c36ba79548e1fa}{tilesetCols}};\ \ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_wall_model_a6af67a90ef7c1f37801701330f8e5c3a}{tileIndex}};\ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_wall_model_a09eb5aa6da377fa5d7c36ba79548e1fa}{tilesetCols}};\ \ }
+\DoxyCodeLine{00031\ \};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ WALLMODEL\_H}}
+
+\end{DoxyCode}

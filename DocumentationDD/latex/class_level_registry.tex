@@ -1,0 +1,167 @@
+\doxysection{Level\+Registry Class Reference}
+\hypertarget{class_level_registry}{}\label{class_level_registry}\index{LevelRegistry@{LevelRegistry}}
+
+
+Charge et stocke tous les \doxylink{struct_dynamic_level_descriptor}{Dynamic\+Level\+Descriptor} du jeu.  
+
+
+
+
+{\ttfamily \+\#include $<$levelregistry.\+h$>$}
+
+
+
+Collaboration diagram for Level\+Registry:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{class_level_registry__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_level_registry_a2f62eb2dcf0c4eb1d90e6903b3f0a36f}{init}} (const QString \&base\+Path="{}:\+/\+levels"{})
+\begin{DoxyCompactList}\small\item\em Charge tous les niveaux. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_level_registry_ae38e903cf2537cd83e302a2ae479b97d}{count}} () const
+\begin{DoxyCompactList}\small\item\em Nombre de niveaux chargés avec succès. \end{DoxyCompactList}\item 
+const \doxymbox{\hyperlink{struct_level_descriptor}{Level\+Descriptor}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_level_registry_a86df0eb3990e2ed32ef512c780c6b7c4}{descriptor\+At}} (int index) const
+\begin{DoxyCompactList}\small\item\em Retourne un pointeur vers le \doxylink{struct_level_descriptor}{Level\+Descriptor} du niveau à l\textquotesingle{}index donné. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_level_registry}{Level\+Registry}} \& \doxymbox{\hyperlink{class_level_registry_a1e7b2e25c64d76acfe55520b08c5c8e4}{instance}} ()
+\begin{DoxyCompactList}\small\item\em Singleton :\+ retourne l\textquotesingle{}instance unique du registre. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr int \doxymbox{\hyperlink{class_level_registry_a79e97a769927c158c2bac7455f7200b3}{LEVEL\+\_\+\+COUNT}} = 3
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_level_registry_a558029dd2c44dbe83e72a3507bb86fff}{Level\+Registry}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QVector$<$ \doxymbox{\hyperlink{struct_dynamic_level_descriptor}{Dynamic\+Level\+Descriptor}} $>$ \doxymbox{\hyperlink{class_level_registry_a522439dd57d53288443e0dca8990cb72}{m\+\_\+dynamics}}
+\begin{DoxyCompactList}\small\item\em Buffers propriétaires (\doxylink{struct_dynamic_level_descriptor}{Dynamic\+Level\+Descriptor} gère la mémoire). \end{DoxyCompactList}\item 
+QVector$<$ \doxymbox{\hyperlink{struct_level_descriptor}{Level\+Descriptor}} $>$ \doxymbox{\hyperlink{class_level_registry_a2bfb98533b366816a4099d5c1fd38638}{m\+\_\+descriptors}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Charge et stocke tous les \doxylink{struct_dynamic_level_descriptor}{Dynamic\+Level\+Descriptor} du jeu. 
+
+Usage typique (dans \doxylink{class_game_controller_ae4f4427947217135ce9f51fd737388bb}{Game\+Controller::\+init} ou \doxylink{class_app_controller}{App\+Controller}) :\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\doxymbox{\hyperlink{class_level_registry_a558029dd2c44dbe83e72a3507bb86fff}{LevelRegistry}}\&\ reg\ =\ \doxymbox{\hyperlink{class_level_registry_a1e7b2e25c64d76acfe55520b08c5c8e4}{LevelRegistry::instance}}();}
+\DoxyCodeLine{reg.\doxymbox{\hyperlink{class_level_registry_a2f62eb2dcf0c4eb1d90e6903b3f0a36f}{init}}();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ charge\ depuis\ :/levels}}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_level_registry_ae38e903cf2537cd83e302a2ae479b97d}{count}}\ =\ reg.\doxymbox{\hyperlink{class_level_registry_ae38e903cf2537cd83e302a2ae479b97d}{count}}();}
+\DoxyCodeLine{\textcolor{keyword}{const}\ LevelDescriptor*\ desc\ =\ reg.\doxymbox{\hyperlink{class_level_registry_a86df0eb3990e2ed32ef512c780c6b7c4}{descriptorAt}}(0);}
+
+\end{DoxyCode}
+ 
+
+\label{class_level_registry_doc-constructors}
+\Hypertarget{class_level_registry_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_level_registry_a558029dd2c44dbe83e72a3507bb86fff}\index{LevelRegistry@{LevelRegistry}!LevelRegistry@{LevelRegistry}}
+\index{LevelRegistry@{LevelRegistry}!LevelRegistry@{LevelRegistry}}
+\doxysubsubsection{\texorpdfstring{LevelRegistry()}{LevelRegistry()}}
+{\footnotesize\ttfamily \label{class_level_registry_a558029dd2c44dbe83e72a3507bb86fff} 
+Level\+Registry::\+\+Level\+Registry (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [default]}}
+
+
+
+\label{class_level_registry_doc-func-members}
+\Hypertarget{class_level_registry_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_level_registry_ae38e903cf2537cd83e302a2ae479b97d}\index{LevelRegistry@{LevelRegistry}!count@{count}}
+\index{count@{count}!LevelRegistry@{LevelRegistry}}
+\doxysubsubsection{\texorpdfstring{count()}{count()}}
+{\footnotesize\ttfamily \label{class_level_registry_ae38e903cf2537cd83e302a2ae479b97d} 
+int Level\+Registry::\+count (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Nombre de niveaux chargés avec succès. 
+
+\Hypertarget{class_level_registry_a86df0eb3990e2ed32ef512c780c6b7c4}\index{LevelRegistry@{LevelRegistry}!descriptorAt@{descriptorAt}}
+\index{descriptorAt@{descriptorAt}!LevelRegistry@{LevelRegistry}}
+\doxysubsubsection{\texorpdfstring{descriptorAt()}{descriptorAt()}}
+{\footnotesize\ttfamily \label{class_level_registry_a86df0eb3990e2ed32ef512c780c6b7c4} 
+const \doxymbox{\hyperlink{struct_level_descriptor}{Level\+Descriptor}} \texorpdfstring{$\ast$}{*} Level\+Registry::\+descriptor\+At (\begin{DoxyParamCaption}\item[{int}]{index}{}\end{DoxyParamCaption}) const}
+
+
+
+Retourne un pointeur vers le \doxylink{struct_level_descriptor}{Level\+Descriptor} du niveau à l\textquotesingle{}index donné. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Index dans la liste (0-\/based). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointeur valide tant que ce \doxylink{class_level_registry}{Level\+Registry} est en vie, nullptr si hors bornes. 
+\end{DoxyReturn}
+\Hypertarget{class_level_registry_a2f62eb2dcf0c4eb1d90e6903b3f0a36f}\index{LevelRegistry@{LevelRegistry}!init@{init}}
+\index{init@{init}!LevelRegistry@{LevelRegistry}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{class_level_registry_a2f62eb2dcf0c4eb1d90e6903b3f0a36f} 
+void Level\+Registry::\+init (\begin{DoxyParamCaption}\item[{const QString \&}]{base\+Path}{ = {\ttfamily "{}:\+/\+levels"{}}}\end{DoxyParamCaption})}
+
+
+
+Charge tous les niveaux. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base\+Path} & Chemin racine des dossiers de niveaux. Par défaut "{}:\+/\+levels"{} (ressources Qt embarquées). Passer un chemin système pour les tests hors-\/ressources. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_level_registry_a1e7b2e25c64d76acfe55520b08c5c8e4}\index{LevelRegistry@{LevelRegistry}!instance@{instance}}
+\index{instance@{instance}!LevelRegistry@{LevelRegistry}}
+\doxysubsubsection{\texorpdfstring{instance()}{instance()}}
+{\footnotesize\ttfamily \label{class_level_registry_a1e7b2e25c64d76acfe55520b08c5c8e4} 
+\doxymbox{\hyperlink{class_level_registry}{Level\+Registry}} \& Level\+Registry::\+instance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Singleton :\+ retourne l\textquotesingle{}instance unique du registre. 
+
+
+
+\label{class_level_registry_doc-variable-members}
+\Hypertarget{class_level_registry_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_level_registry_a79e97a769927c158c2bac7455f7200b3}\index{LevelRegistry@{LevelRegistry}!LEVEL\_COUNT@{LEVEL\_COUNT}}
+\index{LEVEL\_COUNT@{LEVEL\_COUNT}!LevelRegistry@{LevelRegistry}}
+\doxysubsubsection{\texorpdfstring{LEVEL\_COUNT}{LEVEL\_COUNT}}
+{\footnotesize\ttfamily \label{class_level_registry_a79e97a769927c158c2bac7455f7200b3} 
+int Level\+Registry::\+\+LEVEL\+\_\+\+COUNT = 3\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+\Hypertarget{class_level_registry_a2bfb98533b366816a4099d5c1fd38638}\index{LevelRegistry@{LevelRegistry}!m\_descriptors@{m\_descriptors}}
+\index{m\_descriptors@{m\_descriptors}!LevelRegistry@{LevelRegistry}}
+\doxysubsubsection{\texorpdfstring{m\_descriptors}{m\_descriptors}}
+{\footnotesize\ttfamily \label{class_level_registry_a2bfb98533b366816a4099d5c1fd38638} 
+QVector$<$\doxymbox{\hyperlink{struct_level_descriptor}{Level\+Descriptor}}$>$ Level\+Registry::\+m\+\_\+descriptors\hspace{0.3cm}{\ttfamily [private]}}
+
+Vues légères pointant vers les buffers ci-\/dessus. Reconstruites après chaque \doxylink{class_level_registry_a2f62eb2dcf0c4eb1d90e6903b3f0a36f}{init()} car les pointeurs raw peuvent changer si QVector réalloue lors d\textquotesingle{}un append. \Hypertarget{class_level_registry_a522439dd57d53288443e0dca8990cb72}\index{LevelRegistry@{LevelRegistry}!m\_dynamics@{m\_dynamics}}
+\index{m\_dynamics@{m\_dynamics}!LevelRegistry@{LevelRegistry}}
+\doxysubsubsection{\texorpdfstring{m\_dynamics}{m\_dynamics}}
+{\footnotesize\ttfamily \label{class_level_registry_a522439dd57d53288443e0dca8990cb72} 
+QVector$<$\doxymbox{\hyperlink{struct_dynamic_level_descriptor}{Dynamic\+Level\+Descriptor}}$>$ Level\+Registry::\+m\+\_\+dynamics\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Buffers propriétaires (\doxylink{struct_dynamic_level_descriptor}{Dynamic\+Level\+Descriptor} gère la mémoire). 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{levelregistry_8h}{levelregistry.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{levelregistry_8cpp}{levelregistry.\+cpp}}\end{DoxyCompactItemize}

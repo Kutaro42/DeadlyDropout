@@ -1,0 +1,11 @@
+<map id="Enemy" name="Enemy">
+<area shape="rect" id="Node000001" title="Base class defining the structure and mechanics of a hostile entity." alt="" coords="193,379,338,1216"/>
+<area shape="rect" id="Node000003" href="$class_zombie_launcher_model.html" title="Ranged enemy that fires rubble at the player." alt="" coords="5,1371,176,1632"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="190,1101,126,1371,120,1370,189,1106"/>
+<area shape="rect" id="Node000004" href="$class_zombie_std_model.html" title="Business logic of a &quot;standard zombie&quot; enemy implementing the Enemy parent class." alt="" coords="200,1424,330,1579"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="267,1229,268,1425,263,1424,264,1233"/>
+<area shape="rect" id="Node000005" href="$classboss_model.html" title="A boss model that handles the boss&#39;s behavior (attacks, movement, etc.)." alt="" coords="354,1264,497,1739"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="342,1128,374,1264,369,1264,340,1133"/>
+<area shape="rect" id="Node000002" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="217,5,314,331"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="266,343,268,379,263,379,265,348"/>
+</map>

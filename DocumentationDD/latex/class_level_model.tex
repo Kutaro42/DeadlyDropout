@@ -1,0 +1,421 @@
+\doxysection{Level\+Model Class Reference}
+\hypertarget{class_level_model}{}\label{class_level_model}\index{LevelModel@{LevelModel}}
+
+
+Conteneur de données pour les entités d\textquotesingle{}un niveau.  
+
+
+
+
+{\ttfamily \+\#include $<$levelmodel.\+h$>$}
+
+
+
+Inheritance diagram for Level\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_level_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Level\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_level_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_level_model_a869791b975a69c9a234bf360f6c31249}{sig\+Player\+Key\+Obtain}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_level_model_aa5a97cf1007cd601333033e652c6c1ce}{Level\+Model}} ()
+\begin{DoxyCompactList}\small\item\em Constructeur par défaut. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_level_model_a9145bb70d25bac71f332c4baaaa5c4d9}{\texorpdfstring{$\sim$}{\string~}\+Level\+Model}} ()
+\begin{DoxyCompactList}\small\item\em Destructeur. Libère la mémoire des entités stockées. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_level_model_af0377d313b51e87462fa179cded56538}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Vide tous les conteneurs et supprime les entités en mémoire. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_level_model_ad17431481889b9306af0eb0e89387e17}{add\+Wall}} (\doxymbox{\hyperlink{class_wall_model}{Wall\+Model}} \texorpdfstring{$\ast$}{*}w)
+\item 
+void \doxymbox{\hyperlink{class_level_model_a3de70484549a5b581f6cc5cae0b7b8ea}{add\+Floor\+Tile}} (\doxymbox{\hyperlink{class_floor_model}{Floor\+Model}} \texorpdfstring{$\ast$}{*}f)
+\item 
+void \doxymbox{\hyperlink{class_level_model_a2d0b176b0f4a955398be5bec0c321d56}{add\+Enemy}} (\doxymbox{\hyperlink{class_enemy}{Enemy}} \texorpdfstring{$\ast$}{*}e)
+\item 
+void \doxymbox{\hyperlink{class_level_model_a0b52b2340430d5315ef6c5bfc39d2f6f}{add\+Standard\+Door}} (\doxymbox{\hyperlink{class_standard_door_model}{Standard\+Door\+Model}} \texorpdfstring{$\ast$}{*}d)
+\item 
+void \doxymbox{\hyperlink{class_level_model_a5f3ae346df93310ecad5532c8172666c}{add\+Boss\+Door}} (\doxymbox{\hyperlink{class_boss_door_model}{Boss\+Door\+Model}} \texorpdfstring{$\ast$}{*}d)
+\item 
+void \doxymbox{\hyperlink{class_level_model_a6ef1a22a2b6f85acdd9cc4ab40447c87}{set\+Exit\+Door}} (\doxymbox{\hyperlink{class_exit_door_model}{Exit\+Door\+Model}} \texorpdfstring{$\ast$}{*}d)
+\item 
+void \doxymbox{\hyperlink{class_level_model_a0cc24b3cf14e8466bed507ac18a20631}{set\+Player\+Spawn\+Pos}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos)
+\item 
+void \doxymbox{\hyperlink{class_level_model_abe417fe55f30601ff2e8a3afca57e94d}{set\+Level\+Id}} (int id)
+\item 
+QVector$<$ \doxymbox{\hyperlink{class_wall_model}{Wall\+Model}} \texorpdfstring{$\ast$}{*} $>$ \& \doxymbox{\hyperlink{class_level_model_ab8f57c397d0356007b73d46f12ab6aaa}{get\+Walls}} ()
+\item 
+QVector$<$ \doxymbox{\hyperlink{class_floor_model}{Floor\+Model}} \texorpdfstring{$\ast$}{*} $>$ \& \doxymbox{\hyperlink{class_level_model_a937302f402d3844ed54ce8426ffaa87a}{get\+Floor\+Tiles}} ()
+\item 
+QVector$<$ \doxymbox{\hyperlink{class_enemy}{Enemy}} \texorpdfstring{$\ast$}{*} $>$ \& \doxymbox{\hyperlink{class_level_model_a3b454c4e30a819593bc96e9feee09dcc}{get\+Enemies}} ()
+\item 
+QVector$<$ \doxymbox{\hyperlink{class_standard_door_model}{Standard\+Door\+Model}} \texorpdfstring{$\ast$}{*} $>$ \& \doxymbox{\hyperlink{class_level_model_a425f5eb681aa4c3fd19a4c4cf334b0a3}{get\+Standard\+Doors}} ()
+\item 
+QVector$<$ \doxymbox{\hyperlink{class_boss_door_model}{Boss\+Door\+Model}} \texorpdfstring{$\ast$}{*} $>$ \& \doxymbox{\hyperlink{class_level_model_acfcaa96a787f89dfea5cdf027b7f06e5}{get\+Boss\+Doors}} ()
+\item 
+\doxymbox{\hyperlink{class_exit_door_model}{Exit\+Door\+Model}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_level_model_a4c5aef7de9a8edd44a0111ea55da5dbc}{get\+Exit\+Door}} () const
+\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_level_model_a20fc82bd1a61c70824d077aa03b06aeb}{get\+Spawn\+Pos}} () const
+\item 
+int \doxymbox{\hyperlink{class_level_model_aba24b5beec5608fd8f67a1d1851c5ca1}{get\+Level\+Id}} () const
+\item 
+bool \doxymbox{\hyperlink{class_level_model_a1ac9c2658ab7f80f9a435233824972fe}{boss\+Defeat}} ()
+\begin{DoxyCompactList}\small\item\em Vérifie si tous les monstres du niveau sont morts. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QVector$<$ \doxymbox{\hyperlink{class_wall_model}{Wall\+Model}} \texorpdfstring{$\ast$}{*} $>$ \doxymbox{\hyperlink{class_level_model_a44c9ceab2025713bc17c394959a6e45c}{walls}}
+\begin{DoxyCompactList}\small\item\em Liste des murs constituant la structure du niveau. \end{DoxyCompactList}\item 
+QVector$<$ \doxymbox{\hyperlink{class_floor_model}{Floor\+Model}} \texorpdfstring{$\ast$}{*} $>$ \doxymbox{\hyperlink{class_level_model_a643616a9a202c1af56fdf3fc7cb8689d}{floor\+Tiles}}
+\begin{DoxyCompactList}\small\item\em Liste des tiles de sol décoratives (sans collision). \end{DoxyCompactList}\item 
+QVector$<$ \doxymbox{\hyperlink{class_enemy}{Enemy}} \texorpdfstring{$\ast$}{*} $>$ \doxymbox{\hyperlink{class_level_model_ae9065abff8a2f28e662173138e9d3c26}{enemies}}
+\begin{DoxyCompactList}\small\item\em Liste des ennemis présents dans le niveau. \end{DoxyCompactList}\item 
+QVector$<$ \doxymbox{\hyperlink{class_standard_door_model}{Standard\+Door\+Model}} \texorpdfstring{$\ast$}{*} $>$ \doxymbox{\hyperlink{class_level_model_adcadb066de8445fd50611cbecc7df8c1}{standard\+Doors}}
+\begin{DoxyCompactList}\small\item\em Liste des portes standards du niveau. \end{DoxyCompactList}\item 
+QVector$<$ \doxymbox{\hyperlink{class_boss_door_model}{Boss\+Door\+Model}} \texorpdfstring{$\ast$}{*} $>$ \doxymbox{\hyperlink{class_level_model_a9fcd2c6c31e17ff0fbb185bbc6ac0286}{boss\+Doors}}
+\begin{DoxyCompactList}\small\item\em Liste des portes de boss du niveau. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_exit_door_model}{Exit\+Door\+Model}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_level_model_a32a870cda9d321b3c088ca8c2148af8d}{exit\+Door}}
+\begin{DoxyCompactList}\small\item\em Modèle de la porte de fin de niveau. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_level_model_ae726ad1fcfad1f3b8faf2a96d45298c1}{player\+Spawn\+Pos}}
+\begin{DoxyCompactList}\small\item\em Coordonnées d\textquotesingle{}apparition du joueur. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_level_model_ab46ac8c3e4bd1b74f603816e7c68ae05}{level\+Id}}
+\begin{DoxyCompactList}\small\item\em Identifiant unique du niveau courant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Conteneur de données pour les entités d\textquotesingle{}un niveau. 
+
+
+\begin{DoxyItemize}
+\item Stocke les murs, les ennemis, la porte de sortie et les positions initiales. Ce modèle est peuplé par le \doxylink{class_level_builder}{Level\+Builder} au moment du chargement de la carte.
+\item \begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+\end{DoxyItemize}
+
+\label{class_level_model_doc-constructors}
+\Hypertarget{class_level_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_level_model_aa5a97cf1007cd601333033e652c6c1ce}\index{LevelModel@{LevelModel}!LevelModel@{LevelModel}}
+\index{LevelModel@{LevelModel}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{LevelModel()}{LevelModel()}}
+{\footnotesize\ttfamily \label{class_level_model_aa5a97cf1007cd601333033e652c6c1ce} 
+Level\+Model::\+\+Level\+Model (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructeur par défaut. 
+
+\Hypertarget{class_level_model_a9145bb70d25bac71f332c4baaaa5c4d9}\index{LevelModel@{LevelModel}!````~LevelModel@{\texorpdfstring{$\sim$}{\string~}LevelModel}}
+\index{````~LevelModel@{\texorpdfstring{$\sim$}{\string~}LevelModel}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}LevelModel()}{\string~LevelModel()}}
+{\footnotesize\ttfamily \label{class_level_model_a9145bb70d25bac71f332c4baaaa5c4d9} 
+Level\+Model::\+\texorpdfstring{$\sim$}{\string~}\+Level\+Model (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructeur. Libère la mémoire des entités stockées. 
+
+
+
+\label{class_level_model_doc-func-members}
+\Hypertarget{class_level_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_level_model_a5f3ae346df93310ecad5532c8172666c}\index{LevelModel@{LevelModel}!addBossDoor@{addBossDoor}}
+\index{addBossDoor@{addBossDoor}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{addBossDoor()}{addBossDoor()}}
+{\footnotesize\ttfamily \label{class_level_model_a5f3ae346df93310ecad5532c8172666c} 
+void Level\+Model::\+add\+Boss\+Door (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_boss_door_model}{Boss\+Door\+Model}} \texorpdfstring{$\ast$}{*}}]{d}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Pointeur vers la porte de boss à ajouter. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_level_model_a2d0b176b0f4a955398be5bec0c321d56}\index{LevelModel@{LevelModel}!addEnemy@{addEnemy}}
+\index{addEnemy@{addEnemy}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{addEnemy()}{addEnemy()}}
+{\footnotesize\ttfamily \label{class_level_model_a2d0b176b0f4a955398be5bec0c321d56} 
+void Level\+Model::\+add\+Enemy (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_enemy}{Enemy}} \texorpdfstring{$\ast$}{*}}]{e}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & Pointeur vers l\textquotesingle{}ennemi à ajouter. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_level_model_a3de70484549a5b581f6cc5cae0b7b8ea}\index{LevelModel@{LevelModel}!addFloorTile@{addFloorTile}}
+\index{addFloorTile@{addFloorTile}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{addFloorTile()}{addFloorTile()}}
+{\footnotesize\ttfamily \label{class_level_model_a3de70484549a5b581f6cc5cae0b7b8ea} 
+void Level\+Model::\+add\+Floor\+Tile (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_floor_model}{Floor\+Model}} \texorpdfstring{$\ast$}{*}}]{f}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Pointeur vers la tile de sol à ajouter. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_level_model_a0b52b2340430d5315ef6c5bfc39d2f6f}\index{LevelModel@{LevelModel}!addStandardDoor@{addStandardDoor}}
+\index{addStandardDoor@{addStandardDoor}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{addStandardDoor()}{addStandardDoor()}}
+{\footnotesize\ttfamily \label{class_level_model_a0b52b2340430d5315ef6c5bfc39d2f6f} 
+void Level\+Model::\+add\+Standard\+Door (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_standard_door_model}{Standard\+Door\+Model}} \texorpdfstring{$\ast$}{*}}]{d}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Pointeur vers la porte standard à ajouter. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_level_model_ad17431481889b9306af0eb0e89387e17}\index{LevelModel@{LevelModel}!addWall@{addWall}}
+\index{addWall@{addWall}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{addWall()}{addWall()}}
+{\footnotesize\ttfamily \label{class_level_model_ad17431481889b9306af0eb0e89387e17} 
+void Level\+Model::\+add\+Wall (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_wall_model}{Wall\+Model}} \texorpdfstring{$\ast$}{*}}]{w}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em w} & Pointeur vers le mur à ajouter. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_level_model_a1ac9c2658ab7f80f9a435233824972fe}\index{LevelModel@{LevelModel}!bossDefeat@{bossDefeat}}
+\index{bossDefeat@{bossDefeat}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{bossDefeat()}{bossDefeat()}}
+{\footnotesize\ttfamily \label{class_level_model_a1ac9c2658ab7f80f9a435233824972fe} 
+bool Level\+Model::\+boss\+Defeat (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Vérifie si tous les monstres du niveau sont morts. 
+
+\begin{DoxyReturn}{Returns}
+true si tous les ennemis sont inactifs, false sinon. 
+\end{DoxyReturn}
+\Hypertarget{class_level_model_af0377d313b51e87462fa179cded56538}\index{LevelModel@{LevelModel}!clear@{clear}}
+\index{clear@{clear}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily \label{class_level_model_af0377d313b51e87462fa179cded56538} 
+void Level\+Model::\+clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Vide tous les conteneurs et supprime les entités en mémoire. 
+
+\Hypertarget{class_level_model_acfcaa96a787f89dfea5cdf027b7f06e5}\index{LevelModel@{LevelModel}!getBossDoors@{getBossDoors}}
+\index{getBossDoors@{getBossDoors}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{getBossDoors()}{getBossDoors()}}
+{\footnotesize\ttfamily \label{class_level_model_acfcaa96a787f89dfea5cdf027b7f06e5} 
+QVector$<$ \doxymbox{\hyperlink{class_boss_door_model}{Boss\+Door\+Model}} \texorpdfstring{$\ast$}{*} $>$ \& Level\+Model::\+get\+Boss\+Doors (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+La liste des portes de boss. 
+\end{DoxyReturn}
+\Hypertarget{class_level_model_a3b454c4e30a819593bc96e9feee09dcc}\index{LevelModel@{LevelModel}!getEnemies@{getEnemies}}
+\index{getEnemies@{getEnemies}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{getEnemies()}{getEnemies()}}
+{\footnotesize\ttfamily \label{class_level_model_a3b454c4e30a819593bc96e9feee09dcc} 
+QVector$<$ \doxymbox{\hyperlink{class_enemy}{Enemy}} \texorpdfstring{$\ast$}{*} $>$ \& Level\+Model::\+get\+Enemies (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+La liste des ennemis. 
+\end{DoxyReturn}
+\Hypertarget{class_level_model_a4c5aef7de9a8edd44a0111ea55da5dbc}\index{LevelModel@{LevelModel}!getExitDoor@{getExitDoor}}
+\index{getExitDoor@{getExitDoor}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{getExitDoor()}{getExitDoor()}}
+{\footnotesize\ttfamily \label{class_level_model_a4c5aef7de9a8edd44a0111ea55da5dbc} 
+\doxymbox{\hyperlink{class_exit_door_model}{Exit\+Door\+Model}} \texorpdfstring{$\ast$}{*} Level\+Model::\+get\+Exit\+Door (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+La porte de sortie. 
+\end{DoxyReturn}
+\Hypertarget{class_level_model_a937302f402d3844ed54ce8426ffaa87a}\index{LevelModel@{LevelModel}!getFloorTiles@{getFloorTiles}}
+\index{getFloorTiles@{getFloorTiles}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{getFloorTiles()}{getFloorTiles()}}
+{\footnotesize\ttfamily \label{class_level_model_a937302f402d3844ed54ce8426ffaa87a} 
+QVector$<$ \doxymbox{\hyperlink{class_floor_model}{Floor\+Model}} \texorpdfstring{$\ast$}{*} $>$ \& Level\+Model::\+get\+Floor\+Tiles (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+La liste des tiles de sol. 
+\end{DoxyReturn}
+\Hypertarget{class_level_model_aba24b5beec5608fd8f67a1d1851c5ca1}\index{LevelModel@{LevelModel}!getLevelId@{getLevelId}}
+\index{getLevelId@{getLevelId}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{getLevelId()}{getLevelId()}}
+{\footnotesize\ttfamily \label{class_level_model_aba24b5beec5608fd8f67a1d1851c5ca1} 
+int Level\+Model::\+get\+Level\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+L\textquotesingle{}identifiant du niveau. 
+\end{DoxyReturn}
+\Hypertarget{class_level_model_a20fc82bd1a61c70824d077aa03b06aeb}\index{LevelModel@{LevelModel}!getSpawnPos@{getSpawnPos}}
+\index{getSpawnPos@{getSpawnPos}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{getSpawnPos()}{getSpawnPos()}}
+{\footnotesize\ttfamily \label{class_level_model_a20fc82bd1a61c70824d077aa03b06aeb} 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} Level\+Model::\+get\+Spawn\+Pos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+La position de spawn du joueur. 
+\end{DoxyReturn}
+\Hypertarget{class_level_model_a425f5eb681aa4c3fd19a4c4cf334b0a3}\index{LevelModel@{LevelModel}!getStandardDoors@{getStandardDoors}}
+\index{getStandardDoors@{getStandardDoors}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{getStandardDoors()}{getStandardDoors()}}
+{\footnotesize\ttfamily \label{class_level_model_a425f5eb681aa4c3fd19a4c4cf334b0a3} 
+QVector$<$ \doxymbox{\hyperlink{class_standard_door_model}{Standard\+Door\+Model}} \texorpdfstring{$\ast$}{*} $>$ \& Level\+Model::\+get\+Standard\+Doors (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+La liste des portes standards. 
+\end{DoxyReturn}
+\Hypertarget{class_level_model_ab8f57c397d0356007b73d46f12ab6aaa}\index{LevelModel@{LevelModel}!getWalls@{getWalls}}
+\index{getWalls@{getWalls}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{getWalls()}{getWalls()}}
+{\footnotesize\ttfamily \label{class_level_model_ab8f57c397d0356007b73d46f12ab6aaa} 
+QVector$<$ \doxymbox{\hyperlink{class_wall_model}{Wall\+Model}} \texorpdfstring{$\ast$}{*} $>$ \& Level\+Model::\+get\+Walls (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+La liste des murs. 
+\end{DoxyReturn}
+\Hypertarget{class_level_model_a6ef1a22a2b6f85acdd9cc4ab40447c87}\index{LevelModel@{LevelModel}!setExitDoor@{setExitDoor}}
+\index{setExitDoor@{setExitDoor}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{setExitDoor()}{setExitDoor()}}
+{\footnotesize\ttfamily \label{class_level_model_a6ef1a22a2b6f85acdd9cc4ab40447c87} 
+void Level\+Model::\+set\+Exit\+Door (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_exit_door_model}{Exit\+Door\+Model}} \texorpdfstring{$\ast$}{*}}]{d}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Pointeur vers la porte de sortie. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_level_model_abe417fe55f30601ff2e8a3afca57e94d}\index{LevelModel@{LevelModel}!setLevelId@{setLevelId}}
+\index{setLevelId@{setLevelId}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{setLevelId()}{setLevelId()}}
+{\footnotesize\ttfamily \label{class_level_model_abe417fe55f30601ff2e8a3afca57e94d} 
+void Level\+Model::\+set\+Level\+Id (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & L\textquotesingle{}identifiant du niveau. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_level_model_a0cc24b3cf14e8466bed507ac18a20631}\index{LevelModel@{LevelModel}!setPlayerSpawnPos@{setPlayerSpawnPos}}
+\index{setPlayerSpawnPos@{setPlayerSpawnPos}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{setPlayerSpawnPos()}{setPlayerSpawnPos()}}
+{\footnotesize\ttfamily \label{class_level_model_a0cc24b3cf14e8466bed507ac18a20631} 
+void Level\+Model::\+set\+Player\+Spawn\+Pos (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{pos}{}\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & Les coordonnées de spawn. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_level_model_a869791b975a69c9a234bf360f6c31249}\index{LevelModel@{LevelModel}!sigPlayerKeyObtain@{sigPlayerKeyObtain}}
+\index{sigPlayerKeyObtain@{sigPlayerKeyObtain}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{sigPlayerKeyObtain}{sigPlayerKeyObtain}}
+{\footnotesize\ttfamily \label{class_level_model_a869791b975a69c9a234bf360f6c31249} 
+void Level\+Model::\+sig\+Player\+Key\+Obtain (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+\label{class_level_model_doc-variable-members}
+\Hypertarget{class_level_model_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_level_model_a9fcd2c6c31e17ff0fbb185bbc6ac0286}\index{LevelModel@{LevelModel}!bossDoors@{bossDoors}}
+\index{bossDoors@{bossDoors}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{bossDoors}{bossDoors}}
+{\footnotesize\ttfamily \label{class_level_model_a9fcd2c6c31e17ff0fbb185bbc6ac0286} 
+QVector$<$\doxymbox{\hyperlink{class_boss_door_model}{Boss\+Door\+Model}}\texorpdfstring{$\ast$}{*}$>$ Level\+Model::\+boss\+Doors\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Liste des portes de boss du niveau. 
+
+\Hypertarget{class_level_model_ae9065abff8a2f28e662173138e9d3c26}\index{LevelModel@{LevelModel}!enemies@{enemies}}
+\index{enemies@{enemies}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{enemies}{enemies}}
+{\footnotesize\ttfamily \label{class_level_model_ae9065abff8a2f28e662173138e9d3c26} 
+QVector$<$\doxymbox{\hyperlink{class_enemy}{Enemy}}\texorpdfstring{$\ast$}{*}$>$ Level\+Model::\+enemies\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Liste des ennemis présents dans le niveau. 
+
+\Hypertarget{class_level_model_a32a870cda9d321b3c088ca8c2148af8d}\index{LevelModel@{LevelModel}!exitDoor@{exitDoor}}
+\index{exitDoor@{exitDoor}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{exitDoor}{exitDoor}}
+{\footnotesize\ttfamily \label{class_level_model_a32a870cda9d321b3c088ca8c2148af8d} 
+\doxymbox{\hyperlink{class_exit_door_model}{Exit\+Door\+Model}}\texorpdfstring{$\ast$}{*} Level\+Model::\+exit\+Door\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Modèle de la porte de fin de niveau. 
+
+\Hypertarget{class_level_model_a643616a9a202c1af56fdf3fc7cb8689d}\index{LevelModel@{LevelModel}!floorTiles@{floorTiles}}
+\index{floorTiles@{floorTiles}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{floorTiles}{floorTiles}}
+{\footnotesize\ttfamily \label{class_level_model_a643616a9a202c1af56fdf3fc7cb8689d} 
+QVector$<$\doxymbox{\hyperlink{class_floor_model}{Floor\+Model}}\texorpdfstring{$\ast$}{*}$>$ Level\+Model::\+floor\+Tiles\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Liste des tiles de sol décoratives (sans collision). 
+
+\Hypertarget{class_level_model_ab46ac8c3e4bd1b74f603816e7c68ae05}\index{LevelModel@{LevelModel}!levelId@{levelId}}
+\index{levelId@{levelId}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{levelId}{levelId}}
+{\footnotesize\ttfamily \label{class_level_model_ab46ac8c3e4bd1b74f603816e7c68ae05} 
+int Level\+Model::\+level\+Id\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Identifiant unique du niveau courant. 
+
+\Hypertarget{class_level_model_ae726ad1fcfad1f3b8faf2a96d45298c1}\index{LevelModel@{LevelModel}!playerSpawnPos@{playerSpawnPos}}
+\index{playerSpawnPos@{playerSpawnPos}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{playerSpawnPos}{playerSpawnPos}}
+{\footnotesize\ttfamily \label{class_level_model_ae726ad1fcfad1f3b8faf2a96d45298c1} 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} Level\+Model::\+player\+Spawn\+Pos\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Coordonnées d\textquotesingle{}apparition du joueur. 
+
+\Hypertarget{class_level_model_adcadb066de8445fd50611cbecc7df8c1}\index{LevelModel@{LevelModel}!standardDoors@{standardDoors}}
+\index{standardDoors@{standardDoors}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{standardDoors}{standardDoors}}
+{\footnotesize\ttfamily \label{class_level_model_adcadb066de8445fd50611cbecc7df8c1} 
+QVector$<$\doxymbox{\hyperlink{class_standard_door_model}{Standard\+Door\+Model}}\texorpdfstring{$\ast$}{*}$>$ Level\+Model::\+standard\+Doors\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Liste des portes standards du niveau. 
+
+\Hypertarget{class_level_model_a44c9ceab2025713bc17c394959a6e45c}\index{LevelModel@{LevelModel}!walls@{walls}}
+\index{walls@{walls}!LevelModel@{LevelModel}}
+\doxysubsubsection{\texorpdfstring{walls}{walls}}
+{\footnotesize\ttfamily \label{class_level_model_a44c9ceab2025713bc17c394959a6e45c} 
+QVector$<$\doxymbox{\hyperlink{class_wall_model}{Wall\+Model}}\texorpdfstring{$\ast$}{*}$>$ Level\+Model::\+walls\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Liste des murs constituant la structure du niveau. 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{levelmodel_8h}{levelmodel.\+h}}\item 
+build/\+\+Desktop\+\_\+\+Qt\+\_\+6\+\_\+10\+\_\+0\+\_\+\+Min\+GW\+\_\+64\+\_\+bit-\/\+Release/\+release/\+\doxymbox{\hyperlink{moc__levelmodel_8cpp}{moc\+\_\+levelmodel.\+cpp}}\item 
+Sources/\+\doxymbox{\hyperlink{levelmodel_8cpp}{levelmodel.\+cpp}}\end{DoxyCompactItemize}

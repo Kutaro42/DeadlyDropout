@@ -1,0 +1,105 @@
+\doxysection{Floor\+View Class Reference}
+\hypertarget{class_floor_view}{}\label{class_floor_view}\index{FloorView@{FloorView}}
+
+
+Item graphique représentant une tile de sol.  
+
+
+
+
+{\ttfamily \+\#include $<$floorview.\+h$>$}
+
+
+
+Inheritance diagram for Floor\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{class_floor_view__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Floor\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{class_floor_view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_floor_view_ac292fee179574a2d2d00f50aa6811a10}{Floor\+View}} (\doxymbox{\hyperlink{class_floor_model}{Floor\+Model}} \texorpdfstring{$\ast$}{*}model, QGraphics\+Item \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Construit la vue à partir d\textquotesingle{}un \doxylink{class_floor_model}{Floor\+Model}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const QPixmap \& \doxymbox{\hyperlink{class_floor_view_a09e4c1dd5bfe53aba1e47cb5b7a49f76}{tileset}} ()
+\begin{DoxyCompactList}\small\item\em Retourne le tileset de sol (chargé une seule fois). \end{DoxyCompactList}\item 
+static QPixmap \doxymbox{\hyperlink{class_floor_view_ab8d2d420a27f31c552cdd0eb4303d6ef}{extract\+Tile}} (int tile\+Index, int tileset\+Cols, int tileW, int tileH)
+\begin{DoxyCompactList}\small\item\em Découpe et retourne la tile correspondant à l\textquotesingle{}index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Item graphique représentant une tile de sol. 
+
+Fonctionne exactement comme \doxylink{class_wall_view}{Wall\+View} :\+ le tileset est chargé une seule fois via un cache statique, puis la tile est découpée selon l\textquotesingle{}index stocké dans le \doxylink{class_floor_model}{Floor\+Model} associé.
+
+La tile est placée sur la couche Z\+\_\+\+FLOOR, sous les murs et les entités.
+
+Formule de découpe (identique à \doxylink{class_wall_view}{Wall\+View}) :\+ col = (tile\+Index -\/ 1) \% tileset\+Cols row = (tile\+Index -\/ 1) /\+ tileset\+Cols 
+
+\label{class_floor_view_doc-constructors}
+\Hypertarget{class_floor_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_floor_view_ac292fee179574a2d2d00f50aa6811a10}\index{FloorView@{FloorView}!FloorView@{FloorView}}
+\index{FloorView@{FloorView}!FloorView@{FloorView}}
+\doxysubsubsection{\texorpdfstring{FloorView()}{FloorView()}}
+{\footnotesize\ttfamily \label{class_floor_view_ac292fee179574a2d2d00f50aa6811a10} 
+Floor\+View::\+\+Floor\+View (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_floor_model}{Floor\+Model}} \texorpdfstring{$\ast$}{*}}]{model}{, }\item[{QGraphics\+Item \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Construit la vue à partir d\textquotesingle{}un \doxylink{class_floor_model}{Floor\+Model}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & Pointeur vers le modèle de la tile de sol. \\
+\hline
+{\em parent} & Item graphique parent (optionnel). \\
+\hline
+\end{DoxyParams}
+
+
+\label{class_floor_view_doc-func-members}
+\Hypertarget{class_floor_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_floor_view_ab8d2d420a27f31c552cdd0eb4303d6ef}\index{FloorView@{FloorView}!extractTile@{extractTile}}
+\index{extractTile@{extractTile}!FloorView@{FloorView}}
+\doxysubsubsection{\texorpdfstring{extractTile()}{extractTile()}}
+{\footnotesize\ttfamily \label{class_floor_view_ab8d2d420a27f31c552cdd0eb4303d6ef} 
+QPixmap Floor\+View::\+extract\+Tile (\begin{DoxyParamCaption}\item[{int}]{tile\+Index}{, }\item[{int}]{tileset\+Cols}{, }\item[{int}]{tileW}{, }\item[{int}]{tileH}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Découpe et retourne la tile correspondant à l\textquotesingle{}index. 
+
+\Hypertarget{class_floor_view_a09e4c1dd5bfe53aba1e47cb5b7a49f76}\index{FloorView@{FloorView}!tileset@{tileset}}
+\index{tileset@{tileset}!FloorView@{FloorView}}
+\doxysubsubsection{\texorpdfstring{tileset()}{tileset()}}
+{\footnotesize\ttfamily \label{class_floor_view_a09e4c1dd5bfe53aba1e47cb5b7a49f76} 
+const QPixmap \& Floor\+View::\+tileset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Retourne le tileset de sol (chargé une seule fois). 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{floorview_8h}{floorview.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{floorview_8cpp}{floorview.\+cpp}}\end{DoxyCompactItemize}

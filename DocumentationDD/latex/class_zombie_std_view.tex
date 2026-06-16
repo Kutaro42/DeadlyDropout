@@ -1,0 +1,392 @@
+\doxysection{Zombie\+Std\+View Class Reference}
+\hypertarget{class_zombie_std_view}{}\label{class_zombie_std_view}\index{ZombieStdView@{ZombieStdView}}
+
+
+Graphics component (View) of the standard zombie.  
+
+
+
+
+{\ttfamily \+\#include $<$zombiestdview.\+h$>$}
+
+
+
+Inheritance diagram for Zombie\+Std\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_zombie_std_view__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Zombie\+Std\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_zombie_std_view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_zombie_std_view_a92f42eb50db0938614e70266afb31554}{Zombie\+Std\+View}} (\doxymbox{\hyperlink{class_zombie_std_model}{Zombie\+Std\+Model}} \texorpdfstring{$\ast$}{*}model, QGraphics\+Item \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Zombie view constructor. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_zombie_std_view_ab6f69896d3f40ca5edf6bb3a9f68d554}{update\+View}} (float dt)
+\begin{DoxyCompactList}\small\item\em Updates the sprite position and current animation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_zombie_std_view_a3c613fa874838035622dd51c9a63e601}{load\+Sheet}} (QVector$<$ QPixmap $>$ \&frames, const QString \&path)
+\begin{DoxyCompactList}\small\item\em Extracts and scales the frames from a horizontal sprite sheet. \end{DoxyCompactList}\item 
+QPixmap \doxymbox{\hyperlink{class_zombie_std_view_a2325f62346e18469b223d7d6611956ea}{make\+Fallback}} ()
+\begin{DoxyCompactList}\small\item\em Builds a green square with the initial "{}\+Z"{} when a resource is missing. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_zombie_std_view_a701cd87c089a85cf755d9d1e26be7055}{advance\+Frames}} (float dt, const QVector$<$ QPixmap $>$ \&frames)
+\begin{DoxyCompactList}\small\item\em Advances the frame reader of the current animation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \doxymbox{\hyperlink{class_zombie_std_view_a82e38ceac867dde8d5e41aa3b85eccd0}{dir\+Idx}} (\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}} d)
+\begin{DoxyCompactList}\small\item\em Converts a \doxylink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction} enum to an integer table index. \end{DoxyCompactList}\item 
+static \doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}} \doxymbox{\hyperlink{class_zombie_std_view_a62fbf0ef0394eed74815340a0f88f65a}{velocity\+To\+Dir}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} vel)
+\begin{DoxyCompactList}\small\item\em Estimates the dominant cardinal direction from a kinematic velocity vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_zombie_std_model}{Zombie\+Std\+Model}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_zombie_std_view_a6131066664ba0bfac8f173ba3e3ace43}{model}}
+\begin{DoxyCompactList}\small\item\em Reference to the zombie model managing state data (position, velocity). \end{DoxyCompactList}\item 
+QVector$<$ QPixmap $>$ \doxymbox{\hyperlink{class_zombie_std_view_aca05e70455fe95f5c74c765a21f61a91}{sprites}} \+[\doxymbox{\hyperlink{class_zombie_std_view_a9dfdd714ef8caf7a39ca6c71fc7b9dab}{STATE\+\_\+\+COUNT}}]\+\+[\doxymbox{\hyperlink{class_zombie_std_view_aaa2ff7c9fce495e857cd0584948a587d}{DIR\+\_\+\+COUNT}}]\+
+\begin{DoxyCompactList}\small\item\em 2D sprite matrix (state × direction). \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_zombie_std_view_a679f193449323815fa507ee3b624aa2d}{current\+Frame}}
+\begin{DoxyCompactList}\small\item\em Index of the currently rendered frame. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_zombie_std_view_ac108cc13b70cd4a5c164cfeeb4be4df4}{frame\+Timer}}
+\begin{DoxyCompactList}\small\item\em Clock accumulating delta-\/time to trigger the next frame change. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_zombie_std_view_a1574922306e4a612a2776d38f0c6d7b7}{anim\+Speed}}
+\begin{DoxyCompactList}\small\item\em Wait time (in s) before switching walk frames. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_zombie_std_view_aacd6bf15d91dc93591f892a32d689230}{anim\+Speed\+Death}}
+\item 
+int \doxymbox{\hyperlink{class_zombie_std_view_a360f10ea7ce00325be775bca500f2a59}{current\+Dir}}
+\begin{DoxyCompactList}\small\item\em Index storing the last computed direction. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_zombie_std_view_a830a0591b141d12207109cf7db73144e}{dead\+Anim\+Finished}}
+\begin{DoxyCompactList}\small\item\em True once the DEAD animation has been played in full. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr int \doxymbox{\hyperlink{class_zombie_std_view_a39b4e2f0ddc3912456a2dad026720b23}{IDLE}} = 0
+\begin{DoxyCompactList}\small\item\em Constant for the idle state. \end{DoxyCompactList}\item 
+static constexpr int \doxymbox{\hyperlink{class_zombie_std_view_aeb67d230d3e0f0c3fc842913b3ea7058}{WALK}} = 1
+\begin{DoxyCompactList}\small\item\em Constant for the moving state (Chasing). \end{DoxyCompactList}\item 
+static constexpr int \doxymbox{\hyperlink{class_zombie_std_view_a87f0f785f3f500295bc444669da9e457}{HURT}} = 2
+\begin{DoxyCompactList}\small\item\em Constant for the hurt state. \end{DoxyCompactList}\item 
+static constexpr int \doxymbox{\hyperlink{class_zombie_std_view_a5e20b9842f0132d6d337a8b647a8f4a2}{DEAD}} = 3
+\begin{DoxyCompactList}\small\item\em Constant for the dead state. \end{DoxyCompactList}\item 
+static constexpr int \doxymbox{\hyperlink{class_zombie_std_view_a9dfdd714ef8caf7a39ca6c71fc7b9dab}{STATE\+\_\+\+COUNT}} = 4
+\begin{DoxyCompactList}\small\item\em Total number of managed animation states. \end{DoxyCompactList}\item 
+static constexpr int \doxymbox{\hyperlink{class_zombie_std_view_aaa2ff7c9fce495e857cd0584948a587d}{DIR\+\_\+\+COUNT}} = 4
+\begin{DoxyCompactList}\small\item\em Total number of directions (DOWN, UP, LEFT, RIGHT). \end{DoxyCompactList}\item 
+static constexpr int \doxymbox{\hyperlink{class_zombie_std_view_a04f80bfe7f2773b5a058d5f179299362}{FRAME\+\_\+W}} = 32
+\begin{DoxyCompactList}\small\item\em Width of one frame read from the spritesheet. \end{DoxyCompactList}\item 
+static constexpr int \doxymbox{\hyperlink{class_zombie_std_view_a7a3fbe5b8667d7cd377b8cb4cb6f563e}{FRAME\+\_\+H}} = 32
+\begin{DoxyCompactList}\small\item\em Height of one frame read from the spritesheet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Graphics component (View) of the standard zombie. 
+
+
+\begin{DoxyItemize}
+\item Inherits from QGraphics\+Pixmap\+Item for Qt rendering. Manages walk and idle animations based on the AI state (Idle/\+\+Chasing). 
+\end{DoxyItemize}
+
+\label{class_zombie_std_view_doc-constructors}
+\Hypertarget{class_zombie_std_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_zombie_std_view_a92f42eb50db0938614e70266afb31554}\index{ZombieStdView@{ZombieStdView}!ZombieStdView@{ZombieStdView}}
+\index{ZombieStdView@{ZombieStdView}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{ZombieStdView()}{ZombieStdView()}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_a92f42eb50db0938614e70266afb31554} 
+Zombie\+Std\+View::\+\+Zombie\+Std\+View (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_zombie_std_model}{Zombie\+Std\+Model}} \texorpdfstring{$\ast$}{*}}]{model}{, }\item[{QGraphics\+Item \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Zombie view constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & Pointer to the zombie\textquotesingle{}s logical data (\doxylink{class_zombie_std_model}{Zombie\+Std\+Model}). \\
+\hline
+{\em parent} & Parent graphics item. \\
+\hline
+\end{DoxyParams}
+
+
+\label{class_zombie_std_view_doc-func-members}
+\Hypertarget{class_zombie_std_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_zombie_std_view_a701cd87c089a85cf755d9d1e26be7055}\index{ZombieStdView@{ZombieStdView}!advanceFrames@{advanceFrames}}
+\index{advanceFrames@{advanceFrames}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{advanceFrames()}{advanceFrames()}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_a701cd87c089a85cf755d9d1e26be7055} 
+void Zombie\+Std\+View::\+advance\+Frames (\begin{DoxyParamCaption}\item[{float}]{dt}{, }\item[{const QVector$<$ QPixmap $>$ \&}]{frames}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Advances the frame reader of the current animation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Fraction of a second elapsed. \\
+\hline
+{\em frames} & Stack of images composing the target animation. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_zombie_std_view_a82e38ceac867dde8d5e41aa3b85eccd0}\index{ZombieStdView@{ZombieStdView}!dirIdx@{dirIdx}}
+\index{dirIdx@{dirIdx}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{dirIdx()}{dirIdx()}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_a82e38ceac867dde8d5e41aa3b85eccd0} 
+int Zombie\+Std\+View::\+dir\+Idx (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}}}]{d}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Converts a \doxylink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction} enum to an integer table index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Cardinal direction to evaluate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Corresponding index (0 = Down, 1 = Up, 2 = Left, 3 = Right). 
+\end{DoxyReturn}
+\Hypertarget{class_zombie_std_view_a3c613fa874838035622dd51c9a63e601}\index{ZombieStdView@{ZombieStdView}!loadSheet@{loadSheet}}
+\index{loadSheet@{loadSheet}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{loadSheet()}{loadSheet()}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_a3c613fa874838035622dd51c9a63e601} 
+void Zombie\+Std\+View::\+load\+Sheet (\begin{DoxyParamCaption}\item[{QVector$<$ QPixmap $>$ \&}]{frames}{, }\item[{const QString \&}]{path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Extracts and scales the frames from a horizontal sprite sheet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frames} & Image list (QVector) to store the sliced frames. \\
+\hline
+{\em path} & Location of the PNG file in the Qt resources. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_zombie_std_view_a2325f62346e18469b223d7d6611956ea}\index{ZombieStdView@{ZombieStdView}!makeFallback@{makeFallback}}
+\index{makeFallback@{makeFallback}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{makeFallback()}{makeFallback()}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_a2325f62346e18469b223d7d6611956ea} 
+QPixmap Zombie\+Std\+View::\+make\+Fallback (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Builds a green square with the initial "{}\+Z"{} when a resource is missing. 
+
+\begin{DoxyReturn}{Returns}
+A dynamically generated image in the correct format. 
+\end{DoxyReturn}
+\Hypertarget{class_zombie_std_view_ab6f69896d3f40ca5edf6bb3a9f68d554}\index{ZombieStdView@{ZombieStdView}!updateView@{updateView}}
+\index{updateView@{updateView}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{updateView()}{updateView()}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_ab6f69896d3f40ca5edf6bb3a9f68d554} 
+void Zombie\+Std\+View::\+update\+View (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})}
+
+
+
+Updates the sprite position and current animation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta-\/time in seconds elapsed since the last cycle. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_zombie_std_view_a62fbf0ef0394eed74815340a0f88f65a}\index{ZombieStdView@{ZombieStdView}!velocityToDir@{velocityToDir}}
+\index{velocityToDir@{velocityToDir}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{velocityToDir()}{velocityToDir()}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_a62fbf0ef0394eed74815340a0f88f65a} 
+\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}} Zombie\+Std\+View::\+velocity\+To\+Dir (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{vel}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Estimates the dominant cardinal direction from a kinematic velocity vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vel} & The current velocity vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The most likely \doxylink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}. 
+\end{DoxyReturn}
+
+
+\label{class_zombie_std_view_doc-variable-members}
+\Hypertarget{class_zombie_std_view_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_zombie_std_view_a1574922306e4a612a2776d38f0c6d7b7}\index{ZombieStdView@{ZombieStdView}!animSpeed@{animSpeed}}
+\index{animSpeed@{animSpeed}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{animSpeed}{animSpeed}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_a1574922306e4a612a2776d38f0c6d7b7} 
+float Zombie\+Std\+View::\+anim\+Speed\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Wait time (in s) before switching walk frames. 
+
+\Hypertarget{class_zombie_std_view_aacd6bf15d91dc93591f892a32d689230}\index{ZombieStdView@{ZombieStdView}!animSpeedDeath@{animSpeedDeath}}
+\index{animSpeedDeath@{animSpeedDeath}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{animSpeedDeath}{animSpeedDeath}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_aacd6bf15d91dc93591f892a32d689230} 
+float Zombie\+Std\+View::\+anim\+Speed\+Death\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_zombie_std_view_a360f10ea7ce00325be775bca500f2a59}\index{ZombieStdView@{ZombieStdView}!currentDir@{currentDir}}
+\index{currentDir@{currentDir}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{currentDir}{currentDir}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_a360f10ea7ce00325be775bca500f2a59} 
+int Zombie\+Std\+View::\+current\+Dir\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Index storing the last computed direction. 
+
+\Hypertarget{class_zombie_std_view_a679f193449323815fa507ee3b624aa2d}\index{ZombieStdView@{ZombieStdView}!currentFrame@{currentFrame}}
+\index{currentFrame@{currentFrame}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{currentFrame}{currentFrame}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_a679f193449323815fa507ee3b624aa2d} 
+int Zombie\+Std\+View::\+current\+Frame\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Index of the currently rendered frame. 
+
+\Hypertarget{class_zombie_std_view_a5e20b9842f0132d6d337a8b647a8f4a2}\index{ZombieStdView@{ZombieStdView}!DEAD@{DEAD}}
+\index{DEAD@{DEAD}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{DEAD}{DEAD}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_a5e20b9842f0132d6d337a8b647a8f4a2} 
+int Zombie\+Std\+View::\+\+DEAD = 3\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Constant for the dead state. 
+
+\Hypertarget{class_zombie_std_view_a830a0591b141d12207109cf7db73144e}\index{ZombieStdView@{ZombieStdView}!deadAnimFinished@{deadAnimFinished}}
+\index{deadAnimFinished@{deadAnimFinished}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{deadAnimFinished}{deadAnimFinished}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_a830a0591b141d12207109cf7db73144e} 
+bool Zombie\+Std\+View::\+dead\+Anim\+Finished\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+True once the DEAD animation has been played in full. 
+
+\Hypertarget{class_zombie_std_view_aaa2ff7c9fce495e857cd0584948a587d}\index{ZombieStdView@{ZombieStdView}!DIR\_COUNT@{DIR\_COUNT}}
+\index{DIR\_COUNT@{DIR\_COUNT}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{DIR\_COUNT}{DIR\_COUNT}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_aaa2ff7c9fce495e857cd0584948a587d} 
+int Zombie\+Std\+View::\+\+DIR\+\_\+\+COUNT = 4\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Total number of directions (DOWN, UP, LEFT, RIGHT). 
+
+\Hypertarget{class_zombie_std_view_a7a3fbe5b8667d7cd377b8cb4cb6f563e}\index{ZombieStdView@{ZombieStdView}!FRAME\_H@{FRAME\_H}}
+\index{FRAME\_H@{FRAME\_H}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{FRAME\_H}{FRAME\_H}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_a7a3fbe5b8667d7cd377b8cb4cb6f563e} 
+int Zombie\+Std\+View::\+\+FRAME\+\_\+H = 32\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Height of one frame read from the spritesheet. 
+
+\Hypertarget{class_zombie_std_view_a04f80bfe7f2773b5a058d5f179299362}\index{ZombieStdView@{ZombieStdView}!FRAME\_W@{FRAME\_W}}
+\index{FRAME\_W@{FRAME\_W}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{FRAME\_W}{FRAME\_W}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_a04f80bfe7f2773b5a058d5f179299362} 
+int Zombie\+Std\+View::\+\+FRAME\+\_\+W = 32\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Width of one frame read from the spritesheet. 
+
+\Hypertarget{class_zombie_std_view_ac108cc13b70cd4a5c164cfeeb4be4df4}\index{ZombieStdView@{ZombieStdView}!frameTimer@{frameTimer}}
+\index{frameTimer@{frameTimer}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{frameTimer}{frameTimer}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_ac108cc13b70cd4a5c164cfeeb4be4df4} 
+float Zombie\+Std\+View::\+frame\+Timer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Clock accumulating delta-\/time to trigger the next frame change. 
+
+\Hypertarget{class_zombie_std_view_a87f0f785f3f500295bc444669da9e457}\index{ZombieStdView@{ZombieStdView}!HURT@{HURT}}
+\index{HURT@{HURT}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{HURT}{HURT}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_a87f0f785f3f500295bc444669da9e457} 
+int Zombie\+Std\+View::\+\+HURT = 2\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Constant for the hurt state. 
+
+\Hypertarget{class_zombie_std_view_a39b4e2f0ddc3912456a2dad026720b23}\index{ZombieStdView@{ZombieStdView}!IDLE@{IDLE}}
+\index{IDLE@{IDLE}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{IDLE}{IDLE}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_a39b4e2f0ddc3912456a2dad026720b23} 
+int Zombie\+Std\+View::\+\+IDLE = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Constant for the idle state. 
+
+\Hypertarget{class_zombie_std_view_a6131066664ba0bfac8f173ba3e3ace43}\index{ZombieStdView@{ZombieStdView}!model@{model}}
+\index{model@{model}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_a6131066664ba0bfac8f173ba3e3ace43} 
+\doxymbox{\hyperlink{class_zombie_std_model}{Zombie\+Std\+Model}}\texorpdfstring{$\ast$}{*} Zombie\+Std\+View::\+model\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reference to the zombie model managing state data (position, velocity). 
+
+\Hypertarget{class_zombie_std_view_aca05e70455fe95f5c74c765a21f61a91}\index{ZombieStdView@{ZombieStdView}!sprites@{sprites}}
+\index{sprites@{sprites}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{sprites}{sprites}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_aca05e70455fe95f5c74c765a21f61a91} 
+QVector$<$QPixmap$>$ Zombie\+Std\+View::\+sprites\+[\doxymbox{\hyperlink{class_zombie_std_view_a9dfdd714ef8caf7a39ca6c71fc7b9dab}{STATE\+\_\+\+COUNT}}]\+\+[\doxymbox{\hyperlink{class_zombie_std_view_aaa2ff7c9fce495e857cd0584948a587d}{DIR\+\_\+\+COUNT}}]\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+2D sprite matrix (state × direction). 
+
+\Hypertarget{class_zombie_std_view_a9dfdd714ef8caf7a39ca6c71fc7b9dab}\index{ZombieStdView@{ZombieStdView}!STATE\_COUNT@{STATE\_COUNT}}
+\index{STATE\_COUNT@{STATE\_COUNT}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{STATE\_COUNT}{STATE\_COUNT}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_a9dfdd714ef8caf7a39ca6c71fc7b9dab} 
+int Zombie\+Std\+View::\+\+STATE\+\_\+\+COUNT = 4\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Total number of managed animation states. 
+
+\Hypertarget{class_zombie_std_view_aeb67d230d3e0f0c3fc842913b3ea7058}\index{ZombieStdView@{ZombieStdView}!WALK@{WALK}}
+\index{WALK@{WALK}!ZombieStdView@{ZombieStdView}}
+\doxysubsubsection{\texorpdfstring{WALK}{WALK}}
+{\footnotesize\ttfamily \label{class_zombie_std_view_aeb67d230d3e0f0c3fc842913b3ea7058} 
+int Zombie\+Std\+View::\+\+WALK = 1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Constant for the moving state (Chasing). 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{zombiestdview_8h}{zombiestdview.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{zombiestdview_8cpp}{zombiestdview.\+cpp}}\end{DoxyCompactItemize}

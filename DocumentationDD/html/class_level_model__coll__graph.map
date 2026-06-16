@@ -1,0 +1,14 @@
+<map id="LevelModel" name="LevelModel">
+<area shape="rect" id="Node000001" title="Conteneur de données pour les entités d&#39;un niveau." alt="" coords="26,973,176,1555"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,800,64,869"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="42,881,59,973,53,974,42,887"/>
+<area shape="rect" id="Node000003" href="$class_exit_door_model.html" title="Represents the portal that allows you to advance to the next level." alt="" coords="181,768,299,901"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="220,899,184,1017,179,1015,218,904"/>
+<area shape="rect" id="Node000004" href="$class_global_door.html" title="Base entity from which standard doors, boss doors and level&#45;exit zones inherit." alt="" coords="236,649,332,719"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="271,731,262,769,257,767,269,736"/>
+<area shape="rect" id="Node000005" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="186,296,283,600"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="270,612,280,650,274,649,269,617"/>
+<area shape="rect" id="Node000006" href="$class_vector2f.html" title="Mathematical class describing 2D vectors (position, velocity)." alt="" coords="75,5,170,224"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="112,221,107,332,104,447,104,836,104,956,99,956,99,836,99,447,102,331,112,227"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="159,221,183,287,178,287,159,226"/>
+</map>

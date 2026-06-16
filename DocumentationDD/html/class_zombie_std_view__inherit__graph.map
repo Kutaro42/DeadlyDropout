@@ -1,0 +1,5 @@
+<map id="ZombieStdView" name="ZombieStdView">
+<area shape="rect" id="Node000001" title="Graphics component (View) of the standard zombie." alt="" coords="11,123,142,640"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,148,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,87,79,123,74,123,76,92"/>
+</map>

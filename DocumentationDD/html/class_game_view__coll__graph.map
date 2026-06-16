@@ -1,0 +1,45 @@
+<map id="GameView" name="GameView">
+<area shape="rect" id="Node000001" title="Gère le rendu visuel du jeu, l&#39;affichage du HUD, la caméra et capte les événements." alt="" coords="238,4672,387,5659"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,4136,107,4205"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="60,4218,83,4389,100,4494,121,4599,147,4696,177,4794,240,4975,235,4976,172,4796,142,4698,116,4601,94,4495,77,4390,60,4223"/>
+<area shape="rect" id="Node000003" href="$class_player_view.html" title="Graphics class managing the player&#39;s animations and the slash visual effect." alt="" coords="131,3741,315,4600"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="262,4597,269,4655,264,4655,261,4603"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="101,3152,244,3221"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="175,3233,203,3742,198,3742,175,3239"/>
+<area shape="rect" id="Node000011" href="$class_gun_view.html" title="Graphics item for the pistol: anchored on the player and rotated toward the cursor." alt="" coords="338,4061,467,4280"/>
+<area shape="poly" id="edge11_Node000011_Node000004" title=" " alt="" coords="169,3234,172,3323,181,3435,192,3495,208,3555,229,3613,257,3668,271,3680,288,3691,312,3713,329,3740,360,3821,381,3906,394,3988,402,4062,396,4061,389,3988,376,3907,355,3823,324,3743,308,3717,285,3695,268,3685,253,3671,224,3616,203,3557,187,3496,176,3435,167,3323,169,3239"/>
+<area shape="rect" id="Node000005" href="$class_player_model.html" title="Model encapsulating the player&#39;s properties, resources and actions." alt="" coords="267,2704,416,3669"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="284,3667,279,3725,274,3724,283,3672"/>
+<area shape="poly" id="edge13_Node000011_Node000005" title=" " alt="" coords="372,3667,398,4045,392,4044,371,3672"/>
+<area shape="rect" id="Node000012" href="$class_game_model.html" title="Root model aggregating persistent game&#45;session data (MVC Model layer)." alt="" coords="497,4040,653,4301"/>
+<area shape="poly" id="edge16_Node000012_Node000005" title=" " alt="" coords="416,3613,437,3668,448,3689,459,3704,470,3719,481,3740,506,3811,527,3884,557,4023,552,4023,522,3885,501,3812,476,3742,466,3722,455,3707,443,3692,432,3670,416,3618"/>
+<area shape="rect" id="Node000006" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="810,296,907,600"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="795,472,734,499,662,537,593,588,562,618,536,651,498,709,467,764,443,817,424,867,400,963,389,1057,388,1155,389,1261,388,1379,379,1515,365,1737,355,2039,346,2704,340,2704,350,2039,359,1736,374,1514,382,1379,384,1261,382,1155,384,1057,394,962,419,865,438,815,463,762,494,707,531,648,558,614,589,584,659,533,731,494,798,468"/>
+<area shape="rect" id="Node000014" href="$class_enemy.html" title="Base class defining the structure and mechanics of a hostile entity." alt="" coords="932,649,1077,1465"/>
+<area shape="poly" id="edge19_Node000014_Node000006" title=" " alt="" coords="909,611,921,649,934,702,929,702,916,650,910,617"/>
+<area shape="rect" id="Node000017" href="$class_global_door.html" title="Base entity from which standard doors, boss doors and level&#45;exit zones inherit." alt="" coords="810,1023,907,1092"/>
+<area shape="poly" id="edge25_Node000017_Node000006" title=" " alt="" coords="859,612,861,1023,856,1023,859,618"/>
+<area shape="rect" id="Node000007" href="$class_vector2f.html" title="Mathematical class describing 2D vectors (position, velocity)." alt="" coords="811,5,906,224"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="859,221,861,279,856,279,859,226"/>
+<area shape="poly" id="edge20_Node000014_Node000007" title=" " alt="" coords="906,198,927,247,950,341,969,438,994,632,988,632,964,439,945,343,922,249,906,203"/>
+<area shape="rect" id="Node000015" href="$class_level_model.html" title="Conteneur de données pour les entités d&#39;un niveau." alt="" coords="612,2896,762,3477"/>
+<area shape="poly" id="edge26_Node000015_Node000007" title=" " alt="" coords="811,167,770,220,726,287,707,325,692,365,682,405,679,447,679,1849,686,2879,680,2879,674,1849,674,447,677,404,687,363,702,323,721,285,766,216,813,162"/>
+<area shape="rect" id="Node000008" href="$class_katana.html" title="Model of the player&#39;s melee weapon (GDD Step 5 — Combat rules)." alt="" coords="170,1579,314,2117"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="250,2114,264,2389,284,2680,284,2687,279,2687,279,2680,259,2389,249,2120"/>
+<area shape="rect" id="Node000009" href="$class_gun_model.html" title="Manages firing logic, magazine, ammo reserve and shoot cooldown (GDD Step 5)." alt="" coords="388,1515,538,2181"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="416,2178,415,2206,392,2447,374,2687,368,2687,387,2447,410,2205,415,2184"/>
+<area shape="poly" id="edge12_Node000011_Node000009" title=" " alt="" coords="458,2179,431,3669,423,3867,414,4045,408,4044,418,3867,426,3669,456,2184"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="546,1023,604,1092"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="568,1109,513,1515,507,1515,568,1104"/>
+<area shape="poly" id="edge15_Node000012_Node000010" title=" " alt="" coords="577,1106,577,4040,572,4040,572,1107"/>
+<area shape="poly" id="edge22_Node000015_Node000010" title=" " alt="" coords="578,1104,660,2680,672,2896,667,2896,655,2680,577,1110"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="394,4277,361,4656,356,4655,392,4282"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="549,4299,481,4601,394,4909,389,4908,476,4599,547,4304"/>
+<area shape="rect" id="Node000013" href="$classboss_model.html" title="A boss model that handles the boss&#39;s behavior (attacks, movement, etc.)." alt="" coords="807,2205,950,2680"/>
+<area shape="poly" id="edge17_Node000012_Node000013" title=" " alt="" coords="879,2677,874,2892,857,3142,843,3274,826,3408,803,3541,776,3670,750,3764,718,3858,648,4026,643,4024,713,3856,745,3763,771,3669,798,3540,820,3407,838,3273,852,3141,869,2892,878,2682"/>
+<area shape="poly" id="edge18_Node000013_Node000014" title=" " alt="" coords="966,1478,903,2206,898,2205,965,1483"/>
+<area shape="poly" id="edge21_Node000012_Node000015" title=" " alt="" coords="655,3475,594,4024,589,4023,653,3480"/>
+<area shape="rect" id="Node000016" href="$class_exit_door_model.html" title="Represents the portal that allows you to advance to the next level." alt="" coords="725,1781,843,1915"/>
+<area shape="poly" id="edge23_Node000015_Node000016" title=" " alt="" coords="774,1911,755,2048,736,2206,711,2554,697,2879,692,2879,706,2554,731,2205,750,2048,773,1917"/>
+<area shape="poly" id="edge24_Node000016_Node000017" title=" " alt="" coords="855,1104,793,1782,788,1781,854,1109"/>
+</map>

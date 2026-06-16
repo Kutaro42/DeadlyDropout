@@ -1,0 +1,50 @@
+\doxysection{Headers/\+levelregistry.h File Reference}
+\hypertarget{levelregistry_8h}{}\label{levelregistry_8h}\index{Headers/levelregistry.h@{Headers/levelregistry.h}}
+
+
+Registre centralisé des niveaux du jeu.  
+
+
+{\ttfamily \+\#include "{}matrixextractor.\+h"{}}\newline
+{\ttfamily \+\#include $<$QVector$>$}\newline
+Include dependency graph for levelregistry.\+h:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=283pt]{levelregistry_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{levelregistry_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{class_level_registry}{Level\+Registry}}
+\begin{DoxyCompactList}\small\item\em Charge et stocke tous les \doxylink{struct_dynamic_level_descriptor}{Dynamic\+Level\+Descriptor} du jeu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Registre centralisé des niveaux du jeu. 
+
+\begin{DoxyAuthor}{Author}
+Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+Juin 2026
+\end{DoxyDate}
+\doxylink{class_level_registry}{Level\+Registry} remplace l\textquotesingle{}ancien namespace Level\+Data de \doxylink{leveltemplate_8h}{leveltemplate.\+h}. Il charge tous les niveaux depuis leurs fichiers texte via \doxylink{class_matrix_extractor}{Matrix\+Extractor}, et expose la liste nécessaire au \doxylink{class_game_controller}{Game\+Controller}.
+
+Pour ajouter un niveau :\+
+\begin{DoxyEnumerate}
+\item Créer le dossier levels/\+level\+\_\+\+N/\+
+\item Y placer entities.\+txt, walls.\+txt, floor.\+txt
+\item Incrémenter LEVEL\+\_\+\+COUNT et appeler load\+Level(\+N) dans \doxylink{class_level_registry_a2f62eb2dcf0c4eb1d90e6903b3f0a36f}{Level\+Registry::\+init()}.
+\item Déclarer le fichier dans ressources.\+qrc (section /\+levels). 
+\end{DoxyEnumerate}

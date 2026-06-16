@@ -1,0 +1,17 @@
+<map id="Headers/katana.h" name="Headers/katana.h">
+<area shape="rect" id="Node000001" title="Declaration of the Katana class, the player&#39;s melee weapon." alt="" coords="117,5,241,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,73,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,35,79,75,76,70,156,30"/>
+<area shape="rect" id="Node000003" href="$config_8h.html" title="Global constants and configuration enumerations for the game Deadly Dropout." alt="" coords="97,80,165,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="173,31,150,69,146,65,169,34"/>
+<area shape="rect" id="Node000005" href="$vector2f_8h.html" title="Declaration of the Vector2f math class for the game&#39;s 2D geometry." alt="" coords="189,80,268,107"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="188,30,214,67,209,67,187,35"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="292,80,394,107"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="208,30,303,72,298,74,207,35"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="101,155,161,181"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="133,105,133,140,129,138,129,109"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="192,155,249,181"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="229,105,226,141,221,137,225,109"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="274,155,343,181"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="243,105,286,145,281,144,241,110"/>
+</map>

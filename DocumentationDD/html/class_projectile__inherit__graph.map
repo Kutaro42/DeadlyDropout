@@ -1,0 +1,9 @@
+<map id="Projectile" name="Projectile">
+<area shape="rect" id="Node000001" title="Abstract base class for any projectile moving in a straight line." alt="" coords="68,379,170,597"/>
+<area shape="rect" id="Node000003" href="$class_bullet_model.html" title="Projectile fired by the player (semi&#45;automatic pistol)." alt="" coords="5,645,105,715"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="80,609,69,647,64,645,76,614"/>
+<area shape="rect" id="Node000004" href="$class_rubble_model.html" title="Rubble (projectile) fired by the launcher zombie." alt="" coords="129,645,237,715"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="162,609,175,646,170,645,159,614"/>
+<area shape="rect" id="Node000002" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="71,5,168,331"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,343,122,379,117,378,119,348"/>
+</map>

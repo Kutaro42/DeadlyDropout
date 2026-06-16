@@ -1,0 +1,586 @@
+\doxysection{Enemy Class Reference}
+\hypertarget{class_enemy}{}\label{class_enemy}\index{Enemy@{Enemy}}
+
+
+Base class defining the structure and mechanics of a hostile entity.  
+
+
+
+
+{\ttfamily \+\#include $<$enemy.\+h$>$}
+
+
+
+Inheritance diagram for Enemy:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_enemy__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Enemy:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_enemy__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_enemy_acb9b3f2b8d2c900ea75aa54bb218a6b1}{Enemy}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, int max\+Hp, float speed, int dmg, float det\+Radius, float w, float h, int gold)
+\begin{DoxyCompactList}\small\item\em \doxylink{class_enemy}{Enemy} builder. \end{DoxyCompactList}\item 
+virtual \doxymbox{\hyperlink{class_enemy_aafb628c66008e33afdd750e2f492bd98}{\texorpdfstring{$\sim$}{\string~}\+Enemy}} ()=default
+\item 
+virtual void \doxymbox{\hyperlink{class_enemy_ae99c0c4859aa823fc56a2afb6ebe7e5a}{update}} (float dt, \doxymbox{\hyperlink{class_vector2f}{Vector2f}} player\+Pos)=0
+\begin{DoxyCompactList}\small\item\em Updates the enemy\textquotesingle{}s cognitive and spatial behavior. \end{DoxyCompactList}\item 
+virtual void \doxymbox{\hyperlink{class_enemy_abbccbc565cab606af4bc79ccab00cde7}{attack}} (\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \texorpdfstring{$\ast$}{*}player)=0
+\begin{DoxyCompactList}\small\item\em Launches an attack against the player. \end{DoxyCompactList}\item 
+virtual void \doxymbox{\hyperlink{class_enemy_aaee485ba8d59fa74103a9fd27cc0977f}{on\+Death}} ()
+\begin{DoxyCompactList}\small\item\em Hook called only once when the state changes to DEAD. Default empty implementation; subclasses can override to trigger specific effects (sound, particles, etc.). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_enemy_a29465820c3774a2fd58176e20cc9ffcd}{take\+Damage}} (int amount)
+\begin{DoxyCompactList}\small\item\em Reduces the enemy\textquotesingle{}s health. Puts the enemy in the HURT state, or triggers the death animation if health drops to zero. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_enemy_aa8061b986af89459a0229764c269caf6}{trigger\+Death}} ()
+\begin{DoxyCompactList}\small\item\em Sets the enemy to the DEAD state and starts the death animation timer. The enemy will be effectively deactivated (active = false) once the timer has elapsed, via tick\+Dead\+State(). \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_enemy_a83454276708a4d53ff6bd416a7ed9b68}{tick\+Transient\+States}} (float dt)
+\begin{DoxyCompactList}\small\item\em Decrements the HURT and DEAD timers; must be called at the beginning of each \doxylink{class_enemy_ae99c0c4859aa823fc56a2afb6ebe7e5a}{update()} method in subclasses. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_enemy_a6522d23d6f804be482a9d1c5acd85332}{detects\+Player}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} player\+Pos) const
+\begin{DoxyCompactList}\small\item\em Checks whether the player\textquotesingle{}s position is within the detection cone/\+radius. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_enemy_aa303f416300a30ae68914495964cb5c1}{refresh\+Chase\+Timer}} ()
+\begin{DoxyCompactList}\small\item\em Indicates that the player is visible this tick (resets the persistence timer). \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_enemy_a699329cc207df9aa66978887051441d0}{tick\+Chase\+Timer}} (float dt)
+\begin{DoxyCompactList}\small\item\em Decrement the persistence timer and return to IDLE if it has expired. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_enemy_ae776a5e255a4b47426e7d997fb0cb966}{has\+Dropped\+Gold}} () const
+\item 
+void \doxymbox{\hyperlink{class_enemy_af2037832dbf4bda5669a850c9a3cba8e}{mark\+Gold\+Dropped}} ()
+\item 
+bool \doxymbox{\hyperlink{class_enemy_aae548d86271be8d62fed25cb6ba63380}{get\+Hit\+This\+Slash}} () const
+\item 
+void \doxymbox{\hyperlink{class_enemy_a50b40e0dc971e516b30e095c996c10aa}{set\+Hit\+This\+Slash}} (bool b)
+\item 
+int \doxymbox{\hyperlink{class_enemy_abc4b83878be690920a59499a17d6019c}{get\+Hp}} () const
+\item 
+int \doxymbox{\hyperlink{class_enemy_a5970616d8efe048e0be00f89e0cd1172}{get\+Max\+Hp}} () const
+\item 
+int \doxymbox{\hyperlink{class_enemy_afe0dd7e7a4db1c802267dcf383376480}{get\+Gold\+Drop}} () const
+\item 
+bool \doxymbox{\hyperlink{class_enemy_a2a029ea00e6924377c7e8bcb1368fc55}{getis\+Boss}} () const
+\item 
+\doxymbox{\hyperlink{config_8h_a588700cbbd7d8e80b51ef81b140213fc}{Enemy\+AIState}} \doxymbox{\hyperlink{class_enemy_a957b449f7b027ea4af52fb39d57cbdb4}{get\+AIState}} () const
+\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_enemy_a1379d4a478531ac50a34b46d42b16a83}{get\+Velocity}} () const
+\item 
+void \doxymbox{\hyperlink{class_enemy_ab6a3b691be209d9fce40f760bb479a11}{update}} (float dt) override
+\begin{DoxyCompactList}\small\item\em Update to the entity\textquotesingle{}s internal logic. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_entity_acaf2ad84607691b229cddab1da0bf819}{Entity}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float w, float h)
+\begin{DoxyCompactList}\small\item\em Constructor of the entity. \end{DoxyCompactList}\item 
+virtual \doxymbox{\hyperlink{class_entity_ac479d009ddde62dfb378ca0a70d81307}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual shredder. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_afdda0263db3d2e465a6ae6bad91eb990}{get\+Position}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a5f154968f2a478ea924460c78e0cd39e}{get\+Width}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a1332918563adb284c0fd432d47486d44}{get\+Height}} () const
+\item 
+bool \doxymbox{\hyperlink{class_entity_aea1c1568b4123d989c5310697030ad77}{is\+Active}} () const
+\item 
+void \doxymbox{\hyperlink{class_entity_ac5164b8c832f9a055df976527fe10032}{set\+Active}} (bool a)
+\item 
+void \doxymbox{\hyperlink{class_entity_a575ec530746fbb3eca1baddec2d0b030}{set\+Position}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos)
+\item 
+QRectF \doxymbox{\hyperlink{class_entity_ae00b70bd40800a8bd23c38b1c84404a9}{get\+Collider}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the entity\textquotesingle{}s collision bounding box. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{class_enemy_a278d70100af07c946743db1b7a1a9f59}{hp}}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_enemy}{Enemy}\textquotesingle{}s current health points. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_enemy_ab48bc28310a5ca396fbfaf6edc74996d}{max\+Hp}}
+\begin{DoxyCompactList}\small\item\em Maximum health points. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_enemy_a98766d083fc49e746a37d0dc69be09e0}{speed}}
+\begin{DoxyCompactList}\small\item\em Linear travel speed. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_enemy_a506a6addb65f3811f1c2cd448cd7c812}{base\+Damage}}
+\begin{DoxyCompactList}\small\item\em Base damage dealt to the player. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_enemy_a573af3a6b672a882ae23263bfbcdf440}{attack\+Cooldown}}
+\begin{DoxyCompactList}\small\item\em Time required between two attacks. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_enemy_a22529e5dec1b3efeb774388f26f07cb3}{attack\+Timer}}
+\begin{DoxyCompactList}\small\item\em Internal timer that controls the attack duration. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_enemy_a729555629fedb465788a81e74163ce9a}{detection\+Radius}}
+\begin{DoxyCompactList}\small\item\em Range of the aggro/\+detection zone. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_enemy_a0f73c8c470381f070758926bbaa6564c}{gold\+Drop}}
+\begin{DoxyCompactList}\small\item\em A golden reward granted upon death. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_enemy_ae6b5fe8b5e8527b19cea1d188cf4384f}{gold\+Already\+Dropped}}
+\begin{DoxyCompactList}\small\item\em Anti-\/duplicate flag for gold loot. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_enemy_ab655b54a6e1638dc9935a2f8cf449b51}{is\+Boss}} = false
+\begin{DoxyCompactList}\small\item\em Point to the boss. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{config_8h_a588700cbbd7d8e80b51ef81b140213fc}{Enemy\+AIState}} \doxymbox{\hyperlink{class_enemy_a827dc8b29d6f3d75dea9504bcd9200ad}{ai\+State}}
+\begin{DoxyCompactList}\small\item\em State of the AI state machine. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_enemy_ae1137a68d2dc4174bc9e66123bd6218a}{velocity}}
+\begin{DoxyCompactList}\small\item\em Current direction of motion. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_enemy_a3d5e24c63037e5711fa9d0d9dfa0a967}{hit\+This\+Slash}}
+\begin{DoxyCompactList}\small\item\em Prevents multiple hits per attack. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_enemy_a5d56bf6b94d31989895663c379600bcc}{hurt\+Timer}}
+\begin{DoxyCompactList}\small\item\em Time remaining in the HURT state. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_enemy_a5144f514fca210ed75fa4ebb97f6a42d}{dead\+Timer}}
+\begin{DoxyCompactList}\small\item\em Time remaining in the DEAD state before deactivation. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_enemy_aa6522d79858918e3408e0ed084d47438}{chase\+Persist\+Timer}}
+\begin{DoxyCompactList}\small\item\em Time remaining before returning to IDLE after loss of sight. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_a6af9d6498134ad0906011778bc5736db}{position}}
+\begin{DoxyCompactList}\small\item\em The entity\textquotesingle{}s 2D coordinates. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_adadfcc784f30b51b8e49f8230a56b793}{width}}
+\begin{DoxyCompactList}\small\item\em The physical width of the entity in pixels. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_a4550dc1011f47f6c4bb86e564e7d605b}{height}}
+\begin{DoxyCompactList}\small\item\em The physical height of the entity in pixels. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_entity_a939da33e8b67b1d2ee227930aa72da3b}{active}}
+\begin{DoxyCompactList}\small\item\em Status of the entity (false if dead or destroyed). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class defining the structure and mechanics of a hostile entity. 
+
+\label{class_enemy_doc-constructors}
+\Hypertarget{class_enemy_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_enemy_acb9b3f2b8d2c900ea75aa54bb218a6b1}\index{Enemy@{Enemy}!Enemy@{Enemy}}
+\index{Enemy@{Enemy}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{Enemy()}{Enemy()}}
+{\footnotesize\ttfamily \label{class_enemy_acb9b3f2b8d2c900ea75aa54bb218a6b1} 
+Enemy::\+\+Enemy (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{pos}{, }\item[{int}]{max\+Hp}{, }\item[{float}]{speed}{, }\item[{int}]{dmg}{, }\item[{float}]{det\+Radius}{, }\item[{float}]{w}{, }\item[{float}]{h}{, }\item[{int}]{gold}{}\end{DoxyParamCaption})}
+
+
+
+\doxylink{class_enemy}{Enemy} builder. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & :\+ Spawn position. \\
+\hline
+{\em max\+HP} & :\+ Health Points. \\
+\hline
+{\em speed} & :\+ Travel speed. \\
+\hline
+{\em dmg} & :\+ Damage. \\
+\hline
+{\em det\+Radius} & :\+ Detection range. \\
+\hline
+{\em w} & :\+ Width. \\
+\hline
+{\em h} & :\+ Height. \\
+\hline
+{\em gold} & :\+ Gold dropped upon death. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_enemy_aafb628c66008e33afdd750e2f492bd98}\index{Enemy@{Enemy}!````~Enemy@{\texorpdfstring{$\sim$}{\string~}Enemy}}
+\index{````~Enemy@{\texorpdfstring{$\sim$}{\string~}Enemy}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Enemy()}{\string~Enemy()}}
+{\footnotesize\ttfamily \label{class_enemy_aafb628c66008e33afdd750e2f492bd98} 
+virtual Enemy::\+\texorpdfstring{$\sim$}{\string~}\+Enemy (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\label{class_enemy_doc-func-members}
+\Hypertarget{class_enemy_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_enemy_abbccbc565cab606af4bc79ccab00cde7}\index{Enemy@{Enemy}!attack@{attack}}
+\index{attack@{attack}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{attack()}{attack()}}
+{\footnotesize\ttfamily \label{class_enemy_abbccbc565cab606af4bc79ccab00cde7} 
+virtual void Enemy::\+attack (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \texorpdfstring{$\ast$}{*}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Launches an attack against the player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & :\+ A pointer to the target player\textquotesingle{}s instance. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \doxymbox{\hyperlink{classboss_model_a91a404844ae740d479dfceb47daba1f8}{boss\+Model}}, \doxymbox{\hyperlink{class_zombie_launcher_model_a78ed2957821f84cc14e7add157ab99fb}{Zombie\+Launcher\+Model}}, and \doxymbox{\hyperlink{class_zombie_std_model_a6e401448ce5212d94390bb402486b849}{Zombie\+Std\+Model}}.
+
+\Hypertarget{class_enemy_a6522d23d6f804be482a9d1c5acd85332}\index{Enemy@{Enemy}!detectsPlayer@{detectsPlayer}}
+\index{detectsPlayer@{detectsPlayer}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{detectsPlayer()}{detectsPlayer()}}
+{\footnotesize\ttfamily \label{class_enemy_a6522d23d6f804be482a9d1c5acd85332} 
+bool Enemy::\+detects\+Player (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{player\+Pos}{}\end{DoxyParamCaption}) const}
+
+
+
+Checks whether the player\textquotesingle{}s position is within the detection cone/\+radius. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player\+Pos} & Player\textquotesingle{}s position. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if detected, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_enemy_a957b449f7b027ea4af52fb39d57cbdb4}\index{Enemy@{Enemy}!getAIState@{getAIState}}
+\index{getAIState@{getAIState}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{getAIState()}{getAIState()}}
+{\footnotesize\ttfamily \label{class_enemy_a957b449f7b027ea4af52fb39d57cbdb4} 
+\doxymbox{\hyperlink{config_8h_a588700cbbd7d8e80b51ef81b140213fc}{Enemy\+AIState}} Enemy::\+get\+AIState (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_enemy_afe0dd7e7a4db1c802267dcf383376480}\index{Enemy@{Enemy}!getGoldDrop@{getGoldDrop}}
+\index{getGoldDrop@{getGoldDrop}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{getGoldDrop()}{getGoldDrop()}}
+{\footnotesize\ttfamily \label{class_enemy_afe0dd7e7a4db1c802267dcf383376480} 
+int Enemy::\+get\+Gold\+Drop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_enemy_aae548d86271be8d62fed25cb6ba63380}\index{Enemy@{Enemy}!getHitThisSlash@{getHitThisSlash}}
+\index{getHitThisSlash@{getHitThisSlash}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{getHitThisSlash()}{getHitThisSlash()}}
+{\footnotesize\ttfamily \label{class_enemy_aae548d86271be8d62fed25cb6ba63380} 
+bool Enemy::\+get\+Hit\+This\+Slash (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_enemy_abc4b83878be690920a59499a17d6019c}\index{Enemy@{Enemy}!getHp@{getHp}}
+\index{getHp@{getHp}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{getHp()}{getHp()}}
+{\footnotesize\ttfamily \label{class_enemy_abc4b83878be690920a59499a17d6019c} 
+int Enemy::\+get\+Hp (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_enemy_a2a029ea00e6924377c7e8bcb1368fc55}\index{Enemy@{Enemy}!getisBoss@{getisBoss}}
+\index{getisBoss@{getisBoss}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{getisBoss()}{getisBoss()}}
+{\footnotesize\ttfamily \label{class_enemy_a2a029ea00e6924377c7e8bcb1368fc55} 
+bool Enemy::\+getis\+Boss (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_enemy_a5970616d8efe048e0be00f89e0cd1172}\index{Enemy@{Enemy}!getMaxHp@{getMaxHp}}
+\index{getMaxHp@{getMaxHp}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{getMaxHp()}{getMaxHp()}}
+{\footnotesize\ttfamily \label{class_enemy_a5970616d8efe048e0be00f89e0cd1172} 
+int Enemy::\+get\+Max\+Hp (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_enemy_a1379d4a478531ac50a34b46d42b16a83}\index{Enemy@{Enemy}!getVelocity@{getVelocity}}
+\index{getVelocity@{getVelocity}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{getVelocity()}{getVelocity()}}
+{\footnotesize\ttfamily \label{class_enemy_a1379d4a478531ac50a34b46d42b16a83} 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} Enemy::\+get\+Velocity (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_enemy_ae776a5e255a4b47426e7d997fb0cb966}\index{Enemy@{Enemy}!hasDroppedGold@{hasDroppedGold}}
+\index{hasDroppedGold@{hasDroppedGold}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{hasDroppedGold()}{hasDroppedGold()}}
+{\footnotesize\ttfamily \label{class_enemy_ae776a5e255a4b47426e7d997fb0cb966} 
+bool Enemy::\+has\+Dropped\+Gold (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_enemy_af2037832dbf4bda5669a850c9a3cba8e}\index{Enemy@{Enemy}!markGoldDropped@{markGoldDropped}}
+\index{markGoldDropped@{markGoldDropped}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{markGoldDropped()}{markGoldDropped()}}
+{\footnotesize\ttfamily \label{class_enemy_af2037832dbf4bda5669a850c9a3cba8e} 
+void Enemy::\+mark\+Gold\+Dropped (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_enemy_aaee485ba8d59fa74103a9fd27cc0977f}\index{Enemy@{Enemy}!onDeath@{onDeath}}
+\index{onDeath@{onDeath}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{onDeath()}{onDeath()}}
+{\footnotesize\ttfamily \label{class_enemy_aaee485ba8d59fa74103a9fd27cc0977f} 
+virtual void Enemy::\+on\+Death (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Hook called only once when the state changes to DEAD. Default empty implementation; subclasses can override to trigger specific effects (sound, particles, etc.). 
+
+
+
+Reimplemented in \doxymbox{\hyperlink{classboss_model_a3c69ecf97ac6bfcd45bb905155deb458}{boss\+Model}}.
+
+\Hypertarget{class_enemy_aa303f416300a30ae68914495964cb5c1}\index{Enemy@{Enemy}!refreshChaseTimer@{refreshChaseTimer}}
+\index{refreshChaseTimer@{refreshChaseTimer}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{refreshChaseTimer()}{refreshChaseTimer()}}
+{\footnotesize\ttfamily \label{class_enemy_aa303f416300a30ae68914495964cb5c1} 
+void Enemy::\+refresh\+Chase\+Timer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Indicates that the player is visible this tick (resets the persistence timer). 
+
+\Hypertarget{class_enemy_a50b40e0dc971e516b30e095c996c10aa}\index{Enemy@{Enemy}!setHitThisSlash@{setHitThisSlash}}
+\index{setHitThisSlash@{setHitThisSlash}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{setHitThisSlash()}{setHitThisSlash()}}
+{\footnotesize\ttfamily \label{class_enemy_a50b40e0dc971e516b30e095c996c10aa} 
+void Enemy::\+set\+Hit\+This\+Slash (\begin{DoxyParamCaption}\item[{bool}]{b}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_enemy_a29465820c3774a2fd58176e20cc9ffcd}\index{Enemy@{Enemy}!takeDamage@{takeDamage}}
+\index{takeDamage@{takeDamage}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{takeDamage()}{takeDamage()}}
+{\footnotesize\ttfamily \label{class_enemy_a29465820c3774a2fd58176e20cc9ffcd} 
+void Enemy::\+take\+Damage (\begin{DoxyParamCaption}\item[{int}]{amount}{}\end{DoxyParamCaption})}
+
+
+
+Reduces the enemy\textquotesingle{}s health. Puts the enemy in the HURT state, or triggers the death animation if health drops to zero. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & :\+ Amount of damage taken. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_enemy_a699329cc207df9aa66978887051441d0}\index{Enemy@{Enemy}!tickChaseTimer@{tickChaseTimer}}
+\index{tickChaseTimer@{tickChaseTimer}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{tickChaseTimer()}{tickChaseTimer()}}
+{\footnotesize\ttfamily \label{class_enemy_a699329cc207df9aa66978887051441d0} 
+bool Enemy::\+tick\+Chase\+Timer (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})}
+
+
+
+Decrement the persistence timer and return to IDLE if it has expired. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & :\+ Delta time. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the enemy is still in CHASING/\+\+ATTACKING mode. 
+\end{DoxyReturn}
+\Hypertarget{class_enemy_a83454276708a4d53ff6bd416a7ed9b68}\index{Enemy@{Enemy}!tickTransientStates@{tickTransientStates}}
+\index{tickTransientStates@{tickTransientStates}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{tickTransientStates()}{tickTransientStates()}}
+{\footnotesize\ttfamily \label{class_enemy_a83454276708a4d53ff6bd416a7ed9b68} 
+bool Enemy::\+tick\+Transient\+States (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})}
+
+
+
+Decrements the HURT and DEAD timers; must be called at the beginning of each \doxylink{class_enemy_ae99c0c4859aa823fc56a2afb6ebe7e5a}{update()} method in subclasses. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & :\+ Delta time in seconds. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the enemy is in the HURT or DEAD state (subclasses must then override their own AI logic). 
+\end{DoxyReturn}
+\Hypertarget{class_enemy_aa8061b986af89459a0229764c269caf6}\index{Enemy@{Enemy}!triggerDeath@{triggerDeath}}
+\index{triggerDeath@{triggerDeath}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{triggerDeath()}{triggerDeath()}}
+{\footnotesize\ttfamily \label{class_enemy_aa8061b986af89459a0229764c269caf6} 
+void Enemy::\+trigger\+Death (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Sets the enemy to the DEAD state and starts the death animation timer. The enemy will be effectively deactivated (active = false) once the timer has elapsed, via tick\+Dead\+State(). 
+
+\Hypertarget{class_enemy_ab6a3b691be209d9fce40f760bb479a11}\index{Enemy@{Enemy}!update@{update}}
+\index{update@{update}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_enemy_ab6a3b691be209d9fce40f760bb479a11} 
+void Enemy::\+update (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Update to the entity\textquotesingle{}s internal logic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & :\+ Time elapsed since the last update (in seconds). \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \doxymbox{\hyperlink{class_entity_a21ab7babefa5e4525535a76cef1415f2}{Entity}}.
+
+\Hypertarget{class_enemy_ae99c0c4859aa823fc56a2afb6ebe7e5a}\index{Enemy@{Enemy}!update@{update}}
+\index{update@{update}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_enemy_ae99c0c4859aa823fc56a2afb6ebe7e5a} 
+virtual void Enemy::\+update (\begin{DoxyParamCaption}\item[{float}]{dt}{, }\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{player\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Updates the enemy\textquotesingle{}s cognitive and spatial behavior. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & :\+ Delta time in seconds. \\
+\hline
+{\em player\+Pos} & :\+ The player\textquotesingle{}s current contact information. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \doxymbox{\hyperlink{classboss_model_a2d948a32594d30dd1e6a5f9bd6887216}{boss\+Model}}, \doxymbox{\hyperlink{class_zombie_launcher_model_a8292218d064812455ddbc07a5511a2d6}{Zombie\+Launcher\+Model}}, and \doxymbox{\hyperlink{class_zombie_std_model_a55d1682193a67b8ae9b05c801dff6cdb}{Zombie\+Std\+Model}}.
+
+
+
+\label{class_enemy_doc-variable-members}
+\Hypertarget{class_enemy_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_enemy_a827dc8b29d6f3d75dea9504bcd9200ad}\index{Enemy@{Enemy}!aiState@{aiState}}
+\index{aiState@{aiState}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{aiState}{aiState}}
+{\footnotesize\ttfamily \label{class_enemy_a827dc8b29d6f3d75dea9504bcd9200ad} 
+\doxymbox{\hyperlink{config_8h_a588700cbbd7d8e80b51ef81b140213fc}{Enemy\+AIState}} Enemy::\+ai\+State\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+State of the AI state machine. 
+
+\Hypertarget{class_enemy_a573af3a6b672a882ae23263bfbcdf440}\index{Enemy@{Enemy}!attackCooldown@{attackCooldown}}
+\index{attackCooldown@{attackCooldown}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{attackCooldown}{attackCooldown}}
+{\footnotesize\ttfamily \label{class_enemy_a573af3a6b672a882ae23263bfbcdf440} 
+float Enemy::\+attack\+Cooldown\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Time required between two attacks. 
+
+\Hypertarget{class_enemy_a22529e5dec1b3efeb774388f26f07cb3}\index{Enemy@{Enemy}!attackTimer@{attackTimer}}
+\index{attackTimer@{attackTimer}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{attackTimer}{attackTimer}}
+{\footnotesize\ttfamily \label{class_enemy_a22529e5dec1b3efeb774388f26f07cb3} 
+float Enemy::\+attack\+Timer\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Internal timer that controls the attack duration. 
+
+\Hypertarget{class_enemy_a506a6addb65f3811f1c2cd448cd7c812}\index{Enemy@{Enemy}!baseDamage@{baseDamage}}
+\index{baseDamage@{baseDamage}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{baseDamage}{baseDamage}}
+{\footnotesize\ttfamily \label{class_enemy_a506a6addb65f3811f1c2cd448cd7c812} 
+int Enemy::\+base\+Damage\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Base damage dealt to the player. 
+
+\Hypertarget{class_enemy_aa6522d79858918e3408e0ed084d47438}\index{Enemy@{Enemy}!chasePersistTimer@{chasePersistTimer}}
+\index{chasePersistTimer@{chasePersistTimer}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{chasePersistTimer}{chasePersistTimer}}
+{\footnotesize\ttfamily \label{class_enemy_aa6522d79858918e3408e0ed084d47438} 
+float Enemy::\+chase\+Persist\+Timer\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Time remaining before returning to IDLE after loss of sight. 
+
+\Hypertarget{class_enemy_a5144f514fca210ed75fa4ebb97f6a42d}\index{Enemy@{Enemy}!deadTimer@{deadTimer}}
+\index{deadTimer@{deadTimer}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{deadTimer}{deadTimer}}
+{\footnotesize\ttfamily \label{class_enemy_a5144f514fca210ed75fa4ebb97f6a42d} 
+float Enemy::\+dead\+Timer\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Time remaining in the DEAD state before deactivation. 
+
+\Hypertarget{class_enemy_a729555629fedb465788a81e74163ce9a}\index{Enemy@{Enemy}!detectionRadius@{detectionRadius}}
+\index{detectionRadius@{detectionRadius}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{detectionRadius}{detectionRadius}}
+{\footnotesize\ttfamily \label{class_enemy_a729555629fedb465788a81e74163ce9a} 
+float Enemy::\+detection\+Radius\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Range of the aggro/\+detection zone. 
+
+\Hypertarget{class_enemy_ae6b5fe8b5e8527b19cea1d188cf4384f}\index{Enemy@{Enemy}!goldAlreadyDropped@{goldAlreadyDropped}}
+\index{goldAlreadyDropped@{goldAlreadyDropped}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{goldAlreadyDropped}{goldAlreadyDropped}}
+{\footnotesize\ttfamily \label{class_enemy_ae6b5fe8b5e8527b19cea1d188cf4384f} 
+bool Enemy::\+gold\+Already\+Dropped\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Anti-\/duplicate flag for gold loot. 
+
+\Hypertarget{class_enemy_a0f73c8c470381f070758926bbaa6564c}\index{Enemy@{Enemy}!goldDrop@{goldDrop}}
+\index{goldDrop@{goldDrop}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{goldDrop}{goldDrop}}
+{\footnotesize\ttfamily \label{class_enemy_a0f73c8c470381f070758926bbaa6564c} 
+int Enemy::\+gold\+Drop\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+A golden reward granted upon death. 
+
+\Hypertarget{class_enemy_a3d5e24c63037e5711fa9d0d9dfa0a967}\index{Enemy@{Enemy}!hitThisSlash@{hitThisSlash}}
+\index{hitThisSlash@{hitThisSlash}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{hitThisSlash}{hitThisSlash}}
+{\footnotesize\ttfamily \label{class_enemy_a3d5e24c63037e5711fa9d0d9dfa0a967} 
+bool Enemy::\+hit\+This\+Slash\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Prevents multiple hits per attack. 
+
+\Hypertarget{class_enemy_a278d70100af07c946743db1b7a1a9f59}\index{Enemy@{Enemy}!hp@{hp}}
+\index{hp@{hp}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{hp}{hp}}
+{\footnotesize\ttfamily \label{class_enemy_a278d70100af07c946743db1b7a1a9f59} 
+int Enemy::\+hp\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\doxylink{class_enemy}{Enemy}\textquotesingle{}s current health points. 
+
+\Hypertarget{class_enemy_a5d56bf6b94d31989895663c379600bcc}\index{Enemy@{Enemy}!hurtTimer@{hurtTimer}}
+\index{hurtTimer@{hurtTimer}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{hurtTimer}{hurtTimer}}
+{\footnotesize\ttfamily \label{class_enemy_a5d56bf6b94d31989895663c379600bcc} 
+float Enemy::\+hurt\+Timer\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Time remaining in the HURT state. 
+
+\Hypertarget{class_enemy_ab655b54a6e1638dc9935a2f8cf449b51}\index{Enemy@{Enemy}!isBoss@{isBoss}}
+\index{isBoss@{isBoss}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{isBoss}{isBoss}}
+{\footnotesize\ttfamily \label{class_enemy_ab655b54a6e1638dc9935a2f8cf449b51} 
+bool Enemy::\+is\+Boss = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Point to the boss. 
+
+\Hypertarget{class_enemy_ab48bc28310a5ca396fbfaf6edc74996d}\index{Enemy@{Enemy}!maxHp@{maxHp}}
+\index{maxHp@{maxHp}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{maxHp}{maxHp}}
+{\footnotesize\ttfamily \label{class_enemy_ab48bc28310a5ca396fbfaf6edc74996d} 
+int Enemy::\+max\+Hp\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Maximum health points. 
+
+\Hypertarget{class_enemy_a98766d083fc49e746a37d0dc69be09e0}\index{Enemy@{Enemy}!speed@{speed}}
+\index{speed@{speed}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{speed}{speed}}
+{\footnotesize\ttfamily \label{class_enemy_a98766d083fc49e746a37d0dc69be09e0} 
+float Enemy::\+speed\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Linear travel speed. 
+
+\Hypertarget{class_enemy_ae1137a68d2dc4174bc9e66123bd6218a}\index{Enemy@{Enemy}!velocity@{velocity}}
+\index{velocity@{velocity}!Enemy@{Enemy}}
+\doxysubsubsection{\texorpdfstring{velocity}{velocity}}
+{\footnotesize\ttfamily \label{class_enemy_ae1137a68d2dc4174bc9e66123bd6218a} 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} Enemy::\+velocity\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Current direction of motion. 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{enemy_8h}{enemy.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{enemy_8cpp}{enemy.\+cpp}}\end{DoxyCompactItemize}

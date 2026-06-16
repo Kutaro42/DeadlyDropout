@@ -1,0 +1,10 @@
+<map id="ZombieLauncherModel" name="ZombieLauncherModel">
+<area shape="rect" id="Node000001" title="Ranged enemy that fires rubble at the player." alt="" coords="5,1515,176,1776"/>
+<area shape="rect" id="Node000002" href="$class_enemy.html" title="Base class defining the structure and mechanics of a hostile entity." alt="" coords="18,649,163,1465"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,1478,93,1515,88,1515,90,1483"/>
+<area shape="rect" id="Node000003" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="133,296,230,600"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="156,617,154,650,149,649,157,612"/>
+<area shape="rect" id="Node000004" href="$class_vector2f.html" title="Mathematical class describing 2D vectors (position, velocity)." alt="" coords="23,5,118,224"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="64,227,64,296,61,448,64,600,65,632,60,632,59,600,56,448,59,296,64,221"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="107,221,130,286,125,287,107,226"/>
+</map>

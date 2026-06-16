@@ -1,0 +1,28 @@
+\doxysection{floorview.\+h}
+\hypertarget{floorview_8h_source}{}\label{floorview_8h_source}\index{Headers/floorview.h@{Headers/floorview.h}}
+\doxymbox{\hyperlink{floorview_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ FLOORVIEW\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ FLOORVIEW\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QGraphicsPixmapItem>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QPixmap>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{floormodel_8h}{floormodel.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_floor_view_ac292fee179574a2d2d00f50aa6811a10}{FloorView}}\ :\ \textcolor{keyword}{public}\ QGraphicsPixmapItem\ \{}
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_floor_view_ac292fee179574a2d2d00f50aa6811a10}{FloorView}}(\doxymbox{\hyperlink{class_floor_model}{FloorModel}}*\ model,\ QGraphicsItem*\ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ QPixmap\&\ \doxymbox{\hyperlink{class_floor_view_a09e4c1dd5bfe53aba1e47cb5b7a49f76}{tileset}}();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{static}\ QPixmap\ \doxymbox{\hyperlink{class_floor_view_ab8d2d420a27f31c552cdd0eb4303d6ef}{extractTile}}(\textcolor{keywordtype}{int}\ tileIndex,\ \textcolor{keywordtype}{int}\ tilesetCols,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tileW,\ \textcolor{keywordtype}{int}\ tileH);}
+\DoxyCodeLine{00046\ \};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ FLOORVIEW\_H}}
+
+\end{DoxyCode}

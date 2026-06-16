@@ -1,0 +1,62 @@
+\doxysection{Headers/\+main.cpp File Reference}
+\hypertarget{_headers_2main_8cpp}{}\label{_headers_2main_8cpp}\index{Headers/main.cpp@{Headers/main.cpp}}
+
+
+Entry point of the Deadly Dropout application.  
+
+
+{\ttfamily \+\#include $<$QApplication$>$}\newline
+{\ttfamily \+\#include "{}appcontroller.\+h"{}}\newline
+Include dependency graph for main.\+cpp:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_headers_2main_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{_headers_2main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\+[$\,$]\+)
+\begin{DoxyCompactList}\small\item\em Main function of the program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Entry point of the Deadly Dropout application. 
+
+\begin{DoxyAuthor}{Author}
+Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+June 2026 
+\end{DoxyDate}
+
+
+\label{_headers_2main_8cpp_doc-func-members}
+\Hypertarget{_headers_2main_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_headers_2main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{_headers_2main_8cpp_a0ddf1224851353fc92bfbff6f499fa97} 
+int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\+[$\,$]\+}\end{DoxyParamCaption})}
+
+
+
+Main function of the program. 
+
+Creates the Qt application, instantiates the top-\/level controller (\doxylink{class_app_controller}{App\+Controller}) and starts the Qt event loop.
+
+\doxylink{class_app_controller}{App\+Controller} is used rather than directly instantiating \doxylink{class_game_controller}{Game\+Controller} or \doxylink{class_menu_controller}{Menu\+Controller} so that the application-\/level state machine (MENU → PLAYING → GAME\+\_\+\+OVER …) lives in one place and neither the menu nor the game need to know about each other.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of command-\/line arguments. \\
+\hline
+{\em argv} & Array of command-\/line argument strings. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Qt application exit code. 
+\end{DoxyReturn}

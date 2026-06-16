@@ -1,0 +1,17 @@
+<map id="Headers/levelregistry.h" name="Headers/levelregistry.h">
+<area shape="rect" id="Node000001" title="Registre centralisé des niveaux du jeu." alt="" coords="108,5,262,32"/>
+<area shape="rect" id="Node000002" href="$matrixextractor_8h.html" title="Déclaration de MatrixExtractor : lecture des matrices de niveau depuis des fichiers texte." alt="" coords="77,80,196,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,35,156,68,151,66,178,30"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="208,155,276,181"/>
+<area shape="poly" id="edge8_Node000001_Node000004" title=" " alt="" coords="190,30,211,79,235,141,229,140,206,81,189,35"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,229,71,256"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="113,109,89,129,64,156,51,185,44,215,38,214,46,184,60,153,85,125,116,105"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="155,105,214,145,209,146,155,110"/>
+<area shape="rect" id="Node000005" href="$leveltemplate_8h.html" title="Structures de description de niveaux (LevelMatrix, LevelDescriptor, makeDescriptor)." alt="" coords="74,155,183,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="136,105,134,140,129,138,134,110"/>
+<area shape="poly" id="edge7_Node000005_Node000003" title=" " alt="" coords="112,184,67,222,63,218,114,180"/>
+<area shape="rect" id="Node000006" href="$config_8h.html" title="Global constants and configuration enumerations for the game Deadly Dropout." alt="" coords="95,229,162,256"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="130,180,131,214,126,213,127,184"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="99,304,158,331"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="130,255,131,289,126,287,127,259"/>
+</map>

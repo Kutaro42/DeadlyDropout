@@ -1,0 +1,15 @@
+<map id="Headers/entity.h" name="Headers/entity.h">
+<area shape="rect" id="Node000001" title="Declaration of the Entity base class." alt="" coords="78,5,194,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,73,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,35,69,73,66,69,121,30"/>
+<area shape="rect" id="Node000003" href="$vector2f_8h.html" title="Declaration of the Vector2f math class for the game&#39;s 2D geometry." alt="" coords="97,80,176,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="138,30,139,65,134,64,135,35"/>
+<area shape="rect" id="Node000006" href="$config_8h.html" title="Global constants and configuration enumerations for the game Deadly Dropout." alt="" coords="200,80,267,107"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="154,30,208,70,202,71,153,35"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="24,155,81,181"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="124,106,80,146,77,142,119,108"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="106,155,175,181"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="139,105,141,140,136,138,135,109"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="204,155,263,181"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="236,105,236,140,231,138,232,109"/>
+</map>

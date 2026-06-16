@@ -1,0 +1,71 @@
+\doxysection{matrixextractor.\+h}
+\hypertarget{matrixextractor_8h_source}{}\label{matrixextractor_8h_source}\index{Headers/matrixextractor.h@{Headers/matrixextractor.h}}
+\doxymbox{\hyperlink{matrixextractor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ MATRIXEXTRACTOR\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ MATRIXEXTRACTOR\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QString>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QVector>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{leveltemplate_8h}{leveltemplate.h}}"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ \ MatrixExtractor}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ \ Charge\ les\ trois\ matrices\ d'un\ niveau\ depuis\ un\ dossier\ structuré\ :}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \ \ \ levels/}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \ \ \ \ \ level\_1/}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ \ \ \ \ \ \ \ entities.txt}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ \ \ \ \ \ \ \ walls.txt}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ \ \ \ \ \ \ \ floor.txt}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ \ \ \ \ \ level\_2/}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ \ \ \ \ \ \ \ ...}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ \ Format\ d'un\ fichier\ texte\ :}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ \ \ \ Ligne\ 1\ :\ "{}<rows>\ <cols>"{}}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ \ \ \ Lignes\ suivantes\ :\ valeurs\ entières\ séparées\ par\ des\ espaces,}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ une\ ligne\ par\ rangée\ de\ la\ matrice.}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ \ La\ classe\ produit\ un\ DynamicLevelDescriptor\ (voir\ ci-\/dessous)\ qui}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ \ possède\ ses\ propres\ buffers\ et\ peut\ donc\ être\ utilisé\ exactement}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ \ comme\ un\ LevelDescriptor\ classique\ via\ son\ accesseur\ asDescriptor().}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ \ Exemple\ d'utilisation\ :}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ \ \ \ auto\ dld\ =\ MatrixExtractor::load(1,\ "{}:/levels"{});\ //\ ressources\ Qt}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ \ \ \ if\ (dld)\ LevelBuilder::build(dld-\/>asDescriptor(),\ levelModel,\ scene);}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_dynamic_level_descriptor}{DynamicLevelDescriptor}}\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ QVector<int>\ \doxymbox{\hyperlink{struct_dynamic_level_descriptor_af15c1431ca1ec47f5837e8ae703be0e7}{entityBuf}};\ \ }
+\DoxyCodeLine{00053\ \ \ \ \ QVector<int>\ \doxymbox{\hyperlink{struct_dynamic_level_descriptor_a54f12c5fd672dfd32702112c9af713c2}{wallBuf}};\ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ QVector<int>\ \doxymbox{\hyperlink{struct_dynamic_level_descriptor_a65f0ec3077d2be4d7502b0c384c5fca4}{floorBuf}};\ \ \ }
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \doxymbox{\hyperlink{struct_dynamic_level_descriptor_a8c447a27c161e96c13ca3288e074c6b3}{id}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ QString\ \doxymbox{\hyperlink{struct_dynamic_level_descriptor_aa4c46c96ac5734167c54dbd0b2c57ca4}{name}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \doxymbox{\hyperlink{struct_dynamic_level_descriptor_a56b240cd45b338f5d1009ed8e4cfe79b}{rows}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \doxymbox{\hyperlink{struct_dynamic_level_descriptor_a8ed2f1a60c9bfd8cdf0433c23789a6db}{cols}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \doxymbox{\hyperlink{struct_dynamic_level_descriptor_abd2c2292655d2bbc90a42b07c3b0eea0}{tilesetCols}};\ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \doxymbox{\hyperlink{struct_dynamic_level_descriptor_a5606cfbc7863b55fa6548ef2f7d396b2}{floorTilesetCols}};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00072\ \ \ \ \ \doxymbox{\hyperlink{struct_level_descriptor}{LevelDescriptor}}\ \doxymbox{\hyperlink{struct_dynamic_level_descriptor_a6dd9d9c0497c16ef1ae4c9ba09651a26}{asDescriptor}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00073\ \};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_matrix_extractor}{MatrixExtractor}}\ \{}
+\DoxyCodeLine{00081\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{static}\ \doxymbox{\hyperlink{struct_dynamic_level_descriptor}{DynamicLevelDescriptor}}\ \doxymbox{\hyperlink{class_matrix_extractor_ac678baeeb5173dede946848855415479}{load}}(\textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ levelId,}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QString\&\ basePath\ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}:/levels"{}},}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ tilesetCols\ \ \ \ \ \ =\ 302,}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ floorTilesetCols\ =\ 302);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{static}\ QVector<int>\ \doxymbox{\hyperlink{class_matrix_extractor_ad5c7f5cc538c37f458b8124bbc2398f7}{readMatrixFile}}(\textcolor{keyword}{const}\ QString\&\ filePath,}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\&\ \ \ \ \ \ \ \ \ \ \ rows,}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\&\ \ \ \ \ \ \ \ \ \ \ cols);}
+\DoxyCodeLine{00111\ \};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MATRIXEXTRACTOR\_H}}
+
+\end{DoxyCode}

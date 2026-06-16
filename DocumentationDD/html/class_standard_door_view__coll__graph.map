@@ -1,0 +1,13 @@
+<map id="StandardDoorView" name="StandardDoorView">
+<area shape="rect" id="Node000001" title="Qt rendering of the standard door with open/closed color coding." alt="" coords="20,995,160,1192"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,811,132,880"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="74,892,84,995,79,995,72,897"/>
+<area shape="rect" id="Node000003" href="$class_standard_door_model.html" title="Standard door that opens on simple contact with the player." alt="" coords="156,768,304,923"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="188,920,156,981,152,979,185,925"/>
+<area shape="rect" id="Node000004" href="$class_global_door.html" title="Base entity from which standard doors, boss doors and level&#45;exit zones inherit." alt="" coords="182,649,278,719"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="231,731,233,769,227,768,229,736"/>
+<area shape="rect" id="Node000005" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="182,296,278,600"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="231,612,233,650,227,649,229,618"/>
+<area shape="rect" id="Node000006" href="$class_vector2f.html" title="Mathematical class describing 2D vectors (position, velocity)." alt="" coords="182,5,278,224"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="230,221,233,279,227,279,230,226"/>
+</map>

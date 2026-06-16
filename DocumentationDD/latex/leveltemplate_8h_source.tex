@@ -1,0 +1,101 @@
+\doxysection{leveltemplate.\+h}
+\hypertarget{leveltemplate_8h_source}{}\label{leveltemplate_8h_source}\index{Headers/leveltemplate.h@{Headers/leveltemplate.h}}
+\doxymbox{\hyperlink{leveltemplate_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifndef\ LEVELTEMPLATE\_H}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ LEVELTEMPLATE\_H}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <QString>}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ \ SYSTÈME\ DE\ TEMPLATE\ DE\ NIVEAU\ —\ VERSION\ 3\ (matrices\ externalisées)}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ \ Chaque\ niveau\ est\ défini\ par\ TROIS\ matrices\ de\ même\ dimension\ :}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ \ entityMatrix\ \ (spawns\ et\ objets\ logiques)\ :}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ \ \ \ 0\ =\ FLOOR\ \ \ \ \ \ \ \ (sol\ libre)}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ \ \ \ 2\ =\ ZOMBIE\_SPAWN}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ \ \ \ 3\ =\ EXIT\_DOOR}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ \ \ \ 4\ =\ PLAYER\_SPAWN}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ \ \ \ 5\ =\ ZOMBIE\_LAUNCHER\_SPAWN}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ \ \ \ 6\ =\ STANDARD\_DOOR}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ \ \ \ 7\ =\ BOSS\_SPAWN}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ \ \ \ 8\ =\ BOSS\_DOOR}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ \ wallMatrix\ :}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ \ \ \ 0\ =\ pas\ de\ mur}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ \ \ \ N\ =\ index\ de\ tile\ dans\ le\ tileset\ de\ murs\ (1-\/based)}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ \ floorMatrix\ :}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ \ \ \ 0\ =\ sol\ uniforme\ (couleur\ de\ fond\ de\ scène,\ rien\ à\ dessiner)}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ \ \ \ N\ =\ index\ de\ tile\ dans\ le\ tileset\ de\ sol\ (1-\/based)}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ ───\ LevelMatrix\ (rétrocompatibilité\ —\ non\ utilisé\ en\ runtime)\ ────}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ Conservé\ pour\ que\ le\ template\ makeDescriptor\ reste\ compilable\ si}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ quelqu'un\ souhaite\ encore\ définir\ un\ niveau\ directement\ en\ C++.}}
+\DoxyCodeLine{00054\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ ROWS,\ \textcolor{keywordtype}{int}\ COLS>}
+\DoxyCodeLine{00055\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_level_matrix}{LevelMatrix}}\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_level_matrix_a560a396f5a93146752b061aac5e4ec8a}{rows}}\ =\ ROWS;}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_level_matrix_ad109954bd33670870f4b4771ddbb12f7}{cols}}\ =\ COLS;}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_level_matrix_a0040ace84b51ba5f4cd37888e7fa521d}{data}}[ROWS][COLS];}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_level_matrix_a9a532f9d64bd632bcd805bea50a73107}{at}}(\textcolor{keywordtype}{int}\ r,\ \textcolor{keywordtype}{int}\ c)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{struct_level_matrix_a0040ace84b51ba5f4cd37888e7fa521d}{data}}[r][c];\ \}}
+\DoxyCodeLine{00060\ \};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ ───\ Descripteur\ "{}type-\/erased"{}\ ────────────────────────────────────}}
+\DoxyCodeLine{00071\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_level_descriptor}{LevelDescriptor}}\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_level_descriptor_a80ca34132a1f5842793d06a26a13fdfc}{id}};}
+\DoxyCodeLine{00073\ \ \ \ \ QString\ \ \ \ \ \doxymbox{\hyperlink{struct_level_descriptor_a942f8fdeac17281a94a6586456d74e7f}{name}};}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_level_descriptor_a9ac8da51045ace5388f8271ebcf035f1}{rows}};}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_level_descriptor_a9889aab1dcf3a066cda03040c4984cb3}{cols}};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ \ \doxymbox{\hyperlink{struct_level_descriptor_a95ab2ecc6e21eae2b89af8bdcb560452}{entityData}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ \ \doxymbox{\hyperlink{struct_level_descriptor_acdc6220a9512c0fa8684351597133032}{wallData}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_level_descriptor_ab97b8ef46a9c22c6bf90f45488203a43}{tilesetCols}};\ \ \ \ \ \ }
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}*\ \ \doxymbox{\hyperlink{struct_level_descriptor_ac0525460a2cfef142d8d86924b980cf3}{floorData}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_level_descriptor_ad525a3b446376fdef7a59d46da6d26d0}{floorTilesetCols}};\ }
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_level_descriptor_aeff25eb8891193647d981977741349b0}{entityAt}}(\textcolor{keywordtype}{int}\ r,\ \textcolor{keywordtype}{int}\ c)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{struct_level_descriptor_a95ab2ecc6e21eae2b89af8bdcb560452}{entityData}}[r\ *\ \doxymbox{\hyperlink{struct_level_descriptor_a9889aab1dcf3a066cda03040c4984cb3}{cols}}\ +\ c];\ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_level_descriptor_acf22c06c1fcffb3d7abcebc7be70ba29}{wallAt}}\ \ (\textcolor{keywordtype}{int}\ r,\ \textcolor{keywordtype}{int}\ c)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{struct_level_descriptor_acdc6220a9512c0fa8684351597133032}{wallData}}\ \ [r\ *\ \doxymbox{\hyperlink{struct_level_descriptor_a9889aab1dcf3a066cda03040c4984cb3}{cols}}\ +\ c];\ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_level_descriptor_acd0aeffdda91375a37bbd38ea4a3349f}{floorAt}}\ (\textcolor{keywordtype}{int}\ r,\ \textcolor{keywordtype}{int}\ c)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{struct_level_descriptor_ac0525460a2cfef142d8d86924b980cf3}{floorData}}\ [r\ *\ \doxymbox{\hyperlink{struct_level_descriptor_a9889aab1dcf3a066cda03040c4984cb3}{cols}}\ +\ c];\ \}}
+\DoxyCodeLine{00087\ \};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{comment}{//\ ───\ Helpers\ makeDescriptor\ (rétrocompatibilité)\ ──────────────────}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ ROWS,\ \textcolor{keywordtype}{int}\ COLS>}
+\DoxyCodeLine{00093\ \textcolor{keyword}{inline}\ \doxymbox{\hyperlink{struct_level_descriptor}{LevelDescriptor}}\ \doxymbox{\hyperlink{leveltemplate_8h_ab7b210a53603351f02c57c35b6522b4b}{makeDescriptor}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ QString\&\ name,}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_level_matrix}{LevelMatrix<ROWS,\ COLS>}}\&\ entities,}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_level_matrix}{LevelMatrix<ROWS,\ COLS>}}\&\ walls,}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_level_matrix}{LevelMatrix<ROWS,\ COLS>}}\&\ floor,}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tilesetCols\ \ \ \ \ \ =\ 302,}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ floorTilesetCols\ =\ 302)}
+\DoxyCodeLine{00099\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{return}\ \{\ id,\ name,\ ROWS,\ COLS,}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \&entities.\doxymbox{\hyperlink{struct_level_matrix_a0040ace84b51ba5f4cd37888e7fa521d}{data}}[0][0],}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \&walls.\doxymbox{\hyperlink{struct_level_matrix_a0040ace84b51ba5f4cd37888e7fa521d}{data}}[0][0],}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ tilesetCols,}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \&floor.\doxymbox{\hyperlink{struct_level_matrix_a0040ace84b51ba5f4cd37888e7fa521d}{data}}[0][0],}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ floorTilesetCols\ \};}
+\DoxyCodeLine{00106\ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ ROWS,\ \textcolor{keywordtype}{int}\ COLS>}
+\DoxyCodeLine{00110\ \textcolor{keyword}{inline}\ \doxymbox{\hyperlink{struct_level_descriptor}{LevelDescriptor}}\ \doxymbox{\hyperlink{leveltemplate_8h_ab7b210a53603351f02c57c35b6522b4b}{makeDescriptor}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ QString\&\ name,}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_level_matrix}{LevelMatrix<ROWS,\ COLS>}}\&\ entities,}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_level_matrix}{LevelMatrix<ROWS,\ COLS>}}\&\ walls,}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tilesetCols\ =\ 302)}
+\DoxyCodeLine{00114\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{return}\ \{\ id,\ name,\ ROWS,\ COLS,}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \&entities.\doxymbox{\hyperlink{struct_level_matrix_a0040ace84b51ba5f4cd37888e7fa521d}{data}}[0][0],}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \&walls.\doxymbox{\hyperlink{struct_level_matrix_a0040ace84b51ba5f4cd37888e7fa521d}{data}}[0][0],}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ tilesetCols,}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0\ \};}
+\DoxyCodeLine{00121\ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ LEVELTEMPLATE\_H}}
+
+\end{DoxyCode}

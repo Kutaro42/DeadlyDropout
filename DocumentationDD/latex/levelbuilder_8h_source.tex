@@ -1,0 +1,45 @@
+\doxysection{levelbuilder.\+h}
+\hypertarget{levelbuilder_8h_source}{}\label{levelbuilder_8h_source}\index{Headers/levelbuilder.h@{Headers/levelbuilder.h}}
+\doxymbox{\hyperlink{levelbuilder_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ LEVELBUILDER\_H}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ LEVELBUILDER\_H}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{leveltemplate_8h}{leveltemplate.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{levelmodel_8h}{levelmodel.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QGraphicsScene>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \ LevelBuilder\ —\ décode\ une\ matrice\ de\ niveau\ et\ instancie}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ \ les\ objets\ Model\ +\ les\ items\ de\ scène\ (View).}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \ Utilisation\ :}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \ \ \ LevelBuilder::build(LevelData::LEVEL\_1\_DESC,\ levelModel,\ scene);}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_level_builder}{LevelBuilder}}\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ Construit\ un\ niveau\ depuis\ un\ LevelDescriptor\ :}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ \ \ -\/\ Remplit\ levelModel\ (WallModel,\ Enemy*,\ ExitDoorModel)}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ \ \ -\/\ Ajoute\ WallView,\ ZombieStdView,\ ExitDoorView\ dans\ la\ scène}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_builder_a655722e0cf515cca591d71fc5a4503ee}{build}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_level_descriptor}{LevelDescriptor}}\&\ desc,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_level_model}{LevelModel}}\&\ \ \ \ \ \ \ \ \ \ \ \ levelModel,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QGraphicsScene*\ \ \ \ \ \ \ \ scene);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ Surcharge\ template\ :\ évite\ de\ créer\ le\ descripteur\ manuellement}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ ROWS,\ \textcolor{keywordtype}{int}\ COLS>}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_level_builder_a24e96eca7e2dfb922cd4c0e729d790ef}{build}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ QString\&\ name,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_level_matrix}{LevelMatrix<ROWS,\ COLS>}}\&\ matrix,}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_level_model}{LevelModel}}\&\ \ \ \ \ levelModel,}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QGraphicsScene*\ scene)}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ desc\ =\ \doxymbox{\hyperlink{leveltemplate_8h_ab7b210a53603351f02c57c35b6522b4b}{makeDescriptor}}(\textcolor{keywordtype}{id},\ name,\ matrix);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_level_builder_a655722e0cf515cca591d71fc5a4503ee}{build}}(desc,\ levelModel,\ scene);}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ LEVELBUILDER\_H}}
+
+\end{DoxyCode}

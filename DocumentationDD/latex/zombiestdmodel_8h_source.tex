@@ -1,0 +1,34 @@
+\doxysection{zombiestdmodel.\+h}
+\hypertarget{zombiestdmodel_8h_source}{}\label{zombiestdmodel_8h_source}\index{Headers/zombiestdmodel.h@{Headers/zombiestdmodel.h}}
+\doxymbox{\hyperlink{zombiestdmodel_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ ZOMBIESTDMODEL\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ ZOMBIESTDMODEL\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{enemy_8h}{enemy.h}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ \ ZombieStdModel\ —\ standard\ zombie\ (iteration\ 1).}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ \ AI:\ IDLE\ →\ CHASING\ (detection)\ →\ ATTACKING\ (contact).}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ \ Stats\ (GDD):\ 20\ HP\ ·\ 90\ px/s\ ·\ 7\string~12\ damage\ ·\ detection\ range\ 400\ px.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_zombie_std_model_a50827333d21c97507c2dfb64c4e0acff}{ZombieStdModel}}\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_enemy_acb9b3f2b8d2c900ea75aa54bb218a6b1}{Enemy}}\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_zombie_std_model_a50827333d21c97507c2dfb64c4e0acff}{ZombieStdModel}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ pos);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_zombie_std_model_a55d1682193a67b8ae9b05c801dff6cdb}{update}}(\textcolor{keywordtype}{float}\ dt,\ \doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ playerPos)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00039\ \ \ \ \ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_zombie_std_model_a6e401448ce5212d94390bb402486b849}{attack}}(\doxymbox{\hyperlink{class_player_model}{PlayerModel}}*\ player)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_zombie_std_model_a466a31fd6857720105915bea5eb30aa5}{chase}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ playerPos,\ \textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00053\ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_zombie_std_model_a550133906cc6bbeec2d9c63965f1ded5}{updateAIState}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ playerPos);}
+\DoxyCodeLine{00059\ \};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ZOMBIESTDMODEL\_H}}
+
+\end{DoxyCode}

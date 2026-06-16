@@ -1,0 +1,30 @@
+\doxysection{rubblemodel.\+h}
+\hypertarget{rubblemodel_8h_source}{}\label{rubblemodel_8h_source}\index{Headers/rubblemodel.h@{Headers/rubblemodel.h}}
+\doxymbox{\hyperlink{rubblemodel_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ RUBBLEMODEL\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ RUBBLEMODEL\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{projectile_8h}{projectile.h}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ \ RubbleModel\ —\ concrete\ projectile\ fired\ by\ ZombieLauncherModel.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ \ Inherits\ from\ Projectile\ (→\ Entity).}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ \ Straight-\/line\ movement\ delegated\ to\ Projectile::update().}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \ Deactivates\ as\ soon\ as\ it\ hits\ a\ wall\ or\ the\ player}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ \ (via\ setActive(false)\ in\ LevelController).}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_rubble_model_a41687fbfc54484d04a3a5ce710e366b5}{RubbleModel}}\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_projectile_a1bd98c79e3575b2addf0c2f79428d9c9}{Projectile}}\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \doxymbox{\hyperlink{class_rubble_model_a41687fbfc54484d04a3a5ce710e366b5}{RubbleModel}}(\doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ pos,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_vector2f}{Vector2f}}\ dir,}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \doxymbox{\hyperlink{class_projectile_a90f5793efb184c30d6c74544a6b91bb4}{damage}}\ =\ \doxymbox{\hyperlink{namespace_cfg_a75476e8260a27bf30eb122e35c87d33c}{Cfg::RUBBLE\_DAMAGE}},}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \doxymbox{\hyperlink{class_projectile_a70ff500bdae54f3ad1e9e759b0ecd1fe}{speed}}\ \ =\ \doxymbox{\hyperlink{namespace_cfg_abd675e3a4c149f48f8d9a6b5b22195a4}{Cfg::RUBBLE\_SPEED}});}
+\DoxyCodeLine{00038\ \};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ RUBBLEMODEL\_H}}
+
+\end{DoxyCode}

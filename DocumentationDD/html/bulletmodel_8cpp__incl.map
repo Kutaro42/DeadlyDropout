@@ -1,0 +1,23 @@
+<map id="Sources/bulletmodel.cpp" name="Sources/bulletmodel.cpp">
+<area shape="rect" id="Node000001" title="Implementation of the ball model (delegates everything to Projectile)." alt="" coords="134,5,298,32"/>
+<area shape="rect" id="Node000002" href="$bulletmodel_8h.html" title="A model of a bullet fired from the player&#39;s pistol." alt="" coords="141,80,292,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,30,219,65,214,64,216,35"/>
+<area shape="rect" id="Node000003" href="$projectile_8h.html" title="Declaration of the abstract class Projectile, the common base for all projectiles." alt="" coords="134,155,218,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="211,105,193,142,188,140,208,109"/>
+<area shape="rect" id="Node000009" href="$config_8h.html" title="Global constants and configuration enumerations for the game Deadly Dropout." alt="" coords="200,304,267,331"/>
+<area shape="poly" id="edge11_Node000002_Node000009" title=" " alt="" coords="221,104,234,154,238,227,238,289,233,287,233,227,228,155,219,109"/>
+<area shape="rect" id="Node000004" href="$entity_8h.html" title="Declaration of the Entity base class." alt="" coords="105,229,168,256"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="171,180,153,217,148,214,168,184"/>
+<area shape="poly" id="edge10_Node000003_Node000009" title=" " alt="" coords="183,180,226,289,221,289,180,184"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="5,304,73,331"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="118,259,69,297,66,293,121,254"/>
+<area shape="rect" id="Node000006" href="$vector2f_8h.html" title="Declaration of the Vector2f math class for the game&#39;s 2D geometry." alt="" coords="97,304,176,331"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="138,254,139,289,134,288,135,259"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="154,254,208,294,202,295,153,259"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="24,379,81,405"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="124,330,80,370,77,366,119,332"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="106,379,175,405"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="139,329,141,364,136,362,135,333"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="204,379,263,405"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="236,329,236,364,231,362,232,333"/>
+</map>

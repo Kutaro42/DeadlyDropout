@@ -1,0 +1,435 @@
+\doxysection{Boss\+View Class Reference}
+\hypertarget{class_boss_view}{}\label{class_boss_view}\index{BossView@{BossView}}
+
+
+Boss\textquotesingle{}s view. Display the different boss\textquotesingle{}s sprites and the area damage.  
+
+
+
+
+{\ttfamily \+\#include $<$bossview.\+h$>$}
+
+
+
+Inheritance diagram for Boss\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_boss_view__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Boss\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_boss_view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_boss_view_ace941475b3c8bac7c164c0c8a7dfd38d}{Boss\+View}} (\doxymbox{\hyperlink{classboss_model}{boss\+Model}} \texorpdfstring{$\ast$}{*}model, QGraphics\+Item \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Principal builder. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_boss_view_adfb2493ec0fcbe740f7d19416c065ac3}{\texorpdfstring{$\sim$}{\string~}\+Boss\+View}} ()
+\begin{DoxyCompactList}\small\item\em Class\textquotesingle{}s destructive. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_boss_view_a40baccadcfe4aff4316655040e7446f7}{update\+View}} (float dt)
+\begin{DoxyCompactList}\small\item\em Updates the boss\textquotesingle{}s view and its patern. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_boss_view_a6f08987b0d3ddec1b67025952dcf034c}{show\+Zone}} ()
+\begin{DoxyCompactList}\small\item\em Creates and adds zone items to the scene. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_boss_view_af51fb98eb02dcb402c12977bc620127a}{hide\+Zone}} ()
+\begin{DoxyCompactList}\small\item\em Removes and destroys area items. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_boss_view_a60373b5f99b6baf8539b86e51a7e8e20}{load\+Sheet}} (QVector$<$ QPixmap $>$ \&frames, const QString \&path)
+\begin{DoxyCompactList}\small\item\em Extracts and resizes the various frames from a horizontal sprite sheet. \end{DoxyCompactList}\item 
+QPixmap \doxymbox{\hyperlink{class_boss_view_af54f04ac250fbf28a114dcb7333a71d8}{make\+Fallback}} ()
+\begin{DoxyCompactList}\small\item\em Displays a green square with the letter ‘\+B’ if a resource is missing. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_boss_view_af25cac859ba79f5dec04f0c11f15e93f}{advance\+Frames}} (float dt, const QVector$<$ QPixmap $>$ \&frames)
+\begin{DoxyCompactList}\small\item\em Advances the frame counter of the current animation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \doxymbox{\hyperlink{class_boss_view_ae220ba813893a9ba953b5e6e39958491}{dir\+Idx}} (\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}} d)
+\begin{DoxyCompactList}\small\item\em Converts the \doxylink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction} enumeration to an integer array index. \end{DoxyCompactList}\item 
+static \doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}} \doxymbox{\hyperlink{class_boss_view_ad80214eab9a3b3f19f3195e5c547676e}{velocity\+To\+Dir}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} vel)
+\begin{DoxyCompactList}\small\item\em Estimate the dominant cardinal direction from a kinematic displacement vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classboss_model}{boss\+Model}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_boss_view_a8cf461f39de86e64f1e677e93164f700}{model}}
+\begin{DoxyCompactList}\small\item\em Boss\textquotesingle{}s model to read it. \end{DoxyCompactList}\item 
+QVector$<$ QPixmap $>$ \doxymbox{\hyperlink{class_boss_view_a9d8b179b13472711627700a691b170ec}{sprites}} \+[\doxymbox{\hyperlink{class_boss_view_a4e1a40861daf4746c6466b8e8dbf9d8d}{STATE\+\_\+\+COUNT}}]\+\+[\doxymbox{\hyperlink{class_boss_view_a5e1d136759b4e2bbb013d4364b3bfcfa}{DIR\+\_\+\+COUNT}}]\+
+\begin{DoxyCompactList}\small\item\em Vector with all the sprite for every state. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_boss_view_a7d70fcff58242b0802b386652f3e164f}{current\+Frame}}
+\begin{DoxyCompactList}\small\item\em Index of the image currently being displayed. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_boss_view_a9a065610974c1937779205e62b3c2e0e}{frame\+Timer}}
+\begin{DoxyCompactList}\small\item\em Clock that accumulates the delta time to trigger a frame change. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_boss_view_ae49e4d0016f498ff2043f5bbffbf9115}{anim\+Speed}}
+\begin{DoxyCompactList}\small\item\em Delay (in seconds) before changing the walking image. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_boss_view_a0ef40e4b4af6d002e6ec76f8896b5f78}{anim\+Speed\+Death}}
+\item 
+int \doxymbox{\hyperlink{class_boss_view_a025a5a1dd0af60b25e6add603577f59c}{current\+Dir}}
+\begin{DoxyCompactList}\small\item\em An index storing the last calculated heading. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_boss_view_a6202e63164ab0685e887c1f75baa5944}{dead\+Anim\+Finished}}
+\begin{DoxyCompactList}\small\item\em True once the DEAD animation has played in full. \end{DoxyCompactList}\item 
+QVector$<$ QGraphics\+Rect\+Item \texorpdfstring{$\ast$}{*} $>$ \doxymbox{\hyperlink{class_boss_view_a739027bdcc6988fe00121ebb6baeed6a}{zone\+Items}}
+\begin{DoxyCompactList}\small\item\em Qt items for area tiles. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_boss_view_a8829703a8e734ba287fcb2a1a1a0f8c1}{zone\+Visible}}
+\begin{DoxyCompactList}\small\item\em true if the items are in the scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr int \doxymbox{\hyperlink{class_boss_view_ab4d16284e6f56e7dc8d75fe6314ca188}{IDLE}} = 0
+\begin{DoxyCompactList}\small\item\em Idle state constant. \end{DoxyCompactList}\item 
+static constexpr int \doxymbox{\hyperlink{class_boss_view_a6b00bd870c4a41adaf2042f1b8e617c8}{WALK}} = 1
+\begin{DoxyCompactList}\small\item\em Walk state constant (Chasing). \end{DoxyCompactList}\item 
+static constexpr int \doxymbox{\hyperlink{class_boss_view_ab9301b130aace3a041bfee56d8577a6b}{HURT}} = 2
+\begin{DoxyCompactList}\small\item\em Injured state constant. \end{DoxyCompactList}\item 
+static constexpr int \doxymbox{\hyperlink{class_boss_view_ab033a244659da54aaf1d41cc868b6f2c}{DEAD}} = 3
+\begin{DoxyCompactList}\small\item\em Dead state constant. \end{DoxyCompactList}\item 
+static constexpr int \doxymbox{\hyperlink{class_boss_view_a4e1a40861daf4746c6466b8e8dbf9d8d}{STATE\+\_\+\+COUNT}} = 4
+\begin{DoxyCompactList}\small\item\em number of different animation state managed. \end{DoxyCompactList}\item 
+static constexpr int \doxymbox{\hyperlink{class_boss_view_a5e1d136759b4e2bbb013d4364b3bfcfa}{DIR\+\_\+\+COUNT}} = 4
+\begin{DoxyCompactList}\small\item\em Total number of direction (DOWN, UP, LEFT, RIGHT). \end{DoxyCompactList}\item 
+static constexpr int \doxymbox{\hyperlink{class_boss_view_a7f4d7576ca4ed902d6521f6d686f7f9d}{FRAME\+\_\+W}} = 48
+\begin{DoxyCompactList}\small\item\em Width of a single frame read from the sprite sheet. \end{DoxyCompactList}\item 
+static constexpr int \doxymbox{\hyperlink{class_boss_view_a6bd7cdaa1f0e20a121182a0ebd6e995c}{FRAME\+\_\+H}} = 48
+\begin{DoxyCompactList}\small\item\em Height of a single frame read from the sprite sheet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Boss\textquotesingle{}s view. Display the different boss\textquotesingle{}s sprites and the area damage. 
+
+\label{class_boss_view_doc-constructors}
+\Hypertarget{class_boss_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_boss_view_ace941475b3c8bac7c164c0c8a7dfd38d}\index{BossView@{BossView}!BossView@{BossView}}
+\index{BossView@{BossView}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{BossView()}{BossView()}}
+{\footnotesize\ttfamily \label{class_boss_view_ace941475b3c8bac7c164c0c8a7dfd38d} 
+Boss\+View::\+\+Boss\+View (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classboss_model}{boss\+Model}} \texorpdfstring{$\ast$}{*}}]{model}{, }\item[{QGraphics\+Item \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})}
+
+
+
+Principal builder. 
+
+\Hypertarget{class_boss_view_adfb2493ec0fcbe740f7d19416c065ac3}\index{BossView@{BossView}!````~BossView@{\texorpdfstring{$\sim$}{\string~}BossView}}
+\index{````~BossView@{\texorpdfstring{$\sim$}{\string~}BossView}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}BossView()}{\string~BossView()}}
+{\footnotesize\ttfamily \label{class_boss_view_adfb2493ec0fcbe740f7d19416c065ac3} 
+Boss\+View::\+\texorpdfstring{$\sim$}{\string~}\+Boss\+View (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Class\textquotesingle{}s destructive. 
+
+
+
+\label{class_boss_view_doc-func-members}
+\Hypertarget{class_boss_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_boss_view_af25cac859ba79f5dec04f0c11f15e93f}\index{BossView@{BossView}!advanceFrames@{advanceFrames}}
+\index{advanceFrames@{advanceFrames}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{advanceFrames()}{advanceFrames()}}
+{\footnotesize\ttfamily \label{class_boss_view_af25cac859ba79f5dec04f0c11f15e93f} 
+void Boss\+View::\+advance\+Frames (\begin{DoxyParamCaption}\item[{float}]{dt}{, }\item[{const QVector$<$ QPixmap $>$ \&}]{frames}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Advances the frame counter of the current animation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & :\+ A fraction of a second has passed. \\
+\hline
+{\em frames} & :\+ Stack of images making up the targeted animation. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_boss_view_ae220ba813893a9ba953b5e6e39958491}\index{BossView@{BossView}!dirIdx@{dirIdx}}
+\index{dirIdx@{dirIdx}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{dirIdx()}{dirIdx()}}
+{\footnotesize\ttfamily \label{class_boss_view_ae220ba813893a9ba953b5e6e39958491} 
+int Boss\+View::\+dir\+Idx (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}}}]{d}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Converts the \doxylink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction} enumeration to an integer array index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & :\+ Cardinal direction assessed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Corresponding index (0 = Down, 1 = Up, 2 = Left, 3 = Right). 
+\end{DoxyReturn}
+\Hypertarget{class_boss_view_af51fb98eb02dcb402c12977bc620127a}\index{BossView@{BossView}!hideZone@{hideZone}}
+\index{hideZone@{hideZone}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{hideZone()}{hideZone()}}
+{\footnotesize\ttfamily \label{class_boss_view_af51fb98eb02dcb402c12977bc620127a} 
+void Boss\+View::\+hide\+Zone (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Removes and destroys area items. 
+
+\Hypertarget{class_boss_view_a60373b5f99b6baf8539b86e51a7e8e20}\index{BossView@{BossView}!loadSheet@{loadSheet}}
+\index{loadSheet@{loadSheet}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{loadSheet()}{loadSheet()}}
+{\footnotesize\ttfamily \label{class_boss_view_a60373b5f99b6baf8539b86e51a7e8e20} 
+void Boss\+View::\+load\+Sheet (\begin{DoxyParamCaption}\item[{QVector$<$ QPixmap $>$ \&}]{frames}{, }\item[{const QString \&}]{path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Extracts and resizes the various frames from a horizontal sprite sheet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frames} & :\+ a list of images (QVector) in which to store the cropped sections. \\
+\hline
+{\em path} & :\+ Location of the PNG file in the Qt resources. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_boss_view_af54f04ac250fbf28a114dcb7333a71d8}\index{BossView@{BossView}!makeFallback@{makeFallback}}
+\index{makeFallback@{makeFallback}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{makeFallback()}{makeFallback()}}
+{\footnotesize\ttfamily \label{class_boss_view_af54f04ac250fbf28a114dcb7333a71d8} 
+QPixmap Boss\+View::\+make\+Fallback (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Displays a green square with the letter ‘\+B’ if a resource is missing. 
+
+\begin{DoxyReturn}{Returns}
+An image generated dynamically in the correct format. 
+\end{DoxyReturn}
+\Hypertarget{class_boss_view_a6f08987b0d3ddec1b67025952dcf034c}\index{BossView@{BossView}!showZone@{showZone}}
+\index{showZone@{showZone}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{showZone()}{showZone()}}
+{\footnotesize\ttfamily \label{class_boss_view_a6f08987b0d3ddec1b67025952dcf034c} 
+void Boss\+View::\+show\+Zone (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Creates and adds zone items to the scene. 
+
+\Hypertarget{class_boss_view_a40baccadcfe4aff4316655040e7446f7}\index{BossView@{BossView}!updateView@{updateView}}
+\index{updateView@{updateView}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{updateView()}{updateView()}}
+{\footnotesize\ttfamily \label{class_boss_view_a40baccadcfe4aff4316655040e7446f7} 
+void Boss\+View::\+update\+View (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})}
+
+
+
+Updates the boss\textquotesingle{}s view and its patern. 
+
+\Hypertarget{class_boss_view_ad80214eab9a3b3f19f3195e5c547676e}\index{BossView@{BossView}!velocityToDir@{velocityToDir}}
+\index{velocityToDir@{velocityToDir}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{velocityToDir()}{velocityToDir()}}
+{\footnotesize\ttfamily \label{class_boss_view_ad80214eab9a3b3f19f3195e5c547676e} 
+\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}} Boss\+View::\+velocity\+To\+Dir (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{vel}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Estimate the dominant cardinal direction from a kinematic displacement vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vel} & :\+ The current velocity vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The most likely \doxylink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}. 
+\end{DoxyReturn}
+
+
+\label{class_boss_view_doc-variable-members}
+\Hypertarget{class_boss_view_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_boss_view_ae49e4d0016f498ff2043f5bbffbf9115}\index{BossView@{BossView}!animSpeed@{animSpeed}}
+\index{animSpeed@{animSpeed}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{animSpeed}{animSpeed}}
+{\footnotesize\ttfamily \label{class_boss_view_ae49e4d0016f498ff2043f5bbffbf9115} 
+float Boss\+View::\+anim\+Speed\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Delay (in seconds) before changing the walking image. 
+
+\Hypertarget{class_boss_view_a0ef40e4b4af6d002e6ec76f8896b5f78}\index{BossView@{BossView}!animSpeedDeath@{animSpeedDeath}}
+\index{animSpeedDeath@{animSpeedDeath}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{animSpeedDeath}{animSpeedDeath}}
+{\footnotesize\ttfamily \label{class_boss_view_a0ef40e4b4af6d002e6ec76f8896b5f78} 
+float Boss\+View::\+anim\+Speed\+Death\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_boss_view_a025a5a1dd0af60b25e6add603577f59c}\index{BossView@{BossView}!currentDir@{currentDir}}
+\index{currentDir@{currentDir}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{currentDir}{currentDir}}
+{\footnotesize\ttfamily \label{class_boss_view_a025a5a1dd0af60b25e6add603577f59c} 
+int Boss\+View::\+current\+Dir\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+An index storing the last calculated heading. 
+
+\Hypertarget{class_boss_view_a7d70fcff58242b0802b386652f3e164f}\index{BossView@{BossView}!currentFrame@{currentFrame}}
+\index{currentFrame@{currentFrame}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{currentFrame}{currentFrame}}
+{\footnotesize\ttfamily \label{class_boss_view_a7d70fcff58242b0802b386652f3e164f} 
+int Boss\+View::\+current\+Frame\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Index of the image currently being displayed. 
+
+\Hypertarget{class_boss_view_ab033a244659da54aaf1d41cc868b6f2c}\index{BossView@{BossView}!DEAD@{DEAD}}
+\index{DEAD@{DEAD}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{DEAD}{DEAD}}
+{\footnotesize\ttfamily \label{class_boss_view_ab033a244659da54aaf1d41cc868b6f2c} 
+int Boss\+View::\+\+DEAD = 3\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Dead state constant. 
+
+\Hypertarget{class_boss_view_a6202e63164ab0685e887c1f75baa5944}\index{BossView@{BossView}!deadAnimFinished@{deadAnimFinished}}
+\index{deadAnimFinished@{deadAnimFinished}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{deadAnimFinished}{deadAnimFinished}}
+{\footnotesize\ttfamily \label{class_boss_view_a6202e63164ab0685e887c1f75baa5944} 
+bool Boss\+View::\+dead\+Anim\+Finished\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+True once the DEAD animation has played in full. 
+
+\Hypertarget{class_boss_view_a5e1d136759b4e2bbb013d4364b3bfcfa}\index{BossView@{BossView}!DIR\_COUNT@{DIR\_COUNT}}
+\index{DIR\_COUNT@{DIR\_COUNT}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{DIR\_COUNT}{DIR\_COUNT}}
+{\footnotesize\ttfamily \label{class_boss_view_a5e1d136759b4e2bbb013d4364b3bfcfa} 
+int Boss\+View::\+\+DIR\+\_\+\+COUNT = 4\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Total number of direction (DOWN, UP, LEFT, RIGHT). 
+
+\Hypertarget{class_boss_view_a6bd7cdaa1f0e20a121182a0ebd6e995c}\index{BossView@{BossView}!FRAME\_H@{FRAME\_H}}
+\index{FRAME\_H@{FRAME\_H}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{FRAME\_H}{FRAME\_H}}
+{\footnotesize\ttfamily \label{class_boss_view_a6bd7cdaa1f0e20a121182a0ebd6e995c} 
+int Boss\+View::\+\+FRAME\+\_\+H = 48\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Height of a single frame read from the sprite sheet. 
+
+\Hypertarget{class_boss_view_a7f4d7576ca4ed902d6521f6d686f7f9d}\index{BossView@{BossView}!FRAME\_W@{FRAME\_W}}
+\index{FRAME\_W@{FRAME\_W}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{FRAME\_W}{FRAME\_W}}
+{\footnotesize\ttfamily \label{class_boss_view_a7f4d7576ca4ed902d6521f6d686f7f9d} 
+int Boss\+View::\+\+FRAME\+\_\+W = 48\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Width of a single frame read from the sprite sheet. 
+
+\Hypertarget{class_boss_view_a9a065610974c1937779205e62b3c2e0e}\index{BossView@{BossView}!frameTimer@{frameTimer}}
+\index{frameTimer@{frameTimer}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{frameTimer}{frameTimer}}
+{\footnotesize\ttfamily \label{class_boss_view_a9a065610974c1937779205e62b3c2e0e} 
+float Boss\+View::\+frame\+Timer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Clock that accumulates the delta time to trigger a frame change. 
+
+\Hypertarget{class_boss_view_ab9301b130aace3a041bfee56d8577a6b}\index{BossView@{BossView}!HURT@{HURT}}
+\index{HURT@{HURT}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{HURT}{HURT}}
+{\footnotesize\ttfamily \label{class_boss_view_ab9301b130aace3a041bfee56d8577a6b} 
+int Boss\+View::\+\+HURT = 2\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Injured state constant. 
+
+\Hypertarget{class_boss_view_ab4d16284e6f56e7dc8d75fe6314ca188}\index{BossView@{BossView}!IDLE@{IDLE}}
+\index{IDLE@{IDLE}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{IDLE}{IDLE}}
+{\footnotesize\ttfamily \label{class_boss_view_ab4d16284e6f56e7dc8d75fe6314ca188} 
+int Boss\+View::\+\+IDLE = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Idle state constant. 
+
+\Hypertarget{class_boss_view_a8cf461f39de86e64f1e677e93164f700}\index{BossView@{BossView}!model@{model}}
+\index{model@{model}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{class_boss_view_a8cf461f39de86e64f1e677e93164f700} 
+\doxymbox{\hyperlink{classboss_model}{boss\+Model}}\texorpdfstring{$\ast$}{*} Boss\+View::\+model\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Boss\textquotesingle{}s model to read it. 
+
+\Hypertarget{class_boss_view_a9d8b179b13472711627700a691b170ec}\index{BossView@{BossView}!sprites@{sprites}}
+\index{sprites@{sprites}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{sprites}{sprites}}
+{\footnotesize\ttfamily \label{class_boss_view_a9d8b179b13472711627700a691b170ec} 
+QVector$<$QPixmap$>$ Boss\+View::\+sprites\+[\doxymbox{\hyperlink{class_boss_view_a4e1a40861daf4746c6466b8e8dbf9d8d}{STATE\+\_\+\+COUNT}}]\+\+[\doxymbox{\hyperlink{class_boss_view_a5e1d136759b4e2bbb013d4364b3bfcfa}{DIR\+\_\+\+COUNT}}]\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Vector with all the sprite for every state. 
+
+\Hypertarget{class_boss_view_a4e1a40861daf4746c6466b8e8dbf9d8d}\index{BossView@{BossView}!STATE\_COUNT@{STATE\_COUNT}}
+\index{STATE\_COUNT@{STATE\_COUNT}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{STATE\_COUNT}{STATE\_COUNT}}
+{\footnotesize\ttfamily \label{class_boss_view_a4e1a40861daf4746c6466b8e8dbf9d8d} 
+int Boss\+View::\+\+STATE\+\_\+\+COUNT = 4\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+number of different animation state managed. 
+
+\Hypertarget{class_boss_view_a6b00bd870c4a41adaf2042f1b8e617c8}\index{BossView@{BossView}!WALK@{WALK}}
+\index{WALK@{WALK}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{WALK}{WALK}}
+{\footnotesize\ttfamily \label{class_boss_view_a6b00bd870c4a41adaf2042f1b8e617c8} 
+int Boss\+View::\+\+WALK = 1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Walk state constant (Chasing). 
+
+\Hypertarget{class_boss_view_a739027bdcc6988fe00121ebb6baeed6a}\index{BossView@{BossView}!zoneItems@{zoneItems}}
+\index{zoneItems@{zoneItems}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{zoneItems}{zoneItems}}
+{\footnotesize\ttfamily \label{class_boss_view_a739027bdcc6988fe00121ebb6baeed6a} 
+QVector$<$QGraphics\+Rect\+Item\texorpdfstring{$\ast$}{*}$>$ Boss\+View::\+zone\+Items\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Qt items for area tiles. 
+
+\Hypertarget{class_boss_view_a8829703a8e734ba287fcb2a1a1a0f8c1}\index{BossView@{BossView}!zoneVisible@{zoneVisible}}
+\index{zoneVisible@{zoneVisible}!BossView@{BossView}}
+\doxysubsubsection{\texorpdfstring{zoneVisible}{zoneVisible}}
+{\footnotesize\ttfamily \label{class_boss_view_a8829703a8e734ba287fcb2a1a1a0f8c1} 
+bool Boss\+View::\+zone\+Visible\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+true if the items are in the scene. 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{bossview_8h}{bossview.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{bossview_8cpp}{bossview.\+cpp}}\end{DoxyCompactItemize}

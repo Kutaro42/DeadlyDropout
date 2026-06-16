@@ -1,0 +1,3 @@
+<map id="MarketView::ItemDef" name="MarketView::ItemDef">
+<area shape="rect" id="Node000001" title="Descriptor for a single market item (id, display name, cost, description)." alt="" coords="5,5,140,139"/>
+</map>

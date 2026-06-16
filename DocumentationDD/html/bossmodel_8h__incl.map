@@ -1,0 +1,47 @@
+<map id="Headers/bossmodel.h" name="Headers/bossmodel.h">
+<area shape="rect" id="Node000001" title="Déclaration du modèle du boss gérant son attaque, ses déplacement et autre atribut." alt="" coords="450,5,598,32"/>
+<area shape="rect" id="Node000002" href="$enemy_8h.html" title="Declaration of the abstract class Enemy, which manages enemy behavior." alt="" coords="489,80,559,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="525,30,527,65,521,63,523,35"/>
+<area shape="rect" id="Node000003" href="$entity_8h.html" title="Declaration of the Entity base class." alt="" coords="543,453,606,480"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="547,104,579,125,614,152,648,187,673,228,681,258,681,289,675,320,663,350,632,403,599,444,596,440,627,400,658,347,670,318,676,289,676,259,668,230,643,190,610,156,576,129,547,110"/>
+<area shape="rect" id="Node000008" href="$config_8h.html" title="Global constants and configuration enumerations for the game Deadly Dropout." alt="" coords="217,528,284,555"/>
+<area shape="poly" id="edge9_Node000002_Node000008" title=" " alt="" coords="486,99,364,112,284,123,203,137,128,156,65,180,41,194,23,208,12,224,8,242,8,393,13,424,28,450,50,472,78,490,142,516,204,532,199,534,140,521,75,495,47,476,24,453,8,426,3,394,3,241,7,222,19,205,38,189,63,175,126,151,202,132,284,117,363,106,491,95"/>
+<area shape="rect" id="Node000010" href="$playermodel_8h.html" title="Declaration of the PlayerModel class, the central model component for the player." alt="" coords="473,155,575,181"/>
+<area shape="poly" id="edge10_Node000002_Node000010" title=" " alt="" coords="525,105,526,140,522,138,523,110"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="669,528,736,555"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="598,478,670,520,664,520,596,483"/>
+<area shape="rect" id="Node000005" href="$vector2f_8h.html" title="Declaration of the Vector2f math class for the game&#39;s 2D geometry." alt="" coords="550,528,629,555"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="579,478,586,514,581,511,576,483"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="540,476,300,532,299,527,545,474"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="715,603,773,629"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="617,553,706,596,701,595,616,558"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="555,603,624,629"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="591,553,591,589,587,585,587,557"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="221,603,280,629"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="253,553,253,588,248,586,249,557"/>
+<area shape="poly" id="edge11_Node000010_Node000003" title=" " alt="" coords="528,180,573,438,567,437,524,184"/>
+<area shape="poly" id="edge28_Node000010_Node000006" title=" " alt="" coords="568,179,639,206,678,226,716,249,751,277,779,310,798,348,805,390,805,468,801,503,791,536,763,592,759,587,786,534,796,502,800,468,800,391,793,350,775,313,747,281,713,254,676,230,637,211,568,185"/>
+<area shape="poly" id="edge27_Node000010_Node000008" title=" " alt="" coords="470,176,357,193,219,220,157,239,105,262,71,287,62,301,59,316,59,393,62,418,73,441,89,461,109,478,156,506,205,526,200,527,154,510,106,482,85,464,68,444,57,420,53,394,53,316,57,299,67,284,103,257,155,234,218,215,356,187,475,173"/>
+<area shape="rect" id="Node000011" href="$katana_8h.html" title="Declaration of the Katana class, the player&#39;s melee weapon." alt="" coords="587,229,658,256"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="541,179,596,220,591,220,541,185"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="410,304,512,331"/>
+<area shape="poly" id="edge29_Node000010_Node000012" title=" " alt="" coords="520,180,475,291,470,288,517,184"/>
+<area shape="rect" id="Node000013" href="$gunmodel_8h.html" title="Model of the player&#39;s semi&#45;automatic pistol." alt="" coords="285,229,374,256"/>
+<area shape="poly" id="edge17_Node000010_Node000013" title=" " alt="" coords="488,183,379,226,376,221,492,180"/>
+<area shape="poly" id="edge13_Node000011_Node000004" title=" " alt="" coords="630,254,651,303,682,419,700,514,696,512,676,420,645,305,628,259"/>
+<area shape="poly" id="edge15_Node000011_Node000005" title=" " alt="" coords="626,254,633,350,631,415,621,481,607,517,603,513,616,479,626,415,628,350,623,259"/>
+<area shape="poly" id="edge14_Node000011_Node000008" title=" " alt="" coords="611,255,526,333,390,440,281,521,278,516,387,435,522,329,607,258"/>
+<area shape="poly" id="edge16_Node000011_Node000012" title=" " alt="" coords="592,258,505,300,502,295,597,255"/>
+<area shape="poly" id="edge25_Node000013_Node000005" title=" " alt="" coords="340,254,401,329,533,478,569,517,564,516,529,482,397,332,338,259"/>
+<area shape="poly" id="edge24_Node000013_Node000008" title=" " alt="" coords="286,258,255,277,240,290,228,305,216,331,211,359,210,388,213,417,225,471,241,515,236,514,220,472,207,418,205,388,206,359,211,330,223,303,236,286,252,273,290,255"/>
+<area shape="poly" id="edge26_Node000013_Node000012" title=" " alt="" coords="352,254,428,296,423,297,352,259"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="94,304,162,331"/>
+<area shape="poly" id="edge18_Node000013_Node000014" title=" " alt="" coords="293,259,178,301,175,296,296,255"/>
+<area shape="rect" id="Node000015" href="$bulletmodel_8h.html" title="A model of a bullet fired from the player&#39;s pistol." alt="" coords="238,304,336,331"/>
+<area shape="poly" id="edge19_Node000013_Node000015" title=" " alt="" coords="323,254,304,292,299,289,320,259"/>
+<area shape="poly" id="edge23_Node000015_Node000008" title=" " alt="" coords="286,329,279,379,257,514,252,511,273,378,283,333"/>
+<area shape="rect" id="Node000016" href="$projectile_8h.html" title="Declaration of the abstract class Projectile, the common base for all projectiles." alt="" coords="288,379,373,405"/>
+<area shape="poly" id="edge20_Node000015_Node000016" title=" " alt="" coords="295,329,318,366,313,365,294,334"/>
+<area shape="poly" id="edge21_Node000016_Node000003" title=" " alt="" coords="373,403,531,451,526,452,373,409"/>
+<area shape="poly" id="edge22_Node000016_Node000008" title=" " alt="" coords="326,404,267,516,263,513,322,407"/>
+</map>

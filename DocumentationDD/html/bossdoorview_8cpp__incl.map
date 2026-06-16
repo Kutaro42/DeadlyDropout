@@ -1,0 +1,30 @@
+<map id="Sources/bossdoorview.cpp" name="Sources/bossdoorview.cpp">
+<area shape="rect" id="Node000001" title="Implementation of the door&#39;s boss view." alt="" coords="229,5,407,32"/>
+<area shape="rect" id="Node000002" href="$bossdoorview_8h.html" title="Declaration of the boss&#39;s door view." alt="" coords="236,80,400,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="319,30,321,65,315,64,317,35"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,155,159,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="275,109,139,152,136,147,278,105"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="183,155,258,181"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="299,109,251,147,248,143,303,105"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="282,155,354,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="319,105,321,140,315,138,317,110"/>
+<area shape="rect" id="Node000006" href="$bossdoormodel_8h.html" title="Declaration of the boss&#39;s door model." alt="" coords="378,155,498,181"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="339,105,407,146,401,147,339,110"/>
+<area shape="rect" id="Node000013" href="$config_8h.html" title="Global constants and configuration enumerations for the game Deadly Dropout." alt="" coords="502,379,569,405"/>
+<area shape="poly" id="edge14_Node000002_Node000013" title=" " alt="" coords="400,97,431,104,461,115,489,131,512,153,528,178,540,205,550,264,549,319,543,365,539,362,544,319,545,264,534,207,524,180,508,156,486,136,459,120,430,110,401,103"/>
+<area shape="rect" id="Node000007" href="$globaldoor_8h.html" title="Declaration of GlobalDoor, the common base class for all interactive doors." alt="" coords="392,229,484,256"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="439,180,440,215,436,213,437,184"/>
+<area shape="rect" id="Node000008" href="$entity_8h.html" title="Declaration of the Entity base class." alt="" coords="406,304,470,331"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="440,254,440,290,436,287,436,259"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="307,379,374,405"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="423,330,371,372,368,367,419,332"/>
+<area shape="rect" id="Node000010" href="$vector2f_8h.html" title="Declaration of the Vector2f math class for the game&#39;s 2D geometry." alt="" coords="398,379,478,405"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="440,329,440,365,436,362,436,333"/>
+<area shape="poly" id="edge12_Node000008_Node000013" title=" " alt="" coords="456,329,509,370,504,369,454,334"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="325,453,383,480"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="426,405,381,445,379,441,421,407"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="407,453,477,480"/>
+<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="441,404,443,439,438,436,437,408"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="506,453,565,480"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="537,404,537,439,533,436,533,408"/>
+</map>

@@ -1,0 +1,109 @@
+\doxysection{Menu\+View Class Reference}
+\hypertarget{class_menu_view}{}\label{class_menu_view}\index{MenuView@{MenuView}}
+
+
+View responsible for rendering and handling clicks on the main screen.  
+
+
+
+
+{\ttfamily \+\#include $<$menuview.\+h$>$}
+
+
+
+Inheritance diagram for Menu\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=151pt]{class_menu_view__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Menu\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=151pt]{class_menu_view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_menu_view_af96345dab14a8ff772e9685eb2924917}{sig\+Game\+Rq}} ()
+\begin{DoxyCompactList}\small\item\em Emitted when the player clicks the Play button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_menu_view_ac47780a12c569a7a9ed2510939c41e4f}{Menu\+View}} (QWidget \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructs \doxylink{class_menu_view}{Menu\+View} and wires the Play/\+\+Quit buttons. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_menu_view_a76bf9fd1bc4d43c503aed65d37e738dd}{paint\+Event}} (QPaint\+Event \texorpdfstring{$\ast$}{*}event)
+\begin{DoxyCompactList}\small\item\em Qt paint-\/event override used to draw the background and logo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+View responsible for rendering and handling clicks on the main screen. 
+
+Kept intentionally thin:\+ it owns no business logic and emits a signal when the player clicks "{}\+Play"{}, delegating the decision of what to do next entirely to \doxylink{class_menu_controller}{Menu\+Controller}. This separation means the visual layout can be redesigned without touching any game-\/state code.
+
+Renders the background image, the game logo and the Play/\+\+Quit buttons. 
+
+\label{class_menu_view_doc-constructors}
+\Hypertarget{class_menu_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_menu_view_ac47780a12c569a7a9ed2510939c41e4f}\index{MenuView@{MenuView}!MenuView@{MenuView}}
+\index{MenuView@{MenuView}!MenuView@{MenuView}}
+\doxysubsubsection{\texorpdfstring{MenuView()}{MenuView()}}
+{\footnotesize\ttfamily \label{class_menu_view_ac47780a12c569a7a9ed2510939c41e4f} 
+Menu\+View::\+\+Menu\+View (\begin{DoxyParamCaption}\item[{QWidget \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})}
+
+
+
+Constructs \doxylink{class_menu_view}{Menu\+View} and wires the Play/\+\+Quit buttons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Pointer to the parent widget (nullptr by default). \\
+\hline
+\end{DoxyParams}
+
+
+\label{class_menu_view_doc-func-members}
+\Hypertarget{class_menu_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_menu_view_a76bf9fd1bc4d43c503aed65d37e738dd}\index{MenuView@{MenuView}!paintEvent@{paintEvent}}
+\index{paintEvent@{paintEvent}!MenuView@{MenuView}}
+\doxysubsubsection{\texorpdfstring{paintEvent()}{paintEvent()}}
+{\footnotesize\ttfamily \label{class_menu_view_a76bf9fd1bc4d43c503aed65d37e738dd} 
+void Menu\+View::\+paint\+Event (\begin{DoxyParamCaption}\item[{QPaint\+Event \texorpdfstring{$\ast$}{*}}]{event}{}\end{DoxyParamCaption})}
+
+
+
+Qt paint-\/event override used to draw the background and logo. 
+
+Drawing is done here rather than with QLabel pixmaps so that the logo and background can be precisely composited at the exact pixel positions defined by the GDD wireframe.
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The paint event triggered by the Qt framework. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_menu_view_af96345dab14a8ff772e9685eb2924917}\index{MenuView@{MenuView}!sigGameRq@{sigGameRq}}
+\index{sigGameRq@{sigGameRq}!MenuView@{MenuView}}
+\doxysubsubsection{\texorpdfstring{sigGameRq}{sigGameRq}}
+{\footnotesize\ttfamily \label{class_menu_view_af96345dab14a8ff772e9685eb2924917} 
+void Menu\+View::\+sig\+Game\+Rq (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Emitted when the player clicks the Play button. 
+
+\doxylink{class_menu_controller}{Menu\+Controller} listens to this signal and re-\/emits sig\+Game\+Request upward so that \doxylink{class_app_controller}{App\+Controller} can perform the MENU → PLAYING transition. 
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{menuview_8h}{menuview.\+h}}\item 
+build/\+\+Desktop\+\_\+\+Qt\+\_\+6\+\_\+10\+\_\+0\+\_\+\+Min\+GW\+\_\+64\+\_\+bit-\/\+Release/\+release/\+\doxymbox{\hyperlink{moc__menuview_8cpp}{moc\+\_\+menuview.\+cpp}}\item 
+Sources/\+\doxymbox{\hyperlink{menuview_8cpp}{menuview.\+cpp}}\end{DoxyCompactItemize}

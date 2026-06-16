@@ -1,0 +1,183 @@
+\doxysection{Floor\+Model Class Reference}
+\hypertarget{class_floor_model}{}\label{class_floor_model}\index{FloorModel@{FloorModel}}
+
+
+Entité statique décorative représentant une tile de sol.  
+
+
+
+
+{\ttfamily \+\#include $<$floormodel.\+h$>$}
+
+
+
+Inheritance diagram for Floor\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=167pt]{class_floor_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Floor\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_floor_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_floor_model_a8c1b2498b187d20d6c83200ca626907c}{Floor\+Model}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float w, float h, int tile\+Index=1, int tileset\+Cols=8)
+\begin{DoxyCompactList}\small\item\em Construit une tile de sol. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_floor_model_af5aa54cf8192864a22ae0f2b75e85300}{update}} (float dt) override
+\begin{DoxyCompactList}\small\item\em Aucune logique de mise à jour nécessaire pour le sol. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_floor_model_a47e5b52accc0e4d469655529c3f539f0}{get\+Tile\+Index}} () const
+\item 
+int \doxymbox{\hyperlink{class_floor_model_a9a6739eaedbf7deec82b39d9d514e166}{get\+Tileset\+Cols}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_entity_acaf2ad84607691b229cddab1da0bf819}{Entity}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float w, float h)
+\begin{DoxyCompactList}\small\item\em Constructor of the entity. \end{DoxyCompactList}\item 
+virtual \doxymbox{\hyperlink{class_entity_ac479d009ddde62dfb378ca0a70d81307}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual shredder. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_afdda0263db3d2e465a6ae6bad91eb990}{get\+Position}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a5f154968f2a478ea924460c78e0cd39e}{get\+Width}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a1332918563adb284c0fd432d47486d44}{get\+Height}} () const
+\item 
+bool \doxymbox{\hyperlink{class_entity_aea1c1568b4123d989c5310697030ad77}{is\+Active}} () const
+\item 
+void \doxymbox{\hyperlink{class_entity_ac5164b8c832f9a055df976527fe10032}{set\+Active}} (bool a)
+\item 
+void \doxymbox{\hyperlink{class_entity_a575ec530746fbb3eca1baddec2d0b030}{set\+Position}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos)
+\item 
+QRectF \doxymbox{\hyperlink{class_entity_ae00b70bd40800a8bd23c38b1c84404a9}{get\+Collider}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the entity\textquotesingle{}s collision bounding box. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{class_floor_model_a7090098f6817decbbbf9363572fb592e}{tile\+Index}}
+\begin{DoxyCompactList}\small\item\em Index 1-\/based dans le tileset de sol. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_floor_model_a8fd2486909eb2c4b581dfcf6c7297d2b}{tileset\+Cols}}
+\begin{DoxyCompactList}\small\item\em Nombre de colonnes du tileset de sol. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_a6af9d6498134ad0906011778bc5736db}{position}}
+\begin{DoxyCompactList}\small\item\em The entity\textquotesingle{}s 2D coordinates. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_adadfcc784f30b51b8e49f8230a56b793}{width}}
+\begin{DoxyCompactList}\small\item\em The physical width of the entity in pixels. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_a4550dc1011f47f6c4bb86e564e7d605b}{height}}
+\begin{DoxyCompactList}\small\item\em The physical height of the entity in pixels. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_entity_a939da33e8b67b1d2ee227930aa72da3b}{active}}
+\begin{DoxyCompactList}\small\item\em Status of the entity (false if dead or destroyed). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Entité statique décorative représentant une tile de sol. 
+
+Contrairement à \doxylink{class_wall_model}{Wall\+Model}, \doxylink{class_floor_model}{Floor\+Model} n\textquotesingle{}a aucun rôle dans la résolution des collisions :\+ il est uniquement utilisé par \doxylink{class_floor_view}{Floor\+View} pour l\textquotesingle{}affichage. Son collider est présent (hérité d\textquotesingle{}\doxylink{class_entity}{Entity}) mais n\textquotesingle{}est jamais consulté par le \doxylink{class_level_controller}{Level\+Controller}. 
+
+\label{class_floor_model_doc-constructors}
+\Hypertarget{class_floor_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_floor_model_a8c1b2498b187d20d6c83200ca626907c}\index{FloorModel@{FloorModel}!FloorModel@{FloorModel}}
+\index{FloorModel@{FloorModel}!FloorModel@{FloorModel}}
+\doxysubsubsection{\texorpdfstring{FloorModel()}{FloorModel()}}
+{\footnotesize\ttfamily \label{class_floor_model_a8c1b2498b187d20d6c83200ca626907c} 
+Floor\+Model::\+\+Floor\+Model (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{pos}{, }\item[{float}]{w}{, }\item[{float}]{h}{, }\item[{int}]{tile\+Index}{ = {\ttfamily 1}, }\item[{int}]{tileset\+Cols}{ = {\ttfamily 8}}\end{DoxyParamCaption})}
+
+
+
+Construit une tile de sol. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & Position haut-\/gauche dans la scène. \\
+\hline
+{\em w} & Largeur de la tile (pixels). \\
+\hline
+{\em h} & Hauteur de la tile (pixels). \\
+\hline
+{\em tile\+Index} & Index 1-\/based de la tile dans le tileset (1 = 1ère tile). \\
+\hline
+{\em tileset\+Cols} & Nombre de colonnes du tileset PNG. \\
+\hline
+\end{DoxyParams}
+
+
+\label{class_floor_model_doc-func-members}
+\Hypertarget{class_floor_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_floor_model_a47e5b52accc0e4d469655529c3f539f0}\index{FloorModel@{FloorModel}!getTileIndex@{getTileIndex}}
+\index{getTileIndex@{getTileIndex}!FloorModel@{FloorModel}}
+\doxysubsubsection{\texorpdfstring{getTileIndex()}{getTileIndex()}}
+{\footnotesize\ttfamily \label{class_floor_model_a47e5b52accc0e4d469655529c3f539f0} 
+int Floor\+Model::\+get\+Tile\+Index (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+Index 1-\/based dans le tileset. 
+\end{DoxyReturn}
+\Hypertarget{class_floor_model_a9a6739eaedbf7deec82b39d9d514e166}\index{FloorModel@{FloorModel}!getTilesetCols@{getTilesetCols}}
+\index{getTilesetCols@{getTilesetCols}!FloorModel@{FloorModel}}
+\doxysubsubsection{\texorpdfstring{getTilesetCols()}{getTilesetCols()}}
+{\footnotesize\ttfamily \label{class_floor_model_a9a6739eaedbf7deec82b39d9d514e166} 
+int Floor\+Model::\+get\+Tileset\+Cols (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+Nombre de colonnes du tileset. 
+\end{DoxyReturn}
+\Hypertarget{class_floor_model_af5aa54cf8192864a22ae0f2b75e85300}\index{FloorModel@{FloorModel}!update@{update}}
+\index{update@{update}!FloorModel@{FloorModel}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_floor_model_af5aa54cf8192864a22ae0f2b75e85300} 
+void Floor\+Model::\+update (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Aucune logique de mise à jour nécessaire pour le sol. 
+
+
+
+Reimplemented from \doxymbox{\hyperlink{class_entity_a21ab7babefa5e4525535a76cef1415f2}{Entity}}.
+
+
+
+\label{class_floor_model_doc-variable-members}
+\Hypertarget{class_floor_model_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_floor_model_a7090098f6817decbbbf9363572fb592e}\index{FloorModel@{FloorModel}!tileIndex@{tileIndex}}
+\index{tileIndex@{tileIndex}!FloorModel@{FloorModel}}
+\doxysubsubsection{\texorpdfstring{tileIndex}{tileIndex}}
+{\footnotesize\ttfamily \label{class_floor_model_a7090098f6817decbbbf9363572fb592e} 
+int Floor\+Model::\+tile\+Index\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Index 1-\/based dans le tileset de sol. 
+
+\Hypertarget{class_floor_model_a8fd2486909eb2c4b581dfcf6c7297d2b}\index{FloorModel@{FloorModel}!tilesetCols@{tilesetCols}}
+\index{tilesetCols@{tilesetCols}!FloorModel@{FloorModel}}
+\doxysubsubsection{\texorpdfstring{tilesetCols}{tilesetCols}}
+{\footnotesize\ttfamily \label{class_floor_model_a8fd2486909eb2c4b581dfcf6c7297d2b} 
+int Floor\+Model::\+tileset\+Cols\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Nombre de colonnes du tileset de sol. 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{floormodel_8h}{floormodel.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{floormodel_8cpp}{floormodel.\+cpp}}\end{DoxyCompactItemize}

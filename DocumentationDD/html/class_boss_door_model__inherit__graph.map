@@ -1,0 +1,7 @@
+<map id="BossDoorModel" name="BossDoorModel">
+<area shape="rect" id="Node000001" title="single use door : teleport the player in the other side of the door after the first colision and beco..." alt="" coords="5,496,130,608"/>
+<area shape="rect" id="Node000002" href="$class_global_door.html" title="Base entity from which standard doors, boss doors and level&#45;exit zones inherit." alt="" coords="19,379,116,448"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,460,70,496,65,496,67,465"/>
+<area shape="rect" id="Node000003" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="19,5,116,331"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="68,343,70,379,65,379,67,348"/>
+</map>

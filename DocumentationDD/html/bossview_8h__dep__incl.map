@@ -1,0 +1,29 @@
+<map id="Headers/bossview.h" name="Headers/bossview.h">
+<area shape="rect" id="Node000001" title="Declaration of the boss&#39;s view." alt="" coords="815,5,955,32"/>
+<area shape="rect" id="Node000002" href="$gameview_8h.html" title="Déclaration de la vue principale (QGraphicsView) du jeu in&#45;game." alt="" coords="641,80,785,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="839,39,744,82,742,77,844,37"/>
+<area shape="rect" id="Node000013" href="$bossview_8cpp.html" title="Boss view: animated sprite + attack area rendering (pattern 2)." alt="" coords="809,80,961,107"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="887,46,887,81,883,78,883,50"/>
+<area shape="rect" id="Node000014" href="$levelbuilder_8cpp.html" title=" " alt="" coords="985,80,1148,107"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="931,35,1037,79,1032,79,931,41"/>
+<area shape="rect" id="Node000003" href="$gamecontroller_8h.html" title="Declaration of GameController, the main controller managing the game loop and logic." alt="" coords="440,171,610,197"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="670,115,553,172,551,168,675,113"/>
+<area shape="rect" id="Node000011" href="$gameview_8cpp.html" title="Implementation of the 2D render engine and of the inputs." alt="" coords="635,171,791,197"/>
+<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="715,120,715,171,711,169,711,124"/>
+<area shape="rect" id="Node000012" href="$moc__gameview_8cpp.html" title=" " alt="" coords="815,155,1016,213"/>
+<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="756,111,853,154,847,154,756,116"/>
+<area shape="rect" id="Node000004" href="$appcontroller_8h.html" title="Déclaration du contrôleur principal de l&#39;application orchestrant les scènes (MVC)." alt="" coords="249,277,409,304"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="490,204,354,279,352,274,485,206"/>
+<area shape="rect" id="Node000009" href="$gamecontroller_8cpp.html" title="Implementation of the main game&#45;loop controller." alt="" coords="433,277,617,304"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="527,211,527,278,523,276,523,215"/>
+<area shape="rect" id="Node000010" href="$moc__gamecontroller_8cpp.html" title=" " alt="" coords="641,261,854,320"/>
+<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="566,202,689,261,684,261,565,207"/>
+<area shape="rect" id="Node000005" href="$_headers_2main_8cpp.html" title="Entry point of the Deadly Dropout application." alt="" coords="5,384,133,411"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="284,313,101,386,99,381,283,308"/>
+<area shape="rect" id="Node000006" href="$appcontroller_8cpp.html" title="Implémentation du routeur principal Qt et de l&#39;initialisation des sous&#45;contrôleurs." alt="" coords="156,384,328,411"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="312,315,254,386,251,382,307,317"/>
+<area shape="rect" id="Node000007" href="$_sources_2main_8cpp.html" title="Entry point of the Deadly Dropout application." alt="" coords="352,384,479,411"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="350,313,408,384,403,383,347,318"/>
+<area shape="rect" id="Node000008" href="$moc__appcontroller_8cpp.html" title=" " alt="" coords="502,368,705,427"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="377,307,531,367,526,368,376,312"/>
+</map>

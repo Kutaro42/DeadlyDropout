@@ -1,0 +1,84 @@
+\doxysection{Headers/\+leveltemplate.h File Reference}
+\hypertarget{leveltemplate_8h}{}\label{leveltemplate_8h}\index{Headers/leveltemplate.h@{Headers/leveltemplate.h}}
+
+
+Structures de description de niveaux (\doxylink{struct_level_matrix}{Level\+Matrix}, \doxylink{struct_level_descriptor}{Level\+Descriptor}, make\+Descriptor).  
+
+
+{\ttfamily \+\#include "{}config.\+h"{}}\newline
+{\ttfamily \+\#include $<$QString$>$}\newline
+Include dependency graph for leveltemplate.\+h:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{leveltemplate_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{leveltemplate_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_level_matrix}{Level\+Matrix$<$ ROWS, COLS $>$}}
+\item 
+struct \doxymbox{\hyperlink{struct_level_descriptor}{Level\+Descriptor}}
+\begin{DoxyCompactList}\small\item\em Vue non-\/propriétaire sur les trois matrices d\textquotesingle{}un niveau. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$int ROWS, int COLS$>$ }\\\doxymbox{\hyperlink{struct_level_descriptor}{Level\+Descriptor}} \doxymbox{\hyperlink{leveltemplate_8h_ab7b210a53603351f02c57c35b6522b4b}{make\+Descriptor}} (int id, const QString \&name, const \doxymbox{\hyperlink{struct_level_matrix}{Level\+Matrix}}$<$ ROWS, COLS $>$ \&entities, const \doxymbox{\hyperlink{struct_level_matrix}{Level\+Matrix}}$<$ ROWS, COLS $>$ \&walls, const \doxymbox{\hyperlink{struct_level_matrix}{Level\+Matrix}}$<$ ROWS, COLS $>$ \&floor, int tileset\+Cols=302, int floor\+Tileset\+Cols=302)
+\begin{DoxyCompactList}\small\item\em Surcharge complète :\+ entités + murs + sol (matrices statiques C++). \end{DoxyCompactList}\item 
+{\footnotesize template$<$int ROWS, int COLS$>$ }\\\doxymbox{\hyperlink{struct_level_descriptor}{Level\+Descriptor}} \doxymbox{\hyperlink{leveltemplate_8h_a45010aae5ab0c836abdafda27c3ef5d6}{make\+Descriptor}} (int id, const QString \&name, const \doxymbox{\hyperlink{struct_level_matrix}{Level\+Matrix}}$<$ ROWS, COLS $>$ \&entities, const \doxymbox{\hyperlink{struct_level_matrix}{Level\+Matrix}}$<$ ROWS, COLS $>$ \&walls, int tileset\+Cols=302)
+\begin{DoxyCompactList}\small\item\em Surcharge sans matrice sol (rétrocompatibilité). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structures de description de niveaux (\doxylink{struct_level_matrix}{Level\+Matrix}, \doxylink{struct_level_descriptor}{Level\+Descriptor}, make\+Descriptor). 
+
+\begin{DoxyAuthor}{Author}
+Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+Juin 2026
+\end{DoxyDate}
+\begin{DoxyNote}{Note}
+Ce fichier ne contient PLUS les données de niveaux (matrices inline). Les matrices sont désormais stockées dans des fichiers texte :\+
+\end{DoxyNote}
+levels/\+ level\+\_\+1/\+ entities.\+txt walls.\+txt floor.\+txt level\+\_\+2/\+ entities.\+txt walls.\+txt floor.\+txt ...
+
+Pour charger un niveau, utilisez \doxylink{class_matrix_extractor_ac678baeeb5173dede946848855415479}{Matrix\+Extractor::\+load()} (voir \doxylink{matrixextractor_8h}{matrixextractor.\+h}), puis passez le \doxylink{struct_dynamic_level_descriptor_a6dd9d9c0497c16ef1ae4c9ba09651a26}{Dynamic\+Level\+Descriptor::\+as\+Descriptor()} à \doxylink{class_level_builder_a655722e0cf515cca591d71fc5a4503ee}{Level\+Builder::\+build()}.
+
+Pour enregistrer la liste complète des niveaux, voir \doxylink{levelregistry_8h}{levelregistry.\+h}. 
+
+\label{leveltemplate_8h_doc-func-members}
+\Hypertarget{leveltemplate_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{leveltemplate_8h_ab7b210a53603351f02c57c35b6522b4b}\index{leveltemplate.h@{leveltemplate.h}!makeDescriptor@{makeDescriptor}}
+\index{makeDescriptor@{makeDescriptor}!leveltemplate.h@{leveltemplate.h}}
+\doxysubsubsection{\texorpdfstring{makeDescriptor()}{makeDescriptor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{leveltemplate_8h_ab7b210a53603351f02c57c35b6522b4b} 
+template$<$int ROWS, int COLS$>$ \\
+\doxymbox{\hyperlink{struct_level_descriptor}{Level\+Descriptor}} make\+Descriptor (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{const QString \&}]{name}{, }\item[{const \doxymbox{\hyperlink{struct_level_matrix}{Level\+Matrix}}$<$ ROWS, COLS $>$ \&}]{entities}{, }\item[{const \doxymbox{\hyperlink{struct_level_matrix}{Level\+Matrix}}$<$ ROWS, COLS $>$ \&}]{walls}{, }\item[{const \doxymbox{\hyperlink{struct_level_matrix}{Level\+Matrix}}$<$ ROWS, COLS $>$ \&}]{floor}{, }\item[{int}]{tileset\+Cols}{ = {\ttfamily 302}, }\item[{int}]{floor\+Tileset\+Cols}{ = {\ttfamily 302}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Surcharge complète :\+ entités + murs + sol (matrices statiques C++). 
+
+\Hypertarget{leveltemplate_8h_a45010aae5ab0c836abdafda27c3ef5d6}\index{leveltemplate.h@{leveltemplate.h}!makeDescriptor@{makeDescriptor}}
+\index{makeDescriptor@{makeDescriptor}!leveltemplate.h@{leveltemplate.h}}
+\doxysubsubsection{\texorpdfstring{makeDescriptor()}{makeDescriptor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{leveltemplate_8h_a45010aae5ab0c836abdafda27c3ef5d6} 
+template$<$int ROWS, int COLS$>$ \\
+\doxymbox{\hyperlink{struct_level_descriptor}{Level\+Descriptor}} make\+Descriptor (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{const QString \&}]{name}{, }\item[{const \doxymbox{\hyperlink{struct_level_matrix}{Level\+Matrix}}$<$ ROWS, COLS $>$ \&}]{entities}{, }\item[{const \doxymbox{\hyperlink{struct_level_matrix}{Level\+Matrix}}$<$ ROWS, COLS $>$ \&}]{walls}{, }\item[{int}]{tileset\+Cols}{ = {\ttfamily 302}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Surcharge sans matrice sol (rétrocompatibilité). 
+

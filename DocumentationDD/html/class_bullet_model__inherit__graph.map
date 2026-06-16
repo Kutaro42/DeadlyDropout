@@ -1,0 +1,7 @@
+<map id="BulletModel" name="BulletModel">
+<area shape="rect" id="Node000001" title="Projectile fired by the player (semi&#45;automatic pistol)." alt="" coords="6,645,106,715"/>
+<area shape="rect" id="Node000002" href="$class_projectile.html" title="Abstract base class for any projectile moving in a straight line." alt="" coords="5,379,107,597"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="58,610,59,646,54,645,55,615"/>
+<area shape="rect" id="Node000003" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="8,5,105,331"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="57,343,59,379,54,379,56,348"/>
+</map>

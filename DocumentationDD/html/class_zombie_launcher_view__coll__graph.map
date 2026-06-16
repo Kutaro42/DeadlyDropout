@@ -1,0 +1,14 @@
+<map id="ZombieLauncherView" name="ZombieLauncherView">
+<area shape="rect" id="Node000001" title="Qt view of the launcher zombie, also managing the views of the rubble it fires." alt="" coords="20,1848,176,2408"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,1611,148,1680"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,1692,88,1848,83,1848,79,1697"/>
+<area shape="rect" id="Node000003" href="$class_zombie_launcher_model.html" title="Ranged enemy that fires rubble at the player." alt="" coords="172,1515,344,1776"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="214,1778,184,1876,179,1874,216,1773"/>
+<area shape="rect" id="Node000004" href="$class_enemy.html" title="Base class defining the structure and mechanics of a hostile entity." alt="" coords="186,649,330,1465"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="258,1478,261,1515,255,1515,258,1483"/>
+<area shape="rect" id="Node000005" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="300,296,397,600"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="324,612,321,650,316,649,324,617"/>
+<area shape="rect" id="Node000006" href="$class_vector2f.html" title="Mathematical class describing 2D vectors (position, velocity)." alt="" coords="190,5,286,224"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="232,221,231,296,228,448,231,600,232,632,227,632,226,600,223,448,226,296,231,227"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="274,221,298,286,292,286,274,226"/>
+</map>

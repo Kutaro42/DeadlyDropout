@@ -1,0 +1,39 @@
+\doxysection{marketview.\+h}
+\hypertarget{marketview_8h_source}{}\label{marketview_8h_source}\index{Headers/marketview.h@{Headers/marketview.h}}
+\doxymbox{\hyperlink{marketview_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ MARKETVIEW\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ MARKETVIEW\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QDialog>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QPushButton>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QLabel>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{playermodel_8h}{playermodel.h}}"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_market_view_a1f183f22f0a4cfa525f7a5ddd3ed2fd2}{MarketView}}\ :\ \textcolor{keyword}{public}\ QDialog\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_market_view_a1f183f22f0a4cfa525f7a5ddd3ed2fd2}{MarketView}}(QWidget*\ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_market_view_abe24c7414fe76fdaf98cccaeccb0e51b}{refresh}}(\doxymbox{\hyperlink{class_player_model}{PlayerModel}}*\ player);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ signals:}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_market_view_a01d8fc956d8382ddb2c404ce25a0f949}{sigBuy}}(\textcolor{keywordtype}{int}\ itemId);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00060\ \ \ \ \ QLabel*\ \doxymbox{\hyperlink{class_market_view_ae2307009b1c1b436f2dbd4ca2af1abf9}{goldLabel}};\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_market_view_1_1_item_btn}{ItemBtn}}\ \{\ QPushButton*\ \doxymbox{\hyperlink{struct_market_view_1_1_item_btn_ab6428976923b50fe9b05d2fb2129848c}{btn}};\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_market_view_1_1_item_btn_a820fba15abb976de98cb801188fa6274}{id}};\ \};}
+\DoxyCodeLine{00064\ \ \ \ \ QVector<ItemBtn>\ \doxymbox{\hyperlink{class_market_view_aba12711067053eb63cbacb3c09c368d5}{itemBtns}};\ }
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_market_view_1_1_item_def}{ItemDef}}\ \{\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_market_view_1_1_item_def_aa58823cdcc9f97913fedddde0ef3cb11}{id}};\ QString\ \doxymbox{\hyperlink{struct_market_view_1_1_item_def_a001d4f2c3413187e7bdc6fa110920378}{name}};\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_market_view_1_1_item_def_aea3c58b8fe8df403a34869746c3512d4}{cost}};\ QString\ \doxymbox{\hyperlink{struct_market_view_1_1_item_def_ad7cc94f27d2c433a90178ee0118082a0}{desc}};\ \};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ QVector<ItemDef>\ \doxymbox{\hyperlink{class_market_view_a8047c81421a8b87fa090131e3bd09ff8}{ITEMS}};}
+\DoxyCodeLine{00078\ \};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

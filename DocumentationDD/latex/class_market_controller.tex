@@ -1,0 +1,188 @@
+\doxysection{Market\+Controller Class Reference}
+\hypertarget{class_market_controller}{}\label{class_market_controller}\index{MarketController@{MarketController}}
+
+
+Controller for the BDE Market upgrade shop (GDD Step 5 — Market rules).  
+
+
+
+
+{\ttfamily \+\#include $<$marketcontroller.\+h$>$}
+
+
+
+Inheritance diagram for Market\+Controller:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=182pt]{class_market_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Market\+Controller:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_market_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_market_controller_a9523d9adaaa939f043e49790d0cf6911}{sig\+Closed}} ()
+\begin{DoxyCompactList}\small\item\em Emitted when the market dialog is closed (player clicked "{}\+Continue"{}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_market_controller_ad2021642f13459e9c95921521d21eaa0}{Market\+Controller}} (QWidget \texorpdfstring{$\ast$}{*}parent\+Widget, QObject \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructs \doxylink{class_market_controller}{Market\+Controller} and creates the owned \doxylink{class_market_view}{Market\+View}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_market_controller_a6fd2b300dd7b5f2f7b63898de4e833d7}{\texorpdfstring{$\sim$}{\string~}\+Market\+Controller}} ()
+\item 
+void \doxymbox{\hyperlink{class_market_controller_af72fd62631683d7f0eee5172acb20bf0}{open}} (\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \texorpdfstring{$\ast$}{*}player)
+\begin{DoxyCompactList}\small\item\em Opens the market modal and blocks until the player clicks "{}\+Continue"{}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_market_view}{Market\+View}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_market_controller_a042b556fb6aa889feeefc10cb76c4fce}{get\+View}} () const
+\begin{DoxyCompactList}\small\item\em Returns the managed \doxylink{class_market_view}{Market\+View} (for embedding or testing). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_market_controller_a4886231988e773eb555a726e6978344c}{slt\+Buy}} (int item\+Id)
+\begin{DoxyCompactList}\small\item\em Applies the selected upgrade to the player when a buy button is clicked. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_market_view}{Market\+View}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_market_controller_a6529e19d9b07da4a92bd2ca6bf30f764}{its\+View}}
+\begin{DoxyCompactList}\small\item\em Owned dialog view. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_market_controller_af3e39a56751c176dbac5743523fc5656}{its\+Player}} = nullptr
+\begin{DoxyCompactList}\small\item\em Non-\/owning pointer to the active player. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controller for the BDE Market upgrade shop (GDD Step 5 — Market rules). 
+
+The market is a modal interaction:\+ the game loop is stopped, the player buys upgrades, then the loop resumes. Using QDialog::\+exec() inside \doxylink{class_market_controller_af72fd62631683d7f0eee5172acb20bf0}{open()} achieves this without a separate application state, keeping \doxylink{class_game_controller}{Game\+Controller}\textquotesingle{}s state machine simpler.
+
+All upgrade bonus values are defined as named constants below so that balancing changes require edits in one place rather than scattered magic numbers. 
+
+\label{class_market_controller_doc-constructors}
+\Hypertarget{class_market_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_market_controller_ad2021642f13459e9c95921521d21eaa0}\index{MarketController@{MarketController}!MarketController@{MarketController}}
+\index{MarketController@{MarketController}!MarketController@{MarketController}}
+\doxysubsubsection{\texorpdfstring{MarketController()}{MarketController()}}
+{\footnotesize\ttfamily \label{class_market_controller_ad2021642f13459e9c95921521d21eaa0} 
+Market\+Controller::\+\+Market\+Controller (\begin{DoxyParamCaption}\item[{QWidget \texorpdfstring{$\ast$}{*}}]{parent\+Widget}{, }\item[{QObject \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs \doxylink{class_market_controller}{Market\+Controller} and creates the owned \doxylink{class_market_view}{Market\+View}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent\+Widget} & Qt widget parent for the dialog (nullptr = top-\/level). \\
+\hline
+{\em parent} & Qt object parent. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_market_controller_a6fd2b300dd7b5f2f7b63898de4e833d7}\index{MarketController@{MarketController}!````~MarketController@{\texorpdfstring{$\sim$}{\string~}MarketController}}
+\index{````~MarketController@{\texorpdfstring{$\sim$}{\string~}MarketController}!MarketController@{MarketController}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}MarketController()}{\string~MarketController()}}
+{\footnotesize\ttfamily \label{class_market_controller_a6fd2b300dd7b5f2f7b63898de4e833d7} 
+Market\+Controller::\+\texorpdfstring{$\sim$}{\string~}\+Market\+Controller (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\label{class_market_controller_doc-func-members}
+\Hypertarget{class_market_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_market_controller_a042b556fb6aa889feeefc10cb76c4fce}\index{MarketController@{MarketController}!getView@{getView}}
+\index{getView@{getView}!MarketController@{MarketController}}
+\doxysubsubsection{\texorpdfstring{getView()}{getView()}}
+{\footnotesize\ttfamily \label{class_market_controller_a042b556fb6aa889feeefc10cb76c4fce} 
+\doxymbox{\hyperlink{class_market_view}{Market\+View}} \texorpdfstring{$\ast$}{*} Market\+Controller::\+get\+View (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the managed \doxylink{class_market_view}{Market\+View} (for embedding or testing). 
+
+\begin{DoxyReturn}{Returns}
+Pointer to \doxylink{class_market_view}{Market\+View}. 
+\end{DoxyReturn}
+\Hypertarget{class_market_controller_af72fd62631683d7f0eee5172acb20bf0}\index{MarketController@{MarketController}!open@{open}}
+\index{open@{open}!MarketController@{MarketController}}
+\doxysubsubsection{\texorpdfstring{open()}{open()}}
+{\footnotesize\ttfamily \label{class_market_controller_af72fd62631683d7f0eee5172acb20bf0} 
+void Market\+Controller::\+open (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_player_model}{Player\+Model}} \texorpdfstring{$\ast$}{*}}]{player}{}\end{DoxyParamCaption})}
+
+
+
+Opens the market modal and blocks until the player clicks "{}\+Continue"{}. 
+
+\doxylink{class_game_controller}{Game\+Controller} calls this between levels after stopping the game timer. The blocking nature means the caller does not need an async callback — execution simply resumes after the player is done shopping.
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & The player whose stats will be upgraded and whose gold will be deducted. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_market_controller_a9523d9adaaa939f043e49790d0cf6911}\index{MarketController@{MarketController}!sigClosed@{sigClosed}}
+\index{sigClosed@{sigClosed}!MarketController@{MarketController}}
+\doxysubsubsection{\texorpdfstring{sigClosed}{sigClosed}}
+{\footnotesize\ttfamily \label{class_market_controller_a9523d9adaaa939f043e49790d0cf6911} 
+void Market\+Controller::\+sig\+Closed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Emitted when the market dialog is closed (player clicked "{}\+Continue"{}). 
+
+\Hypertarget{class_market_controller_a4886231988e773eb555a726e6978344c}\index{MarketController@{MarketController}!sltBuy@{sltBuy}}
+\index{sltBuy@{sltBuy}!MarketController@{MarketController}}
+\doxysubsubsection{\texorpdfstring{sltBuy}{sltBuy}}
+{\footnotesize\ttfamily \label{class_market_controller_a4886231988e773eb555a726e6978344c} 
+void Market\+Controller::\+slt\+Buy (\begin{DoxyParamCaption}\item[{int}]{item\+Id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}
+
+
+
+Applies the selected upgrade to the player when a buy button is clicked. 
+
+Validates the player\textquotesingle{}s gold balance before applying any stat change. Each case corresponds to one GDD power-\/up (Life\+Power\+Up, Bullet\+Power\+Up, etc.).
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Id} & Index into \doxylink{class_market_view_a8047c81421a8b87fa090131e3bd09ff8}{Market\+View::\+\+ITEMS} identifying the purchased upgrade. \\
+\hline
+\end{DoxyParams}
+
+
+\label{class_market_controller_doc-variable-members}
+\Hypertarget{class_market_controller_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_market_controller_af3e39a56751c176dbac5743523fc5656}\index{MarketController@{MarketController}!itsPlayer@{itsPlayer}}
+\index{itsPlayer@{itsPlayer}!MarketController@{MarketController}}
+\doxysubsubsection{\texorpdfstring{itsPlayer}{itsPlayer}}
+{\footnotesize\ttfamily \label{class_market_controller_af3e39a56751c176dbac5743523fc5656} 
+\doxymbox{\hyperlink{class_player_model}{Player\+Model}}\texorpdfstring{$\ast$}{*} Market\+Controller::\+its\+Player = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Non-\/owning pointer to the active player. 
+
+\Hypertarget{class_market_controller_a6529e19d9b07da4a92bd2ca6bf30f764}\index{MarketController@{MarketController}!itsView@{itsView}}
+\index{itsView@{itsView}!MarketController@{MarketController}}
+\doxysubsubsection{\texorpdfstring{itsView}{itsView}}
+{\footnotesize\ttfamily \label{class_market_controller_a6529e19d9b07da4a92bd2ca6bf30f764} 
+\doxymbox{\hyperlink{class_market_view}{Market\+View}}\texorpdfstring{$\ast$}{*} Market\+Controller::\+its\+View\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Owned dialog view. 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{marketcontroller_8h}{marketcontroller.\+h}}\item 
+build/\+\+Desktop\+\_\+\+Qt\+\_\+6\+\_\+10\+\_\+0\+\_\+\+Min\+GW\+\_\+64\+\_\+bit-\/\+Release/\+release/\+\doxymbox{\hyperlink{moc__marketcontroller_8cpp}{moc\+\_\+marketcontroller.\+cpp}}\item 
+Sources/\+\doxymbox{\hyperlink{marketcontroller_8cpp}{marketcontroller.\+cpp}}\end{DoxyCompactItemize}

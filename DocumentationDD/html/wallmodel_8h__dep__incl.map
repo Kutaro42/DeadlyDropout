@@ -1,0 +1,57 @@
+<map id="Headers/wallmodel.h" name="Headers/wallmodel.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1122,5,1266,32"/>
+<area shape="rect" id="Node000002" href="$levelmodel_8h.html" title="Modèle de données stockant l&#39;état complet d&#39;un niveau." alt="" coords="680,80,828,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1105,35,829,82,827,77,1109,33"/>
+<area shape="rect" id="Node000018" href="$levelbuilder_8cpp.html" title=" " alt="" coords="1060,277,1224,304"/>
+<area shape="poly" id="edge29_Node000001_Node000018" title=" " alt="" coords="1182,44,1170,81,1158,137,1150,194,1144,278,1140,275,1145,193,1152,136,1165,79,1179,48"/>
+<area shape="rect" id="Node000023" href="$wallview_8h.html" title=" " alt="" coords="1179,80,1313,107"/>
+<area shape="poly" id="edge26_Node000001_Node000023" title=" " alt="" coords="1213,42,1240,80,1234,79,1211,47"/>
+<area shape="rect" id="Node000025" href="$wallmodel_8cpp.html" title=" " alt="" coords="1337,80,1494,107"/>
+<area shape="poly" id="edge30_Node000001_Node000025" title=" " alt="" coords="1247,35,1379,79,1374,80,1247,40"/>
+<area shape="rect" id="Node000003" href="$gamemodel_8h.html" title="Declaration of GameModel, the central model storing all in&#45;game entities." alt="" coords="404,171,557,197"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="698,113,521,172,519,168,702,110"/>
+<area shape="rect" id="Node000017" href="$levelbuilder_8h.html" title=" " alt="" coords="770,171,920,197"/>
+<area shape="poly" id="edge17_Node000002_Node000017" title=" " alt="" coords="778,115,834,170,829,170,777,120"/>
+<area shape="rect" id="Node000019" href="$levelcontroller_8h.html" title="Déclaration du LevelController, le moteur logique des niveaux." alt="" coords="581,171,746,197"/>
+<area shape="poly" id="edge20_Node000002_Node000019" title=" " alt="" coords="732,116,678,172,675,168,728,120"/>
+<area shape="rect" id="Node000021" href="$levelmodel_8cpp.html" title=" " alt="" coords="944,171,1105,197"/>
+<area shape="poly" id="edge24_Node000002_Node000021" title=" " alt="" coords="807,109,989,169,983,171,807,115"/>
+<area shape="rect" id="Node000022" href="$moc__levelmodel_8cpp.html" title=" " alt="" coords="179,155,380,213"/>
+<area shape="poly" id="edge25_Node000002_Node000022" title=" " alt="" coords="663,109,536,131,393,157,382,160,379,155,392,152,535,125,667,106"/>
+<area shape="rect" id="Node000004" href="$gamecontroller_8h.html" title="Declaration of GameController, the main controller managing the game loop and logic." alt="" coords="581,384,751,411"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="512,204,546,229,579,260,605,292,629,327,662,384,657,383,625,330,601,296,575,263,543,233,512,209"/>
+<area shape="rect" id="Node000012" href="$gameview_8h.html" title="Déclaration de la vue principale (QGraphicsView) du jeu in&#45;game." alt="" coords="421,277,564,304"/>
+<area shape="poly" id="edge11_Node000003_Node000012" title=" " alt="" coords="485,210,494,278,489,276,483,215"/>
+<area shape="rect" id="Node000015" href="$gamemodel_8cpp.html" title="Implementation of the root game model." alt="" coords="231,277,397,304"/>
+<area shape="poly" id="edge15_Node000003_Node000015" title=" " alt="" coords="446,207,336,279,333,275,450,204"/>
+<area shape="rect" id="Node000016" href="$moc__gamemodel_8cpp.html" title=" " alt="" coords="5,261,207,320"/>
+<area shape="poly" id="edge16_Node000003_Node000016" title=" " alt="" coords="425,204,392,216,209,266,206,261,391,211,429,201"/>
+<area shape="rect" id="Node000005" href="$appcontroller_8h.html" title="Déclaration du contrôleur principal de l&#39;application orchestrant les scènes (MVC)." alt="" coords="390,491,550,517"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="631,417,495,493,493,488,626,419"/>
+<area shape="rect" id="Node000010" href="$gamecontroller_8cpp.html" title="Implementation of the main game&#45;loop controller." alt="" coords="574,491,758,517"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="668,424,668,492,664,489,664,428"/>
+<area shape="rect" id="Node000011" href="$moc__gamecontroller_8cpp.html" title=" " alt="" coords="782,475,995,533"/>
+<area shape="poly" id="edge10_Node000004_Node000011" title=" " alt="" coords="707,415,830,474,825,474,706,420"/>
+<area shape="rect" id="Node000006" href="$_headers_2main_8cpp.html" title="Entry point of the Deadly Dropout application." alt="" coords="146,597,274,624"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="427,524,242,599,241,594,422,523"/>
+<area shape="rect" id="Node000007" href="$appcontroller_8cpp.html" title="Implémentation du routeur principal Qt et de l&#39;initialisation des sous&#45;contrôleurs." alt="" coords="297,597,470,624"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="453,528,395,599,392,595,448,530"/>
+<area shape="rect" id="Node000008" href="$_sources_2main_8cpp.html" title="Entry point of the Deadly Dropout application." alt="" coords="494,597,620,624"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="491,527,549,598,544,596,488,531"/>
+<area shape="rect" id="Node000009" href="$moc__appcontroller_8cpp.html" title=" " alt="" coords="644,581,846,640"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="518,521,672,581,667,581,517,526"/>
+<area shape="poly" id="edge12_Node000012_Node000004" title=" " alt="" coords="527,310,648,383,642,384,526,315"/>
+<area shape="rect" id="Node000013" href="$gameview_8cpp.html" title="Implementation of the 2D render engine and of the inputs." alt="" coords="400,384,556,411"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="490,317,482,385,477,382,487,321"/>
+<area shape="rect" id="Node000014" href="$moc__gameview_8cpp.html" title=" " alt="" coords="175,368,376,427"/>
+<area shape="poly" id="edge14_Node000012_Node000014" title=" " alt="" coords="451,313,336,370,334,365,455,310"/>
+<area shape="poly" id="edge18_Node000017_Node000004" title=" " alt="" coords="864,208,879,234,890,263,893,293,890,308,883,322,856,349,824,369,788,383,752,392,751,386,786,378,821,364,853,345,878,318,885,306,888,293,885,264,874,236,862,213"/>
+<area shape="poly" id="edge19_Node000017_Node000018" title=" " alt="" coords="895,200,1109,276,1103,277,895,206"/>
+<area shape="poly" id="edge21_Node000019_Node000004" title=" " alt="" coords="665,211,668,385,663,383,662,215"/>
+<area shape="poly" id="edge22_Node000019_Node000012" title=" " alt="" coords="628,207,515,279,512,275,632,204"/>
+<area shape="rect" id="Node000020" href="$levelcontroller_8cpp.html" title=" " alt="" coords="690,277,868,304"/>
+<area shape="poly" id="edge23_Node000019_Node000020" title=" " alt="" coords="689,205,768,277,763,277,688,210"/>
+<area shape="poly" id="edge27_Node000023_Node000018" title=" " alt="" coords="1235,118,1150,279,1147,275,1230,122"/>
+<area shape="rect" id="Node000024" href="$wallview_8cpp.html" title=" " alt="" coords="1230,171,1377,197"/>
+<area shape="poly" id="edge28_Node000023_Node000024" title=" " alt="" coords="1263,117,1298,171,1293,169,1261,122"/>
+</map>

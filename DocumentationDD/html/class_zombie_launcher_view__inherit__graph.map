@@ -1,0 +1,5 @@
+<map id="ZombieLauncherView" name="ZombieLauncherView">
+<area shape="rect" id="Node000001" title="Qt view of the launcher zombie, also managing the views of the rubble it fires." alt="" coords="5,123,162,704"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="12,5,155,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,87,86,123,81,123,84,92"/>
+</map>

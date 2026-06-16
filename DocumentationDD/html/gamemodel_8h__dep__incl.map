@@ -1,0 +1,30 @@
+<map id="Headers/gamemodel.h" name="Headers/gamemodel.h">
+<area shape="rect" id="Node000001" title="Declaration of GameModel, the central model storing all in&#45;game entities." alt="" coords="706,5,858,32"/>
+<area shape="rect" id="Node000002" href="$gamecontroller_8h.html" title="Declaration of GameController, the main controller managing the game loop and logic." alt="" coords="440,203,610,229"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="696,38,653,56,611,82,582,111,559,145,531,204,527,201,555,143,578,108,607,78,651,52,701,36"/>
+<area shape="rect" id="Node000010" href="$gameview_8h.html" title="Déclaration de la vue principale (QGraphicsView) du jeu in&#45;game." alt="" coords="621,96,765,123"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="761,42,707,98,704,93,757,45"/>
+<area shape="rect" id="Node000013" href="$gamemodel_8cpp.html" title="Implementation of the root game model." alt="" coords="789,96,954,123"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="806,41,862,96,856,95,805,46"/>
+<area shape="rect" id="Node000014" href="$moc__gamemodel_8cpp.html" title=" " alt="" coords="979,80,1180,139"/>
+<area shape="poly" id="edge14_Node000001_Node000014" title=" " alt="" coords="839,34,986,79,980,80,839,39"/>
+<area shape="rect" id="Node000003" href="$appcontroller_8h.html" title="Déclaration du contrôleur principal de l&#39;application orchestrant les scènes (MVC)." alt="" coords="249,309,409,336"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="490,236,354,311,352,306,485,238"/>
+<area shape="rect" id="Node000008" href="$gamecontroller_8cpp.html" title="Implementation of the main game&#45;loop controller." alt="" coords="433,309,617,336"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="527,243,527,310,523,308,523,247"/>
+<area shape="rect" id="Node000009" href="$moc__gamecontroller_8cpp.html" title=" " alt="" coords="641,293,854,352"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="566,234,689,293,684,293,565,239"/>
+<area shape="rect" id="Node000004" href="$_headers_2main_8cpp.html" title="Entry point of the Deadly Dropout application." alt="" coords="5,416,133,443"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="284,345,101,418,99,413,283,340"/>
+<area shape="rect" id="Node000005" href="$appcontroller_8cpp.html" title="Implémentation du routeur principal Qt et de l&#39;initialisation des sous&#45;contrôleurs." alt="" coords="156,416,328,443"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="312,347,254,418,251,414,307,349"/>
+<area shape="rect" id="Node000006" href="$_sources_2main_8cpp.html" title="Entry point of the Deadly Dropout application." alt="" coords="352,416,479,443"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="350,345,408,416,403,415,347,350"/>
+<area shape="rect" id="Node000007" href="$moc__appcontroller_8cpp.html" title=" " alt="" coords="502,400,705,459"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="377,339,531,399,526,400,376,344"/>
+<area shape="poly" id="edge10_Node000010_Node000002" title=" " alt="" coords="662,130,547,204,544,200,658,132"/>
+<area shape="rect" id="Node000011" href="$gameview_8cpp.html" title="Implementation of the 2D render engine and of the inputs." alt="" coords="635,203,791,229"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="700,136,713,203,708,201,697,140"/>
+<area shape="rect" id="Node000012" href="$moc__gameview_8cpp.html" title=" " alt="" coords="815,187,1016,245"/>
+<area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="734,127,857,186,852,186,733,132"/>
+</map>

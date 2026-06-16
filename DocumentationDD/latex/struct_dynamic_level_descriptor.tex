@@ -1,0 +1,174 @@
+\doxysection{Dynamic\+Level\+Descriptor Struct Reference}
+\hypertarget{struct_dynamic_level_descriptor}{}\label{struct_dynamic_level_descriptor}\index{DynamicLevelDescriptor@{DynamicLevelDescriptor}}
+
+
+Wrapper dynamique d\textquotesingle{}un \doxylink{struct_level_descriptor}{Level\+Descriptor} dont les buffers sont alloués sur le tas (QVector$<$int$>$) et non dans des tableaux statiques en mémoire constante.  
+
+
+
+
+{\ttfamily \+\#include $<$matrixextractor.\+h$>$}
+
+
+
+Collaboration diagram for Dynamic\+Level\+Descriptor:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=195pt]{struct_dynamic_level_descriptor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{struct_level_descriptor}{Level\+Descriptor}} \doxymbox{\hyperlink{struct_dynamic_level_descriptor_a6dd9d9c0497c16ef1ae4c9ba09651a26}{as\+Descriptor}} () const
+\begin{DoxyCompactList}\small\item\em Construit et retourne un \doxylink{struct_level_descriptor}{Level\+Descriptor} pointant vers les buffers internes de cette instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+QVector$<$ int $>$ \doxymbox{\hyperlink{struct_dynamic_level_descriptor_af15c1431ca1ec47f5837e8ae703be0e7}{entity\+Buf}}
+\begin{DoxyCompactList}\small\item\em Buffer plat de la matrice entités. \end{DoxyCompactList}\item 
+QVector$<$ int $>$ \doxymbox{\hyperlink{struct_dynamic_level_descriptor_a54f12c5fd672dfd32702112c9af713c2}{wall\+Buf}}
+\begin{DoxyCompactList}\small\item\em Buffer plat de la matrice murs. \end{DoxyCompactList}\item 
+QVector$<$ int $>$ \doxymbox{\hyperlink{struct_dynamic_level_descriptor_a65f0ec3077d2be4d7502b0c384c5fca4}{floor\+Buf}}
+\begin{DoxyCompactList}\small\item\em Buffer plat de la matrice sol. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{struct_dynamic_level_descriptor_a8c447a27c161e96c13ca3288e074c6b3}{id}}
+\begin{DoxyCompactList}\small\item\em Identifiant numérique du niveau. \end{DoxyCompactList}\item 
+QString \doxymbox{\hyperlink{struct_dynamic_level_descriptor_aa4c46c96ac5734167c54dbd0b2c57ca4}{name}}
+\begin{DoxyCompactList}\small\item\em Nom lisible du niveau. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{struct_dynamic_level_descriptor_a56b240cd45b338f5d1009ed8e4cfe79b}{rows}}
+\begin{DoxyCompactList}\small\item\em Nombre de lignes des matrices. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{struct_dynamic_level_descriptor_a8ed2f1a60c9bfd8cdf0433c23789a6db}{cols}}
+\begin{DoxyCompactList}\small\item\em Nombre de colonnes des matrices. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{struct_dynamic_level_descriptor_abd2c2292655d2bbc90a42b07c3b0eea0}{tileset\+Cols}}
+\begin{DoxyCompactList}\small\item\em Colonnes du tileset murs (pour \doxylink{class_wall_view}{Wall\+View}). \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{struct_dynamic_level_descriptor_a5606cfbc7863b55fa6548ef2f7d396b2}{floor\+Tileset\+Cols}}
+\begin{DoxyCompactList}\small\item\em Colonnes du tileset sol (pour \doxylink{class_floor_view}{Floor\+View}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Wrapper dynamique d\textquotesingle{}un \doxylink{struct_level_descriptor}{Level\+Descriptor} dont les buffers sont alloués sur le tas (QVector$<$int$>$) et non dans des tableaux statiques en mémoire constante. 
+
+Utilisé à la place des \doxylink{struct_level_matrix}{Level\+Matrix$<$\+R,\+C$>$} constexpr lorsque les données proviennent de fichiers externes plutôt que du binaire compilé. 
+
+\label{struct_dynamic_level_descriptor_doc-func-members}
+\Hypertarget{struct_dynamic_level_descriptor_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_dynamic_level_descriptor_a6dd9d9c0497c16ef1ae4c9ba09651a26}\index{DynamicLevelDescriptor@{DynamicLevelDescriptor}!asDescriptor@{asDescriptor}}
+\index{asDescriptor@{asDescriptor}!DynamicLevelDescriptor@{DynamicLevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{asDescriptor()}{asDescriptor()}}
+{\footnotesize\ttfamily \label{struct_dynamic_level_descriptor_a6dd9d9c0497c16ef1ae4c9ba09651a26} 
+\doxymbox{\hyperlink{struct_level_descriptor}{Level\+Descriptor}} Dynamic\+Level\+Descriptor::\+as\+Descriptor (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Construit et retourne un \doxylink{struct_level_descriptor}{Level\+Descriptor} pointant vers les buffers internes de cette instance. 
+
+\begin{DoxyWarning}{Warning}
+Le \doxylink{struct_dynamic_level_descriptor}{Dynamic\+Level\+Descriptor} doit rester en vie aussi longtemps que le \doxylink{struct_level_descriptor}{Level\+Descriptor} retourné est utilisé (pas de copie profonde des pointeurs). 
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+Un \doxylink{struct_level_descriptor}{Level\+Descriptor} prêt à être passé à \doxylink{class_level_builder_a655722e0cf515cca591d71fc5a4503ee}{Level\+Builder::\+build()}. 
+\end{DoxyReturn}
+
+
+\label{struct_dynamic_level_descriptor_doc-variable-members}
+\Hypertarget{struct_dynamic_level_descriptor_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_dynamic_level_descriptor_a8ed2f1a60c9bfd8cdf0433c23789a6db}\index{DynamicLevelDescriptor@{DynamicLevelDescriptor}!cols@{cols}}
+\index{cols@{cols}!DynamicLevelDescriptor@{DynamicLevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{cols}{cols}}
+{\footnotesize\ttfamily \label{struct_dynamic_level_descriptor_a8ed2f1a60c9bfd8cdf0433c23789a6db} 
+int Dynamic\+Level\+Descriptor::\+cols}
+
+
+
+Nombre de colonnes des matrices. 
+
+\Hypertarget{struct_dynamic_level_descriptor_af15c1431ca1ec47f5837e8ae703be0e7}\index{DynamicLevelDescriptor@{DynamicLevelDescriptor}!entityBuf@{entityBuf}}
+\index{entityBuf@{entityBuf}!DynamicLevelDescriptor@{DynamicLevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{entityBuf}{entityBuf}}
+{\footnotesize\ttfamily \label{struct_dynamic_level_descriptor_af15c1431ca1ec47f5837e8ae703be0e7} 
+QVector$<$int$>$ Dynamic\+Level\+Descriptor::\+entity\+Buf}
+
+
+
+Buffer plat de la matrice entités. 
+
+\Hypertarget{struct_dynamic_level_descriptor_a65f0ec3077d2be4d7502b0c384c5fca4}\index{DynamicLevelDescriptor@{DynamicLevelDescriptor}!floorBuf@{floorBuf}}
+\index{floorBuf@{floorBuf}!DynamicLevelDescriptor@{DynamicLevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{floorBuf}{floorBuf}}
+{\footnotesize\ttfamily \label{struct_dynamic_level_descriptor_a65f0ec3077d2be4d7502b0c384c5fca4} 
+QVector$<$int$>$ Dynamic\+Level\+Descriptor::\+floor\+Buf}
+
+
+
+Buffer plat de la matrice sol. 
+
+\Hypertarget{struct_dynamic_level_descriptor_a5606cfbc7863b55fa6548ef2f7d396b2}\index{DynamicLevelDescriptor@{DynamicLevelDescriptor}!floorTilesetCols@{floorTilesetCols}}
+\index{floorTilesetCols@{floorTilesetCols}!DynamicLevelDescriptor@{DynamicLevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{floorTilesetCols}{floorTilesetCols}}
+{\footnotesize\ttfamily \label{struct_dynamic_level_descriptor_a5606cfbc7863b55fa6548ef2f7d396b2} 
+int Dynamic\+Level\+Descriptor::\+floor\+Tileset\+Cols}
+
+
+
+Colonnes du tileset sol (pour \doxylink{class_floor_view}{Floor\+View}). 
+
+\Hypertarget{struct_dynamic_level_descriptor_a8c447a27c161e96c13ca3288e074c6b3}\index{DynamicLevelDescriptor@{DynamicLevelDescriptor}!id@{id}}
+\index{id@{id}!DynamicLevelDescriptor@{DynamicLevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{struct_dynamic_level_descriptor_a8c447a27c161e96c13ca3288e074c6b3} 
+int Dynamic\+Level\+Descriptor::\+id}
+
+
+
+Identifiant numérique du niveau. 
+
+\Hypertarget{struct_dynamic_level_descriptor_aa4c46c96ac5734167c54dbd0b2c57ca4}\index{DynamicLevelDescriptor@{DynamicLevelDescriptor}!name@{name}}
+\index{name@{name}!DynamicLevelDescriptor@{DynamicLevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily \label{struct_dynamic_level_descriptor_aa4c46c96ac5734167c54dbd0b2c57ca4} 
+QString Dynamic\+Level\+Descriptor::\+name}
+
+
+
+Nom lisible du niveau. 
+
+\Hypertarget{struct_dynamic_level_descriptor_a56b240cd45b338f5d1009ed8e4cfe79b}\index{DynamicLevelDescriptor@{DynamicLevelDescriptor}!rows@{rows}}
+\index{rows@{rows}!DynamicLevelDescriptor@{DynamicLevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{rows}{rows}}
+{\footnotesize\ttfamily \label{struct_dynamic_level_descriptor_a56b240cd45b338f5d1009ed8e4cfe79b} 
+int Dynamic\+Level\+Descriptor::\+rows}
+
+
+
+Nombre de lignes des matrices. 
+
+\Hypertarget{struct_dynamic_level_descriptor_abd2c2292655d2bbc90a42b07c3b0eea0}\index{DynamicLevelDescriptor@{DynamicLevelDescriptor}!tilesetCols@{tilesetCols}}
+\index{tilesetCols@{tilesetCols}!DynamicLevelDescriptor@{DynamicLevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{tilesetCols}{tilesetCols}}
+{\footnotesize\ttfamily \label{struct_dynamic_level_descriptor_abd2c2292655d2bbc90a42b07c3b0eea0} 
+int Dynamic\+Level\+Descriptor::\+tileset\+Cols}
+
+
+
+Colonnes du tileset murs (pour \doxylink{class_wall_view}{Wall\+View}). 
+
+\Hypertarget{struct_dynamic_level_descriptor_a54f12c5fd672dfd32702112c9af713c2}\index{DynamicLevelDescriptor@{DynamicLevelDescriptor}!wallBuf@{wallBuf}}
+\index{wallBuf@{wallBuf}!DynamicLevelDescriptor@{DynamicLevelDescriptor}}
+\doxysubsubsection{\texorpdfstring{wallBuf}{wallBuf}}
+{\footnotesize\ttfamily \label{struct_dynamic_level_descriptor_a54f12c5fd672dfd32702112c9af713c2} 
+QVector$<$int$>$ Dynamic\+Level\+Descriptor::\+wall\+Buf}
+
+
+
+Buffer plat de la matrice murs. 
+
+
+
+The documentation for this struct was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{matrixextractor_8h}{matrixextractor.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{matrixextractor_8cpp}{matrixextractor.\+cpp}}\end{DoxyCompactItemize}

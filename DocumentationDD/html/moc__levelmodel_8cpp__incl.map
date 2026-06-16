@@ -1,0 +1,51 @@
+<map id="build/Desktop_Qt_6_10_0_MinGW_64_bit&#45;Release/release/moc_levelmodel.cpp" name="build/Desktop_Qt_6_10_0_MinGW_64_bit&#45;Release/release/moc_levelmodel.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="724,5,926,64"/>
+<area shape="rect" id="Node000002" href="$levelmodel_8h.html" title="Modèle de données stockant l&#39;état complet d&#39;un niveau." alt="" coords="376,112,559,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="722,62,534,110,533,105,726,60"/>
+<area shape="rect" id="Node000018" title=" " alt="" coords="583,112,722,139"/>
+<area shape="poly" id="edge25_Node000001_Node000018" title=" " alt="" coords="767,66,692,107,689,102,771,63"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="747,112,903,139"/>
+<area shape="poly" id="edge26_Node000001_Node000019" title=" " alt="" coords="826,62,827,97,823,95,823,67"/>
+<area shape="rect" id="Node000020" title=" " alt="" coords="927,112,995,139"/>
+<area shape="poly" id="edge27_Node000001_Node000020" title=" " alt="" coords="869,62,932,103,926,103,869,67"/>
+<area shape="rect" id="Node000021" title=" " alt="" coords="1019,112,1180,139"/>
+<area shape="poly" id="edge28_Node000001_Node000021" title=" " alt="" coords="914,62,1049,107,1043,107,914,67"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,187,74,213"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="373,140,244,161,90,189,88,184,244,156,377,137"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="98,187,168,213"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="401,141,184,188,182,184,404,137"/>
+<area shape="rect" id="Node000005" href="$wallmodel_8h.html" title=" " alt="" coords="628,261,718,288"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="559,136,609,154,632,168,652,185,669,214,675,247,670,245,664,216,648,188,629,172,607,159,560,141"/>
+<area shape="rect" id="Node000008" href="$vector2f_8h.html" title="Declaration of the Vector2f math class for the game&#39;s 2D geometry." alt="" coords="665,411,744,437"/>
+<area shape="poly" id="edge24_Node000002_Node000008" title=" " alt="" coords="557,137,619,155,649,168,677,184,698,201,713,217,723,235,733,261,739,297,736,334,728,369,718,398,715,394,723,367,731,334,733,297,728,262,719,238,709,220,695,205,674,189,647,173,617,160,558,142"/>
+<area shape="rect" id="Node000013" href="$floormodel_8h.html" title="Entité statique décorative de sol, associée à un index de tile du tileset de sol." alt="" coords="511,261,603,288"/>
+<area shape="poly" id="edge12_Node000002_Node000013" title=" " alt="" coords="556,137,598,155,616,168,631,185,636,205,629,223,614,240,595,255,592,250,610,236,625,221,631,204,626,188,612,172,595,159,556,142"/>
+<area shape="rect" id="Node000014" href="$exitdoormodel_8h.html" title="Declaration of the end&#45;of&#45;level door model." alt="" coords="192,187,306,213"/>
+<area shape="poly" id="edge14_Node000002_Node000014" title=" " alt="" coords="427,141,303,184,300,179,431,138"/>
+<area shape="rect" id="Node000016" href="$standarddoormodel_8h.html" title="Specifications for the standard door model (which opens when the player touches it)." alt="" coords="475,187,617,213"/>
+<area shape="poly" id="edge19_Node000002_Node000016" title=" " alt="" coords="482,137,524,176,519,176,481,142"/>
+<area shape="rect" id="Node000017" href="$bossdoormodel_8h.html" title="Declaration of the boss&#39;s door model." alt="" coords="330,187,450,213"/>
+<area shape="poly" id="edge22_Node000002_Node000017" title=" " alt="" coords="456,137,416,178,413,174,452,141"/>
+<area shape="rect" id="Node000006" href="$entity_8h.html" title="Declaration of the Entity base class." alt="" coords="525,336,588,363"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="655,287,591,330,589,325,650,290"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="527,411,594,437"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="559,361,561,397,557,394,556,365"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="583,361,668,403,663,403,582,366"/>
+<area shape="rect" id="Node000011" href="$config_8h.html" title="Global constants and configuration enumerations for the game Deadly Dropout." alt="" coords="435,411,502,437"/>
+<area shape="poly" id="edge10_Node000006_Node000011" title=" " alt="" coords="544,362,497,403,494,398,539,364"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="632,485,690,512"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="699,437,678,474,675,470,695,439"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="714,485,784,512"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="714,436,736,473,731,471,711,440"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="439,485,498,512"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="471,436,471,471,467,468,467,440"/>
+<area shape="poly" id="edge13_Node000013_Node000006" title=" " alt="" coords="558,286,559,322,555,319,555,291"/>
+<area shape="poly" id="edge15_Node000014_Node000006" title=" " alt="" coords="257,211,290,249,311,269,334,286,378,307,425,323,512,342,507,343,424,328,376,312,331,290,307,273,286,252,257,216"/>
+<area shape="poly" id="edge16_Node000014_Node000011" title=" " alt="" coords="254,211,271,247,296,286,330,321,367,352,437,402,431,402,364,357,326,325,292,290,267,250,253,216"/>
+<area shape="rect" id="Node000015" href="$globaldoor_8h.html" title="Declaration of GlobalDoor, the common base class for all interactive doors." alt="" coords="344,261,436,288"/>
+<area shape="poly" id="edge17_Node000014_Node000015" title=" " alt="" coords="273,211,354,253,349,255,273,217"/>
+<area shape="poly" id="edge18_Node000015_Node000006" title=" " alt="" coords="419,286,516,329,511,330,419,291"/>
+<area shape="poly" id="edge21_Node000016_Node000011" title=" " alt="" coords="535,212,517,237,501,262,488,297,480,333,472,397,468,394,475,332,483,295,496,260,512,233,531,216"/>
+<area shape="poly" id="edge20_Node000016_Node000015" title=" " alt="" coords="517,215,432,257,430,252,521,213"/>
+<area shape="poly" id="edge23_Node000017_Node000015" title=" " alt="" coords="391,212,393,247,388,245,389,216"/>
+</map>

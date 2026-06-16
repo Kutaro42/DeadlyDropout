@@ -1,0 +1,5 @@
+<map id="ExitDoorView" name="ExitDoorView">
+<area shape="rect" id="Node000001" title="A Qt rendering of the door that changes its color based on its lock status." alt="" coords="13,123,125,235"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,132,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,87,71,123,66,122,68,92"/>
+</map>

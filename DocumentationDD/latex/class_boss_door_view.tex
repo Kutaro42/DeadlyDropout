@@ -1,0 +1,160 @@
+\doxysection{Boss\+Door\+View Class Reference}
+\hypertarget{class_boss_door_view}{}\label{class_boss_door_view}\index{BossDoorView@{BossDoorView}}
+
+
+Boss\textquotesingle{}s door view. Display an open srite while it\textquotesingle{}s none open, then switch to lock after it crossed.  
+
+
+
+
+{\ttfamily \+\#include $<$bossdoorview.\+h$>$}
+
+
+
+Inheritance diagram for Boss\+Door\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{class_boss_door_view__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Boss\+Door\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_boss_door_view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_boss_door_view_ade33ce4e6098115e9c9c3fbdea6e6170}{Boss\+Door\+View}} (\doxymbox{\hyperlink{class_boss_door_model}{Boss\+Door\+Model}} \texorpdfstring{$\ast$}{*}model, QGraphics\+Item \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Principal builder. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_boss_door_view_a23813afadad9b5377b211d45435c5f8b}{update\+View}} ()
+\begin{DoxyCompactList}\small\item\em Updates the door\textquotesingle{}s view. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_boss_door_view_a0a9f73daac2d537e85036a702269bd18}{build\+Pixmaps}} ()
+\begin{DoxyCompactList}\small\item\em Create the visual for the door. \end{DoxyCompactList}\item 
+QPixmap \doxymbox{\hyperlink{class_boss_door_view_a33d1c8ac83e418a733eb8f59fa3025e8}{make\+Fallback}} (int w, int h, bool is\+Locked)
+\begin{DoxyCompactList}\small\item\em Create the visual for the door in case of an error with the sprites loading. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_boss_door_model}{Boss\+Door\+Model}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_boss_door_view_a7cec753ed23f6f19401298b1e9dd5af2}{its\+Model}}
+\begin{DoxyCompactList}\small\item\em Pointer to the boss\+Door\+Model to read it. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_boss_door_view_a74acf0e38f420bc15bd632a96ccfd38d}{was\+Locked}}
+\begin{DoxyCompactList}\small\item\em Boolean to keep the information if the door is locked. \end{DoxyCompactList}\item 
+QPixmap \doxymbox{\hyperlink{class_boss_door_view_ae7c2d425aebc9141ba9feb81fdb2ce33}{unlocked\+Pixmap}}
+\begin{DoxyCompactList}\small\item\em QPixmap to display the unlocked door. \end{DoxyCompactList}\item 
+QPixmap \doxymbox{\hyperlink{class_boss_door_view_a210941b6a1d3e86d930f06f691fb7076}{locked\+Pixmap}}
+\begin{DoxyCompactList}\small\item\em QPixmap to display the locked door. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Boss\textquotesingle{}s door view. Display an open srite while it\textquotesingle{}s none open, then switch to lock after it crossed. 
+
+\label{class_boss_door_view_doc-constructors}
+\Hypertarget{class_boss_door_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_boss_door_view_ade33ce4e6098115e9c9c3fbdea6e6170}\index{BossDoorView@{BossDoorView}!BossDoorView@{BossDoorView}}
+\index{BossDoorView@{BossDoorView}!BossDoorView@{BossDoorView}}
+\doxysubsubsection{\texorpdfstring{BossDoorView()}{BossDoorView()}}
+{\footnotesize\ttfamily \label{class_boss_door_view_ade33ce4e6098115e9c9c3fbdea6e6170} 
+Boss\+Door\+View::\+\+Boss\+Door\+View (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_boss_door_model}{Boss\+Door\+Model}} \texorpdfstring{$\ast$}{*}}]{model}{, }\item[{QGraphics\+Item \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})}
+
+
+
+Principal builder. 
+
+
+
+\label{class_boss_door_view_doc-func-members}
+\Hypertarget{class_boss_door_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_boss_door_view_a0a9f73daac2d537e85036a702269bd18}\index{BossDoorView@{BossDoorView}!buildPixmaps@{buildPixmaps}}
+\index{buildPixmaps@{buildPixmaps}!BossDoorView@{BossDoorView}}
+\doxysubsubsection{\texorpdfstring{buildPixmaps()}{buildPixmaps()}}
+{\footnotesize\ttfamily \label{class_boss_door_view_a0a9f73daac2d537e85036a702269bd18} 
+void Boss\+Door\+View::\+build\+Pixmaps (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Create the visual for the door. 
+
+\Hypertarget{class_boss_door_view_a33d1c8ac83e418a733eb8f59fa3025e8}\index{BossDoorView@{BossDoorView}!makeFallback@{makeFallback}}
+\index{makeFallback@{makeFallback}!BossDoorView@{BossDoorView}}
+\doxysubsubsection{\texorpdfstring{makeFallback()}{makeFallback()}}
+{\footnotesize\ttfamily \label{class_boss_door_view_a33d1c8ac83e418a733eb8f59fa3025e8} 
+QPixmap Boss\+Door\+View::\+make\+Fallback (\begin{DoxyParamCaption}\item[{int}]{w}{, }\item[{int}]{h}{, }\item[{bool}]{is\+Locked}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Create the visual for the door in case of an error with the sprites loading. 
+
+\Hypertarget{class_boss_door_view_a23813afadad9b5377b211d45435c5f8b}\index{BossDoorView@{BossDoorView}!updateView@{updateView}}
+\index{updateView@{updateView}!BossDoorView@{BossDoorView}}
+\doxysubsubsection{\texorpdfstring{updateView()}{updateView()}}
+{\footnotesize\ttfamily \label{class_boss_door_view_a23813afadad9b5377b211d45435c5f8b} 
+void Boss\+Door\+View::\+update\+View (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Updates the door\textquotesingle{}s view. 
+
+
+
+\label{class_boss_door_view_doc-variable-members}
+\Hypertarget{class_boss_door_view_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_boss_door_view_a7cec753ed23f6f19401298b1e9dd5af2}\index{BossDoorView@{BossDoorView}!itsModel@{itsModel}}
+\index{itsModel@{itsModel}!BossDoorView@{BossDoorView}}
+\doxysubsubsection{\texorpdfstring{itsModel}{itsModel}}
+{\footnotesize\ttfamily \label{class_boss_door_view_a7cec753ed23f6f19401298b1e9dd5af2} 
+\doxymbox{\hyperlink{class_boss_door_model}{Boss\+Door\+Model}}\texorpdfstring{$\ast$}{*} Boss\+Door\+View::\+its\+Model\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the boss\+Door\+Model to read it. 
+
+\Hypertarget{class_boss_door_view_a210941b6a1d3e86d930f06f691fb7076}\index{BossDoorView@{BossDoorView}!lockedPixmap@{lockedPixmap}}
+\index{lockedPixmap@{lockedPixmap}!BossDoorView@{BossDoorView}}
+\doxysubsubsection{\texorpdfstring{lockedPixmap}{lockedPixmap}}
+{\footnotesize\ttfamily \label{class_boss_door_view_a210941b6a1d3e86d930f06f691fb7076} 
+QPixmap Boss\+Door\+View::\+locked\+Pixmap\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+QPixmap to display the locked door. 
+
+\Hypertarget{class_boss_door_view_ae7c2d425aebc9141ba9feb81fdb2ce33}\index{BossDoorView@{BossDoorView}!unlockedPixmap@{unlockedPixmap}}
+\index{unlockedPixmap@{unlockedPixmap}!BossDoorView@{BossDoorView}}
+\doxysubsubsection{\texorpdfstring{unlockedPixmap}{unlockedPixmap}}
+{\footnotesize\ttfamily \label{class_boss_door_view_ae7c2d425aebc9141ba9feb81fdb2ce33} 
+QPixmap Boss\+Door\+View::\+unlocked\+Pixmap\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+QPixmap to display the unlocked door. 
+
+\Hypertarget{class_boss_door_view_a74acf0e38f420bc15bd632a96ccfd38d}\index{BossDoorView@{BossDoorView}!wasLocked@{wasLocked}}
+\index{wasLocked@{wasLocked}!BossDoorView@{BossDoorView}}
+\doxysubsubsection{\texorpdfstring{wasLocked}{wasLocked}}
+{\footnotesize\ttfamily \label{class_boss_door_view_a74acf0e38f420bc15bd632a96ccfd38d} 
+bool Boss\+Door\+View::\+was\+Locked\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Boolean to keep the information if the door is locked. 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{bossdoorview_8h}{bossdoorview.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{bossdoorview_8cpp}{bossdoorview.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,115 @@
+\doxysection{Bullet\+View Class Reference}
+\hypertarget{class_bullet_view}{}\label{class_bullet_view}\index{BulletView@{BulletView}}
+
+
+Bullet\textquotesingle{}s view. Display a quick bullet across the map.  
+
+
+
+
+{\ttfamily \+\#include $<$bulletview.\+h$>$}
+
+
+
+Inheritance diagram for Bullet\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{class_bullet_view__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Bullet\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_bullet_view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_bullet_view_a53df30e051b1212548dfed96200f8105}{Bullet\+View}} (\doxymbox{\hyperlink{class_bullet_model}{Bullet\+Model}} \texorpdfstring{$\ast$}{*}model, QGraphics\+Item \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Principal builder. explicit to avoid unwanted implicit conversions with parent. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_bullet_view_af26b5384894ea993ae867d79890a143d}{update\+View}} ()
+\begin{DoxyCompactList}\small\item\em Updates the bullet\textquotesingle{}s view. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static QPixmap \doxymbox{\hyperlink{class_bullet_view_adf98756434349bd124dab70df70b3dfe}{load\+Sprite}} ()
+\begin{DoxyCompactList}\small\item\em Load the bullet sprite. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_bullet_model}{Bullet\+Model}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_bullet_view_a07024566a5609ea52aad72655eca307a}{model}}
+\begin{DoxyCompactList}\small\item\em Pointer to the \doxylink{class_bullet_model}{Bullet\+Model} to read it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Bullet\textquotesingle{}s view. Display a quick bullet across the map. 
+
+\label{class_bullet_view_doc-constructors}
+\Hypertarget{class_bullet_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_bullet_view_a53df30e051b1212548dfed96200f8105}\index{BulletView@{BulletView}!BulletView@{BulletView}}
+\index{BulletView@{BulletView}!BulletView@{BulletView}}
+\doxysubsubsection{\texorpdfstring{BulletView()}{BulletView()}}
+{\footnotesize\ttfamily \label{class_bullet_view_a53df30e051b1212548dfed96200f8105} 
+Bullet\+View::\+\+Bullet\+View (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_bullet_model}{Bullet\+Model}} \texorpdfstring{$\ast$}{*}}]{model}{, }\item[{QGraphics\+Item \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Principal builder. explicit to avoid unwanted implicit conversions with parent. 
+
+
+
+\label{class_bullet_view_doc-func-members}
+\Hypertarget{class_bullet_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_bullet_view_adf98756434349bd124dab70df70b3dfe}\index{BulletView@{BulletView}!loadSprite@{loadSprite}}
+\index{loadSprite@{loadSprite}!BulletView@{BulletView}}
+\doxysubsubsection{\texorpdfstring{loadSprite()}{loadSprite()}}
+{\footnotesize\ttfamily \label{class_bullet_view_adf98756434349bd124dab70df70b3dfe} 
+QPixmap Bullet\+View::\+load\+Sprite (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Load the bullet sprite. 
+
+\begin{DoxyReturn}{Returns}
+QPixmap of the sprite. 
+\end{DoxyReturn}
+\Hypertarget{class_bullet_view_af26b5384894ea993ae867d79890a143d}\index{BulletView@{BulletView}!updateView@{updateView}}
+\index{updateView@{updateView}!BulletView@{BulletView}}
+\doxysubsubsection{\texorpdfstring{updateView()}{updateView()}}
+{\footnotesize\ttfamily \label{class_bullet_view_af26b5384894ea993ae867d79890a143d} 
+void Bullet\+View::\+update\+View (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Updates the bullet\textquotesingle{}s view. 
+
+
+
+\label{class_bullet_view_doc-variable-members}
+\Hypertarget{class_bullet_view_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_bullet_view_a07024566a5609ea52aad72655eca307a}\index{BulletView@{BulletView}!model@{model}}
+\index{model@{model}!BulletView@{BulletView}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{class_bullet_view_a07024566a5609ea52aad72655eca307a} 
+\doxymbox{\hyperlink{class_bullet_model}{Bullet\+Model}}\texorpdfstring{$\ast$}{*} Bullet\+View::\+model\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the \doxylink{class_bullet_model}{Bullet\+Model} to read it. 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{bulletview_8h}{bulletview.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{bulletview_8cpp}{bulletview.\+cpp}}\end{DoxyCompactItemize}

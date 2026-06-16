@@ -1,0 +1,91 @@
+\doxysection{Matrix\+Extractor Class Reference}
+\hypertarget{class_matrix_extractor}{}\label{class_matrix_extractor}\index{MatrixExtractor@{MatrixExtractor}}
+
+
+Classe utilitaire (statique) chargeant les matrices d\textquotesingle{}un niveau depuis des fichiers texte organisés en dossiers.  
+
+
+
+
+{\ttfamily \+\#include $<$matrixextractor.\+h$>$}
+
+
+
+Collaboration diagram for Matrix\+Extractor:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{class_matrix_extractor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{struct_dynamic_level_descriptor}{Dynamic\+Level\+Descriptor}} \doxymbox{\hyperlink{class_matrix_extractor_ac678baeeb5173dede946848855415479}{load}} (int level\+Id, const QString \&base\+Path="{}:\+/\+levels"{}, int tileset\+Cols=302, int floor\+Tileset\+Cols=302)
+\begin{DoxyCompactList}\small\item\em Charge les trois matrices d\textquotesingle{}un niveau depuis un dossier. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static QVector$<$ int $>$ \doxymbox{\hyperlink{class_matrix_extractor_ad5c7f5cc538c37f458b8124bbc2398f7}{read\+Matrix\+File}} (const QString \&file\+Path, int \&rows, int \&cols)
+\begin{DoxyCompactList}\small\item\em Lit un fichier matrice texte et remplit un QVector$<$int$>$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe utilitaire (statique) chargeant les matrices d\textquotesingle{}un niveau depuis des fichiers texte organisés en dossiers. 
+
+\label{class_matrix_extractor_doc-func-members}
+\Hypertarget{class_matrix_extractor_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_matrix_extractor_ac678baeeb5173dede946848855415479}\index{MatrixExtractor@{MatrixExtractor}!load@{load}}
+\index{load@{load}!MatrixExtractor@{MatrixExtractor}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{class_matrix_extractor_ac678baeeb5173dede946848855415479} 
+\doxymbox{\hyperlink{struct_dynamic_level_descriptor}{Dynamic\+Level\+Descriptor}} Matrix\+Extractor::\+load (\begin{DoxyParamCaption}\item[{int}]{level\+Id}{, }\item[{const QString \&}]{base\+Path}{ = {\ttfamily "{}:\+/\+levels"{}}, }\item[{int}]{tileset\+Cols}{ = {\ttfamily 302}, }\item[{int}]{floor\+Tileset\+Cols}{ = {\ttfamily 302}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Charge les trois matrices d\textquotesingle{}un niveau depuis un dossier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level\+Id} & Identifiant du niveau (ex. 1 → dossier "{}level\+\_\+1"{}). \\
+\hline
+{\em base\+Path} & Chemin racine contenant les sous-\/dossiers de niveaux. Peut être un chemin système ("{}levels"{}) ou une ressource Qt ("{}:\+/\+levels"{}). \\
+\hline
+{\em tileset\+Cols} & Colonnes du tileset murs (défaut :\+ 50). \\
+\hline
+{\em floor\+Tileset\+Cols} & Colonnes du tileset sol (défaut :\+ 50). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un \doxylink{struct_dynamic_level_descriptor}{Dynamic\+Level\+Descriptor} valide, ou un objet vide (rows==0) si le chargement a échoué. 
+\end{DoxyReturn}
+\Hypertarget{class_matrix_extractor_ad5c7f5cc538c37f458b8124bbc2398f7}\index{MatrixExtractor@{MatrixExtractor}!readMatrixFile@{readMatrixFile}}
+\index{readMatrixFile@{readMatrixFile}!MatrixExtractor@{MatrixExtractor}}
+\doxysubsubsection{\texorpdfstring{readMatrixFile()}{readMatrixFile()}}
+{\footnotesize\ttfamily \label{class_matrix_extractor_ad5c7f5cc538c37f458b8124bbc2398f7} 
+QVector$<$ int $>$ Matrix\+Extractor::\+read\+Matrix\+File (\begin{DoxyParamCaption}\item[{const QString \&}]{file\+Path}{, }\item[{int \&}]{rows}{, }\item[{int \&}]{cols}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Lit un fichier matrice texte et remplit un QVector$<$int$>$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Path} & Chemin complet du fichier à lire. \\
+\hline
+{\em rows} & \+[out]\+ Nombre de lignes lu dans l\textquotesingle{}en-\/tête. \\
+\hline
+{\em cols} & \+[out]\+ Nombre de colonnes lu dans l\textquotesingle{}en-\/tête. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Le buffer plat des valeurs, vide en cas d\textquotesingle{}erreur. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{matrixextractor_8h}{matrixextractor.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{matrixextractor_8cpp}{matrixextractor.\+cpp}}\end{DoxyCompactItemize}

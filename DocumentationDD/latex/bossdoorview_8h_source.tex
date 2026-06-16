@@ -1,0 +1,36 @@
+\doxysection{bossdoorview.\+h}
+\hypertarget{bossdoorview_8h_source}{}\label{bossdoorview_8h_source}\index{Headers/bossdoorview.h@{Headers/bossdoorview.h}}
+\doxymbox{\hyperlink{bossdoorview_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ BOSSDOORVIEW\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ BOSSDOORVIEW\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QGraphicsPixmapItem>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QPixmap>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QPainter>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{bossdoormodel_8h}{bossdoormodel.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_boss_door_view_ade33ce4e6098115e9c9c3fbdea6e6170}{BossDoorView}}\ :\ \textcolor{keyword}{public}\ QGraphicsPixmapItem}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \doxymbox{\hyperlink{class_boss_door_view_ade33ce4e6098115e9c9c3fbdea6e6170}{BossDoorView}}(\doxymbox{\hyperlink{class_boss_door_model}{BossDoorModel}}*\ model,\ QGraphicsItem*\ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_boss_door_view_a23813afadad9b5377b211d45435c5f8b}{updateView}}();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00037\ \ \ \ \ \doxymbox{\hyperlink{class_boss_door_model}{BossDoorModel}}*\ \doxymbox{\hyperlink{class_boss_door_view_a7cec753ed23f6f19401298b1e9dd5af2}{itsModel}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_boss_door_view_a74acf0e38f420bc15bd632a96ccfd38d}{wasLocked}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ QPixmap\ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_boss_door_view_ae7c2d425aebc9141ba9feb81fdb2ce33}{unlockedPixmap}};\ \ }
+\DoxyCodeLine{00040\ \ \ \ \ QPixmap\ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_boss_door_view_a210941b6a1d3e86d930f06f691fb7076}{lockedPixmap}};\ \ \ \ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_boss_door_view_a0a9f73daac2d537e85036a702269bd18}{buildPixmaps}}();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00050\ \ \ \ \ QPixmap\ \doxymbox{\hyperlink{class_boss_door_view_a33d1c8ac83e418a733eb8f59fa3025e8}{makeFallback}}(\textcolor{keywordtype}{int}\ w,\ \textcolor{keywordtype}{int}\ h,\ \textcolor{keywordtype}{bool}\ isLocked);}
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ BOSSDOORVIEW\_H}}
+
+\end{DoxyCode}

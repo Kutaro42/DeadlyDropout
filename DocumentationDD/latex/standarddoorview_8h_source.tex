@@ -1,0 +1,45 @@
+\doxysection{standarddoorview.\+h}
+\hypertarget{standarddoorview_8h_source}{}\label{standarddoorview_8h_source}\index{Headers/standarddoorview.h@{Headers/standarddoorview.h}}
+\doxymbox{\hyperlink{standarddoorview_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ STANDARDDOORVIEW\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ STANDARDDOORVIEW\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QPainter>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QGraphicsRectItem>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QBrush>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QPen>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <QFont>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{standarddoormodel_8h}{standarddoormodel.h}}"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ \ StandardDoorView\ —\ visual\ representation\ of\ the\ standard\ door.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \ Dark\ brown\ color\ =\ closed,\ beige/gold\ =\ open.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ ═══════════════════════════════════════════════════════════════════}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_standard_door_view_a484a5eaf81d3ca6f0af5f496865e12ee}{StandardDoorView}}\ :\ \textcolor{keyword}{public}\ QGraphicsRectItem\ \{}
+\DoxyCodeLine{00028\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00029\ \ \ \ \ \doxymbox{\hyperlink{class_standard_door_model}{StandardDoorModel}}*\ \doxymbox{\hyperlink{class_standard_door_view_a60a55707946f8ffb73c81f17d63a87e0}{itsModel}};\ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_standard_door_view_a65874a4a0bc0bf96c0cf5119f8a833f0}{cachedOpen}};\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_standard_door_view_ae8dc78842eddbcbd24a5f82b56f125ca}{wasLocked}};}
+\DoxyCodeLine{00033\ \ \ \ \ QPixmap\ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_standard_door_view_a16252c6faa6a9941bf0c1634c197d0de}{unlockedPixmap}};}
+\DoxyCodeLine{00034\ \ \ \ \ QPixmap\ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_standard_door_view_a52310fb0657c132f64d709ab20e1114b}{lockedPixmap}};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_standard_door_view_a484a5eaf81d3ca6f0af5f496865e12ee}{StandardDoorView}}(\doxymbox{\hyperlink{class_standard_door_model}{StandardDoorModel}}*\ model,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QGraphicsItem*\ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_standard_door_view_a6cafdc51049506a8643b72a933bc7c35}{updateView}}();}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00054\ \ \ \ \ QPixmap\ \doxymbox{\hyperlink{class_standard_door_view_a1ef673f6e91ce286159c9402a9c8bda2}{makeFallback}}(\textcolor{keywordtype}{int}\ w,\ \textcolor{keywordtype}{int}\ h,\ \textcolor{keywordtype}{bool}\ isLocked);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_standard_door_view_af47356aa66563a8ca46f4ff70d6e2660}{buildPixmaps}}();}
+\DoxyCodeLine{00060\ \};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ STANDARDDOORVIEW\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,5 @@
+<map id="GameView" name="GameView">
+<area shape="rect" id="Node000001" title="Gère le rendu visuel du jeu, l&#39;affichage du HUD, la caméra et capte les événements." alt="" coords="5,123,154,1173"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="29,5,131,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,87,82,123,77,123,80,92"/>
+</map>

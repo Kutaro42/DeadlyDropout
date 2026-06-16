@@ -1,0 +1,40 @@
+\doxysection{marketcontroller.\+h}
+\hypertarget{marketcontroller_8h_source}{}\label{marketcontroller_8h_source}\index{Headers/marketcontroller.h@{Headers/marketcontroller.h}}
+\doxymbox{\hyperlink{marketcontroller_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ MARKETCONTROLLER\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ MARKETCONTROLLER\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QObject>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{marketview_8h}{marketview.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{playermodel_8h}{playermodel.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_market_controller_ad2021642f13459e9c95921521d21eaa0}{MarketController}}\ :\ \textcolor{keyword}{public}\ QObject\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_market_controller_ad2021642f13459e9c95921521d21eaa0}{MarketController}}(QWidget*\ parentWidget,\ QObject*\ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00038\ \ \ \ \ \doxymbox{\hyperlink{class_market_controller_a6fd2b300dd7b5f2f7b63898de4e833d7}{\string~MarketController}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_market_controller_af72fd62631683d7f0eee5172acb20bf0}{open}}(\doxymbox{\hyperlink{class_player_model}{PlayerModel}}*\ player);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00055\ \ \ \ \ \doxymbox{\hyperlink{class_market_view}{MarketView}}*\ \doxymbox{\hyperlink{class_market_controller_a042b556fb6aa889feeefc10cb76c4fce}{getView}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_market_controller_a6529e19d9b07da4a92bd2ca6bf30f764}{itsView}};\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{private}\ slots:}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_market_controller_a4886231988e773eb555a726e6978344c}{sltBuy}}(\textcolor{keywordtype}{int}\ itemId);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00069\ \ \ \ \ \doxymbox{\hyperlink{class_market_view}{MarketView}}*\ \ \doxymbox{\hyperlink{class_market_controller_a6529e19d9b07da4a92bd2ca6bf30f764}{itsView}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ \doxymbox{\hyperlink{class_player_model}{PlayerModel}}*\ \doxymbox{\hyperlink{class_market_controller_af3e39a56751c176dbac5743523fc5656}{itsPlayer}}\ =\ \textcolor{keyword}{nullptr};\ }
+\DoxyCodeLine{00071\ \ \ \ \ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ signals:}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_market_controller_a9523d9adaaa939f043e49790d0cf6911}{sigClosed}}();}
+\DoxyCodeLine{00076\ \};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

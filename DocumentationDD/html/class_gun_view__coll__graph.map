@@ -1,0 +1,18 @@
+<map id="GunView" name="GunView">
+<area shape="rect" id="Node000001" title="Graphics item for the pistol: anchored on the player and rotated toward the cursor." alt="" coords="182,2072,310,2291"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,1483,148,1552"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,1564,92,1649,107,1758,130,1879,162,1999,191,2072,185,2072,157,2001,125,1880,102,1759,87,1650,80,1569"/>
+<area shape="rect" id="Node000003" href="$class_gun_model.html" title="Manages firing logic, magazine, ammo reserve and shoot cooldown (GDD Step 5)." alt="" coords="326,296,476,963"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="421,960,425,1195,415,1457,404,1594,387,1732,365,1868,335,2001,315,2058,311,2055,330,1999,359,1867,382,1731,399,1593,410,1457,420,1194,420,965"/>
+<area shape="rect" id="Node000005" href="$class_player_model.html" title="Model encapsulating the player&#39;s properties, resources and actions." alt="" coords="172,1035,320,2000"/>
+<area shape="poly" id="edge8_Node000005_Node000003" title=" " alt="" coords="337,960,334,987,326,1035,321,1033,329,986,335,965"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="371,80,430,149"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="401,162,403,297,398,296,400,167"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="247,1997,249,2056,243,2054,245,2002"/>
+<area shape="rect" id="Node000006" href="$class_entity.html" title="An abstract base class representing any interactive or physical object in the game." alt="" coords="38,477,134,781"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="116,793,149,962,162,1034,174,1102,169,1102,157,1035,143,963,116,799"/>
+<area shape="rect" id="Node000007" href="$class_vector2f.html" title="Mathematical class describing 2D vectors (position, velocity)." alt="" coords="38,5,134,224"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="86,221,89,460,83,460,86,227"/>
+<area shape="rect" id="Node000008" href="$class_katana.html" title="Model of the player&#39;s melee weapon (GDD Step 5 — Combat rules)." alt="" coords="158,360,302,899"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="235,895,240,1018,234,1018,235,901"/>
+</map>

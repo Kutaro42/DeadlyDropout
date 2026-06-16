@@ -1,0 +1,356 @@
+\doxysection{Zombie\+Launcher\+View Class Reference}
+\hypertarget{class_zombie_launcher_view}{}\label{class_zombie_launcher_view}\index{ZombieLauncherView@{ZombieLauncherView}}
+
+
+Qt view of the launcher zombie, also managing the views of the rubble it fires.  
+
+
+
+
+{\ttfamily \+\#include $<$zombielauncherview.\+h$>$}
+
+
+
+Inheritance diagram for Zombie\+Launcher\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_zombie_launcher_view__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Zombie\+Launcher\+View:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_zombie_launcher_view__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_zombie_launcher_view_a8c4d6f1bafa0c16500c82dcd731ff3eb}{Zombie\+Launcher\+View}} (\doxymbox{\hyperlink{class_zombie_launcher_model}{Zombie\+Launcher\+Model}} \texorpdfstring{$\ast$}{*}model, QGraphics\+Scene \texorpdfstring{$\ast$}{*}scene, QGraphics\+Item \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_zombie_launcher_view_a5bd5635571ad1abe45aff6629d1a6032}{update\+View}} (float dt)
+\begin{DoxyCompactList}\small\item\em Updates the launcher\textquotesingle{}s animation and the views of its rubble projectiles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_zombie_launcher_view_aaf1d51d576673baa9240ad12406a11c2}{load\+Sheet}} (QVector$<$ QPixmap $>$ \&frames, const QString \&path)
+\item 
+QPixmap \doxymbox{\hyperlink{class_zombie_launcher_view_ae3370534a573d67f83c079b30dcc3f73}{make\+Fallback}} ()
+\item 
+void \doxymbox{\hyperlink{class_zombie_launcher_view_ae0f752fb208891ac699371abae4c121c}{advance\+Frames}} (float dt, const QVector$<$ QPixmap $>$ \&frames)
+\item 
+void \doxymbox{\hyperlink{class_zombie_launcher_view_a1216fbcffa72820371c3a3760dda2d4f}{sync\+Rubble\+Views}} ()
+\begin{DoxyCompactList}\small\item\em Synchronizes rubble\+Views with the model\textquotesingle{}s \doxylink{class_rubble_model}{Rubble\+Model} instances. Creates a \doxylink{class_rubble_view}{Rubble\+View} for each new rubble, then removes views of rubble that have become inactive. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \doxymbox{\hyperlink{class_zombie_launcher_view_a5daeaa2491b89a5885c15ad43fcb4ae3}{dir\+Idx}} (\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}} d)
+\item 
+static \doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}} \doxymbox{\hyperlink{class_zombie_launcher_view_a6729cf462f6da1897cc3381a0e816967}{velocity\+To\+Dir}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} vel)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_zombie_launcher_model}{Zombie\+Launcher\+Model}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_zombie_launcher_view_af03c1b8af93be1519e209676975026cb}{model}}
+\begin{DoxyCompactList}\small\item\em Source model. \end{DoxyCompactList}\item 
+QGraphics\+Scene \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_zombie_launcher_view_a938767259b5130117a2e31873c561370}{scene}}
+\begin{DoxyCompactList}\small\item\em Scene into which new \doxylink{class_rubble_view}{Rubble\+View} instances are injected. \end{DoxyCompactList}\item 
+QVector$<$ \doxymbox{\hyperlink{class_rubble_view}{Rubble\+View}} \texorpdfstring{$\ast$}{*} $>$ \doxymbox{\hyperlink{class_zombie_launcher_view_a9cd8a855a9db42a1112d9153bea4c730}{rubble\+Views}}
+\begin{DoxyCompactList}\small\item\em Views of rubble currently in flight. \end{DoxyCompactList}\item 
+QVector$<$ QPixmap $>$ \doxymbox{\hyperlink{class_zombie_launcher_view_ab1f80865f450969ef4b54d147d549170}{sprites}} \+[\doxymbox{\hyperlink{class_zombie_launcher_view_a8543f7ac54deb86f6a2e60f2061d15d2}{STATE\+\_\+\+COUNT}}]\+\+[\doxymbox{\hyperlink{class_zombie_launcher_view_ab2df2086444401e148067b1dc2cbf503}{DIR\+\_\+\+COUNT}}]\+
+\begin{DoxyCompactList}\small\item\em Frames per state × direction. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_zombie_launcher_view_af6a2fce30a5fec70ff30c3ceebe6fcdb}{current\+Frame}}
+\begin{DoxyCompactList}\small\item\em Current frame index. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_zombie_launcher_view_a952bf03d3ff32cab77a227419fc44c6b}{frame\+Timer}}
+\begin{DoxyCompactList}\small\item\em Time elapsed on the current frame. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_zombie_launcher_view_a6105e1398d66a5943840581973a6b138}{anim\+Speed}}
+\begin{DoxyCompactList}\small\item\em Display duration of one frame in seconds. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_zombie_launcher_view_ad98b67a1ddf31a448606db3c2d134966}{anim\+Speed\+Death}}
+\item 
+int \doxymbox{\hyperlink{class_zombie_launcher_view_acffc47c114fec2f77b9d7203ab9a4231}{current\+Dir}}
+\begin{DoxyCompactList}\small\item\em Current direction (index 0-\/3). \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_zombie_launcher_view_a3dd675893fc0b7b86917c928a612e99b}{dead\+Anim\+Finished}}
+\begin{DoxyCompactList}\small\item\em True once the DEAD animation has been played in full. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr int \doxymbox{\hyperlink{class_zombie_launcher_view_a448ce3da85548e725b6d9cde34e342bb}{IDLE}} = 0
+\item 
+static constexpr int \doxymbox{\hyperlink{class_zombie_launcher_view_adaae5dfd289d87d2ad09e019c52da517}{WALK}} = 1
+\item 
+static constexpr int \doxymbox{\hyperlink{class_zombie_launcher_view_a139ebff31d5fd18d8d492392bdde8a0f}{HURT}} = 2
+\begin{DoxyCompactList}\small\item\em Constant for the hurt state. \end{DoxyCompactList}\item 
+static constexpr int \doxymbox{\hyperlink{class_zombie_launcher_view_a619f813d1b35ec636fa2798d70026d11}{DEAD}} = 3
+\begin{DoxyCompactList}\small\item\em Constant for the dead state. \end{DoxyCompactList}\item 
+static constexpr int \doxymbox{\hyperlink{class_zombie_launcher_view_a8543f7ac54deb86f6a2e60f2061d15d2}{STATE\+\_\+\+COUNT}} = 4
+\item 
+static constexpr int \doxymbox{\hyperlink{class_zombie_launcher_view_ab2df2086444401e148067b1dc2cbf503}{DIR\+\_\+\+COUNT}} = 4
+\item 
+static constexpr int \doxymbox{\hyperlink{class_zombie_launcher_view_a9e33c4ec18509991ac1eba898366766a}{FRAME\+\_\+W}} = 32
+\begin{DoxyCompactList}\small\item\em Width of one source frame (px). \end{DoxyCompactList}\item 
+static constexpr int \doxymbox{\hyperlink{class_zombie_launcher_view_a4e6e858f25487426bdecf5a2d898f318}{FRAME\+\_\+H}} = 32
+\begin{DoxyCompactList}\small\item\em Height of one source frame (px). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Qt view of the launcher zombie, also managing the views of the rubble it fires. 
+
+\label{class_zombie_launcher_view_doc-constructors}
+\Hypertarget{class_zombie_launcher_view_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_zombie_launcher_view_a8c4d6f1bafa0c16500c82dcd731ff3eb}\index{ZombieLauncherView@{ZombieLauncherView}!ZombieLauncherView@{ZombieLauncherView}}
+\index{ZombieLauncherView@{ZombieLauncherView}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{ZombieLauncherView()}{ZombieLauncherView()}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_a8c4d6f1bafa0c16500c82dcd731ff3eb} 
+Zombie\+Launcher\+View::\+\+Zombie\+Launcher\+View (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_zombie_launcher_model}{Zombie\+Launcher\+Model}} \texorpdfstring{$\ast$}{*}}]{model}{, }\item[{QGraphics\+Scene \texorpdfstring{$\ast$}{*}}]{scene}{, }\item[{QGraphics\+Item \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & Source model. \\
+\hline
+{\em scene} & Qt scene in which to add the \doxylink{class_rubble_view}{Rubble\+View} instances. \\
+\hline
+{\em parent} & Qt parent item. \\
+\hline
+\end{DoxyParams}
+
+
+\label{class_zombie_launcher_view_doc-func-members}
+\Hypertarget{class_zombie_launcher_view_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_zombie_launcher_view_ae0f752fb208891ac699371abae4c121c}\index{ZombieLauncherView@{ZombieLauncherView}!advanceFrames@{advanceFrames}}
+\index{advanceFrames@{advanceFrames}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{advanceFrames()}{advanceFrames()}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_ae0f752fb208891ac699371abae4c121c} 
+void Zombie\+Launcher\+View::\+advance\+Frames (\begin{DoxyParamCaption}\item[{float}]{dt}{, }\item[{const QVector$<$ QPixmap $>$ \&}]{frames}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_zombie_launcher_view_a5daeaa2491b89a5885c15ad43fcb4ae3}\index{ZombieLauncherView@{ZombieLauncherView}!dirIdx@{dirIdx}}
+\index{dirIdx@{dirIdx}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{dirIdx()}{dirIdx()}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_a5daeaa2491b89a5885c15ad43fcb4ae3} 
+int Zombie\+Launcher\+View::\+dir\+Idx (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}}}]{d}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_zombie_launcher_view_aaf1d51d576673baa9240ad12406a11c2}\index{ZombieLauncherView@{ZombieLauncherView}!loadSheet@{loadSheet}}
+\index{loadSheet@{loadSheet}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{loadSheet()}{loadSheet()}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_aaf1d51d576673baa9240ad12406a11c2} 
+void Zombie\+Launcher\+View::\+load\+Sheet (\begin{DoxyParamCaption}\item[{QVector$<$ QPixmap $>$ \&}]{frames}{, }\item[{const QString \&}]{path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_zombie_launcher_view_ae3370534a573d67f83c079b30dcc3f73}\index{ZombieLauncherView@{ZombieLauncherView}!makeFallback@{makeFallback}}
+\index{makeFallback@{makeFallback}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{makeFallback()}{makeFallback()}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_ae3370534a573d67f83c079b30dcc3f73} 
+QPixmap Zombie\+Launcher\+View::\+make\+Fallback (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_zombie_launcher_view_a1216fbcffa72820371c3a3760dda2d4f}\index{ZombieLauncherView@{ZombieLauncherView}!syncRubbleViews@{syncRubbleViews}}
+\index{syncRubbleViews@{syncRubbleViews}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{syncRubbleViews()}{syncRubbleViews()}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_a1216fbcffa72820371c3a3760dda2d4f} 
+void Zombie\+Launcher\+View::\+sync\+Rubble\+Views (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Synchronizes rubble\+Views with the model\textquotesingle{}s \doxylink{class_rubble_model}{Rubble\+Model} instances. Creates a \doxylink{class_rubble_view}{Rubble\+View} for each new rubble, then removes views of rubble that have become inactive. 
+
+\Hypertarget{class_zombie_launcher_view_a5bd5635571ad1abe45aff6629d1a6032}\index{ZombieLauncherView@{ZombieLauncherView}!updateView@{updateView}}
+\index{updateView@{updateView}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{updateView()}{updateView()}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_a5bd5635571ad1abe45aff6629d1a6032} 
+void Zombie\+Launcher\+View::\+update\+View (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})}
+
+
+
+Updates the launcher\textquotesingle{}s animation and the views of its rubble projectiles. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta-\/time in seconds. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_zombie_launcher_view_a6729cf462f6da1897cc3381a0e816967}\index{ZombieLauncherView@{ZombieLauncherView}!velocityToDir@{velocityToDir}}
+\index{velocityToDir@{velocityToDir}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{velocityToDir()}{velocityToDir()}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_a6729cf462f6da1897cc3381a0e816967} 
+\doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{Facing\+Direction}} Zombie\+Launcher\+View::\+velocity\+To\+Dir (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{vel}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+\label{class_zombie_launcher_view_doc-variable-members}
+\Hypertarget{class_zombie_launcher_view_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_zombie_launcher_view_a6105e1398d66a5943840581973a6b138}\index{ZombieLauncherView@{ZombieLauncherView}!animSpeed@{animSpeed}}
+\index{animSpeed@{animSpeed}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{animSpeed}{animSpeed}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_a6105e1398d66a5943840581973a6b138} 
+float Zombie\+Launcher\+View::\+anim\+Speed\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Display duration of one frame in seconds. 
+
+\Hypertarget{class_zombie_launcher_view_ad98b67a1ddf31a448606db3c2d134966}\index{ZombieLauncherView@{ZombieLauncherView}!animSpeedDeath@{animSpeedDeath}}
+\index{animSpeedDeath@{animSpeedDeath}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{animSpeedDeath}{animSpeedDeath}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_ad98b67a1ddf31a448606db3c2d134966} 
+float Zombie\+Launcher\+View::\+anim\+Speed\+Death\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_zombie_launcher_view_acffc47c114fec2f77b9d7203ab9a4231}\index{ZombieLauncherView@{ZombieLauncherView}!currentDir@{currentDir}}
+\index{currentDir@{currentDir}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{currentDir}{currentDir}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_acffc47c114fec2f77b9d7203ab9a4231} 
+int Zombie\+Launcher\+View::\+current\+Dir\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current direction (index 0-\/3). 
+
+\Hypertarget{class_zombie_launcher_view_af6a2fce30a5fec70ff30c3ceebe6fcdb}\index{ZombieLauncherView@{ZombieLauncherView}!currentFrame@{currentFrame}}
+\index{currentFrame@{currentFrame}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{currentFrame}{currentFrame}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_af6a2fce30a5fec70ff30c3ceebe6fcdb} 
+int Zombie\+Launcher\+View::\+current\+Frame\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current frame index. 
+
+\Hypertarget{class_zombie_launcher_view_a619f813d1b35ec636fa2798d70026d11}\index{ZombieLauncherView@{ZombieLauncherView}!DEAD@{DEAD}}
+\index{DEAD@{DEAD}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{DEAD}{DEAD}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_a619f813d1b35ec636fa2798d70026d11} 
+int Zombie\+Launcher\+View::\+\+DEAD = 3\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Constant for the dead state. 
+
+\Hypertarget{class_zombie_launcher_view_a3dd675893fc0b7b86917c928a612e99b}\index{ZombieLauncherView@{ZombieLauncherView}!deadAnimFinished@{deadAnimFinished}}
+\index{deadAnimFinished@{deadAnimFinished}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{deadAnimFinished}{deadAnimFinished}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_a3dd675893fc0b7b86917c928a612e99b} 
+bool Zombie\+Launcher\+View::\+dead\+Anim\+Finished\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+True once the DEAD animation has been played in full. 
+
+\Hypertarget{class_zombie_launcher_view_ab2df2086444401e148067b1dc2cbf503}\index{ZombieLauncherView@{ZombieLauncherView}!DIR\_COUNT@{DIR\_COUNT}}
+\index{DIR\_COUNT@{DIR\_COUNT}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{DIR\_COUNT}{DIR\_COUNT}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_ab2df2086444401e148067b1dc2cbf503} 
+int Zombie\+Launcher\+View::\+\+DIR\+\_\+\+COUNT = 4\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{class_zombie_launcher_view_a4e6e858f25487426bdecf5a2d898f318}\index{ZombieLauncherView@{ZombieLauncherView}!FRAME\_H@{FRAME\_H}}
+\index{FRAME\_H@{FRAME\_H}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{FRAME\_H}{FRAME\_H}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_a4e6e858f25487426bdecf5a2d898f318} 
+int Zombie\+Launcher\+View::\+\+FRAME\+\_\+H = 32\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Height of one source frame (px). 
+
+\Hypertarget{class_zombie_launcher_view_a9e33c4ec18509991ac1eba898366766a}\index{ZombieLauncherView@{ZombieLauncherView}!FRAME\_W@{FRAME\_W}}
+\index{FRAME\_W@{FRAME\_W}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{FRAME\_W}{FRAME\_W}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_a9e33c4ec18509991ac1eba898366766a} 
+int Zombie\+Launcher\+View::\+\+FRAME\+\_\+W = 32\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Width of one source frame (px). 
+
+\Hypertarget{class_zombie_launcher_view_a952bf03d3ff32cab77a227419fc44c6b}\index{ZombieLauncherView@{ZombieLauncherView}!frameTimer@{frameTimer}}
+\index{frameTimer@{frameTimer}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{frameTimer}{frameTimer}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_a952bf03d3ff32cab77a227419fc44c6b} 
+float Zombie\+Launcher\+View::\+frame\+Timer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Time elapsed on the current frame. 
+
+\Hypertarget{class_zombie_launcher_view_a139ebff31d5fd18d8d492392bdde8a0f}\index{ZombieLauncherView@{ZombieLauncherView}!HURT@{HURT}}
+\index{HURT@{HURT}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{HURT}{HURT}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_a139ebff31d5fd18d8d492392bdde8a0f} 
+int Zombie\+Launcher\+View::\+\+HURT = 2\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+Constant for the hurt state. 
+
+\Hypertarget{class_zombie_launcher_view_a448ce3da85548e725b6d9cde34e342bb}\index{ZombieLauncherView@{ZombieLauncherView}!IDLE@{IDLE}}
+\index{IDLE@{IDLE}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{IDLE}{IDLE}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_a448ce3da85548e725b6d9cde34e342bb} 
+int Zombie\+Launcher\+View::\+\+IDLE = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{class_zombie_launcher_view_af03c1b8af93be1519e209676975026cb}\index{ZombieLauncherView@{ZombieLauncherView}!model@{model}}
+\index{model@{model}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_af03c1b8af93be1519e209676975026cb} 
+\doxymbox{\hyperlink{class_zombie_launcher_model}{Zombie\+Launcher\+Model}}\texorpdfstring{$\ast$}{*} Zombie\+Launcher\+View::\+model\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Source model. 
+
+\Hypertarget{class_zombie_launcher_view_a9cd8a855a9db42a1112d9153bea4c730}\index{ZombieLauncherView@{ZombieLauncherView}!rubbleViews@{rubbleViews}}
+\index{rubbleViews@{rubbleViews}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{rubbleViews}{rubbleViews}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_a9cd8a855a9db42a1112d9153bea4c730} 
+QVector$<$\doxymbox{\hyperlink{class_rubble_view}{Rubble\+View}}\texorpdfstring{$\ast$}{*}$>$ Zombie\+Launcher\+View::\+rubble\+Views\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Views of rubble currently in flight. 
+
+\Hypertarget{class_zombie_launcher_view_a938767259b5130117a2e31873c561370}\index{ZombieLauncherView@{ZombieLauncherView}!scene@{scene}}
+\index{scene@{scene}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{scene}{scene}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_a938767259b5130117a2e31873c561370} 
+QGraphics\+Scene\texorpdfstring{$\ast$}{*} Zombie\+Launcher\+View::\+scene\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Scene into which new \doxylink{class_rubble_view}{Rubble\+View} instances are injected. 
+
+\Hypertarget{class_zombie_launcher_view_ab1f80865f450969ef4b54d147d549170}\index{ZombieLauncherView@{ZombieLauncherView}!sprites@{sprites}}
+\index{sprites@{sprites}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{sprites}{sprites}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_ab1f80865f450969ef4b54d147d549170} 
+QVector$<$QPixmap$>$ Zombie\+Launcher\+View::\+sprites\+[\doxymbox{\hyperlink{class_zombie_launcher_view_a8543f7ac54deb86f6a2e60f2061d15d2}{STATE\+\_\+\+COUNT}}]\+\+[\doxymbox{\hyperlink{class_zombie_launcher_view_ab2df2086444401e148067b1dc2cbf503}{DIR\+\_\+\+COUNT}}]\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Frames per state × direction. 
+
+\Hypertarget{class_zombie_launcher_view_a8543f7ac54deb86f6a2e60f2061d15d2}\index{ZombieLauncherView@{ZombieLauncherView}!STATE\_COUNT@{STATE\_COUNT}}
+\index{STATE\_COUNT@{STATE\_COUNT}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{STATE\_COUNT}{STATE\_COUNT}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_a8543f7ac54deb86f6a2e60f2061d15d2} 
+int Zombie\+Launcher\+View::\+\+STATE\+\_\+\+COUNT = 4\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+\Hypertarget{class_zombie_launcher_view_adaae5dfd289d87d2ad09e019c52da517}\index{ZombieLauncherView@{ZombieLauncherView}!WALK@{WALK}}
+\index{WALK@{WALK}!ZombieLauncherView@{ZombieLauncherView}}
+\doxysubsubsection{\texorpdfstring{WALK}{WALK}}
+{\footnotesize\ttfamily \label{class_zombie_launcher_view_adaae5dfd289d87d2ad09e019c52da517} 
+int Zombie\+Launcher\+View::\+\+WALK = 1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{zombielauncherview_8h}{zombielauncherview.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{zombielauncherview_8cpp}{zombielauncherview.\+cpp}}\end{DoxyCompactItemize}

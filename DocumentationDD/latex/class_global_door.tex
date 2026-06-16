@@ -1,0 +1,115 @@
+\doxysection{Global\+Door Class Reference}
+\hypertarget{class_global_door}{}\label{class_global_door}\index{GlobalDoor@{GlobalDoor}}
+
+
+Base entity from which standard doors, boss doors and level-\/exit zones inherit.  
+
+
+
+
+{\ttfamily \+\#include $<$globaldoor.\+h$>$}
+
+
+
+Inheritance diagram for Global\+Door:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_global_door__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Global\+Door:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_global_door__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_global_door_ad9b6202569c5bc960e9527ded51b5f27}{Global\+Door}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float w, float h)
+\begin{DoxyCompactList}\small\item\em Constructs a door entity at a given position with explicit dimensions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_entity_acaf2ad84607691b229cddab1da0bf819}{Entity}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float w, float h)
+\begin{DoxyCompactList}\small\item\em Constructor of the entity. \end{DoxyCompactList}\item 
+virtual \doxymbox{\hyperlink{class_entity_ac479d009ddde62dfb378ca0a70d81307}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual shredder. \end{DoxyCompactList}\item 
+virtual void \doxymbox{\hyperlink{class_entity_a21ab7babefa5e4525535a76cef1415f2}{update}} (float dt)
+\begin{DoxyCompactList}\small\item\em Update to the entity\textquotesingle{}s internal logic. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_afdda0263db3d2e465a6ae6bad91eb990}{get\+Position}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a5f154968f2a478ea924460c78e0cd39e}{get\+Width}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a1332918563adb284c0fd432d47486d44}{get\+Height}} () const
+\item 
+bool \doxymbox{\hyperlink{class_entity_aea1c1568b4123d989c5310697030ad77}{is\+Active}} () const
+\item 
+void \doxymbox{\hyperlink{class_entity_ac5164b8c832f9a055df976527fe10032}{set\+Active}} (bool a)
+\item 
+void \doxymbox{\hyperlink{class_entity_a575ec530746fbb3eca1baddec2d0b030}{set\+Position}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos)
+\item 
+QRectF \doxymbox{\hyperlink{class_entity_ae00b70bd40800a8bd23c38b1c84404a9}{get\+Collider}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the entity\textquotesingle{}s collision bounding box. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_a6af9d6498134ad0906011778bc5736db}{position}}
+\begin{DoxyCompactList}\small\item\em The entity\textquotesingle{}s 2D coordinates. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_adadfcc784f30b51b8e49f8230a56b793}{width}}
+\begin{DoxyCompactList}\small\item\em The physical width of the entity in pixels. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_a4550dc1011f47f6c4bb86e564e7d605b}{height}}
+\begin{DoxyCompactList}\small\item\em The physical height of the entity in pixels. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_entity_a939da33e8b67b1d2ee227930aa72da3b}{active}}
+\begin{DoxyCompactList}\small\item\em Status of the entity (false if dead or destroyed). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base entity from which standard doors, boss doors and level-\/exit zones inherit. 
+
+The GDD (Step 5 — \doxylink{class_entity}{Entity} rules) defines three distinct door behaviours:\+
+\begin{DoxyItemize}
+\item Standard door :\+ blocks passage, opened by player interaction.
+\item Boss door :\+ teleports the player and locks behind them.
+\item Level-\/exit zone:\+ detects the player + key and triggers the next level.
+\end{DoxyItemize}
+
+Rather than duplicating position/\+collision data in each subclass, \doxylink{class_global_door}{Global\+Door} inherits \doxylink{class_entity}{Entity} and acts as a single structural anchor. Behaviour differences are implemented in the subclasses so that \doxylink{class_level_controller}{Level\+Controller} can treat all doors polymorphically when iterating the entity list. 
+
+\label{class_global_door_doc-constructors}
+\Hypertarget{class_global_door_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_global_door_ad9b6202569c5bc960e9527ded51b5f27}\index{GlobalDoor@{GlobalDoor}!GlobalDoor@{GlobalDoor}}
+\index{GlobalDoor@{GlobalDoor}!GlobalDoor@{GlobalDoor}}
+\doxysubsubsection{\texorpdfstring{GlobalDoor()}{GlobalDoor()}}
+{\footnotesize\ttfamily \label{class_global_door_ad9b6202569c5bc960e9527ded51b5f27} 
+Global\+Door::\+\+Global\+Door (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{pos}{, }\item[{float}]{w}{, }\item[{float}]{h}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a door entity at a given position with explicit dimensions. 
+
+Dimensions are explicit rather than fixed constants because the GDD specifies different visual sizes for standard doors, boss doors and exit zones.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & Top-\/left position of the door\textquotesingle{}s collision box in world coordinates. \\
+\hline
+{\em w} & Width of the collision box in pixels. \\
+\hline
+{\em h} & Height of the collision box in pixels. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{globaldoor_8h}{globaldoor.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{globaldoor_8cpp}{globaldoor.\+cpp}}\end{DoxyCompactItemize}

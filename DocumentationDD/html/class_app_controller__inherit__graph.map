@@ -1,0 +1,5 @@
+<map id="AppController" name="AppController">
+<area shape="rect" id="Node000001" title="Routeur global contrôlant l&#39;empilement des interfaces et l&#39;état général de la partie." alt="" coords="5,123,139,427"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="24,5,120,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,87,75,123,70,123,72,92"/>
+</map>

@@ -1,0 +1,158 @@
+\doxysection{Boss\+Door\+Model Class Reference}
+\hypertarget{class_boss_door_model}{}\label{class_boss_door_model}\index{BossDoorModel@{BossDoorModel}}
+
+
+single use door :\+ teleport the player in the other side of the door after the first colision and become locked forever (Can no longer be crossed).  
+
+
+
+
+{\ttfamily \+\#include $<$bossdoormodel.\+h$>$}
+
+
+
+Inheritance diagram for Boss\+Door\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{class_boss_door_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Boss\+Door\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_boss_door_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_boss_door_model_a3027e6f26a2ebfbcdc7eb53ddddcf235}{Boss\+Door\+Model}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float w, float h)
+\begin{DoxyCompactList}\small\item\em Principal builder. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_boss_door_model_aced70b15e6c33302c5b37a7b7ca23ed3}{is\+Locked}} () const
+\item 
+bool \doxymbox{\hyperlink{class_boss_door_model_a86d40b8ce1efd078f3e572e1c588ddd7}{try\+Traverse}} (const QRectF \&player\+Collider, \doxymbox{\hyperlink{class_vector2f}{Vector2f}} \&teleport\+Pos)
+\begin{DoxyCompactList}\small\item\em Try to cross the door. If open and touch by the player, calculate the new position after teleportation, lock it and return true. Tente de traverser la porte. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_global_door}{Global\+Door}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_global_door_ad9b6202569c5bc960e9527ded51b5f27}{Global\+Door}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float w, float h)
+\begin{DoxyCompactList}\small\item\em Constructs a door entity at a given position with explicit dimensions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_entity_acaf2ad84607691b229cddab1da0bf819}{Entity}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float w, float h)
+\begin{DoxyCompactList}\small\item\em Constructor of the entity. \end{DoxyCompactList}\item 
+virtual \doxymbox{\hyperlink{class_entity_ac479d009ddde62dfb378ca0a70d81307}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual shredder. \end{DoxyCompactList}\item 
+virtual void \doxymbox{\hyperlink{class_entity_a21ab7babefa5e4525535a76cef1415f2}{update}} (float dt)
+\begin{DoxyCompactList}\small\item\em Update to the entity\textquotesingle{}s internal logic. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_afdda0263db3d2e465a6ae6bad91eb990}{get\+Position}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a5f154968f2a478ea924460c78e0cd39e}{get\+Width}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a1332918563adb284c0fd432d47486d44}{get\+Height}} () const
+\item 
+bool \doxymbox{\hyperlink{class_entity_aea1c1568b4123d989c5310697030ad77}{is\+Active}} () const
+\item 
+void \doxymbox{\hyperlink{class_entity_ac5164b8c832f9a055df976527fe10032}{set\+Active}} (bool a)
+\item 
+void \doxymbox{\hyperlink{class_entity_a575ec530746fbb3eca1baddec2d0b030}{set\+Position}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos)
+\item 
+QRectF \doxymbox{\hyperlink{class_entity_ae00b70bd40800a8bd23c38b1c84404a9}{get\+Collider}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the entity\textquotesingle{}s collision bounding box. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{class_boss_door_model_aa4c9eec536b2300c22c1f170faaf6762}{locked}}
+\begin{DoxyCompactList}\small\item\em false = crossable one time, true = permanent wall. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_a6af9d6498134ad0906011778bc5736db}{position}}
+\begin{DoxyCompactList}\small\item\em The entity\textquotesingle{}s 2D coordinates. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_adadfcc784f30b51b8e49f8230a56b793}{width}}
+\begin{DoxyCompactList}\small\item\em The physical width of the entity in pixels. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_a4550dc1011f47f6c4bb86e564e7d605b}{height}}
+\begin{DoxyCompactList}\small\item\em The physical height of the entity in pixels. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_entity_a939da33e8b67b1d2ee227930aa72da3b}{active}}
+\begin{DoxyCompactList}\small\item\em Status of the entity (false if dead or destroyed). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+single use door :\+ teleport the player in the other side of the door after the first colision and become locked forever (Can no longer be crossed). 
+
+\label{class_boss_door_model_doc-constructors}
+\Hypertarget{class_boss_door_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_boss_door_model_a3027e6f26a2ebfbcdc7eb53ddddcf235}\index{BossDoorModel@{BossDoorModel}!BossDoorModel@{BossDoorModel}}
+\index{BossDoorModel@{BossDoorModel}!BossDoorModel@{BossDoorModel}}
+\doxysubsubsection{\texorpdfstring{BossDoorModel()}{BossDoorModel()}}
+{\footnotesize\ttfamily \label{class_boss_door_model_a3027e6f26a2ebfbcdc7eb53ddddcf235} 
+Boss\+Door\+Model::\+\+Boss\+Door\+Model (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{pos}{, }\item[{float}]{w}{, }\item[{float}]{h}{}\end{DoxyParamCaption})}
+
+
+
+Principal builder. 
+
+
+
+\label{class_boss_door_model_doc-func-members}
+\Hypertarget{class_boss_door_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_boss_door_model_aced70b15e6c33302c5b37a7b7ca23ed3}\index{BossDoorModel@{BossDoorModel}!isLocked@{isLocked}}
+\index{isLocked@{isLocked}!BossDoorModel@{BossDoorModel}}
+\doxysubsubsection{\texorpdfstring{isLocked()}{isLocked()}}
+{\footnotesize\ttfamily \label{class_boss_door_model_aced70b15e6c33302c5b37a7b7ca23ed3} 
+bool Boss\+Door\+Model::\+is\+Locked (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+true if the player already crossed it, otherwise false. 
+\end{DoxyReturn}
+\Hypertarget{class_boss_door_model_a86d40b8ce1efd078f3e572e1c588ddd7}\index{BossDoorModel@{BossDoorModel}!tryTraverse@{tryTraverse}}
+\index{tryTraverse@{tryTraverse}!BossDoorModel@{BossDoorModel}}
+\doxysubsubsection{\texorpdfstring{tryTraverse()}{tryTraverse()}}
+{\footnotesize\ttfamily \label{class_boss_door_model_a86d40b8ce1efd078f3e572e1c588ddd7} 
+bool Boss\+Door\+Model::\+try\+Traverse (\begin{DoxyParamCaption}\item[{const QRectF \&}]{player\+Collider}{, }\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \&}]{teleport\+Pos}{}\end{DoxyParamCaption})}
+
+
+
+Try to cross the door. If open and touch by the player, calculate the new position after teleportation, lock it and return true. Tente de traverser la porte. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player\+Collider} & :\+ Player hitbox. \\
+\hline
+{\em teleport\+Pos} & :\+ Player\textquotesingle{}s target position after teleportation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a teleport is needed, otherwise return false. 
+\end{DoxyReturn}
+
+
+\label{class_boss_door_model_doc-variable-members}
+\Hypertarget{class_boss_door_model_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_boss_door_model_aa4c9eec536b2300c22c1f170faaf6762}\index{BossDoorModel@{BossDoorModel}!locked@{locked}}
+\index{locked@{locked}!BossDoorModel@{BossDoorModel}}
+\doxysubsubsection{\texorpdfstring{locked}{locked}}
+{\footnotesize\ttfamily \label{class_boss_door_model_aa4c9eec536b2300c22c1f170faaf6762} 
+bool Boss\+Door\+Model::\+locked\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+false = crossable one time, true = permanent wall. 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{bossdoormodel_8h}{bossdoormodel.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{bossdoormodel_8cpp}{bossdoormodel.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,167 @@
+\doxysection{config.\+h}
+\hypertarget{config_8h_source}{}\label{config_8h_source}\index{Headers/config.h@{Headers/config.h}}
+\doxymbox{\hyperlink{config_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ CONFIG\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ CONFIG\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QRect>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespace_cfg}{Cfg}}\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ ───\ Window\ ──────────────────────────────────────────────────}}
+\DoxyCodeLine{00020\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a09e5025e5edfa810ccda60d19df150a6}{WINDOW\_W}}\ \ \ \ \ \ \ \ \ \ \ \ =\ 960;\ \ \ \ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a6c655a3f445da8796df1ee5b959bbdc3}{WINDOW\_H}}\ \ \ \ \ \ \ \ \ \ \ \ =\ 650;\ \ \ \ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ ───\ Tile\ ───────────────────────────────────────────────────}}
+\DoxyCodeLine{00024\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a17ab5868f500a65306163d0180acfeeb}{TILE\_SIZE}}\ \ \ \ \ \ \ \ \ \ \ =\ 64;\ \ \ \ \ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a3e672c9b491fbb0b0134ff8a962b06bc}{ENTITY\_SIZE}}\ \ \ \ \ \ \ \ \ =\ 64;\ \ \ \ \ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ ───\ Player\ ───────────────────────────────────────────────────}}
+\DoxyCodeLine{00028\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_a63f4a64383e284ba5c94cd6f677e84e9}{PLAYER\_SPEED}}\ \ \ \ \ \ \ \ =\ 300.0f;\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_ac5f995b06af491a115cdf02aa4fd98ef}{PLAYER\_SPEED\_BOOSTED}}\ =1000.0f;}
+\DoxyCodeLine{00030\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a49a32f31a668b539fe92f7eda0616719}{PLAYER\_MAX\_HP}}\ \ \ \ \ \ \ =\ 100;\ \ \ \ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ ───\ Katana\ ───────────────────────────────────────────────────}}
+\DoxyCodeLine{00033\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a4ebef866f625fb7d92e2e41f6264bfd7}{KATANA\_DAMAGE}}\ \ \ \ \ \ \ =\ 30;\ \ \ \ \ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_ab80a5523b5cd537c51f2841e5ab487d9}{KATANA\_SLASH\_W}}\ \ \ \ \ \ =\ 48.0f;\ \ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_a074987ba4de60cc200c602d7b5911120}{KATANA\_SLASH\_D}}\ \ \ \ \ \ =\ 40.0f;\ \ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_a2d507ddb58ba57bc55de165e34bc6dd4}{KATANA\_ANIM\_DUR}}\ \ \ \ \ =\ 0.2f;\ \ \ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_a9c890c3579608a5befffb138dd98814e}{KATANA\_COOLDOWN}}\ \ \ \ \ =\ 0.5f;\ \ \ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ ───\ Standard\ zombie\ ──────────────────────────────────────────}}
+\DoxyCodeLine{00040\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a3320bca2ce6793763a3729c175a40fb7}{ZOMBIE\_MAX\_HP}}\ \ \ \ \ \ \ =\ 20;\ \ \ \ \ \ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_a92ea920a468b013476ff315771a0e98e}{ZOMBIE\_SPEED}}\ \ \ \ \ \ \ \ =\ 120.0f;\ \ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a1be6e623fee7cf983617a4eb5ce6307b}{ZOMBIE\_DMG\_MIN}}\ \ \ \ \ \ =\ 10;\ \ \ \ \ \ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_adb312a3118fd44878208c97bf6e75a65}{ZOMBIE\_DMG\_MAX}}\ \ \ \ \ \ =\ 17;\ \ \ \ \ \ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_ad7ca8f61e3a1fb3915bea5351fc01ccc}{ZOMBIE\_ATK\_CD}}\ \ \ \ \ \ \ =\ 1.5f;\ \ \ \ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_afe4845d3f69d23ad08fa07e15656ea1b}{ZOMBIE\_DETECT\_R}}\ \ \ \ \ =\ 800.0f;\ \ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a2cb4e51e1013e6851adaf3ab8e7b01f1}{ZOMBIE\_GOLD\_MIN}}\ \ \ \ \ =\ 5;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_ac01bf650c6ea9e820ba3593dbf10b8ce}{ZOMBIE\_GOLD\_MAX}}\ \ \ \ \ =\ 10;\ \ \ \ \ \ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ ───\ Launcher\ zombie\ ───────────────────────────────────────────}}
+\DoxyCodeLine{00050\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_afa7986ea01f3e62eb8b7277e279a4762}{LAUNCHER\_MAX\_HP}}\ \ \ \ \ =\ 15;\ \ \ \ \ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_abb3d1ce042e2071872a1ab04572a3ec1}{LAUNCHER\_SPEED}}\ \ \ \ \ \ =\ 90.0f;\ \ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_ad415184da2a2ea930c0ffa8af56b7e1d}{LAUNCHER\_DETECT\_R}}\ \ \ =\ 800.0f;\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_aba771fff429f12dd11477f79c1b2c5e0}{LAUNCHER\_SHOOT\_R}}\ \ \ \ =\ 320.0f;\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_adad254534cf6400f56207aa0d6d0df96}{LAUNCHER\_SHOOT\_CD}}\ \ \ =\ 2.0f;\ \ \ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a81d30992a4daf3d3f2eed94235616f6c}{LAUNCHER\_GOLD\_MIN}}\ \ \ =\ 7;\ \ \ \ \ \ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a472364124cbdf2285b1eb451de38a8bc}{LAUNCHER\_GOLD\_MAX}}\ \ \ =\ 14;\ \ \ \ \ }
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ ───\ Gravat\ (projectile\ from\ the\ launcher)\ ──────────────────────────────}}
+\DoxyCodeLine{00059\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_abd675e3a4c149f48f8d9a6b5b22195a4}{RUBBLE\_SPEED}}\ \ \ \ \ \ \ \ =\ 450.0f;\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a75476e8260a27bf30eb122e35c87d33c}{RUBBLE\_DAMAGE}}\ \ \ \ \ \ \ =\ 30;\ \ \ \ \ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_a3f112aeaa52b99c457511344b665e847}{RUBBLE\_SIZE}}\ \ \ \ \ \ \ \ \ =\ 16.0f;\ \ }
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ ───\ Ball\ (player's\ gun)\ ──────────────────────────────────}}
+\DoxyCodeLine{00064\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_a0efd46ed0d32586db7ba848804331044}{BULLET\_SPEED}}\ \ \ \ \ \ \ \ =\ 2000.0f;\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a3689e297f3ba29b4fc476ad8bbd8c73c}{BULLET\_DAMAGE}}\ \ \ \ \ \ \ =\ 12;\ \ \ \ \ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_ad1e9593f991095db3bda556b12bf3033}{BULLET\_BONUS\_MIN}}\ \ \ \ =\ 2;\ \ \ \ \ \ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a97104e9a00cb7a7ea56bcec3e140117d}{BULLET\_BONUS\_MAX}}\ \ \ \ =\ 5;\ \ \ \ \ \ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_a49f6606943333682facbb6ee2473f0ce}{BULLET\_SIZE}}\ \ \ \ \ \ \ \ \ =\ 8.0f;\ \ \ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_ad8a5f735e9f52267c0e4cfc6604d194f}{BULLET\_CRIT\_CHANCE}}\ \ =\ 0.02f;\ \ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_a35165a25f2cdc8c0fc32a49201a22956}{BULLET\_CRIT\_MULT}}\ \ \ \ =\ 2.0f;\ \ \ }
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{comment}{//\ ───\ Pistol\ (player\ ranged\ weapon)\ ────────────────────────────}}
+\DoxyCodeLine{00073\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_aaa6a314cf637c03a3508d9145def9a3e}{GUN\_SHOOT\_CD}}\ \ \ \ \ \ \ \ =\ 0.5f;\ \ \ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a66f9c304797399fb33cf77739fe797ba}{GUN\_MAG\_SIZE}}\ \ \ \ \ \ \ \ =\ 10;\ \ \ \ \ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_a6f37df8320c9fd33173a93a268e61880}{GUN\_OFFSET\_X}}\ \ \ \ \ \ \ \ =\ 20.0f;\ \ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_a099d17d417863e4ed41c949c656c0a65}{GUN\_OFFSET\_Y}}\ \ \ \ \ \ \ \ =\ 10.0f;\ \ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{comment}{//\ ───\ Game\ loop\ ────────────────────────────────────────────}}
+\DoxyCodeLine{00079\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a66f5c4418edf282f2c5800098d222412}{TIMER\_MS}}\ \ \ \ \ \ \ \ \ \ \ \ =\ 16;\ \ \ \ \ }
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{comment}{//\ ───\ Z-\/values\ (rendering\ layers)\ ──────────────────────────────}}
+\DoxyCodeLine{00082\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{namespace_cfg_a6204b3783c7e8feb11c9413fb6a2d09b}{Z\_FLOOR}}\ \ \ \ \ \ \ \ \ \ \ \ =\ 0.0;\ \ \ \ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{namespace_cfg_a70fab0db6aab804c168b7f769c703e79}{Z\_WALL}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1.0;\ \ \ \ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{namespace_cfg_af73137b6a521576045b682b3974bad11}{Z\_ENTITY}}\ \ \ \ \ \ \ \ \ \ \ =\ 2.0;\ \ \ \ }
+\DoxyCodeLine{00085\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{namespace_cfg_acedf2a9afe92d238f1cc9c2b97dfd815}{Z\_PLAYER}}\ \ \ \ \ \ \ \ \ \ \ =\ 3.0;\ \ \ \ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{namespace_cfg_af6f96b815643cc3547e1fe94bad14cc7}{Z\_SLASH}}\ \ \ \ \ \ \ \ \ \ \ \ =\ 4.0;\ \ \ \ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{namespace_cfg_ac039e075550657ce3a19f0826f23425c}{Z\_BOSS\_ZONE}}\ \ \ \ \ \ \ \ =\ 1.5;\ \ \ \ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{comment}{//\ ───\ Enemies\ —\ transitional\ states\ ────────────────────}}
+\DoxyCodeLine{00090\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_adb9224f1e2cceba6f199082391f089b4}{ENEMY\_HURT\_DUR}}\ \ \ \ \ \ =\ 0.3f;\ \ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_a9469e8b2e9440599573bd51096cc813e}{ENEMY\_DEAD\_DUR}}\ \ \ \ \ \ =\ 1.0f;\ \ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_aa5299d4fa06e82ad2abbb285b3e61f64}{ENEMY\_CHASE\_PERSIST}}\ =\ 4.0f;\ }
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{comment}{//\ ───\ Boss\ ────────────────────────────────────────────}}
+\DoxyCodeLine{00096\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_ac29feee2119363be6a392bc751b44ac3}{BOSSP1\_MAX\_HP}}\ \ \ \ \ \ \ =\ 300;\ \ \ \ \ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_abe2c68ed7f46fecfa23f34527a780f67}{BOSSP2\_MAX\_HP}}\ \ \ \ \ \ \ =\ 600;\ \ \ \ \ }
+\DoxyCodeLine{00098\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a6294fb94c5a0ffd79d59c7dd71761b22}{BOSSP3\_MAX\_HP}}\ \ \ \ \ \ \ =\ 850;\ \ \ \ \ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_a3247c2771e4864848a7169e4db4486eb}{BOSS\_SPEED}}\ \ \ \ \ \ \ \ =\ 90.0f;\ \ \ \ \ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a0e6c82bcd8df8d1e84d1bd1990b0da2d}{BOSS\_DMG}}\ \ \ \ \ \ \ \ \ \ \ \ =\ 20;\ \ \ \ \ \ }
+\DoxyCodeLine{00101\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_abe69a9f8370a3acb2b763c4d5783e510}{BOSS\_ATK\_CD}}\ \ \ \ \ \ \ =\ 1.5f;\ \ \ \ \ \ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_a807e93d8c0b4dc2ddaa7d7a136d7d956}{BOSS\_DETECT\_R}}\ \ \ \ \ =\ 800.0f;\ \ \ \ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_aac560eec8c36823e0a54e5e2d03ba5b8}{BOSS\_GOLD\_MIN}}\ \ \ \ \ =\ 300;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a65bd333cb95aca744d50c5a5118d3b38}{BOSS\_GOLD\_MAX}}\ \ \ \ \ =\ 400;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{comment}{//\ ───\ Boss\ pattern\ 2\ (area)\ ────────────────────────────────────}}
+\DoxyCodeLine{00108\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_a893447a1961ff777713e0d1c46c5fcb4}{BOSS\_ZONE\_CHARGE\_CD2}}\ =\ 1.5f;\ \ \ \ \ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_a6944da3caa5c598145a2cd4b2d75fcba}{BOSS\_ZONE\_TIMER}}\ \ \ \ \ =\ 1.1f;\ \ \ \ \ \ }
+\DoxyCodeLine{00110\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{namespace_cfg_a7da71cff5034d5fed960e976d2126fa2}{BOSS\_ZONE\_CHARGE\_CD3}}\ =\ 1.25f;\ \ \ \ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a6f7ebab1fc4a5d2969429eeb6c5b464d}{BOSS\_ZONE\_TILE\_SIZE}}\ =\ 32;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00112\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_aec55d546c6ae4e85c960aa60143d5c1c}{BOSS\_ZONE\_DMG}}\ \ \ \ \ \ \ =\ 70;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a1b85a9277899625c98b32372de521623}{BOSS\_ZONE\_SAFE\_COUNT}}\ =\ 7;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a632bd64456ae7f06ed942d4a817d9a9c}{BOSS\_ZONE\_RADIUS}}\ \ \ \ \ =\ 384;\ \ \ \ \ \ }
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{comment}{//\ ───\ HUD\ ──────────────────────────────────────────────────────}}
+\DoxyCodeLine{00117\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_adda8df5f6d590bbe962a34f83edb9023}{HUD\_MARGIN}}\ \ \ \ \ \ \ \ \ \ =\ 12;\ \ \ \ \ }
+\DoxyCodeLine{00118\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_abc33c2e86355a02ab36b9879c527c414}{HP\_BAR\_W}}\ \ \ \ \ \ \ \ \ \ \ \ =\ 180;\ \ \ \ }
+\DoxyCodeLine{00119\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a32ac7169aabd8397d7f65ade9be65a9d}{HP\_BAR\_H}}\ \ \ \ \ \ \ \ \ \ \ \ =\ 16;\ \ \ \ \ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a0db018ddfa1b048f69f76556d4c9b496}{BOSSBARX}}\ \ \ \ \ \ \ \ \ \ \ \ =\ 300;\ \ \ \ }
+\DoxyCodeLine{00121\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_a34de1326255d422bbdd00c4b9deb41e5}{BOSSBARY}}\ \ \ \ \ \ \ \ \ \ \ \ =\ 50;\ \ \ \ }
+\DoxyCodeLine{00122\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_aa3157c26f9410c4cddc1ba516e4d8258}{BOSS\_HP\_BAR\_W}}\ \ \ \ \ \ \ =\ 400;\ \ \ \ }
+\DoxyCodeLine{00123\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \ \ \doxymbox{\hyperlink{namespace_cfg_abfbafc34880f7077c04fa1c060ca93f0}{BOSS\_HP\_BAR\_H}}\ \ \ \ \ \ \ =\ 20;\ \ \ \ }
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{comment}{//\ ───\ Floating\ pop-\/ups\ (damage\ /\ gold)\ ──────────────────────}}
+\DoxyCodeLine{00126\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{namespace_cfg_ae9783128baa1492a576823a08ee9ab39}{Z\_POPUP}}\ \ \ \ \ \ \ \ \ =\ 5.0;\ \ \ \ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \ \doxymbox{\hyperlink{namespace_cfg_a397b85a443d90265f0ce9840f2df6940}{POPUP\_DMG\_DUR}}\ \ \ =\ 1.0f;\ \ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \ \doxymbox{\hyperlink{namespace_cfg_ac00f046834bd5c43b0ebae2195117b34}{POPUP\_GOLD\_DUR}}\ \ =\ 1.4f;\ \ }
+\DoxyCodeLine{00129\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \ \doxymbox{\hyperlink{namespace_cfg_a78778e36997c745e20eb8857ce7cd23f}{POPUP\_RISE\_PX}}\ \ \ =\ 40.0f;\ }
+\DoxyCodeLine{00130\ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{comment}{//\ ───\ MARKET\ IMPROVEMENTS\ (damage\ /\ gold)\ ──────────────────────}}
+\DoxyCodeLine{00133\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{config_8h_acd6c0ebedeb8d172534ba728738ea737}{BONUS\_MAX\_HP}}\ =\ 20.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00134\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{config_8h_a957d18efe948cc8c7aa55815e1459cee}{BONUS\_GUN\_MAX\_DMG}}\ =\ 5.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00135\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{config_8h_a90df1038d14e36e222cdc4a0161bb3e4}{BONUS\_KATANA\_DMG}}\ =\ 10.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00136\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{config_8h_a4abbbdcd4dad21c73f70d7ba4eb3262d}{BONUS\_KATANA\_RANGE}}\ =\ 15.0f;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00137\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{config_8h_a072ff1b1ceeb3cd60ed8eb13b2ef8777}{BONUS\_SPEED}}\ =\ 20.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00138\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{config_8h_a1f5624110d53e40faf39811bec6367e2}{BONUS\_CRIT\_CHANCE}}\ =0.03;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00139\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{config_8h_a57aaac0f5e508ed7a9df5e16dbb83a84}{BONUS\_KATANA\_COOLDOWN\_MIN}}\ =\ 0.1f;\ \ \ \ \ }
+\DoxyCodeLine{00140\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{config_8h_a3c3d1682302dc4745a95c57f6cc365ae}{BONUS\_KATANA\_COOLDOWN\_MAX}}\ =\ 0.2f;\ \ \ \ \ }
+\DoxyCodeLine{00141\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{config_8h_af0b980a80b2fc64c738f8f437dfbbde9}{BONUS\_SHOOT\_COOLDOWN\_MIN}}\ =\ 0.1f;\ \ \ \ \ \ }
+\DoxyCodeLine{00142\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{config_8h_a9b3e2f2ab1253fb68ea36f823f84e44c}{BONUS\_SHOOT\_COOLDOWN\_MAX}}\ =\ 0.2f;\ \ \ \ \ \ }
+\DoxyCodeLine{00143\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{config_8h_a46a17ffe6d6a5b423b691f12f8b4e918}{BONUS\_RESERVE}}\ =\ 10.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{comment}{//\ ───\ Enumerations\ ─────────────────────────────────────────────────}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00148\ \textcolor{keyword}{enum\ class}\ \doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11}{FacingDirection}}\ \{\ \doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11afbaedde498cdead4f2780217646e9ba1}{UP}},\ \doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11ac4e0e4e3118472beeb2ae75827450f1f}{DOWN}},\ \doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11a684d325a7303f52e64011467ff5c5758}{LEFT}},\ \doxymbox{\hyperlink{config_8h_ad75f2d1f6565bcf922f3f2ddab4c6b11a21507b40c80068eda19865706fdc2403}{RIGHT}}\ \};}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00151\ \textcolor{keyword}{enum\ class}\ \doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428}{AppState}}\ \ \ \ \ \ \ \ \{\ \doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428a3ed53fbeb1eab0443561b68ca0c0b5cf}{MENU}},\ \doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428a50366a49630a416ab3ccaa004196027e}{PLAYING}},\ \doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428af8454a27e1df41397bf42444fe5aa45b}{GAME\_OVER}},\ \doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428ae0651864a549515538cb104b7b32e75d}{VICTORY}},\ \doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428a99b2439e63f73ad515f7ab2447a80673}{PAUSED}}\ \};}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00154\ \textcolor{keyword}{enum\ class}\ \doxymbox{\hyperlink{config_8h_a588700cbbd7d8e80b51ef81b140213fc}{EnemyAIState}}\ \ \ \ \{\ \doxymbox{\hyperlink{config_8h_a588700cbbd7d8e80b51ef81b140213fcaa5daf7f2ebbba4975d61dab1c40188c7}{IDLE}},\ \doxymbox{\hyperlink{config_8h_a588700cbbd7d8e80b51ef81b140213fcab1cdb24e3483650f45299987269d835e}{CHASING}},\ \doxymbox{\hyperlink{config_8h_a588700cbbd7d8e80b51ef81b140213fca99cca61d90b4e79f0193e587ba5fbf69}{ATTACKING}},\ \doxymbox{\hyperlink{config_8h_a588700cbbd7d8e80b51ef81b140213fca0f1484d199a29e1d494be6d0cdd42864}{HURT}},\ \doxymbox{\hyperlink{config_8h_a588700cbbd7d8e80b51ef81b140213fcabb4784231ff45108ee20bad16e4a2e8c}{DEAD}}\ \};}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00157\ \textcolor{keyword}{enum\ class}\ \doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1}{TileType}}\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a56c1e354d36beb85b0d881c5b2e24cbe}{FLOOR}}\ \ \ \ \ \ \ \ \ \ \ =\ 0,\ \ \ \ }
+\DoxyCodeLine{00159\ \ \ \ \ \doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a48d536b2de1195d0c9f6ea8ab884085e}{WALL}}\ \ \ \ \ \ \ \ \ \ \ \ =\ 1,\ \ \ \ }
+\DoxyCodeLine{00160\ \ \ \ \ \doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a382044fabc1ec2d60b0fd1550a62a9e3}{ZOMBIE\_SPAWN}}\ \ \ \ =\ 2,\ \ \ \ }
+\DoxyCodeLine{00161\ \ \ \ \ \doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a7c8b96a12894a1f3c4054f26b23c3bc8}{EXIT\_DOOR}}\ \ \ \ \ \ \ =\ 3,\ \ \ \ }
+\DoxyCodeLine{00162\ \ \ \ \ \doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1aefeaff06f16214cf788e86a06c8d8c5b}{PLAYER\_SPAWN}}\ \ \ \ =\ 4,\ \ \ \ }
+\DoxyCodeLine{00163\ \ \ \ \ \doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a555a25221ed749d4aa972d072af25088}{LAUNCHER\_SPAWN}}\ \ =\ 5,\ \ \ \ }
+\DoxyCodeLine{00164\ \ \ \ \ \doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a59095c3a84f7f79c4612475dc4f230d2}{STANDARD\_DOOR}}\ \ \ =\ 6,\ \ \ \ }
+\DoxyCodeLine{00165\ \ \ \ \ \doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1aa8da0dfa571e20718a3499a453bb0c4d}{BOSS\_SPAWN}}\ \ \ \ \ \ =\ 7,\ \ \ \ }
+\DoxyCodeLine{00166\ \ \ \ \ \doxymbox{\hyperlink{config_8h_ac9e486ec80ccfdb28a4f4837d419c9f1a83b61399dcb6bec370fb84c54c3f7fe4}{BOSS\_DOOR}}\ \ \ \ \ \ \ =\ 8\ \ \ \ \ }
+\DoxyCodeLine{00167\ \};}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00173\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_zone_tile}{ZoneTile}}\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ QRectF\ \doxymbox{\hyperlink{struct_zone_tile_a563c99e513a699ab1ae4e94b2b676a13}{rect}};\ \ \ \ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \doxymbox{\hyperlink{struct_zone_tile_a2affe8d740dddfa754d90d242e3b8f49}{isSafe}};\ \ }
+\DoxyCodeLine{00176\ \};}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CONFIG\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,200 @@
+\doxysection{Standard\+Door\+Model Class Reference}
+\hypertarget{class_standard_door_model}{}\label{class_standard_door_model}\index{StandardDoorModel@{StandardDoorModel}}
+
+
+Standard door that opens on simple contact with the player.  
+
+
+
+
+{\ttfamily \+\#include $<$standarddoormodel.\+h$>$}
+
+
+
+Inheritance diagram for Standard\+Door\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_standard_door_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Standard\+Door\+Model:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_standard_door_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_standard_door_model_a999f8852e49cb7891d9dd07c07a51da9}{Standard\+Door\+Model}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float w, float h)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_standard_door_model_a5dcd7a60d396e8dadf3a2f8f64145a90}{update}} (float dt) override
+\begin{DoxyCompactList}\small\item\em Update to the entity\textquotesingle{}s internal logic. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_standard_door_model_aa90f90210616d560aae8a6e598593551}{open\+Door}} ()
+\begin{DoxyCompactList}\small\item\em Opens the door (irreversible during the level). \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_standard_door_model_ac4af7e7470ebea78874b93966777cd54}{is\+Open}} () const
+\begin{DoxyCompactList}\small\item\em Indicates whether the door is currently open. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_standard_door_model_a18be14e811044f95c028008d57d2d70d}{try\+Open}} (const \doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&player)
+\begin{DoxyCompactList}\small\item\em Opens the door if the player touches it. Must be called by \doxylink{class_level_controller}{Level\+Controller} every tick. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_global_door}{Global\+Door}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_global_door_ad9b6202569c5bc960e9527ded51b5f27}{Global\+Door}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float w, float h)
+\begin{DoxyCompactList}\small\item\em Constructs a door entity at a given position with explicit dimensions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_entity_acaf2ad84607691b229cddab1da0bf819}{Entity}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos, float w, float h)
+\begin{DoxyCompactList}\small\item\em Constructor of the entity. \end{DoxyCompactList}\item 
+virtual \doxymbox{\hyperlink{class_entity_ac479d009ddde62dfb378ca0a70d81307}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual shredder. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_afdda0263db3d2e465a6ae6bad91eb990}{get\+Position}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a5f154968f2a478ea924460c78e0cd39e}{get\+Width}} () const
+\item 
+float \doxymbox{\hyperlink{class_entity_a1332918563adb284c0fd432d47486d44}{get\+Height}} () const
+\item 
+bool \doxymbox{\hyperlink{class_entity_aea1c1568b4123d989c5310697030ad77}{is\+Active}} () const
+\item 
+void \doxymbox{\hyperlink{class_entity_ac5164b8c832f9a055df976527fe10032}{set\+Active}} (bool a)
+\item 
+void \doxymbox{\hyperlink{class_entity_a575ec530746fbb3eca1baddec2d0b030}{set\+Position}} (\doxymbox{\hyperlink{class_vector2f}{Vector2f}} pos)
+\item 
+QRectF \doxymbox{\hyperlink{class_entity_ae00b70bd40800a8bd23c38b1c84404a9}{get\+Collider}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the entity\textquotesingle{}s collision bounding box. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{class_standard_door_model_aafbc16eb5973137ec3f85f85a65d3182}{open}}
+\begin{DoxyCompactList}\small\item\em Indicates whether the door is open (and therefore passable). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_entity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_vector2f}{Vector2f}} \doxymbox{\hyperlink{class_entity_a6af9d6498134ad0906011778bc5736db}{position}}
+\begin{DoxyCompactList}\small\item\em The entity\textquotesingle{}s 2D coordinates. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_adadfcc784f30b51b8e49f8230a56b793}{width}}
+\begin{DoxyCompactList}\small\item\em The physical width of the entity in pixels. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_entity_a4550dc1011f47f6c4bb86e564e7d605b}{height}}
+\begin{DoxyCompactList}\small\item\em The physical height of the entity in pixels. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_entity_a939da33e8b67b1d2ee227930aa72da3b}{active}}
+\begin{DoxyCompactList}\small\item\em Status of the entity (false if dead or destroyed). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Standard door that opens on simple contact with the player. 
+
+\label{class_standard_door_model_doc-constructors}
+\Hypertarget{class_standard_door_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_standard_door_model_a999f8852e49cb7891d9dd07c07a51da9}\index{StandardDoorModel@{StandardDoorModel}!StandardDoorModel@{StandardDoorModel}}
+\index{StandardDoorModel@{StandardDoorModel}!StandardDoorModel@{StandardDoorModel}}
+\doxysubsubsection{\texorpdfstring{StandardDoorModel()}{StandardDoorModel()}}
+{\footnotesize\ttfamily \label{class_standard_door_model_a999f8852e49cb7891d9dd07c07a51da9} 
+Standard\+Door\+Model::\+\+Standard\+Door\+Model (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector2f}{Vector2f}}}]{pos}{, }\item[{float}]{w}{, }\item[{float}]{h}{}\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & Top-\/left position in the scene. \\
+\hline
+{\em w} & Width in pixels. \\
+\hline
+{\em h} & Height in pixels. \\
+\hline
+\end{DoxyParams}
+
+
+\label{class_standard_door_model_doc-func-members}
+\Hypertarget{class_standard_door_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_standard_door_model_ac4af7e7470ebea78874b93966777cd54}\index{StandardDoorModel@{StandardDoorModel}!isOpen@{isOpen}}
+\index{isOpen@{isOpen}!StandardDoorModel@{StandardDoorModel}}
+\doxysubsubsection{\texorpdfstring{isOpen()}{isOpen()}}
+{\footnotesize\ttfamily \label{class_standard_door_model_ac4af7e7470ebea78874b93966777cd54} 
+bool Standard\+Door\+Model::\+is\+Open (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Indicates whether the door is currently open. 
+
+\begin{DoxyReturn}{Returns}
+true if open (passable), false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_standard_door_model_aa90f90210616d560aae8a6e598593551}\index{StandardDoorModel@{StandardDoorModel}!openDoor@{openDoor}}
+\index{openDoor@{openDoor}!StandardDoorModel@{StandardDoorModel}}
+\doxysubsubsection{\texorpdfstring{openDoor()}{openDoor()}}
+{\footnotesize\ttfamily \label{class_standard_door_model_aa90f90210616d560aae8a6e598593551} 
+void Standard\+Door\+Model::\+open\+Door (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Opens the door (irreversible during the level). 
+
+\Hypertarget{class_standard_door_model_a18be14e811044f95c028008d57d2d70d}\index{StandardDoorModel@{StandardDoorModel}!tryOpen@{tryOpen}}
+\index{tryOpen@{tryOpen}!StandardDoorModel@{StandardDoorModel}}
+\doxysubsubsection{\texorpdfstring{tryOpen()}{tryOpen()}}
+{\footnotesize\ttfamily \label{class_standard_door_model_a18be14e811044f95c028008d57d2d70d} 
+bool Standard\+Door\+Model::\+try\+Open (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_player_model}{Player\+Model}} \&}]{player}{}\end{DoxyParamCaption})}
+
+
+
+Opens the door if the player touches it. Must be called by \doxylink{class_level_controller}{Level\+Controller} every tick. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Player model. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the door has just been opened, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_standard_door_model_a5dcd7a60d396e8dadf3a2f8f64145a90}\index{StandardDoorModel@{StandardDoorModel}!update@{update}}
+\index{update@{update}!StandardDoorModel@{StandardDoorModel}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_standard_door_model_a5dcd7a60d396e8dadf3a2f8f64145a90} 
+void Standard\+Door\+Model::\+update (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Update to the entity\textquotesingle{}s internal logic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & :\+ Time elapsed since the last update (in seconds). \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \doxymbox{\hyperlink{class_entity_a21ab7babefa5e4525535a76cef1415f2}{Entity}}.
+
+
+
+\label{class_standard_door_model_doc-variable-members}
+\Hypertarget{class_standard_door_model_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_standard_door_model_aafbc16eb5973137ec3f85f85a65d3182}\index{StandardDoorModel@{StandardDoorModel}!open@{open}}
+\index{open@{open}!StandardDoorModel@{StandardDoorModel}}
+\doxysubsubsection{\texorpdfstring{open}{open}}
+{\footnotesize\ttfamily \label{class_standard_door_model_aafbc16eb5973137ec3f85f85a65d3182} 
+bool Standard\+Door\+Model::\+open\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Indicates whether the door is open (and therefore passable). 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Headers/\+\doxymbox{\hyperlink{standarddoormodel_8h}{standarddoormodel.\+h}}\item 
+Sources/\+\doxymbox{\hyperlink{standarddoormodel_8cpp}{standarddoormodel.\+cpp}}\end{DoxyCompactItemize}

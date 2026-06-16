@@ -1,0 +1,51 @@
+\doxysection{appcontroller.\+h}
+\hypertarget{appcontroller_8h_source}{}\label{appcontroller_8h_source}\index{Headers/appcontroller.h@{Headers/appcontroller.h}}
+\doxymbox{\hyperlink{appcontroller_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ AppController\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ AppController\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QMainWindow>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QStackedWidget>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{marketcontroller_8h}{marketcontroller.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{menucontroller_8h}{menucontroller.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{gamecontroller_8h}{gamecontroller.h}}"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_app_controller_aceb4ec057d02fa4d6ed50a10a82e89fb}{AppController}}\ :\ \textcolor{keyword}{public}\ QMainWindow}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00027\ \ \ \ \ \doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428}{AppState}}\ *\doxymbox{\hyperlink{class_app_controller_ab0a4b59cbf92f1678e68035027078f63}{currentState}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ QStackedWidget\ *\doxymbox{\hyperlink{class_app_controller_a8ab23b0f71f4c620ac5cd601299ec05e}{mainContainer}};\ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \doxymbox{\hyperlink{class_menu_controller}{MenuController}}\ *\doxymbox{\hyperlink{class_app_controller_aad2c92eb6cca018dc268746d221219fa}{itsMenuController}};\ }
+\DoxyCodeLine{00030\ \ \ \ \ \doxymbox{\hyperlink{class_game_controller}{GameController}}\ *\doxymbox{\hyperlink{class_app_controller_a9819d9b431b195d3c770094c7d109b87}{itsGameController}};\ }
+\DoxyCodeLine{00031\ \ \ \ \ \doxymbox{\hyperlink{class_market_controller}{MarketController}}*\ \doxymbox{\hyperlink{class_app_controller_afd65ea17663a93ff364f9d8514194fa3}{itsMarketController}};\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \doxymbox{\hyperlink{class_app_controller_aceb4ec057d02fa4d6ed50a10a82e89fb}{AppController}}(QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00038\ \ \ \ \ \doxymbox{\hyperlink{class_app_controller_a2aeb07ffaa5dbb2320bf2173f4ffa178}{\string~AppController}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_app_controller_adf97a6b5b19bf078cd9e8915acb7ac13}{switchState}}(\doxymbox{\hyperlink{config_8h_a83fc559664fc7c7e310c93586457b428}{AppState}}*\ next);}
+\DoxyCodeLine{00045\ \ \ \ \ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_app_controller_a5398b6afda8962a76be7e9dd8059091b}{startGame}}();}
+\DoxyCodeLine{00050\ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_app_controller_a89987b5c5c12efbd9c9aa2ad6bf6cdbc}{run}}();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_app_controller_ab0e694e1fe8921982255c01138261d0a}{reset}}();}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ signals:}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_app_controller_aba0be0e87507455eaf8e8c86ceab1b15}{sigGameRq}}();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{private}\ slots:}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_app_controller_a8f5dd5291fe1634debd8c4ddad610730}{sltRestart}}();}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_app_controller_a6bbd1b6c009f61e0af2ba05686168a1b}{sltBackMenu}}();}
+\DoxyCodeLine{00073\ \textcolor{comment}{//slot\ ouvrir\ la\ fenêtre\ dialogue\ du\ market}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//void\ sltOpenMarket();}}
+\DoxyCodeLine{00075\ \};}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ AppController\_H}}
+
+\end{DoxyCode}
