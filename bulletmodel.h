@@ -1,8 +1,8 @@
 /**
  * @file bulletmodel.h
- * @brief Modèle d'une balle tirée par le pistolet du joueur.
+ * @brief A model of a bullet fired from the player's pistol.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
- * @date Juin 2026
+ * @date June 2026
  */
 #ifndef BULLETMODEL_H
 #define BULLETMODEL_H
@@ -12,24 +12,24 @@
 
 /**
  * @class BulletModel
- * @brief Projectile tiré par le joueur (pistolet semi-auto).
+ * @brief Projectile fired by the player (semi-automatic pistol).
  *
- * Hérite de Projectile : déplacement rectiligne à vitesse constante.
- * Se désactive (setActive(false)) dès collision avec un mur ou un ennemi,
- * pris en charge par LevelController::checkBulletCollisions().
+ * Inherits from Projectile: moves in a straight line at a constant speed.
+ * Deactivates (setActive(false)) upon collision with a wall or an enemy,
+ * handled by LevelController::checkBulletCollisions().
  *
- * Dégâts : 12 pts de base + bonus adaptatif 2-5 + éventuel critique ×2 (GDD).
- * Vitesse : 500 px/s (GDD).
+ * Damage: 12 base points + adaptive bonus 2–5 + critical hit ×2 (GDD).
+ * Speed: 500 px/s (GDD).
  */
 class BulletModel : public Projectile
 {
 public:
     /**
-     * @brief Construit une balle.
-     * @param pos    Position de départ (bouche du pistolet).
-     * @param dir    Direction normalisée vers le curseur souris.
-     * @param damage Dégâts déjà calculés (base + bonus + critique) par GunModel.
-     * @param speed  Vitesse en px/s (Cfg::BULLET_SPEED par défaut).
+     * @brief Create a bullet
+     * @param pos :   Starting position (nozzle).
+     * @param dir :   Standard direction towards the mouse cursor.
+     * @param damage : Damage already calculated (base + bonus + critical) by GunModel.
+     * @param speed : Speed in px/s (default: Cfg::BULLET_SPEED).
      */
     BulletModel(Vector2f pos,
                 Vector2f dir,

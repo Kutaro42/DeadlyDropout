@@ -1,8 +1,8 @@
 /**
  * @file bossdoorview.h
- * @brief Déclaration de la vue de la porte de boss.
+ * @brief Declaration of the boss's door view.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
- * @date Juin 2026
+ * @date June 2026
  */
 
 #ifndef BOSSDOORVIEW_H
@@ -16,24 +16,38 @@
 
 /**
  * @class BossDoorView
- * @brief Vue de la porte de boss.
- *        Affiche un sprite « ouverte » tant que non verrouillée,
- *        puis bascule sur « verrouillée » après la traversée.
+ * @brief Boss's door view.
+ *        Display an open srite while it's none open,
+ *        then switch to lock after it crossed.
  */
 class BossDoorView : public QGraphicsPixmapItem
 {
 public:
-    explicit BossDoorView(BossDoorModel* model, QGraphicsItem* parent = nullptr);
+    /**
+     * @brief Principal builder.
+     */
+    BossDoorView(BossDoorModel* model, QGraphicsItem* parent = nullptr);
+
+    /**
+     * @brief Updates the door's view.
+     */
     void updateView();
 
 private:
-    BossDoorModel* itsModel;
-    bool           wasLocked;
-    QPixmap        unlockedPixmap;
-    QPixmap        lockedPixmap;
+    BossDoorModel* itsModel;        ///< Pointer to the bossDoorModel to read it.
+    bool           wasLocked;       ///< Boolean to keep the information if the door is locked.
+    QPixmap        unlockedPixmap;  ///< QPixmap to display the unlocked door.
+    QPixmap        lockedPixmap;    ///< QPixmap to display the locked door.
 
+    /**
+     * @brief Create the visual for the door.
+     */
     void        buildPixmaps();
-    static QPixmap makeFallback(int w, int h, bool isLocked);
+
+    /**
+     * @brief Create the visual for the door in case of an error with the sprites loading.
+     */
+    QPixmap makeFallback(int w, int h, bool isLocked);
 };
 
 #endif // BOSSDOORVIEW_H

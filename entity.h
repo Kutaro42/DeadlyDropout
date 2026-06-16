@@ -1,8 +1,8 @@
 /**
  * @file entity.h
- * @brief Déclaration de la classe de base Entity.
+ * @brief Declaration of the Entity base class.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
- * @date Juin 2026
+ * @date June 2026
  */
 
 #ifndef ENTITY_H
@@ -13,38 +13,38 @@
 #include "config.h"
 
 // ═══════════════════════════════════════════════════════════════════
-//  Entity — classe de base abstraite pour toutes les entités du jeu.
-//  Contient position, dimensions et collider (AABB).
+//  Entity — Abstract base class for all game entities.
+//  Contains position, dimensions and collider (AABB).
 // ═══════════════════════════════════════════════════════════════════
 
 /**
  * @class Entity
- * @brief Classe de base abstraite représentant tout objet interactif ou physique dans le jeu.
+ * @brief An abstract base class representing any interactive or physical object in the game.
  */
 class Entity {
 protected:
-    Vector2f position; ///< Coordonnées 2D de l'entité.
-    float    width;    ///< Largeur physique de l'entité en pixels.
-    float    height;   ///< Hauteur physique de l'entité en pixels.
-    bool     active;   ///< État de l'entité (faux si morte ou détruite).
+    Vector2f position; ///< The entity's 2D coordinates.
+    float    width;    ///< The physical width of the entity in pixels.
+    float    height;   ///< The physical height of the entity in pixels.
+    bool     active;   ///< Status of the entity (false if dead or destroyed).
 
 public:
     /**
-     * @brief Constructeur de l'entité.
-     * @param pos Position initiale.
-     * @param w Largeur.
-     * @param h Hauteur.
+     * @brief Constructor of the entity.
+     * @param pos : Starting position.
+     * @param w : width.
+     * @param h : Height.
      */
     Entity(Vector2f pos, float w, float h);
     
     /**
-     * @brief Destructeur virtuel.
+     * @brief Virtual shredder.
      */
     virtual ~Entity() = default;
 
     /**
-     * @brief Mise à jour de la logique interne de l'entité.
-     * @param dt Temps écoulé depuis la dernière mise à jour (en secondes).
+     * @brief Update to the entity's internal logic.
+     * @param dt : Time elapsed since the last update (in seconds).
      */
     virtual void update(float dt);
 
@@ -58,7 +58,7 @@ public:
     void setPosition(Vector2f pos)   { position = pos; }
 
     /**
-     * @brief Obtient la zone de collision de l'entité.
+     * @brief Retrieves the entity's collision bounding box.
      * @return Rectangle délimitant la hitbox (AABB) de l'entité.
      */
     QRectF getCollider() const;

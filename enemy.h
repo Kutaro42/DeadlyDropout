@@ -1,8 +1,8 @@
 /**
  * @file enemy.h
- * @brief Déclaration de la classe abstraite Enemy, gérant les comportements des adversaires.
+ * @brief Declaration of the abstract class `Enemy`, which manages enemy behavior.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
- * @date Juin 2026
+ * @date June 2026
  */
 
 #ifndef ENEMY_H
@@ -10,116 +10,115 @@
 
 #include "entity.h"
 #include "config.h"
-
-class PlayerModel; // forward — évite la dépendance circulaire
+#include "playermodel.h"
 
 // ═══════════════════════════════════════════════════════════════════
-//  Enemy — classe de base abstraite pour tous les ennemis.
-//  Hérite de Entity. Sous-classes : ZombieStdModel, (ThrowerModel…)
+//  Enemy — abstract base class for all enemies.
+//  Inherits from Entity. Subclasses: ZombieStdModel, (ThrowerModel…)
 // ═══════════════════════════════════════════════════════════════════
 
 /**
  * @class Enemy
- * @brief Classe de base définissant la structure et les mécaniques d'une entité hostile.
+ * @brief Base class defining the structure and mechanics of a hostile entity.
  */
 class Enemy : public Entity {
 protected:
-    int          hp;                 ///< Points de vie actuels de l'ennemi.
-    int          maxHp;              ///< Points de vie maximum.
-    float        speed;              ///< Vitesse de déplacement linéaire.
-    int          baseDamage;         ///< Dégâts de base infligés au joueur.
-    float        attackCooldown;     ///< Temps requis entre deux attaques.
-    float        attackTimer;        ///< Timer interne gérant le délai de l'attaque.
-    float        detectionRadius;    ///< Rayon de la zone d'aggro/détection.
-    int          goldDrop;           ///< Récompense en or octroyée à la mort.
-    bool         goldAlreadyDropped; ///< Drapeau anti-doublon pour le loot d'or.
-    bool         isBoss = false;
-    EnemyAIState aiState;            ///< État de la machine à états de l'IA.
-    Vector2f     velocity;           ///< Vecteur directionnel de déplacement actuel.
-    bool         hitThisSlash;       ///< Empêche les dégâts multiples par attaque.
-    float        hurtTimer;          ///< Temps restant dans l'état HURT.
-    float        deadTimer;          ///< Temps restant dans l'état DEAD avant désactivation.
-    float        chasePersistTimer;  ///< Temps restant avant de repasser en IDLE après perte de vision.
+    int          hp;                 ///< Enemy's current health points.
+    int          maxHp;              ///< Maximum health points.
+    float        speed;              ///< Linear travel speed.
+    int          baseDamage;         ///< Base damage dealt to the player.
+    float        attackCooldown;     ///< Time required between two attacks.
+    float        attackTimer;        ///< Internal timer that controls the attack duration.
+    float        detectionRadius;    ///< Range of the aggro/detection zone.
+    int          goldDrop;           ///< A golden reward granted upon death.
+    bool         goldAlreadyDropped; ///< Anti-duplicate flag for gold loot.
+    bool         isBoss = false;     ///< Point to the boss
+    EnemyAIState aiState;            ///< State of the AI state machine.
+    Vector2f     velocity;           ///< Current direction of motion.
+    bool         hitThisSlash;       ///< Prevents multiple hits per attack.
+    float        hurtTimer;          ///< Time remaining in the HURT state.
+    float        deadTimer;          ///< Time remaining in the DEAD state before deactivation.
+    float        chasePersistTimer;  ///< Time remaining before returning to IDLE after loss of sight.
 
 public:
     /**
-     * @brief Constructeur de l'ennemi.
-     * @param pos Position de spawn.
-     * @param maxHp Points de vie.
-     * @param speed Vitesse de déplacement.
-     * @param dmg Dégâts.
-     * @param detRadius Rayon de détection.
-     * @param w Largeur.
-     * @param h Hauteur.
-     * @param gold Or looté à la mort.
+     * @brief Enemy builder.
+     * @param pos : Spawn position.
+     * @param maxHP : Health Points.
+     * @param speed : Travel speed.
+     * @param dmg : Damage.
+     * @param detRadius : Detection range.
+     * @param w : Width.
+     * @param h : Height.
+     * @param gold : Gold dropped upon death.
      */
     Enemy(Vector2f pos, int maxHp, float speed, int dmg,
           float detRadius, float w, float h, int gold);
     virtual ~Enemy() = default;
 
-    // ─── Interface virtuelle pure ──────────────────────────────
+    // ─── Pure virtual interface ──────────────────────────────
     
     /**
-     * @brief Met à jour le comportement cognitif et spatial de l'ennemi.
-     * @param dt Delta-time en secondes.
-     * @param playerPos Coordonnées actuelles du joueur.
+     * @brief Updates the enemy's cognitive and spatial behavior.
+     * @param dt : Delta time in seconds.
+     * @param playerPos : The player's current contact information.
      */
     virtual void update(float dt, Vector2f playerPos) = 0;
     
     /**
-     * @brief Déclenche une attaque contre le joueur.
-     * @param player Pointeur vers l'instance du joueur ciblé.
+     * @brief Launches an attack against the player.
+     * @param player : A pointer to the target player's instance.
      */
     virtual void attack(PlayerModel* player) = 0;
 
     /**
-     * @brief Hook appelé une seule fois lors du passage en état DEAD.
-     *        Implémentation vide par défaut ; les sous-classes peuvent surcharger
-     *        pour déclencher des effets spécifiques (son, particules, etc.).
+     * @brief Hook called only once when the state changes to DEAD.
+     *        Default empty implementation; subclasses can override
+     *        to trigger specific effects (sound, particles, etc.).
      */
     virtual void onDeath() {}
 
-    // ─── Comportements communs ────────────────────────────────
+    // ─── Common behaviors ────────────────────────────────
     
     /**
-     * @brief Réduit les points de vie de l'ennemi. Passe en état HURT,
-     *        ou déclenche l'animation de mort si les PV tombent à zéro.
-     * @param amount Quantité de dégâts subis.
+     * @brief Reduces the enemy's health. Puts the enemy in the HURT state,
+     *        or triggers the death animation if health drops to zero.
+     * @param amount : Amount of damage taken.
      */
     void takeDamage(int amount);
 
     /**
-     * @brief Passe l'ennemi en état DEAD et démarre le timer d'animation de mort.
-     *        L'ennemi sera effectivement désactivé (active = false) une fois le
-     *        timer écoulé, via tickDeadState().
+     * @brief Sets the enemy to the DEAD state and starts the death animation timer.
+     *        The enemy will be effectively deactivated (active = false) once the
+     *        timer has elapsed, via tickDeadState().
      */
     void triggerDeath();
 
     /**
-     * @brief Décrémente les timers HURT et DEAD ; doit être appelé en début
-     *        de chaque update() des sous-classes.
-     * @param dt Delta-time en secondes.
-     * @return true si l'ennemi est en état HURT ou DEAD (les sous-classes
-     *         doivent alors court-circuiter leur propre logique d'IA).
+     * @brief Decrements the HURT and DEAD timers; must be called at the beginning
+     *        of each update() method in subclasses.
+     * @param dt : Delta time in seconds.
+     * @return true if the enemy is in the HURT or DEAD state (subclasses must then
+     *         override their own AI logic).
      */
     bool tickTransientStates(float dt);
     
     /**
-     * @brief Vérifie si la position du joueur est à l'intérieur du cône/rayon de détection.
-     * @param playerPos Position du joueur.
-     * @return true si détecté, false sinon.
+     * @brief Checks whether the player's position is within the detection cone/radius.
+     * @param playerPos Player's position.
+     * @return true if detected, false otherwise.
      */
     bool detectsPlayer(Vector2f playerPos) const;
 
-    /** @brief Signale que le joueur est visible ce tick (réarme le timer de persistance). */
+    /** @brief Indicates that the player is visible this tick (resets the persistence timer). */
     void refreshChaseTimer() { chasePersistTimer = Cfg::ENEMY_CHASE_PERSIST; }
 
-    /** @brief Décrémente le timer de persistance et repasse en IDLE si expiré.
- *  @param dt Delta-time.
- *  @return true si l'ennemi est encore en mode CHASING/ATTACKING. */
+    /** @brief Decrement the persistence timer and return to IDLE if it has expired.
+ *  @param dt : Delta time.
+ *  @return true if the enemy is still in CHASING/ATTACKING mode. */
     bool tickChaseTimer(float dt);
 
-    // Appelé par LevelController pour distribuer le gold une seule fois
+    // Called by LevelController to distribute the gold once
     bool  hasDroppedGold()  const { return goldAlreadyDropped; }
     void  markGoldDropped()       { goldAlreadyDropped = true; }
 
@@ -134,7 +133,7 @@ public:
     EnemyAIState getAIState()  const { return aiState;  }
     Vector2f     getVelocity() const { return velocity; }
 
-    // Délégation Entity::update (sans playerPos — no-op pour les ennemis)
+    // Delegate Entity::update (without playerPos — no-op for enemies)
     void update(float dt) override { Q_UNUSED(dt); }
 };
 

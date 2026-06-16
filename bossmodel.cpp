@@ -1,3 +1,8 @@
+/**
+ * @file bossmodel.cpp
+ * @brief Implementation of the boss gate model.
+ */
+
 #include "bossmodel.h"
 #include "playermodel.h"
 #include <QRandomGenerator>
@@ -20,7 +25,7 @@ bossModel::bossModel(Vector2f pos, int levelIndex)
     , zoneExplodedFlag  (false)
     , deathSound        (nullptr)
 {
-    // Booléen indiquant que cette ennemie est le boss dans le vecteur d'ennemis.
+    // A boolean indicating that this enemy is the boss in the enemy array.
     isBoss = true;
 
     deathSound = new QSoundEffect();
@@ -40,7 +45,7 @@ void bossModel::onDeath()
         deathSound->play();
 }
 
-// ─── Fourniture des colliders de murs (depuis LevelController) ────
+// ─── Providing wall colliders (from LevelController) ────
 void bossModel::setWallColliders(const QVector<QRectF>& walls)
 {
     wallColliders = walls;
@@ -48,24 +53,24 @@ void bossModel::setWallColliders(const QVector<QRectF>& walls)
 
 void bossModel::attack(PlayerModel* player)
 {
-    // Vérifcation que cooldown est bien écoulé avant une attaque.
+    // Check that the cooldown has elapsed before attacking.
     if (attackTimer > 0.0f) return;
 
-    // inflige les dégât au joueur et lance le cooldown.
+    // deals damage to the player and triggers the cooldown.
     player->takeDamage(Cfg::BOSS_DMG);
     attackTimer = Cfg::BOSS_ATK_CD;
 }
 
 void bossModel::update(float dt, Vector2f playerPos)
 {
-    //Vérifie que le boss est en vie (ou en train de mourir) pour ne pas update un ennemi déjà désactivé.
+    //Check to make sure the boss is alive (or dying) so you don't update an enemy that's already been disabled.
     if (!isActive() && aiState != EnemyAIState::DEAD) return;
 
-    // Le flag d'explosion ne dure qu'un seul tick
+    // The explosion flag lasts only one tick
     zoneExplodedFlag = false;
     float initialTimer = zoneExplosionTimer;
 
-    // Gestion des états transitoires (HURT, DEAD) — court-circuite l'IA si actif.
+    // Transient state management (HURT, DEAD) — bypasses the IA if active.
     if (aiState == EnemyAIState::DEAD) {
         zoneCharging      = false;
         zoneExplodedFlag  = false;
@@ -73,7 +78,7 @@ void bossModel::update(float dt, Vector2f playerPos)
     }
     if (tickTransientStates(dt)) return;
 
-    // Décompte du cooldown d'attaque.
+    // Attack cooldown timer.
     if (attackTimer > 0.0f)
         attackTimer -= dt;
 
@@ -81,26 +86,22 @@ void bossModel::update(float dt, Vector2f playerPos)
     if (hasPattern2) {
 
         if (zoneCharging) {
-            // Boss immobile pendant les 5s de charge
+            // Boss remains stationary during the 5-second charge
             velocity = Vector2f(0.0f, 0.0f);
             aiState  = EnemyAIState::ATTACKING;
 
             zoneExplosionTimer -= dt;
             if (zoneExplosionTimer <= 0.0f) {
-                // Explosion : LevelController lira ce flag ce tick
+                // Explosion: LevelController will read this flag this tick
                 zoneExplodedFlag = true;
                 zoneCharging     = false;
-
-                // On laisse intentionnellement les tuiles en mémoire ici.
-                // BossView::hideZone() s'en servira pour nettoyer la scène Qt en toute sécurité.
-
                 zoneChargeTimer  = initialTimer;
             }
-            return; // pas de déplacement pendant la charge
+            return;
         }
 
 
-        // Timer ne décompte QUE quand le joueur est dans le rayon de détection
+        // The timer counts down ONLY when the player is within the detection range
         if (detectsPlayer(playerPos)) {
             zoneChargeTimer -= dt;
             if (zoneChargeTimer <= 0.0f) {
@@ -114,10 +115,10 @@ void bossModel::update(float dt, Vector2f playerPos)
         }
     }
 
-    // Appel de la vérification si un joueur est proche.
+    // Check if a player is nearby.
     updateAIState(playerPos);
 
-    // Déplacement si proche du joueur.
+    // The player is moving so close.
     if (aiState == EnemyAIState::CHASING)
         chase(playerPos, dt);
     else
@@ -126,8 +127,8 @@ void bossModel::update(float dt, Vector2f playerPos)
 
 void bossModel::chase(Vector2f playerPos, float dt)
 {
-    if (zoneCharging)       return; // pattern 2 prioritaire
-    // Calcul du vecteur de déplacement pour déplacer suivre le joueur.
+    if (zoneCharging)       return; // Pattern 2 (priority)
+    // Calculating the displacement vector to move and follow the player.
     Vector2f dir = (playerPos - position).normalized();
     velocity     = dir * speed;
     position     = position + (velocity * dt);
@@ -135,7 +136,7 @@ void bossModel::chase(Vector2f playerPos, float dt)
 
 void bossModel::updateAIState(Vector2f playerPos)
 {
-    // Alterne entre CHASING et IDLE selon proximité du joueur
+    // Switches between CHASING and IDLE depending on the player's proximity
     if (detectsPlayer(playerPos))
         aiState = EnemyAIState::CHASING;
     else
@@ -149,17 +150,17 @@ void bossModel::buildZoneTiles()
     const int ts  = Cfg::BOSS_ZONE_TILE_SIZE; // 32 px par tuile
     const int rad = Cfg::BOSS_ZONE_RADIUS;    // rayon en px
 
-    // Centre du boss
+    // Boss Center
     float cx = position.x + static_cast<float>(Cfg::ENTITY_SIZE * 3) / 2.0f;
     float cy = position.y + static_cast<float>(Cfg::ENTITY_SIZE * 3) / 2.0f;
 
-    // Plage de colonnes/lignes à couvrir
+    // Range of columns/rows to cover
     int startCol = static_cast<int>(std::floor((cx - rad) / ts));
     int endCol   = static_cast<int>(std::ceil ((cx + rad) / ts));
     int startRow = static_cast<int>(std::floor((cy - rad) / ts));
     int endRow   = static_cast<int>(std::ceil ((cy + rad) / ts));
 
-    // ── Générer les tuiles valides (hors murs) ────────────────────
+    // ── Generate valid tiles (excluding walls) ────────────────────
     for (int row = startRow; row < endRow; ++row) {
         for (int col = startCol; col < endCol; ++col) {
             QRectF rect(col * ts, row * ts, ts, ts);
@@ -179,11 +180,11 @@ void bossModel::buildZoneTiles()
 
     if (zoneTiles.isEmpty()) return;
 
-    // ── Placer les refuges en blocs 4×4 tuiles ────────────────────
-    // On repère les coins supérieurs-gauches valides pour un bloc 4×4 complet :
-    // un bloc est valide si ses 16 tuiles sont toutes présentes (non bloquées).
+    // ── Place the shelters in 4×4-tile blocks ────────────────────
+    // Identifying valid top-left corners for a complete 4×4 block:
+    // A block is valid if all 16 of its tiles are present (not blocked).
 
-    // Index rapide : (row, col) → index dans zoneTiles
+    // Quick index: (row, col) → index in zoneTiles
     QHash<QPair<int,int>, int> tileIndex;
     for (int i = 0; i < zoneTiles.size(); ++i) {
         int c = static_cast<int>(zoneTiles[i].rect.left()  / ts);
@@ -191,7 +192,7 @@ void bossModel::buildZoneTiles()
         tileIndex[{r, c}] = i;
     }
 
-    // Trouver tous les coins valides pour un bloc 4×4
+    // Find all valid corners for a 4×4 block
     QVector<QPair<int,int>> validCorners;
     for (int row = startRow; row < endRow - 3; ++row) {
         for (int col = startCol; col < endCol - 3; ++col) {
@@ -207,14 +208,14 @@ void bossModel::buildZoneTiles()
 
     if (validCorners.isEmpty()) return;
 
-    // Mélanger et choisir BOSS_ZONE_SAFE_COUNT blocs (sans chevauchement)
+    // Mix and select BOSS_ZONE_SAFE_COUNT blocks (without overlap)
     QRandomGenerator* rng = QRandomGenerator::global();
     for (int i = validCorners.size() - 1; i > 0; --i) {
         int j = static_cast<int>(rng->bounded(static_cast<quint32>(i + 1)));
         std::swap(validCorners[i], validCorners[j]);
     }
 
-    // Marquer les blocs choisis comme sûrs (en évitant les recouvrements)
+    // Mark the selected blocks as safe (avoiding overlaps)
     QSet<QPair<int,int>> usedTiles;
     int placed = 0;
     for (auto& corner : validCorners) {
@@ -222,7 +223,7 @@ void bossModel::buildZoneTiles()
 
         int r0 = corner.first, c0 = corner.second;
 
-        // Vérifier qu'aucune tuile de ce bloc n'est déjà dans un refuge
+        // Check that no tiles from this block are already in a shelter
         bool overlap = false;
         for (int dr = 0; dr < 4 && !overlap; ++dr)
             for (int dc = 0; dc < 4 && !overlap; ++dc)
@@ -230,7 +231,7 @@ void bossModel::buildZoneTiles()
                     overlap = true;
         if (overlap) continue;
 
-        // Marquer les 16 tuiles du bloc
+        // Mark the 16 tiles in the block
         for (int dr = 0; dr < 4; ++dr) {
             for (int dc = 0; dc < 4; ++dc) {
                 auto key = QPair<int,int>{r0+dr, c0+dc};
