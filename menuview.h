@@ -1,8 +1,8 @@
 /**
  * @file menuview.h
- * @brief Déclaration de la classe MenuView représentant l'interface graphique du menu.
+ * @brief Declaration of MenuView, the graphical interface of the main menu screen.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
- * @date Juin 2026
+ * @date June 2026
  */
 
 #ifndef MENUVIEW_H
@@ -11,32 +11,44 @@
 
 /**
  * @class MenuView
- * @brief Vue gérant l'affichage et les clics de l'écran principal.
- * * Affiche l'arrière-plan, le logo et les boutons Jouer/Quitter.
+ * @brief View responsible for rendering and handling clicks on the main screen.
+ *
+ * Kept intentionally thin: it owns no business logic and emits a signal when
+ * the player clicks "Play", delegating the decision of what to do next entirely
+ * to MenuController.  This separation means the visual layout can be redesigned
+ * without touching any game-state code.
+ *
+ * Renders the background image, the game logo and the Play/Quit buttons.
  */
 class MenuView : public QWidget
 {
     Q_OBJECT
 public:
     /**
-     * @brief Constructeur de MenuView.
-     * @param parent Pointeur vers le widget parent (nullptr par défaut).
+     * @brief Constructs MenuView and wires the Play/Quit buttons.
+     * @param parent Pointer to the parent widget (nullptr by default).
      */
     MenuView(QWidget *parent = nullptr);
-    
+
     /**
-     * @brief Surcharge de l'événement de dessin de Qt (paintEvent).
-     * * Gère le rendu de l'image de fond et du logo du jeu via QPainter.
-     * @param event L'événement de peinture déclenché par l'interface.
+     * @brief Qt paint-event override used to draw the background and logo.
+     *
+     * Drawing is done here rather than with QLabel pixmaps so that the logo
+     * and background can be precisely composited at the exact pixel positions
+     * defined by the GDD wireframe.
+     *
+     * @param event The paint event triggered by the Qt framework.
      */
     void paintEvent(QPaintEvent* event);
 
 signals:
     /**
-     * @brief Signal émis lors d'un clic sur le bouton de lancement du jeu.
+     * @brief Emitted when the player clicks the Play button.
+     *
+     * MenuController listens to this signal and re-emits sigGameRequest upward
+     * so that AppController can perform the MENU → PLAYING transition.
      */
     void sigGameRq();
-
 };
 
 #endif // MENUVIEW_H

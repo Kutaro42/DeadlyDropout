@@ -1,18 +1,21 @@
 /**
  * @file menucontroller.cpp
- * @brief Implémentation du contrôleur gérant le menu d'accueil.
+ * @brief Implementation of the main-menu controller.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
- * @date Juin 2026
+ * @date June 2026
  */
 
 #include "menucontroller.h"
 #include "menuview.h"
 
 /**
- * @brief Constructeur du MenuController.
- * * Initialise la vue du menu et connecte les signaux de l'interface graphique 
- * à la logique du contrôleur.
- * * @param parent Objet parent Qt optionnel.
+ * @brief Constructs MenuController.
+ *
+ * Allocates the view and wires its sigGameRq signal to the local sigGameRequest
+ * signal so the caller (AppController) only has to know about one signal type,
+ * decoupling it from MenuView's internal naming.
+ *
+ * @param parent Optional Qt parent object.
  */
 MenuController::MenuController(QObject* parent) : QObject(parent)
 {
@@ -21,8 +24,7 @@ MenuController::MenuController(QObject* parent) : QObject(parent)
 }
 
 /**
- * @brief Destructeur du MenuController.
- * Libère la mémoire allouée pour la vue du menu.
+ * @brief Destructor — releases the owned MenuView.
  */
 MenuController::~MenuController()
 {
@@ -30,8 +32,8 @@ MenuController::~MenuController()
 }
 
 /**
- * @brief Accesseur de la vue du menu.
- * @return Un pointeur vers l'instance de MenuView.
+ * @brief Returns a pointer to the managed MenuView.
+ * @return Pointer to the MenuView instance.
  */
 MenuView* MenuController::getMenuView()
 {

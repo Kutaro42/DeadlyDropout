@@ -1,8 +1,8 @@
 /**
  * @file menucontroller.h
- * @brief Déclaration de la classe MenuController gérant la logique du menu principal.
+ * @brief Declaration of MenuController, which manages the main-menu logic.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
- * @date Juin 2026
+ * @date June 2026
  */
 
 #ifndef MENUCONTROLLER_H
@@ -12,37 +12,48 @@
 
 /**
  * @class MenuController
- * @brief Contrôleur responsable de la gestion des interactions sur l'écran d'accueil.
- * * Orchestre les signaux émis par la vue du menu (MenuView) pour déclencher le début de la partie 
- * ou la fermeture de l'application.
+ * @brief Controller responsible for handling interactions on the welcome screen.
+ *
+ * Sits between MenuView and AppController in the MVC chain.
+ * Its only job is to relay the "Play" click upward as sigGameRequest so that
+ * AppController — not the view — owns the decision to switch application state.
+ * Keeping this relay in a dedicated controller means the view can be replaced
+ * (e.g. a full-screen animated intro) without changing AppController.
  */
 class MenuController : public QObject
 {
     Q_OBJECT
 private:
-    MenuView *itsMenuView; ///< Pointeur vers l'interface graphique du menu.
+    MenuView *itsMenuView; ///< Pointer to the menu GUI; owned and deleted by this controller.
 
 public:
     /**
-     * @brief Constructeur de la classe MenuController.
-     * @param parent Pointeur vers le QObject parent (nullptr par défaut).
+     * @brief Constructs MenuController and connects MenuView signals.
+     * @param parent Optional Qt parent object (nullptr by default).
      */
     MenuController(QObject *parent = nullptr);
-    
+
     /**
-     * @brief Destructeur de la classe MenuController.
+     * @brief Destructor — frees the owned MenuView.
      */
     ~MenuController();
 
     /**
-     * @brief Permet d'accéder à la vue du menu associée à ce contrôleur.
-     * @return Pointeur vers l'instance de MenuView.
+     * @brief Accessor for the managed MenuView instance.
+     *
+     * AppController calls this to embed the widget inside the main QStackedWidget
+     * without having to create the view itself, preserving encapsulation.
+     *
+     * @return Pointer to the MenuView instance.
      */
     MenuView * getMenuView();
 
 signals:
     /**
-     * @brief Signal émis lorsque le joueur clique sur le bouton "Jouer" pour lancer la partie.
+     * @brief Emitted when the player clicks "Play".
+     *
+     * AppController connects to this signal to trigger the MENU → PLAYING
+     * state transition defined in the GDD state machine (Step 7).
      */
     void sigGameRequest();
 };

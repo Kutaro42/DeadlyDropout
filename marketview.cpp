@@ -1,7 +1,17 @@
+/**
+ * @file marketview.cpp
+ * @brief Implementation of the BDE Market upgrade shop dialog.
+ */
+
 #include "marketview.h"
 #include <QVBoxLayout>
 #include <QGridLayout>
 
+/**
+ * Static item table — single source of truth for item IDs, names, costs and descriptions.
+ * Order must match the switch-case in MarketController::sltBuy().
+ * Costs are taken directly from the GDD (Step 5 — Power-up rules).
+ */
 const QVector<MarketView::ItemDef> MarketView::ITEMS = {
     {0, "LifePowerUp",        450,  "+20 HP max"},
     {1, "BulletPowerUp",      500,  "+5 dégâts balle"},
@@ -14,10 +24,12 @@ const QVector<MarketView::ItemDef> MarketView::ITEMS = {
     {8, "Ammo x10",           100,  "+10 munitions réserve"},
     };
 
+
 MarketView::MarketView(QWidget* parent) : QDialog(parent) {
     setWindowTitle("BDE Market");
     setFixedSize(960, 650);
     setModal(true);
+    // Dark background matches the post-apocalyptic visual identity (GDD Step 3).
     setStyleSheet("background-color:#0d0d0d;");
 
     auto* layout = new QVBoxLayout(this);
@@ -34,6 +46,7 @@ MarketView::MarketView(QWidget* parent) : QDialog(parent) {
     goldLabel->setStyleSheet("color:#ffd700;font-size:16px;");
     layout->addWidget(goldLabel);
 
+    // Grid layout: 3 columns, items fill row-by-row (index i → row i/3, col i%3).
     auto* grid = new QGridLayout();
     grid->setSpacing(10);
     for (int i = 0; i < ITEMS.size(); ++i) {
@@ -47,13 +60,15 @@ MarketView::MarketView(QWidget* parent) : QDialog(parent) {
             "QPushButton:hover{background:#00ffcc;color:#000;}"
             "QPushButton:disabled{background:#111;color:#444;border-color:#333;}");
         int id = item.id;
+        // Capture id by value so the lambda remains valid after loop iteration.
         connect(btn, &QPushButton::clicked, this, [this, id]{ emit sigBuy(id); });
         grid->addWidget(btn, i / 3, i % 3);
         itemBtns.append({btn, id});
     }
     layout->addLayout(grid);
 
-    auto* continueBtn = new QPushButton("► Continuer", this);
+    // "Continue" button accepts the dialog, unblocking MarketController::open().
+    auto* continueBtn = new QPushButton("► Continue", this);
     continueBtn->setFixedHeight(50);
     continueBtn->setStyleSheet(
         "QPushButton{background:#1a1a1a;color:#ff3366;font-size:16px;font-weight:bold;"
@@ -66,6 +81,8 @@ MarketView::MarketView(QWidget* parent) : QDialog(parent) {
 void MarketView::refresh(PlayerModel* player) {
     if (!player) return;
     goldLabel->setText(QString("GOLD : %1").arg(player->getGold()));
+    // Disable buttons the player cannot afford so invalid purchases are impossible
+    // at the UI level, providing a second line of defence after MarketController's check.
     for (auto& ib : itemBtns)
         ib.btn->setEnabled(player->getGold() >= ITEMS[ib.id].cost);
 }

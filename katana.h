@@ -1,8 +1,8 @@
 /**
  * @file katana.h
- * @brief Déclaration de la classe Katana, l'arme corps-à-corps du joueur.
+ * @brief Declaration of the Katana class, the player's melee weapon.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
- * @date Juin 2026
+ * @date June 2026
  */
 
 #ifndef KATANA_H
@@ -15,20 +15,23 @@
 
 /**
  * @class Katana
- * @brief Modèle de l'arme corps-à-corps du joueur.
+ * @brief Model of the player's melee weapon (GDD Step 5 — Combat rules).
  *
- * Gère les statistiques de l'arme (dégâts, portée), sa zone de collision
- * (SlashZone), ainsi que les temporisateurs pour le cooldown et l'animation.
+ * Manages weapon statistics (damage, range), its collision zone (SlashZone),
+ * and timers for cooldown and animation.
  *
- * La SlashZone est maintenant calculée à partir d'un angle libre (radians)
- * fourni lors de tryAttack(), ce qui permet d'attaquer dans n'importe quelle
- * direction (pas seulement les 4 cardinaux).
- * L'AABB retournée par getSlashZone() est la bounding-box englobante du
- * rectangle orienté, garantissant la compatibilité avec les tests de collision
- * AABB existants dans LevelController.
+ * Design decision — free-angle slash:
+ *  The SlashZone is computed from an arbitrary angle (radians) passed to tryAttack().
+ *  This allows attacking in any direction (not just the 4 cardinals), matching the
+ *  GDD requirement that the katana targets "enemies within the player's range zone"
+ *  oriented toward the mouse cursor.
  *
- * L'angle de la dernière attaque est exposé via getAttackAngle() pour que
- * PlayerView puisse orienter le sprite de l'effet visuel (slash).
+ *  The AABB returned by getSlashZone() is the bounding box of the oriented slash
+ *  rectangle, ensuring compatibility with the existing AABB collision tests in
+ *  LevelController without requiring a full OBB intersection algorithm.
+ *
+ * The attack angle is exposed via getAttackAngle() so PlayerView can orient
+ * the slash sprite effect correctly.
  *
  * @version 2.0
  */
@@ -38,77 +41,98 @@ public:
     ~Katana();
 
     /**
-     * @brief Met à jour les temporisateurs de l'arme (cooldown et animation).
-     * @param dt Delta-time en secondes.
+     * @brief Advances the cooldown and animation timers.
+     *
+     * Must be called once per tick so that isReady() and isAnimActive()
+     * reflect the current game time.
+     *
+     * @param dt Delta-time in seconds.
      */
     void update(float dt);
 
     /**
-     * @brief Tente de déclencher une attaque dans la direction donnée par un angle.
-     * @param playerPos  Centre du joueur (coin sup-gauche de la hitbox).
-     * @param playerW    Largeur de la hitbox.
-     * @param playerH    Hauteur de la hitbox.
-     * @param angleRad   Angle en radians (atan2 standard : 0=droite, π/2=bas).
-     * @return true si l'attaque a été lancée (cooldown prêt), false sinon.
+     * @brief Attempts to launch an attack in the direction given by an angle.
+     *
+     * Fails silently (returns false) if the weapon is still on cooldown,
+     * so the caller does not need to query isReady() separately.
+     *
+     * @param playerPos  Top-left corner of the player's hitbox in world space.
+     * @param playerW    Hitbox width in pixels.
+     * @param playerH    Hitbox height in pixels.
+     * @param angleRad   Attack direction in radians (atan2 standard: 0 = right, π/2 = down).
+     * @return true if the attack was launched (cooldown was ready), false otherwise.
      */
     bool tryAttack(Vector2f playerPos, float playerW, float playerH,
                    float angleRad);
 
     // ─── Getters ─────────────────────────────────────────────────────
-    int    getDamage()      const { return itsDamage;   }
-    int    getRange()       const { return itsRange;    }
-    bool   isReady()        const { return itsReady;    }
+    int    getDamage()        const { return itsDamage;   }
+    int    getRange()         const { return itsRange;    }
+    bool   isReady()          const { return itsReady;    }
+
+    /**
+     * @brief Cooldown progress ratio (1.0 = just attacked, 0.0 = ready).
+     *
+     * Exposed so MarketController can read the current cooldown duration
+     * for the AttackSpeedPowerUp upgrade calculation.
+     */
     float  getCooldownRatio() const {
         return (itsCooldown > 0.0f) ? (itsCooldownTimer / itsCooldown) : 0.0f;
-    } ///< Ratio cooldown katana : 1.0=vient d'attaquer, 0.0=prêt.
-    bool   isAnimActive()   const { return itsAnimTimer > 0.0f; }
+    }
+    bool   isAnimActive()     const { return itsAnimTimer > 0.0f; }
 
     /**
-     * @brief Retourne la bounding-box AABB englobant le rectangle de slash orienté.
-     *        Utilisée par LevelController pour les tests de collision.
+     * @brief Returns the AABB bounding box of the oriented slash rectangle.
+     *
+     * Used by LevelController for AABB-based collision tests with enemies.
+     * The AABB over-approximates the true oriented rectangle, which can cause
+     * false positives at extreme angles; acceptable for a game with 64 px entities.
      */
-    QRectF getSlashZone()   const { return itsSlashZone; }
+    QRectF getSlashZone()     const { return itsSlashZone; }
 
     /**
-     * @brief Retourne l'angle (radians) de la dernière attaque déclenchée.
-     *        Utilisé par PlayerView pour orienter le sprite de l'effet de slash.
+     * @brief Returns the angle (radians) of the last triggered attack.
+     *
+     * Read by PlayerView each frame to orient the slash animation sprite
+     * correctly, decoupling the visual effect from the input handling layer.
      */
-    float  getAttackAngle() const { return itsAttackAngle; }
+    float  getAttackAngle()   const { return itsAttackAngle; }
 
-    // ─── Setters (upgrades) ───────────────────────────────────────────
+    // ─── Upgrade setters ─────────────────────────────────────────────
     void setDamage(int d)     { itsDamage   = d; }
     void setRange(int r)      { itsRange    = r; }
     void setCooldown(float c) { itsCooldown = c; }
 
 private:
-    int    itsDamage;
-    int    itsRange;
-    float  itsCooldown;
-    bool   itsReady;
+    int    itsDamage;         ///< Base damage per slash (GDD: 30 without upgrades).
+    int    itsRange;          ///< Slash reach in pixels (depth of the slash rectangle).
+    float  itsCooldown;       ///< Minimum time between attacks in seconds.
+    bool   itsReady;          ///< True when the weapon can be used again.
 
-    float  itsCooldownTimer;
-    float  itsAnimTimer;
+    float  itsCooldownTimer;  ///< Time remaining on the current cooldown.
+    float  itsAnimTimer;      ///< Time remaining for the slash animation overlay.
 
-    /// AABB englobante du rectangle de slash orienté (compatibilité LevelController).
+    /// AABB of the oriented slash rectangle (used by LevelController collision tests).
     QRectF itsSlashZone;
 
-    /// Angle (radians) de la dernière attaque. Exposé pour le sprite de slash dans PlayerView.
+    /// Angle (radians) of the last attack; used by PlayerView to orient the slash sprite.
     float  itsAttackAngle;
 
-    QSoundEffect* itsSlashSound;
+    QSoundEffect* itsSlashSound; ///< Played once each time tryAttack() succeeds.
 
     /**
-     * @brief Calcule la SlashZone AABB pour un angle libre.
+     * @brief Computes the AABB enclosing the oriented slash rectangle for a given angle.
      *
-     * Le rectangle de frappe "logique" est un rectangle de dimensions
-     * (KATANA_SLASH_W × KATANA_SLASH_D) centré sur le côté du joueur
-     * faisant face à l'angle. Les 4 coins sont ensuite projetés via rotation
-     * pour obtenir l'AABB englobante exacte.
+     * The logical slash rectangle has dimensions KATANA_SLASH_W × itsRange.
+     * Its near edge starts at the player's hitbox boundary (not at the centre)
+     * to avoid hitting enemies directly behind the player.
+     * The four corners are rotated by angleRad and their axis-aligned bounding
+     * box is computed to produce the final AABB.
      *
-     * @param playerPos Centre de la hitbox joueur (coin sup-gauche).
-     * @param playerW   Largeur hitbox.
-     * @param playerH   Hauteur hitbox.
-     * @param angleRad  Angle d'attaque en radians.
+     * @param playerPos Top-left corner of the player's hitbox.
+     * @param playerW   Hitbox width.
+     * @param playerH   Hitbox height.
+     * @param angleRad  Attack direction in radians.
      */
     void computeSlashZone(Vector2f playerPos, float playerW, float playerH,
                           float angleRad);

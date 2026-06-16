@@ -1,58 +1,57 @@
 /**
  * @file gunview.cpp
- * @brief Implémentation de la vue du pistolet et des balles en vol.
+ * @brief Implementation of the pistol view and in-flight bullet views.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
- * @date Juin 2026
+ * @date June 2026
  */
 #include "gunview.h"
 #include <QPainter>
 #include <QGraphicsScene>
 #include <QGraphicsEllipseItem>
 
-// ─── Chargement du sprite (cache statique) ───────────────────────
+// ─── Sprite loading (static cache) ───────────────────────────────────
 //
-//  On tente les chemins dans l'ordre suivant :
-//    1. :/images/Textures/Player/Gun/gun.png   (sprite horizontal, pointe à droite)
-//    2. :/images/Textures/Player/gun.png       (chemin alternatif)
-//  Si aucun n'est trouvé, un fallback procédural est généré.
+//  Attempt paths in order:
+//    1. :/images/Textures/Player/Gun/gun.png   (horizontal sprite, barrel pointing right)
+//    2. :/images/Textures/Player/gun.png       (alternative path)
+//  If neither exists, generate a procedural fallback.
 //
-//  Convention attendue pour le PNG source :
-//    - Largeur quelconque, hauteur quelconque.
-//    - Le canon pointe vers la DROITE (angle 0 rad / 0°).
-//    - Le sprite sera mis à l'échelle GUN_W × GUN_H à l'affichage.
-// ─────────────────────────────────────────────────────────────────
+//  Expected PNG convention:
+//    - Any dimensions (will be scaled to GUN_W × GUN_H).
+//    - Barrel points RIGHT (angle 0 rad / 0°).
+// ─────────────────────────────────────────────────────────────────────
 QPixmap GunView::loadGunSprite()
 {
-    // Chemin principal
+    // Primary path
     QPixmap pm(":/images/Textures/Player/Gun/gun.png");
     if (pm.isNull())
-        pm = QPixmap(":/images/Textures/Player/gun.png");   // chemin alternatif
+        pm = QPixmap(":/images/Textures/Player/gun.png");   // alternative path
 
     if (!pm.isNull())
         return pm.scaled(GUN_W, GUN_H,
                          Qt::IgnoreAspectRatio,
                          Qt::SmoothTransformation);
 
-    // ── Fallback procédural ──────────────────────────────────────
-    // Rectangle gris anthracite (corps) + canon à droite.
-    // Dimensions : GUN_W × GUN_H, fond transparent.
+    // ── Procedural fallback ──────────────────────────────────────────
+    // Dark anthracite rectangle (body) + right-side barrel.
+    // Dimensions: GUN_W × GUN_H, transparent background.
     pm = QPixmap(GUN_W, GUN_H);
     pm.fill(Qt::transparent);
     QPainter p(&pm);
     p.setRenderHint(QPainter::Antialiasing);
 
-    // Corps du pistolet (gauche)
+    // Gun body (left side)
     p.setBrush(QColor(60, 62, 68));
     p.setPen(QPen(QColor(25, 25, 28), 1));
     p.drawRoundedRect(2, GUN_H / 4, GUN_W * 2 / 3, GUN_H / 2, 3, 3);
 
-    // Canon (droite, centré verticalement)
+    // Barrel (right side, vertically centred)
     p.setBrush(QColor(85, 87, 92));
     p.setPen(Qt::NoPen);
     int canonY = (GUN_H - 4) / 2;
     p.drawRect(GUN_W * 2 / 3, canonY, GUN_W / 3, 4);
 
-    // Poignée (bas-gauche)
+    // Grip (bottom-left)
     p.setBrush(QColor(45, 47, 52));
     p.setPen(Qt::NoPen);
     p.drawRoundedRect(4, GUN_H / 2, GUN_W / 4, GUN_H / 2 - 2, 2, 2);
@@ -60,7 +59,7 @@ QPixmap GunView::loadGunSprite()
     return pm;
 }
 
-// ─── Constructeur ────────────────────────────────────────────────
+// ─── Constructor ─────────────────────────────────────────────────────
 GunView::GunView(GunModel* gm, PlayerModel* pm, QGraphicsItem* parent)
     : QGraphicsPixmapItem(parent)
     , gun(gm)
@@ -70,20 +69,20 @@ GunView::GunView(GunModel* gm, PlayerModel* pm, QGraphicsItem* parent)
     static const QPixmap sprite = loadGunSprite();
     setPixmap(sprite);
 
-    // Le pivot doit être au milieu gauche du sprite (point d'ancrage sur le joueur).
-    // On utilise (0, GUN_H/2) : le pistolet « tourne » autour de ce point
-    // quand on applique la rotation via setRotation().
+    // The pivot must be at the middle-left of the sprite (anchor on the player).
+    // Using (0, GUN_H/2): the gun "rotates" around this point when setRotation() is applied.
     setTransformOriginPoint(0.0, GUN_H / 2.0);
 
     setZValue(Cfg::Z_PLAYER + 0.5);
 }
 
-// ─── Mise à jour principale ──────────────────────────────────────
+// ─── Main update ─────────────────────────────────────────────────────
 void GunView::updateView(float dt, QPointF mouseScene, QGraphicsScene* scene)
 {
     Q_UNUSED(dt);
     if (!player || !gun) return;
 
+    // Hide the gun during a katana attack to avoid visual overlap.
     if (player->isKatanaActive()) {
         setVisible(false);
         syncBulletViews(scene);
@@ -91,60 +90,59 @@ void GunView::updateView(float dt, QPointF mouseScene, QGraphicsScene* scene)
     }
     setVisible(true);
 
-    // ── 1. Centre du joueur en coordonnées scène ─────────────────
+    // ── 1. Player centre in scene coordinates ────────────────────────
     Vector2f ppos = player->getPosition();
     double cx = ppos.x + Cfg::ENTITY_SIZE / 2.0;
     double cy = ppos.y + Cfg::ENTITY_SIZE / 2.0;
 
     double dx    = mouseScene.x() - cx;
     double dy    = mouseScene.y() - cy;
-    double angle = std::atan2(dy, dx);   // radians, 0 = droite
+    double angle = std::atan2(dy, dx);   // radians, 0 = right
     double deg   = angle * 180.0 / M_PI;
 
-    // ── 2. Détermination du flip ──────────────────────────────────
-    // Quand la souris est à gauche du joueur (cos < 0) on retourne
-    // le sprite verticalement pour qu'il reste lisible.
-    // Le flip est géré via setPixmap d'une version miroir, sans toucher
-    // à la transformation de rotation — les deux ne se mélangent pas.
+    // ── 2. Flip detection ────────────────────────────────────────────
+    // When the cursor is left of the player (cos < 0), the sprite is flipped
+    // vertically so the barrel still points toward the cursor and the grip stays
+    // on the correct side.  Flip is managed via a pre-mirrored QPixmap rather
+    // than via setTransform, because mixing setTransform and setRotation causes
+    // compound transformation order issues in Qt.
     bool needFlip = (dx < 0.0);
     if (needFlip != flipped) {
         flipped = needFlip;
-        static const QPixmap base    = loadGunSprite();
-        static const QPixmap flippedPm = base.transformed(
-            QTransform().scale(1.0, -1.0));
+        static const QPixmap base      = loadGunSprite();
+        static const QPixmap flippedPm = base.transformed(QTransform().scale(1.0, -1.0));
         setPixmap(flipped ? flippedPm : base);
     }
 
-    // ── 3. Position ───────────────────────────────────────────────
-    // On ancre le coin gauche du sprite au centre du joueur,
-    // puis on déplace d'un petit décalage dans la direction du canon.
-    // Le pivot étant en (0, GUN_H/2), setRotation tourne autour
-    // du coin gauche-milieu = point d'ancrage sur le joueur.
+    // ── 3. Position ──────────────────────────────────────────────────
+    // Anchor the left edge of the sprite at the player's centre, offset by a
+    // small radial distance (GUN_OFFSET_X) so the gun does not overlap the
+    // player sprite.  The pivot at (0, GUN_H/2) means setRotation() rotates
+    // the entire sprite around this anchor without positional drift.
     double cosA = std::cos(angle);
     double sinA = std::sin(angle);
 
-    // Ancre : centre joueur + léger décalage radial (évite chevauchement)
     double anchorX = cx + cosA * Cfg::GUN_OFFSET_X;
-    double anchorY = cy + sinA * Cfg::GUN_OFFSET_X - GUN_H / 2.0;  // centré verticalement
+    double anchorY = cy + sinA * Cfg::GUN_OFFSET_X - GUN_H / 2.0;  // vertically centred
 
     setPos(anchorX, anchorY);
 
-    // ── 4. Rotation pure ──────────────────────────────────────────
-    // setTransformOriginPoint(0, GUN_H/2) + setRotation(deg) fait
-    // tourner le sprite autour du point d'ancrage = pas de dérive.
+    // ── 4. Pure rotation ─────────────────────────────────────────────
+    // setTransformOriginPoint(0, GUN_H/2) + setRotation(deg) rotates the sprite
+    // around the anchor point → no positional drift.
     setTransformOriginPoint(0.0, GUN_H / 2.0);
     setRotation(deg);
 
-    // ── 5. Synchronisation des vues de balles ────────────────────
+    // ── 5. Bullet view synchronisation ───────────────────────────────
     syncBulletViews(scene);
 }
 
-// ─── Synchronisation BulletView ↔ BulletModel ───────────────────
+// ─── BulletView ↔ BulletModel synchronisation ───────────────────────
 void GunView::syncBulletViews(QGraphicsScene* scene)
 {
     QVector<BulletModel*>& bullets = gun->getBullets();
 
-    // 1) Créer les vues pour les nouvelles balles
+    // 1) Create views for new bullets
     while (bulletViews.size() < bullets.size()) {
         int idx = bulletViews.size();
         auto* bv = new BulletView(bullets[idx]);
@@ -153,7 +151,7 @@ void GunView::syncBulletViews(QGraphicsScene* scene)
         bulletModels.append(bullets[idx]);
     }
 
-    // 2) Supprimer les vues des balles inactives
+    // 2) Remove views for inactive bullets
     for (int i = bulletViews.size() - 1; i >= 0; --i) {
         if (!bulletModels[i]->isActive()) {
             scene->removeItem(bulletViews[i]);
@@ -163,10 +161,10 @@ void GunView::syncBulletViews(QGraphicsScene* scene)
         }
     }
 
-    // 3) Mettre à jour la position des vues restantes
+    // 3) Update positions of remaining views
     for (int i = 0; i < bulletViews.size(); ++i)
         bulletViews[i]->updateView();
 
-    // 4) Libérer la mémoire des modèles inactifs
+    // 4) Free memory of inactive bullet models
     gun->pruneInactiveBullets();
 }

@@ -1,8 +1,8 @@
 /**
  * @file gamecontroller.h
- * @brief Déclaration du contrôleur principal gérant la boucle et la logique de jeu.
+ * @brief Declaration of GameController, the main controller managing the game loop and logic.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
- * @date Juin 2026
+ * @date June 2026
  */
 
 #ifndef GAMECONTROLLER_H
@@ -17,108 +17,142 @@
 #include "levelcontroller.h"
 #include "levelbuilder.h"
 #include "leveltemplate.h"
-#include "levelregistry.h"   // ← remplace l'ancien #include "leveltemplate.h" (LevelData)
+#include "levelregistry.h"  
 #include "config.h"
 #include "musiccontroller.h"
 
-// ═══════════════════════════════════════════════════════════════════
-//  GameController — contrôleur principal du jeu (couche Controller).
-//  Hérite QObject pour utiliser QTimer (boucle de jeu) et connect().
-// ═══════════════════════════════════════════════════════════════════
-
 /**
  * @class GameController
- * @brief Chef d'orchestre du jeu in-game (MVC).
- * @details Responsabilités :
- * - Crée et relie GameModel, GameView, LevelController.
- * - Charge un niveau via LevelBuilder en utilisant LevelRegistry.
- * - Lit les entrées clavier depuis GameView à chaque tick.
- * - Appelle LevelController::update() pour la logique.
- * - Déclenche les transitions d'état (PLAYING → GAME_OVER/VICTORY).
+ * @brief Orchestrator of the in-game MVC loop.
+ *
+ * Responsibilities (single-responsibility breakdown):
+ *  - Creates and links GameModel, GameView and LevelController.
+ *  - Loads a level via LevelBuilder using descriptors from LevelRegistry.
+ *  - Reads keyboard/mouse input from GameView on every tick.
+ *  - Delegates physics and AI to LevelController::update().
+ *  - Detects state transitions (PLAYING → GAME_OVER / VICTORY / MARKET).
+ *  - Opens MarketController between levels without exposing it to the view.
+ *
+ * The QTimer drives the game loop at ~60 FPS (Cfg::TIMER_MS).
+ * QElapsedTimer measures real elapsed milliseconds so that dt is accurate
+ * even if a tick fires slightly late (avoids physics drift on slow machines).
  */
 class GameController : public QObject {
     Q_OBJECT
 
 private:
-    GameView*         itsGameView;       ///< Pointeur vers la vue principale du jeu.
-    GameModel*        itsGameModel;      ///< Pointeur vers l'état global du modèle de jeu.
-    LevelController*  levelCtrl;         ///< Contrôleur spécifique à la gestion du niveau.
-    MarketController* itsMarketController; ///< Controlleur du market
+    GameView*         itsGameView;          ///< Owned pointer to the main game view.
+    GameModel*        itsGameModel;         ///< Owned pointer to the global game state.
+    LevelController*  levelCtrl;            ///< Handles per-level entity logic and collisions.
+    MarketController* itsMarketController;  ///< Manages the between-level upgrade shop.
 
-    AppState         currentState;      ///< État courant de la boucle de jeu.
-    QTimer           gameTimer;         ///< Moteur temporel déclenchant les ticks (~60 FPS).
-    QElapsedTimer    elapsedTimer;      ///< Chronomètre pour le calcul du delta-time (dt).
-    int              currentLevelIndex; ///< Index (0-based) du niveau actuellement chargé.
-
+    AppState         currentState;         ///< Drives which branch of slt_tick() executes.
+    QTimer           gameTimer;            ///< Fires slt_tick() at ~60 FPS.
+    QElapsedTimer    elapsedTimer;         ///< Measures real elapsed time for dt calculation.
+    int              currentLevelIndex;    ///< 0-based index of the currently loaded level.
 
 public:
     /**
-     * @brief Constructeur du contrôleur de jeu.
-     * @param parent Objet parent Qt.
+     * @brief Constructs GameController and allocates all owned sub-objects.
+     * @param parent Qt parent object (usually AppController).
      */
     explicit GameController(QObject* parent);
     ~GameController();
 
+    /**
+     * @brief Returns the player model for external queries (e.g. AppController HUD).
+     * @return Pointer to PlayerModel, or nullptr if the model is not yet initialised.
+     */
     PlayerModel* getPlayer() const {
         return itsGameModel ? itsGameModel->getPlayer() : nullptr;
     }
 
     /**
-     * @brief Initialise les modèles, la vue et lance la boucle de jeu.
-     * @param startMusic Si true, démarre la première piste in-game.
+     * @brief Wires all signals, loads the first level and starts the game loop.
+     *
+     * @param startMusic If true, picks a random in-game track.
+     *                   Pass false on "Restart" to avoid cutting the current track mid-play.
      */
     void init(bool startMusic = true);
 
     /**
-     * @brief Accesseur pour la vue de jeu.
-     * @return Le pointeur vers GameView.
+     * @brief Returns the game view so AppController can embed it in the main window.
+     * @return Pointer to GameView.
      */
     GameView* getView() const { return itsGameView; }
 
 private slots:
     /**
-     * @brief Slot appelé à chaque tick du QTimer (environ 60 FPS).
+     * @brief Main game-loop tick — called by gameTimer at ~60 FPS.
+     *
+     * Computes dt, dispatches input, updates model, checks transitions
+     * and requests a view repaint, in that order.
      */
     void slt_tick();
 
     /**
-     * @brief Slot appelé pour retourner au menu depuis le menu pause.
+     * @brief Slot triggered when the player chooses "Back to menu" from the pause overlay.
+     *
+     * Hides the pause overlay and bubbles sigBackMenu up to AppController so
+     * the state machine transition (PLAYING → MENU) stays in AppController.
      */
     void sltPauseMenu();
 
 private:
     /**
-     * @brief Charge et initialise un niveau spécifique via LevelRegistry.
-     * @param index L'index (0-based) du niveau à charger.
+     * @brief Loads and initialises a level by index using LevelRegistry.
+     *
+     * Clears the current scene, asks LevelBuilder to populate model + scene,
+     * then repositions the player at the new spawn point.
+     * LevelRegistry::init() MUST be called before the first loadLevel() call
+     * to avoid a modulo-by-zero crash.
+     *
+     * @param index 0-based level index.
      */
     void loadLevel(int index);
 
     /**
-     * @brief Traite les entrées clavier pour les déplacements.
-     * @param dt Delta-time en secondes.
+     * @brief Reads the keyboard state from GameView and moves the player.
+     *
+     * Movement uses AZERTY (Z/Q/S/D) and arrow keys as specified in the GDD
+     * (Step 5 — Movement rules).  Diagonal movement is supported naturally
+     * because multiple keys can be held simultaneously.
+     *
+     * @param dt Delta-time in seconds.
      */
     void handleInput(float dt);
 
     /**
-     * @brief Vérifie les conditions de victoire ou de défaite.
+     * @brief Checks for win/loss conditions and level-completion after each tick.
+     *
+     * Separated from slt_tick() to keep the tick function readable.
+     * Triggers loadLevel(), MarketController::open() or transitionTo() as needed.
      */
     void checkStateTransitions();
 
     /**
-     * @brief Opère la transition vers un nouvel écran de fin de partie.
-     * @param newState L'état ciblé (GAME_OVER ou VICTORY).
+     * @brief Moves the application to a terminal state (GAME_OVER or VICTORY).
+     *
+     * Stops the game timer so no further ticks execute, then asks the view
+     * to display the appropriate overlay message.
+     *
+     * @param newState Target state (AppState::GAME_OVER or AppState::VICTORY).
      */
     void transitionTo(AppState newState);
 
     /**
-     * @brief Bascule l'état pause / jeu.
+     * @brief Toggles between PLAYING and PAUSED states.
+     *
+     * Also restarts elapsedTimer on resume to prevent a large dt spike
+     * that would cause entities to jump after a long pause.
      */
     void togglePause();
 
 signals:
+    /// @brief Bubbled up to AppController to re-create a fresh GameController (full restart).
     void sigRestart();
+    /// @brief Bubbled up to AppController to return to the main menu.
     void sigBackMenu();
-    //void sigMarketRequest();
 };
 
 #endif // GAMECONTROLLER_H

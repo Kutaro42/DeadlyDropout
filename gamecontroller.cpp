@@ -1,6 +1,6 @@
 /**
  * @file gamecontroller.cpp
- * @brief Implémentation du contrôleur de la boucle de jeu.
+ * @brief Implementation of the main game-loop controller.
  */
 
 #include "gamecontroller.h"
@@ -27,47 +27,50 @@ GameController::~GameController() {
 }
 
 void GameController::init(bool startMusic) {
-    // ── Overlay de pause ──────────────────────────────────────────
+    // ---- Pause Overlay --------------------------------------------------
     connect(itsGameView, &GameView::sigPauseMenu, this, &GameController::sltPauseMenu);
 
-    // ── Clic droit → attaque katana orientée vers le curseur ─────────────────
+    // -- Right click → katana slash oriented on the cursor ---------------
+    // The angle is computed here (Controller) rather than in PlayerModel because
+    // it requires the scene-space cursor position, which only the view knows about.
     connect(itsGameView, &GameView::sig_rightClicked,
             this, [this](QPointF scenePos) {
-        if (currentState != AppState::PLAYING) return;
-        if (!itsGameModel || !itsGameModel->getPlayer()) return;
+        if (currentState != AppState::PLAYING) return;           // Discard all common early-out cases first
+        if (!itsGameModel || !itsGameModel->getPlayer()) return; // *
 
         PlayerModel* player = itsGameModel->getPlayer();
 
         Vector2f ppos = player->getPosition();
-        double cx = static_cast<double>(ppos.x) + Cfg::ENTITY_SIZE / 2.0;
-        double cy = static_cast<double>(ppos.y) + Cfg::ENTITY_SIZE / 2.0;
+        double cx = static_cast<double>(ppos.x) + Cfg::ENTITY_SIZE / 2.0; // Convert and fill Vector2f attributes
+        double cy = static_cast<double>(ppos.y) + Cfg::ENTITY_SIZE / 2.0; // *
 
         double dx    = scenePos.x() - cx;
         double dy    = scenePos.y() - cy;
-        float  angle = static_cast<float>(std::atan2(dy, dx));
+        float  angle = static_cast<float>(std::atan2(dy, dx)); // Compute arctan of dx/dy → attack direction
 
         player->launchKatana(angle);
     });
 
-
-    // ── Touche Échap → pause ──────────────────────────────────────
+    // -- Escape key → pause ----------------------------------------------
     connect(itsGameView, &GameView::sig_escapePressed, this, &GameController::togglePause);
 
-    // ── Clic gauche → pistolet ───────────────────────────────────────────────
+    // -- Left click → Gun fire -------------------------------------------
+    // Muzzle position is offset from the player center along the aim direction
+    // so that the bullet spawns at the barrel tip rather than at the player's feet.
     connect(itsGameView, &GameView::sig_leftClicked, this, [this](QPointF scenePos) {
         if (currentState != AppState::PLAYING) return;
         if (!itsGameModel || !itsGameModel->getPlayer()) return;
 
         PlayerModel* player = itsGameModel->getPlayer();
 
-        // Calcul de la position de la bouche du pistolet
-        // (centre du joueur + décalage vers le curseur, identique à GunView)
+        // Compute the muzzle gun position
+        // (player center + shift toward cursor)
         Vector2f ppos = player->getPosition();
         double cx = static_cast<double>(ppos.x) + Cfg::ENTITY_SIZE / 2.0;
         double cy = static_cast<double>(ppos.y) + Cfg::ENTITY_SIZE / 2.0;
         double dx = scenePos.x() - cx;
         double dy = scenePos.y() - cy;
-        double angle = std::atan2(dy, dx);
+        double angle = std::atan2(dy, dx); // Reuse tangent calculation
         Vector2f muzzle(
             static_cast<float>(cx + std::cos(angle) * Cfg::GUN_OFFSET_X),
             static_cast<float>(cy + std::sin(angle) * Cfg::GUN_OFFSET_X)
@@ -77,45 +80,47 @@ void GameController::init(bool startMusic) {
         player->shootGun(muzzle, target);
     });
 
-    // ── Boutons fin de partie ─────────────────────────────────────
+    // -- ENDGAME BUTTONS -----------------------------------------------
     connect(itsGameView, &GameView::sigRestartRq, this, &GameController::sigRestart);
     connect(itsGameView, &GameView::sigQuitRq,    this, &GameController::sigBackMenu);
 
-    // ── Boutons musique du menu pause (délégués à la vue) ─────────
+    // --- Pause menu music buttons (delegated to view) -----------------
     connect(itsGameView, &GameView::sigToggleMusic,
             this, []{ MusicController::instance().togglePause(); });
     connect(itsGameView, &GameView::sigNextTrack,
             this, []{ MusicController::instance().nextTrack(); });
 
-    // ── Chargement du registre de niveaux ────────────────────────
-    // DOIT être appelé avant tout loadLevel() — sans init(), count()
-    // retourne 0 et le modulo dans loadLevel() provoque un SIGFPE.
+    // --- Level registry initialisation --------------------------------
+    // MUST be called before loadLevel(); the registry count() is used as
+    // a modulo divisor — calling loadLevel() on an empty registry causes SIGFPE.
     LevelRegistry::instance().init();
 
-    // ── Chargement du niveau 1 ────────────────────────────────────
-    //loadLevel(0);
+    // --- Load first level -------------------------------------------
+    // currentLevelIndex is 0 by default (initialiser list); explicit for clarity.
     loadLevel(currentLevelIndex);
 
-    // ── Liaison vue ↔ modèle ──────────────────────────────────────
+    // --- Link View ↔ Model ------------------------------------------
     itsGameView->initWithModel(itsGameModel);
 
-    // ── Focus clavier ─────────────────────────────────────────────
+    // --- Keyboard focus -----------------------------------------------
     itsGameView->setFocus();
 
-    // ── Boucle de jeu (~60 FPS) ───────────────────────────────────
+    // --- Game loop (~60 FPS) ----------------------------------------
     connect(&gameTimer, &QTimer::timeout, this, &GameController::slt_tick);
     elapsedTimer.start();
     gameTimer.start(Cfg::TIMER_MS);
 
     currentState = AppState::PLAYING;
 
-    // ── Musique in-game ───────────────────────────────────────────
-    // startMusic = false lors d'un Rejouer pour ne pas couper la piste en cours
+    // --- In-game music ------------------------------------------------
+    // startMusic = false when restarting to avoid cutting the current track
     if (startMusic)
         MusicController::instance().playRandomGame();
 }
 
 void GameController::togglePause() {
+    // If playing, display pause overlay; if paused, resume and reset the timer
+    // to avoid a large dt spike on the first tick after unpausing.
     if (currentState == AppState::PLAYING) {
         currentState = AppState::PAUSED;
         itsGameView->showPauseOverlay();
@@ -127,24 +132,19 @@ void GameController::togglePause() {
     }
 }
 
+/// Intercepts the "back to menu" signal from the pause overlay.
 void GameController::sltPauseMenu() {
     itsGameView->hidePauseOverlay();
     emit sigBackMenu();
 }
 
 void GameController::loadLevel(int index) {
-    // ── Récupérer le descripteur depuis le registre ───────────────
+    // -- Validate index against the registry -------------------------
     LevelRegistry& reg = LevelRegistry::instance();
     index = index % reg.count();
     currentLevelIndex = index;
 
     const LevelDescriptor* desc = reg.descriptorAt(index);
-    if (!desc || desc->rows == 0) {
-        qCritical() << "[GameController::loadLevel] Descripteur invalide pour l'index" << index
-                    << "— vérifiez que les fichiers texte du niveau sont bien présents"
-                    << "dans levels/level_" << (index + 1) << "/ et déclarés dans le .qrc";
-        return;
-    }
 
     if (itsGameView) itsGameView->clearScene();
 
@@ -152,6 +152,9 @@ void GameController::loadLevel(int index) {
                         *itsGameModel->getLevel(),
                         itsGameView->getScene());
 
+    // Reposition the player at the spawn defined by the level descriptor.
+    // initPlayer is only called once (first run); subsequent levels just move
+    // the existing player to preserve accumulated upgrades and gold.
     Vector2f spawn = itsGameModel->getLevel()->getSpawnPos();
     if (itsGameModel->getPlayer() == nullptr)
         itsGameModel->initPlayer(spawn);
@@ -162,6 +165,8 @@ void GameController::loadLevel(int index) {
 }
 
 void GameController::slt_tick() {
+    // Skip processing entirely when paused (just reset the timer to avoid
+    // accumulating a large dt burst when unpausing).
     if (currentState == AppState::PAUSED) {
         elapsedTimer.restart();
         return;
@@ -169,6 +174,8 @@ void GameController::slt_tick() {
 
     if (currentState != AppState::PLAYING) return;
 
+    // Compute delta-time; cap at 50 ms to prevent physics tunnelling on
+    // lag spikes (e.g. window resize, OS scheduler jitter).
     float dt = static_cast<float>(elapsedTimer.restart()) / 1000.0f;
     dt = std::min(dt, 0.05f);
 
@@ -186,6 +193,8 @@ void GameController::handleInput(float dt) {
     PlayerModel*     player = itsGameModel->getPlayer();
     if (!player) return;
 
+    // Aggregate direction vector from held keys; diagonal movement emerges
+    // naturally when two perpendicular keys are pressed simultaneously.
     Vector2f dir(0.0f, 0.0f);
     if (keys.contains(Qt::Key_Z) || keys.contains(Qt::Key_Up))    dir.y -= 1.0f;
     if (keys.contains(Qt::Key_S) || keys.contains(Qt::Key_Down))  dir.y += 1.0f;
@@ -197,6 +206,7 @@ void GameController::handleInput(float dt) {
     else
         player->stopMoving();
 
+    // Debug/iteration-1 speed toggle (GDD Iteration 1: activate/deactivate with U key).
     if (keys.contains(Qt::Key_U)) {
         if (!player->getBoostState())
             player->setSpeed(Cfg::PLAYER_SPEED_BOOSTED);
@@ -216,7 +226,9 @@ void GameController::checkStateTransitions() {
     } else if (levelCtrl->levelJustCompleted) {
         int nextIndex = currentLevelIndex + 1;
         if (nextIndex < LevelRegistry::instance().count()) {
-            // Market entre chaque niveau (sauf avant le 1er)
+            // Between levels: stop the loop, open the market (blocking modal dialog),
+            // then load the next level and resume.  The market runs synchronously via
+            // QDialog::exec() so no state machine complexity is needed here.
             gameTimer.stop();
             itsMarketController->open(itsGameModel->getPlayer());
             loadLevel(nextIndex);
@@ -231,7 +243,7 @@ void GameController::checkStateTransitions() {
 
 void GameController::transitionTo(AppState state) {
     currentState = state;
-    gameTimer.stop();
+    gameTimer.stop(); // Prevent any further ticks from modifying a terminal state.
 
     QString msg;
     switch (state) {

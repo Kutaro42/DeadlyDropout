@@ -1,6 +1,6 @@
 /**
  * @file katana.cpp
- * @brief Implémentation du comportement, des timers et du périmètre d'attaque du Katana.
+ * @brief Implementation of Katana: behaviour, timers and attack-zone computation.
  */
 
 #include "katana.h"
@@ -16,11 +16,13 @@ Katana::Katana()
     , itsAnimTimer(0.0f)
     , itsSlashZone()
     , itsAttackAngle(0.0f)
-{// ─── Initialisation du son de slash ─────────────────────────
+{
+    // ─── Slash sound initialisation ─────────────────────────────────
     itsSlashSound = new QSoundEffect();
-    // Ajustez le nom exact du fichier de son (.wav) s'il s'appelle différemment
+    // Adjust the filename if the asset is stored under a different name.
     itsSlashSound->setSource(QUrl("qrc:/images/Sound/katana.wav"));
-    itsSlashSound->setVolume(0.5f);}
+    itsSlashSound->setVolume(0.5f);
+}
 
 Katana::~Katana()
 {
@@ -46,18 +48,18 @@ void Katana::update(float dt) {
 bool Katana::tryAttack(Vector2f playerPos, float playerW, float playerH,
                        float angleRad)
 {
-    if (!itsReady) return false; // L'arme est en cooldown, on ne fait rien
+    if (!itsReady) return false; // Weapon still on cooldown; silently reject
 
-    // L'attaque est prête et se lance :
+    // Commit the attack: reset cooldown and animation timers.
     itsReady         = false;
     itsCooldownTimer = itsCooldown;
     itsAnimTimer     = Cfg::KATANA_ANIM_DUR;
     itsAttackAngle   = angleRad;
 
-    // ─── On joue le son de l'attaque ! ───────────────────────────
+    // ─── Play attack sound ──────────────────────────────────────────
     itsSlashSound->play();
 
-    // Calcul de la zone de collision (la suite du code reste identique)
+    // Compute the slash collision zone (remainder of code unchanged).
     computeSlashZone(playerPos, playerW, playerH, angleRad);
     return true;
 }
@@ -65,28 +67,27 @@ bool Katana::tryAttack(Vector2f playerPos, float playerW, float playerH,
 void Katana::computeSlashZone(Vector2f playerPos, float playerW, float playerH,
                                float angleRad)
 {
-    // ── Centre de la hitbox du joueur ────────────────────────────────────────
+    // ── Player hitbox centre ─────────────────────────────────────────────────
     double cx = static_cast<double>(playerPos.x) + playerW  / 2.0;
     double cy = static_cast<double>(playerPos.y) + playerH / 2.0;
 
     double cosA = std::cos(static_cast<double>(angleRad));
     double sinA = std::sin(static_cast<double>(angleRad));
 
-    // ── Demi-dimensions du rectangle de slash en coordonnées locales ─────────
-    // L'axe local X est l'axe d'attaque (profondeur), Y est l'axe perpendiculaire.
-    // Le rectangle local s'étend de [0, depth] sur X et [-halfW, +halfW] sur Y.
+    // ── Slash rectangle dimensions in local space ────────────────────────────
+    // Local X = attack axis (depth), local Y = perpendicular axis.
+    // The rectangle spans [0, depth] on X and [-halfW, +halfW] on Y.
     double depth  = static_cast<double>(itsRange);
     double halfW  = static_cast<double>(Cfg::KATANA_SLASH_W) / 2.0;
 
-    // Décalage du bord proche : on part du bord de la hitbox joueur dans la
-    // direction de l'attaque, pas du centre, pour éviter de frapper derrière soi.
+    // Offset the near edge of the slash to the boundary of the player hitbox
+    // (not the centre) so the weapon cannot hit enemies behind the player.
     double halfDiag = std::sqrt(static_cast<double>(playerW)  * playerW / 4.0
                                + static_cast<double>(playerH) * playerH / 4.0);
     double startOffset = halfDiag;
 
-    // ── 4 coins du rectangle de slash en coordonnées monde (après rotation) ──
-    // Coins locaux : (startOffset, -halfW), (startOffset, +halfW),
-    //               (startOffset+depth, -halfW), (startOffset+depth, +halfW)
+    // ── Rotate the 4 rectangle corners to world space ─────────────────────────
+    // Local corners: (startOffset, ±halfW), (startOffset+depth, ±halfW)
     const double localX[4] = { startOffset,         startOffset,
                                 startOffset + depth, startOffset + depth };
     const double localY[4] = { -halfW,  halfW,  -halfW,  halfW };
@@ -95,8 +96,9 @@ void Katana::computeSlashZone(Vector2f playerPos, float playerW, float playerH,
     double maxX = -1e18, maxY = -1e18;
 
     for (int i = 0; i < 4; ++i) {
-        // Rotation : x' = cosA*lx - sinA*ly + cx
-        //            y' = sinA*lx + cosA*ly + cy
+        // Standard 2D rotation around the player centre:
+        // x' = cosA*lx - sinA*ly + cx
+        // y' = sinA*lx + cosA*ly + cy
         double wx = cosA * localX[i] - sinA * localY[i] + cx;
         double wy = sinA * localX[i] + cosA * localY[i] + cy;
         minX = std::min(minX, wx);
@@ -105,5 +107,6 @@ void Katana::computeSlashZone(Vector2f playerPos, float playerW, float playerH,
         maxY = std::max(maxY, wy);
     }
 
+    // Store the AABB enclosing the rotated rectangle for use by LevelController.
     itsSlashZone = QRectF(minX, minY, maxX - minX, maxY - minY);
 }
