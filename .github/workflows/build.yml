@@ -1,0 +1,73 @@
+name: Compile Qt Project (Multiplatform)
+
+on:
+  push:
+    branches: [ "main", "master" ] # Se déclenche à chaque push sur main ou master
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      matrix:
+        # On définit les 3 systèmes d'exploitation cibles
+        os: [windows-latest, macos-latest, ubuntu-latest]
+        include:
+          - os: windows-latest
+            qt_arch: win64_mingw  # Ou win64_msvc selon vos préférences
+          - os: macos-latest
+            qt_arch: clang_64
+          - os: ubuntu-latest
+            qt_arch: gcc_64
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
+      with:
+        version: '6.10.0' # Changez par votre version de Qt (ex: 5.15.2, 6.6.0, etc.)
+        arch: ${{ matrix.qt_arch }}
+
+    # --- ÉTAPE DE COMPILATION POUR WINDOWS ---
+    - name: Build Windows
+      if: matrix.os == 'windows-latest'
+      run: |
+        qmake
+        mingw32-make
+        mkdir deploy
+        xcopy /y release\*.exe deploy\
+        windeployqt deploy/
+
+    # --- ÉTAPE DE COMPILATION POUR MACOS ---
+    - name: Build macOS
+      if: matrix.os == 'macos-latest'
+      run: |
+        qmake
+        make
+        # On suppose que l'app se trouve dans le dossier de build
+        macdeployqt *.app -dmg
+        mkdir deploy
+        mv *.dmg deploy/
+
+    # --- ÉTAPE DE COMPILATION POUR LINUX ---
+    - name: Build Linux
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt-get update && sudo apt-get install -y libgl1-mesa-dev
+        qmake
+        make
+        linuxdeployqt
+        mkdir deploy
+        cp DeadlyDropout.exe deploy/
+
+    # --- SAUVEGARDE DES EXÉCUTABLES SUR GITHUB ---
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: executable-${{ matrix.os }}
+        path: deploy/

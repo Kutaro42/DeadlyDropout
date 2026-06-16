@@ -14,11 +14,7 @@ void LevelController::update(float dt, PlayerModel& player, LevelModel& level)
     updateEnemies(dt, player, level);
     distributeGold(player, level);
 
-    // resolvePlayerWallCollisions(player, level);
-    // resolveEnemyWallCollisions(level);
-
     resolveEnemyEnemyCollisions(level);
-    // resolveEnemyWallCollisions(level);
 
     checkAndResolvePlayerEnemyCollisions(player, level);
 
@@ -36,7 +32,6 @@ void LevelController::update(float dt, PlayerModel& player, LevelModel& level)
 
     checkRubbleCollisions(player, level);
     checkBulletCollisions(player, level);
-    // checkBossZonePattern(player, level);
 
     checkStandardDoorInteractions(player, level);
     checkBossDoorInteractions(player, level);

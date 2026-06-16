@@ -19,11 +19,6 @@
 //
 //  Utilisation :
 //    LevelBuilder::build(LevelData::LEVEL_1_DESC, levelModel, scene);
-//
-//  Pour ajouter un niveau :
-//    1. Définir une LevelMatrix<R,C> dans LevelData (leveltemplate.h)
-//    2. Créer son LevelDescriptor avec makeDescriptor()
-//    3. L'ajouter dans LevelData::ALL_LEVELS[]
 // ═══════════════════════════════════════════════════════════════════
 class LevelBuilder {
 public:
