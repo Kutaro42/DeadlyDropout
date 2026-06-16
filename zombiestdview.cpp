@@ -36,7 +36,7 @@ ZombieStdView::ZombieStdView(ZombieStdModel* m, QGraphicsItem* parent)
     , animSpeed(0.18f)
     , currentDir(0)     // DOWN par défaut
     , deadAnimFinished(false)
-    , animSpeedDeath(0.01f)
+    , animSpeedDeath(0.10f)
 {
     const char* dirNames[DIR_COUNT] = { "Down", "Up", "Left", "Right" };
     for (int d = 0; d < DIR_COUNT; ++d) {
