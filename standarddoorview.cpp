@@ -1,3 +1,10 @@
+/**
+ * @file standarddoorview.cpp
+ * @brief Implementation of the graphical view of the standard door.
+ * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
+ * @date Juin 2026
+ */
+
 #include "standarddoorview.h"
 
 StandardDoorView::StandardDoorView(StandardDoorModel* m, QGraphicsItem* parent)

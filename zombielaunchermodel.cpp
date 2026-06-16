@@ -1,18 +1,17 @@
 /**
  * @file zombielaunchermodel.cpp
- * @brief Implémentation de l'IA et du système de tir du zombie lanceur.
+ * @brief Implementation of the AI and firing system for the zombie launcher.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
  * @date Juin 2026
  */
 
 #include "zombielaunchermodel.h"
-#include "playermodel.h"
 
 ZombieLauncherModel::ZombieLauncherModel(Vector2f pos)
     : Enemy(pos,
             Cfg::LAUNCHER_MAX_HP,
             Cfg::LAUNCHER_SPEED,
-            0,                        // pas de dégâts au corps-à-corps
+            0,                        
             Cfg::LAUNCHER_DETECT_R,
             static_cast<float>(Cfg::ENTITY_SIZE),
             static_cast<float>(Cfg::ENTITY_SIZE),
@@ -20,15 +19,13 @@ ZombieLauncherModel::ZombieLauncherModel(Vector2f pos)
     , shootTimer(0.0f)
 {}
 
-// ─── Calcul de distance + mise à jour de l'état IA ───────────────
+// ---- Distance computation + AI state update --------------------------------
 float ZombieLauncherModel::updateAIState(Vector2f playerPos)
 {
     float dx   = playerPos.x - (position.x + width  / 2.0f);
     float dy   = playerPos.y - (position.y + height / 2.0f);
     float dist = std::sqrt(dx * dx + dy * dy);
 
-    // Le passage en CHASING initial est conditionné par le LOS géré dans
-    // LevelController. Ici on se base sur le chasePersistTimer + distance.
     if (chasePersistTimer <= 0.0f) {
         aiState  = EnemyAIState::IDLE;
         velocity = Vector2f(0.0f, 0.0f);
@@ -41,7 +38,7 @@ float ZombieLauncherModel::updateAIState(Vector2f playerPos)
     return dist;
 }
 
-// ─── Déplacement vers le joueur ───────────────────────────────────
+// ---- Movement toward the player -----------------------------------------
 void ZombieLauncherModel::chase(Vector2f playerPos, float dt)
 {
     Vector2f dir = (playerPos - position).normalized();
@@ -49,10 +46,10 @@ void ZombieLauncherModel::chase(Vector2f playerPos, float dt)
     position     = position + (velocity * dt);
 }
 
-// ─── Création d'un gravat dirigé vers le joueur ───────────────────
+// ---- Create a rubble projectile aimed at the player -----------------------
 void ZombieLauncherModel::shoot(Vector2f playerPos)
 {
-    // Origine du tir : centre du sprite
+    // Firing origin: center of the sprite
     Vector2f origin(position.x + width  / 2.0f - Cfg::RUBBLE_SIZE / 2.0f,
                     position.y + height / 2.0f - Cfg::RUBBLE_SIZE / 2.0f);
 
@@ -60,11 +57,10 @@ void ZombieLauncherModel::shoot(Vector2f playerPos)
     rubbles.append(new RubbleModel(origin, dir));
 }
 
-// ─── Mise à jour principale (appelée par LevelController) ─────────
+// ---- Main update (called by LevelController) ─────────────────────────────
 void ZombieLauncherModel::update(float dt, Vector2f playerPos)
 {
-    // Toujours mettre à jour et purger les rubbles en vol,
-    // même si le launcher est mort
+    // Always update and prune in-flight rubble, even if the launcher is dead
     for (RubbleModel* r : rubbles)
         if (r->isActive()) r->update(dt);
     pruneInactiveRubbles();
@@ -94,10 +90,8 @@ void ZombieLauncherModel::update(float dt, Vector2f playerPos)
     }
 }
 
-// ─── Attaque de contact (non utilisée, satisfait l'interface) ─────
-void ZombieLauncherModel::attack(PlayerModel* /*player*/) {}
+void ZombieLauncherModel::attack(PlayerModel* player) {}
 
-// ─── Nettoyage des gravats inactifs ───────────────────────────────
 void ZombieLauncherModel::pruneInactiveRubbles()
 {
     for (int i = rubbles.size() - 1; i >= 0; --i) {

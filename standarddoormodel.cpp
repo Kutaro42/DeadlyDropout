@@ -1,6 +1,6 @@
 /**
  * @file standarddoormodel.cpp
- * @brief Implémentation du comportement de la porte standard.
+ * @brief Implementation of standard door behavior.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
  * @date Juin 2026
  */

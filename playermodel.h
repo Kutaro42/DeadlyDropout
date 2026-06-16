@@ -1,6 +1,6 @@
 /**
  * @file playermodel.h
- * @brief Déclaration de la classe PlayerModel, le composant Model central du joueur.
+ * @brief Declaration of the PlayerModel class, the central model component for the player.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
  * @date Juin 2026
  */
@@ -16,21 +16,21 @@
 #include <QSoundEffect>
 
 // ═══════════════════════════════════════════════════════════════════
-//  PlayerModel — état et logique du joueur (couche Model, MVC).
-//  Délègue tout ce qui concerne l'arme à l'objet Katana.
+//  PlayerModel — player state and logic (Model layer, MVC).
+//  Delegates all weapon-related logic to the Katana object.
 // ═══════════════════════════════════════════════════════════════════
 
 /**
  * @class PlayerModel
- * @brief Modèle encapsulant les propriétés, ressources et actions du joueur.
+ * @brief Model encapsulating the player's properties, resources and actions.
  *
- * Gère les PV, la vitesse, l'or, les clés et l'orientation cardinale.
- * Les actions du Katana sont déléguées à l'instance interne.
+ * Manages HP, speed, gold, keys and cardinal orientation.
+ * Katana actions are delegated to the internal instance.
  *
- * L'orientation cardinale (facingDir) est maintenant déterminée soit par
- * le déplacement clavier, soit par l'angle d'attaque transmis à launchKatana().
- * La règle de priorité est : si le joueur attaque, la direction cardinale est
- * celle la plus proche de l'angle d'attaque, sinon c'est le clavier.
+ * The cardinal orientation (facingDir) is determined either by
+ * keyboard movement or by the attack angle passed to launchKatana().
+ * Priority rule: if the player is attacking, the cardinal direction is
+ * the one closest to the attack angle; otherwise it follows the keyboard.
  */
 class PlayerModel : public Entity {
 private:
@@ -42,44 +42,72 @@ private:
     bool            hasKey;
     bool            moving;
 
-    FacingDirection facingDir; ///< Direction cardinale courante (clavier ou attaque).
+    FacingDirection facingDir; ///< Current cardinal direction (keyboard or attack).
 
     Katana          katana;
-    GunModel        gun;QSoundEffect* damageSound;
+    GunModel        gun;
+    QSoundEffect* damageSound;
     QSoundEffect* deathSound;
 
 public:
-    explicit PlayerModel(Vector2f startPos);
+    // ---- Katana attack -----------------------------------------------------
+    /**
+     * @brief PlayerModel constructor.
+     * @param startPos Player starting position.
+     */
+    PlayerModel(Vector2f startPos);
+    /**
+     * @brief PlayerModel destructor, releases sound resources.
+     */
     ~PlayerModel();
 
+    /**
+     * @brief Updates the player state (cooldowns, animations, etc.).
+     * @param dt Delta time.
+     */
     void update(float dt) override;
 
-    // ─── Déplacement ──────────────────────────────────────────────
+    // ---- Movement -----------------------------------------------------
+    /**
+    * @brief Moves the player according to an input direction and delta time.
+    * @param inputDir Raw input direction (e.g. keyboard), not normalized.
+    */
     void move(Vector2f inputDir, float dt);
     void stopMoving() { moving = false; }
 
-    // ─── Attaque katana ───────────────────────────────────────────
+    // ---- Katana attack -----------------------------------------------------
     /**
-     * @brief Lance une attaque au katana orientée vers un angle libre.
+     * @brief Launches a katana attack aimed at a free angle.
      *
-     * Convertit l'angle en direction cardinale dominante pour choisir le
-     * bon sprite, puis délègue à Katana::tryAttack() avec l'angle exact
-     * afin que la SlashZone soit orientée précisément vers le curseur.
+     * Converts the angle into the dominant cardinal direction to pick the
+     * correct sprite, then delegates to Katana::tryAttack() with the exact angle
+     * so that the SlashZone is oriented precisely toward the cursor.
      *
-     * @param angleRad Angle en radians (atan2 standard : 0=droite, π/2=bas).
-     * @return true si le coup a été déclenché, false si le katana est en cooldown.
+     * @param angleRad Angle in radians (standard atan2: 0=right, π/2=down).
+     * @return true if the attack was triggered, false if the katana is on cooldown.
      */
     bool launchKatana(float angleRad);
 
-    // ─── Dégâts ───────────────────────────────────────────────────
+    // ---- HP and player state management -----------------------------
+    /**
+     * @brief Applies damage to the player.
+     * @param amount Amount of damage to inflict.
+     */
     void takeDamage(int amount);
     bool isDead() const { return hp <= 0; }
 
-    // ─── Collecte ─────────────────────────────────────────────────
+    // ---- Gold and key management ----------------------------------------
+    /**
+     * @brief Adds gold to the player.
+     * @param amount Amount of gold to add.
+     */
     void addGold(int amount) { gold += amount; }
+    /**
+     * @brief Sets hasKey to true, indicating the player has collected a key.
+     */
     void collectKey()        { hasKey = true;  }
 
-    // ─── Getters ──────────────────────────────────────────────────
+    // ---- Getters -----------------------------------------------------
     int             getHp()           const { return hp;        }
     int             getMaxHp()        const { return maxHp;     }
     int             getGold()         const { return gold;      }
@@ -94,21 +122,21 @@ public:
     float           getAttackAngle()  const { return katana.getAttackAngle(); }
 
     GunModel&       getGun()                { return gun; }
-    const GunModel& getGun()          const { return gun; }  // Note pour alex Pourquoi deux ?
+    const GunModel& getGun()          const { return gun; }  // Note for alex: Why two?
 
     /**
-     * @brief Tente de tirer une balle vers targetPos (coordonnées scène).
-     * @param muzzlePos Position de la bouche du pistolet.
-     * @param targetPos Position cible (curseur souris en coordonnées scène).
-     * @return true si un tir a été effectué.
+     * @brief Attempts to fire a bullet toward targetPos (scene coordinates).
+     * @param muzzlePos Position of the gun muzzle.
+     * @param targetPos Target position (mouse cursor in scene coordinates).
+     * @return true if a shot was fired.
      */
     bool shootGun(Vector2f muzzlePos, Vector2f targetPos)
     { return gun.tryShoot(muzzlePos, targetPos); }
 
-    /** @brief Recharge le pistolet (touche R). */
+    /** @brief Reloads the gun (R key). */
     void reloadGun() { gun.reload(); }
 
-    // ─── Setters ──────────────────────────────────────────────────
+    // ---- Setters -----------------------------------------------------
     void setMaxHp(int v)          { maxHp = v;  }
     void setHp(int life)          { hp = life;  }
     void setSpeed(float v)        { speed = v;  }
@@ -121,9 +149,9 @@ public:
 
 private:
     /**
-     * @brief Convertit un angle radians en FacingDirection cardinale dominante.
-     * @param angleRad Angle (atan2 standard).
-     * @return La direction cardinale la plus proche.
+     * @brief Converts a radian angle into the dominant cardinal FacingDirection.
+     * @param angleRad Angle (standard atan2).
+     * @return The closest cardinal direction.
      */
     static FacingDirection angleToFacing(float angleRad);
 };

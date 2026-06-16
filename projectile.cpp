@@ -1,6 +1,6 @@
 /**
  * @file projectile.cpp
- * @brief Implémentation de la classe abstraite Projectile.
+ * @brief Implementation of the abstract Projectile class.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
  * @date Juin 2026
  */

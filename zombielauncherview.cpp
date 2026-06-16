@@ -1,6 +1,6 @@
 /**
  * @file zombielauncherview.cpp
- * @brief Implémentation de la vue du zombie lanceur et de la gestion des vues de gravats.
+ * @brief Implementation of the zombie launcher view and debris view management.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
  * @date Juin 2026
  */
@@ -8,7 +8,6 @@
 #include "zombielauncherview.h"
 #include <QPainter>
 
-// ─── Helpers statiques ────────────────────────────────────────────
 int ZombieLauncherView::dirIdx(FacingDirection d) {
     switch (d) {
     case FacingDirection::DOWN:  return 0;
@@ -26,7 +25,7 @@ FacingDirection ZombieLauncherView::velocityToDir(Vector2f vel) {
         return (vel.y >= 0) ? FacingDirection::DOWN  : FacingDirection::UP;
 }
 
-// ─── Chargement spritesheet (2 frames 32×32 côte à côte) ─────────
+// ---- Spritesheet loading (2 frames 32×32 side by side) ---------------------
 void ZombieLauncherView::loadSheet(QVector<QPixmap>& frames, const QString& path)
 {
     QPixmap sheet(path);
@@ -43,7 +42,7 @@ void ZombieLauncherView::loadSheet(QVector<QPixmap>& frames, const QString& path
     }
 }
 
-// ─── Fallback violet annoté "L" ───────────────────────────────────
+// ---- Purple fallback annotated "L" -----------------------------------------
 QPixmap ZombieLauncherView::makeFallback()
 {
     QPixmap pm(Cfg::ENTITY_SIZE, Cfg::ENTITY_SIZE);
@@ -55,7 +54,6 @@ QPixmap ZombieLauncherView::makeFallback()
     return pm;
 }
 
-// ─── Constructeur ─────────────────────────────────────────────────
 ZombieLauncherView::ZombieLauncherView(ZombieLauncherModel* m,
                                        QGraphicsScene*      sc,
                                        QGraphicsItem*       parent)
@@ -90,7 +88,7 @@ ZombieLauncherView::ZombieLauncherView(ZombieLauncherModel* m,
     setPixmap(!sprites[IDLE][0].isEmpty() ? sprites[IDLE][0][0] : makeFallback());
 }
 
-// ─── Avance une frame ─────────────────────────────────────────────
+// ---- Advance one frame -----------------------------------------------------
 void ZombieLauncherView::advanceFrames(float dt, const QVector<QPixmap>& frames)
 {
     if (frames.isEmpty()) return;
@@ -102,15 +100,15 @@ void ZombieLauncherView::advanceFrames(float dt, const QVector<QPixmap>& frames)
     setPixmap(frames[currentFrame]);
 }
 
-// ─── Synchronisation RubbleView ↔ RubbleModel ────────────────────
+// ---- RubbleView <-> RubbleModel synchronization ----------------------------
 void ZombieLauncherView::syncRubbleViews()
 {
     QVector<RubbleModel*>& rubbles = model->getRubbles();
 
-    // 1) Créer les vues manquantes (nouveaux gravats sans vue)
-    //    On identifie les modèles qui n'ont pas encore de vue associée
-    //    en comparant les tailles : les vues sont ajoutées dans l'ordre
-    //    d'insertion, donc rubbleViews[i] correspond à rubbles[i].
+    //    Create missing views for newly fired rubble.
+    //    We identify models that do not yet have an associated view
+    //    by comparing sizes: views are added in insertion order,
+    //    so rubbleViews[i] corresponds to rubbles[i].
     while (rubbleViews.size() < rubbles.size()) {
         int idx = rubbleViews.size();
         auto* rv = new RubbleView(rubbles[idx]);
@@ -118,7 +116,7 @@ void ZombieLauncherView::syncRubbleViews()
         rubbleViews.append(rv);
     }
 
-    // 2) Supprimer les vues dont le modèle est inactif
+    // Remove views whose model has become inactive
     for (int i = rubbleViews.size() - 1; i >= 0; --i) {
         if (!rubbles[i]->isActive()) {
             scene->removeItem(rubbleViews[i]);
@@ -127,23 +125,23 @@ void ZombieLauncherView::syncRubbleViews()
         }
     }
 
-    // 3) Mettre à jour la position des vues restantes
+    // Update the position of remaining views
     for (RubbleView* rv : rubbleViews)
         rv->updateView();
 
-    // 4) Demander au modèle de libérer ses gravats inactifs
-    //    (doit être fait après suppression des vues)
+    // Ask the model to release its inactive rubble (must be done after removing views
+    // to avoid accessing an already-freed model.)
     model->pruneInactiveRubbles();
 }
 
-// ─── Mise à jour principale ───────────────────────────────────────
+// ---- Main update -----------------------------------------------------------
 void ZombieLauncherView::updateView(float dt)
 {
     if (!model) return;
 
     EnemyAIState state = model->getAIState();
 
-    // ── État DEAD : joue l'animation une seule fois, puis cache le sprite ──────
+    // ---- DEAD state: play the animation once, then hide the sprite ----------
     if (state == EnemyAIState::DEAD || deadAnimFinished) {
         if (!deadAnimFinished) {
             setPos(model->getPosition().toQPointF());
@@ -163,7 +161,7 @@ void ZombieLauncherView::updateView(float dt)
             }
         }
         if (deadAnimFinished) hide();
-        syncRubbleViews(); // ← toujours appelé, même après deadAnimFinished
+        syncRubbleViews(); // always called, even after deadAnimFinished
         return;
     }
 
@@ -175,7 +173,7 @@ void ZombieLauncherView::updateView(float dt)
 
     setPos(model->getPosition().toQPointF());
 
-    // ── État HURT : animation en boucle pendant la durée du HURT ─────────────
+    // ---- HURT state: looping animation for the duration of HURT -------------
     if (state == EnemyAIState::HURT) {
         const QVector<QPixmap>& hurt = sprites[HURT][currentDir];
         if (!hurt.isEmpty()) {
@@ -192,7 +190,7 @@ void ZombieLauncherView::updateView(float dt)
         return;
     }
 
-    // ── Animation du lanceur ──────────────────────────────────
+    // ---- Launcher animation -------------------------------------------------
     Vector2f vel      = model->getVelocity();
     bool     chasing  = (state == EnemyAIState::CHASING);
 
@@ -209,13 +207,13 @@ void ZombieLauncherView::updateView(float dt)
         else
             setPixmap(makeFallback());
     } else {
-        // IDLE ou ATTACKING : frame fixe
+        // IDLE or ATTACKING: fixed frame
         currentFrame = 0;
         frameTimer   = 0.0f;
         const QVector<QPixmap>& idle = sprites[IDLE][currentDir];
         setPixmap(!idle.isEmpty() ? idle[0] : makeFallback());
     }
 
-    // ── Synchronisation des vues de gravats ───────────────────
+    // ---- Rubble view synchronization ----------------------------------------
     syncRubbleViews();
 }

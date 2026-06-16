@@ -1,6 +1,6 @@
 /**
  * @file playerview.cpp
- * @brief Implémentation des mécanismes de dessin et d'animation pour le joueur.
+ * @brief Implementation of drawing and animation mechanisms for the player.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
  * @date Juin 2026
  */
@@ -8,12 +8,12 @@
 #include "playerview.h"
 #include <QPainter>
 
-// ─── Définition des tableaux de constantes statiques ────────────────────────
+// ─── Definition of static constant arrays ───────────────────────────────────
 constexpr int PlayerView::FRAME_W[PlayerView::STATE_COUNT];
 constexpr int PlayerView::FRAME_H[PlayerView::STATE_COUNT];
 constexpr int PlayerView::SPRITE_SIZE[PlayerView::STATE_COUNT];
 
-// ─── Correspondance FacingDirection → index tableau ─────────────────────────
+// ─── FacingDirection → table index mapping ──────────────────────────────────
 int PlayerView::dirIdx(FacingDirection d) {
     switch (d) {
     case FacingDirection::DOWN:  return 0;
@@ -24,7 +24,7 @@ int PlayerView::dirIdx(FacingDirection d) {
     return 0;
 }
 
-// ─── Constructeur ────────────────────────────────────────────────────────────
+// ─── Constructor ─────────────────────────────────────────────────────────────
 PlayerView::PlayerView(PlayerModel* m, QGraphicsItem* parent)
     : QGraphicsPixmapItem(parent)
     , model(m)
@@ -38,7 +38,7 @@ PlayerView::PlayerView(PlayerModel* m, QGraphicsItem* parent)
     , wasKatanaActive(false)
     , attackEverTriggered(false)
     // ── Slash ────────────────────────────────────────────────────────────────
-    , itsSlashItem(new QGraphicsPixmapItem(this))  // fils de PlayerView
+    , itsSlashItem(new QGraphicsPixmapItem(this))  // child of PlayerView
     , itsSlashFrame(0)
     , itsSlashFrameTimer(0.0f)
     , itsSlashFrameSpeed(Cfg::KATANA_ANIM_DUR / SLASH_FRAME_COUNT)
@@ -60,6 +60,8 @@ PlayerView::PlayerView(PlayerModel* m, QGraphicsItem* parent)
     setZValue(Cfg::Z_PLAYER);
     setPos(model->getPosition().toQPointF());
 
+    /* Generates fallbacks for all directions in one pass,
+    so they are not recreated every tick if the PNGs are missing. */
     const FacingDirection dirs[DIR_COUNT] = {
         FacingDirection::DOWN, FacingDirection::UP,
         FacingDirection::LEFT, FacingDirection::RIGHT
@@ -67,6 +69,7 @@ PlayerView::PlayerView(PlayerModel* m, QGraphicsItem* parent)
     for (int d = 0; d < DIR_COUNT; ++d)
         cachedFallback[d] = makeFallback(dirs[d]);
 
+    /* Displays the initial frame (idle facing down) before the first tick. */
     int d = dirIdx(model->getFacing());
     if (!sprites[IDLE][d].isEmpty()) {
         setPixmap(sprites[IDLE][d][0]);
@@ -76,17 +79,17 @@ PlayerView::PlayerView(PlayerModel* m, QGraphicsItem* parent)
         applyCenter(Cfg::ENTITY_SIZE);
     }
 
-    // ── Initialisation du sprite de slash ────────────────────────────────────
+    // ── Slash sprite initialization ───────────────────────────────────────────
     loadSlashSheet();
     itsSlashItem->setZValue(Cfg::Z_SLASH);
-    // Le pivot de rotation doit être le centre du sprite, pas son coin sup-gauche
-    // (comportement par défaut de Qt). Sans ça, setRotation() orbite autour du
-    // coin sup-gauche et décale visuellement le sprite à chaque attaque.
+    /* The rotation pivot must be the center of the sprite.
+    Without this, setRotation() orbits around the top-left corner and
+    visually offsets the sprite on every attack. */
     itsSlashItem->setTransformOriginPoint(SLASH_DISPLAY / 2.0, SLASH_DISPLAY / 2.0);
     itsSlashItem->hide();
 }
 
-// ─── Chargement d'un spritesheet (frames horizontales) ───────────────────────
+// ─── Spritesheet loading (horizontal frames) ─────────────────────────────────
 void PlayerView::loadSheet(QVector<QPixmap>& frames, const QString& path,
                            int fw, int fh, int targetSize)
 {
@@ -95,6 +98,8 @@ void PlayerView::loadSheet(QVector<QPixmap>& frames, const QString& path,
         qWarning("[PlayerView] Introuvable : %s", qPrintable(path));
         return;
     }
+    /* Slices each frame from left to right; the count is inferred from the total width
+    so it adapts automatically if an artist adds frames without changing the code. */
     int count = sheet.width() / fw;
     for (int i = 0; i < count; ++i) {
         QPixmap raw = sheet.copy(i * fw, 0, fw, fh);
@@ -104,17 +109,17 @@ void PlayerView::loadSheet(QVector<QPixmap>& frames, const QString& path,
     }
 }
 
-// ─── Chargement de la spritesheet d'effet de slash ───────────────────────────
+// ─── Slash effect spritesheet loading ────────────────────────────────────────
 void PlayerView::loadSlashSheet()
 {
-    // Chemin de la spritesheet de slash : frames horizontales, carrées.
-    // Si la ressource est absente, un fallback procédural est généré.
+    // Slash spritesheet path: horizontal frames, square.
+    // If the resource is missing, a procedural fallback is generated.
     const QString path = ":/images/Textures/Player/Slash/slash.png";
     QPixmap sheet(path);
 
     if (!sheet.isNull()) {
-        // La spritesheet peut contenir plus ou moins de frames que SLASH_FRAME_COUNT.
-        // On charge autant de frames que possible, jusqu'à SLASH_FRAME_COUNT.
+        // The spritesheet may contain more or fewer frames than SLASH_FRAME_COUNT.
+        // We load as many frames as available, up to SLASH_FRAME_COUNT.
         int available = sheet.width() / SLASH_FRAME_SRC;
         int toLoad    = std::min(available, SLASH_FRAME_COUNT);
         for (int i = 0; i < toLoad; ++i) {
@@ -125,9 +130,9 @@ void PlayerView::loadSlashSheet()
         }
     }
 
-    // ── Fallback procédural si la spritesheet est absente ────────────────────
-    // Génère SLASH_FRAME_COUNT frames représentant un arc de cercle croissant,
-    // ce qui donne un rendu acceptable sans aucune ressource PNG externe.
+    // ── Procedural fallback if the spritesheet is missing ────────────────────
+    // Generates SLASH_FRAME_COUNT frames representing a growing arc,
+    // giving an acceptable result without any external PNG resource.
     if (itsSlashFrames.isEmpty()) {
         for (int i = 0; i < SLASH_FRAME_COUNT; ++i) {
             QPixmap pm(SLASH_DISPLAY, SLASH_DISPLAY);
@@ -135,25 +140,25 @@ void PlayerView::loadSlashSheet()
             QPainter p(&pm);
             p.setRenderHint(QPainter::Antialiasing, true);
 
-            // Progression de 0 à 1 au fil des frames
+            // Progress from 0 to 1 across frames
             float t      = static_cast<float>(i + 1) / SLASH_FRAME_COUNT;
-            int   alpha  = static_cast<int>(220 * (1.0f - t * 0.6f)); // fondu en fin d'anim
-            int   thick  = static_cast<int>(3.0f + 4.0f * t);         // épaississement
+            int   alpha  = static_cast<int>(220 * (1.0f - t * 0.6f)); // fade at end of anim
+            int   thick  = static_cast<int>(3.0f + 4.0f * t);         // thickening
 
-            // Arc jaune-orangé simulant un éclat de lame
+            // Yellow-orange arc simulating a blade flash
             QPen pen(QColor(255, 200, 60, alpha), thick, Qt::SolidLine, Qt::RoundCap);
             p.setPen(pen);
 
-            // L'arc part de la droite (0°) et balaie vers le bas (sens croissant)
-            // sur une portion proportionnelle à t, pour simuler le mouvement du sabre.
+            // The arc starts on the right (0°) and sweeps downward (increasing direction)
+            // over a portion proportional to t, simulating the sword swing.
             int margin = 8;
             QRect arcRect(margin, margin, SLASH_DISPLAY - 2*margin, SLASH_DISPLAY - 2*margin);
-            // drawArc : angles en 1/16° ; on trace un arc de 0° à t*180°
+            // drawArc: angles in 1/16°; we draw an arc from 0° to t*180°
             int startAngle = 0;
             int spanAngle  = static_cast<int>(t * 180.0f * 16);
             p.drawArc(arcRect, startAngle, spanAngle);
 
-            // Reflet blanc central pour l'effet tranchant
+            // White central highlight for the blade edge effect
             QPen white(QColor(255, 255, 255, alpha / 2), 1);
             p.setPen(white);
             p.drawArc(arcRect.adjusted(6,6,-6,-6), startAngle, spanAngle);
@@ -163,7 +168,7 @@ void PlayerView::loadSlashSheet()
     }
 }
 
-// ─── Fallback visuel ─────────────────────────────────────────────────────────
+// ─── Visual fallback ─────────────────────────────────────────────────────────
 QPixmap PlayerView::makeFallback(FacingDirection dir) {
     QPixmap pm(Cfg::ENTITY_SIZE, Cfg::ENTITY_SIZE);
     pm.fill(QColor(40, 80, 180));
@@ -181,13 +186,13 @@ QPixmap PlayerView::makeFallback(FacingDirection dir) {
     return pm;
 }
 
-// ─── Centrage du sprite sur la hitbox ────────────────────────────────────────
+// ─── Centering the sprite on the hitbox ──────────────────────────────────────
 void PlayerView::applyCenter(int spriteSize) {
     float offset = (Cfg::ENTITY_SIZE - spriteSize) / 2.0f;
     setOffset(offset, offset);
 }
 
-// ─── Avance une frame IDLE/WALK ──────────────────────────────────────────────
+// ─── Advance one IDLE/WALK frame ─────────────────────────────────────────────
 void PlayerView::advanceFrames(float dt, const QVector<QPixmap>& frames, float speed)
 {
     if (frames.isEmpty()) return;
@@ -205,39 +210,39 @@ void PlayerView::advanceFrames(float dt, const QVector<QPixmap>& frames, float s
     setPixmap(frames[currentFrame]);
 }
 
-// ─── Mise à jour du sprite de slash ──────────────────────────────────────────
+// ─── Slash sprite update ──────────────────────────────────────────────────────
 
 void PlayerView::positionSlashItem()
 {
     if (itsSlashFrames.isEmpty()) return;
 
-    float angle = model->getAttackAngle();   // radians (atan2 : 0=droite, π/2=bas)
+    float angle = model->getAttackAngle();   // radians (atan2: 0=right, π/2=down)
     float cosA  = std::cos(angle);
     float sinA  = std::sin(angle);
 
-    // Distance du centre du sprite de slash depuis le centre du joueur.
-    // On le place à (halfDiag + SLASH_DISPLAY/2) dans la direction de l'attaque
-    // pour qu'il soit visuellement devant la lame, pas superposé au personnage.
+    // Distance of the slash sprite center from the player center.
+    // Placed at (halfDiag + SLASH_DISPLAY/2) in the attack direction
+    // so it appears visually in front of the blade, not overlapping the character.
     float hw      = Cfg::ENTITY_SIZE / 2.0f;
     float hh      = Cfg::ENTITY_SIZE / 2.0f;
     float halfDiag = std::sqrt(hw * hw + hh * hh);
     float dist    = halfDiag + SLASH_DISPLAY * 0.35f;
 
-    // Coordonnées locales (relatives à l'origine de PlayerView, coin sup-gauche de la hitbox)
+    // Local coordinates (relative to the PlayerView origin, top-left corner of the hitbox)
     float lx = hw + cosA * dist - SLASH_DISPLAY / 2.0f;
     float ly = hh + sinA * dist - SLASH_DISPLAY / 2.0f;
 
     itsSlashItem->setPos(lx, ly);
 
-    // Rotation : QGraphicsItem::setRotation() attend des degrés.
-    // L'angle atan2 pointe vers la droite pour 0 rad ; on convertit en degrés.
+    // Rotation: QGraphicsItem::setRotation() expects degrees.
+    // The atan2 angle points right at 0 rad; we convert to degrees.
     qreal deg = static_cast<qreal>(angle) * 180.0 / M_PI;
     itsSlashItem->setRotation(deg);
 }
 
 void PlayerView::updateSlash(float dt)
 {
-    // Aucune attaque n'a encore eu lieu : rien à afficher
+    // No attack has occurred yet: nothing to display
     if (!attackEverTriggered) {
         itsSlashItem->hide();
         return;
@@ -267,7 +272,7 @@ void PlayerView::updateSlash(float dt)
     }
 }
 
-// ─── Mise à jour principale chaque tick ──────────────────────────────────────
+// ─── Main update every tick ───────────────────────────────────────────────────
 void PlayerView::updateView(float dt) {
     if (!model) return;
 
@@ -276,16 +281,16 @@ void PlayerView::updateView(float dt) {
 
     const bool katanaActive = model->isKatanaActive();
 
-    // ── Détection du front montant d'attaque ──────────────────────────────────
-    // wasKatanaActive est mis à jour ICI, une seule fois par tick.
-    // Tous les resets (joueur ET slash) sont groupés dans ce bloc pour garantir
-    // qu'ils sont déclenchés exactement au même tick, avant tout appel à updateSlash().
+    // ── Attack rising-edge detection ──────────────────────────────────────────
+    // wasKatanaActive is updated HERE, once per tick.
+    // All resets (player AND slash) are grouped in this block to guarantee
+    // they are triggered at exactly the same tick, before any call to updateSlash().
     if (katanaActive && !wasKatanaActive) {
         attackFrame          = 0;
         attackFrameTimer     = 0.0f;
         attackTotalTimer     = 0.0f;
         attackEverTriggered  = true;
-        // Reset slash : même front montant, même tick
+        // Slash reset: same rising edge, same tick
         itsSlashFrame        = 0;
         itsSlashFrameTimer   = 0.0f;
         itsSlashDone        = false;
@@ -339,6 +344,6 @@ void PlayerView::updateView(float dt) {
         }
     }
 
-    // ── Mise à jour de l'effet de slash (après avoir mis à jour wasKatanaActive) ─
+    // ── Slash effect update (after updating wasKatanaActive) ──────────────────
     updateSlash(dt);
 }

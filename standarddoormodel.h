@@ -1,6 +1,6 @@
 /**
  * @file standarddoormodel.h
- * @brief Déclaration du modèle de la porte standard (ouvrable au contact du joueur).
+ * @brief Specifications for the standard door model (which opens when the player touches it).
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
  * @date Juin 2026
  */
@@ -11,52 +11,52 @@
 #include "globaldoor.h"
 #include "config.h"
 
-class PlayerModel; // forward declaration
+class PlayerModel; 
 
 // ═══════════════════════════════════════════════════════════════════
-//  StandardDoorModel — porte de jonction entre salles/couloirs.
-//  Fermée par défaut.
-//  Elle s'ouvre dès que le joueur entre en contact avec elle et
-//  reste ouverte jusqu'à la fin du niveau.
-//  Une fois ouverte, elle n'exerce plus de collision (le joueur
-//  peut passer librement).
+//  StandardDoorModel — junction door between rooms/corridors.
+//  Closed by default.
+//  Opens as soon as the player makes contact with it and
+//  stays open until the end of the level.
+//  Once open, it no longer creates a collision (the player
+//  can pass through freely).
 // ═══════════════════════════════════════════════════════════════════
 
 /**
  * @class StandardDoorModel
- * @brief Porte standard ouvrable par simple contact du joueur.
+ * @brief Standard door that opens on simple contact with the player.
  */
 class StandardDoorModel : public GlobalDoor {
 private:
-    bool open; ///< Indique si la porte est ouverte (et donc traversable).
+    bool open; ///< Indicates whether the door is open (and therefore passable).
 
 public:
     /**
-     * @brief Constructeur.
-     * @param pos Position haut-gauche dans la scène.
-     * @param w   Largeur en pixels.
-     * @param h   Hauteur en pixels.
+     * @brief Constructor.
+     * @param pos Top-left position in the scene.
+     * @param w   Width in pixels.
+     * @param h   Height in pixels.
      */
     StandardDoorModel(Vector2f pos, float w, float h);
 
     void update(float dt) override;
 
     /**
-     * @brief Ouvre la porte (irréversible durant le niveau).
+     * @brief Opens the door (irreversible during the level).
      */
     void openDoor() { open = true; }
 
     /**
-     * @brief Indique si la porte est actuellement ouverte.
-     * @return true si ouverte (traversable), false sinon.
+     * @brief Indicates whether the door is currently open.
+     * @return true if open (passable), false otherwise.
      */
     bool isOpen() const { return open; }
 
     /**
-     * @brief Ouvre la porte si le joueur la touche.
-     *        Doit être appelé par LevelController à chaque tick.
-     * @param player Modèle du joueur.
-     * @return true si la porte vient d'être ouverte, false sinon.
+     * @brief Opens the door if the player touches it.
+     *        Must be called by LevelController every tick.
+     * @param player Player model.
+     * @return true if the door has just been opened, false otherwise.
      */
     bool tryOpen(const PlayerModel& player);
 };

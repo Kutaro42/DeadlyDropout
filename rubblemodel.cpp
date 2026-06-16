@@ -1,6 +1,6 @@
 /**
  * @file rubblemodel.cpp
- * @brief Implémentation du gravat (délègue tout à Projectile).
+ * @brief Implementation of the debris (delegates everything to Projectile).
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
  * @date Juin 2026
  */

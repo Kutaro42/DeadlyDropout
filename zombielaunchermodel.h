@@ -1,6 +1,6 @@
 /**
  * @file zombielaunchermodel.h
- * @brief Déclaration du modèle du zombie lanceur de gravats.
+ * @brief Description of the rubble-throwing zombie model.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
  * @date Juin 2026
  */
@@ -11,33 +11,34 @@
 #include "enemy.h"
 #include "rubblemodel.h"
 #include <QVector>
+#include "playermodel.h"
 
 // ═══════════════════════════════════════════════════════════════════
-//  ZombieLauncherModel — zombie lanceur (itération 2).
+//  ZombieLauncherModel — launcher zombie (iteration 2).
 //
-//  IA :
-//    IDLE     → aucune action (hors détection)
-//    CHASING  → le joueur est détecté MAIS hors portée de tir :
-//               l'ennemi le poursuit pour se rapprocher
-//    ATTACKING→ le joueur est à portée de tir :
-//               l'ennemi reste IMMOBILE et tire un gravat
-//               toutes les LAUNCHER_SHOOT_CD secondes
+//  AI:
+//    IDLE      → no action (outside detection range)
+//    CHASING   → player detected BUT out of firing range:
+//                the enemy chases to get closer
+//    ATTACKING → player within firing range:
+//                the enemy stays STILL and fires a rubble
+//                every LAUNCHER_SHOOT_CD seconds
 //
-//  Propriété des projectiles :
-//    Les RubbleModel créés sont stockés dans un vecteur interne.
-//    Le LevelController les récupère via getRubbles() pour les mettre
-//    à jour et détecter leurs collisions avec le joueur/les murs.
+//  Projectile ownership:
+//    Created RubbleModel instances are stored in an internal vector.
+//    LevelController retrieves them via getRubbles() to update them
+//    and detect their collisions with the player/walls.
 // ═══════════════════════════════════════════════════════════════════
 
 /**
  * @class ZombieLauncherModel
- * @brief Ennemi à distance qui tire des gravats sur le joueur.
+ * @brief Ranged enemy that fires rubble at the player.
  */
 class ZombieLauncherModel : public Enemy {
 public:
     /**
-     * @brief Constructeur.
-     * @param pos Position de spawn dans le niveau.
+     * @brief Constructor.
+     * @param pos Spawn position in the level.
      */
     explicit ZombieLauncherModel(Vector2f pos);
     ~ZombieLauncherModel() override {
@@ -45,55 +46,55 @@ public:
         rubbles.clear();
     }
 
-    // ─── Interface Enemy ──────────────────────────────────────
+    // ---- Enemy interface --------------------------------------------
     /**
-     * @brief Met à jour l'IA et les projectiles à chaque tick.
-     * @param dt        Delta-time en secondes.
-     * @param playerPos Position actuelle du joueur.
+     * @brief Updates the AI and projectiles every tick.
+     * @param dt        Delta-time in seconds.
+     * @param playerPos Current player position.
      */
     void update(float dt, Vector2f playerPos) override;
 
     /**
-     * @brief Attaque de contact (non utilisée en pratique : l'ennemi tire à distance).
-     * @param player Joueur cible.
+     * @brief Melee attack (not used in practice: the enemy fires at range).
+     * @param player Target player.
      */
     void attack(PlayerModel* player) override;
 
-    // ─── Accès aux projectiles ────────────────────────────────
+    // ---- Projectile access -----------------------------------------
     /**
-     * @brief Retourne la liste des gravats actifs tirés par cet ennemi.
-     * @return Référence vers le vecteur de RubbleModel*.
+     * @brief Returns the list of active rubble projectiles fired by this enemy.
+     * @return Reference to the vector of RubbleModel*.
      */
     QVector<RubbleModel*>& getRubbles() { return rubbles; }
 
     /**
-     * @brief Supprime de la liste les gravats qui ne sont plus actifs.
-     * Doit être appelé par LevelController après traitement des collisions.
+     * @brief Removes from the list any rubble that is no longer active.
+     * Must be called by LevelController after processing collisions.
      */
     void pruneInactiveRubbles();
 
 private:
-    QVector<RubbleModel*> rubbles;  ///< Gravats en vol tirés par cet ennemi.
-    float shootTimer;               ///< Temps restant avant le prochain tir autorisé.
+    QVector<RubbleModel*> rubbles;  ///< In-flight rubble fired by this enemy.
+    float shootTimer;               ///< Time remaining before the next allowed shot.
 
-    // ─── Sous-méthodes IA ─────────────────────────────────────
+    // ---- AI sub-methods -----------------------------------------
     /**
-     * @brief Calcule la distance au joueur et met à jour l'état IA.
-     * @param playerPos Position du joueur.
-     * @return Distance euclidienne entre l'ennemi et le joueur.
+     * @brief Computes the distance to the player and updates the AI state.
+     * @param playerPos Player position.
+     * @return Euclidean distance between the enemy and the player.
      */
     float updateAIState(Vector2f playerPos);
 
     /**
-     * @brief Déplace l'ennemi vers le joueur.
-     * @param playerPos Cible.
+     * @brief Moves the enemy toward the player.
+     * @param playerPos Target.
      * @param dt        Delta-time.
      */
     void chase(Vector2f playerPos, float dt);
 
     /**
-     * @brief Crée un nouveau RubbleModel dirigé vers le joueur.
-     * @param playerPos Cible du tir.
+     * @brief Creates a new RubbleModel directed toward the player.
+     * @param playerPos Firing target.
      */
     void shoot(Vector2f playerPos);
 };

@@ -1,6 +1,6 @@
 /**
  * @file playermodel.cpp
- * @brief Implémentation du modèle complet gérant les données et comportements du joueur.
+ * @brief Implementation of the comprehensive model that manages player data and behavior.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
  * @date Juin 2026
  */
@@ -21,7 +21,7 @@ PlayerModel::PlayerModel(Vector2f startPos)
     , facingDir(FacingDirection::DOWN)
     , katana()
 {
-    // ─── Initialisation des sons ─────────────────────────────────
+    // ─── Sounds Initialisation ─────────────────────────────────
     damageSound = new QSoundEffect();
     damageSound->setSource(QUrl("qrc:/images/Sound/damage.wav"));
     damageSound->setVolume(0.5f);
@@ -63,8 +63,9 @@ void PlayerModel::move(Vector2f inputDir, float dt) {
     Vector2f dir = inputDir.normalized();
     position = position + (dir * speed * dt);
 
-    // La direction cardinale n'est mise à jour par le clavier que si le katana
-    // n'est pas en train d'animer (l'attaque a la priorité sur le regard).
+    /*  The cardinal direction is updated via the keyboard only if the katana
+    is not currently in motion. During an attack, the direction is locked
+    to the angle of attack so that the sprite does not "rotate" while slashing.*/
     if (!katana.isAnimActive()) {
         if (std::abs(inputDir.x) >= std::abs(inputDir.y))
             facingDir = (inputDir.x > 0) ? FacingDirection::RIGHT : FacingDirection::LEFT;
@@ -74,8 +75,8 @@ void PlayerModel::move(Vector2f inputDir, float dt) {
 }
 
 bool PlayerModel::launchKatana(float angleRad) {
-    // Met à jour la direction cardinale d'affichage AVANT de tenter l'attaque,
-    // pour que le sprite soit orienté même si le katana est en cooldown.
+    /* Updates the display orientation BEFORE attempting the attack,
+    so that the sprite is properly oriented even if the katana is on cooldown.*/
     FacingDirection newFacing = angleToFacing(angleRad);
 
     bool launched = katana.tryAttack(position, width, height, angleRad);
@@ -86,29 +87,28 @@ bool PlayerModel::launchKatana(float angleRad) {
 }
 
 void PlayerModel::takeDamage(int amount) {
-    bool wasDead = isDead(); // On vérifie si le joueur était déjà mort avant l'impact
+    bool wasDead = isDead(); 
 
     hp -= amount;
     if (hp < 0) hp = 0;
 
-    // On ne joue les sons que si le joueur n'était pas déjà mort
     if (!wasDead) {
         if (isDead()) {
-            deathSound->play(); // Le coup de grâce
+            deathSound->play();
         } else {
-            damageSound->play(); // Un simple dégât
+            damageSound->play();
         }
     }
 }
 
-// ─── Conversion angle → cardinal ─────────────────────────────────────────────
-// Découpe le cercle en 4 quadrants de 90° centrés sur chaque axe.
+// ---- Angle to degree conversion ----------------------------------------
+// Divides the circle into four 90° quadrants centered on each axis.
 //   [-45°, +45°)   → RIGHT  (0 rad)
-//   [+45°, +135°)  → DOWN   (π/2 rad, car Y croît vers le bas)
+//   [+45°, +135°)  → DOWN   (π/2 rad, Y grows downward in Qt)
 //   [+135°, -135°) → LEFT   (±π rad)
 //   [-135°, -45°)  → UP
 FacingDirection PlayerModel::angleToFacing(float angleRad) {
-    // Normalise dans [-π, π]
+    // Normalize to the interval [-π, π]
     const float pi = static_cast<float>(M_PI);
     while (angleRad >  pi) angleRad -= 2.0f * pi;
     while (angleRad < -pi) angleRad += 2.0f * pi;

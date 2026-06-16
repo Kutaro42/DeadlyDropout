@@ -1,6 +1,6 @@
 /**
  * @file rubblemodel.h
- * @brief Déclaration du modèle de gravat, projectile tiré par le ZombieLauncher.
+ * @brief Description of the rubble model, a projectile fired by the ZombieLauncher.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
  * @date Juin 2026
  */
@@ -11,25 +11,25 @@
 #include "projectile.h"
 
 // ═══════════════════════════════════════════════════════════════════
-//  RubbleModel — projectile concret lancé par ZombieLauncherModel.
-//  Hérite de Projectile (→ Entity).
-//  Déplacement en ligne droite délégué à Projectile::update().
-//  Se désactive dès qu'il touche un mur ou le joueur
-//  (via setActive(false) dans LevelController).
+//  RubbleModel — concrete projectile fired by ZombieLauncherModel.
+//  Inherits from Projectile (→ Entity).
+//  Straight-line movement delegated to Projectile::update().
+//  Deactivates as soon as it hits a wall or the player
+//  (via setActive(false) in LevelController).
 // ═══════════════════════════════════════════════════════════════════
 
 /**
  * @class RubbleModel
- * @brief Gravat (projectile) tiré par le zombie lanceur.
+ * @brief Rubble (projectile) fired by the launcher zombie.
  */
 class RubbleModel : public Projectile {
 public:
     /**
-     * @brief Construit un gravat.
-     * @param pos    Position de départ (centre du lanceur, ajusté).
-     * @param dir    Direction normalisée vers la cible au moment du tir.
-     * @param damage Dégâts infligés au joueur à l'impact.
-     * @param speed  Vitesse en pixels/s (défaut : Cfg::RUBBLE_SPEED).
+     * @brief Constructs a rubble projectile.
+     * @param pos    Starting position (launcher center, adjusted).
+     * @param dir    Normalized direction toward the target at the time of firing.
+     * @param damage Damage inflicted on the player on impact.
+     * @param speed  Speed in pixels/s (default: Cfg::RUBBLE_SPEED).
      */
     RubbleModel(Vector2f pos,
                 Vector2f dir,

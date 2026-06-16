@@ -1,6 +1,6 @@
 /**
  * @file vector2f.h
- * @brief Déclaration de la classe mathématique Vector2f pour la géométrie 2D du jeu.
+ * @brief Declaration of the Vector2f math class for the game's 2D geometry.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
  * @date Juin 2026
  */
@@ -13,33 +13,33 @@
 
 /**
  * @class Vector2f
- * @brief Classe mathématique décrivant des vecteurs en 2 dimensions (position, vitesse).
- * * Facilite les calculs physiques du projet de manière indépendante avant conversion vers les objets graphiques Qt.
+ * @brief Mathematical class describing 2D vectors (position, velocity).
+ * * Facilitates the project's physics calculations independently before conversion to Qt graphics objects.
  */
 class Vector2f {
 public:
-    float x; ///< Coordonnée sur l'axe des abscisses.
-    float y; ///< Coordonnée sur l'axe des ordonnées.
+    float x; ///< Coordinate on the horizontal axis.
+    float y; ///< Coordinate on the vertical axis.
 
     /**
-     * @brief Constructeur avec des coordonnées initiales.
-     * @param x Position horizontale (0 par défaut).
-     * @param y Position verticale (0 par défaut).
+     * @brief Constructor with initial coordinates.
+     * @param x Horizontal position (0 by default).
+     * @param y Vertical position (0 by default).
      */
     Vector2f(float x = 0.0f, float y = 0.0f) : x(x), y(y) {}
 
     /**
-     * @brief Calcule la magnitude (longueur) totale du vecteur euclidien.
-     * @return La distance séparant le vecteur de son point d'origine (0,0).
+     * @brief Computes the magnitude (length) of the Euclidean vector.
+     * @return The distance from the vector to its origin point (0,0).
      */
     float length() const {
         return std::sqrt(x * x + y * y);
     }
 
     /**
-     * @brief Crée et retourne une version normalisée du vecteur.
-     * * Assure que le vecteur conserve sa direction d'origine avec une magnitude équivalente à 1.
-     * @return Le vecteur unitaire normalisé, ou (0,0) si le vecteur initial est nul.
+     * @brief Creates and returns a normalized version of the vector.
+     * * Ensures the vector keeps its original direction with a magnitude of 1.
+     * @return The normalized unit vector, or (0,0) if the original vector is zero.
      */
     Vector2f normalized() const {
         float len = length();
@@ -47,27 +47,27 @@ public:
         return Vector2f(0.0f, 0.0f);
     }
 
-    // ─── Surcharges des opérateurs arithmétiques ─────────────────────
+    // ─── Arithmetic operator overloads ─────────────────────
     
     /**
-     * @brief Additionne deux vecteurs ensemble.
+     * @brief Adds two vectors together.
      */
     Vector2f operator+(const Vector2f& v) const { return Vector2f(x + v.x, y + v.y); }
     
     /**
-     * @brief Soustrait un vecteur à celui-ci.
+     * @brief Subtracts a vector from this one.
      */
     Vector2f operator-(const Vector2f& v) const { return Vector2f(x - v.x, y - v.y); }
     
     /**
-     * @brief Applique une multiplication scalaire au vecteur.
+     * @brief Applies a scalar multiplication to the vector.
      */
     Vector2f operator*(float s) const { return Vector2f(x * s, y * s); }
     
-    // Compatibilité Qt
+    // Qt compatibility
     /**
-     * @brief Convertit ce vecteur en un point QPointF compréhensible par le framework Qt.
-     * @return Une instance de point 2D flottant issue des coordonnées du vecteur.
+     * @brief Converts this vector to a QPointF understood by the Qt framework.
+     * @return A 2D floating-point instance built from the vector's coordinates.
      */
     QPointF toQPointF() const { return QPointF(x, y); }
 };

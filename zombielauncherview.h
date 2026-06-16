@@ -1,6 +1,6 @@
 /**
  * @file zombielauncherview.h
- * @brief Déclaration de la vue graphique du zombie lanceur.
+ * @brief Declaration of the zombie launcher's graphical view.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
  * @date Juin 2026
  */
@@ -17,65 +17,65 @@
 #include "config.h"
 
 // ═══════════════════════════════════════════════════════════════════
-//  ZombieLauncherView — représentation visuelle du zombie lanceur.
+//  ZombieLauncherView — visual representation of the launcher zombie.
 //
-//  Spritesheets attendues (ressources Qt) :
+//  Expected spritesheets (Qt resources):
 //    :/images/Textures/Enemy/Launcher/Idle/{Down,Up,Left,Right}.png
 //    :/images/Textures/Enemy/Launcher/Move/{Down,Up,Left,Right}.png
-//  → 2 frames de 32×32 côte à côte, comme ZombieStdView.
-//  Si absentes, un rectangle violet annoté "L" est utilisé.
+//  → 2 frames of 32×32 side by side, like ZombieStdView.
+//  If missing, a purple rectangle annotated "L" is used.
 //
-//  Gestion des RubbleView :
-//    À chaque tick, updateView() synchronise la liste des RubbleView
-//    avec les RubbleModel créés par le modèle, puis appelle
-//    pruneInactiveRubbles() pour libérer la mémoire.
+//  RubbleView management:
+//    On every tick, updateView() synchronizes the RubbleView list
+//    with the RubbleModel instances created by the model, then calls
+//    pruneInactiveRubbles() to free memory.
 // ═══════════════════════════════════════════════════════════════════
 
 /**
  * @class ZombieLauncherView
- * @brief Vue Qt du zombie lanceur, gérant aussi les vues des gravats qu'il tire.
+ * @brief Qt view of the launcher zombie, also managing the views of the rubble it fires.
  */
 class ZombieLauncherView : public QGraphicsPixmapItem {
 public:
     /**
-     * @brief Constructeur.
-     * @param model  Modèle source.
-     * @param scene  Scène Qt dans laquelle ajouter les RubbleView.
-     * @param parent Élément parent Qt.
+     * @brief Constructor.
+     * @param model  Source model.
+     * @param scene  Qt scene in which to add the RubbleView instances.
+     * @param parent Qt parent item.
      */
     explicit ZombieLauncherView(ZombieLauncherModel* model,
                                 QGraphicsScene*      scene,
                                 QGraphicsItem*       parent = nullptr);
 
     /**
-     * @brief Met à jour l'animation du lanceur et les vues de ses gravats.
-     * @param dt Delta-time en secondes.
+     * @brief Updates the launcher's animation and the views of its rubble projectiles.
+     * @param dt Delta-time in seconds.
      */
     void updateView(float dt);
 
 private:
-    ZombieLauncherModel* model;          ///< Modèle source.
-    QGraphicsScene*      scene;          ///< Scène où injecter les nouvelles RubbleView.
-    QVector<RubbleView*> rubbleViews;    ///< Vues des gravats actuellement en vol.
+    ZombieLauncherModel* model;          ///< Source model.
+    QGraphicsScene*      scene;          ///< Scene into which new RubbleView instances are injected.
+    QVector<RubbleView*> rubbleViews;    ///< Views of rubble currently in flight.
 
     // ─── Animation ────────────────────────────────────────────
     static constexpr int IDLE        = 0;
     static constexpr int WALK        = 1;
-    static constexpr int HURT        = 2;  ///< Constante de l'état blessé.
-    static constexpr int DEAD        = 3;  ///< Constante de l'état de mort.
+    static constexpr int HURT        = 2;  ///< Constant for the hurt state.
+    static constexpr int DEAD        = 3;  ///< Constant for the dead state.
     static constexpr int STATE_COUNT = 4;
     static constexpr int DIR_COUNT   = 4;
-    static constexpr int FRAME_W     = 32; ///< Largeur d'une frame source (px).
-    static constexpr int FRAME_H     = 32; ///< Hauteur d'une frame source (px).
+    static constexpr int FRAME_W     = 32; ///< Width of one source frame (px).
+    static constexpr int FRAME_H     = 32; ///< Height of one source frame (px).
 
-    QVector<QPixmap> sprites[STATE_COUNT][DIR_COUNT]; ///< Frames par état × direction.
+    QVector<QPixmap> sprites[STATE_COUNT][DIR_COUNT]; ///< Frames per state × direction.
 
-    int   currentFrame; ///< Index de frame courant.
-    float frameTimer;   ///< Temps écoulé sur la frame courante.
-    float animSpeed;    ///< Durée d'affichage d'une frame en secondes.
+    int   currentFrame; ///< Current frame index.
+    float frameTimer;   ///< Time elapsed on the current frame.
+    float animSpeed;    ///< Display duration of one frame in seconds.
     float animSpeedDeath;
-    int   currentDir;   ///< Direction courante (index 0-3).
-    bool  deadAnimFinished; ///< True une fois que l'animation DEAD a été jouée entièrement.
+    int   currentDir;   ///< Current direction (index 0-3).
+    bool  deadAnimFinished; ///< True once the DEAD animation has been played in full.
 
     // ─── Helpers ──────────────────────────────────────────────
     static int             dirIdx(FacingDirection d);
@@ -85,9 +85,9 @@ private:
     void                   advanceFrames(float dt, const QVector<QPixmap>& frames);
 
     /**
-     * @brief Synchronise rubbleViews avec les RubbleModel du modèle.
-     * Crée une RubbleView pour chaque nouveau gravat, puis supprime
-     * les vues des gravats devenus inactifs.
+     * @brief Synchronizes rubbleViews with the model's RubbleModel instances.
+     * Creates a RubbleView for each new rubble, then removes
+     * views of rubble that have become inactive.
      */
     void syncRubbleViews();
 };

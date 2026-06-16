@@ -1,6 +1,6 @@
 /**
  * @file zombiestdview.cpp
- * @brief Implémentation du système d'animation et de rendu graphique pour les zombies standards.
+ * @brief Implementation of the animation and graphics rendering system for standard zombies.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
  * @date Juin 2026
  */
@@ -8,7 +8,6 @@
 #include "zombiestdview.h"
 #include <QPainter>
 
-// ─── Direction → index ────────────────────────────────────────────────────────
 int ZombieStdView::dirIdx(FacingDirection d) {
     switch (d) {
     case FacingDirection::DOWN:  return 0;
@@ -19,7 +18,6 @@ int ZombieStdView::dirIdx(FacingDirection d) {
     return 0;
 }
 
-// ─── Velocity → FacingDirection (axe dominant) ───────────────────────────────
 FacingDirection ZombieStdView::velocityToDir(Vector2f vel) {
     if (std::abs(vel.x) >= std::abs(vel.y))
         return (vel.x >= 0) ? FacingDirection::RIGHT : FacingDirection::LEFT;
@@ -27,14 +25,13 @@ FacingDirection ZombieStdView::velocityToDir(Vector2f vel) {
         return (vel.y >= 0) ? FacingDirection::DOWN  : FacingDirection::UP;
 }
 
-// ─── Constructeur ─────────────────────────────────────────────────────────────
 ZombieStdView::ZombieStdView(ZombieStdModel* m, QGraphicsItem* parent)
     : QGraphicsPixmapItem(parent)
     , model(m)
     , currentFrame(0)
     , frameTimer(0.0f)
     , animSpeed(0.18f)
-    , currentDir(0)     // DOWN par défaut
+    , currentDir(0)    
     , deadAnimFinished(false)
     , animSpeedDeath(0.10f)
 {
@@ -59,7 +56,7 @@ ZombieStdView::ZombieStdView(ZombieStdModel* m, QGraphicsItem* parent)
     setPixmap(!sprites[IDLE][0].isEmpty() ? sprites[IDLE][0][0] : makeFallback());
 }
 
-// ─── Chargement spritesheet (2 frames 32×32 côte à côte) ─────────────────────
+// ---- Spritesheet loading (2 frames 32×32 side by side) ----------------------
 void ZombieStdView::loadSheet(QVector<QPixmap>& frames, const QString& path) {
     QPixmap sheet(path);
     if (sheet.isNull()) {
@@ -75,7 +72,6 @@ void ZombieStdView::loadSheet(QVector<QPixmap>& frames, const QString& path) {
     }
 }
 
-// ─── Fallback ────────────────────────────────────────────────────────────────
 QPixmap ZombieStdView::makeFallback() {
     QPixmap pm(Cfg::ENTITY_SIZE, Cfg::ENTITY_SIZE);
     pm.fill(QColor(60, 120, 60));
@@ -86,7 +82,6 @@ QPixmap ZombieStdView::makeFallback() {
     return pm;
 }
 
-// ─── Avance une frame ────────────────────────────────────────────────────────
 void ZombieStdView::advanceFrames(float dt, const QVector<QPixmap>& frames) {
     if (frames.isEmpty()) return;
     frameTimer += dt;
@@ -97,13 +92,12 @@ void ZombieStdView::advanceFrames(float dt, const QVector<QPixmap>& frames) {
     setPixmap(frames[currentFrame]);
 }
 
-// ─── Mise à jour chaque tick ──────────────────────────────────────────────────
 void ZombieStdView::updateView(float dt) {
     if (!model) return;
 
     EnemyAIState state = model->getAIState();
 
-    // ── État DEAD : joue l'animation une seule fois, puis cache le sprite ──────
+    // ── DEAD state: play the animation once, then hide the sprite ────────────
     if (state == EnemyAIState::DEAD || deadAnimFinished) {
         if (!deadAnimFinished) {
             setPos(model->getPosition().toQPointF());
@@ -115,13 +109,13 @@ void ZombieStdView::updateView(float dt) {
                     if (currentFrame < dead.size() - 1) {
                         ++currentFrame;
                     } else {
-                        // Dernière frame atteinte : on reste dessus et on marque la fin
+                        // Last frame reached: hold on it and mark as finished
                         deadAnimFinished = true;
                     }
                 }
                 setPixmap(dead[qMin(currentFrame, dead.size() - 1)]);
             } else {
-                // Pas de spritesheet DEAD : disparaître immédiatement
+                // No DEAD spritesheet: disappear immediately
                 deadAnimFinished = true;
             }
         }
@@ -130,7 +124,7 @@ void ZombieStdView::updateView(float dt) {
         return;
     }
 
-    // ── Ennemi inactif sans état DEAD (ne devrait pas arriver) ────────────────
+    // ── Inactive enemy without DEAD state (should not happen) ────────────────
     if (!model->isActive()) {
         hide();
         return;
@@ -138,7 +132,7 @@ void ZombieStdView::updateView(float dt) {
 
     setPos(model->getPosition().toQPointF());
 
-    // ── État HURT : joue l'animation en boucle pendant la durée du HURT ───────
+    // ── HURT state: loop the animation for the duration of HURT ──────────────
     if (state == EnemyAIState::HURT) {
         const QVector<QPixmap>& hurt = sprites[HURT][currentDir];
         if (!hurt.isEmpty()) {
@@ -154,12 +148,12 @@ void ZombieStdView::updateView(float dt) {
         return;
     }
 
-    // ── Réinitialisation de currentFrame si on sort d'un état transitoire ─────
+    // ── Reset currentFrame when leaving a transient state ────────────────────
     Vector2f vel = model->getVelocity();
     bool chasing = (state == EnemyAIState::CHASING);
 
     if (chasing && vel.length() > 0.01f) {
-        // ── Walk : direction déduite du vecteur vitesse ────────
+        // ── Walk: direction inferred from the velocity vector ─────
         int newDir = dirIdx(velocityToDir(vel));
         if (newDir != currentDir) {
             currentDir   = newDir;
@@ -173,7 +167,7 @@ void ZombieStdView::updateView(float dt) {
             setPixmap(makeFallback());
 
     } else {
-        // ── Idle : frame fixe, direction conservée ────────────
+        // ── Idle: fixed frame, direction preserved ────────────────
         currentFrame = 0;
         frameTimer   = 0.0f;
         const QVector<QPixmap>& idle = sprites[IDLE][currentDir];

@@ -1,6 +1,6 @@
 /**
  * @file standarddoorview.h
- * @brief Déclaration de la vue graphique pour la porte standard.
+ * @brief Graphical view of the standard door.
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
  * @date Juin 2026
  */
@@ -14,21 +14,20 @@
 #include <QPen>
 #include <QFont>
 #include "standarddoormodel.h"
-#include "config.h"
 
 // ═══════════════════════════════════════════════════════════════════
-//  StandardDoorView — représentation visuelle de la porte standard.
-//  Couleur marron sombre = fermée, beige/doré = ouverte.
+//  StandardDoorView — visual representation of the standard door.
+//  Dark brown color = closed, beige/gold = open.
 // ═══════════════════════════════════════════════════════════════════
 
 /**
  * @class StandardDoorView
- * @brief Rendu Qt de la porte standard avec code couleur ouvert/fermé.
+ * @brief Qt rendering of the standard door with open/closed color coding.
  */
 class StandardDoorView : public QGraphicsRectItem {
 private:
-    StandardDoorModel* itsModel;      ///< Référence vers le modèle logique.
-    bool               cachedOpen; ///< Cache de l'état pour éviter un redraw inutile.
+    StandardDoorModel* itsModel;   ///< Reference to the logical model.
+    bool               cachedOpen; ///< Cached state to avoid unnecessary redraws.
 
     bool           wasLocked;
     QPixmap        unlockedPixmap;
@@ -37,25 +36,25 @@ private:
 
 public:
     /**
-     * @brief Constructeur.
-     * @param model  Modèle source.
-     * @param parent Élément parent Qt (optionnel).
+     * @brief Constructor.
+     * @param model  Source model.
+     * @param parent Qt parent item (optional).
      */
     explicit StandardDoorView(StandardDoorModel* model,
                               QGraphicsItem* parent = nullptr);
 
     /**
-     * @brief Actualise la couleur selon l'état ouvert/fermé du modèle.
+     * @brief Updates the color according to the model's open/closed state.
      */
     void updateView();
 
     /**
-     * @brief Fallback si les textures sont introuvables.
+     * @brief Fallback if textures are not found.
      */
     QPixmap makeFallback(int w, int h, bool isLocked);
 
     /**
-     * @brief Cherche, construit et charge les textures
+     * @brief Finds, builds and loads the textures.
      */
     void buildPixmaps();
 };

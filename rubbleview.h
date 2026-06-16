@@ -1,6 +1,6 @@
 /**
  * @file rubbleview.h
- * @brief Déclaration de la vue graphique du gravat (projectile du zombie lanceur).
+ * @brief Display of the graphical view of the rubble (projectile fired by the zombie launcher).
  * @author Alexandre AUBIN, Iaviantsoa RASOLOFOHARIVELO, Babacar DIOP, Léo BOUCARD
  * @date Juin 2026
  */
@@ -14,35 +14,35 @@
 #include "config.h"
 
 // ═══════════════════════════════════════════════════════════════════
-//  RubbleView — représentation graphique d'un gravat.
+//  RubbleView — graphical representation of a rubble projectile.
 //
-//  Sprite attendu (ressources Qt) :
-//    :/images/Textures/Enemy/Launcher/rubble.png  (16×16 ou 32×32)
-//  Si le fichier est absent, un carré gris-brun est dessiné en fallback.
+//  Expected sprite (Qt resources):
+//    :/images/Textures/Enemy/Launcher/rubble.png  (16×16 or 32×32)
+//  If the file is missing, a grey-brown square is drawn as fallback.
 // ═══════════════════════════════════════════════════════════════════
 
 /**
  * @class RubbleView
- * @brief Élément graphique Qt synchronisé sur un RubbleModel.
+ * @brief Qt graphics item synchronized with a RubbleModel.
  */
 class RubbleView : public QGraphicsPixmapItem {
 public:
     /**
-     * @brief Constructeur.
-     * @param model  Pointeur vers le modèle du gravat.
-     * @param parent Élément parent Qt (nullptr par défaut).
+     * @brief Constructor.
+     * @param model  Pointer to the rubble model.
+     * @param parent Qt parent item (nullptr by default).
      */
     explicit RubbleView(RubbleModel* model, QGraphicsItem* parent = nullptr);
 
     /**
-     * @brief Met à jour la position graphique et masque l'item si inactif.
+     * @brief Updates the graphical position and hides the item if inactive.
      */
     void updateView();
 
 private:
-    RubbleModel* model; ///< Modèle source.
+    RubbleModel* model; ///< Source model.
 
-    /// Charge le sprite depuis les ressources ; construit un fallback si absent.
+    /// Loads the sprite from resources; builds a fallback if missing.
     static QPixmap loadSprite();
 };
 
