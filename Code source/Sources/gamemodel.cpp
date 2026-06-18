@@ -36,6 +36,19 @@ void GameModel::obtainKey()
     getPlayer()->collectKey();
 }
 
+void GameModel:: ComputeOrientationSlash( QPointF scenePos) const{
+
+        Vector2f ppos = player->getPosition();
+        double cx = static_cast<double>(ppos.x) + Cfg::ENTITY_SIZE / 2.0; // Convert and fill Vector2f attributes
+        double cy = static_cast<double>(ppos.y) + Cfg::ENTITY_SIZE / 2.0; // *
+
+        double dx    = scenePos.x() - cx;
+        double dy    = scenePos.y() - cy;
+        float  angle = static_cast<float>(std::atan2(dy, dx)); // Compute arctan of dx/dy → attack direction
+
+        player->launchKatana(angle);
+}
+
 Enemy* GameModel::getBoss()
 {
     for (Enemy* e : level->getEnemies())

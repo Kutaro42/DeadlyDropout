@@ -52,17 +52,17 @@ public:
     /**
      * @brief Adds two vectors together.
      */
-    Vector2f operator+(const Vector2f& v) const { return Vector2f(x + v.x, y + v.y); }
+    Vector2f operator+(const Vector2f& v) const { return Vector2f(x + v.x, y + v.y); } //redefinition of + operator to add 2 vector2f (x;y) components
     
     /**
      * @brief Subtracts a vector from this one.
      */
-    Vector2f operator-(const Vector2f& v) const { return Vector2f(x - v.x, y - v.y); }
+    Vector2f operator-(const Vector2f& v) const { return Vector2f(x - v.x, y - v.y); } //redefinition of - operator to substract " "
     
     /**
      * @brief Applies a scalar multiplication to the vector.
      */
-    Vector2f operator*(float s) const { return Vector2f(x * s, y * s); }
+    Vector2f operator*(float s) const { return Vector2f(x * s, y * s); } // same to the two others for * operator
     
     // Qt compatibility
     /**

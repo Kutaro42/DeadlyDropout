@@ -62,6 +62,11 @@ public:
      */
     void obtainKey();
 
+    /**
+     * @brief ComputeOrientationSlash : compute orientation slashzone for the katana attack
+     */
+    void ComputeOrientationSlash(QPointF scenePos) const;
+
     void setCurrentLevelIndex(int i) { currentLevelIndex = i; }
 
     PlayerModel* getPlayer() const { return player; }

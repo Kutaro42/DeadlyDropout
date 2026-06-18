@@ -34,7 +34,7 @@ public:
      * @param parentWidget Qt widget parent for the dialog (nullptr = top-level).
      * @param parent       Qt object parent.
      */
-    explicit MarketController(QWidget* parentWidget, QObject* parent = nullptr);
+    MarketController(QWidget* parentWidget, QObject* parent = nullptr);
     ~MarketController();
 
     /**

@@ -31,25 +31,12 @@ void GameController::init(bool startMusic) {
     connect(itsGameView, &GameView::sigPauseMenu, this, &GameController::sltPauseMenu);
 
     // -- Right click → katana slash oriented on the cursor ---------------
-    // The angle is computed here (Controller) rather than in PlayerModel because
+    // The angle is computed on the model and pass by here to rather than in PlayerModel because
     // it requires the scene-space cursor position, which only the view knows about.
-    connect(itsGameView, &GameView::sig_rightClicked,
-            this, [this](QPointF scenePos) {
-        if (currentState != AppState::PLAYING) return;           // Discard all common early-out cases first
-        if (!itsGameModel || !itsGameModel->getPlayer()) return; // *
+    connect(itsGameView, &GameView::sig_rightClicked,this, [this](QPointF scenePos){
+        itsGameModel->ComputeOrientationSlash(scenePos);
+    }); //revise on M.SAVARIT advices
 
-        PlayerModel* player = itsGameModel->getPlayer();
-
-        Vector2f ppos = player->getPosition();
-        double cx = static_cast<double>(ppos.x) + Cfg::ENTITY_SIZE / 2.0; // Convert and fill Vector2f attributes
-        double cy = static_cast<double>(ppos.y) + Cfg::ENTITY_SIZE / 2.0; // *
-
-        double dx    = scenePos.x() - cx;
-        double dy    = scenePos.y() - cy;
-        float  angle = static_cast<float>(std::atan2(dy, dx)); // Compute arctan of dx/dy → attack direction
-
-        player->launchKatana(angle);
-    });
 
     // -- Escape key → pause ----------------------------------------------
     connect(itsGameView, &GameView::sig_escapePressed, this, &GameController::togglePause);

@@ -32,7 +32,7 @@ void MarketController::sltBuy(int itemId) {
     // Apply the upgrade that corresponds to the purchased item.
     // Each case maps 1-to-1 to a GDD power-up definition (Step 5).
     switch (itemId) {
-    case 0: itsPlayer->setMaxHp(itsPlayer->getMaxHp() + BONUS_MAX_HP); break;
+    case 0: itsPlayer->setMaxHp(itsPlayer->getMaxHp() + BONUS_MAX_HP); itsPlayer->setHp(itsPlayer->getHp() + BONUS_MAX_HP); break;
     case 1: itsPlayer->getGun().setBaseDamage(itsPlayer->getGun().getBaseDamage() + BONUS_GUN_MAX_DMG); break;
     case 2: itsPlayer->setKatanaDamage(itsPlayer->getKatana().getDamage() + BONUS_KATANA_DMG); break;
     case 3: itsPlayer->setKatanaRange(itsPlayer->getKatana().getRange() + BONUS_KATANA_RANGE); break;
