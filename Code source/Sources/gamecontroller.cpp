@@ -45,26 +45,7 @@ void GameController::init(bool startMusic) {
     // Muzzle position is offset from the player center along the aim direction
     // so that the bullet spawns at the barrel tip rather than at the player's feet.
     connect(itsGameView, &GameView::sig_leftClicked, this, [this](QPointF scenePos) {
-        if (currentState != AppState::PLAYING) return;
-        if (!itsGameModel || !itsGameModel->getPlayer()) return;
-
-        PlayerModel* player = itsGameModel->getPlayer();
-
-        // Compute the muzzle gun position
-        // (player center + shift toward cursor)
-        Vector2f ppos = player->getPosition();
-        double cx = static_cast<double>(ppos.x) + Cfg::ENTITY_SIZE / 2.0;
-        double cy = static_cast<double>(ppos.y) + Cfg::ENTITY_SIZE / 2.0;
-        double dx = scenePos.x() - cx;
-        double dy = scenePos.y() - cy;
-        double angle = std::atan2(dy, dx); // Reuse tangent calculation
-        Vector2f muzzle(
-            static_cast<float>(cx + std::cos(angle) * Cfg::GUN_OFFSET_X),
-            static_cast<float>(cy + std::sin(angle) * Cfg::GUN_OFFSET_X)
-            );
-        Vector2f target(static_cast<float>(scenePos.x()),
-                        static_cast<float>(scenePos.y()));
-        player->shootGun(muzzle, target);
+        itsGameModel->ComputeBulletSpawnDirection(scenePos);
     });
 
     // -- ENDGAME BUTTONS -----------------------------------------------

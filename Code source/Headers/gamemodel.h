@@ -64,8 +64,15 @@ public:
 
     /**
      * @brief ComputeOrientationSlash : compute orientation slashzone for the katana attack
+     * @param scenePos
      */
     void ComputeOrientationSlash(QPointF scenePos) const;
+
+    /**
+     * @brief ComputeBulletSpawnDirection
+     * @param scenePos
+     */
+    void ComputeBulletSpawnDirection(QPointF scenePos) const;
 
     void setCurrentLevelIndex(int i) { currentLevelIndex = i; }
 

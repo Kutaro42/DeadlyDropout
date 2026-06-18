@@ -36,6 +36,29 @@ void GameModel::obtainKey()
     getPlayer()->collectKey();
 }
 
+void GameModel::ComputeBulletSpawnDirection(QPointF scenePos) const{
+    //if (currentState != AppState::PLAYING) return;
+    //if (!itsGameModel || !itsGameModel->getPlayer()) return;
+
+
+    // Compute the muzzle gun position
+    // (player center + shift toward cursor)
+    Vector2f ppos = player->getPosition();
+    double cx = static_cast<double>(ppos.x) + Cfg::ENTITY_SIZE / 2.0;
+    double cy = static_cast<double>(ppos.y) + Cfg::ENTITY_SIZE / 2.0;
+    double dx = scenePos.x() - cx;
+    double dy = scenePos.y() - cy;
+    double angle = std::atan2(dy, dx); // Reuse tangent calculation
+    Vector2f muzzle(
+        static_cast<float>(cx + std::cos(angle) * Cfg::GUN_OFFSET_X),
+        static_cast<float>(cy + std::sin(angle) * Cfg::GUN_OFFSET_X)
+        );
+    Vector2f target(static_cast<float>(scenePos.x()),
+                    static_cast<float>(scenePos.y()));
+    player->shootGun(muzzle, target);
+}
+
+
 void GameModel:: ComputeOrientationSlash( QPointF scenePos) const{
 
         Vector2f ppos = player->getPosition();
