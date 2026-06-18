@@ -46,7 +46,7 @@ void GameController::init(bool startMusic) {
     // so that the bullet spawns at the barrel tip rather than at the player's feet.
     connect(itsGameView, &GameView::sig_leftClicked, this, [this](QPointF scenePos) {
         itsGameModel->ComputeBulletSpawnDirection(scenePos);
-    });
+    });//revise on M.SAVARIT advices
 
     // -- ENDGAME BUTTONS -----------------------------------------------
     connect(itsGameView, &GameView::sigRestartRq, this, &GameController::sigRestart);
